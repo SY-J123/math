@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>7장 · 7.3 회귀모수의 추정</title>
+<link rel="stylesheet" href="../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <div class="ch">수리통계학 · 7장 선형 회귀모형</div>
+  <h1><span class="no">7.3</span>회귀모수의 추정 <span class="en">estimation</span></h1>
+</header>
+
+<p>이변량 자료 $(x_i,Y_i),\ i=1,\dots,n$ 에 대해 $\beta_0,\beta_1,\sigma^2$ 을 추정한다.
+방법은 <b>최소제곱</b>과 (정규 가정하의) <b>최대가능도</b> 두 가지다.</p>
+
+<h2 class="sub"><span class="no">7.3.1</span>최소제곱 추정방법 <span class="en">least squares</span></h2>
+<p>관측값 $Y_i$ 와 회귀함수값 $\beta_0+\beta_1 x_i$ 의 차이(오차)의 제곱합</p>
+$$SSE(\beta_0,\beta_1)=\sum_{i=1}^{n}(Y_i-\beta_0-\beta_1 x_i)^2\tag{7.8}$$
+<p>를 최소화하는 $\beta_0,\beta_1$ 을 <b>최소제곱 추정량</b> <span class="en">least square estimator</span>이라 한다.</p>
+
+<div class="box thm">
+  <span class="tag">정리 7.4</span><span class="title">최소제곱 추정량</span>
+  $$\begin{gathered}
+    \hat\beta_1=\frac{\sum_{i=1}^{n}(x_i-\bar x_n)(Y_i-\bar Y_n)}{\sum_{i=1}^{n}(x_i-\bar x_n)^2}=\frac{S_{XY}}{S_X^2},\\[4pt]
+    \hat\beta_0=\bar Y_n-\hat\beta_1\bar x_n.
+  \end{gathered}$$
+</div>
+
+<div class="box prf">
+  <span class="tag">증명</span>
+  <ol>
+    <li><span class="step">정규방정식.</span>
+      $SSE$ 를 $\beta_0,\beta_1$ 로 편미분하여 0으로 둔다.
+      $$\frac{\partial SSE}{\partial\beta_0}=-2\sum_{i=1}^n(Y_i-\beta_0-\beta_1 x_i)=0,\qquad
+        \frac{\partial SSE}{\partial\beta_1}=-2\sum_{i=1}^n(Y_i-\beta_0-\beta_1 x_i)x_i=0.$$
+      정리하면
+      $$\beta_0 n+\beta_1\textstyle\sum x_i=\sum Y_i,\qquad
+        \beta_0\sum x_i+\beta_1\sum x_i^2=\sum x_iY_i.\tag{$\ast$}$$</li>
+    <li><span class="step">$\hat\beta_0$ 분리.</span>
+      ($\ast$)의 첫 식을 $n$ 으로 나누면 $\beta_0=\bar Y_n-\beta_1\bar x_n$. 이것이 $\hat\beta_0=\bar Y_n-\hat\beta_1\bar x_n$.</li>
+    <li><span class="step">$\hat\beta_1$ 풀이.</span>
+      $\beta_0=\bar Y_n-\beta_1\bar x_n$ 을 ($\ast$)의 둘째 식에 대입하면
+      $$\sum x_iY_i-(\bar Y_n-\beta_1\bar x_n)\,n\bar x_n-\beta_1\sum x_i^2=0
+        \ \Rightarrow\ \beta_1\Big(\sum x_i^2-n\bar x_n^2\Big)=\sum x_iY_i-n\bar x_n\bar Y_n.$$
+      $\sum x_i^2-n\bar x_n^2=\sum(x_i-\bar x_n)^2$, $\sum x_iY_i-n\bar x_n\bar Y_n=\sum(x_i-\bar x_n)(Y_i-\bar Y_n)$ 이므로
+      $$\hat\beta_1=\frac{\sum(x_i-\bar x_n)(Y_i-\bar Y_n)}{\sum(x_i-\bar x_n)^2}.$$</li>
+    <li><span class="step">최소임 확인.</span>
+      $SSE$ 는 $(\beta_0,\beta_1)$ 의 이차형식이고 헤시안
+      $\begin{pmatrix}2n&2\sum x_i\\ 2\sum x_i&2\sum x_i^2\end{pmatrix}$ 의 행렬식이
+      $4n\sum(x_i-\bar x_n)^2>0$ (양정치)이므로, 위 임계점은 유일한 최소점이다.</li>
+  </ol>
+  <div class="qed">∎</div>
+</div>
+
+<div class="note">
+  최소제곱법은 오차 $\varepsilon$ 의 분포가정 없이도 쓸 수 있다. 또한 $\hat\beta_0,\hat\beta_1$ 은
+  식 (7.6)의 모수 $(\mu_X,\mu_Y,\sigma_X,\sigma_Y,\rho)$ 를 표본값 $(\bar x_n,\bar Y_n,S_X,S_Y,R)$ 로 대치한 것과 같다.
+</div>
+
+<div class="box ex">
+  <span class="tag">예 7.5</span><span class="title">화학실험 온도–결과량</span>
+  <div class="scroll"><table class="data">
+    <tr><th>$x_i$</th><td>30</td><td>35</td><td>40</td><td>45</td><td>50</td><td>55</td><td>60</td><td>65</td><td>70</td><td>75</td></tr>
+    <tr><th>$Y_i$</th><td>25</td><td>32</td><td>34</td><td>43</td><td>42</td><td>48</td><td>55</td><td>56</td><td>72</td><td>70</td></tr>
+  </table></div>
+  $$\begin{gathered}
+    \hat\beta_1=\frac{\sum x_iY_i-10\,\bar x_{10}\bar Y_{10}}{\sum x_i^2-10\,\bar x_{10}^2}=1.015,\qquad
+    \hat\beta_0=\bar Y_{10}-\hat\beta_1\bar x_{10}=-5.564,\\[4pt]
+    \therefore\ y=-5.564+1.015\,x.
+  \end{gathered}$$
+</div>
+
+<h2 class="sub"><span class="no">7.3.2</span>최대가능도 추정방법 <span class="en">maximum likelihood</span></h2>
+<p>모형 (7.4)는 $Y_i|x_i\sim N(\beta_0+\beta_1 x_i,\sigma^2)$ 이고 서로 독립인 것과 동등하다.</p>
+
+<div class="box thm">
+  <span class="tag">정리 7.5</span><span class="title">최대가능도 추정량</span>
+  $$\begin{gathered}
+    \hat\beta_1=\frac{\sum(x_i-\bar x_n)(Y_i-\bar Y_n)}{\sum(x_i-\bar x_n)^2},\qquad
+    \hat\beta_0=\bar Y_n-\hat\beta_1\bar x_n,\\[4pt]
+    \hat\sigma^2=\frac1n\sum_{i=1}^{n}(Y_i-\hat\beta_0-\hat\beta_1 x_i)^2.
+  \end{gathered}$$
+</div>
+
+<div class="box prf">
+  <span class="tag">증명</span>
+  <ol>
+    <li><span class="step">로그가능도.</span>
+      $Y_i|x_i\sim N(\beta_0+\beta_1 x_i,\sigma^2)$ 의 밀도를 곱하고 로그를 취하면
+      $$\ell(\beta_0,\beta_1,\sigma^2)=-\frac n2\log(2\pi\sigma^2)-\frac{1}{2\sigma^2}\sum_{i=1}^n(y_i-\beta_0-\beta_1 x_i)^2.$$</li>
+    <li><span class="step">$\beta_0,\beta_1$ 에 대한 편미분.</span>
+      $$\frac{\partial\ell}{\partial\beta_0}=\frac{1}{\sigma^2}\sum(y_i-\beta_0-\beta_1 x_i)=0,\qquad
+        \frac{\partial\ell}{\partial\beta_1}=\frac{1}{\sigma^2}\sum(y_i-\beta_0-\beta_1 x_i)x_i=0.$$
+      $\sigma^2(>0)$ 을 곱해 없애면 정리 7.4의 정규방정식 ($\ast$)과 완전히 같다. 따라서
+      $\hat\beta_0,\hat\beta_1$ 은 최소제곱 추정량과 동일하다.</li>
+    <li><span class="step">$\sigma^2$ 에 대한 편미분.</span>
+      $$\frac{\partial\ell}{\partial\sigma^2}=-\frac{n}{2\sigma^2}+\frac{1}{2\sigma^4}\sum(y_i-\beta_0-\beta_1 x_i)^2=0
+        \ \Rightarrow\ \hat\sigma^2=\frac1n\sum(Y_i-\hat\beta_0-\hat\beta_1 x_i)^2.$$</li>
+    <li><span class="step">최대임 확인.</span>
+      2계 미분이 임계점에서 음정치임을 확인하면 가능도가 최대가 된다.</li>
+  </ol>
+  <div class="qed">∎</div>
+</div>
+
+<div class="box ex">
+  <span class="tag">예 7.6</span><span class="title">예 7.5의 계속</span>
+  <p>$\beta_0,\beta_1$ 의 MLE는 최소제곱 추정량과 동일하고,
+  $\hat\sigma^2=\tfrac{1}{10}\sum\big[(Y_i-\bar Y_{10})-\hat\beta_1(x_i-\bar x_{10})\big]^2=9.116.$</p>
+</div>
+
+<h2 class="sub"><span class="no">7.3.3</span>추정량의 성질</h2>
+
+<div class="box thm">
+  <span class="tag">성질 7.6</span><span class="title">추정량의 분포</span>
+  $$\begin{gathered}
+    \hat\beta_0\sim N\!\left(\beta_0,\ \frac{\sigma^2\sum_{i=1}^{n}x_i^2}{n\sum_{i=1}^{n}(x_i-\bar x_n)^2}\right),\\[4pt]
+    \hat\beta_1\sim N\!\left(\beta_1,\ \frac{\sigma^2}{\sum_{i=1}^{n}(x_i-\bar x_n)^2}\right).
+  \end{gathered}$$
+</div>
+
+<div class="box prf">
+  <span class="tag">증명</span>
+  <p>이하 $S_{xx}=\sum(x_i-\bar x_n)^2$ 로 둔다.</p>
+  <ol>
+    <li><span class="step">$\hat\beta_1$ 은 정규.</span>
+      $\sum(x_i-\bar x_n)\bar Y_n=0$ 이므로
+      $\hat\beta_1=\dfrac{\sum(x_i-\bar x_n)Y_i}{S_{xx}}$. 독립 정규 $Y_i$ 의 선형결합이라 정규분포를 따른다.</li>
+    <li><span class="step">$\hat\beta_1$ 의 평균·분산.</span>
+      $E(Y_i)=\beta_0+\beta_1 x_i$ 를 쓰면
+      $$\begin{aligned}
+        E(\hat\beta_1)&=\frac{\sum(x_i-\bar x_n)(\beta_0+\beta_1 x_i)}{S_{xx}}
+          =\frac{\beta_0\sum(x_i-\bar x_n)+\beta_1\sum(x_i-\bar x_n)x_i}{S_{xx}}=\beta_1,\\
+        Var(\hat\beta_1)&=\sum\Big(\frac{x_i-\bar x_n}{S_{xx}}\Big)^2 Var(Y_i)
+          =\frac{\sigma^2 S_{xx}}{S_{xx}^2}=\frac{\sigma^2}{S_{xx}}.
+      \end{aligned}$$</li>
+    <li><span class="step">$\hat\beta_1$ 과 $\bar Y_n$ 은 무상관.</span>
+      $Cov(\hat\beta_1,Y_j)=\dfrac{(x_j-\bar x_n)}{S_{xx}}\sigma^2$ 이므로
+      $$Cov(\hat\beta_1,\bar Y_n)=\frac1n\sum_j Cov(\hat\beta_1,Y_j)
+        =\frac{\sigma^2}{n\,S_{xx}}\sum_j(x_j-\bar x_n)=0.$$
+      편차의 합 $\sum_j(x_j-\bar x_n)=0$ 이라 사라진다. 이 무상관은 곧 (4)에서 $Var(\hat\beta_0)$ 의 교차항을 없애는 데 쓰인다.</li>
+    <li><span class="step">$\hat\beta_0$ 의 분포.</span>
+      $\hat\beta_0=\bar Y_n-\hat\beta_1\bar x_n$ 도 $Y_i$ 의 선형결합이라 정규이고
+      $E(\hat\beta_0)=(\beta_0+\beta_1\bar x_n)-\beta_1\bar x_n=\beta_0$.
+      분산은 두 추정량 $\bar Y_n,\hat\beta_1$ 의 결합이라 교차항이 생기는데, (3)에서 보인 $Cov(\bar Y_n,\hat\beta_1)=0$ 덕분에 사라진다:
+      $$\begin{aligned}
+        Var(\hat\beta_0)&=Var(\bar Y_n-\hat\beta_1\bar x_n)\\
+        &=Var(\bar Y_n)+\bar x_n^2 Var(\hat\beta_1)+2(-\bar x_n)\underbrace{Cov(\bar Y_n,\hat\beta_1)}_{=\,0}\\
+        &=\frac{\sigma^2}{n}+\frac{\bar x_n^2\sigma^2}{S_{xx}}
+        =\frac{\sigma^2\sum x_i^2}{n\,S_{xx}},
+      \end{aligned}$$
+      마지막에 $S_{xx}+n\bar x_n^2=\sum x_i^2$ 를 썼다.</li>
+  </ol>
+  <div class="qed">∎</div>
+</div>
+
+<div class="note">
+  <b>가우스–마르코프 정리 <span class="en">Gauss–Markov</span>.</b> 최소제곱 추정량 $\hat\beta_0,\hat\beta_1$ 은
+  $Y_i$ 들의 선형결합인 비편향추정량 중 분산이 가장 작은 <b>최적 선형 비편향추정량(BLUE)</b>이다.
+</div>
+
+<div class="box thm">
+  <span class="tag">정리 7.7</span><span class="title">독립성과 카이제곱분포</span>
+  <ol class="props">
+    <li>$\hat\beta_1,\ \bar Y_n,\ \hat\sigma^2$ 은 서로 독립이다.</li>
+    <li>$\dfrac{n\hat\sigma^2}{\sigma^2}\sim\chi^2(n-2)$.</li>
+  </ol>
+</div>
+
+<div class="box prf">
+  <span class="tag">증명</span>
+  <ol>
+    <li><span class="step">오차변수 도입.</span>
+      $W_i=Y_i-\beta_0-\beta_1 x_i\overset{iid}\sim N(0,\sigma^2)$, $\bar W_n=\tfrac1n\sum W_i$, $S_{xx}=\sum(x_i-\bar x_n)^2$.</li>
+    <li><span class="step">$\hat\beta_1-\beta_1$ 을 $W$ 로 표현.</span>
+      정리 7.4의 $\hat\beta_1=\dfrac{\sum(x_i-\bar x_n)(Y_i-\bar Y_n)}{S_{xx}}$ 에서 출발한다.
+      $\beta_1=\dfrac{\beta_1 S_{xx}}{S_{xx}}=\dfrac{\beta_1\sum(x_i-\bar x_n)^2}{S_{xx}}$ 로 써서 빼면, 분자를 묶을 수 있다:
+      $$\begin{aligned}
+        \hat\beta_1-\beta_1
+        &=\frac{\sum(x_i-\bar x_n)(Y_i-\bar Y_n)-\beta_1\sum(x_i-\bar x_n)^2}{S_{xx}}\\
+        &=\frac{\sum(x_i-\bar x_n)\big[(Y_i-\bar Y_n)-\beta_1(x_i-\bar x_n)\big]}{S_{xx}}.
+      \end{aligned}$$
+      이제 대괄호 안을 $W_i=Y_i-\beta_0-\beta_1 x_i$ 로 바꿔 쓴다. 평균을 빼면 $\bar W_n=\bar Y_n-\beta_0-\beta_1\bar x_n$ 이므로 $\beta_0$ 가 소거되어
+      $$(Y_i-\bar Y_n)-\beta_1(x_i-\bar x_n)=(Y_i-\beta_0-\beta_1 x_i)-(\bar Y_n-\beta_0-\beta_1\bar x_n)=W_i-\bar W_n.$$
+      이를 대입하면
+      $$\hat\beta_1-\beta_1=\frac{\sum(x_i-\bar x_n)(W_i-\bar W_n)}{S_{xx}}.\tag{7.9}$$
+      <span style="color:var(--muted)">$\hat\beta_1-\beta_1$ 을 관측 불가능한 오차 $W_i$ 만으로 표현한 것이 핵심 — 이후 잔차·$\hat\sigma^2$ 도 모두 $W_i$ 로 쓰여 직교변환을 적용할 수 있게 된다.</span></li>
+    <li><span class="step">잔차를 $W$ 로 표현.</span>
+      $\hat\varepsilon_i=Y_i-\hat Y_i=(W_i-\bar W_n)-(x_i-\bar x_n)(\hat\beta_1-\beta_1)$.</li>
+    <li><span class="step">$n\hat\sigma^2$ 전개와 교차항 소거.</span>
+      제곱합을 펼치면
+      $$\begin{aligned}
+        n\hat\sigma^2=\sum\hat\varepsilon_i^2
+        =\sum(W_i-\bar W_n)^2&+S_{xx}(\hat\beta_1-\beta_1)^2\\
+        &-2(\hat\beta_1-\beta_1)\sum(x_i-\bar x_n)(W_i-\bar W_n).
+      \end{aligned}$$
+      마지막 합은 (7.9)에 의해 $(\hat\beta_1-\beta_1)S_{xx}$ 이므로 교차항 $=-2(\hat\beta_1-\beta_1)^2 S_{xx}$, 따라서
+      $$n\hat\sigma^2=\sum(W_i-\bar W_n)^2-S_{xx}(\hat\beta_1-\beta_1)^2
+        =\sum W_i^2-n\bar W_n^2-S_{xx}(\hat\beta_1-\beta_1)^2.$$</li>
+    <li><span class="step">정규직교변환.</span>
+      첫 행 $\Big(\tfrac{x_1-\bar x_n}{\sqrt{S_{xx}}},\dots,\tfrac{x_n-\bar x_n}{\sqrt{S_{xx}}}\Big)$,
+      둘째 행 $\big(\tfrac1{\sqrt n},\dots,\tfrac1{\sqrt n}\big)$ 인 $n\times n$
+      <b>정규직교행렬</b> <span class="en">orthonormal matrix</span> $M$ 으로 $Z=MW$. (두 행은 직교·단위;
+      나머지 $n-2$ 행은 그것과 직교하게 채움.) 직교변환된 독립 정규는 다시 독립 정규이므로
+      $Z_i\overset{iid}\sim N(0,\sigma^2)$, $\sum Z_i^2=\sum W_i^2$.</li>
+    <li><span class="step">성분 식별.</span>
+      $$Z_1=\frac{\sum(x_i-\bar x_n)W_i}{\sqrt{S_{xx}}}\Rightarrow Z_1^2=S_{xx}(\hat\beta_1-\beta_1)^2,\qquad
+        Z_2=\sqrt n\,\bar W_n\Rightarrow Z_2^2=n\bar W_n^2,$$
+      이를 (4)에 넣으면 $n\hat\sigma^2=\sum_{i=1}^n Z_i^2-Z_1^2-Z_2^2=\sum_{i=3}^{n}Z_i^2$.</li>
+    <li><span class="step">독립성 결론.</span>
+      $\hat\beta_1$ 은 $Z_1$, $\bar Y_n=\bar W_n+\beta_0+\beta_1\bar x_n$ 은 $Z_2$, $\hat\sigma^2$ 은 $Z_3,\dots,Z_n$ 만의 함수다.
+      $Z_i$ 들이 독립이므로 $\hat\beta_1,\bar Y_n,\hat\sigma^2$ 도 독립.</li>
+    <li><span class="step">카이제곱 결론.</span>
+      $\dfrac{n\hat\sigma^2}{\sigma^2}=\sum_{i=3}^{n}\big(\tfrac{Z_i}{\sigma}\big)^2$ 는 독립 표준정규 $(n-2)$ 개의 제곱합이므로
+      $\sim\chi^2(n-2)$.</li>
+  </ol>
+  <div class="qed">∎</div>
+</div>
+
+<div class="terms">
+  <div class="h">알아두기 — 직교변환</div>
+  <dl>
+    <dt>정규직교행렬 <span class="en">orthonormal matrix</span></dt>
+    <dd>각 행(과 열)이 서로 직교하고 길이가 1인 정사각행렬 $M$. 이때 $M'M=MM'=I$, 즉 $M^{-1}=M'$ 이다.</dd>
+    <dt>직교변환 <span class="en">orthogonal transformation</span></dt>
+    <dd>그런 $M$ 을 곱하는 변환 $Z=MW$. 기하적으로는 회전·반사이며 <b>길이(와 내적)를 보존</b>한다:
+      $\ \sum Z_i^2=Z'Z=W'M'MW=W'W=\sum W_i^2.$ 이것이 증명 (6)에서 $\sum Z_i^2=\sum W_i^2$ 을 쓴 근거다.</dd>
+    <dt>왜 독립 정규가 그대로 유지되나</dt>
+    <dd>$W\sim N(0,\sigma^2 I)$ 이면 선형변환 $Z=MW$ 도 정규이고, 공분산행렬은
+      $M(\sigma^2 I)M'=\sigma^2 MM'=\sigma^2 I$ 로 변하지 않는다. 공분산행렬이 $\sigma^2 I$ (대각)이라는 것은
+      $Z_i$ 들이 <b>서로 독립</b>이고 각각 $N(0,\sigma^2)$ 임을 뜻한다. 그래서 직교변환 뒤에도 독립 정규성이 보존된다.</dd>
+  </dl>
+</div>
+
+<div class="note">
+  $\dfrac{n\hat\sigma^2}{\sigma^2}\sim\chi^2(n-2)$ 이므로 $E(\hat\sigma^2)=\dfrac{(n-2)\sigma^2}{n}$ — MLE $\hat\sigma^2$ 은 편향.
+  따라서 $\sigma^2$ 의 <b>최소분산 비편향추정량</b>은
+  $\displaystyle \hat\sigma^2=\frac{1}{n-2}\sum_{i=1}^{n}(Y_i-\hat\beta_0-\hat\beta_1 x_i)^2$ &nbsp;(7.10). 이하 $\hat\sigma$ 는 이 추정량의 제곱근.
+</div>
+
+<div class="box thm">
+  <span class="tag">정리 7.8</span><span class="title">$\hat\beta_1$ 의 스튜던트화 분포</span>
+  $$\frac{(\hat\beta_1-\beta_1)\sqrt{\sum_{i=1}^{n}(x_i-\bar x_n)^2}}{\hat\sigma}\ \sim\ t(n-2),
+  \qquad \hat\sigma=\sqrt{\text{식 }(7.10)}.$$
+</div>
+
+<div class="box prf">
+  <span class="tag">증명</span>
+  <ol>
+    <li><span class="step">표준정규 부분.</span>
+      성질 7.6에서 $\hat\beta_1\sim N(\beta_1,\sigma^2/S_{xx})$ 이므로
+      $\dfrac{(\hat\beta_1-\beta_1)\sqrt{S_{xx}}}{\sigma}\sim N(0,1)$.</li>
+    <li><span class="step">카이제곱 부분.</span>
+      정리 7.7에서 $\dfrac{(n-2)\hat\sigma^2}{\sigma^2}\sim\chi^2(n-2)$ 이고, $\hat\beta_1$ 과 $\hat\sigma^2$ 은 독립.</li>
+    <li><span class="step">$t$ 분포의 정의.</span>
+      독립인 $Z\sim N(0,1)$ 와 $V\sim\chi^2(n-2)$ 에 대해 $\dfrac{Z}{\sqrt{V/(n-2)}}\sim t(n-2)$ 이므로
+      $$\begin{aligned}
+        \frac{(\hat\beta_1-\beta_1)\sqrt{S_{xx}}/\sigma}{\sqrt{\big[(n-2)\hat\sigma^2/\sigma^2\big]\big/(n-2)}}
+        &=\frac{(\hat\beta_1-\beta_1)\sqrt{S_{xx}}}{\hat\sigma}\\
+        &\sim t(n-2).
+      \end{aligned}$$
+      (분모에 MLE의 제곱근이 아니라 비편향추정량 $\hat\sigma$ 를 쓴다는 점에 유의.)</li>
+  </ol>
+  <div class="qed">∎</div>
+</div>
+
+<nav class="pager">
+  <a href="7-2_선형회귀모형.html">← 이전<small>7.2 선형 회귀모형</small></a>
+  <a class="next" href="7-4_가설검정과신뢰구간.html">다음 →<small>7.4 가설검정 및 신뢰구간</small></a>
+</nav>
+
+</body>
+</html>

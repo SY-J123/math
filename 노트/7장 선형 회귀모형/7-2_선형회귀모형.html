@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>7장 · 7.2 선형 회귀모형</title>
+<link rel="stylesheet" href="../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <div class="ch">수리통계학 · 7장 선형 회귀모형</div>
+  <h1><span class="no">7.2</span>선형 회귀모형 <span class="en">linear regression model</span></h1>
+</header>
+
+<p>상관계수에서 한 걸음 더 나아가 두 변수의 <b>함수관계</b>를 파악하려 한다.
+$X=x$ 가 주어졌을 때 $Y|x$ 의 조건부 분포를 $x$의 함수로 요약하는 대푯값으로
+<b>조건부 기댓값</b> $E[Y|x]=\int_{-\infty}^{\infty} y\,f_{Y|x}(y|x)\,dy$ 를 쓴다.
+$X$를 <b>설명변수·독립변수</b> <span class="en">explanatory / independent variable</span>,
+$Y$를 <b>반응변수·종속변수</b> <span class="en">response / dependent variable</span>라 한다.</p>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">회귀함수 <span class="en">regression function</span></span>
+  <p>조건부 기댓값 $E[Y|x]$ 와 $x$ 의 관계를 회귀함수라 한다. 이 책에서는 그것이 $x$에 대해 선형인 경우만 다룬다.</p>
+  $$E[Y|x]=\beta_0+\beta_1 x\tag{7.3}$$
+</div>
+
+<div class="box ex">
+  <span class="tag">예 7.3</span><span class="title">조건부 기댓값 계산</span>
+  <p>$f_{X,Y}(x,y)=x^2 e^{-x(y+1)}\ (x>0,\,y>0)$ 일 때</p>
+  $$f_{Y|x}(y|x)=\frac{x^2 e^{-x(y+1)}}{\int_0^\infty x^2 e^{-x(y+1)}dy}=x\,e^{-xy},\qquad
+  E(Y|x)=\int_0^\infty y\,x e^{-xy}\,dy=\frac1x.$$
+</div>
+
+<div class="box ex">
+  <span class="tag">예 7.4</span><span class="title">갈튼 <span class="en">Galton</span>의 부모–자녀 키 자료</span>
+  <p>19세기 후반 갈튼이 부모의 키 $X$ 와 성인 자녀의 키 $Y$ 의 도수분포표(928명)를 분석했고, 여기서 <b>회귀</b>라는 용어가 유래했다. 이 자료로부터 다음 가정을 받아들일 수 있다.</p>
+  <ol style="margin:4px 0 0; padding-left:20px;">
+    <li>$(X,Y)$의 결합분포가 <b>이변량 정규분포</b>를 따른다.</li>
+    <li>조건부 기댓값 $E(Y|x)$ 가 $x$에 대해 <b>선형</b>이다.</li>
+    <li>조건부 분산 $Var(Y|x)$ 가 $x$에 무관하게 <b>상수</b>이다(등분산성).</li>
+  </ol>
+</div>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">단순선형 회귀모형 <span class="en">simple linear regression model</span></span>
+  $$Y=\beta_0+\beta_1 x+\varepsilon,\qquad \varepsilon\sim N(0,\sigma^2)\tag{7.4}$$
+  <p style="margin-top:8px;">$\beta_0,\beta_1$ 은 <b>회귀계수(회귀모수)</b>, $\varepsilon$ 은 평균 0·분산 $\sigma^2$ 인 정규 랜덤오차. ('단순'은 설명변수가 하나임을 뜻한다.)</p>
+</div>
+
+<div class="note">
+  이 모형에서 $E[Y|x]=\beta_0+\beta_1 x$ 는 절편 $\beta_0$·기울기 $\beta_1$ 인 <b>회귀직선</b>이고,
+  랜덤오차의 분산 $\sigma^2$ 이 $x$에 의존하지 않음을 <b>등분산성</b> <span class="en">homoscedasticity</span>이라 한다.
+  이는 $Y|x\sim N(\beta_0+\beta_1 x,\ \sigma^2)$ 과 동등하다. 상관계수에서는 $X,Y$가 대칭이지만,
+  회귀에서는 $X$의 값이 고정되고 $Y$의 조건부 분포를 보므로 둘의 역할이 다르다.
+</div>
+
+<div class="box thm">
+  <span class="tag">정리 7.3</span><span class="title">회귀직선과 상관계수</span>
+  <p>모든 $x$에서 $E[Y|x]=\beta_0+\beta_1 x$ 이면</p>
+  $$E[Y|X=x]=\mu_Y+\frac{\rho\,\sigma_Y}{\sigma_X}(x-\mu_X).$$
+  <p style="margin-top:6px; color:var(--muted)">즉 회귀직선은 평균점 $(\mu_X,\mu_Y)$ 를 지나고 기울기는 $\beta_1=\rho\,\sigma_Y/\sigma_X$ 이다.</p>
+</div>
+
+<div class="box prf">
+  <span class="tag">증명</span>
+  <ol>
+    <li><span class="step">절편: $\mu_Y=\beta_0+\beta_1\mu_X$.</span>
+      전체기댓값 법칙(반복기댓값)으로 회귀함수를 $X$ 에 대해 평균하면 $Y$ 의 주변평균이 나온다:
+      $$\begin{aligned}
+        \int_{-\infty}^{\infty}E[Y|x]\,f_X(x)\,dx
+        &=\int_{-\infty}^{\infty}\!\Big[\int_{-\infty}^{\infty}y\,\tfrac{f_{X,Y}(x,y)}{f_X(x)}\,dy\Big]f_X(x)\,dx\\
+        &=\int_{-\infty}^{\infty}y\Big[\int_{-\infty}^{\infty}f_{X,Y}(x,y)\,dx\Big]dy
+         =\int y\,f_Y(y)\,dy=\mu_Y.
+      \end{aligned}\tag{7.5}$$
+      한편 $E[Y|x]=\beta_0+\beta_1 x$ 의 양변에 $f_X(x)$ 를 곱해 적분하면
+      $\int E[Y|x]f_X(x)\,dx=\beta_0+\beta_1\mu_X$. (7.5)와 비교하여 $\mu_Y=\beta_0+\beta_1\mu_X$.</li>
+
+    <li><span class="step">중심화.</span>
+      $\beta_0=\mu_Y-\beta_1\mu_X$ 를 $E[Y|x]=\beta_0+\beta_1 x$ 에 대입하면
+      $E[Y|x]-\mu_Y=\beta_1(x-\mu_X)$.</li>
+
+    <li><span class="step">기울기: $\beta_1=\rho\sigma_Y/\sigma_X$.</span>
+      위 식 양변에 $(x-\mu_X)f_X(x)$ 를 곱하고 $x$ 에 대해 적분한다. 좌변은
+      $$\begin{aligned}
+        \int (E[Y|x]-\mu_Y)(x-\mu_X)f_X(x)\,dx
+        &=\iint (y-\mu_Y)(x-\mu_X)f_{X,Y}(x,y)\,dy\,dx\\
+        &=Cov(X,Y),
+      \end{aligned}$$
+      우변은 $\beta_1\int(x-\mu_X)^2 f_X(x)\,dx=\beta_1\sigma_X^2$. 따라서
+      $$Cov(X,Y)=\beta_1\sigma_X^2\ \Rightarrow\
+        \beta_1=\frac{Cov(X,Y)}{\sigma_X^2}=\frac{\rho\,\sigma_X\sigma_Y}{\sigma_X^2}=\frac{\rho\,\sigma_Y}{\sigma_X}.$$</li>
+
+    <li><span class="step">정리.</span>
+      $\beta_0,\beta_1$ 을 되돌려 넣으면 $E[Y|x]=\mu_Y+\dfrac{\rho\sigma_Y}{\sigma_X}(x-\mu_X)$.
+      $x=\mu_X$ 에서 $E[Y|\mu_X]=\mu_Y$ 이므로 직선은 평균점 $(\mu_X,\mu_Y)$ 를 지난다.</li>
+  </ol>
+  <div class="qed">∎</div>
+</div>
+
+<p>회귀모수를 모수로 표현하면</p>
+$$\beta_0=\mu_Y-\frac{\rho\,\mu_X\,\sigma_Y}{\sigma_X},\qquad \beta_1=\frac{\rho\,\sigma_Y}{\sigma_X}.\tag{7.6}$$
+
+<div class="note">
+  <b>평균으로의 회귀 <span class="en">regression toward the mean</span>.</b> $|\rho|<1$ 이므로 설명변수가
+  $\mu_X\to\mu_X+\sigma_X$ 로 1 표준편차 커지면 반응변수의 기댓값은 $\mu_Y\to\mu_Y+\rho\sigma_Y$ 로
+  1 표준편차보다 <b>작게</b> 증가한다. 부모 키가 아주 커도 자녀 키는 평균 쪽으로 당겨진다는 갈튼의 관찰이 여기서 나왔다.
+  $\rho=0$ 이면 회귀직선이 수평이 되어 $X$ 가 $Y$ 예측에 전혀 쓸모없다.
+</div>
+
+<h2 class="sub">이변량 정규분포의 조건부 분포</h2>
+<p>모수벡터 $(\mu_X,\mu_Y,\sigma_X,\sigma_Y,\rho)$ 인 이변량 정규벡터 $(X,Y)$ 에서 $Y|x$ 의 밀도는</p>
+$$\begin{aligned}
+f_{Y|x}(y|x)&=\frac{1}{\sqrt{2\pi}\,\sigma_Y\sqrt{1-\rho^2}}\\
+&\quad\times\exp\!\left\{-\frac{1}{2\sigma_Y^2(1-\rho^2)}\Big[\,y-\mu_Y-\tfrac{\rho\sigma_Y}{\sigma_X}(x-\mu_X)\Big]^2\right\}
+\end{aligned}\tag{7.7}$$
+<p>로 주어지며(2.6.4절 참조), 이는 평균과 분산이 다음과 같은 정규분포다.</p>
+$$E(Y|x)=\mu_Y+\frac{\rho\sigma_Y}{\sigma_X}(x-\mu_X),\qquad Var(Y|x)=(1-\rho^2)\sigma_Y^2.$$
+<div class="note">
+  조건부 분산 $(1-\rho^2)\sigma_Y^2$ 은 주변분산 $\sigma_Y^2$ 보다 작다 — $X$ 정보가 $Y$의 불확실성을 줄인다.
+  $|\rho|$ 가 1에 가까울수록 더 많이 줄어든다. 이로써 $(X,Y)$ 가 이변량 정규이면 선형 회귀모형 (7.4)가 타당함을 알 수 있다.
+</div>
+
+<nav class="pager">
+  <a href="7-1_상관계수.html">← 이전<small>7.1 상관계수</small></a>
+  <a class="next" href="7-3_회귀모수의추정.html">다음 →<small>7.3 회귀모수의 추정</small></a>
+</nav>
+
+</body>
+</html>

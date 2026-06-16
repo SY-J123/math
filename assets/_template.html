@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!-- ============================================================
+     새 절/새 챕터용 템플릿. 이 파일을 복사해 채워 넣으세요.
+       1) <title> 과 header 의 장·절 제목 수정
+       2) href="../../assets/note.css" 경로 확인
+          (노트는 노트\<챕터>\파일.html 에 두므로 assets 까지 두 단계 위 = ../../)
+       3) 본문 박스 작성
+       4) 맨 아래 .pager 의 이전/다음 링크를 같은 챕터의 인접 절 파일명으로 수정
+          (첫 절은 이전 링크 대신 <span class="spacer"></span>, 마지막 절은 다음 링크 생략)
+     긴 수식이 박스 밖으로 나가면 \begin{aligned} ... \\ ... \end{aligned} 로 = 위치에서 줄바꿈.
+     박스 종류:
+       정의  <div class="box def"><span class="tag">정의 N.N</span><span class="title">이름 <span class="en">english</span></span> ... </div>
+       정리  <div class="box thm"><span class="tag">정리 N.N</span><span class="title">이름</span> ... </div>
+       증명  <div class="box prf"><span class="tag">증명</span> ... <div class="qed">∎</div></div>
+       예    <div class="box ex"><span class="tag">예 N.N</span><span class="title">이름</span> ... </div>
+       부가  <div class="note"> ... </div>
+       알아두기(용어/배경지식 — 증명·절 하단에 작게):
+             <div class="terms"><div class="h">알아두기 — 주제</div>
+               <dl><dt>용어 <span class="en">english</span></dt><dd>설명</dd></dl>
+             </div>
+     ============================================================ -->
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>N장 · N.N 절 제목</title>
+<link rel="stylesheet" href="../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <div class="ch">수리통계학 · N장 장제목</div>
+  <h1><span class="no">N.N</span>절 제목 <span class="en">english</span></h1>
+</header>
+
+<!-- 여기에 내용 -->
+
+<nav class="pager">
+  <a href="이전절.html">← 이전<small>N.N 이전 절 제목</small></a>
+  <a class="next" href="다음절.html">다음 →<small>N.N 다음 절 제목</small></a>
+</nav>
+
+</body>
+</html>

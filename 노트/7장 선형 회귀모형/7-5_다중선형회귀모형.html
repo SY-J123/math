@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>7장 · 7.5 다중선형 회귀모형</title>
+<link rel="stylesheet" href="../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <div class="ch">수리통계학 · 7장 선형 회귀모형</div>
+  <h1><span class="no">7.5</span>다중선형 회귀모형 <span class="en">multiple linear regression</span></h1>
+</header>
+
+<p>설명변수가 $k$개인 경우로 자연스럽게 확장된다.</p>
+$$\begin{gathered}
+  E(Y\mid x_1,\dots,x_k)=\beta_0+\beta_1 x_1+\cdots+\beta_k x_k,\\[4pt]
+  Var(Y\mid x_1,\dots,x_k)=\sigma^2.
+\end{gathered}\tag{7.23}$$
+<p>$n$개의 독립 관찰값 $\{(x_{i1},\dots,x_{ik},Y_i)\}$ 에 대한 모형이다.</p>
+
+<h2 class="sub">행렬에 의한 표현 <span class="en">matrix form</span></h2>
+$$Y=\begin{bmatrix}Y_1\\\vdots\\Y_n\end{bmatrix},\quad
+  \beta=\begin{bmatrix}\beta_0\\\vdots\\\beta_k\end{bmatrix},\quad
+  X=\begin{bmatrix}1&x_{11}&\cdots&x_{1k}\\\vdots&\vdots&&\vdots\\1&x_{n1}&\cdots&x_{nk}\end{bmatrix}$$
+<p>($x_{i0}=1$). 모형은 $E(Y)=X\beta,\ V=\{Cov(Y_i,Y_j)\}=\sigma^2 I$ ($I$ 는 $n\times n$ 단위행렬)로 간결하게 표현된다. 오차제곱합은</p>
+$$SSE(\beta)=\sum_{i=1}^n\Big(Y_i-\sum_{j=0}^k\beta_j x_{ij}\Big)^2=(Y-X\beta)'(Y-X\beta).\tag{7.24–7.25}$$
+
+<div class="box thm">
+  <span class="tag">정리</span><span class="title">최소제곱 추정량 (행렬)</span>
+  $$\hat\beta=(X'X)^{-1}X'Y.\tag{7.26}$$
+</div>
+
+<div class="box prf">
+  <span class="tag">증명</span>
+  <ol>
+    <li><span class="step">$SSE$ 전개.</span>
+      $SSE(\beta)=(Y-X\beta)'(Y-X\beta)=Y'Y-2\beta'X'Y+\beta'X'X\beta$
+      ($\beta'X'Y$ 는 스칼라라 전치와 같음을 이용).</li>
+    <li><span class="step">기울기 0.</span>
+      $\beta$ 로 미분하면 $\dfrac{\partial SSE}{\partial\beta}=-2X'Y+2X'X\beta=0$,
+      즉 정규방정식 $X'X\beta=X'Y$, 동치로 $X'(Y-X\beta)=0$.</li>
+    <li><span class="step">해.</span>
+      $X'X$ 가 가역이면 $\hat\beta=(X'X)^{-1}X'Y$. 2계 미분 $2X'X$ 가 양정치이므로 최소다.</li>
+  </ol>
+  <p style="margin-top:6px; color:var(--muted)">$\varepsilon\sim N(0,\sigma^2 I)$ 이면 $\hat\beta$ 는 $Y$ 의 선형변환이므로
+  $\hat\beta\sim N\big(\beta,\ (X'X)^{-1}\sigma^2\big)$.</p>
+  <div class="qed">∎</div>
+</div>
+
+<div class="box thm">
+  <span class="tag">정리 7.9</span><span class="title">가우스–마르코프 정리 <span class="en">Gauss–Markov</span></span>
+  <p>$E(Y)=X\beta,\ V=\sigma^2 I$ 이면, 임의의 상수벡터 $r$ 에 대해 $r'\hat\beta$ 이 $r'\beta$ 의
+  <b>최소분산 비편향 선형추정량</b>이다. 즉 회귀계수의 임의의 선형결합에 대한 BLUE는
+  최소제곱 추정량 $\hat\beta$ 로 얻는다. (증명 생략)</p>
+  <p style="margin-top:6px; color:var(--muted)">선형추정 = $Y_i$ 들의 선형결합으로 표현되는 추정량.
+  최적 = 분산공분산행렬 차 $V(\tilde\beta)-V(\hat\beta)$ 가 양정치(반정치)임을 의미.</p>
+</div>
+
+<div class="box ex">
+  <span class="tag">예 7.13</span><span class="title">설명변수 2개 회귀 ($n=7$)</span>
+  <div class="scroll"><table class="data">
+    <tr><th>$x_1$</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr>
+    <tr><th>$x_2$</th><td>0</td><td>0</td><td>1</td><td>1</td><td>2</td><td>2</td><td>2</td></tr>
+    <tr><th>$Y$</th><td>10.3</td><td>9.5</td><td>8.0</td><td>11.0</td><td>14.0</td><td>13.5</td><td>15.2</td></tr>
+  </table></div>
+  <p>모형 $E(Y\mid x_1,x_2)=\beta_0+\beta_1 x_1+\beta_2 x_2$ (7.27). $X'X,\ X'Y$ 를 계산하면</p>
+  $$X'X=\begin{bmatrix}7&28&8\\28&140&43\\8&43&14\end{bmatrix},\qquad
+    X'Y=\begin{bmatrix}81.5\\354.7\\104.4\end{bmatrix},$$
+  $$\hat\beta=(X'X)^{-1}X'Y=\begin{bmatrix}7.529\\1.038\\-0.033\end{bmatrix},\qquad
+    \hat\beta_0=7.529,\ \ \hat\beta_1=1.038,\ \ \hat\beta_2=-0.033.$$
+</div>
+
+<h2 class="sub">분산분석표와 결정계수</h2>
+<p>예측값 $\hat Y=X\hat\beta$ 로부터 $SSE=\sum(Y_i-\hat Y_i)^2,\ SSR=\sum(\hat Y_i-\bar Y_n)^2,\ SST=\sum(Y_i-\bar Y_n)^2$.</p>
+<div class="scroll"><table class="anova">
+  <tr><th>요인</th><th>제곱합</th><th>자유도</th><th>평균제곱합</th></tr>
+  <tr><td>회귀</td><td>$SSR$</td><td>$k$</td><td>$MSR=SSR/k$</td></tr>
+  <tr><td>오차</td><td>$SSE$</td><td>$n-k-1$</td><td>$MSE=SSE/(n-k-1)$</td></tr>
+  <tr><td>합</td><td>$SST$</td><td>$n-1$</td><td></td></tr>
+</table></div>
+$$R^2=\frac{SSR}{SST}=1-\frac{SSE}{SST}.$$
+<div class="note">
+  단순회귀에서처럼 $R^2$ 은 $Y$ 와 $\hat Y$ 의 표본상관계수의 제곱과 같다.
+</div>
+
+<h2 class="sub">모형에 대한 가설검정 (완전모형 vs 축소모형)</h2>
+<p>완전모형(FM <span class="en">Full Model</span>)은 회귀계수 $(p+1)$개를 모두 쓴 모형, 축소모형(RM <span class="en">Reduced Model</span>)은
+귀무가설(일부 계수 $=0$)을 대입해 계수가 $(k+1)<(p+1)$개로 줄어든 모형이다.</p>
+$$SSE(FM)=\sum(Y_i-\hat Y_i)^2\ (7.28),\qquad SSE(RM)=\sum(Y_i-\hat Y_i^{*})^2\ (7.29).$$
+<p>완전모형이 모수가 더 많아 적합도가 더 높지만($SSE(FM)\le SSE(RM)$), 그 차이가 작으면 간결한 축소모형이 낫다.
+차 $SSE(RM)-SSE(FM)$ 을 $SSE(FM)$ 과 견준다.</p>
+<div class="box thm">
+  <span class="tag">검정통계량</span><span class="title">부분 $F$ 검정 <span class="en">partial F-test</span></span>
+  $$F=\frac{[SSE(RM)-SSE(FM)]\,/\,(p-k)}{SSE(FM)\,/\,(n-p-1)}\ \sim\ F(p-k,\ n-p-1).\tag{7.30}$$
+  <p style="margin-top:6px;">각 제곱합을 대응 자유도로 나눈 비이며, 귀무가설(축소모형이 참)이 맞을 때
+  자유도 $(p-k,\ n-p-1)$ 의 $F$ 분포를 따른다.
+  $F>F_\alpha(p-k,\,n-p-1)$ 이면 유의수준 $\alpha$ 에서 귀무가설을 기각(완전모형 채택).</p>
+</div>
+
+<h2 class="sub">변수선택 <span class="en">variable selection</span></h2>
+<p>설명변수 1개를 추가($j-1\to j$)할 때 $SST$ 는 변수 개수와 무관하게 일정($SST_{j-1}=SST_j$)하므로</p>
+$$SSE_{j-1}-SSE_j=SSR_j-SSR_{j-1}.\tag{7.31}$$
+<p>좌변은 변수 하나를 뺐을 때 오차제곱합의 증가분, 우변은 변수 하나를 더했을 때 회귀제곱합의 증가분이다.
+증가분이 크면 그 변수를 추가할 근거가 되며, 유의성은</p>
+$$F=\frac{SSR_j-SSR_{j-1}}{MSE_j}$$
+<p>으로 판단한다 ($F>F_\alpha(1,\ n-j-1)$ 이면 추가). 이를 이용한 실제 선택 방법:</p>
+<ul style="padding-left:20px;">
+  <li><b>전진적 도입 <span class="en">forward selection</span></b> — 가장 유의한 변수부터 하나씩 추가, 더 이상 유의한 변수가 없으면 중단.</li>
+  <li><b>후진적 제거 <span class="en">backward elimination</span></b> — 가장 덜 유의한 변수부터 하나씩 제거, 더 이상 제거할 게 없으면 중단.</li>
+  <li><b>단계적 선택 <span class="en">stepwise</span></b> — 전진 도입에 후진 제거를 가미. 새 변수를 넣은 뒤, 기존 변수가 유의성을 잃으면 제거할 수 있는지 매 단계 점검.</li>
+</ul>
+<div class="note">
+  $F$ 검정 대신 추정 정도와 모형 간결성을 함께 고려하는
+  <b>AIC</b> <span class="en">Akaike information criterion</span>·<b>BIC</b> <span class="en">Bayesian information criterion</span> 가 쓰이기도 한다.
+</div>
+
+<nav class="pager">
+  <a href="7-4_가설검정과신뢰구간.html">← 이전<small>7.4 가설검정 및 신뢰구간</small></a>
+  <span class="spacer"></span>
+</nav>
+
+</body>
+</html>

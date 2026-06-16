@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>7장 · 7.1 상관계수</title>
+<link rel="stylesheet" href="../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <div class="ch">수리통계학 · 7장 선형 회귀모형</div>
+  <h1><span class="no">7.1</span>상관계수 <span class="en">correlation coefficient</span></h1>
+</header>
+
+<p>두 변수 사이의 선형 관계의 정도와 방향을 측정하는 분석을
+<b>상관분석</b> <span class="en">correlation analysis</span>이라 한다. 공분산 $Cov(X,Y)$는 선형관계의
+방향은 알려주지만 <b>측정단위</b> <span class="en">measurement unit</span>에 의존하여 그 크기를 절대적으로
+해석할 수 없다. 이를 표준화하여 단위에 무관하게 만든 것이 <b>상관계수</b>다.</p>
+
+<div class="box def">
+  <span class="tag">정의 7.1</span><span class="title">상관계수 <span class="en">correlation coefficient</span></span>
+  $$\rho(X,Y)=\frac{Cov(X,Y)}{SD(X)\cdot SD(Y)}$$
+</div>
+
+<div class="note">
+  <b>표준화 관점.</b> $X^{*}=\dfrac{X-\mu_X}{SD(X)},\ Y^{*}=\dfrac{Y-\mu_Y}{SD(Y)}$ 로 두면
+  $\rho(X,Y)=Cov(X^{*},Y^{*})$. 즉 상관계수는 <b>표준화된 두 변수의 공분산</b>이다.
+</div>
+
+<div class="box thm">
+  <span class="tag">정리 7.1</span><span class="title">상관계수의 성질 <span class="en">properties</span></span>
+  <ol class="props">
+    <li>$\rho(X,Y)=\rho(Y,X)$ &nbsp;<span class="en">대칭성</span></li>
+    <li>$\rho(aX+b,\;cY+d)=\rho(X,Y)$ &nbsp;<span style="color:var(--muted)">($a,c$는 0이 아닌 동부호, $b,d$는 임의의 상수)</span></li>
+    <li>$|\rho(X,Y)|\le 1$</li>
+    <li>$|\rho(X,Y)|=1 \iff Y=aX+b$ &nbsp;<span style="color:var(--muted)">($a\neq 0$, $b$는 임의의 상수)</span></li>
+    <li>$X,Y$가 서로 독립이면 $\rho(X,Y)=0$. <b>단, 역은 성립하지 않는다.</b></li>
+  </ol>
+</div>
+
+<div class="box prf">
+  <span class="tag">증명</span>
+  <ol>
+    <li><span class="step">(1) 대칭성.</span>
+      공분산의 정의 $Cov(X,Y)=E[(X-\mu_X)(Y-\mu_Y)]$ 에서 곱셈은 교환법칙이 성립하므로
+      $Cov(X,Y)=Cov(Y,X)$. 분모 $SD(X)\,SD(Y)=SD(Y)\,SD(X)$ 역시 대칭이다.
+      따라서 $\rho(X,Y)=\rho(Y,X)$.</li>
+
+    <li><span class="step">(2) 선형변환 불변성.</span>
+      먼저 분자. 공분산은 평행이동에 불변이고 ($b,d$ 는 영향 없음) 각 인자에 대해 선형이므로
+      $Cov(aX+b,\,cY+d)=ac\,Cov(X,Y)$.
+      분모는 $SD(aX+b)=|a|\,SD(X),\ SD(cY+d)=|c|\,SD(Y)$. 정의에 대입하면
+      $$\rho(aX+b,cY+d)=\frac{ac\,Cov(X,Y)}{|a|\,SD(X)\cdot|c|\,SD(Y)}=\frac{ac}{|ac|}\,\rho(X,Y).$$
+      $a,c$ 가 동부호이면 $ac>0$ 이라 $\dfrac{ac}{|ac|}=1$, 따라서 $\rho(aX+b,cY+d)=\rho(X,Y)$.
+      <span style="color:var(--muted)">(부호가 반대이면 $-1$ 이 되어 $-\rho$, 즉 부호가 뒤집힌다.)</span></li>
+
+    <li><span class="step">(3) $|\rho|\le1$.</span>
+      표준화변수 $X^{*},Y^{*}$ 는 $Var(X^{*})=Var(Y^{*})=1$, $Cov(X^{*},Y^{*})=\rho$. 분산은 음이 아니므로
+      $$\begin{aligned}
+        0\le Var(X^{*}\pm Y^{*})
+        &=Var(X^{*})\pm2\,Cov(X^{*},Y^{*})+Var(Y^{*})\\
+        &=1\pm2\rho+1=2(1\pm\rho).
+      \end{aligned}$$
+      복호 $+$ 에서 $\rho\ge-1$, 복호 $-$ 에서 $\rho\le1$. 합치면 $|\rho(X,Y)|\le1$.</li>
+
+    <li><span class="step">(4) $|\rho|=1$ 의 필요충분조건.</span>
+      (3)의 등호는 분산이 0일 때만 성립한다. $\rho=1$ 이면 $Var(X^{*}-Y^{*})=0$ 이라 $X^{*}-Y^{*}$ 가 상수,
+      $\rho=-1$ 이면 $Var(X^{*}+Y^{*})=0$ 이라 $X^{*}+Y^{*}$ 가 상수다. 어느 경우든
+      $\dfrac{X-\mu_X}{\sigma_X}=\pm\dfrac{Y-\mu_Y}{\sigma_Y}+c$ 이므로 $Y$ 에 대해 풀면 $Y=aX+b\ (a\neq0)$.
+      역으로 $Y=aX+b$ 이면 (2)에 의해 $\rho=\dfrac{a}{|a|}\rho(X,X)=\pm1$.</li>
+
+    <li><span class="step">(5) 독립 $\Rightarrow$ 무상관.</span>
+      독립이면 $E(XY)=E(X)E(Y)$ 이므로 $Cov(X,Y)=0$, 따라서 $\rho(X,Y)=0$.
+      <b>역은 거짓</b>이다: $\rho$ 는 <b>선형</b> 관계만 측정하므로 $\rho=0$ 이라도 독립이 아닐 수 있다(반례: 예 7.1).</li>
+  </ol>
+  <div class="qed">∎</div>
+</div>
+
+<div class="box ex">
+  <span class="tag">예 7.1</span><span class="title">무상관이지만 독립 아님</span>
+  <p>이산형 확률벡터 $(X,Y)$가 5개의 점 $\{(-2,2),(-1,1),(0,0),(1,1),(2,2)\}$를 각각 확률 $1/5$로 가진다고 하자.</p>
+  <p><b>독립이 아님:</b> $P(X{=}1,Y{=}1)=\tfrac15$ 이지만 $P(X{=}1)P(Y{=}1)=\tfrac15\cdot\tfrac25=\tfrac{2}{25}\neq\tfrac15$.</p>
+  <p><b>그러나 무상관:</b></p>
+  $$\begin{aligned}
+    E(XY)&=\tfrac15\big[(-2)(2)+(-1)(1)+0+(1)(1)+(2)(2)\big]\\
+    &=\tfrac15(-4-1+0+1+4)=0,\qquad E(X)=0
+  \end{aligned}$$
+  $$\Rightarrow\ Cov(X,Y)=E(XY)-E(X)E(Y)=0\ \Rightarrow\ \rho(X,Y)=0.$$
+  <p>정리 7.1 (5)의 역이 성립하지 않음을 보여준다.</p>
+</div>
+
+<div class="box ex">
+  <span class="tag">예 7.2</span><span class="title">연속형 결합밀도</span>
+  <p>$f_{X,Y}(x,y)=x+y\ (0<x<1,\,0<y<1)$, 그 외 0 인 경우.</p>
+  $$f_X(x)=\int_0^1(x+y)\,dy=x+\tfrac12,\qquad f_Y(y)=y+\tfrac12,$$
+  $$\begin{gathered}
+    E(X)=\tfrac{7}{12},\quad E(X^2)=\tfrac{5}{12},\quad E(XY)=\tfrac13,\\
+    Var(X)=Var(Y)=\tfrac{5}{12}-\big(\tfrac{7}{12}\big)^2=\tfrac{11}{144}.
+  \end{gathered}$$
+  $$\begin{aligned}
+    \rho(X,Y)&=\frac{E(XY)-E(X)E(Y)}{SD(X)\,SD(Y)}
+    =\frac{\tfrac13-(\tfrac{7}{12})^2}{\tfrac{11}{144}}=-\frac{1}{11}.
+  \end{aligned}$$
+</div>
+
+<h2 class="sub">표본상관계수 <span class="en">sample correlation coefficient</span></h2>
+<p>크기 $n$인 랜덤표본 $(X_1,Y_1),\dots,(X_n,Y_n)$으로 모상관계수 $\rho$를 추정하는 통계량:</p>
+$$R=\frac{\sum_{i=1}^{n}(X_i-\bar X_n)(Y_i-\bar Y_n)}{\sqrt{\sum_{i=1}^{n}(X_i-\bar X_n)^2}\;\sqrt{\sum_{i=1}^{n}(Y_i-\bar Y_n)^2}}\;=\;\frac{S_{XY}}{S_X S_Y}\tag{7.2}$$
+
+<div class="box thm">
+  <span class="tag">정리 7.2</span><span class="title">표본상관계수의 검정통계량</span>
+  <p>랜덤표본 $(X_i,Y_i)$가 모수 $(\mu_X,\mu_Y,\sigma_X^2,\sigma_Y^2,\rho)$인 이변량 정규분포를 따르고 $\rho=0$이면,</p>
+  $$T=\frac{R\sqrt{n-2}}{\sqrt{1-R^2}}\ \sim\ t(n-2).$$
+</div>
+
+<div class="box prf">
+  <span class="tag">증명</span>
+  <ol>
+    <li><span class="step">조건부로 회귀 문제로 환원.</span>
+      $X_1=x_1,\dots,X_n=x_n$ 으로 조건을 주면, 이변량 정규의 성질에 의해 $Y_i$ 들은 서로 독립이고
+      $Y_i\sim N\!\big(\mu_Y+\tfrac{\rho\sigma_Y}{\sigma_X}(x_i-\mu_X),\ \sigma_Y^2(1-\rho^2)\big)$.
+      특히 $\rho=0$ 이면 $Y_i\overset{iid}\sim N(\mu_Y,\sigma_Y^2)$ 로 $x_i$ 와 무관해진다.</li>
+    <li><span class="step">$T$ 를 표준정규/카이제곱 꼴로 정리.</span>
+      $$T=\frac{R\sqrt{n-2}}{\sqrt{1-R^2}}
+        =\frac{\big(S_{XY}/S_X\big)\big/\sigma_Y}{\sqrt{\dfrac{1}{n-2}\cdot\dfrac{S_Y^2(1-R^2)}{\sigma_Y^2}}}.$$
+      이 형태는 6.4절 표본상관계수의 분포 유도와 같은 구조다.</li>
+    <li><span class="step">분자 ~ $N(0,1)$.</span>
+      $\rho=0$ 이므로 $S_{XY}/S_X=\sum\tfrac{(x_i-\bar x)}{S_X}Y_i$ 는 독립 정규 $Y_i$ 의 선형결합이라 정규분포를 따르고,
+      평균 0·분산 $\sigma_Y^2$ 로 표준화하면 표준정규가 된다.</li>
+    <li><span class="step">분모의 제곱 ~ $\chi^2(n-2)$, 분자와 독립.</span>
+      $\dfrac{S_Y^2(1-R^2)}{\sigma_Y^2}$ 은 회귀 잔차제곱합에 해당하여 자유도 $(n-2)$ 의 카이제곱분포를 따르고
+      (정리 7.7과 동일한 직교변환 논리), 분자(기울기 추정량)와 독립이다.</li>
+    <li><span class="step">$t$ 분포의 정의 적용.</span>
+      독립인 $N(0,1)$ 과 $\chi^2(n-2)/(n-2)$ 의 제곱근의 비이므로 $T\sim t(n-2)$.
+      조건부 분포가 $x_1,\dots,x_n$ 에 의존하지 않으므로 무조건부로도 성립한다.</li>
+  </ol>
+  <div class="qed">∎</div>
+</div>
+
+<div class="note">
+  <b>$\rho\neq0$ 일 때 (피셔 변환 <span class="en">Fisher transformation</span>).</b>
+  $Z=\tfrac12\log\dfrac{1+R}{1-R}$ 는 표본이 충분히 크면 근사적으로
+  $E(Z)=\tfrac12\log\dfrac{1+\rho}{1-\rho},\ Var(Z)=\dfrac{1}{n-3}$ 인 정규분포를 따른다.
+  이를 이용해 $\rho$에 대한 근사 검정·신뢰구간을 구축한다.
+</div>
+
+<nav class="pager">
+  <span class="spacer"></span>
+  <a class="next" href="7-2_선형회귀모형.html">다음 →<small>7.2 선형 회귀모형</small></a>
+</nav>
+
+</body>
+</html>

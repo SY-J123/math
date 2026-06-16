@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>7장 · 7.4 가설검정 및 신뢰구간</title>
+<link rel="stylesheet" href="../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <div class="ch">수리통계학 · 7장 선형 회귀모형</div>
+  <h1><span class="no">7.4</span>가설검정 및 신뢰구간</h1>
+</header>
+
+<h2 class="sub">$\beta_1$ 에 대한 검정과 신뢰구간</h2>
+<p>가설 $H_0:\beta_1=\beta_{10}$ 대 $H_1:\beta_1\neq\beta_{10}$ (7.11). 정리 7.8에 의해 귀무가설하에서
+$\dfrac{(\hat\beta_1-\beta_{10})\sqrt{\sum(x_i-\bar x_n)^2}}{\hat\sigma}\sim t(n-2)$ 이므로, 유의수준 $\alpha$ 양측 기각역은</p>
+$$\left|\frac{(\hat\beta_1-\beta_{10})\sqrt{\sum(x_i-\bar x_n)^2}}{\hat\sigma}\right|\ge t_{\alpha/2}(n-2).\tag{7.12}$$
+<p>단측 $H_1:\beta_1>\beta_{10}$ (7.13) 이면 기각역은 $\ \ge t_\alpha(n-2)$ (7.14). $\beta_1$ 의 $100(1-\alpha)\%$ 신뢰구간:</p>
+$$\left[\hat\beta_1\ \pm\ t_{\alpha/2}(n-2)\cdot\frac{\hat\sigma}{\sqrt{\sum(x_i-\bar x_n)^2}}\right].\tag{7.15}$$
+<div class="note">
+  가장 관심 있는 가설은 $H_0:\beta_1=0$ — 참이면 $X$ 와 $Y$ 사이에 선형관계가 없다는 뜻이다.
+  $\beta_0$ 에 대한 검정·신뢰구간은 같은 방식으로 얻으며 실무적 관심은 적다. 검정력 함수
+  $\pi(\beta_1)$ 의 계산에는 비중심 $t$ 분포가 필요하여 보통 생략한다.
+</div>
+
+<div class="box ex">
+  <span class="tag">예 7.7</span><span class="title">허블 <span class="en">Hubble</span>: 은하 거리–후퇴속도 ($n=11$)</span>
+  <p>$H_0:\beta_1=0$ 대 $H_1:\beta_1>0$:</p>
+  $$\begin{gathered}
+    \hat\beta_1=35.324,\quad \hat\beta_0=74.444,\quad \hat\sigma^2=420183.7,\\[4pt]
+    \widehat{Var}(\hat\beta_1)=\frac{\hat\sigma^2}{\sum(x_i-\bar x_{11})^2}=0.3844.
+  \end{gathered}$$
+  $$\begin{aligned}
+    \frac{\hat\beta_1-0}{\sqrt{\widehat{Var}(\hat\beta_1)}}=\frac{35.324}{\sqrt{0.3844}}=56.974
+    \ \ge\ t_{0.05}(9)=1.833\ \Rightarrow\ H_0\text{ 기각}.
+  \end{aligned}$$
+  <p>90% 신뢰구간: $[35.324\pm1.833\sqrt{0.3844}]=[34.188,\ 36.460]$.</p>
+</div>
+
+<h2 class="sub">조건부 기댓값 $E(Y|x^*)$ 의 추정과 신뢰구간</h2>
+<p>$\hat\mu_{Y|x^*}=\hat\beta_0+\hat\beta_1 x^*=\bar Y_n+\hat\beta_1(x^*-\bar x_n)$ 는 독립 정규 $Y_i$ 의 선형결합이므로 정규분포를 따른다.</p>
+<div class="box prf">
+  <span class="tag">유도</span>
+  <p>$\bar Y_n$ 과 $\hat\beta_1$ 이 독립(성질 7.6)이므로</p>
+  $$\begin{aligned}
+    E(\hat\mu_{Y|x^*})&=\beta_0+\beta_1 x^*,\\
+    Var(\hat\mu_{Y|x^*})&=Var(\bar Y_n)+(x^*-\bar x_n)^2 Var(\hat\beta_1)
+      =\sigma^2\Big[\frac1n+\frac{(x^*-\bar x_n)^2}{\sum(x_i-\bar x_n)^2}\Big].
+  \end{aligned}$$
+  <div class="qed">∎</div>
+</div>
+$$\hat\mu_{Y|x^*}\sim N\!\left(\beta_0+\beta_1 x^*,\ \sigma^2\Big[\tfrac1n+\tfrac{(x^*-\bar x_n)^2}{\sum(x_i-\bar x_n)^2}\Big]\right).\tag{7.16}$$
+<p>$S^{*2}=\hat\sigma^2\big[\tfrac1n+\tfrac{(x^*-\bar x_n)^2}{\sum(x_i-\bar x_n)^2}\big]$ 로 두면 $\dfrac{\hat\mu_{Y|x^*}-(\beta_0+\beta_1 x^*)}{S^*}\sim t(n-2)$ 이고, 신뢰구간은</p>
+$$\big[\hat\beta_0+\hat\beta_1 x^*\ \pm\ t_{\alpha/2}(n-2)\cdot S^*\big].\tag{7.17}$$
+
+<div class="box ex">
+  <span class="tag">예 7.8</span><span class="title">몸무게–수축기 혈압 (16명)</span>
+  <p>$\hat\beta_1=1.562,\ \hat\beta_0=32.302,\ \hat\sigma^2=21.357$. $X=75$ 일 때
+  $\hat\mu_{Y|75}=32.302+1.562\times75=149.452$, $S^{*2}=1.559$, $t_{0.025}(14)=2.145$:</p>
+  $$E(Y|X{=}75)\text{ 의 95\% 신뢰구간}=[146.774,\ 152.130].$$
+</div>
+
+<h2 class="sub">예측구간 <span class="en">prediction interval</span></h2>
+<p>기존 자료와 독립인 새 관찰값 $(x^*,Y^*)$ 의 $Y$ 값 자체를 예측한다. 예측값 $\hat Y=\hat\beta_0+\hat\beta_1 x^*$.</p>
+<div class="box prf">
+  <span class="tag">유도</span>
+  <p>$E(\hat Y-Y)=0$. $\hat Y$ 는 기존 자료의 함수, $Y$ 는 새 관찰값이라 독립이므로</p>
+  $$\begin{aligned}
+    Var(\hat Y-Y)&=Var(\hat Y)+Var(Y)\\
+    &=\sigma^2\Big[\tfrac1n+\tfrac{(x^*-\bar x_n)^2}{\sum(x_i-\bar x_n)^2}\Big]+\sigma^2
+     =\sigma^2\Big[1+\tfrac1n+\tfrac{(x^*-\bar x_n)^2}{\sum(x_i-\bar x_n)^2}\Big].
+  \end{aligned}$$
+  <div class="qed">∎</div>
+</div>
+<p>$S^2(Y)=\hat\sigma^2\big[1+\tfrac1n+\tfrac{(x^*-\bar x_n)^2}{\sum(x_i-\bar x_n)^2}\big]$ 로 두면 $100(1-\alpha)\%$ 예측구간은</p>
+$$\big[\hat\beta_0+\hat\beta_1 x^*\ \pm\ t_{\alpha/2}(n-2)\cdot S(Y)\big].\tag{7.18}$$
+<div class="note">
+  예측구간은 신뢰구간과 중심은 같지만 분산이 항상 $\sigma^2$ 만큼 더 크다 — 분포의 <b>평균</b>을 추정하는 것보다
+  확률변수 <b>값 자체</b>를 예측하는 것이 더 어렵기 때문(평균의 변동에 더해 $Y$ 자체의 변동이 추가된다).
+</div>
+
+<div class="box ex">
+  <span class="tag">예 7.9</span><span class="title">예 7.7의 계속: 속도 예측</span>
+  <p>$X=50$ 인 은하의 속도 95% 예측구간. $S^2(Y)=5003664.7$, $t_{0.025}(9)=2.262$:</p>
+  $$[1840.644\pm2.262\times707.365]=[240.585,\ 3440.703].$$
+</div>
+
+<h2 class="sub">변환에 의한 선형모형</h2>
+<p>직접 선형이 아니어도 변환으로 선형화할 수 있다.</p>
+<div class="box ex">
+  <span class="tag">예 7.10·7.11</span><span class="title">로그·로지스틱 변환</span>
+  <p>① $y=\beta_0 x^{\beta_1}$ &nbsp;→ 양변 로그&nbsp; $\log y=\log\beta_0+\beta_1\log x$.
+  $y'{=}\log y,\ \beta_0'{=}\log\beta_0,\ x'{=}\log x$ 로 두면 $y'=\beta_0'+\beta_1 x'$.</p>
+  <p>② $y=\dfrac{1}{1+\exp(\beta_0+\beta_1 x)}$ &nbsp;→&nbsp; $\dfrac{1-y}{y}=\exp(\beta_0+\beta_1 x)$,
+  양변 로그&nbsp; $\log\dfrac{1-y}{y}=\beta_0+\beta_1 x$.</p>
+  <p style="color:var(--muted)">여기서 '선형'은 <b>회귀계수에 대해</b> 선형임을 뜻한다. $y=\beta_0+e^{\beta_1 x}$ 처럼 변환이 안 되면 비선형모형을 쓴다.</p>
+</div>
+
+<h2 class="sub">가중 최소제곱 <span class="en">weighted least squares</span></h2>
+<p>등분산성이 깨져 $Var(\varepsilon_i)=\sigma_i^2$ 일 때, $w_i=1/\sigma_i$ 로 $Y_i'=w_iY_i$ 변환하면 $Var(w_i\varepsilon_i)=1$ 로 등분산이 회복된다. 가중 오차제곱합</p>
+$$\sum_{i=1}^n\{w_iY_i-w_i\beta_0-w_i\beta_1 x_i\}^2=\sum_{i=1}^n w_i^2\{Y_i-\beta_0-\beta_1 x_i\}^2$$
+<p>을 최소화하여 (연습문제 7.15), $u_i=w_i^2/\sum w_i^2$ 로 두면</p>
+$$\begin{gathered}
+  \hat\beta_1=\frac{\sum u_i(x_i-\bar x_u)(Y_i-\bar Y_u)}{\sum u_i(x_i-\bar x_u)^2},\qquad
+  \hat\beta_0=\sum u_iY_i-\hat\beta_1\sum u_i x_i,\\[4pt]
+  \bar x_u=\sum u_i x_i,\quad \bar Y_u=\sum u_iY_i.
+\end{gathered}\tag{7.19–7.20}$$
+<p>이를 <b>가중 최소제곱 추정량</b> <span class="en">weighted least square estimator</span>이라 한다.</p>
+
+<div class="note">
+  모형 (7.4)의 가정(정규성·등분산성·평균 0·선형성)이 자료에서 성립하는지 점검하는 과정을
+  <b>회귀진단</b> <span class="en">regression diagnostics</span>이라 한다. 자료변환·가중최소제곱 등은 가정을 맞추기 위한 처방이다.
+</div>
+
+<h2 class="sub">분산분석과 결정계수</h2>
+<div class="box prf">
+  <span class="tag">변동 분해 (식 7.21)</span>
+  <p>총변동을 $(Y_i-\hat Y_i)+(\hat Y_i-\bar Y_n)$ 로 쪼개 제곱합을 전개한다.</p>
+  $$\begin{aligned}
+    \sum(Y_i-\bar Y_n)^2&=\sum(Y_i-\hat Y_i)^2+\sum(\hat Y_i-\bar Y_n)^2\\
+    &\quad+2\sum(Y_i-\hat Y_i)(\hat Y_i-\bar Y_n).
+  \end{aligned}$$
+  <p>교차항은 정규방정식에 의해
+  $\sum(Y_i-\hat Y_i)(\hat Y_i-\bar Y_n)=\hat\beta_1\sum(x_i-\bar x_n)(Y_i-\bar Y_n)-\hat\beta_1^2\sum(x_i-\bar x_n)^2=0$ 이므로</p>
+  $$\underbrace{\sum(Y_i-\bar Y_n)^2}_{SST}=\underbrace{\sum(Y_i-\hat Y_i)^2}_{SSE}+\underbrace{\sum(\hat Y_i-\bar Y_n)^2}_{SSR}.\tag{7.21}$$
+  <div class="qed">∎</div>
+</div>
+<div class="scroll"><table class="anova">
+  <tr><th>요인</th><th>제곱합</th><th>자유도</th><th>평균제곱합</th></tr>
+  <tr><td>회귀</td><td>$SSR=\sum(\hat Y_i-\bar Y_n)^2$</td><td>$1$</td><td>$MSR=SSR$</td></tr>
+  <tr><td>오차</td><td>$SSE=\sum(Y_i-\hat Y_i)^2$</td><td>$n-2$</td><td>$MSE=SSE/(n-2)$</td></tr>
+  <tr><td>합</td><td>$SST=\sum(Y_i-\bar Y_n)^2$</td><td>$n-1$</td><td></td></tr>
+</table></div>
+<p style="text-align:right; margin:-4px 0 0; color:var(--muted)">(7.22)</p>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">결정계수 <span class="en">coefficient of determination</span></span>
+  $$R^2=\frac{SSR}{SST}=\frac{\sum(\hat Y_i-\bar Y_n)^2}{\sum(Y_i-\bar Y_n)^2}.$$
+  <p style="margin-top:6px;">전체 변동 중 회귀직선이 설명하는 비율. 1에 가까울수록 설명력이 크다.
+  예컨대 $R^2=0.27$ 이면 $Y$ 의 변동 중 27%가 $X$ 와의 선형관계로 설명된다는 뜻.</p>
+</div>
+
+<div class="box prf">
+  <span class="tag">$R^2=(\text{표본상관계수})^2$</span>
+  <p>$\hat Y_i-\bar Y_n=\hat\beta_1(x_i-\bar x_n)$ 이므로 $SSR=\hat\beta_1^2\sum(x_i-\bar x_n)^2$.
+  $\hat\beta_1=\dfrac{\sum(x_i-\bar x_n)(Y_i-\bar Y_n)}{\sum(x_i-\bar x_n)^2}$ 를 대입하면</p>
+  $$\begin{aligned}
+    R^2&=\frac{\hat\beta_1^2\sum(x_i-\bar x_n)^2}{\sum(Y_i-\bar Y_n)^2}
+    =\frac{\big[\sum(x_i-\bar x_n)(Y_i-\bar Y_n)\big]^2}{\sum(x_i-\bar x_n)^2\,\sum(Y_i-\bar Y_n)^2}\\[4pt]
+    &=\big(\text{$X,Y$ 표본상관계수}\big)^2.
+  \end{aligned}$$
+  <div class="qed">∎</div>
+</div>
+
+<div class="note">
+  $F=\dfrac{MSR}{MSE}\sim F(1,n-2)$ 는 $H_0:\beta_1=0$ 의 검정통계량. $F>F_\alpha(1,n-2)$ 이면 회귀가 유의하다.
+  이는 정리 7.8의 $t$ 검정과 동일한 결과를 준다 ($t(n-2)^2=F(1,n-2)$ 관계).
+</div>
+
+<div class="box ex">
+  <span class="tag">예 7.12</span><span class="title">예 7.8의 분산분석</span>
+  <div class="scroll"><table class="anova">
+    <tr><th>요인</th><th>제곱합</th><th>자유도</th><th>평균제곱합</th><th>$F$</th></tr>
+    <tr><td>회귀</td><td>2134.438</td><td>1</td><td>2134.438</td><td>99.94</td></tr>
+    <tr><td>오차</td><td>298.999</td><td>14</td><td>21.357</td><td></td></tr>
+    <tr><td>합</td><td>2433.438</td><td>15</td><td></td><td></td></tr>
+  </table></div>
+  $$R^2=\frac{2134.438}{2433.438}=0.877,\qquad F=99.94>F_{0.01}(1,14)=8.862\ \Rightarrow\ \text{선형관계 유의}.$$
+</div>
+
+<nav class="pager">
+  <a href="7-3_회귀모수의추정.html">← 이전<small>7.3 회귀모수의 추정</small></a>
+  <a class="next" href="7-5_다중선형회귀모형.html">다음 →<small>7.5 다중선형 회귀모형</small></a>
+</nav>
+
+</body>
+</html>
