@@ -8,10 +8,10 @@
 assets/
   note.css        공유 스타일 (모든 장 공용)
   _template.html  새 절/새 장 만들 때 복사용 템플릿
-노트/
-  <장>/<n>-<m>_절제목.html   절별 독립 노트
-참고자료/
-  <장>/                       교재 스캔 원본 (개인 참고용, 저장소에는 미포함)
+notes/
+  ch07/7-1_correlation.html ...   절별 독립 노트 (chNN/n-m_topic.html)
+references/
+  ch07/                            교재 스캔 원본 (개인 참고용, 저장소에는 미포함)
 ```
 
 ## 보기
