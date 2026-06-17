@@ -91,7 +91,9 @@ $$A^{-1}=\frac{C'}{|A|},\qquad C'=\operatorname{adj}A\ (\text{수반행렬}\,\te
 <p>$A=\big[\begin{smallmatrix}A_{11}&A_{12}\\A_{21}&A_{22}\end{smallmatrix}\big]$ (블록 차수 $n_i\times n_j$) 에 대해</p>
 $$|A|=\begin{cases}|A_{11}|\,\big|A_{22}-A_{21}A_{11}^{-1}A_{12}\big|, & A_{11}\ \text{정칙}\\[4pt]
   |A_{22}|\,\big|A_{11}-A_{12}A_{22}^{-1}A_{21}\big|, & A_{22}\ \text{정칙}\end{cases}$$
-<p>여기서 $A_{22}-A_{21}A_{11}^{-1}A_{12}$ 를 $A_{11}$ 에 대한 <b>슈어 여행렬</b><span class="en">Schur complement</span>이라 한다. 역행렬은</p>
+<p>큰 행렬의 행렬식을, 한 블록의 행렬식과 ‘나머지에서 그 블록의 영향을 빼낸 것’의 행렬식의 곱으로 쪼개는 공식이다.
+여기서 $A_{22}-A_{21}A_{11}^{-1}A_{12}$ 를 $A_{11}$ 에 대한 <b>슈어 여행렬</b><span class="en">Schur complement</span>이라 한다 —
+$A_{11}$ 의 정보를 제거하고 남은 $A_{22}$ 부분이라는 뜻이다. 역행렬은</p>
 $$A^{-1}=\begin{bmatrix}B_{11}&B_{12}\\B_{21}&B_{22}\end{bmatrix},\qquad
   \begin{aligned}
   B_{11}&=(A_{11}-A_{12}A_{22}^{-1}A_{21})^{-1},\\

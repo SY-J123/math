@@ -33,9 +33,12 @@
     \begin{bmatrix}1&1&3\\1&1&3\\4&4&12\\2&2&5\end{bmatrix}
     =\begin{bmatrix}1&1&3\\2&2&5\\4&4&12\\1&1&3\end{bmatrix}.\tag{4.33}$$
 </div>
+<p>여기서 $E_{24}$ 는 항등행렬에서 2행과 4행만 맞바꾼 것이고, 이를 $M$ 앞에 곱하니 결과에서 $M$ 의 2행과 4행이 실제로 자리를 바꿨다.</p>
 <p>$E_{rs}$ 는 대칭이자 직교행렬이라 $E_{rs}E_{rs}=E_{rs}'E_{rs}=I$ (두 번 바꾸면 제자리). 여러 $E_{rs}$ 의 곱을
 일반적으로 <b>치환행렬</b> $P$ 라 한다. $P$ 는 항등행렬의 행을 재배열한 것이므로 반드시 대칭은 아니지만 항상 직교행렬이고</p>
 $$P^{-1}=P'.$$
+<p>직교행렬이라는 말은 전치가 곧 역행렬($P^{-1}=P'$)이라는 뜻이다. 바꾼 순서를 거꾸로 되짚으면 원래대로 돌아오니,
+치환을 되돌리는 행렬이 그 전치라는 것은 자연스럽다.</p>
 
 <figure class="fig">
 <svg viewBox="0 0 230 200" role="img" aria-label="치환은 좌표축을 맞바꾼다">
@@ -66,6 +69,9 @@ $$P^{-1}=P'.$$
 오른쪽 열은 왼쪽 열의 일차결합이므로 적당한 $F,H$ 에 대해 $Z=FX,\ Y=XH$ 이고 $W=FXH$. 따라서</p>
 $$A=\begin{bmatrix}X&Y\\Z&W\end{bmatrix}=\begin{bmatrix}X&XH\\FX&FXH\end{bmatrix}
   =\begin{bmatrix}I\\F\end{bmatrix}X\begin{bmatrix}I&H\end{bmatrix}.\tag{4.38}$$
+<p>이 마지막 형태가 핵심이다. 가운데 $X$ 는 독립인 부분(처음 $r$ 개 행·열)이고, 왼쪽 $\big[\begin{smallmatrix}I\\F\end{smallmatrix}\big]$ 는
+아래 행들을 위 행들의 결합으로 만드는 규칙, 오른쪽 $[\,I\ H\,]$ 는 오른쪽 열들을 왼쪽 열들의 결합으로 만드는 규칙이다.
+즉 $A$ 의 모든 원소가 독립 블록 $X$ 로부터 행·열 결합만으로 되살아난다.</p>
 <p>$F=ZX^{-1},\ H=X^{-1}Y$ 를 쓰면</p>
 $$A=\begin{bmatrix}I\\ZX^{-1}\end{bmatrix}X\begin{bmatrix}I&X^{-1}Y\end{bmatrix}.\tag{4.39}$$
 <p>이들을 한데 묶으면 일반형</p>
@@ -95,7 +101,8 @@ $$A_{p\times q}=K_{p\times r}\,L_{r\times q}\tag{4.41}$$
   <span class="tag">예 4.5</span>
   $$A=\begin{bmatrix}1&2&1&5\\2&5&1&14\\4&9&3&24\end{bmatrix}
     =\begin{bmatrix}1&0\\0&1\\2&1\end{bmatrix}\begin{bmatrix}1&2\\2&5\end{bmatrix}\begin{bmatrix}1&0&3&-3\\0&1&-1&4\end{bmatrix}.$$
-  <p style="margin-top:4px;">계수가 $r_A=1$ 인 특별한 경우에는 $A=xy'$ (외적) 한 개로 분해된다. 예를 들어</p>
+  <p style="margin-top:4px;">계수가 $r_A=1$ 인 특별한 경우에는 $A=xy'$ (외적) 한 개로 분해된다. 계수 1 이란 모든 행이 한 행의 배수,
+  모든 열이 한 열의 배수라는 뜻이므로 열벡터 하나와 행벡터 하나의 곱이면 충분하다. 예를 들어</p>
   $$\begin{bmatrix}2&-2&4\\3&-3&6\end{bmatrix}=\begin{bmatrix}2\\3\end{bmatrix}\begin{bmatrix}1&-1&2\end{bmatrix}.\tag{4.43}$$
 </div>
 

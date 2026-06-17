@@ -35,8 +35,12 @@ $A$의 <b>행</b>이 $B$의 <b>열</b>이 되도록 서로 연관되어 있다. 
   <span class="tag">정의</span><span class="title">전치행렬 <span class="en">transposed matrix</span></span>
   <p>차수가 $r\times c$ 인 행렬 $A=(a_{ij})$ 의 전치행렬 $A'$ 는 차수가 $c\times r$ 이고, 그 $(i,j)$ 원소는</p>
   $$A'=(a'_{ij}),\qquad a'_{ij}=a_{ji}\quad(i=1,\dots,c,\ \ j=1,\dots,r).$$
-  <p style="margin-top:6px;">즉 $A$ 의 $j$번째 행·$i$번째 열 원소가 $A'$ 의 $i$번째 행·$j$번째 열 원소가 된다.</p>
 </div>
+<p>여기서 $a_{ij}$ 는 행렬 $A$ 의 $i$행 $j$열 자리에 있는 수다(앞 첨자가 행, 뒤 첨자가 열).
+$a'_{ij}$ 는 전치행렬 $A'$ 의 $i$행 $j$열 수다. 그러면 식 $a'_{ij}=a_{ji}$ 는 전치의 $i$행 $j$열 값이
+원래의 $j$행 $i$열 값과 같다는 한 문장이고, 두 첨자를 맞바꿔 읽으라는 뜻이다. 결국 $A$ 의 행과 열을 통째로
+뒤바꾸는 것과 같고, 차수도 $r\times c$ 에서 $c\times r$ 로 뒤집힌다. 예를 들어 $A$ 의 2행 1열 값 $a_{21}=19$ 가
+$A'$ 의 1행 2열 값 $a'_{12}=19$ 가 된다.</p>
 
 <figure class="fig">
 <svg viewBox="0 0 440 168" role="img" aria-label="전치: A의 행이 A'의 열이 된다">
@@ -81,10 +85,13 @@ $A$의 <b>행</b>이 $B$의 <b>열</b>이 되도록 서로 연관되어 있다. 
 </figure>
 
 <h3 class="sub"><span class="no">4.1.1</span>반사성 연산 <span class="en">reflexive operation</span></h3>
-<p>전치를 두 번 하면 원래 행렬로 돌아온다. 즉 $(A')'=A$. 전치는 이런 의미에서 <b>반사성</b> 연산이다.</p>
+<p>전치를 <b>두 번</b> 하면 원래 행렬로 돌아온다. 즉 $(A')'=A$. 행과 열을 한 번 바꾸고 다시 한 번 바꾸면
+제자리로 오니 당연한 이야기인데, 첨자로 따라가 보면 다음과 같다.</p>
 <div class="box prf">
   <span class="tag">증명</span>
   $$(A')'=\big[a'_{ij}\big]'=(a_{ji})'=(a_{ij})=A.$$
+  <p style="margin-top:6px;">$A'$ 의 원소는 $a'_{ij}$ 이고, 그 $A'$ 를 또 전치하면(첨자를 또 맞바꾸면) $(i,j)$ 자리에 $a'_{ji}$ 가 온다.
+  그런데 정의에서 $a'_{ji}=a_{ij}$ 이므로 결국 $(i,j)$ 자리 값은 $a_{ij}$, 바로 원래 $A$ 의 값이다. 그래서 $(A')'=A$ 다.</p>
   <div class="qed">∎</div>
 </div>
 
@@ -199,6 +206,7 @@ $$A=\begin{bmatrix}A_{11}&A_{12}&\cdots&A_{1c}\\ A_{21}&A_{22}&\cdots&A_{2c}\\
   \vdots&\vdots&&\vdots\\ A_{r1}&A_{r2}&\cdots&A_{rc}\end{bmatrix},$$
 <p>여기서 $i$번째 행블록이 $p_i$ 행, $j$번째 열블록이 $q_j$ 열을 가지면 $A_{ij}$ 의 차수는 $p_i\times q_j$ 이고</p>
 $$\sum_{i=1}^{r}p_i=p,\qquad \sum_{j=1}^{c}q_j=q.$$
+<p>당연한 조건이다 — 블록들의 행 개수를 전부 더하면 원래 행 수 $p$ 가, 열 개수를 전부 더하면 원래 열 수 $q$ 가 되어야 한다.</p>
 
 <h3 class="sub"><span class="no">4.2.3</span>분할행렬의 전치</h3>
 <p>분할행렬을 전치하면 <b>각 블록을 전치하고, 블록들의 배치도 전치</b>된다.</p>

@@ -102,6 +102,9 @@ $$\begin{bmatrix}1&2&3\end{bmatrix}\otimes\begin{bmatrix}6&7\\8&9\end{bmatrix}
     <li>$A,B$ 가 정방행렬이면 $|A_{p\times p}\otimes B_{m\times m}|=|A|^{m}\,|B|^{p}$.</li>
   </ol>
 </div>
+<p>핵심만 보면, (1) 전치는 일반 곱과 달리 순서가 안 바뀌고 각 자리만 전치된다($A'\otimes B'$).
+(5) 직적끼리의 곱은 각 자리끼리 곱한 것과 같다 — 큰 계산을 작은 두 곱 $AX,\ BY$ 로 쪼갤 수 있어 실전에서 매우 유용하다.
+(7) 대각합은 그냥 두 대각합의 곱이 된다. 이런 성질들 덕분에 큰 직적 행렬을 직접 펼치지 않고도 다룰 수 있다.</p>
 <div class="note">
   $A\otimes B$ 와 $B\otimes A$ 는 원소 구성은 같고 배열 순서만 다르다. 정의 (4.24) 를 우직적<span class="en">right direct product</span>,
   $B\otimes A$ 로 정의하는 쪽을 좌직적이라 부르기도 한다. 직적은 다변량 통계·실험계획·유전학 모형에서 널리 쓰인다.
