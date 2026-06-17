@@ -149,16 +149,34 @@ $$\begin{gathered}
   예컨대 $R^2=0.27$ 이면 $Y$ 의 변동 중 27%가 $X$ 와의 선형관계로 설명된다는 뜻.</p>
 </div>
 
+<div class="box thm">
+  <span class="tag">성질</span><span class="title">$R^2$ 과 표본상관계수</span>
+  <p>단순선형 회귀모형에서 결정계수는 $Y$ 와 적합값 $\hat Y$ 의 표본상관계수의 제곱이고, 이는 다시 $X$ 와 $Y$ 의 표본상관계수의 제곱과 같다.</p>
+  $$R^2=\big(Y,\hat Y\ \text{표본상관계수}\big)^2=\big(X,Y\ \text{표본상관계수}\big)^2.$$
+</div>
 <div class="box prf">
-  <span class="tag">$R^2=(\text{표본상관계수})^2$</span>
-  <p>$\hat Y_i-\bar Y_n=\hat\beta_1(x_i-\bar x_n)$ 이므로 $SSR=\hat\beta_1^2\sum(x_i-\bar x_n)^2$.
-  $\hat\beta_1=\dfrac{\sum(x_i-\bar x_n)(Y_i-\bar Y_n)}{\sum(x_i-\bar x_n)^2}$ 를 대입하면</p>
-  $$\begin{aligned}
-    R^2&=\frac{\hat\beta_1^2\sum(x_i-\bar x_n)^2}{\sum(Y_i-\bar Y_n)^2}
-    =\frac{\big[\sum(x_i-\bar x_n)(Y_i-\bar Y_n)\big]^2}{\sum(x_i-\bar x_n)^2\,\sum(Y_i-\bar Y_n)^2}\\[4pt]
-    &=\big(\text{$X,Y$ 표본상관계수}\big)^2.
-  \end{aligned}$$
+  <span class="tag">증명</span>
+  <p class="step">① $SSR$ 을 $Y$ 와 $\hat Y$ 의 곱의 합으로 바꾼다.</p>
+  <p>$\hat Y_i-\bar Y_n=\hat\beta_1(x_i-\bar x_n)$ 이므로 $\sum(Y_i-\bar Y_n)(\hat Y_i-\bar Y_n)=\hat\beta_1\sum(Y_i-\bar Y_n)(x_i-\bar x_n)$.
+  한편 $\sum(\hat Y_i-\bar Y_n)^2=\sum(\hat Y_i-Y_i+Y_i-\bar Y_n)(\hat Y_i-\bar Y_n)$ 에서, 교차항
+  $\sum(Y_i-\hat Y_i)(\hat Y_i-\bar Y_n)=0$ (식 7.21의 정규방정식) 이므로</p>
+  $$SSR=\sum(\hat Y_i-\bar Y_n)^2=\sum(Y_i-\bar Y_n)(\hat Y_i-\bar Y_n).$$
+  <p class="step">② $\tfrac1n\sum\hat Y_i=\bar Y_n$ 을 이용해 $\mathbf{(Y,\hat Y\ \text{상관계수})^2}$ 임을 보인다.</p>
+  $$R^2=\frac{\sum(\hat Y_i-\bar Y_n)^2}{\sum(Y_i-\bar Y_n)^2}
+    =\frac{\big[\sum(Y_i-\bar Y_n)(\hat Y_i-\bar Y_n)\big]^2}{\sum(Y_i-\bar Y_n)^2\,\sum(\hat Y_i-\bar Y_n)^2}
+    =\big(Y,\hat Y\ \text{표본상관계수}\big)^2.$$
+  <p class="step">③ 같은 값이 $\mathbf{(X,Y\ \text{상관계수})^2}$ 임을 보인다.</p>
+  <p>$\hat Y$ 는 $x$ 의 단조 선형함수($\hat Y_i-\bar Y_n=\hat\beta_1(x_i-\bar x_n)$)이므로 $\mathrm{corr}(Y,\hat Y)=|\mathrm{corr}(X,Y)|$. 직접 대입해도</p>
+  $$R^2=\frac{\hat\beta_1^2\sum(x_i-\bar x_n)^2}{\sum(Y_i-\bar Y_n)^2}
+    =\frac{\big[\sum(x_i-\bar x_n)(Y_i-\bar Y_n)\big]^2}{\sum(x_i-\bar x_n)^2\,\sum(Y_i-\bar Y_n)^2}
+    =\big(X,Y\ \text{표본상관계수}\big)^2.$$
   <div class="qed">∎</div>
+</div>
+<div class="note">
+  두 표현 중 $R^2=\mathrm{corr}(X,Y)^2$ 는 설명변수가 하나일 때만 쓰지만,
+  $R^2=\mathrm{corr}(Y,\hat Y)^2$ 는 <b>다중회귀로도 그대로 확장되는 일반식</b>이다
+  ($\hat Y$ 는 설명변수가 여럿이어도 항상 하나로 정해지므로). 이때 $R=\mathrm{corr}(Y,\hat Y)$ 를
+  <b>다중상관계수</b> <span class="en">multiple correlation coefficient</span>라 부른다.
 </div>
 
 <div class="note">
