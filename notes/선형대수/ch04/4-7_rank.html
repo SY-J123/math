@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>4장 · 4.13–4.16 행렬의 계수</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <div class="ch">선형대수 · 4장 행렬연산</div>
+  <h1><span class="no">4.13–4.16</span>행렬의 계수 <span class="en">rank</span></h1>
+</header>
+
+<p>계수<span class="en">rank</span>는 행렬의 가장 중요한 특성 중 하나다. 그 바탕인 <b>선형독립</b>부터 정리한다.</p>
+<div class="note">
+  <b>계수란?</b> 행렬의 여러 행(열) 중 <b>서로 독립인 것이 몇 개인가</b> — 즉 나머지의 일차결합으로 만들 수 없는 행(열)의 수다.
+  기하적으로는 그 행(열)들이 <b>생성하는 공간의 차원</b>을 뜻한다(아래 그림). 예컨대 $3\times3$ 행렬이라도 한 행이 다른 두 행의
+  합이면 실제로 독립인 것은 2개뿐이라 계수는 3 이 아니라 2 다. 정식 정의는 4.15절에 있다.
+</div>
+
+<h2 class="sub"><span class="no">4.13</span>예비대수 결과 — 선형독립</h2>
+<p>벡터들 $u_1,\dots,u_k$ 가 <b>선형독립</b><span class="en">LIN, linearly independent</span>이라는 것은
+$q_1u_1+\cdots+q_ku_k=0$ 이 오직 $q_1=\cdots=q_k=0$ 일 때만 성립한다는 뜻이다.</p>
+<div class="box thm">
+  <span class="tag">정리 4.1</span>
+  <p>차수가 $n$ 인 선형독립 벡터들의 집합은 원소가 최대 $n$ 개다. (따름정리 4.1: 차수 $n$ 인 LIN 벡터가 $p$ 개이면 $p\le n$.)</p>
+</div>
+<div class="box prf">
+  <span class="tag">증명</span>
+  <p>차수 $n$ 인 LIN 벡터 $u_1,\dots,u_n$ 에 영벡터가 아닌 $u_{n+1}$ 을 더해도 종속이 됨을 보이면 된다.
+  $U=[u_1\ \cdots\ u_n]$ 은 $n$ 개의 LIN 열로 이루어져 $|U|\neq0$, 따라서 $q=U^{-1}u_{n+1}\,(\neq0)$ 이 존재한다.
+  $Uq=u_{n+1}$ 이므로</p>
+  $$q_1u_1+q_2u_2+\cdots+q_nu_n-u_{n+1}=0\tag{4.29}$$
+  <p>이고, 계수가 모두 $0$ 은 아니므로 $u_1,\dots,u_{n+1}$ 은 선형종속이다. 즉 $n$ 개를 넘는 LIN $n$차 벡터 집합은 없다.</p>
+  <div class="qed">∎</div>
+</div>
+<div class="box ex">
+  <span class="tag">예 4.4</span>
+  <p>$\big[\begin{smallmatrix}2\\1\end{smallmatrix}\big],\big[\begin{smallmatrix}3\\5\end{smallmatrix}\big]$ 는 차수 2 인 LIN 두 벡터다.
+  여기에 어떤 2차 벡터를 더해도 종속이 된다 — 평면의 모든 벡터는 이 둘의 일차결합이기 때문이다. 예컨대</p>
+  $$\begin{bmatrix}a\\b\end{bmatrix}=\tfrac12(13a-9b)\begin{bmatrix}5\\7\end{bmatrix}+\tfrac12(-7a+5b)\begin{bmatrix}9\\13\end{bmatrix}.$$
+  <p style="margin-top:4px;">즉 차수 $n$ 인 모든 벡터는 $n$ 개의 LIN $n$차 벡터의 일차결합으로 표현된다.</p>
+</div>
+
+<figure class="fig">
+<svg viewBox="0 0 370 180" role="img" aria-label="계수는 열들이 생성하는 공간의 차원">
+  <defs>
+    <marker id="rb" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#1d6fb8"/></marker>
+    <marker id="rt" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#0f8a7d"/></marker>
+  </defs>
+  <!-- panel 1: rank 2 -->
+  <rect x="18" y="20" width="150" height="140" fill="#eef5fb" opacity="0.5"/>
+  <line class="axis" x1="40" y1="140" x2="165" y2="140"/><line class="axis" x1="40" y1="140" x2="40" y2="25"/>
+  <line class="vec" x1="40" y1="140" x2="96" y2="112" marker-end="url(#rb)"/>
+  <line class="vec2" x1="40" y1="140" x2="68" y2="84" marker-end="url(#rt)"/>
+  <text class="lbl b" x="98" y="110">u</text><text class="lbl t" x="48" y="80">v</text>
+  <text class="lbl" x="93" y="172" text-anchor="middle">계수 2 — 평면 전체 생성</text>
+  <!-- panel 2: rank 1 -->
+  <line x1="232" y1="152" x2="345" y2="96" stroke="#0f8a7d" stroke-width="6" opacity="0.25"/>
+  <line class="axis" x1="220" y1="140" x2="350" y2="140"/><line class="axis" x1="220" y1="140" x2="220" y2="25"/>
+  <line class="vec" x1="220" y1="140" x2="276" y2="112" marker-end="url(#rb)"/>
+  <line class="vec2" x1="220" y1="140" x2="332" y2="84" marker-end="url(#rt)"/>
+  <text class="lbl b" x="262" y="132">u</text><text class="lbl t" x="316" y="80">w=2u</text>
+  <text class="lbl" x="285" y="172" text-anchor="middle">계수 1 — 직선만 생성</text>
+</svg>
+<figcaption>계수는 열(행)들이 <b>생성하는 공간의 차원</b>이다. 두 벡터가 다른 방향이면 평면을 채워 계수 2,
+한 직선 위에 있으면 계수 1 이다.</figcaption>
+</figure>
+
+<h2 class="sub"><span class="no">4.14</span>선형독립인 행의 수 = 열의 수</h2>
+<div class="box thm">
+  <span class="tag">정리 4.2</span>
+  <p>어떤 행렬에서도 <b>선형독립인 행의 수와 선형독립인 열의 수는 같다</b>.</p>
+</div>
+<div class="box prf">
+  <span class="tag">증명 (개요)</span>
+  <p>$A_{p\times q}$ 의 앞쪽 $k$ 개 행과 $m$ 개 열이 LIN 이라 하고 분할</p>
+  $$A=\begin{bmatrix}X_{k\times m}&Y_{k\times(q-m)}\\ Z_{(p-k)\times m}&W_{(p-k)\times(q-m)}\end{bmatrix}$$
+  <p>를 두자. 아래쪽 행들은 위쪽 $k$ 개 LIN 행의 일차결합이므로 적당한 $T$ 에 대해 $[Z\ W]=T[X\ Y]$, 즉 $Z=TX$.
+  이제 $X$ 의 열이 종속이라 가정해 $Xa=0\,(a\neq0)$ 이면 $Za=TXa=0$ 이므로
+  $\big[\begin{smallmatrix}X\\Z\end{smallmatrix}\big]a=0$ — $A$ 의 처음 $m$ 개 열이 종속이라는 모순. 따라서 $X$ 의 $m$ 개 열이 LIN 이고
+  $m\le k$. 같은 논법으로 $k\le m$. 그러므로 $k=m$.</p>
+  <div class="qed">∎</div>
+</div>
+
+<h2 class="sub"><span class="no">4.15</span>행렬 계수의 결정</h2>
+<div class="box def">
+  <span class="tag">정의 4.1</span><span class="title">계수 <span class="en">rank</span></span>
+  <p>행렬의 <b>계수</b>는 선형독립인 행(=열)의 수이다. $A$ 의 계수를 $r_A$ 또는 $r(A)$ 로 쓴다.</p>
+</div>
+<div class="box thm">
+  <span class="tag">계수의 성질</span>
+  <ol class="props">
+    <li>$r_A$ 는 음 아닌 정수, $r_0=0$.</li>
+    <li>$r(A_{p\times q})\le p$ 이고 $\le q$ — 계수는 행·열 수를 넘지 못한다.</li>
+    <li>$r(A)=r(A')$.</li>
+    <li>$r(A_{n\times n})=n$ ⇔ $A$ 정칙 ⇔ $A^{-1}$ 존재 (<b>최대계수</b><span class="en">full rank</span>).</li>
+    <li>$r(A_{n\times n})<n$ ⇔ $A$ 비정칙 ⇔ $A^{-1}$ 없음.</li>
+    <li>$r(A_{p\times q})=p<q$ : 최대행계수, &nbsp;$=q<p$ : 최대열계수.</li>
+    <li>정칙행렬을 곱해도 계수는 불변: $B,C$ 정칙이면 $r(A)=r(BA)=r(AC)$.</li>
+    <li>$r(AA')=r(A'A)=r(A)$.</li>
+    <li>$r(A\otimes B)=r(A)\,r(B)$, &nbsp;$r(A\oplus B)=r(A)+r(B)$.</li>
+    <li>$r\big(\sum_i A_i\big)\le\sum_i r(A_i)$.</li>
+    <li><b>실베스터 법칙</b><span class="en">Sylvester</span>: $A_{m\times n},B_{n\times q}$ 이면
+      $$r(A)+r(B)-n\le r(AB)\le\min\{r(A),\ r(B)\}.$$</li>
+  </ol>
+</div>
+
+<h2 class="sub"><span class="no">4.16</span>계수와 역행렬</h2>
+<p>정방행렬이 역행렬을 가질 필요충분조건은 <b>계수와 차수가 같은 것</b>이다. 여러 동치 조건을 표 4.2 에 모았다 —
+한쪽 열의 한 조건이 같은 열의 나머지를 모두 함의한다.</p>
+<div class="scroll"><table class="anova">
+  <caption style="caption-side:top; text-align:left; font-size:0.82rem; color:var(--muted); padding-bottom:4px;">표 4.2 &nbsp;$n\times n$ 행렬 $A$ 에 대한 동치 조건</caption>
+  <tr><th>역행렬이 존재 (정칙)</th><th>역행렬이 없음 (비정칙)</th></tr>
+  <tr><td>$A^{-1}$ 이 존재한다</td><td>$A^{-1}$ 이 존재하지 않는다</td></tr>
+  <tr><td>$A$ 는 정칙행렬</td><td>$A$ 는 비정칙행렬</td></tr>
+  <tr><td>$|A|\neq0$</td><td>$|A|=0$</td></tr>
+  <tr><td>$A$ 는 최대계수</td><td>최대계수가 아님</td></tr>
+  <tr><td>$r_A=n$</td><td>$r_A<n$</td></tr>
+  <tr><td>$n$ 개의 LIN 행(열)</td><td>$n$ 보다 적은 LIN 행(열)</td></tr>
+  <tr><td>$Ax=0\Rightarrow x=0$ (자명해뿐)</td><td>$Ax=0$ 인 $x\neq0$ 존재</td></tr>
+</table></div>
+<div class="note">
+  부분행렬의 계수를 보는 것이 행렬식을 직접 계산하는 것보다 쉬울 때가 많다. 그래서 $A^{-1}$ 의 존재를
+  판정할 때 흔히 $|A|$ 대신 계수를 따진다.
+</div>
+
+<nav class="pager">
+  <a href="4-6_inverse.html">← 이전<small>4.12 역행렬</small></a>
+  <a class="next" href="4-8_permutation-factorization.html">다음 →<small>4.17–4.18 치환행렬·최대계수인수분해</small></a>
+</nav>
+
+</body>
+</html>

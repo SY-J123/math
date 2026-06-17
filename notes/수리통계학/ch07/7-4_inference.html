@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>7장 · 7.4 가설검정 및 신뢰구간</title>
-<link rel="stylesheet" href="../../assets/note.css">
+<link rel="stylesheet" href="../../../assets/note.css">
 <script>
   MathJax = {
     tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
@@ -28,8 +28,36 @@ $$\left|\frac{(\hat\beta_1-\beta_{10})\sqrt{\sum(x_i-\bar x_n)^2}}{\hat\sigma}\r
 $$\left[\hat\beta_1\ \pm\ t_{\alpha/2}(n-2)\cdot\frac{\hat\sigma}{\sqrt{\sum(x_i-\bar x_n)^2}}\right].\tag{7.15}$$
 <div class="note">
   가장 관심 있는 가설은 $H_0:\beta_1=0$ — 참이면 $X$ 와 $Y$ 사이에 선형관계가 없다는 뜻이다.
-  $\beta_0$ 에 대한 검정·신뢰구간은 같은 방식으로 얻으며 실무적 관심은 적다. 검정력 함수
-  $\pi(\beta_1)$ 의 계산에는 비중심 $t$ 분포가 필요하여 보통 생략한다.
+  $\beta_0$ 에 대한 검정·신뢰구간은 같은 방식으로 얻으며 실무적 관심은 적다.
+</div>
+
+<h2 class="sub">검정력함수 <span class="en">power function</span></h2>
+<p>검정 (7.12)가 $H_0$ 가 거짓일 때 얼마나 잘 기각하는지를 나타내는 함수가 검정력함수
+$\pi(\beta_1)=P_{\beta_1}(\,H_0\text{ 기각}\,)$ 이다. 핵심은 검정통계량이 일반적인 $\beta_1$ 하에서
+어떤 분포를 따르는가이다.</p>
+<div class="box prf">
+  <span class="tag">유도</span>
+  <p>검정통계량을 분해하면</p>
+  $$T=\frac{(\hat\beta_1-\beta_{10})\sqrt{\sum(x_i-\bar x_n)^2}}{\hat\sigma}
+    =\frac{\dfrac{(\hat\beta_1-\beta_1)\sqrt{\sum(x_i-\bar x_n)^2}}{\sigma}+\delta}{\sqrt{\hat\sigma^2/\sigma^2}},
+    \qquad
+    \delta=\frac{(\beta_1-\beta_{10})\sqrt{\sum(x_i-\bar x_n)^2}}{\sigma}.$$
+  <p>정리 7.8에 의해 분자의 첫 항 $Z=\dfrac{(\hat\beta_1-\beta_1)\sqrt{\sum(x_i-\bar x_n)^2}}{\sigma}\sim N(0,1)$,
+  분모는 $\hat\sigma^2/\sigma^2=W/(n-2)$, $W\sim\chi^2(n-2)$ 이며 $Z\perp W$ 이다. 따라서</p>
+  $$T=\frac{Z+\delta}{\sqrt{W/(n-2)}}\sim t'(n-2,\ \delta)$$
+  <p>즉 자유도 $n-2$, 비중심모수 $\delta$ 인 <b>비중심 $t$ 분포</b> <span class="en">noncentral $t$</span>를 따른다.
+  $\beta_1=\beta_{10}$ 이면 $\delta=0$ 이라 중심 $t(n-2)$ 로 돌아간다.</p>
+  <div class="qed">∎</div>
+</div>
+<p>양측검정 (7.12)의 검정력함수는 $T_\delta\sim t'(n-2,\delta)$ 에 대해</p>
+$$\pi(\beta_1)=P\big(|T_\delta|\ge t_{\alpha/2}(n-2)\big)
+  =1-P\big(-t_{\alpha/2}(n-2)\le T_\delta\le t_{\alpha/2}(n-2)\big).$$
+<div class="note">
+  검정력함수의 성질: <b>①</b> $\pi(\beta_{10})=\alpha$ — 귀무가설에서는 유의수준과 같다.
+  <b>②</b> $|\beta_1-\beta_{10}|$ 가 커질수록(=$|\delta|$ 가 커질수록) $\pi(\beta_1)\to1$ 로 증가한다.
+  <b>③</b> 표본크기 $n$ 이나 $x_i$ 의 산포 $\sum(x_i-\bar x_n)^2$ 가 클수록 $|\delta|$ 가 커져 검정력이 좋아진다 —
+  설계 단계에서 $x$ 값을 넓게 퍼뜨리는 것이 유리한 이유다.
+  비중심 $t$ 분포의 분포함수가 필요하여 손계산은 어렵고 보통 수치적으로 구한다.
 </div>
 
 <div class="box ex">
@@ -87,6 +115,18 @@ $$\big[\hat\beta_0+\hat\beta_1 x^*\ \pm\ t_{\alpha/2}(n-2)\cdot S(Y)\big].\tag{7
   예측구간은 신뢰구간과 중심은 같지만 분산이 항상 $\sigma^2$ 만큼 더 크다 — 분포의 <b>평균</b>을 추정하는 것보다
   확률변수 <b>값 자체</b>를 예측하는 것이 더 어렵기 때문(평균의 변동에 더해 $Y$ 자체의 변동이 추가된다).
 </div>
+
+<div class="scroll"><table class="anova">
+  <tr><th></th><th>신뢰구간 ($E(Y|x^*)$)</th><th>예측구간 ($Y^*$)</th></tr>
+  <tr><td>대상</td><td>조건부 평균 $\beta_0+\beta_1 x^*$ (상수)</td><td>새 관찰값 $Y^*$ (확률변수)</td></tr>
+  <tr><td>중심</td><td>$\hat\beta_0+\hat\beta_1 x^*$</td><td>$\hat\beta_0+\hat\beta_1 x^*$ (동일)</td></tr>
+  <tr><td>분산</td>
+    <td>$\sigma^2\big[\tfrac1n+\tfrac{(x^*-\bar x_n)^2}{\sum(x_i-\bar x_n)^2}\big]$</td>
+    <td>$\sigma^2\big[1+\tfrac1n+\tfrac{(x^*-\bar x_n)^2}{\sum(x_i-\bar x_n)^2}\big]$</td></tr>
+  <tr><td>차이</td><td colspan="2" style="text-align:center;">예측구간 분산 = 신뢰구간 분산 $+\ \sigma^2$ &nbsp;(항상 더 넓다)</td></tr>
+  <tr><td>식</td><td>(7.17)</td><td>(7.18)</td></tr>
+  <tr><td>$x^*\to\pm\infty$</td><td colspan="2" style="text-align:center;">$(x^*-\bar x_n)^2$ 항 때문에 둘 다 $\bar x_n$ 에서 멀어질수록 넓어진다</td></tr>
+</table></div>
 
 <div class="box ex">
   <span class="tag">예 7.9</span><span class="title">예 7.7의 계속: 속도 예측</span>

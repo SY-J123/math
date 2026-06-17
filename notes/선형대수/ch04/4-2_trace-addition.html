@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>4장 · 4.3–4.6 대각합·덧셈·스칼라곱·영행렬</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <div class="ch">선형대수 · 4장 행렬연산</div>
+  <h1><span class="no">4.3–4.6</span>대각합·덧셈·스칼라곱·영행렬 <span class="en">trace, addition, scalar, null</span></h1>
+</header>
+
+<h2 class="sub"><span class="no">4.3</span>행렬의 대각합 <span class="en">trace</span></h2>
+<p>정방행렬의 대각원소들의 합을 <b>대각합</b>이라 하고 $tr(A)$ 로 쓴다. $A=(a_{ij}),\ i,j=1,\dots,n$ 에 대해</p>
+$$tr(A)=a_{11}+a_{22}+\cdots+a_{nn}=\sum_{i=1}^{n}a_{ii}.$$
+<div class="box ex">
+  <span class="tag">예</span>
+  $$tr\begin{bmatrix}1&7&6\\8&3&9\\4&-2&-8\end{bmatrix}=1+3-8=-4.$$
+</div>
+<p>$A$ 가 정방행렬이 아니면 대각합은 정의되지 않는다. 또한 전치는 대각원소를 그대로 두므로</p>
+$$tr(A')=tr(A),$$
+<p>스칼라를 $1\times1$ 행렬로 보면 $tr(\text{스칼라})=\text{스칼라}$, 예컨대 $tr(13)=13$ 이다.</p>
+
+<h2 class="sub"><span class="no">4.4</span>행렬의 덧셈 <span class="en">addition</span></h2>
+<p>한 컨트리클럽에서 어느 토요일에 회원·손님에게 제공된 점심 수가 $A$, 다음 주 토요일이 $B$ 라 하자.</p>
+$$A=\begin{bmatrix}98&24&42\\39&15&22\end{bmatrix},\qquad B=\begin{bmatrix}55&19&44\\43&53&38\end{bmatrix}.$$
+<p>두 주에 제공된 각 음식의 총합은 같은 위치 원소끼리 더해 얻는다.</p>
+$$A+B=\begin{bmatrix}98{+}55&24{+}19&42{+}44\\39{+}43&15{+}53&22{+}38\end{bmatrix}
+  =\begin{bmatrix}153&43&86\\82&68&60\end{bmatrix}.$$
+<div class="box def">
+  <span class="tag">정의</span><span class="title">행렬의 합</span>
+  <p>같은 차수의 $A=(a_{ij})$, $B=(b_{ij})$ 에 대해</p>
+  $$A+B=(a_{ij}+b_{ij})\qquad(i=1,\dots,r,\ j=1,\dots,c).$$
+  <p style="margin-top:4px;">덧셈은 <b>차수가 같은</b> 행렬끼리만 정의된다. 차 $A-B=(a_{ij}-b_{ij})$ 도 같은 방식이다.</p>
+</div>
+
+<figure class="fig">
+<svg viewBox="0 0 300 210" role="img" aria-label="벡터 덧셈의 평행사변형 법칙">
+  <defs>
+    <marker id="ab" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#1d6fb8"/></marker>
+    <marker id="at" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#0f8a7d"/></marker>
+    <marker id="ap" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#7b3fa0"/></marker>
+  </defs>
+  <line class="axis" x1="30" y1="180" x2="280" y2="180"/>
+  <line class="axis" x1="30" y1="180" x2="30" y2="20"/>
+  <!-- parallelogram guides -->
+  <line class="aux" x1="132" y1="146" x2="166" y2="78"/>
+  <line class="aux" x1="64" y1="112" x2="166" y2="78"/>
+  <!-- vectors: u=(3,1), v=(1,2), u+v=(4,3); scale 34, origin (30,180) -->
+  <line class="vec" x1="30" y1="180" x2="132" y2="146" marker-end="url(#ab)"/>
+  <line class="vec2" x1="30" y1="180" x2="64" y2="112" marker-end="url(#at)"/>
+  <line class="vec3" x1="30" y1="180" x2="166" y2="78" marker-end="url(#ap)"/>
+  <text class="lbl b" x="92" y="170">u</text>
+  <text class="lbl t" x="40" y="140">v</text>
+  <text class="lbl p" x="168" y="74">u + v</text>
+</svg>
+<figcaption>벡터의 합은 두 화살표로 만든 <b>평행사변형의 대각선</b>이다. 성분끼리 더하는 행렬 덧셈의 기하적 의미.</figcaption>
+</figure>
+
+<p>덧셈에 대한 전치와 대각합은 다음을 만족한다.</p>
+<div class="box prf">
+  <span class="tag">성질과 증명</span>
+  <p>(i) 합의 전치 $=$ 전치의 합. $A+B=C=(a_{ij}+b_{ij})$ 라 하면</p>
+  $$(A+B)'=C'=(c_{ji})=(a_{ji}+b_{ji})=(a_{ji})+(b_{ji})=A'+B'.$$
+  <p>(ii) 합의 대각합 $=$ 대각합의 합 (단 $A,B$ 는 같은 차수의 정방행렬).</p>
+  $$tr(A+B)=\sum_{i=1}^{n}(a_{ii}+b_{ii})=\sum_{i=1}^{n}a_{ii}+\sum_{i=1}^{n}b_{ii}=tr(A)+tr(B).$$
+  <div class="qed">∎</div>
+</div>
+
+<h2 class="sub"><span class="no">4.5</span>스칼라에 의한 곱셈 <span class="en">scalar multiplication</span></h2>
+<p>같은 행렬을 더하면 $A+A=(a_{ij})+(a_{ij})=(2a_{ij})=2A$. 양의 정수 $\lambda$ 에 대해 $\lambda A$ 는 $A$ 를 $\lambda$ 번 더한 것이고,
+일반적인 스칼라로 확장하면</p>
+$$\lambda A=(\lambda a_{ij})\qquad(i=1,\dots,r,\ j=1,\dots,c).$$
+<p>즉 모든 원소에 $\lambda$ 를 곱한다. 예를 들면</p>
+$$\lambda\begin{bmatrix}2&-7\\3&5\end{bmatrix}=\begin{bmatrix}2\lambda&-7\lambda\\3\lambda&5\lambda\end{bmatrix},\qquad
+  \begin{bmatrix}2&-7\\3&5\end{bmatrix}\!/17=\begin{bmatrix}2/17&-7/17\\3/17&5/17\end{bmatrix}.$$
+<p>($\lambda$ 가 분수일 때는 $A/17$ 처럼 나눗셈으로 쓰는 것이 편하다.)</p>
+
+<figure class="fig">
+<svg viewBox="0 0 300 170" role="img" aria-label="스칼라곱은 같은 직선 위에서 늘이거나 방향을 뒤집는다">
+  <defs>
+    <marker id="sb" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#1d6fb8"/></marker>
+    <marker id="sg" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#9ec3e6"/></marker>
+    <marker id="st" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#0f8a7d"/></marker>
+  </defs>
+  <!-- span line through a; origin (150,90), scale 26, a=(2,1) -->
+  <line class="aux" x1="46" y1="142" x2="254" y2="38"/>
+  <line class="axis" x1="20" y1="90" x2="280" y2="90"/>
+  <line class="axis" x1="150" y1="160" x2="150" y2="20"/>
+  <!-- 2a = (4,2) -> (254,38) light blue -->
+  <line stroke="#9ec3e6" stroke-width="2.2" x1="150" y1="90" x2="254" y2="38" marker-end="url(#sg)"/>
+  <!-- a = (2,1) -> (202,64) blue -->
+  <line class="vec" x1="150" y1="90" x2="202" y2="64" marker-end="url(#sb)"/>
+  <!-- -a = (-2,-1) -> (98,116) teal -->
+  <line class="vec2" x1="150" y1="90" x2="98" y2="116" marker-end="url(#st)"/>
+  <text class="lbl b" x="190" y="58">a</text>
+  <text class="lbl" x="232" y="34" fill="#5b8fbf">2a</text>
+  <text class="lbl t" x="74" y="124">−a</text>
+</svg>
+<figcaption>스칼라곱 $\lambda a$ 는 화살표를 <b>같은 직선</b> 위에서 늘이거나($\lambda{=}2$) 줄이고, $\lambda{<}0$ 이면 방향을 뒤집는다($\lambda{=}{-}1$).</figcaption>
+</figure>
+
+<h2 class="sub"><span class="no">4.6</span>등식과 영행렬 <span class="en">equality &amp; null matrix</span></h2>
+<p>두 행렬이 <b>같다</b>는 것은 차수가 같고 대응 원소가 모두 같다는 뜻이다. 즉 모든 $i,j$ 에 대해 $a_{ij}=b_{ij}$. 예를 들어</p>
+$$A=\begin{bmatrix}2&6&-4\\3&0&1\end{bmatrix},\quad B=\begin{bmatrix}2&6&-4\\3&0&1\end{bmatrix},\quad C=\begin{bmatrix}2&6&-4\\2&0&1\end{bmatrix}$$
+<p>에서 $A=B$ 이지만 $A\neq C$ 이다($(2,1)$ 원소가 다름). 같은 차수의 두 행렬에 대해 $a_{ij}=b_{ij}$ 이면</p>
+$$A-B=(a_{ij}-b_{ij})=(0)=0.$$
+<div class="box def">
+  <span class="tag">정의</span><span class="title">영행렬 <span class="en">null / zero matrix</span></span>
+  <p>모든 원소가 $0$ 인 행렬을 <b>영행렬</b>이라 하고 $0$ 으로 쓴다. 행렬대수에서 ‘0’ 의 역할을 한다.
+  차수마다 영행렬이 따로 있으므로 영행렬은 유일하지 않다. 예를 들어</p>
+  $$\begin{bmatrix}0&0&0&0\\0&0&0&0\end{bmatrix},\qquad\begin{bmatrix}0&0&0\\0&0&0\\0&0&0\end{bmatrix}.$$
+</div>
+
+<nav class="pager">
+  <a href="4-1_transpose-partition.html">← 이전<small>4.1–4.2 전치와 분할행렬</small></a>
+  <a class="next" href="4-3_multiplication.html">다음 →<small>4.7 행렬의 곱셈</small></a>
+</nav>
+
+</body>
+</html>

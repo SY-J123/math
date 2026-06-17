@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>4장 · 4.10–4.11 직합과 직적</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <div class="ch">선형대수 · 4장 행렬연산</div>
+  <h1><span class="no">4.10–4.11</span>직합과 직적 <span class="en">direct sum &amp; direct product</span></h1>
+</header>
+
+<p>직합<span class="en">direct sum</span>과 직적<span class="en">direct product</span>은 분할행렬을 이용해 정의되는 두 가지 특수한 연산이다.</p>
+
+<h2 class="sub"><span class="no">4.10</span>행렬의 직합 <span class="en">direct sum</span></h2>
+<div class="box def">
+  <span class="tag">정의</span><span class="title">직합</span>
+  $$A\oplus B=\begin{bmatrix}A&0\\0&B\end{bmatrix},\qquad
+    \bigoplus_{i=1}^{k}A_i=\begin{bmatrix}A_1&&\\&\ddots&\\&&A_k\end{bmatrix}=\mathrm{diag}(A_i).\tag{4.22}$$
+  <p style="margin-top:4px;">각 블록의 차수가 달라도 되며, 영행렬들은 각 블록에 맞는 차수를 가진다.</p>
+</div>
+<p>예를 들면</p>
+$$\begin{bmatrix}1&2&3\end{bmatrix}\oplus\begin{bmatrix}6&7\\8&9\end{bmatrix}
+  =\begin{bmatrix}1&2&3&0&0\\0&0&0&6&7\\0&0&0&8&9\end{bmatrix}.$$
+<figure class="fig">
+<svg viewBox="0 0 220 162" role="img" aria-label="직합은 블록대각 구조">
+  <rect x="30" y="20" width="80" height="60" fill="#eef5fb" stroke="#1d6fb8" stroke-width="1.3"/>
+  <rect x="110" y="80" width="80" height="60" fill="#e9f6f4" stroke="#0f8a7d" stroke-width="1.3"/>
+  <rect x="30" y="20" width="160" height="120" fill="none" stroke="#888" stroke-width="1.3"/>
+  <line x1="110" y1="20" x2="110" y2="140" stroke="#ccc"/>
+  <line x1="30" y1="80" x2="190" y2="80" stroke="#ccc"/>
+  <text class="lbl b" x="70" y="54" text-anchor="middle" font-style="italic" font-size="15">A</text>
+  <text class="lbl t" x="150" y="114" text-anchor="middle" font-style="italic" font-size="15">B</text>
+  <text class="lbl" x="150" y="54" text-anchor="middle" fill="#aaa">0</text>
+  <text class="lbl" x="70" y="114" text-anchor="middle" fill="#aaa">0</text>
+</svg>
+<figcaption>직합 $A\oplus B$ 는 <b>블록대각</b> 행렬 — $A$ 와 $B$ 가 서로 간섭하지 않는 독립된 부분공간에 놓인다.</figcaption>
+</figure>
+<p>합과 곱이 가능한 경우 다음이 성립한다.</p>
+$$(A\oplus B)+(C\oplus D)=(A+C)\oplus(B+D),\qquad (A\oplus B)(C\oplus D)=AC\oplus BD.$$
+<p>또한 직합의 전치는 전치들의 직합 $(A\oplus B)'=A'\oplus B'$ 이다.</p>
+
+<h2 class="sub"><span class="no">4.11</span>직적 <span class="en">direct / Kronecker product</span></h2>
+<div class="box def">
+  <span class="tag">정의</span><span class="title">직적(크로네커 곱) <span class="en">Kronecker product</span></span>
+  $$A_{p\times q}\otimes B_{m\times n}=\begin{bmatrix}a_{11}B&\cdots&a_{1q}B\\ \vdots&&\vdots\\ a_{p1}B&\cdots&a_{pq}B\end{bmatrix}.\tag{4.24}$$
+  <p style="margin-top:4px;">$A$ 의 각 원소 $a_{ij}$ 를 ‘$a_{ij}$ 배한 $B$ 블록’ 으로 부풀린 것. 결과 차수는 $pm\times qn$ 이다.</p>
+</div>
+<p>예를 들면</p>
+$$\begin{bmatrix}1&2&3\end{bmatrix}\otimes\begin{bmatrix}6&7\\8&9\end{bmatrix}
+  =\begin{bmatrix}6&7&12&14&18&21\\8&9&16&18&24&27\end{bmatrix}.$$
+<figure class="fig">
+<svg viewBox="0 0 300 170" role="img" aria-label="크로네커 곱은 각 원소를 B 블록으로 확장한다">
+  <!-- A 2x2 -->
+  <g>
+    <rect x="14" y="54" width="48" height="48" class="cell"/>
+    <line x1="38" y1="54" x2="38" y2="102" stroke="#cfcfcf"/><line x1="14" y1="78" x2="62" y2="78" stroke="#cfcfcf"/>
+    <g class="num" text-anchor="middle" font-style="italic">
+      <text x="26" y="72">a₁₁</text><text x="50" y="72">a₁₂</text>
+      <text x="26" y="96">a₂₁</text><text x="50" y="96">a₂₂</text>
+    </g>
+  </g>
+  <text x="74" y="82" class="lbl" font-size="15">⊗ B =</text>
+  <!-- result 4x4 partitioned -->
+  <g>
+    <rect x="150" y="30" width="48" height="48" fill="#eef5fb"/>
+    <rect x="198" y="30" width="48" height="48" fill="#e9f6f4"/>
+    <rect x="150" y="78" width="48" height="48" fill="#f4eefa"/>
+    <rect x="198" y="78" width="48" height="48" fill="#fdeef0"/>
+    <rect x="150" y="30" width="96" height="96" fill="none" stroke="#888" stroke-width="1.3"/>
+    <line x1="198" y1="30" x2="198" y2="126" stroke="#888" stroke-width="1.3" stroke-dasharray="4 3"/>
+    <line x1="150" y1="78" x2="246" y2="78" stroke="#888" stroke-width="1.3" stroke-dasharray="4 3"/>
+    <g class="lbl" text-anchor="middle" font-style="italic" font-size="11">
+      <text x="174" y="58">a₁₁B</text><text x="222" y="58">a₁₂B</text>
+      <text x="174" y="106">a₂₁B</text><text x="222" y="106">a₂₂B</text>
+    </g>
+  </g>
+</svg>
+<figcaption>크로네커 곱: $A$ 의 각 원소가 통째로 $B$ 의 (스칼라배된) 복사본 블록이 된다 — ‘격자 안의 격자’.</figcaption>
+</figure>
+<p>직적의 주요 성질(곱·차수가 맞는 경우):</p>
+<div class="box thm">
+  <span class="tag">성질</span>
+  <ol class="props">
+    <li>$(A\otimes B)'=A'\otimes B'$ &nbsp;(곱과 달리 순서가 뒤집히지 않는다).</li>
+    <li>벡터에 대해 $x'\otimes y=yx'=y\otimes x'$.</li>
+    <li>스칼라 $\lambda$ 에 대해 $\lambda\otimes A=\lambda A=A\otimes\lambda$.</li>
+    <li>$[A_1\ A_2]\otimes B=[A_1\otimes B\ \ A_2\otimes B]$ 이지만 $A\otimes[B_1\ B_2]\neq[A\otimes B_1\ \ A\otimes B_2]$.</li>
+    <li>곱이 가능하면 $(A\otimes B)(X\otimes Y)=AX\otimes BY$.</li>
+    <li>$D_k\otimes A=d_1A\oplus d_2A\oplus\cdots\oplus d_kA$ &nbsp;($D_k=\mathrm{diag}(d_i)$).</li>
+    <li>$tr(A\otimes B)=tr(A)\,tr(B)$.</li>
+    <li>$A,B$ 가 정방행렬이면 $|A_{p\times p}\otimes B_{m\times m}|=|A|^{m}\,|B|^{p}$.</li>
+  </ol>
+</div>
+<div class="note">
+  $A\otimes B$ 와 $B\otimes A$ 는 원소 구성은 같고 배열 순서만 다르다. 정의 (4.24) 를 우직적<span class="en">right direct product</span>,
+  $B\otimes A$ 로 정의하는 쪽을 좌직적이라 부르기도 한다. 직적은 다변량 통계·실험계획·유전학 모형에서 널리 쓰인다.
+</div>
+
+<nav class="pager">
+  <a href="4-4_algebra-laws.html">← 이전<small>4.8–4.9 대수의 법칙·스칼라 대수와의 비교</small></a>
+  <a class="next" href="4-6_inverse.html">다음 →<small>4.12 역행렬</small></a>
+</nav>
+
+</body>
+</html>

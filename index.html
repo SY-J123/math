@@ -3,14 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>수리통계학 정리 노트</title>
+<title>수학 정리 노트</title>
 <link rel="stylesheet" href="assets/note.css">
 <style>
-  .chapter{ margin:22px 0; }
-  .chapter h2{ font-size:1.1rem; margin:0 0 10px; padding-bottom:4px;
+  .subject{ margin:30px 0; }
+  .subject > h2{ font-size:1.2rem; margin:0 0 4px; }
+  .subject > p.desc{ margin:0 0 12px; color:var(--muted); font-size:0.9rem; }
+  .chapter{ margin:16px 0; }
+  .chapter h3{ font-size:1.02rem; margin:0 0 10px; padding-bottom:4px;
                border-bottom:1px solid var(--line); }
   ul.toc{ list-style:none; margin:0; padding:0; display:grid; gap:8px;
-          grid-template-columns:repeat(auto-fill, minmax(220px, 1fr)); }
+          grid-template-columns:repeat(auto-fill, minmax(240px, 1fr)); }
   ul.toc a{ display:block; padding:11px 14px; border:1px solid var(--line);
             border-radius:8px; background:#fafafa; color:var(--ink);
             text-decoration:none; line-height:1.4; }
@@ -22,21 +25,42 @@
 <body>
 
 <header class="doc">
-  <div class="ch">수리통계학</div>
+  <div class="ch">수학</div>
   <h1>정리 노트</h1>
 </header>
 
-<p style="color:var(--muted)">교재 내용을 프린트해서 읽기 위한 HTML 요약 노트. 수식은 MathJax로 렌더링됩니다.</p>
+<p style="color:var(--muted)">교재 내용을 프린트해서 읽기 위한 HTML 요약 노트. 수식은 MathJax 로,
+기하적으로 표현할 수 있는 부분은 SVG 그림으로 렌더링됩니다.</p>
 
-<div class="chapter">
-  <h2>7장 — 선형 회귀모형 <span class="en">linear regression model</span></h2>
-  <ul class="toc">
-    <li><a href="notes/ch07/7-1_correlation.html"><b>7.1</b> 상관계수<small>correlation coefficient</small></a></li>
-    <li><a href="notes/ch07/7-2_linear-regression.html"><b>7.2</b> 선형 회귀모형<small>linear regression model</small></a></li>
-    <li><a href="notes/ch07/7-3_estimation.html"><b>7.3</b> 회귀모수의 추정<small>estimation</small></a></li>
-    <li><a href="notes/ch07/7-4_inference.html"><b>7.4</b> 가설검정 및 신뢰구간<small>inference</small></a></li>
-    <li><a href="notes/ch07/7-5_multiple-regression.html"><b>7.5</b> 다중선형 회귀모형<small>multiple regression</small></a></li>
-  </ul>
+<div class="subject">
+  <h2>수리통계학 <span class="en">mathematical statistics</span></h2>
+  <div class="chapter">
+    <h3>7장 — 선형 회귀모형 <span class="en">linear regression model</span></h3>
+    <ul class="toc">
+      <li><a href="notes/수리통계학/ch07/7-1_correlation.html"><b>7.1</b> 상관계수<small>correlation coefficient</small></a></li>
+      <li><a href="notes/수리통계학/ch07/7-2_linear-regression.html"><b>7.2</b> 선형 회귀모형<small>linear regression model</small></a></li>
+      <li><a href="notes/수리통계학/ch07/7-3_estimation.html"><b>7.3</b> 회귀모수의 추정<small>estimation</small></a></li>
+      <li><a href="notes/수리통계학/ch07/7-4_inference.html"><b>7.4</b> 가설검정 및 신뢰구간<small>inference</small></a></li>
+      <li><a href="notes/수리통계학/ch07/7-5_multiple-regression.html"><b>7.5</b> 다중선형 회귀모형<small>multiple regression</small></a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="subject">
+  <h2>선형대수 <span class="en">linear algebra</span></h2>
+  <div class="chapter">
+    <h3>4장 — 행렬연산 <span class="en">matrix operations</span></h3>
+    <ul class="toc">
+      <li><a href="notes/선형대수/ch04/4-1_transpose-partition.html"><b>4.1–4.2</b> 전치와 분할행렬<small>transpose &amp; partitioned matrix</small></a></li>
+      <li><a href="notes/선형대수/ch04/4-2_trace-addition.html"><b>4.3–4.6</b> 대각합·덧셈·스칼라곱·영행렬<small>trace, addition, scalar, null</small></a></li>
+      <li><a href="notes/선형대수/ch04/4-3_multiplication.html"><b>4.7</b> 행렬의 곱셈<small>matrix multiplication</small></a></li>
+      <li><a href="notes/선형대수/ch04/4-4_algebra-laws.html"><b>4.8–4.9</b> 대수의 법칙·스칼라 비교<small>laws of algebra</small></a></li>
+      <li><a href="notes/선형대수/ch04/4-5_direct-sum-product.html"><b>4.10–4.11</b> 직합과 직적<small>direct sum &amp; product</small></a></li>
+      <li><a href="notes/선형대수/ch04/4-6_inverse.html"><b>4.12</b> 역행렬<small>inverse matrix</small></a></li>
+      <li><a href="notes/선형대수/ch04/4-7_rank.html"><b>4.13–4.16</b> 행렬의 계수<small>rank</small></a></li>
+      <li><a href="notes/선형대수/ch04/4-8_permutation-factorization.html"><b>4.17–4.18</b> 치환행렬·최대계수인수분해<small>permutation &amp; full rank factorization</small></a></li>
+    </ul>
+  </div>
 </div>
 
 </body>

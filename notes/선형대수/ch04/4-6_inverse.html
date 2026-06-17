@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>4장 · 4.12 역행렬</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <div class="ch">선형대수 · 4장 행렬연산</div>
+  <h1><span class="no">4.12</span>역행렬 <span class="en">inverse matrix</span></h1>
+</header>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">정칙행렬과 역행렬 <span class="en">nonsingular / inverse</span></span>
+  <p>행렬식이 $0$ 이 아닌 $n\times n$ 정방행렬을 <b>정칙행렬</b><span class="en">nonsingular</span>이라 한다.
+  정칙행렬 $A$ 의 <b>역행렬</b> $A^{-1}$ 은</p>
+  $$A^{-1}A=AA^{-1}=I_n$$
+  <p>을 만족하는 $n\times n$ 행렬이다.</p>
+</div>
+
+<h2 class="sub">수반행렬로 구하기</h2>
+<p>$c_{ij}$ 를 $a_{ij}$ 의 <b>여인자</b><span class="en">cofactor</span>(3장 참조)라 하고 $C=(c_{ij})$ 로 두면</p>
+$$A^{-1}=\frac{C'}{|A|},\qquad C'=\operatorname{adj}A\ (\text{수반행렬}\,\text{adjoint}).$$
+<div class="box ex">
+  <span class="tag">예</span>
+  $$A=\begin{bmatrix}2&5\\3&9\end{bmatrix},\quad \operatorname{adj}A=\begin{bmatrix}9&-5\\-3&2\end{bmatrix},\quad |A|=2\cdot9-5\cdot3=3,$$
+  $$A^{-1}=\frac{1}{3}\begin{bmatrix}9&-5\\-3&2\end{bmatrix}.$$
+</div>
+
+<div class="terms"><div class="h">알아두기 — 소행렬·여인자·수반행렬 (3장 보충)</div>
+  <dl>
+    <dt>소행렬 <span class="en">minor</span></dt>
+    <dd>$M_{ij}$ 는 $A$ 에서 $i$번째 행과 $j$번째 열을 지운 부분행렬의 <b>행렬식</b>이다.</dd>
+    <dt>여인자 <span class="en">cofactor</span></dt>
+    <dd>소행렬에 체크무늬 부호를 붙인 것: $c_{ij}=(-1)^{i+j}M_{ij}$.</dd>
+    <dt>수반행렬 <span class="en">adjoint / adjugate</span></dt>
+    <dd>여인자행렬 $C=(c_{ij})$ 의 <b>전치</b>: $\operatorname{adj}A=C'$. 그래서 $A^{-1}=\dfrac{\operatorname{adj}A}{|A|}$.</dd>
+  </dl>
+  <p style="margin:6px 0 0;">$2\times2$ 의 경우 한눈에 보인다:
+  $A=\big[\begin{smallmatrix}a&b\\c&d\end{smallmatrix}\big]$ 이면
+  $\operatorname{adj}A=\big[\begin{smallmatrix}d&-b\\-c&a\end{smallmatrix}\big]$ (대각은 맞바꾸고 비대각은 부호를 바꾼다),
+  $|A|=ad-bc$. 위 예의 $A=\big[\begin{smallmatrix}2&5\\3&9\end{smallmatrix}\big]$ 에 그대로 적용된다.</p>
+</div>
+
+<figure class="fig">
+<svg viewBox="0 0 200 230" role="img" aria-label="행렬식은 열이 만드는 평행사변형의 넓이">
+  <defs>
+    <marker id="vb" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#1d6fb8"/></marker>
+    <marker id="vt" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#0f8a7d"/></marker>
+  </defs>
+  <line class="axis" x1="20" y1="210" x2="180" y2="210"/>
+  <line class="axis" x1="20" y1="210" x2="20" y2="14"/>
+  <polygon points="20,210 52,162 132,18 100,66" fill="#eef5fb" stroke="#1d6fb8" stroke-width="1.2"/>
+  <line class="vec" x1="20" y1="210" x2="52" y2="162" marker-end="url(#vb)"/>
+  <line class="vec2" x1="20" y1="210" x2="100" y2="66" marker-end="url(#vt)"/>
+  <text class="lbl b" x="56" y="160">a₁=(2,3)</text>
+  <text class="lbl t" x="74" y="60">a₂=(5,9)</text>
+  <text class="lbl" x="60" y="120" fill="#1d6fb8">넓이 = |A| = 3</text>
+</svg>
+<figcaption>행렬식 $|A|$ 는 두 <b>열</b>이 만드는 평행사변형의 넓이(부호 포함). 넓이가 $0$ 이면 두 열이 한 직선 위에 놓여
+변환이 납작하게 짜부라지고, 되돌릴 수 없다 — 즉 $|A|=0$ 이면 $A^{-1}$ 이 존재하지 않는다.</figcaption>
+</figure>
+<div class="note">
+  기하적으로 $A$ 가 공간을 넓이(부피) 배율 $|A|$ 로 늘리는 변환이라면, $A^{-1}$ 은 그 변환을 정확히 <b>되돌리는</b> 변환이고
+  그 배율은 $1/|A|$ 이다. 그래서 $|A^{-1}|=1/|A|$ 이고, $|A|=0$ 이면 되돌릴 길이 없다.
+</div>
+
+<h2 class="sub">역연산의 성질</h2>
+<div class="box thm">
+  <span class="tag">성질</span>
+  <ol class="props">
+    <li>$(AB)^{-1}=B^{-1}A^{-1}$ &nbsp;(곱의 전치처럼 순서가 뒤집힌다).</li>
+    <li>$(A')^{-1}=(A^{-1})'$.</li>
+    <li>$|A^{-1}|=\dfrac{1}{|A|}$.</li>
+    <li>$(A^{-1})^{-1}=A$.</li>
+    <li>$(A\otimes B)^{-1}=A^{-1}\otimes B^{-1}$, &nbsp;$(A\oplus B)^{-1}=A^{-1}\oplus B^{-1}$.</li>
+  </ol>
+</div>
+
+<h2 class="sub">분할행렬의 행렬식과 역행렬 — 슈어 여행렬</h2>
+<p>$A=\big[\begin{smallmatrix}A_{11}&A_{12}\\A_{21}&A_{22}\end{smallmatrix}\big]$ (블록 차수 $n_i\times n_j$) 에 대해</p>
+$$|A|=\begin{cases}|A_{11}|\,\big|A_{22}-A_{21}A_{11}^{-1}A_{12}\big|, & A_{11}\ \text{정칙}\\[4pt]
+  |A_{22}|\,\big|A_{11}-A_{12}A_{22}^{-1}A_{21}\big|, & A_{22}\ \text{정칙}\end{cases}$$
+<p>여기서 $A_{22}-A_{21}A_{11}^{-1}A_{12}$ 를 $A_{11}$ 에 대한 <b>슈어 여행렬</b><span class="en">Schur complement</span>이라 한다. 역행렬은</p>
+$$A^{-1}=\begin{bmatrix}B_{11}&B_{12}\\B_{21}&B_{22}\end{bmatrix},\qquad
+  \begin{aligned}
+  B_{11}&=(A_{11}-A_{12}A_{22}^{-1}A_{21})^{-1},\\
+  B_{12}&=-B_{11}A_{12}A_{22}^{-1},\\
+  B_{21}&=-A_{22}^{-1}A_{21}B_{11},\\
+  B_{22}&=A_{22}^{-1}+A_{22}^{-1}A_{21}B_{11}A_{12}A_{22}^{-1}.
+  \end{aligned}\tag{4.25}$$
+<p>이로부터 다음의 유용한 항등식(우드버리 류)이 나온다.</p>
+$$(A_{22}-A_{21}A_{11}^{-1}A_{12})^{-1}=A_{22}^{-1}+A_{22}^{-1}A_{21}(A_{11}-A_{12}A_{22}^{-1}A_{21})^{-1}A_{12}A_{22}^{-1}.\tag{4.26}$$
+
+<h2 class="sub">행렬 등비급수</h2>
+<p>스칼라의 $1+x+\cdots+x^{n-1}=(x^n-1)/(x-1)$ 에 대응하여, $(X-I)^{-1}$ 이 존재하면</p>
+$$I+X+X^2+\cdots+X^{n-1}=(X^n-I)(X-I)^{-1}.\tag{4.27}$$
+<div class="box prf">
+  <span class="tag">증명</span>
+  $$\big(I+X+\cdots+X^{n-1}\big)(X-I)=\big(X+X^2+\cdots+X^n\big)-\big(I+X+\cdots+X^{n-1}\big)=X^n-I.$$
+  <p>양변 뒤에 $(X-I)^{-1}$ 을 곱하면 (4.27) 을 얻는다. (좌측에 곱하면
+  $I+X+\cdots+X^{n-1}=(X-I)^{-1}(X^n-I)$.)</p>
+  <div class="qed">∎</div>
+</div>
+
+<nav class="pager">
+  <a href="4-5_direct-sum-product.html">← 이전<small>4.10–4.11 직합과 직적</small></a>
+  <a class="next" href="4-7_rank.html">다음 →<small>4.13–4.16 행렬의 계수</small></a>
+</nav>
+
+</body>
+</html>

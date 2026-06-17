@@ -97,6 +97,23 @@ table.anova{ border-collapse:collapse; margin:10px 0; font-size:0.9rem; width:10
 table.anova th, table.anova td{ border:1px solid var(--line); padding:5px 9px; }
 table.anova th{ background:#f0f0f0; }
 
+/* ---- 그림 (기하학적 시각화 SVG) ---- */
+figure.fig{ text-align:center; margin:16px 0; }
+figure.fig svg{ max-width:100%; height:auto; }
+figure.fig figcaption{ font-size:0.82rem; color:var(--muted); margin-top:6px; }
+.fig .axis{ stroke:#999; stroke-width:1; }
+.fig .grid{ stroke:#ececec; stroke-width:1; }
+.fig .vec{ stroke:#1d6fb8; stroke-width:2.2; fill:none; }
+.fig .vec2{ stroke:#0f8a7d; stroke-width:2.2; fill:none; }
+.fig .vec3{ stroke:#7b3fa0; stroke-width:2.2; fill:none; }
+.fig .aux{ stroke:#bbb; stroke-width:1.4; stroke-dasharray:4 3; fill:none; }
+.fig .lbl{ font-size:12px; fill:var(--ink); }
+.fig .lbl.b{ fill:#1d6fb8; } .fig .lbl.t{ fill:#0f8a7d; } .fig .lbl.p{ fill:#7b3fa0; }
+.fig .cell{ fill:#fafafa; stroke:#cfcfcf; stroke-width:1; }
+.fig .cellhi{ fill:#eef5fb; stroke:#1d6fb8; stroke-width:1.4; }
+.fig .cellhi2{ fill:#e9f6f4; stroke:#0f8a7d; stroke-width:1.4; }
+.fig .num{ font-size:12px; fill:#333; }
+
 /* ---- 인쇄 ---- */
 @media print{
   @page{ size:A4; margin:15mm; }
