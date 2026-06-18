@@ -42,6 +42,16 @@ $$\begin{bmatrix}1&2\\3&4\end{bmatrix}\begin{bmatrix}0&2\\3&3\end{bmatrix}=\begi
   =\begin{bmatrix}0&2\\3&3\end{bmatrix}\begin{bmatrix}1&2\\3&4\end{bmatrix}.$$
 <p>특별한 경우로 $IA=AI=A$, $0A=A0=0$ 은 항상 교환된다.</p>
 
+<div class="box thm">
+  <span class="tag">교환되는 특별한 꼴</span>
+  <p>주대각이 같고 비대각이 대칭인 $2\times2$ 행렬은 항등행렬 $I$ 와 치환행렬 $P=\big[\begin{smallmatrix}0&1\\1&0\end{smallmatrix}\big]$ 의 결합이다:</p>
+  $$\begin{bmatrix}a&b\\b&a\end{bmatrix}=a\begin{bmatrix}1&0\\0&1\end{bmatrix}+b\begin{bmatrix}0&1\\1&0\end{bmatrix}=aI+bP.$$
+  <p>같은 행렬($P$)의 다항식인 행렬들끼리는 항상 교환되므로, 이런 꼴 $aI+bP$ 와 $cI+dP$ 는 언제나 $AB=BA$ 다.
+  ($P^2=I$ 라 곱해도 다시 같은 꼴이 나온다.)</p>
+  <p style="margin-top:6px;">더 일반적으로, 한 행렬 $A$ 의 다항식($aI+bA$ 꼴)들끼리는 항상 교환된다. 앞의 "우연히 같아지는 예"도
+  $B=A-I$ 라서 이 원칙에 해당하는 것이지 우연이 아니다.</p>
+</div>
+
 <figure class="fig">
 <svg viewBox="0 0 260 210" role="img" aria-label="변환 순서에 따라 결과가 달라진다">
   <defs>

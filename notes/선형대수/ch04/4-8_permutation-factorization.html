@@ -113,19 +113,25 @@ $$A=P'MQ'=(P'K)(LQ'),$$
 <p>즉 $P'K,\ LQ'$ 가 다시 (4.41) 의 $K,L$ 역할을 한다. 따라서 최대계수인수분해는 <b>모든</b> 행렬에 대해 가능하다.</p>
 
 <h3 class="sub"><span class="no">4.18.3</span>최대행(열)계수행렬</h3>
+<p><b>최대행계수</b><span class="en">full row rank</span>($r_A=p\le q$, 모든 행이 독립)인 행렬은 더 간단히
+정칙 블록 하나와 $[\,I\ \ H\,]$ 로 갈라진다.</p>
 <div class="box thm">
   <span class="tag">보조정리 4.1</span>
-  <p>최대행계수행렬은 항상 두 행렬의 곱으로 표현할 수 있고, 그중 하나는 적당한 $H$ 에 대해 $[\,I\ \ H\,]$ 꼴로 분할된다.</p>
+  <p>$A_{p\times q}$ 가 최대행계수($r_A=p$)이면, 정칙행렬 $M_{p\times p}$ 와 적당한 $H$ 에 대해 $A=M\,[\,I_p\ \ H\,]$.</p>
 </div>
 <div class="box prf">
   <span class="tag">증명</span>
-  <p>최대행계수행렬은 $A=[\,M\ \ L\,]$ ($M$ 정칙) 으로 쓸 수 있으므로
-  $A=M[\,I\ \ M^{-1}L\,]$ 이고 $H=M^{-1}L$ 로 두면 된다.</p>
+  <ol>
+    <li><span class="step">독립인 열 $p$ 개를 앞으로 — $AQ=[\,M\ \ L\,]$.</span>
+      행이 모두 독립이므로 정리 4.2(행계수=열계수)에 의해 독립인 열도 $p$ 개다. 치환행렬 $Q$ 를 뒤에 곱해 그 열들을 앞으로 모으면
+      $AQ=[\,M\ \ L\,]$ ($M$ 은 $p\times p$). 모든 행이 독립이라 (4.38)의 종속 행 블록 $Z,W$ 는 아예 없어 위 한 줄로 끝난다.</li>
+    <li><span class="step">$M$ 은 정칙.</span>
+      $M$ 은 $p\times p$ 인데 열 $p$ 개가 모두 독립 → 표 4.2 동치조건으로
+      <span style="color:var(--muted)">독립열 $p$ 개 ⇔ 계수 $p$ ⇔ $|M|\neq0$ ⇔ $M^{-1}$ 존재(정칙)</span>. 그래서 $M^{-1}$ 을 쓸 수 있다.</li>
+    <li><span class="step">$M$ 을 빼낸다.</span>
+      $AQ=[\,M\ \ L\,]=M\,[\,I_p\ \ M^{-1}L\,]$. $H=M^{-1}L$, $Q^{-1}=Q'$ 로 열을 되돌리면 $A=M\,[\,I_p\ \ H\,]Q'$ — 열 순서만 다를 뿐 $M\,[\,I_p\ \ H\,]$ 꼴이다.</li>
+  </ol>
   <div class="qed">∎</div>
-</div>
-<div class="note">
-  최대계수인수분해는 일반화역행렬, 사영, 다변량 통계의 모형행렬 분해 등에서 폭넓게 쓰인다
-  (Ben-Israel &amp; Greville 1974; Marsaglia &amp; Styan 1974).
 </div>
 
 <nav class="pager">
