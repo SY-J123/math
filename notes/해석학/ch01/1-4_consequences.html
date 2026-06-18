@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1장 · 1.4 완비성 공리의 따름정리</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <div class="ch">해석학 · 1장 실수</div>
+  <h1><span class="no">1.4</span>완비성 공리의 따름정리 <span class="en">consequences of completeness</span></h1>
+</header>
+
+<p>완비성 공리로 “수직선에 빈틈이 없다”는 직관을 정리들로 풀어낸다.</p>
+
+<h2 class="sub">축소구간성질 <span class="en">nested interval property</span></h2>
+<div class="box thm">
+  <span class="tag">정리 1.4.1</span>
+  <p>닫힌 구간 $I_n=[a_n,b_n]$ 들이 $I_1\supseteq I_2\supseteq I_3\supseteq\cdots$ 로 포개지면
+  $\displaystyle\bigcap_{n=1}^{\infty}I_n\neq\varnothing$.</p>
+</div>
+<figure class="fig">
+<svg viewBox="0 0 340 116" role="img" aria-label="포개진 닫힌 구간들의 교집합은 비지 않는다">
+  <line class="aux" x1="168" y1="20" x2="168" y2="100"/>
+  <g stroke="#1d6fb8" stroke-width="2.4" fill="none">
+    <path d="M40,36 L40,46 M40,41 L300,41 M300,36 L300,46"/>
+    <path d="M84,54 L84,64 M84,59 L250,59 M250,54 L250,64"/>
+    <path d="M120,72 L120,82 M120,77 L210,77 M210,72 L210,82"/>
+  </g>
+  <circle cx="168" cy="95" r="3" fill="#0f8a7d"/><text class="lbl t" x="168" y="112" text-anchor="middle">x ∈ 모든 Iₙ</text>
+  <text class="lbl" x="34" y="38" text-anchor="end">a₁</text><text class="lbl" x="306" y="38">b₁</text>
+  <text class="lbl" x="78" y="56" text-anchor="end">a₂</text><text class="lbl" x="256" y="56">b₂</text>
+  <text class="lbl" x="114" y="74" text-anchor="end">a₃</text><text class="lbl" x="216" y="74">b₃</text>
+</svg>
+<figcaption>왼쪽 끝 $a_n$ 은 오른쪽으로 커지고 오른쪽 끝 $b_n$ 은 왼쪽으로 작아진다. $x=\sup\{a_n\}$ 이 모든 구간에 들어간다.</figcaption>
+</figure>
+<div class="box prf">
+  <span class="tag">증명</span>
+  <p>$A=\{a_n:n\in\mathbb{N}\}$ 로 두자. 구간이 포개지므로 모든 $b_n$ 이 $A$ 의 상계다. 완비성 공리로 $x=\sup A$ 가 존재한다.
+  $x$ 는 상계이니 모든 $m$ 에 대해 $a_m\le x$, 또 $x$ 는 <b>최소</b> 상계이고 각 $b_m$ 이 상계이니 $x\le b_m$. 따라서 모든 $m$ 에서
+  $a_m\le x\le b_m$, 즉 $x\in I_m$. 그러므로 $x\in\bigcap_n I_n$.</p>
+  <div class="qed">∎</div>
+</div>
+<div class="box exr">
+  <span class="tag">연습 1.4.3 (개념) — ‘닫힘’ 이 왜 필요한가</span>
+  <p>$\displaystyle\bigcap_{n=1}^{\infty}\Big(0,\tfrac1n\Big)=\varnothing$ 임을 보여라. 열린 구간에서는 교집합이 빌 수 있다 —
+  축소구간성질에서 ‘닫힌 구간’ 가정이 필수임을 보여 준다.</p>
+  <details class="hint"><summary>힌트 보기</summary>
+  <p>어떤 $x>0$ 을 잡아도 아르키메데스 성질로 $1/n\lt x$ 인 $n$ 이 있어 $x\notin(0,1/n)$.</p>
+  </details>
+</div>
+
+<h2 class="sub">아르키메데스 성질 <span class="en">Archimedean property</span></h2>
+<div class="box thm">
+  <span class="tag">정리 1.4.2</span>
+  <p>(1) 임의의 $x\in\mathbb{R}$ 에 대해 $n>x$ 인 $n\in\mathbb{N}$ 이 존재한다. &nbsp;(2) 임의의 $y>0$ 에 대해 $1/n\lt y$ 인 $n\in\mathbb{N}$ 이 존재한다.</p>
+</div>
+<div class="box prf">
+  <span class="tag">증명</span>
+  <p>(1) $\mathbb{N}$ 이 위로 유계가 아님을 보이면 된다. 만약 유계라면 완비성으로 $\alpha=\sup\mathbb{N}$ 이 존재한다.
+  $\alpha-1$ 은 더 이상 상계가 아니므로(보조정리 1.3.8) $\alpha-1\lt n$ 인 $n\in\mathbb{N}$ 이 있는데, 그러면 $n+1\in\mathbb{N}$ 이고
+  $\alpha\lt n+1$ 이라 $\alpha$ 가 상계라는 데 모순. 따라서 $\mathbb{N}$ 은 위로 유계가 아니다. (2) 는 $x=1/y$ 에 (1)을 적용.</p>
+  <div class="qed">∎</div>
+</div>
+
+<h2 class="sub">$\mathbb{Q}$ 의 조밀성 <span class="en">density of Q</span></h2>
+<div class="box thm">
+  <span class="tag">정리 1.4.3</span>
+  <p>$a\lt b$ 인 두 실수 사이에는 유리수가 있다: $a\lt r\lt b$ 인 $r\in\mathbb{Q}$ 가 존재한다.</p>
+</div>
+<figure class="fig">
+<svg viewBox="0 0 340 80" role="img" aria-label="눈금 1/n을 충분히 잘게 하면 a와 b 사이에 m/n이 들어간다">
+  <line class="axis" x1="20" y1="48" x2="320" y2="48"/>
+  <g class="axis">
+    <line x1="40" y1="44" x2="40" y2="52"/><line x1="80" y1="44" x2="80" y2="52"/><line x1="120" y1="44" x2="120" y2="52"/>
+    <line x1="160" y1="44" x2="160" y2="52"/><line x1="200" y1="44" x2="200" y2="52"/><line x1="240" y1="44" x2="240" y2="52"/><line x1="280" y1="44" x2="280" y2="52"/>
+  </g>
+  <text class="lbl" x="40" y="66">0</text><text class="lbl" x="80" y="66">1/n</text><text class="lbl" x="128" y="66">2/n</text>
+  <circle cx="186" cy="48" r="3" fill="#0f8a7d"/><text class="lbl t" x="186" y="40" text-anchor="middle">a</text>
+  <circle cx="232" cy="48" r="3" fill="#0f8a7d"/><text class="lbl t" x="232" y="40" text-anchor="middle">b</text>
+  <circle cx="200" cy="48" r="3.5" fill="#1d6fb8"/><text class="lbl b" x="200" y="40" text-anchor="middle">m/n</text>
+</svg>
+<figcaption>눈금 간격 $1/n$ 을 $b-a$ 보다 작게 잡으면(아르키메데스), 눈금 하나는 반드시 $(a,b)$ 안에 떨어진다.</figcaption>
+</figure>
+<div class="box prf">
+  <span class="tag">증명 (개요)</span>
+  <p>아르키메데스 성질로 $\tfrac1n\lt b-a$ 인 $n$ 을 잡는다(눈금을 충분히 잘게). $na$ 보다 큰 최소 정수를 $m$ 이라 하면
+  $m-1\le na\lt m$ 이라 $a\lt \tfrac mn$. 또 $m\le na+1\lt n(b-\tfrac1n)+1=nb$ 라 $\tfrac mn\lt b$. 따라서 $a\lt \tfrac mn\lt b$.</p>
+  <div class="qed">∎</div>
+</div>
+<div class="box exr">
+  <span class="tag">연습 1.4.5 (개념) — 무리수도 조밀</span>
+  <p><b>따름정리 1.4.4</b> 를 증명하라: $a\lt b$ 이면 $a\lt t\lt b$ 인 무리수 $t$ 가 존재한다.</p>
+  <details class="hint"><summary>힌트 보기</summary>
+  <p>$a-\sqrt2\lt b-\sqrt2$ 에 정리 1.4.3 을 적용해 유리수 $r$ 을 끼우고 $t=r+\sqrt2$ 로 두면 무리수.
+  (유리수 + 무리수 = 무리수: 연습 1.4.1)</p>
+  </details>
+</div>
+
+<h2 class="sub">$\sqrt2$ 의 존재</h2>
+<div class="box thm">
+  <span class="tag">정리 1.4.5</span>
+  <p>$\alpha^2=2$ 인 실수 $\alpha$ 가 존재한다.</p>
+</div>
+<div class="box prf">
+  <span class="tag">증명 (개요)</span>
+  <p>$T=\{t\in\mathbb{R}:t^2\lt 2\}$ 로 두고 완비성으로 $\alpha=\sup T$ 를 잡는다. $\alpha^2\lt 2$ 와 $\alpha^2>2$ 를 모두 모순으로 몰아 $\alpha^2=2$ 를 얻는다.</p>
+  <p>$\alpha^2\lt 2$ 라면, $\big(\alpha+\tfrac1n\big)^2\le\alpha^2+\tfrac{2\alpha+1}{n}$ 인데 $\tfrac1{n_0}\lt \tfrac{2-\alpha^2}{2\alpha+1}$ 인 $n_0$ 을 잡으면
+  $\big(\alpha+\tfrac1{n_0}\big)^2\lt 2$ 라 $\alpha+\tfrac1{n_0}\in T$ — $\alpha$ 가 상계라는 데 모순. $\alpha^2>2$ 인 경우는 $\alpha-\tfrac1n$ 으로 대칭 논증(연습 1.4.7).</p>
+  <div class="qed">∎</div>
+</div>
+<div class="note">
+  이로써 1.1절의 $\sqrt2$ 가 실수로서 <b>존재함</b>이 완비성 공리로부터 증명됐다. 같은 방식으로 모든 $x>0$ 의 $\sqrt[m]{x}$ 존재도 보일 수 있다.
+</div>
+
+<nav class="pager">
+  <a href="1-3_completeness.html">← 이전<small>1.3 완비성 공리</small></a>
+  <a class="next" href="1-5_cardinality.html">다음 →<small>1.5 기수</small></a>
+</nav>
+
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1장 · 1.5 기수</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <div class="ch">해석학 · 1장 실수</div>
+  <h1><span class="no">1.5</span>기수 <span class="en">cardinality</span></h1>
+</header>
+
+<p>유한집합의 크기는 원소 개수로 비교한다. 무한집합의 크기(<b>기수</b><span class="en">cardinality</span>)는 칸토어의 아이디어 —
+두 집합의 원소를 <b>짝지을 수 있는가</b> — 로 비교한다.</p>
+
+<div class="box def">
+  <span class="tag">정의 1.5.1·1.5.2</span><span class="title">단사·전사·같은 기수</span>
+  <p>$f:A\to B$ 가 <b>단사</b><span class="en">one-to-one</span>: $a_1\neq a_2\Rightarrow f(a_1)\neq f(a_2)$ (겹침 없음).
+  <b>전사</b><span class="en">onto</span>: 모든 $b\in B$ 에 $f(a)=b$ 인 $a$ 존재(빠짐 없음).
+  둘 다이면 <b>일대일대응</b>이고, 이런 $f$ 가 있으면 $A,B$ 는 같은 기수, $A\sim B$ 로 쓴다.</p>
+</div>
+
+<div class="box ex">
+  <span class="tag">예제 1.5.3</span>
+  <p>$\mathbb{N}\sim E$ (짝수 전체): $f(n)=2n$. 또 $\mathbb{N}\sim\mathbb{Z}$: 홀수는 $0,1,2,\dots$ 로, 짝수는 $-1,-2,\dots$ 로 보낸다.
+  진부분집합이라도 무한집합끼리는 기수가 같을 수 있다.</p>
+</div>
+<figure class="fig">
+<svg viewBox="0 0 330 96" role="img" aria-label="N과 Z의 일대일대응">
+  <g class="lbl" text-anchor="middle">
+    <text x="20" y="34">ℕ</text>
+    <text x="60" y="34">1</text><text x="100" y="34">2</text><text x="140" y="34">3</text><text x="180" y="34">4</text><text x="220" y="34">5</text><text x="260" y="34">6</text><text x="300" y="34">⋯</text>
+    <text x="20" y="80">ℤ</text>
+    <text x="60" y="80">0</text><text x="100" y="80">−1</text><text x="140" y="80">1</text><text x="180" y="80">−2</text><text x="220" y="80">2</text><text x="260" y="80">−3</text><text x="300" y="80">⋯</text>
+  </g>
+  <g stroke="#1d6fb8" stroke-width="1.2">
+    <line x1="60" y1="40" x2="60" y2="68"/><line x1="100" y1="40" x2="100" y2="68"/><line x1="140" y1="40" x2="140" y2="68"/>
+    <line x1="180" y1="40" x2="180" y2="68"/><line x1="220" y1="40" x2="220" y2="68"/><line x1="260" y1="40" x2="260" y2="68"/>
+  </g>
+</svg>
+<figcaption>$\mathbb{N}\sim\mathbb{Z}$ — 정수를 $0,-1,1,-2,2,\dots$ 순으로 ‘번갈아’ 나열하면 자연수와 빠짐없이 짝지어진다.</figcaption>
+</figure>
+
+<div class="box ex">
+  <span class="tag">예제 1.5.4</span>
+  <p>$f(x)=\dfrac{x}{x^2-1}$ 는 열린 구간 $(-1,1)$ 을 $\mathbb{R}$ 전체로 일대일대응시킨다. 따라서 $(-1,1)\sim\mathbb{R}$,
+  더 나아가 임의의 구간 $(a,b)\sim\mathbb{R}$.</p>
+</div>
+<figure class="fig">
+<svg viewBox="0 0 240 200" role="img" aria-label="f(x)=x/(x^2-1)가 (-1,1)을 R로 보낸다">
+  <line class="aux" x1="55" y1="20" x2="55" y2="180"/><line class="aux" x1="185" y1="20" x2="185" y2="180"/>
+  <line class="axis" x1="30" y1="100" x2="210" y2="100"/>
+  <line class="axis" x1="120" y1="22" x2="120" y2="178"/>
+  <path d="M58,28 C90,40 110,90 120,100 C130,110 150,160 182,172" class="vec"/>
+  <g class="lbl" text-anchor="middle">
+    <text x="55" y="194">−1</text><text x="185" y="194">1</text><text x="132" y="116">0</text>
+  </g>
+  <text class="lbl b" x="170" y="40">→ +∞</text><text class="lbl b" x="70" y="168">−∞ ←</text>
+</svg>
+<figcaption>$x\to-1^+$ 에서 $+\infty$, $x\to1^-$ 에서 $-\infty$ 로 발산하며 단조로 $\mathbb{R}$ 전체를 훑는다 → $(-1,1)\sim\mathbb{R}$.</figcaption>
+</figure>
+
+<div class="box def">
+  <span class="tag">정의 1.5.5</span><span class="title">가산·비가산 <span class="en">countable / uncountable</span></span>
+  <p>$\mathbb{N}\sim A$ 인 집합 $A$ 를 <b>가산</b>(셀 수 있는)집합이라 한다. 가산도 유한도 아닌 무한집합을 <b>비가산</b>이라 한다.
+  가산이란 곧 원소를 $\mathbb{N}$ 으로 번호 매겨 빠짐없이 <b>목록</b>으로 늘어놓을 수 있다는 뜻이다.</p>
+</div>
+
+<div class="box thm">
+  <span class="tag">정리 1.5.6</span>
+  <p>(1) $\mathbb{Q}$ 는 가산집합이다. &nbsp;(2) $\mathbb{R}$ 은 비가산집합이다.</p>
+</div>
+<div class="box prf">
+  <span class="tag">증명 (개요)</span>
+  <p><b>(1)</b> 분자·분모의 합 $p+q=n$ 이 같은 기약분수들을 묶어 유한집합 $A_n$ 으로 만들고($A_2=\{\pm1\}$, $A_3=\{\pm\tfrac12,\pm2\}$, …),
+  $A_1,A_2,A_3,\dots$ 를 차례로 늘어놓으면 모든 유리수가 목록에 정확히 한 번씩 나타난다 → $\mathbb{Q}\sim\mathbb{N}$.</p>
+  <p><b>(2)</b> 만약 $\mathbb{R}=\{x_1,x_2,x_3,\dots\}$ 로 목록화된다고 하자. 닫힌 구간 $I_1$ 을 $x_1\notin I_1$ 이 되게 잡고,
+  $I_2\subseteq I_1$ 을 $x_2\notin I_2$ 가 되게, … 이렇게 $x_n\notin I_n$ 인 포개진 닫힌 구간을 만든다. 축소구간성질(정리 1.4.1)로
+  $\bigcap I_n\neq\varnothing$ 이라 어떤 $x$ 가 모든 $I_n$ 에 있는데, 그 $x$ 는 어느 $x_n$ 과도 같지 않다 — 목록에 모든 실수가 있다는 가정에 모순.</p>
+  <div class="qed">∎</div>
+</div>
+<div class="note">
+  결론: $\mathbb{Q}$ 와 $\mathbb{R}$ 은 둘 다 조밀하게 수직선을 채우지만 <b>크기가 다르다</b>. 가산인 두 집합의 합집합도 가산이므로
+  ($\mathbb{R}=\mathbb{Q}\cup\mathbb{I}$ 에서) <b>무리수 $\mathbb{I}$ 가 비가산</b> — 무리수가 유리수보다 압도적으로 많다.
+  (가산 성질: 정리 1.5.7 부분집합, 정리 1.5.8 가산합집합.)
+</div>
+
+<h2 class="sub">개념형 연습문제</h2>
+<div class="box exr">
+  <span class="tag">연습 1.5.5 (개념) — $\sim$ 는 동치관계</span>
+  <p>‘기수가 같다’($\sim$)가 <b>동치관계</b>임을 보여라. 즉 반사 $A\sim A$, 대칭 $A\sim B\Rightarrow B\sim A$,
+  추이 $A\sim B,\ B\sim C\Rightarrow A\sim C$ 를 각각 증명하라.</p>
+  <details class="hint"><summary>힌트 보기</summary>
+  <p>각각 항등사상, 역사상($f$ 가 일대일대응이면 $f^{-1}$ 도 일대일대응), 합성사상($g\circ f$)을 만들면 된다.
+  동치관계이므로 집합들을 크기별 동치류로 나눌 수 있다.</p>
+  </details>
+</div>
+<div class="box exr">
+  <span class="tag">연습 1.5.9 (개념) — 대수적 수와 초월수</span>
+  <p>정수계수 다항식의 근을 <b>대수적 수</b>라 한다($\sqrt2,\sqrt[3]2,\sqrt3+\sqrt2$ 등). 대수적 수 전체가 가산집합임을 보이고,
+  이로부터 대수적이지 않은 수 — <b>초월수</b> — 가 존재함을 결론지어라.</p>
+  <details class="hint"><summary>힌트 보기</summary>
+  <p>차수 $n$ 인 다항식은 근이 유한개이고 그런 다항식은 가산개이므로 대수적 수 전체는 가산. 따라서 $\mathbb{R}$(비가산) 안에
+  초월수가 비가산만큼 존재한다 — 하나도 직접 만들지 않고 존재만 보인 점이 인상적이다.</p>
+  </details>
+</div>
+<div class="box exr">
+  <span class="tag">연습 1.5.11 (개념) — 슈뢰더–번스타인 정리</span>
+  <p>단사함수 $f:X\to Y$ 와 $g:Y\to X$ 가 모두 있으면 일대일대응 $h:X\to Y$ 가 존재함(즉 $X\sim Y$)을 보여라.
+  ‘$\text{card}\,X\le\text{card}\,Y$ 이고 그 반대도 성립하면 $\text{card}\,X=\text{card}\,Y$’ 라는, 기수 비교의 핵심 도구다(1.6·1.7절에서 쓰인다).</p>
+</div>
+
+<nav class="pager">
+  <a href="1-4_consequences.html">← 이전<small>1.4 완비성 공리의 따름정리</small></a>
+  <a class="next" href="1-6_cantor.html">다음 →<small>1.6–1.7 칸토어 정리·마치며</small></a>
+</nav>
+
+</body>
+</html>

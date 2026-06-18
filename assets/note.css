@@ -41,6 +41,7 @@ p{ margin:10px 0; }
       border:1px solid var(--line); }
 .box .tag{ display:inline-block; font-size:0.72rem; font-weight:700; letter-spacing:0.04em;
            padding:2px 9px; border-radius:999px; color:#fff; margin-bottom:8px; }
+.box .tag .en{ color:rgba(255,255,255,0.92); }   /* 알약(tag) 안의 영어 병기는 흰색 — 진한 배경에 묻히지 않게 */
 .box .title{ font-weight:700; margin-left:8px; }
 
 .def{ background:var(--def-bg); border-color:var(--def); }
@@ -51,6 +52,17 @@ p{ margin:10px 0; }
 .prf .tag{ background:var(--prf); }
 .ex{ background:var(--ex-bg); border-color:var(--ex); }
 .ex .tag{ background:var(--ex); }
+/* 개념형 연습문제 (본문에 편입한 것) */
+.exr{ background:#fff7e6; border-color:#d9a441; }
+.exr .tag{ background:#c98a1e; }
+/* 접이식 힌트 (직접 풀고, 막히면 펼치기) */
+details.hint{ margin-top:8px; border-top:1px dashed #e0c074; padding-top:6px; }
+details.hint > summary{ cursor:pointer; font-size:0.84rem; font-weight:700; color:#c98a1e; list-style:none; }
+details.hint > summary::-webkit-details-marker{ display:none; }
+details.hint > summary::before{ content:"\25B8\00a0"; }      /* ▸ */
+details.hint[open] > summary::before{ content:"\25BE\00a0"; } /* ▾ */
+details.hint > p{ font-size:0.9rem; color:var(--muted); margin:6px 0 2px; }
+@media print{ details.hint{ } details.hint > summary{ color:#c98a1e; } details.hint[open] > summary::before{ content:"\25BE\00a0"; } }
 
 /* ---- 목록 ---- */
 ol.props{ margin:6px 0 0; padding-left:22px; }

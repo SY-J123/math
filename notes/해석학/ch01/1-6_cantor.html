@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1장 · 1.6–1.7 칸토어 정리</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <div class="ch">해석학 · 1장 실수</div>
+  <h1><span class="no">1.6–1.7</span>칸토어 정리·마치며 <span class="en">Cantor's theorem</span></h1>
+</header>
+
+<p>1.5절은 $\mathbb{R}$ 이 비가산임을 축소구간으로 보였다. 칸토어가 1891년에 쓴 더 강력한 도구가 <b>대각선 논법</b>이며,
+이 절의 핵심 정리들은 거의 전부 <b>연습문제</b>로 단계적으로 전개된다(승인하신 방향대로 본문에 편입한다).</p>
+
+<h2 class="sub">대각선 논법 — 정리 1.6.1</h2>
+<div class="box thm">
+  <span class="tag">정리 1.6.1</span>
+  <p>열린 구간 $(0,1)$ 은 비가산집합이다. (연습 1.6.1: $(0,1)$ 비가산 $\iff$ $\mathbb{R}$ 비가산.)</p>
+</div>
+<p>일대일대응 $f:\mathbb{N}\to(0,1)$ 가 있다고 가정하고 각 $f(m)$ 을 소수로 전개하자.</p>
+<figure class="fig">
+<svg viewBox="0 0 370 196" role="img" aria-label="칸토어 대각선 논법 표">
+  <g class="num">
+    <text x="30" y="36">f(1) = 0.</text>
+    <text x="30" y="62">f(2) = 0.</text>
+    <text x="30" y="88">f(3) = 0.</text>
+    <text x="30" y="114">f(4) = 0.</text>
+    <text x="30" y="140">⋮</text>
+  </g>
+  <!-- digits, diagonal highlighted -->
+  <g class="num" text-anchor="middle">
+    <text x="120" y="36" fill="#1d6fb8" font-weight="700">a₁₁</text><text x="160" y="36">a₁₂</text><text x="200" y="36">a₁₃</text><text x="240" y="36">a₁₄</text><text x="280" y="36">⋯</text>
+    <text x="120" y="62">a₂₁</text><text x="160" y="62" fill="#1d6fb8" font-weight="700">a₂₂</text><text x="200" y="62">a₂₃</text><text x="240" y="62">a₂₄</text><text x="280" y="62">⋯</text>
+    <text x="120" y="88">a₃₁</text><text x="160" y="88">a₃₂</text><text x="200" y="88" fill="#1d6fb8" font-weight="700">a₃₃</text><text x="240" y="88">a₃₄</text><text x="280" y="88">⋯</text>
+    <text x="120" y="114">a₄₁</text><text x="160" y="114">a₄₂</text><text x="200" y="114">a₄₃</text><text x="240" y="114" fill="#1d6fb8" font-weight="700">a₄₄</text><text x="280" y="114">⋯</text>
+  </g>
+  <line class="aux" x1="104" y1="26" x2="256" y2="124"/>
+  <!-- constructed x -->
+  <g class="num">
+    <text x="30" y="174" fill="#0f8a7d" font-weight="700">x = 0.</text>
+  </g>
+  <g class="num" text-anchor="middle" fill="#0f8a7d" font-weight="700">
+    <text x="120" y="174">b₁</text><text x="160" y="174">b₂</text><text x="200" y="174">b₃</text><text x="240" y="174">b₄</text><text x="280" y="174">⋯</text>
+  </g>
+</svg>
+<figcaption>대각선 $a_{11},a_{22},a_{33},\dots$ 만 보고, 그와 자리마다 <b>다른</b> 숫자 $b_n$ 으로 새 수 $x=0.b_1b_2b_3\cdots$ 를 만든다.</figcaption>
+</figure>
+<p>$b_n$ 을 다음처럼 정하면 $x\in(0,1)$ 이고, $x$ 의 $n$ 번째 자리는 $f(n)$ 의 $n$ 번째 자리와 다르므로 $x\neq f(n)$ — 모든 $n$ 에 대해.</p>
+$$b_n=\begin{cases}2&(a_{nn}\neq2)\\3&(a_{nn}=2)\end{cases}$$
+<p>그러면 $x$ 는 목록 $f(1),f(2),\dots$ 어디에도 없다. “모든 실수가 목록에 있다”는 가정에 모순. 따라서 $(0,1)$ 은 비가산이다.</p>
+<div class="box exr">
+  <span class="tag">연습 1.6.2·1.6.3 (개념)</span>
+  <p>(1) 왜 $x\neq f(n)$ 인가? &nbsp;(2) 같은 논법이 $\mathbb{Q}$ 에는 왜 통하지 않는가? &nbsp;(3) $0.5=0.4999\dots$ 같은 이중 소수표현은 문제되지 않는가?</p>
+  <details class="hint"><summary>힌트 보기</summary>
+  <p>(1) $x$ 의 $n$ 번째 자리를 $f(n)$ 의 $n$ 번째 자리와 다르게 만들었으니 모든 $n$ 에서 자리가 달라 같을 수 없다.
+  (2) 만든 $x$ 의 소수전개가 순환하리란 보장이 없어 $x$ 를 유리수라 할 수 없다 — 그래서 “$\mathbb{Q}$ 도 비가산” 이라는 잘못된 결론이 나오지 않는다.
+  (3) $b_n\in\{2,3\}$ 만 쓰므로 $0$ 이나 $9$ 가 안 나와 이중표현 문제가 없다.</p>
+  </details>
+</div>
+<div class="box exr">
+  <span class="tag">연습 1.6.4 (개념)</span>
+  <p>$0,1$ 로만 이루어진 모든 수열의 집합 $S=\{(a_1,a_2,\dots):a_n\in\{0,1\}\}$ 이 비가산임을 보여라.</p>
+  <details class="hint"><summary>힌트 보기</summary>
+  <p>정리 1.6.1 과 같은 대각선 논법: 수열들을 목록화했다 가정하고, $n$ 번째 수열의 $n$ 번째 항과 다른 항을 택해 새 수열을 만들면 목록에 없다.</p>
+  </details>
+</div>
+
+<h2 class="sub">멱집합과 칸토어 정리 — 정리 1.6.2</h2>
+<p>집합 $A$ 의 모든 부분집합의 모임을 <b>멱집합</b><span class="en">power set</span> $P(A)$ 라 한다. 유한집합이면 $|A|=n$ 일 때 $|P(A)|=2^n$ (연습 1.6.5).</p>
+<div class="box thm">
+  <span class="tag">정리 1.6.2 — 칸토어 정리 <span class="en">Cantor's theorem</span></span>
+  <p>임의의 집합 $A$ 에 대하여 전사함수 $f:A\to P(A)$ 는 존재하지 않는다. (즉 $A$ 는 자기 멱집합보다 ‘작다’: $\text{card}\,A\lt \text{card}\,P(A)$.)</p>
+</div>
+<div class="box prf">
+  <span class="tag">증명 (대각선/자기참조)</span>
+  <p>$f:A\to P(A)$ 가 전사라고 가정. 각 $a\in A$ 에 대해 $f(a)$ 는 $A$ 의 부분집합이라 “$a$ 가 $f(a)$ 에 들어있나?” 를 물을 수 있다.
+  들어있지 <b>않은</b> 원소만 모아</p>
+  $$B=\{a\in A:a\notin f(a)\}\subseteq A$$
+  <p>를 만들자. $f$ 가 전사이므로 어떤 $a'$ 에 대해 $B=f(a')$ 이어야 한다. 그런데 “$a'\in B$ 인가?” 를 따지면:
+  $a'\in B\iff a'\notin f(a')=B$ — 즉 $a'\in B$ 와 $a'\notin B$ 가 동시에. 모순. 따라서 전사함수는 없다.</p>
+  <div class="qed">∎</div>
+</div>
+<div class="note">
+  $B$ 는 1.6.1 의 대각선 $x$ 와 똑같은 발상이다 — “모든 $f(a)$ 와 적어도 한 군데서 다르게” 만든 대상. 자기 자신을 가리키는
+  $a'\in f(a')$ 여부에서 모순이 터진다(러셀 역설과 같은 구조).
+</div>
+
+<h2 class="sub"><span class="no">1.7</span>마치며 — 무한의 계층</h2>
+<p>‘기수가 같다’ 가 동치관계이므로(연습 1.5.5) 집합들을 크기별 동치류로 나눠 각 류에 <b>기수</b><span class="en">cardinal number</span> $\text{card}\,X$ 를 붙인다.
+칸토어 정리는 $\text{card}\,A\lt \text{card}\,P(A)$ 를 항상 보장하므로 ‘가장 큰 집합’ 은 없다 — 무한은 끝없이 더 큰 무한으로 이어진다.</p>
+<figure class="fig">
+<svg viewBox="0 0 360 100" role="img" aria-label="무한 기수의 계층">
+  <defs><marker id="ha" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#7b3fa0"/></marker></defs>
+  <g text-anchor="middle">
+    <rect x="20" y="40" width="70" height="34" rx="6" fill="#eef5fb" stroke="#1d6fb8"/>
+    <text class="lbl b" x="55" y="56">ℵ₀</text><text class="lbl" x="55" y="69" font-size="10">ℕ,ℤ,ℚ</text>
+    <rect x="130" y="40" width="80" height="34" rx="6" fill="#e9f6f4" stroke="#0f8a7d"/>
+    <text class="lbl t" x="170" y="56">c</text><text class="lbl" x="170" y="69" font-size="10">ℝ,(a,b),P(ℕ)</text>
+    <rect x="250" y="40" width="90" height="34" rx="6" fill="#f4eefa" stroke="#7b3fa0"/>
+    <text class="lbl p" x="295" y="56">card P(ℝ)</text><text class="lbl" x="295" y="69" font-size="10">⋯ 계속</text>
+  </g>
+  <g stroke="#7b3fa0" stroke-width="1.6" fill="none">
+    <line x1="92" y1="57" x2="126" y2="57" marker-end="url(#ha)"/>
+    <line x1="212" y1="57" x2="246" y2="57" marker-end="url(#ha)"/>
+  </g>
+  <text class="lbl" x="109" y="50">&lt;</text><text class="lbl" x="229" y="50">&lt;</text>
+</svg>
+<figcaption>$\aleph_0\lt c\lt \text{card}\,P(\mathbb{R})\lt \cdots$ — 칸토어 정리가 무한의 끝없는 사다리를 만든다. $\aleph_0=\text{card}\,\mathbb{N}$, $c=\text{card}\,\mathbb{R}$.</figcaption>
+</figure>
+<p><b>연속체가설</b><span class="en">continuum hypothesis</span>: $\aleph_0$ 와 $c$ 사이에 다른 기수가 없는가($\text{card}\,\mathbb{N}\lt \text{card}\,A\lt \text{card}\,\mathbb{R}$ 인 $A$ 가 없는가)?
+괴델(1940)은 이를 <b>반증할 수 없음</b>을, 코언(1963)은 <b>증명할 수 없음</b>을 보였다 — 현대 집합론 공리로는 참·거짓을 결정할 수 없는 명제다.
+$\text{card}\,X\le\text{card}\,Y$ 와 그 역이 모두 성립하면 $\text{card}\,X=\text{card}\,Y$ 임이 <b>슈뢰더–번스타인 정리</b>(연습 1.5.11)다.</p>
+<div class="note">
+  대각선 논법은 칸토어 정리에 그치지 않는다. 괴델의 <b>불완전성 정리</b>, 그리고 컴퓨터과학의 <b>정지 문제</b>(halting problem)
+  해결 불가능성 증명도 본질적으로 정리 1.6.1·1.6.2 와 같은 자기참조·대각선 구성에서 나온다.
+</div>
+
+<div class="box exr">
+  <span class="tag">연습 1.6.9 (개념)</span>
+  <p>$P(\mathbb{N})\sim\mathbb{R}$ 임을 보여라(멱집합 $P(\mathbb{N})$ 의 기수가 곧 연속체 $c$).</p>
+  <details class="hint"><summary>힌트 보기</summary>
+  <p>부분집합 ↔ $0,1$ 수열($a_n=1\!\iff\!n$ 이 그 부분집합에 속함) ↔ 이진 소수전개 로 이어 $P(\mathbb{N})\sim S\sim\mathbb{R}$.</p>
+  </details>
+</div>
+
+<nav class="pager">
+  <a href="1-5_cardinality.html">← 이전<small>1.5 기수</small></a>
+  <span class="spacer"></span>
+</nav>
+
+</body>
+</html>

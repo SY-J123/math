@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1장 · 1.1 √2는 무리수인가</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <div class="ch">해석학 · 1장 실수</div>
+  <h1><span class="no">1.1</span>√2는 무리수인가 <span class="en">is √2 irrational?</span></h1>
+</header>
+
+<p>해석학은 미적분에서 당연하게 쓰던 사실들을 “정말 그런가?”라고 되묻고 엄밀하게 따지는 과목이다.
+그 출발점으로, 피타고라스가 발견한 “$\sqrt2$ 는 유리수가 아니다”를 증명한다. 결론보다 <b>증명에 쓰인 사고방식</b>이 중요하다.</p>
+
+<div class="box thm">
+  <span class="tag">정리 1.1.1</span>
+  <p>제곱해서 $2$ 가 되는 유리수는 없다.</p>
+</div>
+<div class="box prf">
+  <span class="tag">증명 (귀류법)</span>
+  <p>제곱해서 $2$ 가 되는 유리수가 있다고 <b>가정</b>하고 모순을 이끈다. 그런 유리수를 $p/q$ 로 쓰되, 더 이상 약분되지
+  않는 기약분수라 하자(즉 $p,q$ 는 공약수가 없다). 가정에서</p>
+  $$\Big(\frac{p}{q}\Big)^2=2\quad\Longrightarrow\quad p^2=2q^2.$$
+  <p>그러면 $p^2$ 은 짝수다. 홀수의 제곱은 홀수이므로 $p$ 도 짝수다. 따라서 어떤 정수 $r$ 로 $p=2r$. 이를 대입하면</p>
+  $$2r^2=q^2$$
+  <p>이라 $q^2$ 도 짝수, 즉 $q$ 도 짝수다. 그런데 $p,q$ 가 둘 다 짝수면 공약수 $2$ 를 가져 “기약분수” 라는 가정에 모순이다.
+  따라서 그런 유리수는 존재하지 않는다.</p>
+  <div class="qed">∎</div>
+</div>
+
+<p>$\sqrt2$ 는 추상적인 수가 아니라 <b>눈에 보이는 길이</b>다. 한 변이 $1$ 인 정사각형의 대각선이 바로 $\sqrt2$ 이기 때문이다
+(피타고라스 정리 $1^2+1^2=2$). 정리 1.1.1 은 “이 대각선의 길이를 유리수로는 절대 정확히 적을 수 없다”는 말이다.</p>
+
+<figure class="fig">
+<svg viewBox="0 0 360 150" role="img" aria-label="단위정사각형의 대각선은 √2, 수직선 위 √2의 위치">
+  <!-- unit square -->
+  <rect x="30" y="20" width="100" height="100" fill="#eef5fb" stroke="#1d6fb8" stroke-width="1.4"/>
+  <line class="vec" x1="30" y1="120" x2="130" y2="20"/>
+  <text class="lbl" x="80" y="14" text-anchor="middle">1</text>
+  <text class="lbl" x="138" y="74">1</text>
+  <text class="lbl b" x="66" y="62">√2</text>
+  <!-- number line -->
+  <line class="axis" x1="180" y1="80" x2="345" y2="80"/>
+  <g class="lbl" text-anchor="middle">
+    <line class="axis" x1="195" y1="76" x2="195" y2="84"/><text x="195" y="98">1</text>
+    <line class="axis" x1="270" y1="76" x2="270" y2="84"/><text x="270" y="98">1.5</text>
+    <line class="axis" x1="340" y1="76" x2="340" y2="84"/><text x="340" y="98">2</text>
+  </g>
+  <line class="aux" x1="256" y1="80" x2="256" y2="46"/>
+  <text class="lbl b" x="256" y="40" text-anchor="middle">√2</text>
+  <text class="lbl" x="262" y="64" fill="#888">≈1.414…</text>
+</svg>
+<figcaption>왼쪽: 단위정사각형의 대각선 길이가 $\sqrt2$. 오른쪽: $\sqrt2$ 는 수직선에서 $1.4,1.41,1.414,\dots$ 로 한없이 다가갈 수 있지만,
+정확히 그 자리에 놓이는 <b>유리수는 없다</b> — $\mathbb{Q}$ 에 뚫린 ‘구멍’.</figcaption>
+</figure>
+
+<p>$\sqrt2$ 를 유리수로 근사할 수는 있다 — $1.414^2=1.999396$ 처럼 소수 자리를 늘리면 얼마든지 가까워진다.
+그래도 유리수 직선에는 $\sqrt2$ 가 있어야 할 자리가 비어 있고, $\sqrt3,\sqrt5,\dots$ 같은 구멍도 많다.
+이 구멍들을 메워 만든 것이 <b>실수</b> $\mathbb{R}$ 이며,</p>
+$$\mathbb{N}\subset\mathbb{Z}\subset\mathbb{Q}\subset\mathbb{R}$$
+<p>유리수가 아닌 실수를 <b>무리수</b><span class="en">irrational number</span>라 한다. $\mathbb{Q}$ 에서 $\mathbb{R}$ 을 엄밀히 구성하는 일은
+1.3절(완비성 공리)에서 다룬다.</p>
+
+<div class="box exr">
+  <span class="tag">연습 1.2.1 (개념)</span>
+  <p><b>(a)</b> $\sqrt3$ 이 무리수임을 보여라. 같은 논법으로 $\sqrt6$ 도 무리수임을 보일 수 있는가?
+  <b>(b)</b> 정리 1.1.1 의 증명으로 $\sqrt[3]{4}$ 가 무리수임을 보이려 하면 어디서 막히는가?</p>
+  <details class="hint"><summary>힌트 보기</summary>
+  <p>(a) $\sqrt3$: $p^2=3q^2$ 에서 “$p^2$ 이 $3$ 의 배수면 $p$ 도 $3$ 의 배수”(3 은 소수)를 쓰면 같은 모순.
+  $\sqrt6$ 도 동일. (b) $\sqrt[3]{4}$: $p^3=4q^3$ 에서는 “$p^3$ 이 짝수 ⇒ $p$ 가 짝수”는 되지만 $2$ 의 거듭제곱 차수가 $3$ 으로 나뉘는지
+  따지는 부분이 단순 짝/홀 논리로 안 끝난다 — 소인수 $2$ 의 <b>지수</b>를 세는 더 일반적인 논증이 필요하다.</p>
+  </details>
+</div>
+
+<nav class="pager">
+  <span class="spacer"></span>
+  <a class="next" href="1-2_foundations.html">다음 →<small>1.2 수학 기초</small></a>
+</nav>
+
+</body>
+</html>
