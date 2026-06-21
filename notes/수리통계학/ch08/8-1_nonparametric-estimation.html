@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>8장 · 8.1 비모수 추정방법</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <div class="ch">수리통계학 · 8장 비모수 통계방법</div>
+  <h1><span class="no">8.1</span>비모수 추정방법 <span class="en">nonparametric estimation</span></h1>
+</header>
+
+<p>지금까지는 모집단 분포가 정규분포처럼 특정 형태(모수로 표현되는)라고 <b>가정</b>하고 그 모수를 추정·검정했다 —
+<b>모수적 통계방법</b>. 그러나 그 가정이 틀리면 결과를 믿기 어렵다. <b>비모수 통계방법</b><span class="en">nonparametric</span>은
+분포의 형태를 가정하지 않고, 주로 관찰값의 <b>순위</b><span class="en">rank</span>에 의존한다. 검정통계량의 귀무분포가 모분포에
+의존하지 않는 성질을 <b>분포무관</b><span class="en">distribution-free</span>이라 하며, 가정 위반에 <b>강건</b>하다.</p>
+
+<div class="box def">
+  <span class="tag">정의 8.1</span><span class="title">경험적 분포함수 <span class="en">empirical distribution function</span></span>
+  <p>$F(x)$ 로부터의 랜덤표본 $X_1,\dots,X_n$ 의 순서통계량을 $X_{(1)}\le\cdots\le X_{(n)}$ 이라 할 때</p>
+  $$F_n(x)=\begin{cases}0&x\lt X_{(1)}\\[2pt] i/n & X_{(i)}\le x\lt X_{(i+1)}\ (i=1,\dots,n-1)\\[2pt] 1& X_{(n)}\le x\end{cases}$$
+  <p style="margin-top:4px;">즉 $F_n(x)=\dfrac{\#\{X_i\le x\}}{n}$ — 각 관찰값에 확률 $1/n$ 씩을 준 계단함수다.</p>
+</div>
+
+<figure class="fig">
+<svg viewBox="0 0 320 180" role="img" aria-label="경험적 분포함수 계단그래프">
+  <line class="axis" x1="30" y1="150" x2="312" y2="150"/>
+  <line class="axis" x1="30" y1="155" x2="30" y2="22"/>
+  <line class="grid" x1="30" y1="30" x2="300" y2="30"/>
+  <polyline class="vec" points="30,150 69,150 69,137 85,137 85,123 150,123 150,110 166,110 166,97 200,97 200,83 223,83 223,70 254,70 254,57 280,57 280,43 288,43 288,30 300,30"/>
+  <g class="lbl" text-anchor="middle">
+    <text x="22" y="154">0</text><text x="22" y="34">1</text>
+    <text x="69" y="166">14.5</text><text x="150" y="166">44.5</text><text x="223" y="166">71.6</text><text x="288" y="166">95.6</text>
+    <text x="306" y="150" text-anchor="start">x</text>
+  </g>
+  <text class="lbl b" x="120" y="46">Fₙ(x)</text>
+</svg>
+<figcaption>예 8.1 — 수명자료 9개의 경험적 분포함수. 관찰값마다 $1/9$ 씩 뛰어오르는 오른쪽 연속 계단함수.</figcaption>
+</figure>
+
+<h2 class="sub">$F_n(x)$ 의 분포와 성질</h2>
+<p>고정된 $x$ 에서 $F_n(x)$ 는 $X_i$ 들의 함수이므로 그 자체가 확률변수다.</p>
+<div class="box thm">
+  <span class="tag">정리 8.1</span>
+  $$P\Big[F_n(x)=\tfrac{k}{n}\Big]=\binom{n}{k}[F(x)]^k[1-F(x)]^{n-k},\qquad k=0,1,\dots,n.$$
+</div>
+<div class="box prf">
+  <span class="tag">증명</span>
+  <p>지시함수 $Y_i=I(X_i\le x)$ 는 ‘성공확률 $F(x)$’ 인 독립 베르누이 확률변수다. 그러면 $nF_n(x)=\sum_{i=1}^n Y_i\sim B(n,F(x))$
+  이므로 곧바로 위 식을 얻는다.</p>
+  <div class="qed">∎</div>
+</div>
+<p>이항분포의 평균·분산으로부터</p>
+$$E[F_n(x)]=F(x),\qquad Var[F_n(x)]=\frac{1}{n}F(x)[1-F(x)].\tag{8.2}$$
+<p>따라서 $F_n(x)$ 는 $F(x)$ 의 <b>비편향추정량</b>이고, 분산이 $n\to\infty$ 에서 $0$ 으로 가므로 <b>일치추정량</b>이다.</p>
+
+<h2 class="sub">콜모고로프–스미르노프 통계량과 신뢰띠</h2>
+<p>경험적 분포와 모분포의 ‘거리’ 를 전 구간 최대편차로 재면</p>
+$$D_n=\sup_{-\infty\lt x\lt\infty}|F_n(x)-F(x)|\tag{8.3}$$
+<p>이를 <b>콜모고로프–스미르노프 통계량</b><span class="en">Kolmogorov–Smirnov</span>이라 한다. $\sqrt n\,D_n$ 의 분포로부터
+$P[\sqrt n\,D_n\le k(\alpha)]=1-\alpha$ 인 $k(\alpha)$ 를 찾으면, 모분포 $F$ 에 대한 $100(1-\alpha)\%$ <b>신뢰띠</b><span class="en">confidence band</span></p>
+$$\Big[\,F_n(x)-\tfrac{k(\alpha)}{\sqrt n},\ \ F_n(x)+\tfrac{k(\alpha)}{\sqrt n}\,\Big]\tag{8.5}$$
+<p>를 얻는다(누적분포이므로 하한이 $0$ 미만이면 $0$, 상한이 $1$ 초과면 $1$ 로 자른다). 예 8.2: $n=9$, $k(0.1)/\sqrt n=0.39$ 이면 띠는 $F_n(x)\pm0.39$.</p>
+
+<div class="note">
+  <b>표기 주의 — $nD_n$ 이 아니라 $\sqrt n\,D_n$.</b> 교재 <em>줄글</em>에는 “$nD_n$ 의 분포로부터 $P[nD_n\le k(\alpha)]=1-\alpha$” 처럼
+  $D_n$ 앞에 $n$ 이 곱해진 형태로 적힌 판본이 있는데, 이는 오타(또는 구표기)다. 실제로 극한분포(콜모고로프 분포)로 수렴하는 통계량은
+  <b>$\sqrt n\,D_n$</b> 이다. $Var[F_n(x)]=\tfrac1n F(1-F)$ 라 표준편차가 $\propto 1/\sqrt n$ 이므로, 편차 $D_n$ 을 비퇴화 분포로 살리려면
+  $\sqrt n$ 을 곱해야 한다($nD_n$ 으로 키우면 발산). 그 증거가 바로 아래·옆 식들이다:
+  식 (8.5)의 오차폭이 $k(\alpha)/\sqrt n$ 으로 분모에 $\sqrt n$ 이 깔려 있고, 예 8.2도 $k(0.1)/\sqrt n=0.39$ 로 $\sqrt n$ 을 나눠 계산한다.
+  즉 “$\sqrt n$ 을 곱해야 분포수렴” 이라는 직관이 맞고, 줄글의 $nD_n$ 이 틀린 것.
+</div>
+
+<h2 class="sub">순서통계량에 의한 백분위수 신뢰구간</h2>
+<p>$100q$ 백분위수 $\xi_q$ 에 대해, $X_{(k)}\le\xi_q$ 는 ‘성공확률 $q$ 인 시행에서 성공이 $k$ 번 이상’ 과 같은 사건이므로</p>
+$$P(X_{(k)}\le\xi_q)=\sum_{i=k}^{n}\binom{n}{i}q^i(1-q)^{n-i}.$$
+<p>따라서 $P(X_{(i)}\le\xi_q\lt X_{(j)})=1-\alpha$ 가 되도록 $i\lt j$ 를 고르면 $[X_{(i)},X_{(j)})$ 가 $\xi_q$ 의
+$100(1-\alpha)\%$ 신뢰구간이다 — 분포 가정 없이.</p>
+
+<h2 class="sub">개념형 연습문제</h2>
+<div class="box exr">
+  <span class="tag">연습 8.1 (개념)</span>
+  <p>구간 $B$ 에 대해 $T=\dfrac1n\sum_{i=1}^n I_B(X_i)$ 가 $P[X\in B]$ 의 <b>비편향추정량</b>임을 보여라.</p>
+  <details class="hint"><summary>힌트 보기</summary>
+  <p>$I_B(X_i)$ 는 성공확률 $p=P[X\in B]$ 인 베르누이라 $E[I_B(X_i)]=p$. 따라서 $E[T]=\frac1n\cdot np=p$.
+  (경험적 분포 $F_n$ 의 비편향성, 식 8.2 의 일반화.)</p>
+  </details>
+</div>
+<div class="box exr">
+  <span class="tag">연습 8.2 (개념)</span>
+  <p>구간 $B_1,B_2$ 에 대해 $F_n(B_j)=\dfrac1n\sum_i I_{B_j}(X_i)$ 일 때, 두 확률변수 $F_n(B_1),F_n(B_2)$ 의 <b>공분산</b>을 구하라.</p>
+  <details class="hint"><summary>힌트 보기</summary>
+  <p>$Cov=\frac1n[\,P(X\in B_1\cap B_2)-P(X\in B_1)P(X\in B_2)\,]$. $B_1,B_2$ 가 서로소면 $\frac{-1}{n}P(B_1)P(B_2)$ — 음의 공분산.</p>
+  </details>
+</div>
+<div class="box exr">
+  <span class="tag">연습 8.6 (개념)</span>
+  <p>중위수가 $\mu$ 인 연속분포에서 크기 2 표본의 순서통계량 $X_{(1)},X_{(2)}$ 에 대해
+  $P[X_{(1)}\lt\mu\lt X_{(2)}]=\tfrac12$ 임을 보여라.</p>
+  <details class="hint"><summary>힌트 보기</summary>
+  <p>각 $X_i$ 가 $\mu$ 보다 클 확률 $\tfrac12$. 둘 다 $\mu$ 초과($\tfrac14$)거나 둘 다 미만($\tfrac14$)이면 구간이 $\mu$ 를 못 감싼다.
+  나머지(하나는 위, 하나는 아래)가 $1-\tfrac14-\tfrac14=\tfrac12$.</p>
+  </details>
+</div>
+<div class="note">
+  연습 8.3·8.4·8.5(순서통계량으로 $\xi_q$ 포함확률·최소 표본크기)도 위 백분위수 공식 $P(X_{(k)}\le\xi_q)=\sum_{i=k}^n\binom ni q^i(1-q)^{n-i}$ 의 직접 적용이다.
+</div>
+
+<nav class="pager">
+  <span class="spacer"></span>
+  <a class="next" href="8-2_sign-test.html">다음 →<small>8.2 부호검정·콜모고로프-스미르노프 검정</small></a>
+</nav>
+
+</body>
+</html>

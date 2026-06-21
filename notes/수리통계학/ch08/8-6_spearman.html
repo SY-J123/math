@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>8장 · 8.4 순위 상관계수</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <div class="ch">수리통계학 · 8장 비모수 통계방법</div>
+  <h1><span class="no">8.4</span>순위 상관계수 <span class="en">Spearman's rank correlation</span></h1>
+</header>
+
+<p>표본상관계수의 정의에서 관찰값 $X_i,Y_i$ 를 각각의 순위 $R_i^X,R_i^Y$ 로 바꾸면 <b>스피어만 순위 상관계수</b>가 된다.
+순위만 쓰므로 분포 가정·이상값에 강건하다.</p>
+<div class="box def">
+  <span class="tag">정의 (8.26)</span><span class="title">스피어만 순위 상관계수 $R_S$</span>
+  $$R_S=\frac{\sum_{i=1}^{n}\big(R_i^X-\tfrac{n+1}{2}\big)\big(R_i^Y-\tfrac{n+1}{2}\big)}{n(n^2-1)/12}.$$
+  <p style="margin-top:4px;">($-1\le R_S\le1$. 분모는 순위 $1,\dots,n$ 의 편차제곱합 $\sum(R_i-\tfrac{n+1}2)^2=\tfrac{n(n^2-1)}{12}$.)</p>
+</div>
+<figure class="fig">
+<svg viewBox="0 0 180 175" role="img" aria-label="순위 산점도: 두 순위가 함께 커지면 R_S가 1에 가깝다">
+  <line class="axis" x1="30" y1="140" x2="160" y2="140"/>
+  <line class="axis" x1="30" y1="140" x2="30" y2="20"/>
+  <line class="aux" x1="30" y1="140" x2="150" y2="20"/>
+  <g fill="#1d6fb8">
+    <circle cx="48" cy="122" r="3.5"/><circle cx="66" cy="86" r="3.5"/><circle cx="84" cy="104" r="3.5"/>
+    <circle cx="102" cy="68" r="3.5"/><circle cx="120" cy="32" r="3.5"/><circle cx="138" cy="50" r="3.5"/>
+  </g>
+  <text class="lbl" x="95" y="158" text-anchor="middle">X의 순위 Rˣ</text>
+  <text class="lbl" x="14" y="80" text-anchor="middle" transform="rotate(-90 14 80)">Y의 순위 Rʸ</text>
+</svg>
+<figcaption>두 순위가 대체로 함께 커지면(점들이 대각선 근처) $R_S$ 가 $+1$ 에, 반대로 움직이면 $-1$ 에 가깝다. 예 8.11 은 $R_S=0.84$.</figcaption>
+</figure>
+
+<p>독립성 검정에 쓴다. 귀무가설은 “$X,Y$ 가 독립”. $H_0$ 하에서 순위들은 각 표본에서 무작위 순열이라
+가능한 $(n!)^2$ 배열이 동등하게 일어나므로 $R_S$ 의 귀무분포는 <b>모분포에 무관</b>(분포무관)하다.</p>
+<div class="box thm">
+  <span class="tag">정리 8.6</span>
+  <p>$X,Y$ 가 독립이라는 $H_0$ 하에서, $n$ 이 크면 $\sqrt{n-1}\,R_S$ 는 근사적으로 표준정규분포를 따른다.
+  근사 기각역: $\big|\sqrt{n-1}\,R_S\big|\ge z_{\alpha/2}$.</p>
+</div>
+<div class="box ex">
+  <span class="tag">예 8.11 — 인터뷰 vs 시험성적</span>
+  <p>지원자 10명의 두 순위에서 $R_S=0.8424$, $\sqrt{n-1}\,R_S=\sqrt9\cdot0.8424=2.5273$. 근사 유의확률 $0.0115$ 이므로
+  유의수준 $0.05$ 에서 “독립” 을 기각 — 인터뷰 성적과 시험성적은 관련 있다.</p>
+</div>
+
+<h2 class="sub">개념형 연습문제</h2>
+<div class="box exr">
+  <span class="tag">연습 8.24 (개념)</span>
+  <p>스피어만 순위 상관계수가 식 (8.26) 의 형태로 표현됨을 보여라.</p>
+  <details class="hint"><summary>힌트 보기</summary>
+  <p>피어슨 상관계수 공식에 $X_i\to R_i^X,\ Y_i\to R_i^Y$ 를 대입. 순위는 $1,\dots,n$ 의 순열이라 평균은 $\tfrac{n+1}2$,
+  그리고 $\sum(R_i-\tfrac{n+1}2)^2=\tfrac{n(n^2-1)}{12}$ 로 분모의 두 표준편차 곱이 $\tfrac{n(n^2-1)}{12}$ 가 된다.</p>
+  </details>
+</div>
+<div class="box exr">
+  <span class="tag">연습 8.25 (개념) — 간이공식</span>
+  <p>동률이 없을 때 $R_S=1-\dfrac{6\sum_{i=1}^{n}(R_i^X-R_i^Y)^2}{n(n^2-1)}$ 임을 보여라.</p>
+  <details class="hint"><summary>힌트 보기</summary>
+  <p>$d_i=R_i^X-R_i^Y$ 로 두면 $\sum d_i^2=\sum(R_i^X-\bar R)^2+\sum(R_i^Y-\bar R)^2-2\sum(R_i^X-\bar R)(R_i^Y-\bar R)$.
+  앞 두 합이 각각 $\tfrac{n(n^2-1)}{12}$ 이므로, (8.26) 의 분자 $=\tfrac{n(n^2-1)}{12}-\tfrac12\sum d_i^2$. 분모로 나누면 간이공식.</p>
+  </details>
+</div>
+
+<nav class="pager">
+  <a href="8-5_rank-anova.html">← 이전<small>8.3 순위에 의한 분산분석</small></a>
+  <span class="spacer"></span>
+</nav>
+
+</body>
+</html>

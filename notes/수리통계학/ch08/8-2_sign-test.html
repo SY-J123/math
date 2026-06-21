@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>8장 · 8.2.1–8.2.2 콜모고로프-스미르노프 검정·부호검정</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <div class="ch">수리통계학 · 8장 비모수 통계방법</div>
+  <h1><span class="no">8.2.1–8.2.2</span>콜모고로프-스미르노프 검정·부호검정 <span class="en">K–S &amp; sign test</span></h1>
+</header>
+
+<h2 class="sub"><span class="no">8.2.1</span>콜모고로프–스미르노프 검정</h2>
+<p>관찰된 자료가 특정 분포 $F_0$ 에서 나왔는지(적합도)를 검정한다.</p>
+$$H_0:F(x)=F_0(x)\quad\text{vs.}\quad H_1:F(x)\neq F_0(x),\qquad D_n=\sup_{-\infty\lt x\lt\infty}|F_n(x)-F_0(x)|.$$
+<p>$D_n$ 이 충분히 크면 $H_0$ 를 기각한다(임계값은 부록 표).</p>
+<figure class="fig">
+<svg viewBox="0 0 300 170" role="img" aria-label="K-S 통계량: 경험분포와 F0의 최대 수직거리">
+  <defs><marker id="dn" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#c0506a"/></marker></defs>
+  <line class="axis" x1="28" y1="150" x2="292" y2="150"/>
+  <line class="axis" x1="28" y1="154" x2="28" y2="20"/>
+  <!-- F0 smooth -->
+  <path d="M28,148 C110,148 150,46 285,34" class="vec2"/>
+  <!-- Fn step -->
+  <polyline class="vec" points="28,148 80,148 80,126 120,126 120,100 150,100 150,72 195,72 195,52 240,52 240,38 285,38"/>
+  <!-- D_n gap at x=150 -->
+  <line x1="150" y1="100" x2="150" y2="64" stroke="#c0506a" stroke-width="1.6" marker-start="url(#dn)" marker-end="url(#dn)"/>
+  <text class="lbl" x="156" y="86" fill="#c0506a">Dₙ</text>
+  <text class="lbl t" x="250" y="30">F₀(x)</text>
+  <text class="lbl b" x="60" y="140">Fₙ(x)</text>
+</svg>
+<figcaption>$D_n$ 은 계단함수 $F_n$ 과 가설분포 $F_0$ 사이의 <b>최대 수직거리</b>. 이 틈이 크면 “자료가 $F_0$ 에서 나왔다”를 의심한다.</figcaption>
+</figure>
+<div class="box thm">
+  <span class="tag">정리 8.2</span>
+  <p>귀무가설하에서 $D_n=\sup_x|F_n(x)-F_0(x)|$ 의 분포는 <b>연속인 모든 $F_0$ 에 대해 동일</b>하다 — 분포무관<span class="en">distribution-free</span>이다.</p>
+</div>
+<div class="box prf">
+  <span class="tag">증명 (핵심)</span>
+  <p>$F_0$ 가 단조증가라 하고 $U_i=F_0(X_i)$ 로 두면, $H_0$ 하에서 $P[U_i\le u]=P[X_i\le F_0^{-1}(u)]=u$ 이라
+  $U_i\sim U(0,1)$ (균등분포). $U_i$ 들의 경험분포를 $F_n^*$ 라 하면</p>
+  $$D_n=\sup_{0\lt u\lt 1}|F_n^*(u)-u|$$
+  <p>로 바뀐다 — 더 이상 $F_0$ 가 등장하지 않으므로 귀무분포가 모분포에 의존하지 않는다.</p>
+  <div class="qed">∎</div>
+</div>
+<div class="note">
+  분포무관성은 통계적으로 매우 바람직하다 — <b>귀무분포(임계값 표) 하나면 어떤 연속분포 $F_0$ 든</b> 같은 검정을 쓸 수 있다.
+</div>
+
+<h2 class="sub"><span class="no">8.2.2</span>부호검정 <span class="en">sign test</span></h2>
+<p>정규성 가정이 어려울 때, 중위수 $\mu$ 에 대한 가장 간단한 비모수 검정. 모분포 $F$ 가 연속이고 중위수가 $\mu$ 라 할 때</p>
+$$H_0:\mu=\mu_0\quad\text{vs.}\quad H_1:\mu\gt\mu_0.\tag{8.6}$$
+<p>$H_0$ 가 참이면 $P(X_i\ge\mu_0)=P(X_i\le\mu_0)=\tfrac12$ 이므로, $\mu_0$ 보다 큰 관찰값의 개수</p>
+$$R=\sum_{i=1}^{n}I\{X_i-\mu_0\ge0\}$$
+<p>는 성공확률 $\tfrac12$ 인 $n$ 개 베르누이의 합 — 즉 $R\sim B(n,\tfrac12)$.</p>
+$$P(R=r\mid H_0)=\binom{n}{r}\Big(\tfrac12\Big)^n,\quad r=0,1,\dots,n.\tag{8.7}$$
+<figure class="fig">
+<svg viewBox="0 0 320 104" role="img" aria-label="부호검정: μ0 기준 +/- 부호 세기">
+  <line class="aux" x1="170" y1="20" x2="170" y2="86"/>
+  <line class="axis" x1="24" y1="64" x2="300" y2="64"/>
+  <text class="lbl" x="170" y="98" text-anchor="middle">μ₀</text>
+  <g fill="#999"><circle cx="55" cy="64" r="3"/><circle cx="92" cy="64" r="3"/><circle cx="128" cy="64" r="3"/></g>
+  <g fill="#1d6fb8"><circle cx="200" cy="64" r="3"/><circle cx="226" cy="64" r="3"/><circle cx="250" cy="64" r="3"/><circle cx="276" cy="64" r="3"/></g>
+  <g class="lbl" text-anchor="middle" font-weight="700">
+    <text x="55" y="50" fill="#999">−</text><text x="92" y="50" fill="#999">−</text><text x="128" y="50" fill="#999">−</text>
+    <text x="200" y="50" fill="#1d6fb8">+</text><text x="226" y="50" fill="#1d6fb8">+</text><text x="250" y="50" fill="#1d6fb8">+</text><text x="276" y="50" fill="#1d6fb8">+</text>
+  </g>
+  <text class="lbl b" x="238" y="30" text-anchor="middle">R = (+의 개수) = 4</text>
+</svg>
+<figcaption>각 관찰값이 $\mu_0$ 보다 큰지(+)·작은지(−)만 본다. $H_0$ 가 참이면 +가 절반쯤 나와야 하므로 $R$ 이 $0$ 이나 $n$ 에 치우치면 기각.</figcaption>
+</figure>
+<p>$R$ 이 $0$ 또는 $n$ 에 가까울수록 유의하므로, 유의수준 $\alpha$ 양측 기각역은</p>
+$$\{R\le c_1\ \text{또는}\ R\ge c_2\},\quad P\{R\le c_1\mid H_0\}=P\{R\ge c_2\mid H_0\}=\tfrac{\alpha}{2}.\tag{8.8}$$
+<p>짝지은 자료 $(X_i,Y_i)$ 에서는 $p=P(X_i\ge Y_i)$ 로 두고 $R=\sum I\{X_i-Y_i\ge0\}\sim B(n,\tfrac12)$ 로 같은 검정을 한다.</p>
+<div class="box ex">
+  <span class="tag">예 8.3 — 혈압약 효과</span>
+  <p>12명의 투약 전후 혈압차 $D_i=X_i-Y_i$. 효과가 있으면 $p=P(X_i\ge Y_i)\gt\tfrac12$. 자료에서 $R=\sum_{i=1}^{12}I(X_i-Y_i\ge0)=9$ 이고 단측이므로</p>
+  $$P(R\ge9\mid H_0)=\sum_{r=9}^{12}\binom{12}{r}\Big(\tfrac12\Big)^{12}=0.073.$$
+  <p>유의수준 $0.05$ 에서 $H_0$ 는 기각되지 않는다.</p>
+</div>
+<p>표본이 크면 중심극한정리로 ($E(R)=\tfrac n2,\ Var(R)=\tfrac n4$)</p>
+$$Z=\frac{R-n/2}{\sqrt{n/4}}\ \xrightarrow{\ \cdot\ }\ N(0,1)\tag{8.13}$$
+<p>로 근사 검정한다.</p>
+<div class="note">
+  부호검정은 $X_i-\mu_0$ 의 <b>부호만</b> 쓰고 <b>크기</b>는 버린다 — 매우 간단하지만 정보 손실로 검정력이 떨어질 수 있다.
+  이를 보완한 것이 다음 절의 윌콕슨 부호순위검정이다.
+</div>
+
+<nav class="pager">
+  <a href="8-1_nonparametric-estimation.html">← 이전<small>8.1 비모수 추정방법</small></a>
+  <a class="next" href="8-3_signed-rank.html">다음 →<small>8.2.3 윌콕슨 부호순위검정</small></a>
+</nav>
+
+</body>
+</html>

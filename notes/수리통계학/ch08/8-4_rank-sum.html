@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>8장 · 8.2.4 윌콕슨 순위합·만-휘트니 검정</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <div class="ch">수리통계학 · 8장 비모수 통계방법</div>
+  <h1><span class="no">8.2.4</span>윌콕슨 순위합·만-휘트니 검정 <span class="en">Wilcoxon rank sum / Mann–Whitney</span></h1>
+</header>
+
+<p>두 독립표본 $X_1,\dots,X_n\sim F$, $Y_1,\dots,Y_m\sim G$ 의 <b>위치 차이</b>를 본다. 귀무가설은 두 분포가 같다는 것,
+대립가설은 한쪽이 다른 쪽을 평행이동한 것($a\gt0$):</p>
+$$H_0:F(x)=G(x)\quad\text{vs.}\quad H_1:F(x-a)=G(x).\tag{8.17}$$
+<figure class="fig">
+<svg viewBox="0 0 320 130" role="img" aria-label="위치이동 대립가설: 한 분포가 오른쪽으로 평행이동">
+  <line class="axis" x1="20" y1="100" x2="305" y2="100"/>
+  <path d="M40,100 C80,100 80,34 120,34 C160,34 160,100 200,100" class="vec"/>
+  <path d="M130,100 C170,100 170,34 210,34 C250,34 250,100 290,100" class="vec2"/>
+  <line class="aux" x1="120" y1="34" x2="120" y2="100"/>
+  <line class="aux" x1="210" y1="34" x2="210" y2="100"/>
+  <text class="lbl b" x="95" y="26">F</text><text class="lbl t" x="235" y="26">G</text>
+  <text class="lbl" x="165" y="116" text-anchor="middle">평행이동 a</text>
+</svg>
+<figcaption>$H_1$ 은 “$G$ 가 $F$ 를 오른쪽으로 $a$ 만큼 민 것” — 분포의 <b>형태는 같고 위치만</b> 다르다.</figcaption>
+</figure>
+
+<h2 class="sub">순위합 통계량</h2>
+<p>$N=n+m$ 개를 합쳐 순위를 매기고</p>
+$$W_X=(\text{합동표본에서 $X$ 들의 순위합}),\qquad W_Y=(\text{$Y$ 들의 순위합}).$$
+<p>$W_X+W_Y=\dfrac{N(N+1)}{2}$ 로 고정, $W_X$ 의 최솟값은 $\dfrac{n(n+1)}{2}$. 이 검정을 <b>윌콕슨 순위합 검정</b> 또는
+동등하게 <b>만-휘트니 검정</b><span class="en">Mann–Whitney</span>이라 한다. 가설 (8.17)($a\gt0$)이면 $X$ 들이 작은 쪽에 몰려 $W_X$ 가 작아지므로
+기각역은 $\{W_X\le c\}$ 꼴이다.</p>
+<div class="box ex">
+  <span class="tag">예 8.9 — 공해/비공해 지역 화학성분</span>
+  <p>공해 7곳·비공해 5곳을 합쳐 순위. 비공해($u$)의 순위합 $W=1+4+5+6+9=25$. 부록 표에서 $P(W\le25\mid H_0)\gt0.10$ 이므로
+  유의수준 $0.05$ 에서 두 분포가 같다는 $H_0$ 를 기각하지 못한다.</p>
+</div>
+
+<h2 class="sub">만-휘트니 $U$ 와 평균·분산</h2>
+<p>쌍 비교 지시함수로 정의하면 순위합과 직접 연결된다.</p>
+$$Z_{ij}=I\{X_i\gt Y_j\},\qquad U=\sum_{i=1}^{n}\sum_{j=1}^{m}Z_{ij}=W_X-\frac{n(n+1)}{2}.\tag{8.18}$$
+<div class="box prf">
+  <span class="tag">평균·분산 유도</span>
+  <p>$H_0(F=G)$ 하에서 $E(Z_{ij})=P(X_i\gt Y_j)=\tfrac12$ 이므로 $E(U)=\dfrac{nm}{2}$.
+  또 $j\neq k$ 에서 $E(Z_{ij}Z_{ik})=P(X_i\gt Y_j,\ X_i\gt Y_k)=\tfrac13$ 등을 쓰면</p>
+  $$Var(U)=\frac{nm(n+m+1)}{12}.$$
+  <p>$W_X=U+\dfrac{n(n+1)}{2}$ 이므로</p>
+  $$E(W_X)=\frac{n(n+m+1)}{2},\qquad Var(W_X)=\frac{nm(n+m+1)}{12}.\tag{8.19}$$
+  <div class="qed">∎</div>
+</div>
+<p>표본이 크면</p>
+$$Z=\frac{W_X-n(n+m+1)/2}{\sqrt{nm(n+m+1)/12}}\ \xrightarrow{\ \cdot\ }\ N(0,1).\tag{8.20}$$
+<div class="note">
+  위치차 $\Delta=\mu_F-\mu_G$ 의 추정값은 모든 쌍의 차 $D_{ij}=X_i-Y_j$ 의 <b>중위수</b>
+  $\hat\Delta=\mathrm{med}\{D_{ij}\}$ (호지스–레만 추정량). $H_0:\Delta=\Delta_0$ 를 채택하는 $\Delta_0$ 들을 모으면 $\Delta$ 의 신뢰구간이 된다.
+</div>
+
+<h2 class="sub">개념형 연습문제</h2>
+<div class="box exr">
+  <span class="tag">연습 8.11 (개념)</span>
+  <p>식 (8.18), 즉 $U=W_X-\dfrac{n(n+1)}{2}$ 가 성립함을 보여라.</p>
+  <details class="hint"><summary>힌트 보기</summary>
+  <p>합동표본에서 $X_i$ 의 순위 $=\#\{\text{값}\le X_i\}=\#\{X_k\le X_i\}+\#\{Y_j\lt X_i\}$. $X$ 전체에 대해 더하면
+  앞항의 합은 $\frac{n(n+1)}2$, 뒷항의 합은 $U$. 그래서 $W_X=\frac{n(n+1)}2+U$.</p>
+  </details>
+</div>
+<div class="box exr">
+  <span class="tag">연습 8.12 (개념)</span>
+  <p>$Var(U)=\dfrac{nm(n+m+1)}{12}$ 임을 보여라(이로써 $Var(W_X)$ 도 얻는다).</p>
+  <details class="hint"><summary>힌트 보기</summary>
+  <p>$Var(U)=\sum\sum Var(Z_{ij})+\sum\text{(공분산항)}$. $Var(Z_{ij})=\tfrac14$, 그리고 $E(Z_{ij}Z_{ik})=E(Z_{ij}Z_{kj})=\tfrac13$
+  (세 값의 순서 경우의 수)에서 공분산 $=\tfrac13-\tfrac14=\tfrac1{12}$. 항의 개수를 세어 합하면 $\frac{nm(n+m+1)}{12}$.</p>
+  </details>
+</div>
+<div class="note">
+  연습 8.14·8.15·8.16(두 표본 자료에 순위합/만-휘트니 적용)은 위 통계량의 직접 계산이다.
+</div>
+
+<nav class="pager">
+  <a href="8-3_signed-rank.html">← 이전<small>8.2.3 윌콕슨 부호순위검정</small></a>
+  <a class="next" href="8-5_rank-anova.html">다음 →<small>8.3 순위에 의한 분산분석</small></a>
+</nav>
+
+</body>
+</html>

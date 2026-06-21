@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>8장 · 8.2.3 윌콕슨 부호순위검정</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <div class="ch">수리통계학 · 8장 비모수 통계방법</div>
+  <h1><span class="no">8.2.3</span>윌콕슨 부호순위검정 <span class="en">Wilcoxon signed-rank test</span></h1>
+</header>
+
+<p>부호검정은 $X_i-\mu_0$ 의 <b>부호만</b> 쓰고 <b>크기</b>를 버려 검정력이 낮을 수 있다. 윌콕슨 부호순위검정은
+<b>부호 + 크기(순위)</b>를 함께 써서 이를 보완한다. 모분포 $F$ 가 연속이고 중위수가 $\mu$ 일 때
+$H_0:\mu=\mu_0$ 대 $H_1:\mu\gt\mu_0$ 를 본다.</p>
+
+<div class="box def">
+  <span class="tag">검정통계량</span><span class="title">부호순위합 $W$</span>
+  <p><b>단계 1.</b> 각 관찰값의 $\mu_0$ 로부터의 거리 $|X_i-\mu_0|$ 를 작은 것부터 순위 매겨 $R_i$ 라 한다(동률은 평균순위).</p>
+  <p><b>단계 2.</b> 부호 지시함수 $Z_i=\begin{cases}1&X_i-\mu_0\ge0\\0&X_i-\mu_0\lt0\end{cases}$ 로 두고</p>
+  $$W=\sum_{i=1}^{n}Z_iR_i\ =\ (\text{$\mu_0$ 보다 큰 관찰값들의 순위합}).$$
+</div>
+<figure class="fig">
+<svg viewBox="0 0 320 116" role="img" aria-label="μ0로부터 거리로 순위를 매기고 +측 순위를 합산">
+  <line class="aux" x1="40" y1="22" x2="40" y2="92"/>
+  <line class="axis" x1="40" y1="70" x2="305" y2="70"/>
+  <text class="lbl" x="40" y="104" text-anchor="middle">μ₀</text>
+  <text class="lbl" x="180" y="104" text-anchor="middle">|Xᵢ − μ₀| (거리)</text>
+  <g text-anchor="middle">
+    <circle cx="80" cy="70" r="3" fill="#999"/><text class="lbl" x="80" y="58" fill="#999">−</text><text class="num" x="80" y="86">1</text>
+    <circle cx="120" cy="70" r="3" fill="#1d6fb8"/><text class="lbl" x="120" y="58" fill="#1d6fb8">+</text><text class="num" x="120" y="86">2</text>
+    <circle cx="170" cy="70" r="3" fill="#1d6fb8"/><text class="lbl" x="170" y="58" fill="#1d6fb8">+</text><text class="num" x="170" y="86">3</text>
+    <circle cx="225" cy="70" r="3" fill="#999"/><text class="lbl" x="225" y="58" fill="#999">−</text><text class="num" x="225" y="86">4</text>
+    <circle cx="285" cy="70" r="3" fill="#1d6fb8"/><text class="lbl" x="285" y="58" fill="#1d6fb8">+</text><text class="num" x="285" y="86">5</text>
+  </g>
+  <text class="lbl b" x="180" y="32" text-anchor="middle">W = 2 + 3 + 5 = 10 (+측 순위합)</text>
+</svg>
+<figcaption>거리로 순위를 매긴 뒤 <b>+ 부호가 붙은 것들의 순위만</b> 더한다. 큰 거리에 +가 몰리면 $W$ 가 커져 $\mu\gt\mu_0$ 의 증거가 된다.</figcaption>
+</figure>
+
+<h2 class="sub">귀무분포 — 정리 8.3</h2>
+<p>$H_0$ 하에서 $n$ 개 순위의 부호 배열은 $2^n$ 가지이고 각각 확률 $1/2^n$ 로 동등하다.</p>
+<div class="box thm">
+  <span class="tag">정리 8.3</span>
+  $$P(W=w)=\frac{c(w)}{2^n},\quad w=0,1,\dots,\tfrac{n(n+1)}{2},$$
+  <p style="margin-top:4px;">여기서 $c(w)$ 는 $\prod_{i=1}^{n}(1+e^{it})$ 의 전개에서 $e^{wt}$ 의 계수다.</p>
+</div>
+<div class="box prf">
+  <span class="tag">증명 (적률생성함수)</span>
+  <p>독립인 $U_i$ 를 $P(U_i=0)=P(U_i=i)=\tfrac12$ 로 두고 $U=\sum U_i$ 라 하면, $H_0$ 하에서 $W$ 와 $U$ 의 분포가 같다. 그런데</p>
+  $$M_W(t)=M_U(t)=\prod_{i=1}^{n}\Big(\tfrac12+\tfrac12 e^{it}\Big)=\frac{1}{2^n}\prod_{i=1}^{n}(1+e^{it})$$
+  <p>이고, $M_W(t)=\sum_w e^{wt}\,\dfrac{c(w)}{2^n}$ 와 비교하면 $c(w)$ 가 $\prod(1+e^{it})$ 의 $e^{wt}$ 계수임을 안다.</p>
+  <div class="qed">∎</div>
+</div>
+<p>같은 $U_i$ 표현으로 평균·분산이 곧바로 나온다.</p>
+$$E(W)=\sum_{i=1}^{n}\frac{i}{2}=\frac{n(n+1)}{4},\qquad
+  Var(W)=\sum_{i=1}^{n}\Big(\frac{i^2}{2}-\frac{i^2}{4}\Big)=\frac{n(n+1)(2n+1)}{24}.\tag{8.15}$$
+<p>표본이 크면</p>
+$$Z=\frac{W-n(n+1)/4}{\sqrt{n(n+1)(2n+1)/24}}\ \xrightarrow{\ \cdot\ }\ N(0,1).\tag{8.16}$$
+
+<div class="box ex">
+  <span class="tag">예 8.7 — 부호검정으로는 못 잡던 것</span>
+  <p>예 8.4 자료($\mu_0=0$). 절댓값을 작은 것부터 순위 매기면:</p>
+  <div class="scroll"><table class="data">
+    <tr><th>|값|</th><td>0.05</td><td>0.19</td><td>0.57</td><td>0.76</td><td>1.30</td><td>2.02</td><td>2.17</td><td>2.46</td><td>2.68</td><td>3.02</td></tr>
+    <tr><th>$R_i$</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td></tr>
+    <tr><th>$Z_i$</th><td>0</td><td>1</td><td>0</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+  </table></div>
+  $$W=4+5+6+7+8+9+10=49,\qquad P(W\ge49\mid H_0)=0.014.$$
+  <p>유의수준 $0.05$ 에서 $H_0:\mu=0$ 을 <b>기각</b>한다. (부호검정은 $R=7$ 로 기각 못 했던 같은 자료다 — 크기 정보를 쓴 덕분.)</p>
+</div>
+
+<h2 class="sub">점근 상대효율 <span class="en">asymptotic relative efficiency</span></h2>
+<div class="note">
+  $t$ 검정 대비 윌콕슨 부호순위검정의 ARE: <b>①</b> 모집단이 정규분포면 $3/\pi\approx0.955$ (살짝 손해).
+  <b>②</b> 어떤 연속분포에서도 $\ge0.864$. <b>③</b> 로지스틱·이중지수·지수처럼 꼬리가 두꺼운 분포면 $1$ 을 넘어 더 효율적.
+  즉 정규에서 약간 손해 보는 대신, 정규에서 벗어나면 훨씬 강건하고 효율적이다.
+</div>
+<p>짝지은 자료 $(X_i,Y_i)$ 에서는 차이 $D_i=Y_i-X_i$ 의 순위에 같은 방법을 적용한다.</p>
+
+<h2 class="sub">개념형 연습문제</h2>
+<div class="box exr">
+  <span class="tag">연습 8.10 (개념)</span>
+  <p>$W^+$ 를 양의 부호 순위합, $W^-$ 를 음의 부호 순위합이라 하면 $W^++W^-=\tfrac{n(n+1)}{2}$. $W^*=W^+-W^-$ 로 둘 때
+  <b>(1)</b> $W^*=2W^+-\tfrac{n(n+1)}{2}=\tfrac{n(n+1)}{2}-2W^-$ 임을 보여라. <b>(2)</b> $n=4,5$ 에서 $W^+$ 의 분포를,
+  <b>(3)</b> $W^*$ 의 평균·분산을 구하라.</p>
+  <details class="hint"><summary>힌트 보기</summary>
+  <p>(1) $W^-=\tfrac{n(n+1)}2-W^+$ 를 $W^*=W^+-W^-$ 에 대입. (2) 정리 8.3 처럼 $2^n$ 배열을 세거나 $\prod(1+e^{it})$ 전개.
+  (3) $E(W^*)=0$(대칭), $Var(W^*)=4\,Var(W^+)=\tfrac{n(n+1)(2n+1)}{6}$.</p>
+  </details>
+</div>
+<div class="note">
+  연습 8.8·8.9·8.13(특정 자료에 부호순위·정규근사 적용)은 위 공식들의 직접 계산이다.
+</div>
+
+<nav class="pager">
+  <a href="8-2_sign-test.html">← 이전<small>8.2.1–8.2.2 K-S 검정·부호검정</small></a>
+  <a class="next" href="8-4_rank-sum.html">다음 →<small>8.2.4 윌콕슨 순위합·만-휘트니</small></a>
+</nav>
+
+</body>
+</html>
