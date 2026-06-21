@@ -98,6 +98,8 @@ mjx-container[display="true"]{ overflow-x:auto; overflow-y:hidden; padding-botto
 .pager a:hover{ background:#eef2f6; border-color:var(--def); }
 .pager a small{ display:block; font-weight:400; color:var(--muted); font-size:0.78rem; }
 .pager a.next{ text-align:right; margin-left:auto; }
+.pager a.home{ text-align:center; }
+.pager:has(a.home) a.next{ margin-left:0; }   /* 홈 버튼이 있으면 세 칸 균등 배치 → 홈이 가운데 */
 .pager .spacer{ flex:1 1 auto; }
 
 /* ---- 표 ---- */
