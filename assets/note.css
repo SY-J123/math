@@ -70,6 +70,9 @@ ol.props li{ margin:6px 0; }
 .prf ol{ padding-left:20px; }
 .prf li{ margin:9px 0; }
 .prf .step{ font-weight:700; color:var(--prf); }
+ol.fill{ padding-left:20px; }                          /* 본문에서 책의 비약을 단계로 채울 때 */
+ol.fill li{ margin:9px 0; }
+ol.fill .step{ font-weight:700; color:var(--def); }
 .qed{ text-align:right; color:var(--muted); }
 
 /* ---- 부가설명 ---- */

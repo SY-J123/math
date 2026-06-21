@@ -65,39 +65,30 @@ $$E[F_n(x)]=F(x),\qquad Var[F_n(x)]=\frac{1}{n}F(x)[1-F(x)].\tag{8.2}$$
 <p>따라서 $F_n(x)$ 는 $F(x)$ 의 <b>비편향추정량</b>이고, 분산이 $n\to\infty$ 에서 $0$ 으로 가므로 <b>일치추정량</b>이다.</p>
 
 <h2 class="sub">콜모고로프–스미르노프 통계량과 신뢰띠</h2>
-<p>$F_n$ 은 점마다 $F$ 를 추정한다. 그런데 “$F_n$ 이 $F$ 에 <b>전체적으로</b> 얼마나 가까운가”를 하나의 수로 재고 싶다.
-한 점에서의 오차가 아니라, 모든 $x$ 를 통틀어 두 곡선이 가장 크게 벌어진 <b>최대 수직거리</b>로 거리를 정의한다.</p>
+<p>경험적 분포 $F_n$ 과 모분포 $F$ 의 ‘거리’ 를, 전 구간에서 두 곡선이 가장 크게 벌어진 <b>최대 편차</b>로 잰다.</p>
 $$D_n=\sup_{-\infty\lt x\lt\infty}\bigl|F_n(x)-F(x)\bigr|\tag{8.3}$$
-<p>이를 <b>콜모고로프–스미르노프 통계량</b><span class="en">Kolmogorov–Smirnov</span>이라 한다. $F_n$ 이 계단함수라
-상한 $\sup$ 은 실제로는 각 점프점($X_{(i)}$) 직전·직후의 유한개 편차 중 최댓값으로 계산된다.</p>
-
-<div class="box thm">
-  <span class="tag">분포무관 <span class="en">distribution-free</span></span>
-  <p>$F$ 가 <b>연속</b>이면, $D_n$ 의 분포는 정작 <b>$F$ 가 무엇인지에 의존하지 않는다</b>.</p>
-</div>
-<p>핵심은 확률적분변환이다: $U_i=F(X_i)$ 로 두면 $U_i\sim \text{Unif}(0,1)$ 이고, $|F_n(x)-F(x)|$ 의 최댓값은
-균등분포의 경험적 분포와 직선 $u$ 사이의 최대편차와 같아진다. 즉 어떤 연속분포에서 표본을 뽑든 $D_n$ 의 귀무분포는 <b>동일</b>하다.
-그래서 임계값 $k(\alpha)$ 를 모분포마다 새로 구할 필요 없이 <b>표 하나로</b> 쓸 수 있다 — 이것이 비모수 방법의 위력이다.</p>
-
-<p>표본이 커지면 편차 자체는 $0$ 으로 줄어든다($Var[F_n]=\tfrac1nF(1-F)$ 라 표준편차가 $\propto 1/\sqrt n$).
-그 줄어드는 속도 $1/\sqrt n$ 을 상쇄하도록 <b>$\sqrt n$ 을 곱한</b> $\sqrt n\,D_n$ 이 비퇴화 극한분포(콜모고로프 분포)로 수렴한다.
-따라서 임계값은 이 스케일에서 정의한다:</p>
-$$P\bigl[\sqrt n\,D_n\le k(\alpha)\bigr]=1-\alpha.\tag{8.4}$$
-
-<h3 class="sub">신뢰띠로의 변환</h3>
-<p>식 (8.4) 안의 사건을 풀어 쓰는 게 신뢰띠의 전부다. $\sqrt n\,D_n\le k(\alpha)$ 는 $D_n\le k(\alpha)/\sqrt n$ 과 같고,
-$D_n$ 이 <em>최대</em> 편차이므로 이는 “<b>모든</b> $x$ 에서 동시에” 편차가 그 값 이하라는 뜻이다:</p>
-$$\sqrt n\,D_n\le k(\alpha)\iff \sup_x|F_n(x)-F(x)|\le\tfrac{k(\alpha)}{\sqrt n}\iff \forall x:\ \bigl|F_n(x)-F(x)\bigr|\le\tfrac{k(\alpha)}{\sqrt n}.$$
-<p>절댓값을 풀면 모든 $x$ 에서 $F_n(x)-\tfrac{k(\alpha)}{\sqrt n}\le F(x)\le F_n(x)+\tfrac{k(\alpha)}{\sqrt n}$. 이 사건의 확률이 $1-\alpha$ 이므로,
-$F$ 의 곡선 <b>전체</b>가 확률 $1-\alpha$ 로 다음 띠 안에 들어간다 — $100(1-\alpha)\%$ <b>신뢰띠</b><span class="en">confidence band</span>:</p>
+<p>이를 <b>콜모고로프–스미르노프 통계량</b><span class="en">Kolmogorov–Smirnov</span>이라 한다. $\sqrt n\,D_n$ 의 분포로부터</p>
+$$P\bigl[\sqrt n\,D_n\le k(\alpha)\bigr]=1-\alpha\tag{8.4}$$
+<p>를 만족하는 $k(\alpha)$ 를 (표에서) 찾는다. 책은 여기서 곧장 신뢰띠 (8.5) 로 건너뛰는데, 그 사이가 사실 이 절의 전부라
+한 단계씩 풀어 두면:</p>
+<ol class="fill">
+  <li><span class="step">스케일 정리.</span> (8.4) 안의 부등식 $\sqrt n\,D_n\le k(\alpha)$ 의 양변을 $\sqrt n$ 으로 나누면
+  $D_n\le \dfrac{k(\alpha)}{\sqrt n}$.</li>
+  <li><span class="step">‘최대’ 의 뜻 풀기.</span> $D_n$ 은 모든 $x$ 에 걸친 편차의 <em>최댓값</em>이다. 최댓값이 $\dfrac{k(\alpha)}{\sqrt n}$ 이하라는 말은,
+  곧 <b>모든</b> $x$ 에서 편차가 그 값 이하라는 말과 같다:
+  $$\bigl|F_n(x)-F(x)\bigr|\le \frac{k(\alpha)}{\sqrt n}\quad(\text{모든 }x).$$</li>
+  <li><span class="step">절댓값 풀기.</span> $|a|\le c \iff -c\le a\le c$ 이므로, 모든 $x$ 에서
+  $$F_n(x)-\frac{k(\alpha)}{\sqrt n}\ \le\ F(x)\ \le\ F_n(x)+\frac{k(\alpha)}{\sqrt n}.$$</li>
+</ol>
+<p>이 일이 (8.4) 에 의해 확률 $1-\alpha$ 로 일어난다. 즉 미지의 $F$ 가 확률 $1-\alpha$ 로 아래 띠 안에 들어가므로,
+이를 $F$ 에 대한 $100(1-\alpha)\%$ <b>신뢰띠</b><span class="en">confidence band</span>라 한다.</p>
 $$\Big[\,F_n(x)-\tfrac{k(\alpha)}{\sqrt n},\ \ F_n(x)+\tfrac{k(\alpha)}{\sqrt n}\,\Big]\tag{8.5}$$
-<p>점별 신뢰구간이 각 $x$ 마다 따로 $F(x)$ 를 잡는 것과 달리, 신뢰띠는 $\sup$ 덕분에 <b>곡선 전체를 한꺼번에</b> 확률 $1-\alpha$ 로 감싼다.
-폭 $k(\alpha)/\sqrt n$ 이 $x$ 에 무관한 상수라, $F_n$ 을 위아래로 평행이동한 띠가 된다. 누적분포이므로 하한이 $0$ 미만이면 $0$,
-상한이 $1$ 초과면 $1$ 로 자른다.</p>
+<p>폭 $k(\alpha)/\sqrt n$ 이 $x$ 에 무관한 상수라, 계단함수 $F_n$ 을 위아래로 같은 만큼 평행이동한 띠가 된다.
+누적분포함수는 항상 $0$ 과 $1$ 사이이므로, 하한이 $0$ 미만이면 $0$, 상한이 $1$ 초과면 $1$ 로 잘라 준다.</p>
 <div class="box ex">
   <span class="tag">예 8.2</span>
-  <p>$n=9$, $\alpha=0.1$ 일 때 표에서 $k(0.1)=1.17$ 이라 $k(0.1)/\sqrt9=1.17/3=0.39$. 따라서 신뢰띠는 $F_n(x)\pm0.39$ —
-  표본이 작아 띠가 꽤 넓다. $n$ 이 커지면 폭이 $1/\sqrt n$ 으로 좁아진다.</p>
+  <p>$n=9$, $\alpha=0.1$ 이면 표에서 얻은 $k(0.1)$ 로부터 $k(0.1)/\sqrt9=0.39$. 따라서 신뢰띠는 $F_n(x)\pm0.39$ —
+  표본이 $9$ 개로 작아 띠가 꽤 넓다. ($n$ 이 커지면 분모 $\sqrt n$ 이 커져 띠가 좁아진다.)</p>
 </div>
 
 <h2 class="sub">순서통계량에 의한 백분위수 신뢰구간</h2>
