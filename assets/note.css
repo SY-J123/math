@@ -20,8 +20,12 @@ body{
 }
 
 /* ---- 머리말 ---- */
-header.doc{ border-bottom:2px solid var(--ink); padding-bottom:10px; margin-bottom:22px; }
+header.doc{ position:relative; border-bottom:2px solid var(--ink); padding-bottom:10px; margin-bottom:22px; }
 header.doc .ch{ font-size:0.85rem; color:var(--muted); letter-spacing:0.05em; }
+header.doc .home{ position:absolute; right:0; top:0; font-size:0.78rem; font-weight:600;
+                  color:var(--def); text-decoration:none; border:1px solid var(--line);
+                  border-radius:6px; padding:3px 10px; background:#fafafa; }
+header.doc .home:hover{ background:#eef2f6; border-color:var(--def); }
 header.doc h1{ font-size:1.45rem; margin:4px 0 0; }
 header.doc h1 .no{ color:var(--muted); margin-right:8px; }
 
@@ -101,8 +105,6 @@ mjx-container[display="true"]{ overflow-x:auto; overflow-y:hidden; padding-botto
 .pager a:hover{ background:#eef2f6; border-color:var(--def); }
 .pager a small{ display:block; font-weight:400; color:var(--muted); font-size:0.78rem; }
 .pager a.next{ text-align:right; margin-left:auto; }
-.pager a.home{ text-align:center; }
-.pager:has(a.home) a.next{ margin-left:0; }   /* 홈 버튼이 있으면 세 칸 균등 배치 → 홈이 가운데 */
 .pager .spacer{ flex:1 1 auto; }
 
 /* ---- 표 ---- */
