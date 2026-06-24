@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1장 · 1.3 조건부확률</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">수리통계학 · 1장 확률이론</div>
+  <h1><span class="no">1.3</span>조건부확률 <span class="en">conditional probability</span></h1>
+</header>
+
+<p>사건 $B$ 가 일어났다는 정보를 알면 사건 $A$ 가 일어날 확률에 대한 판단이 달라질 수 있다. 이렇게
+‘$B$ 가 일어났다’ 는 조건이 주어졌을 때의 확률을 조건부확률이라 한다.</p>
+
+<div class="box def">
+  <span class="tag">정의 1.4</span><span class="title">조건부확률 <span class="en">conditional probability</span></span>
+  <p>$P(B)\gt0$ 일 때, $B$ 가 일어났다는 조건하에서 $A$ 가 일어날 조건부확률은</p>
+  $$P(A\mid B)=\frac{P(A\cap B)}{P(B)}.$$
+</div>
+
+<div class="box thm">
+  <span class="tag">성질</span><span class="title">조건부확률도 ‘확률’ 이다</span>
+  <p>$B$ 를 고정하면 $P(\,\cdot\mid B)$ 는 확률공리 (1)–(3)을 모두 만족한다. 따라서 정리 1.1의 성질들이 그대로 성립한다:</p>
+  <ol class="props">
+    <li>$P(A\mid B)\ge0$, &nbsp; $P(S\mid B)=P(B\mid B)=1$</li>
+    <li>$P(A^c\mid B)=1-P(A\mid B)$, &nbsp; $P(\varnothing\mid B)=0$</li>
+    <li>$A_1\subset A_2$ 이면 $P(A_1\mid B)\le P(A_2\mid B)$</li>
+    <li>$P(A_1\cup A_2\mid B)=P(A_1\mid B)+P(A_2\mid B)-P(A_1\cap A_2\mid B)$</li>
+  </ol>
+</div>
+<div class="box prf">
+  <span class="tag">증명 (가법성)</span>
+  <p>$A_1\cap A_2=\varnothing$ 이면 $(A_1\cap B)\cap(A_2\cap B)=\varnothing$ 이므로</p>
+  $$P(A_1\cup A_2\mid B)=\frac{P[(A_1\cup A_2)\cap B]}{P(B)}=\frac{P[(A_1\cap B)\cup(A_2\cap B)]}{P(B)}
+  =\frac{P(A_1\cap B)+P(A_2\cap B)}{P(B)}=P(A_1\mid B)+P(A_2\mid B).$$
+  <p>$P(A\mid B)\ge0$ 와 $P(S\mid B)=P(S\cap B)/P(B)=P(B)/P(B)=1$ 도 정의에서 곧바로 나온다. 세 공리를 만족하므로
+  나머지 성질은 정리 1.1의 증명을 그대로 적용해 얻는다.</p>
+  <div class="qed">∎</div>
+</div>
+
+<h2 class="sub">곱셈정리 <span class="en">multiplication rule</span></h2>
+<div class="box thm">
+  <span class="tag">곱셈정리</span>
+  <p>$P(B)\gt0$ 이면 $P(A\cap B)=P(B)\,P(A\mid B)$. 일반적으로 $k$ 개 사건에 대해</p>
+  $$P(A_1\cap A_2\cap\cdots\cap A_k)=P(A_1)\,P(A_2\mid A_1)\,P(A_3\mid A_1\cap A_2)\cdots P(A_k\mid A_1\cap\cdots\cap A_{k-1}).$$
+</div>
+<div class="box ex">
+  <span class="tag">예 1.12·1.14</span>
+  <p><b>1.12</b> 동전 $2$ 회, $S=\{HH,HT,TH,TT\}$. ‘첫 번째 앞면’ $H=\{HH,HT\}$, ‘둘 다 앞면’ $A=\{HH\}$ 이면
+  $P(A\mid H)=\dfrac{P(A\cap H)}{P(H)}=\dfrac{1/4}{1/2}=\dfrac12$.</p>
+  <p><b>1.14</b> 흰공 $w$·검은공 $b$ 인 항아리에서 <b>비복원</b>으로 두 번 꺼낼 때, 곱셈정리로
+  $P(W_1\cap W_2)=P(W_1)P(W_2\mid W_1)=\dfrac{w}{b+w}\cdot\dfrac{w-1}{b+w-1}$.</p>
+</div>
+
+<h2 class="sub">전확률공식과 베이즈 정리</h2>
+<p>사건 $B_1,\dots,B_k$ 가 표본공간을 <b>분할</b>한다는 것은 상호배반($B_i\cap B_j=\varnothing,\ i\ne j$)이고
+$\bigcup_{i=1}^k B_i=S$ 임을 뜻한다.</p>
+
+<div class="box thm">
+  <span class="tag">정리 1.2</span><span class="title">전확률공식 <span class="en">law of total probability</span></span>
+  <p>$B_1,\dots,B_k$ 가 $S$ 의 분할이면, 임의의 사건 $A$ 에 대해</p>
+  $$P(A)=\sum_{i=1}^{k}P(A\cap B_i)=\sum_{i=1}^{k}P(B_i)\,P(A\mid B_i).$$
+</div>
+<div class="box prf">
+  <span class="tag">증명</span>
+  <p>$\bigcup B_i=S$ 이므로 $A=A\cap S=A\cap\big(\bigcup_{i=1}^k B_i\big)=\bigcup_{i=1}^k(A\cap B_i)$. 그런데
+  $B_i$ 가 상호배반이라 $A\cap B_i$ 들도 상호배반이므로 공리(3)에 의해</p>
+  $$P(A)=\sum_{i=1}^{k}P(A\cap B_i)=\sum_{i=1}^{k}P(B_i)\,P(A\mid B_i)\quad(\because\ \text{곱셈정리}).$$
+  <div class="qed">∎</div>
+</div>
+
+<div class="box thm">
+  <span class="tag">정리 1.3</span><span class="title">베이즈 정리 <span class="en">Bayes' theorem</span></span>
+  <p>$B_1,\dots,B_k$ 가 $S$ 의 분할이고 $A$ 가 일어났을 때, 그것이 $B_j$ 에서 비롯되었을 확률은</p>
+  $$P(B_j\mid A)=\frac{P(A\cap B_j)}{P(A)}=\frac{P(B_j)\,P(A\mid B_j)}{\displaystyle\sum_{i=1}^{k}P(B_i)\,P(A\mid B_i)}.$$
+</div>
+<div class="box prf">
+  <span class="tag">증명</span>
+  <p>조건부확률의 정의로 $P(B_j\mid A)=\dfrac{P(A\cap B_j)}{P(A)}$. 분자에 곱셈정리 $P(A\cap B_j)=P(B_j)P(A\mid B_j)$,
+  분모에 전확률공식 $P(A)=\sum_i P(B_i)P(A\mid B_i)$ 를 대입하면 결론을 얻는다.</p>
+  <div class="qed">∎</div>
+</div>
+<div class="box ex">
+  <span class="tag">예 1.16·1.17</span>
+  <p><b>1.16</b> 세 생산라인이 전체의 $50\%,30\%,20\%$ 를 만들고 불량률이 각각 $2\%,5\%,10\%$ 면, 무작위 한 제품이 불량일 확률
+  $P(D)=0.5(0.02)+0.3(0.05)+0.2(0.10)=0.045$ (전확률).</p>
+  <p><b>1.17</b> 유병률 $P(A)=0.01$, 민감도 $P(+\mid A)=0.95$, 위양성 $P(+\mid A^c)=0.10$ 인 검사에서 양성일 때 실제 병일 확률
+  $P(A\mid +)=\dfrac{0.95(0.01)}{0.95(0.01)+0.10(0.99)}\approx0.088$ (베이즈).</p>
+</div>
+
+<h2 class="sub">독립 <span class="en">independence</span></h2>
+<div class="box def">
+  <span class="tag">정의 1.5</span><span class="title">두 사건의 독립</span>
+  <p>두 사건 $A,B$ 가 $P(A\cap B)=P(A)\,P(B)$ 를 만족하면 <b>서로 독립</b>이다. ($P(B)\gt0$ 이면 이는
+  $P(A\mid B)=P(A)$ 와 동치 — $B$ 의 정보가 $A$ 의 확률을 바꾸지 않는다.)</p>
+</div>
+<div class="box def">
+  <span class="tag">정의 1.6</span><span class="title">상호독립 <span class="en">mutually independent</span></span>
+  <p>$n$ 개 사건 $A_1,\dots,A_n$ 이 <b>상호독립</b>이라는 것은, $\{1,\dots,n\}$ 의 임의의 $k$ 개 첨자
+  $i_1,\dots,i_k$ 에 대해 ($k=2,\dots,n$)</p>
+  $$P(A_{i_1}\cap A_{i_2}\cap\cdots\cap A_{i_k})=P(A_{i_1})P(A_{i_2})\cdots P(A_{i_k})$$
+  <p>가 모두 성립함을 뜻한다. 둘씩만 보는 <b>쌍별독립</b><span class="en">pairwise</span>보다 강한 조건이다.</p>
+</div>
+<div class="box ex">
+  <span class="tag">예 1.19·1.22</span>
+  <p><b>1.19</b> 카드 $52$ 장에서 한 장: $K$=킹, $D$=다이아몬드. $P(K\cap D)=\tfrac1{52}=\tfrac4{52}\cdot\tfrac{13}{52}=P(K)P(D)$ 라
+  독립.</p>
+  <p><b>1.22</b> 세 자리 숫자 카드 예: $A,B,C$ 가 <b>쌍별독립이지만 상호독립은 아닌</b> 고전적 반례.
+  $P(A\cap B\cap C)=\tfrac28=\tfrac14\ne P(A)P(B)P(C)=\tfrac18$ — 쌍별 곱은 맞아도 셋의 곱은 어긋난다.</p>
+</div>
+
+<nav class="pager">
+  <a href="1-2_probability-axioms.html">← 이전<small>1.2 확률의 정의</small></a>
+  <a class="next" href="1-4_counting.html">다음 →<small>1.4 경우의 수</small></a>
+</nav>
+
+</body>
+</html>

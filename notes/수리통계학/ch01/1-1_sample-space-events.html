@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1장 · 1.1 표본공간과 사건</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">수리통계학 · 1장 확률이론</div>
+  <h1><span class="no">1.1</span>표본공간과 사건 <span class="en">sample space &amp; events</span></h1>
+</header>
+
+<p>어떤 현상의 결과를 미리 확정할 수 없지만 같은 조건에서 반복하면 일정한 규칙이 나타나는 것을
+<b>통계적 규칙성</b><span class="en">statistical regularity</span>이라 한다. 이런 현상을 수리적으로 다루는 모형이
+<b>확률모형</b><span class="en">probability model</span>이며, 그 출발점이 표본공간과 사건이다.</p>
+
+<div class="box def">
+  <span class="tag">기본 용어</span>
+  <p><b>실험</b><span class="en">experiment</span>: 결과를 얻기 위한 과정. <b>표본공간</b><span class="en">sample space</span> $S$:
+  실험에서 가능한 모든 결과의 집합. <b>사건</b><span class="en">event</span>: 표본공간 $S$ 의 부분집합.</p>
+</div>
+
+<div class="box ex">
+  <span class="tag">예 1.1–1.4</span>
+  <p><b>1.1</b> 동전 $3$ 회: $S=\{HHH,HHT,HTH,HTT,THH,THT,TTH,TTT\}$ ($8$ 개). ‘$2$ 회 앞면’ 사건
+  $A=\{HHT,HTH,THH\}$.</p>
+  <p><b>1.2</b> 같은 실험에서 앞면이 나온 <em>횟수</em>만 보면 $S=\{0,1,2,3\}$, ‘적어도 한 번 앞면’ $A=\{1,2,3\}$.</p>
+  <p><b>1.3</b> 앞면이 처음 나올 때까지 던지면 $S=\{H,TH,TTH,TTTH,\dots\}$ — 무한집합. ‘$2$ 회째 앞면’ $A=\{TH\}$.</p>
+  <p><b>1.4</b> 기계 수명(시간): $S=\{x\mid 0\le x\lt\infty\}$ — 연속. ‘$20$ 시간 이상 작동’ $A=\{x\mid x\ge20\}$.</p>
+</div>
+
+<h2 class="sub">사건의 연산</h2>
+<div class="box def">
+  <span class="tag">정의 1.1</span><span class="title">합·교</span>
+  <p>$S$ 상의 두 사건 $A,B$ 에 대해</p>
+  <p><b>(1) 공통부분</b><span class="en">intersection</span> $A\cap B$ — $A$ 와 $B$ 에 <b>동시에</b> 속하는 원소들의 사건.</p>
+  <p><b>(2) 합</b><span class="en">union</span> $A\cup B$ — $A$ <b>또는</b> $B$ 에 속하는 원소들의 사건.</p>
+</div>
+<div class="box def">
+  <span class="tag">정의 1.2</span><span class="title">상호배반 <span class="en">mutually exclusive</span></span>
+  <p>$A\cap B=\varnothing$ 이면, 즉 공통부분이 없으면 두 사건 $A,B$ 는 <b>상호배반</b>이다.</p>
+</div>
+<div class="box def">
+  <span class="tag">정의 1.3</span><span class="title">여사건 <span class="en">complement</span></span>
+  <p>사건 $A$ 에 포함되지 않는 $S$ 의 모든 원소로 이루어진 사건을 $A$ 의 <b>여사건</b>이라 하고 $A^c$ 로 쓴다.</p>
+</div>
+
+<figure class="fig">
+<svg viewBox="0 0 360 124" role="img" aria-label="합집합과 교집합 벤 다이어그램">
+  <defs><clipPath id="clipA"><circle cx="260" cy="58" r="32"/></clipPath></defs>
+  <!-- 합집합: 두 원 모두 음영 -->
+  <rect x="6" y="8" width="160" height="100" fill="none" stroke="#bbb"/>
+  <circle cx="70" cy="58" r="32" fill="#cfe3f3"/><circle cx="102" cy="58" r="32" fill="#cfe3f3"/>
+  <circle cx="70" cy="58" r="32" fill="none" stroke="#1d6fb8" stroke-width="1.5"/>
+  <circle cx="102" cy="58" r="32" fill="none" stroke="#1d6fb8" stroke-width="1.5"/>
+  <text class="lbl" x="48" y="26">A</text><text class="lbl" x="124" y="26">B</text>
+  <text class="lbl b" x="86" y="120" text-anchor="middle">A∪B</text>
+  <!-- 교집합: 겹친 부분만 음영 (clip) -->
+  <rect x="196" y="8" width="160" height="100" fill="none" stroke="#bbb"/>
+  <circle cx="294" cy="58" r="32" fill="#cde7e2" clip-path="url(#clipA)"/>
+  <circle cx="260" cy="58" r="32" fill="none" stroke="#0f8a7d" stroke-width="1.5"/>
+  <circle cx="294" cy="58" r="32" fill="none" stroke="#0f8a7d" stroke-width="1.5"/>
+  <text class="lbl" x="238" y="26">A</text><text class="lbl" x="316" y="26">B</text>
+  <text class="lbl t" x="276" y="120" text-anchor="middle">A∩B</text>
+</svg>
+<figcaption>벤 다이어그램<span class="en">Venn diagram</span>. 사각형이 표본공간 $S$, 두 원이 사건 $A,B$. 왼쪽은 합(둘 다 음영), 오른쪽은 교(겹친 부분만).</figcaption>
+</figure>
+
+<div class="box ex">
+  <span class="tag">예 1.5–1.7</span>
+  <p><b>1.5</b> 주사위 $1$ 회, $S=\{1,2,3,4,5,6\}$. $A$=짝수$=\{2,4,6\}$, $B$=$3$의 배수$=\{3,6\}$ 면
+  $A\cap B=\{6\}$, $A\cup B=\{2,3,4,6\}$.</p>
+  <p><b>1.6</b> 동전 $1$ 회에서 앞면·뒷면은 동시에 날 수 없으므로 상호배반.</p>
+  <p><b>1.7</b> 주사위에서 ‘홀수’ 의 여사건은 ‘짝수’.</p>
+</div>
+
+<h2 class="sub">집합 항등식 — 성질</h2>
+<div class="box thm">
+  <span class="tag">성질</span><span class="title">드 모르간 법칙 <span class="en">De Morgan</span></span>
+  $$(A\cup B)^c=A^c\cap B^c,\qquad (A\cap B)^c=A^c\cup B^c.$$
+</div>
+<div class="box thm">
+  <span class="tag">성질</span><span class="title">분배법칙 <span class="en">distributive laws</span></span>
+  $$A\cap(B\cup C)=(A\cap B)\cup(A\cap C),\qquad A\cup(B\cap C)=(A\cup B)\cap(A\cup C).$$
+</div>
+<div class="note">
+  두 법칙 모두 벤 다이어그램으로 양변이 같은 영역임을 확인하거나, “원소 $x$ 가 좌변에 속한다 $\iff$ 우변에 속한다”
+  를 보여 증명한다. 여러 사건의 합·교를 다룰 때 반복적으로 쓰인다.
+</div>
+
+<nav class="pager">
+  <span class="spacer"></span>
+  <a class="next" href="1-2_probability-axioms.html">다음 →<small>1.2 확률의 정의</small></a>
+</nav>
+
+</body>
+</html>

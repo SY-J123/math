@@ -7,3 +7,7 @@ Desktop.ini
 # 교재 스캔 원본 — 저작권 보호를 위해 기본 제외.
 # 저장소를 private 로 전환한 뒤 포함하려면 아래 줄을 지운다.
 references/
+
+# 교과서 스캔 원본(저작권) — 노트 작성용 소스, 커밋 제외
+notes/**/ch01/2026*.jpg
+notes/**/*_scan*.jpg

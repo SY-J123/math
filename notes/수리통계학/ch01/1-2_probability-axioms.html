@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1장 · 1.2 확률의 정의</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">수리통계학 · 1장 확률이론</div>
+  <h1><span class="no">1.2</span>확률의 정의 <span class="en">definition of probability</span></h1>
+</header>
+
+<h2 class="sub">상대도수에 의한 정의</h2>
+<p>같은 실험을 $n$ 회 반복할 때 사건 $A$ 가 일어난 횟수를 $m$ 이라 하면, $A$ 의 <b>상대도수</b><span class="en">relative
+frequency</span>는 $m/n$ 이다. $n$ 이 커질수록 $m/n$ 이 일정한 값에 가까워진다는 통계적 규칙성에 근거하여
+폰 미제스<span class="en">Von Mises</span>는 확률을 그 극한으로 정의했다.</p>
+$$P(A)=\lim_{n\to\infty}\frac{m}{n}.$$
+
+<figure class="fig">
+<svg viewBox="0 0 320 150" role="img" aria-label="상대도수 m/n이 1/2로 수렴">
+  <line class="axis" x1="34" y1="120" x2="312" y2="120"/>
+  <line class="axis" x1="34" y1="124" x2="34" y2="16"/>
+  <line class="grid" x1="34" y1="60" x2="305" y2="60"/>
+  <text class="lbl" x="28" y="64" text-anchor="end">½</text>
+  <text class="lbl" x="28" y="24" text-anchor="end">1</text>
+  <polyline class="vec" points="40,30 70,95 100,50 130,75 160,55 190,65 220,58 250,61 280,59 305,60"/>
+  <text class="lbl" x="305" y="135" text-anchor="end">n →</text>
+  <text class="lbl b" x="150" y="30">m/n</text>
+</svg>
+<figcaption>$n$ 이 커지면 상대도수 $m/n$ 의 진동이 잦아들며 일정한 값(여기선 $\tfrac12$)으로 수렴한다.</figcaption>
+</figure>
+
+<h2 class="sub">공리적 정의 — 콜모고로프 <span class="en">Kolmogorov</span></h2>
+<p>상대도수 정의는 “극한이 존재하는가” 등을 따로 가정해야 한다. 콜모고로프는 확률을 사건(집합)에 대응하는
+<b>함수</b>로 보고, 그 함수가 만족해야 할 최소한의 규칙(공리)만 제시했다.</p>
+<div class="box def">
+  <span class="tag">확률공리 <span class="en">axioms of probability</span></span>
+  <p>표본공간 $S$ 의 사건들에 정의된 함수 $P$ 가 확률이려면:</p>
+  <ol class="props">
+    <li>임의의 사건 $A$ 에 대해 $P(A)\ge0$.</li>
+    <li>$P(S)=1$.</li>
+    <li>($\sigma$-가법성) 상호배반인 사건열 $A_1,A_2,\dots$ ($A_i\cap A_j=\varnothing,\ i\ne j$)에 대해
+    $\displaystyle P\Big(\bigcup_{i=1}^{\infty}A_i\Big)=\sum_{i=1}^{\infty}P(A_i)$.</li>
+  </ol>
+</div>
+
+<h2 class="sub">확률의 기본 성질 — 정리 1.1</h2>
+<div class="box thm">
+  <span class="tag">정리 1.1</span>
+  <p>두 사건 $A,B$ 에 대해 다음이 성립한다.</p>
+  <ol class="props">
+    <li>$P(A^c)=1-P(A)$</li>
+    <li>$P(\varnothing)=0$</li>
+    <li>$A\subset B$ 이면 $P(A)\le P(B)$</li>
+    <li>$P(A\cup B)=P(A)+P(B)-P(A\cap B)$</li>
+  </ol>
+</div>
+<div class="box prf">
+  <span class="tag">증명</span>
+  <ol>
+    <li><span class="step">(1)</span> $S=A\cup A^c$ 이고 $A\cap A^c=\varnothing$ 이므로 공리 (2),(3)에 의해
+    $1=P(S)=P(A)+P(A^c)$. 따라서 $P(A^c)=1-P(A)$.</li>
+    <li><span class="step">(2)</span> $\varnothing=S^c$ 이므로 (1)에 의해 $P(\varnothing)=P(S^c)=1-P(S)=1-1=0$.</li>
+    <li><span class="step">(3)</span> $A\subset B$ 이면 $B=A\cup(B\cap A^c)$ 이고 $A\cap(B\cap A^c)=\varnothing$ 이므로 공리(3)에 의해
+    $P(B)=P(A)+P(B\cap A^c)$. 공리(1)로 $P(B\cap A^c)\ge0$ 이니 $P(B)\ge P(A)$.</li>
+    <li><span class="step">(4)</span> $A\cup B=A\cup(B\cap A^c)$ 는 상호배반 분해라 $P(A\cup B)=P(A)+P(B\cap A^c)$.
+    또 $B=(A\cap B)\cup(B\cap A^c)$ 도 상호배반이라 $P(B\cap A^c)=P(B)-P(A\cap B)$. 대입하면
+    $P(A\cup B)=P(A)+P(B)-P(A\cap B)$.</li>
+  </ol>
+  <div class="qed">∎</div>
+</div>
+
+<h2 class="sub">세 사건으로의 확장</h2>
+<div class="box thm">
+  <span class="tag">성질</span><span class="title">포함–배제 (세 사건) <span class="en">inclusion–exclusion</span></span>
+  $$P(A\cup B\cup C)=P(A)+P(B)+P(C)-P(A\cap B)-P(A\cap C)-P(B\cap C)+P(A\cap B\cap C).$$
+</div>
+<div class="box prf">
+  <span class="tag">증명 (예 1.11)</span>
+  <p>$A\cup B$ 를 한 사건으로 보고 정리 1.1(4)를 두 번 쓴다.</p>
+  $$P((A\cup B)\cup C)=P(A\cup B)+P(C)-P((A\cup B)\cap C).$$
+  <p>$P(A\cup B)=P(A)+P(B)-P(A\cap B)$ 이고, 분배법칙으로 $(A\cup B)\cap C=(A\cap C)\cup(B\cap C)$ 이므로</p>
+  $$P((A\cup B)\cap C)=P(A\cap C)+P(B\cap C)-P(A\cap B\cap C).$$
+  <p>두 식을 대입·정리하면 위 등식을 얻는다.</p>
+  <div class="qed">∎</div>
+</div>
+
+<div class="box ex">
+  <span class="tag">예 1.8–1.10</span>
+  <p><b>1.8</b> 동전 $3$ 회, 각 결과 확률 $1/8$. ‘적어도 한 번 앞면’ $A$ 면 $P(A)=1-P(A^c)=1-\tfrac18=\tfrac78$.</p>
+  <p><b>1.9</b> 주사위, $A$=짝수, $B$=$3$의 배수: $P(A\cup B)=\tfrac36+\tfrac26-\tfrac16=\tfrac23$.</p>
+  <p><b>1.10</b> $P(A)=0.3$, $P(B)=0.27$, $P(A\cap B)=0.1$ 이면 $P(A\cup B)=0.3+0.27-0.1=0.47$.</p>
+</div>
+
+<nav class="pager">
+  <a href="1-1_sample-space-events.html">← 이전<small>1.1 표본공간과 사건</small></a>
+  <a class="next" href="1-3_conditional-probability.html">다음 →<small>1.3 조건부확률</small></a>
+</nav>
+
+</body>
+</html>
