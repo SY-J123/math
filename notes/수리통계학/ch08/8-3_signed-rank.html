@@ -49,6 +49,19 @@ $H_0:\mu=\mu_0$ 대 $H_1:\mu\gt\mu_0$ 를 본다.</p>
 <figcaption>거리로 순위를 매긴 뒤 <b>+ 부호가 붙은 것들의 순위만</b> 더한다. 큰 거리에 +가 몰리면 $W$ 가 커져 $\mu\gt\mu_0$ 의 증거가 된다.</figcaption>
 </figure>
 
+<div class="box def">
+  <span class="tag">다른 형태</span><span class="title">부호를 $\pm1$ 로 — $W^*=\sum t_iR_i$</span>
+  <p>$0/1$ 지시함수 $Z_i$ 대신 <b>부호 자체</b>를 $\pm1$ 로 쓰기도 한다.
+  $t_i=\begin{cases}+1&X_i-\mu_0\gt0\\[-1pt]-1&X_i-\mu_0\lt0\end{cases}\ (=2Z_i-1)$ 로 두면</p>
+  $$W^*=\sum_{i=1}^{n}t_iR_i=W^+-W^-\quad(\text{양의 순위합}-\text{음의 순위합}).$$
+  <p>$W^++W^-=\tfrac{n(n+1)}2$ 이므로 앞의 $W=W^+$ 와는</p>
+  $$W^*=2W-\frac{n(n+1)}2$$
+  <p>로 일대일 대응한다 — 둘은 표기만 다른 <b>같은 검정</b>이다($W$ 가 크다 $\iff$ $W^*$ 가 크다). $H_0$ 하에서 $t_i$ 가
+  $\pm1$ 을 각각 확률 $\tfrac12$ 로 독립으로 가지므로 $E[t_i]=0,\ Var[t_i]=1$ 이라</p>
+  $$E(W^*)=0,\qquad Var(W^*)=\sum_{i=1}^{n}i^2=\frac{n(n+1)(2n+1)}{6}.$$
+  <p style="margin-top:4px;">$0$ 을 중심으로 대칭이라 정규근사 때 다루기 편하다. ($W$ 의 평균·분산(8.15)과의 변환·유도는 연습 8.10.)</p>
+</div>
+
 <h2 class="sub">귀무분포 — 정리 8.3</h2>
 <p>$H_0$ 하에서 $n$ 개 순위의 부호 배열은 $2^n$ 가지이고 각각 확률 $1/2^n$ 로 동등하다.</p>
 <div class="box thm">
