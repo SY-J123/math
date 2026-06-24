@@ -65,6 +65,8 @@ $$H_0:\mu=\mu_0\quad\text{vs.}\quad H_1:\mu\gt\mu_0.\tag{8.6}$$
 $$R=\sum_{i=1}^{n}I\{X_i-\mu_0\ge0\}$$
 <p>는 성공확률 $\tfrac12$ 인 $n$ 개 베르누이의 합 — 즉 $R\sim B(n,\tfrac12)$.</p>
 $$P(R=r\mid H_0)=\binom{n}{r}\Big(\tfrac12\Big)^n,\quad r=0,1,\dots,n.\tag{8.7}$$
+<p>$R\sim B(n,\tfrac12)$ 이므로 이항분포의 평균·분산이 곧 $R$ 의 평균·분산이다:</p>
+$$E(R)=n\cdot\tfrac12=\frac n2,\qquad Var(R)=n\cdot\tfrac12\cdot\tfrac12=\frac n4.$$
 <figure class="fig">
 <svg viewBox="0 0 320 104" role="img" aria-label="부호검정: μ0 기준 +/- 부호 세기">
   <line class="aux" x1="170" y1="20" x2="170" y2="86"/>
@@ -89,7 +91,7 @@ $$\{R\le c_1\ \text{또는}\ R\ge c_2\},\quad P\{R\le c_1\mid H_0\}=P\{R\ge c_2\
   $$P(R\ge9\mid H_0)=\sum_{r=9}^{12}\binom{12}{r}\Big(\tfrac12\Big)^{12}=0.073.$$
   <p>유의수준 $0.05$ 에서 $H_0$ 는 기각되지 않는다.</p>
 </div>
-<p>표본이 크면 중심극한정리로 ($E(R)=\tfrac n2,\ Var(R)=\tfrac n4$)</p>
+<p>표본이 크면 위 평균·분산과 중심극한정리로</p>
 $$Z=\frac{R-n/2}{\sqrt{n/4}}\ \xrightarrow{\ \cdot\ }\ N(0,1)\tag{8.13}$$
 <p>로 근사 검정한다.</p>
 <div class="note">
