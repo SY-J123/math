@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1장 확률이론 · 강의 슬라이드</title>
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+  :root{ --ink:#16202c; --def:#1d6fb8; --thm:#0f8a7d; --muted:#8a96a3; --line:#d7dee6; }
+  *{ box-sizing:border-box; }
+  html{ scroll-snap-type:y mandatory; scroll-behavior:smooth; }
+  body{ margin:0; color:var(--ink);
+        font-family:"Malgun Gothic","Apple SD Gothic Neo",system-ui,sans-serif; }
+  .slide{ min-height:100vh; scroll-snap-align:start; display:flex; flex-direction:column;
+          padding:42px 60px 56px; border-bottom:1px solid #eef1f4; }
+  .topbar{ display:flex; justify-content:space-between; align-items:baseline;
+           color:var(--muted); font-size:0.82rem; letter-spacing:0.04em; }
+  h2{ font-size:1.7rem; margin:8px 0 16px; }
+  h2 .num{ color:var(--def); margin-right:10px; }
+  .stmt{ border-left:6px solid var(--def); background:#f2f8fc; border-radius:0 8px 8px 0;
+         padding:16px 22px; font-size:1.18rem; line-height:1.6; }
+  .stmt.thm{ border-color:var(--thm); background:#edf7f4; }
+  .stmt .lead{ font-weight:700; color:var(--def); margin-right:6px; }
+  .stmt.thm .lead{ color:var(--thm); }
+  .stmt ol{ margin:6px 0 0; padding-left:24px; } .stmt li{ margin:6px 0; }
+  .blank{ flex:1 1 0; min-height:130px; margin-top:18px; position:relative;
+          border:2px dashed #c6d0db; border-radius:10px; }
+  .blank::before{ content:attr(data-label); position:absolute; top:10px; left:16px;
+          font-size:0.82rem; font-weight:800; letter-spacing:0.08em; color:#aab4bf; }
+  /* 표지 */
+  .cover{ justify-content:center; align-items:center; text-align:center; }
+  .cover h1{ font-size:3rem; margin:0; }
+  .cover .sub{ color:var(--muted); font-size:1.2rem; margin-top:14px; }
+  .cover .hint{ margin-top:40px; color:#aab4bf; font-size:0.9rem; }
+  @media print{
+    html{ scroll-snap-type:none; }
+    .slide{ min-height:auto; height:96vh; page-break-after:always; border:none; }
+  }
+</style>
+</head>
+<body>
+
+<section class="slide cover">
+  <h1>1장 · 확률이론</h1>
+  <div class="sub">정의·정리 → 증명 → 연습문제</div>
+  <div class="hint">← → / Space 로 이동 · 인쇄하면 한 슬라이드 = 한 페이지</div>
+</section>
+
+<section class="slide">
+  <div class="topbar"><span>수리통계학 · 1장 확률이론</span><span>2 / 17</span></div>
+  <h2><span class="num">①</span>확률의 공리</h2>
+  <div class="stmt">
+    <span class="lead">공리.</span> 표본공간 $S$ 의 사건에 정의된 $P$ 가 확률이려면:
+    <ol>
+      <li>임의의 사건 $A$ 에 대해 $P(A)\ge0$</li>
+      <li>$P(S)=1$</li>
+      <li>상호배반인 $A_1,A_2,\dots$ ($A_i\cap A_j=\varnothing$) 에 대해 $\displaystyle P\Big(\bigcup_{i=1}^{\infty}A_i\Big)=\sum_{i=1}^{\infty}P(A_i)$</li>
+    </ol>
+  </div>
+  <div class="blank" data-label="연습문제"></div>
+</section>
+
+<section class="slide">
+  <div class="topbar"><span>수리통계학 · 1장 확률이론</span><span>3 / 17</span></div>
+  <h2><span class="num">②</span>확률의 성질 (정리 1.1)</h2>
+  <div class="stmt thm">
+    <span class="lead">정리.</span> 두 사건 $A,B$ 에 대해
+    <ol>
+      <li>$P(A^c)=1-P(A)$</li>
+      <li>$P(\varnothing)=0$</li>
+      <li>$A\subset B \Rightarrow P(A)\le P(B)$</li>
+      <li>$P(A\cup B)=P(A)+P(B)-P(A\cap B)$</li>
+    </ol>
+  </div>
+  <div class="blank" data-label="증명"></div>
+  <div class="blank" data-label="연습문제"></div>
+</section>
+
+<section class="slide">
+  <div class="topbar"><span>수리통계학 · 1장 확률이론</span><span>4 / 17</span></div>
+  <h2><span class="num">③</span>합집합의 확률 — $A\cup B\cup C$</h2>
+  <div class="stmt thm">
+    <span class="lead">정리.</span>
+    $$P(A\cup B\cup C)=P(A)+P(B)+P(C)-P(A\cap B)-P(A\cap C)-P(B\cap C)+P(A\cap B\cap C)$$
+  </div>
+  <div class="blank" data-label="증명"></div>
+  <div class="blank" data-label="연습문제"></div>
+</section>
+
+<section class="slide">
+  <div class="topbar"><span>수리통계학 · 1장 확률이론</span><span>5 / 17</span></div>
+  <h2><span class="num">④</span>$n$ 개 사건으로의 일반화 (포함–배제)</h2>
+  <div class="stmt thm">
+    <span class="lead">정리.</span>
+    $$P\Big(\bigcup_{i=1}^{n}A_i\Big)=\sum_{i}P(A_i)-\sum_{i\lt j}P(A_i\cap A_j)+\sum_{i\lt j\lt k}P(A_i\cap A_j\cap A_k)-\cdots+(-1)^{n-1}P\Big(\bigcap_{i=1}^{n}A_i\Big)$$
+  </div>
+  <div class="blank" data-label="증명 (수학적 귀납법)"></div>
+  <div class="blank" data-label="연습문제"></div>
+</section>
+
+<section class="slide">
+  <div class="topbar"><span>수리통계학 · 1장 확률이론</span><span>6 / 17</span></div>
+  <h2><span class="num">⑤</span>조건부확률</h2>
+  <div class="stmt">
+    <span class="lead">정의.</span> $P(B)\gt0$ 일 때, $B$ 가 일어났다는 조건하에서 $A$ 의 확률
+    $$P(A\mid B)=\frac{P(A\cap B)}{P(B)}$$
+  </div>
+  <div class="blank" data-label="연습문제"></div>
+</section>
+
+<section class="slide">
+  <div class="topbar"><span>수리통계학 · 1장 확률이론</span><span>7 / 17</span></div>
+  <h2><span class="num">⑥</span>조건부확률의 성질</h2>
+  <div class="stmt thm">
+    <span class="lead">정리.</span> $B$ 고정 시 $P(\cdot\mid B)$ 는 확률공리를 만족하며
+    <ol>
+      <li>$P(A^c\mid B)=1-P(A\mid B)$</li>
+      <li>$A_1\subset A_2 \Rightarrow P(A_1\mid B)\le P(A_2\mid B)$</li>
+      <li>$P(A_1\cup A_2\mid B)=P(A_1\mid B)+P(A_2\mid B)-P(A_1\cap A_2\mid B)$</li>
+    </ol>
+  </div>
+  <div class="blank" data-label="증명"></div>
+  <div class="blank" data-label="연습문제"></div>
+</section>
+
+<section class="slide">
+  <div class="topbar"><span>수리통계학 · 1장 확률이론</span><span>8 / 17</span></div>
+  <h2><span class="num">⑦</span>전확률 공식</h2>
+  <div class="stmt thm">
+    <span class="lead">정리.</span> $B_1,\dots,B_k$ 가 $S$ 의 분할(상호배반, $\bigcup B_i=S$)이면, 임의의 $A$ 에 대해
+    $$P(A)=\sum_{i=1}^{k}P(A\cap B_i)=\sum_{i=1}^{k}P(B_i)\,P(A\mid B_i)$$
+  </div>
+  <div class="blank" data-label="증명"></div>
+  <div class="blank" data-label="연습문제"></div>
+</section>
+
+<section class="slide">
+  <div class="topbar"><span>수리통계학 · 1장 확률이론</span><span>9 / 17</span></div>
+  <h2><span class="num">⑧</span>베이즈 정리</h2>
+  <div class="stmt thm">
+    <span class="lead">정리.</span> $B_1,\dots,B_k$ 가 $S$ 의 분할일 때
+    $$P(B_j\mid A)=\frac{P(B_j)\,P(A\mid B_j)}{\displaystyle\sum_{i=1}^{k}P(B_i)\,P(A\mid B_i)}$$
+  </div>
+  <div class="blank" data-label="증명"></div>
+  <div class="blank" data-label="연습문제"></div>
+</section>
+
+<section class="slide">
+  <div class="topbar"><span>수리통계학 · 1장 확률이론</span><span>10 / 17</span></div>
+  <h2><span class="num">⑨</span>곱셈공식</h2>
+  <div class="stmt thm">
+    <span class="lead">정리.</span> $P(A\cap B)=P(B)\,P(A\mid B)$, 일반적으로
+    $$P(A_1\cap\cdots\cap A_k)=P(A_1)\,P(A_2\mid A_1)\,P(A_3\mid A_1\cap A_2)\cdots P(A_k\mid A_1\cap\cdots\cap A_{k-1})$$
+  </div>
+  <div class="blank" data-label="증명"></div>
+  <div class="blank" data-label="연습문제"></div>
+</section>
+
+<section class="slide">
+  <div class="topbar"><span>수리통계학 · 1장 확률이론</span><span>11 / 17</span></div>
+  <h2><span class="num">⑩</span>독립의 정의</h2>
+  <div class="stmt">
+    <span class="lead">정의.</span> 두 사건 $A,B$ 가 다음을 만족하면 서로 <b>독립</b>이다.
+    $$P(A\cap B)=P(A)\,P(B)$$
+    ($P(B)\gt0$ 이면 $P(A\mid B)=P(A)$ 와 동치.)
+  </div>
+  <div class="blank" data-label="연습문제"></div>
+</section>
+
+<section class="slide">
+  <div class="topbar"><span>수리통계학 · 1장 확률이론</span><span>12 / 17</span></div>
+  <h2><span class="num">⑪</span>상호독립의 정의</h2>
+  <div class="stmt">
+    <span class="lead">정의.</span> $n$ 개 사건 $A_1,\dots,A_n$ 이 <b>상호독립</b>이라는 것은, $\{1,\dots,n\}$ 의 임의의 $k$ 개 첨자
+    $i_1\lt\cdots\lt i_k$ ($k=2,\dots,n$) 에 대해
+    $$P(A_{i_1}\cap\cdots\cap A_{i_k})=P(A_{i_1})\cdots P(A_{i_k})$$
+    가 <b>모두</b> 성립함을 뜻한다. (쌍별독립보다 강한 조건.)
+  </div>
+  <div class="blank" data-label="연습문제"></div>
+</section>
+
+<section class="slide">
+  <div class="topbar"><span>수리통계학 · 1장 확률이론</span><span>13 / 17</span></div>
+  <h2><span class="num">⑫</span>곱의 법칙</h2>
+  <div class="stmt">
+    <span class="lead">원리.</span> 사건 $A$ 가 일어나는 방법이 $m$ 가지, 이어서 $B$ 가 일어나는 방법이 $n$ 가지이면, $A,B$ 가 잇따라
+    일어나는 방법은 $m\times n$ 가지이다.
+  </div>
+  <div class="blank" data-label="연습문제"></div>
+</section>
+
+<section class="slide">
+  <div class="topbar"><span>수리통계학 · 1장 확률이론</span><span>14 / 17</span></div>
+  <h2><span class="num">⑬</span>순열</h2>
+  <div class="stmt">
+    <span class="lead">정의.</span> 서로 다른 $n$ 개에서 $r$ 개를 <b>순서 있게</b> 뽑는 방법의 수
+    $$_nP_r=n(n-1)\cdots(n-r+1)=\frac{n!}{(n-r)!}\qquad(0!=1)$$
+  </div>
+  <div class="blank" data-label="유도"></div>
+  <div class="blank" data-label="연습문제"></div>
+</section>
+
+<section class="slide">
+  <div class="topbar"><span>수리통계학 · 1장 확률이론</span><span>15 / 17</span></div>
+  <h2><span class="num">⑭</span>조합</h2>
+  <div class="stmt">
+    <span class="lead">정의.</span> 서로 다른 $n$ 개에서 <b>순서 없이</b> $r$ 개를 뽑는 방법의 수
+    $$\binom{n}{r}=\frac{_nP_r}{r!}=\frac{n!}{r!\,(n-r)!}\qquad\Big(\binom{n}{r}=\binom{n}{n-r}\Big)$$
+  </div>
+  <div class="blank" data-label="유도"></div>
+  <div class="blank" data-label="연습문제"></div>
+</section>
+
+<section class="slide">
+  <div class="topbar"><span>수리통계학 · 1장 확률이론</span><span>16 / 17</span></div>
+  <h2><span class="num">⑮</span>이항정리</h2>
+  <div class="stmt thm">
+    <span class="lead">정리.</span>
+    $$(a+b)^n=\sum_{k=0}^{n}\binom{n}{k}a^{k}b^{n-k}$$
+  </div>
+  <div class="blank" data-label="증명"></div>
+  <div class="blank" data-label="연습문제"></div>
+</section>
+
+<section class="slide">
+  <div class="topbar"><span>수리통계학 · 1장 확률이론</span><span>17 / 17</span></div>
+  <h2><span class="num">⑯</span>다항정리</h2>
+  <div class="stmt thm">
+    <span class="lead">정리.</span> 다항계수 $\dbinom{n}{r_1\,\cdots\,r_k}=\dfrac{n!}{r_1!\cdots r_k!}$ ($\sum r_i=n$) 에 대해
+    $$(a_1+\cdots+a_k)^n=\sum_{r_1+\cdots+r_k=n}\binom{n}{r_1\,\cdots\,r_k}a_1^{r_1}\cdots a_k^{r_k}$$
+  </div>
+  <div class="blank" data-label="증명"></div>
+  <div class="blank" data-label="연습문제"></div>
+</section>
+
+<script>
+  // ← → / Space 로 슬라이드 이동
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  function current(){
+    var y = window.scrollY + window.innerHeight/2;
+    for (var i=0;i<slides.length;i++){ if (slides[i].offsetTop+slides[i].offsetHeight > y) return i; }
+    return slides.length-1;
+  }
+  document.addEventListener('keydown', function(e){
+    if (e.key==='ArrowRight' || e.key==='PageDown' || e.key===' '){
+      e.preventDefault(); var n=Math.min(current()+1, slides.length-1); slides[n].scrollIntoView();
+    } else if (e.key==='ArrowLeft' || e.key==='PageUp'){
+      e.preventDefault(); var p=Math.max(current()-1, 0); slides[p].scrollIntoView();
+    }
+  });
+</script>
+
+</body>
+</html>
