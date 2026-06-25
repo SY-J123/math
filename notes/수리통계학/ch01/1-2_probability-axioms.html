@@ -114,16 +114,26 @@ $$P(A)=\lim_{n\to\infty}\frac{m}{n}.$$
   <p style="margin-top:4px;">즉 홀수 개 교집합은 더하고 짝수 개 교집합은 빼며, $m$ 개씩 고른 모든 교집합의 확률을 합한 항
   $\displaystyle\sum_{i_1\lt\cdots\lt i_m}P(A_{i_1}\cap\cdots\cap A_{i_m})$ 이 부호 $(-1)^{m-1}$ 로 들어간다.</p>
 </div>
-<div class="note">
-  증명은 $n$ 에 대한 수학적 귀납법: $n=2$ 는 정리 1.1(4), $n=3$ 은 위 예 1.11. 귀납단계에서는
-  $A_1\cup\cdots\cup A_{n-1}$ 을 한 사건으로 보고 정리 1.1(4)와 분배법칙을 적용한다(퀴즈 Q20 참고).
-</div>
-
-<div class="box ex">
-  <span class="tag">예 1.8–1.10</span>
-  <p><b>1.8</b> 동전 $3$ 회, 각 결과 확률 $1/8$. ‘적어도 한 번 앞면’ $A$ 면 $P(A)=1-P(A^c)=1-\tfrac18=\tfrac78$.</p>
-  <p><b>1.9</b> 주사위, $A$=짝수, $B$=$3$의 배수: $P(A\cup B)=\tfrac36+\tfrac26-\tfrac16=\tfrac23$.</p>
-  <p><b>1.10</b> $P(A)=0.3$, $P(B)=0.27$, $P(A\cap B)=0.1$ 이면 $P(A\cup B)=0.3+0.27-0.1=0.47$.</p>
+<div class="box prf">
+  <span class="tag">증명 ($n$ 에 대한 수학적 귀납법)</span>
+  <p><span class="step">기초.</span> $n=2$ 는 정리 1.1(4). ($n=3$ 은 위 예 1.11.)</p>
+  <p><span class="step">귀납가정.</span> $n-1$ 개 사건까지 일반식이 성립한다고 하자.</p>
+  <p><span class="step">귀납단계.</span> $B=\bigcup_{i=1}^{n-1}A_i$ 로 두면 정리 1.1(4)에 의해</p>
+  $$P\Big(\bigcup_{i=1}^{n}A_i\Big)=P(B\cup A_n)=P(B)+P(A_n)-P(B\cap A_n).$$
+  <p>분배법칙으로 $B\cap A_n=\bigcup_{i=1}^{n-1}(A_i\cap A_n)$ 이다. $P(B)$ 에는 사건 $A_1,\dots,A_{n-1}$ 에 대한 귀납가정을,
+  $P(B\cap A_n)$ 에는 $n-1$ 개 사건 $A_i\cap A_n$ 에 대한 귀납가정을 적용한다. 이때
+  $\bigcap_{i\in T}(A_i\cap A_n)=\big(\bigcap_{i\in T}A_i\big)\cap A_n$ 을 쓴다.</p>
+  <p>이제 공집합이 아닌 각 첨자집합 $S\subseteq\{1,\dots,n\}$ 이 우변에 어떤 부호로 나타나는지 따진다. 교집합 $\bigcap_{i\in S}A_i$ 의 항은:</p>
+  <ol>
+    <li><span class="step">$n\notin S$</span> — $P(B)$ 의 전개에서 그대로 $(-1)^{|S|-1}P\big(\bigcap_{i\in S}A_i\big)$.</li>
+    <li><span class="step">$S=\{n\}$</span> — $+P(A_n)$ 항, 부호 $(-1)^{1-1}=+$.</li>
+    <li><span class="step">$n\in S,\ |S|\ge2$</span> ($S=T\cup\{n\}$, $\varnothing\ne T\subseteq\{1,\dots,n-1\}$) — $-P(B\cap A_n)$ 의 전개에서
+    $-(-1)^{|T|-1}P\big(\bigcap_{i\in S}A_i\big)=(-1)^{|T|}P\big(\bigcap_{i\in S}A_i\big)=(-1)^{|S|-1}P\big(\bigcap_{i\in S}A_i\big)$
+    ($\because |S|=|T|+1$).</li>
+  </ol>
+  <p>세 경우가 $\{1,\dots,n\}$ 의 모든 공집합 아닌 부분집합을 빠짐없이·중복없이 덮고, 각 $S$ 가 부호 $(-1)^{|S|-1}$ 로
+  정확히 한 번 나타나므로 $n$ 에서도 일반식이 성립한다.</p>
+  <div class="qed">∎</div>
 </div>
 
 <nav class="pager">
