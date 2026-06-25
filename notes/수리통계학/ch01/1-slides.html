@@ -29,10 +29,9 @@
   .stmt .lead{ font-weight:700; color:var(--def); margin-right:6px; }
   .stmt.thm .lead{ color:var(--thm); }
   .stmt ol{ margin:6px 0 0; padding-left:24px; } .stmt li{ margin:6px 0; }
-  .blank{ flex:1 1 0; min-height:130px; margin-top:18px; position:relative;
-          border:2px dashed #c6d0db; border-radius:10px; }
-  .blank::before{ content:attr(data-label); position:absolute; top:10px; left:16px;
-          font-size:0.82rem; font-weight:800; letter-spacing:0.08em; color:#aab4bf; }
+  .blank{ flex:1 1 0; min-height:140px; margin-top:26px; }
+  .blank::before{ content:attr(data-label); display:block;
+          font-size:1.05rem; font-weight:800; letter-spacing:0.02em; color:var(--ink); }
   /* 표지 */
   .cover{ justify-content:center; align-items:center; text-align:center; }
   .cover h1{ font-size:3rem; margin:0; }
