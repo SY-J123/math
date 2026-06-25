@@ -123,12 +123,15 @@
   </details>
 </div>
 <div class="box exr">
-  <span class="tag">Q12 (증명)</span>
-  <p>$B$ 를 고정한 조건부확률 $P(\cdot\mid B)$ 가 가법성(공리 3)을 만족함을 보여라.</p>
+  <span class="tag">Q12 (증명+진술)</span>
+  <p>$B$ 를 고정한 조건부확률 $P(\cdot\mid B)$ 가 확률공리를 만족함을 보이고(특히 가법성), 그로부터 따라오는
+  조건부확률의 성질들을 쓰라.</p>
   <details class="hint"><summary>정답 보기</summary>
-  <p>$A_1\cap A_2=\varnothing$ 이면 $(A_1\cap B)\cap(A_2\cap B)=\varnothing$ 이므로
+  <p><b>가법성:</b> $A_1\cap A_2=\varnothing$ 이면 $(A_1\cap B)\cap(A_2\cap B)=\varnothing$ 이므로
   $P(A_1\cup A_2\mid B)=\dfrac{P[(A_1\cap B)\cup(A_2\cap B)]}{P(B)}=\dfrac{P(A_1\cap B)+P(A_2\cap B)}{P(B)}
-  =P(A_1\mid B)+P(A_2\mid B)$. (또 $P(\cdot\mid B)\ge0$, $P(S\mid B)=1$ 도 정의에서 성립.)</p>
+  =P(A_1\mid B)+P(A_2\mid B)$. 또 $P(\cdot\mid B)\ge0$, $P(S\mid B)=1$ 도 정의에서 성립 → 세 공리 만족.</p>
+  <p><b>따름 성질</b>(정리 1.1을 그대로 적용): $P(A^c\mid B)=1-P(A\mid B)$; &nbsp;$A_1\subset A_2\Rightarrow P(A_1\mid B)\le P(A_2\mid B)$;
+  &nbsp;$P(A_1\cup A_2\mid B)=P(A_1\mid B)+P(A_2\mid B)-P(A_1\cap A_2\mid B)$.</p>
   </details>
 </div>
 <div class="box exr">
