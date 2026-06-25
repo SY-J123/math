@@ -46,12 +46,18 @@
 <div class="box thm">
   <span class="tag">이항정리 <span class="en">binomial theorem</span></span>
   $$(a+b)^n=\sum_{k=0}^{n}\binom{n}{k}a^{k}b^{n-k}.$$
+  <p style="margin-top:4px;"><b>유도:</b> $(a+b)^n=\underbrace{(a+b)(a+b)\cdots(a+b)}_{n\text{개}}$ 를 펼치면, 각 괄호에서 $a$ 나 $b$ 를
+  하나씩 골라 곱한 항들의 합이다. $a^{k}b^{n-k}$ 꼴이 나오려면 $n$ 개 괄호 중 $a$ 를 고를 $k$ 개를 정하면 되므로,
+  그런 항이 $\binom{n}{k}$ 개 생긴다 — 그래서 계수가 $\binom{n}{k}$.</p>
   <p style="margin-top:4px;">$a=b=1$ 을 넣으면 $\displaystyle\sum_{k=0}^{n}\binom{n}{k}=2^n$ — $n$ 개 원소 집합의 부분집합 개수와 일치.</p>
 </div>
 <div class="box thm">
   <span class="tag">다항정리 <span class="en">multinomial theorem</span></span>
   <p>다항계수 $\dbinom{n}{r_1\,r_2\,\cdots\,r_k}=\dfrac{n!}{r_1!\,r_2!\cdots r_k!}$ ($r_1+\cdots+r_k=n$)에 대해</p>
   $$(a_1+a_2+\cdots+a_k)^n=\sum_{r_1+\cdots+r_k=n}\binom{n}{r_1\,r_2\,\cdots\,r_k}a_1^{r_1}a_2^{r_2}\cdots a_k^{r_k}.$$
+  <p style="margin-top:4px;"><b>유도:</b> 마찬가지로 $n$ 개 괄호에서 각각 $a_1,\dots,a_k$ 중 하나를 고른다. $a_1^{r_1}\cdots a_k^{r_k}$ 항은
+  $n$ 개 괄호를 $a_1$ 용 $r_1$ 개, $\dots$, $a_k$ 용 $r_k$ 개로 나눠 배정하는 경우의 수만큼 생기고, 그 수가 바로
+  다항계수 $\dfrac{n!}{r_1!\cdots r_k!}$ 이다. (이항정리는 $k=2$ 인 특수한 경우.)</p>
 </div>
 
 <h2 class="sub">복원추출과 비복원추출</h2>
