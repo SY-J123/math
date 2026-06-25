@@ -107,6 +107,18 @@ $$P(A)=\lim_{n\to\infty}\frac{m}{n}.$$
   <div class="qed">∎</div>
 </div>
 
+<div class="box thm">
+  <span class="tag">성질</span><span class="title">$n$ 개 사건으로의 일반화 <span class="en">inclusion–exclusion</span></span>
+  <p>같은 논법을 반복하면 $n$ 개 사건 $A_1,\dots,A_n$ 에 대해</p>
+  $$P\Big(\bigcup_{i=1}^{n}A_i\Big)=\sum_{i}P(A_i)-\sum_{i\lt j}P(A_i\cap A_j)+\sum_{i\lt j\lt k}P(A_i\cap A_j\cap A_k)-\cdots+(-1)^{n-1}P\Big(\bigcap_{i=1}^{n}A_i\Big).$$
+  <p style="margin-top:4px;">즉 홀수 개 교집합은 더하고 짝수 개 교집합은 빼며, $m$ 개씩 고른 모든 교집합의 확률을 합한 항
+  $\displaystyle\sum_{i_1\lt\cdots\lt i_m}P(A_{i_1}\cap\cdots\cap A_{i_m})$ 이 부호 $(-1)^{m-1}$ 로 들어간다.</p>
+</div>
+<div class="note">
+  증명은 $n$ 에 대한 수학적 귀납법: $n=2$ 는 정리 1.1(4), $n=3$ 은 위 예 1.11. 귀납단계에서는
+  $A_1\cup\cdots\cup A_{n-1}$ 을 한 사건으로 보고 정리 1.1(4)와 분배법칙을 적용한다(퀴즈 Q20 참고).
+</div>
+
 <div class="box ex">
   <span class="tag">예 1.8–1.10</span>
   <p><b>1.8</b> 동전 $3$ 회, 각 결과 확률 $1/8$. ‘적어도 한 번 앞면’ $A$ 면 $P(A)=1-P(A^c)=1-\tfrac18=\tfrac78$.</p>
