@@ -50,7 +50,7 @@
   </details>
 </div>
 
-<h2 class="sub">B. 확률의 공리와 기본 성질 (1.2)</h2>
+<h2 class="sub">B. 확률의 공리와 성질 (1.2)</h2>
 
 <div class="box exr">
   <span class="tag">Q4 (진술)</span>
@@ -70,7 +70,7 @@
 </div>
 <div class="box exr">
   <span class="tag">Q6 (증명)</span>
-  <p>$A\subset B$ 이면 $P(A)\le P(B)$ 임을 보여라.</p>
+  <p>$A\subset B$ 이면 $P(A)\le P(B)$ 임을 보여라(단조성).</p>
   <details class="hint"><summary>정답 보기</summary>
   <p>$A\subset B$ 이면 $B=A\cup(B\cap A^c)$ 이고 $A\cap(B\cap A^c)=\varnothing$ 이라 공리(3)으로
   $P(B)=P(A)+P(B\cap A^c)$. 공리(1)로 $P(B\cap A^c)\ge0$ 이므로 $P(B)\ge P(A)$.</p>
@@ -78,7 +78,7 @@
 </div>
 <div class="box exr">
   <span class="tag">Q7 (증명)</span>
-  <p>$P(A\cup B)=P(A)+P(B)-P(A\cap B)$ 가 참임을 보여라.</p>
+  <p>$P(A\cup B)=P(A)+P(B)-P(A\cap B)$ 가 참임을 보여라(덧셈법칙).</p>
   <details class="hint"><summary>정답 보기</summary>
   <p>$A\cup B=A\cup(B\cap A^c)$ (상호배반)이라 $P(A\cup B)=P(A)+P(B\cap A^c)$. 또
   $B=(A\cap B)\cup(B\cap A^c)$ (상호배반)이라 $P(B\cap A^c)=P(B)-P(A\cap B)$. 대입하면
@@ -87,6 +87,22 @@
 </div>
 <div class="box exr">
   <span class="tag">Q8 (증명)</span>
+  <p>확률공리와 정리 1.1만으로 임의의 사건 $A$ 에 대해 $0\le P(A)\le 1$ 임을 보여라.</p>
+  <details class="hint"><summary>정답 보기</summary>
+  <p>$\varnothing\subset A\subset S$ 이다. 단조성(Q6)을 적용하면 $P(\varnothing)\le P(A)\le P(S)$, 즉
+  $0\le P(A)\le 1$ ($\because P(\varnothing)=0,\ P(S)=1$).</p>
+  </details>
+</div>
+<div class="box exr">
+  <span class="tag">Q9 (증명)</span>
+  <p>차의 확률 $P(A\cap B^c)=P(A)-P(A\cap B)$ 가 참임을 보여라.</p>
+  <details class="hint"><summary>정답 보기</summary>
+  <p>$A=(A\cap B)\cup(A\cap B^c)$ 는 상호배반 분해이므로 공리(3)으로 $P(A)=P(A\cap B)+P(A\cap B^c)$.
+  이항하면 $P(A\cap B^c)=P(A)-P(A\cap B)$. (특히 $P(A\cup B)\le P(A)+P(B)$ 인 부울 부등식도 덧셈법칙에서 따라온다.)</p>
+  </details>
+</div>
+<div class="box exr">
+  <span class="tag">Q10 (증명)</span>
   <p>세 사건의 포함–배제 공식을 쓰고, 정리 1.1(4)로부터 유도하라.</p>
   <details class="hint"><summary>정답 보기</summary>
   $$P(A\cup B\cup C)=P(A)+P(B)+P(C)-P(A\cap B)-P(A\cap C)-P(B\cap C)+P(A\cap B\cap C).$$
@@ -99,7 +115,7 @@
 <h2 class="sub">C. 조건부확률·전확률·베이즈·독립 (1.3)</h2>
 
 <div class="box exr">
-  <span class="tag">Q9 (진술)</span>
+  <span class="tag">Q11 (진술)</span>
   <p>조건부확률 $P(A\mid B)$ 의 정의와, 곱셈정리(2개 및 $k$ 개)를 쓰라.</p>
   <details class="hint"><summary>정답 보기</summary>
   <p>$P(B)\gt0$ 일 때 $P(A\mid B)=\dfrac{P(A\cap B)}{P(B)}$. 곱셈정리: $P(A\cap B)=P(B)P(A\mid B)$, 일반적으로
@@ -107,7 +123,7 @@
   </details>
 </div>
 <div class="box exr">
-  <span class="tag">Q10 (증명)</span>
+  <span class="tag">Q12 (증명)</span>
   <p>$B$ 를 고정한 조건부확률 $P(\cdot\mid B)$ 가 가법성(공리 3)을 만족함을 보여라.</p>
   <details class="hint"><summary>정답 보기</summary>
   <p>$A_1\cap A_2=\varnothing$ 이면 $(A_1\cap B)\cap(A_2\cap B)=\varnothing$ 이므로
@@ -116,7 +132,7 @@
   </details>
 </div>
 <div class="box exr">
-  <span class="tag">Q11 (진술+증명)</span>
+  <span class="tag">Q13 (진술+증명)</span>
   <p><b>전확률 공식이 무엇인가?</b> 진술하고 증명하라.</p>
   <details class="hint"><summary>정답 보기</summary>
   <p><b>진술:</b> $B_1,\dots,B_k$ 가 $S$ 의 분할(상호배반·합집합 $=S$)이면 임의의 $A$ 에 대해
@@ -126,7 +142,7 @@
   </details>
 </div>
 <div class="box exr">
-  <span class="tag">Q12 (진술+증명)</span>
+  <span class="tag">Q14 (진술+증명)</span>
   <p>베이즈 정리를 진술하고 증명하라.</p>
   <details class="hint"><summary>정답 보기</summary>
   <p><b>진술:</b> $B_1,\dots,B_k$ 가 $S$ 의 분할일 때
@@ -136,7 +152,7 @@
   </details>
 </div>
 <div class="box exr">
-  <span class="tag">Q13 (진술)</span>
+  <span class="tag">Q15 (진술)</span>
   <p>두 사건의 독립과 $n$ 개 사건의 상호독립을 정의하라. 쌍별독립과의 차이는?</p>
   <details class="hint"><summary>정답 보기</summary>
   <p><b>독립:</b> $P(A\cap B)=P(A)P(B)$. <b>상호독립:</b> 임의의 $k$ 개 첨자에 대해
@@ -148,7 +164,7 @@
 <h2 class="sub">D. 경우의 수 (1.4)</h2>
 
 <div class="box exr">
-  <span class="tag">Q14 (진술)</span>
+  <span class="tag">Q16 (진술)</span>
   <p>곱의 법칙, 순열 $_nP_r$, 조합 $\binom nr$ 의 공식을 쓰라.</p>
   <details class="hint"><summary>정답 보기</summary>
   <p>곱의 법칙: $m$ 가지·$n$ 가지 → $m\times n$. $_nP_r=\dfrac{n!}{(n-r)!}$,
@@ -156,7 +172,7 @@
   </details>
 </div>
 <div class="box exr">
-  <span class="tag">Q15 (진술+증명)</span>
+  <span class="tag">Q17 (진술+증명)</span>
   <p>이항정리를 쓰고, 그로부터 $\sum_{k=0}^n\binom nk=2^n$ 을 보여라. 다항정리도 진술하라.</p>
   <details class="hint"><summary>정답 보기</summary>
   <p>$(a+b)^n=\sum_{k=0}^n\binom nk a^k b^{n-k}$. $a=b=1$ 대입 → $2^n=\sum_{k=0}^n\binom nk$.
@@ -168,7 +184,7 @@
 <h2 class="sub">E. 심화 — 부등식과 항등식 (연습문제)</h2>
 
 <div class="box exr">
-  <span class="tag">Q16 (증명)</span>
+  <span class="tag">Q18 (증명)</span>
   <p><b>부울 부등식</b><span class="en">Boole</span> $P\big(\bigcup_{i=1}^\infty A_i\big)\le\sum_{i=1}^\infty P(A_i)$ 을 보여라.</p>
   <details class="hint"><summary>정답 보기</summary>
   <p>상호배반화: $B_1=A_1$, $B_k=A_k\cap(A_1\cup\cdots\cup A_{k-1})^c$ 로 두면 $B_k$ 들은 상호배반,
@@ -177,7 +193,7 @@
   </details>
 </div>
 <div class="box exr">
-  <span class="tag">Q17 (증명)</span>
+  <span class="tag">Q19 (증명)</span>
   <p><b>본페로니 부등식</b><span class="en">Bonferroni</span> $P\big(\bigcap_{i=1}^k A_i\big)\ge 1-\sum_{i=1}^k P(A_i^c)$ 을 보여라.</p>
   <details class="hint"><summary>정답 보기</summary>
   <p>드 모르간으로 $\big(\bigcap_i A_i\big)^c=\bigcup_i A_i^c$. 그러므로
@@ -185,7 +201,7 @@
   </details>
 </div>
 <div class="box exr">
-  <span class="tag">Q18 (진술)</span>
+  <span class="tag">Q20 (진술)</span>
   <p>$k$ 개 사건에 대한 일반 포함–배제 공식을 쓰라.</p>
   <details class="hint"><summary>정답 보기</summary>
   $$P\Big(\bigcup_{i=1}^k A_i\Big)=\sum_i P(A_i)-\sum_{i\lt j}P(A_i\cap A_j)+\cdots+(-1)^{k-1}P\Big(\bigcap_{i=1}^k A_i\Big).$$
@@ -193,7 +209,7 @@
   </details>
 </div>
 <div class="box exr">
-  <span class="tag">Q19 (증명)</span>
+  <span class="tag">Q21 (증명)</span>
   <p>$\dbinom nr=\dbinom n{n-r}$ 와 파스칼 항등식 $\dbinom nr=\dbinom{n-1}{r-1}+\dbinom{n-1}{r}$ 를 보여라.</p>
   <details class="hint"><summary>정답 보기</summary>
   <p><b>대칭:</b> $r$ 개를 ‘뽑는’ 것은 $n-r$ 개를 ‘남기는’ 것과 일대일 대응 → 같다 (또는 $\frac{n!}{r!(n-r)!}$ 의 분모 대칭).</p>

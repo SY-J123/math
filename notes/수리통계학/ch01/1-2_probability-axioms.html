@@ -81,6 +81,17 @@ $$P(A)=\lim_{n\to\infty}\frac{m}{n}.$$
   <div class="qed">∎</div>
 </div>
 
+<div class="box thm">
+  <span class="tag">성질</span><span class="title">정리 1.1에서 따라오는 확률의 성질</span>
+  <ol class="props">
+    <li><b>$0\le P(A)\le 1$</b> — $\varnothing\subset A\subset S$ 에 단조성 (3)을 적용하면
+    $0=P(\varnothing)\le P(A)\le P(S)=1$.</li>
+    <li><b>차의 확률</b> $P(A\cap B^c)=P(A)-P(A\cap B)$ — $A=(A\cap B)\cup(A\cap B^c)$ 가 상호배반 분해이므로
+    $P(A)=P(A\cap B)+P(A\cap B^c)$ 에서.</li>
+    <li><b>부울 부등식</b><span class="en">Boole</span> $P(A\cup B)\le P(A)+P(B)$ — 성질 (4)에서 $P(A\cap B)\ge0$ 이므로.</li>
+  </ol>
+</div>
+
 <h2 class="sub">세 사건으로의 확장</h2>
 <div class="box thm">
   <span class="tag">성질</span><span class="title">포함–배제 (세 사건) <span class="en">inclusion–exclusion</span></span>
