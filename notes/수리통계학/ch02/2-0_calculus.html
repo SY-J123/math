@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2장 · 미적분 도구</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">수리통계학 · 2장 확률변수</div>
+  <h1><span class="no">2.0</span>이 장을 위한 미적분 도구 <span class="en">calculus toolkit</span></h1>
+</header>
+
+<p>2장에서 밀도함수의 적분, 기댓값, 감마·정규분포, 적률생성함수를 다루려면 몇 가지 미적분 도구가 필요하다.
+엄밀한 증명보다 <b>왜 그렇게 되는지</b> 와 <b>계산 예</b> 위주로 가볍게 정리한다.</p>
+
+<h2 class="sub">지수함수 <span class="en">exponential</span></h2>
+<div class="box def">
+  <span class="tag">$e^x$</span>
+  <p>$e^x=\displaystyle\lim_{n\to\infty}\Big(1+\frac{x}{n}\Big)^n=\sum_{k=0}^{\infty}\frac{x^k}{k!}$, &nbsp;
+  $(e^{ax})'=a\,e^{ax}$, &nbsp;$\displaystyle\int e^{ax}\,dx=\frac{1}{a}e^{ax}$.</p>
+</div>
+<div class="box ex">
+  <span class="tag">예</span>
+  <p>$\displaystyle\int_0^\infty e^{-x/\theta}\,dx=\big[-\theta e^{-x/\theta}\big]_0^\infty=\theta$. (포아송 근사에서 $(1-\tfrac{\lambda}{n})^n\to e^{-\lambda}$ 도 위 극한 정의에서 나온다.)</p>
+</div>
+
+<h2 class="sub">미적분의 기본정리 <span class="en">FTC</span></h2>
+<div class="box thm">
+  <span class="tag">FTC</span>
+  $$\frac{d}{dx}\int_a^x f(t)\,dt=f(x).$$
+  <p>그래서 연속형에서 cdf $F(x)=\int_{-\infty}^x f$ 를 미분하면 밀도함수 $f$ 가 된다(정리 2.2).</p>
+</div>
+
+<h2 class="sub">부분적분 <span class="en">integration by parts</span></h2>
+<div class="box thm">
+  <span class="tag">공식</span>
+  $$\int u\,dv = uv-\int v\,du.$$
+</div>
+<div class="box ex">
+  <span class="tag">예 — $\int_0^\infty x^n e^{-x}dx=n!$</span>
+  <p>$u=x,\ dv=e^{-x}dx$ 로 두면 $\displaystyle\int_0^\infty x e^{-x}dx=\big[-xe^{-x}\big]_0^\infty+\int_0^\infty e^{-x}dx=0+1=1$.
+  같은 방법을 반복하면 $\int_0^\infty x^n e^{-x}dx=n!$ — 감마함수·여러 분포의 적률 계산의 핵심 기법이다.</p>
+</div>
+
+<h2 class="sub">이상적분과 감마함수 <span class="en">gamma function</span></h2>
+<div class="box def">
+  <span class="tag">정의</span>
+  $$\Gamma(k)=\int_0^\infty t^{k-1}e^{-t}\,dt\qquad(k\gt0).$$
+</div>
+<div class="box thm">
+  <span class="tag">성질</span>
+  <p>(1) $\Gamma(k)=(k-1)\,\Gamma(k-1)$, &nbsp;(2) $\Gamma(n)=(n-1)!$ ($n$ 자연수), &nbsp;(3) $\Gamma(\tfrac12)=\sqrt\pi$.</p>
+</div>
+<div class="box prf">
+  <span class="tag">증명 (1)·(2)</span>
+  <p>$\Gamma(k)=\int_0^\infty t^{k-1}e^{-t}dt$ 에 부분적분($u=t^{k-1},\ dv=e^{-t}dt$):
+  $\Gamma(k)=\big[-t^{k-1}e^{-t}\big]_0^\infty+(k-1)\int_0^\infty t^{k-2}e^{-t}dt=(k-1)\Gamma(k-1)$.
+  $\Gamma(1)=\int_0^\infty e^{-t}dt=1$ 이므로 $\Gamma(n)=(n-1)(n-2)\cdots1=(n-1)!$.
+  (3)은 아래 가우스 적분에서 $\Gamma(\tfrac12)=\int_0^\infty t^{-1/2}e^{-t}dt=\sqrt\pi$.</p>
+  <div class="qed">∎</div>
+</div>
+<div class="note">
+  베타함수 $B(a,b)=\displaystyle\int_0^1 x^{a-1}(1-x)^{b-1}dx=\dfrac{\Gamma(a)\Gamma(b)}{\Gamma(a+b)}$ — 베타분포의 정규화 상수다.
+</div>
+
+<h2 class="sub">가우스 적분 <span class="en">Gaussian integral</span></h2>
+<div class="box thm">
+  <span class="tag">정규분포의 정규화</span>
+  $$\int_{-\infty}^{\infty}e^{-x^2/2}\,dx=\sqrt{2\pi}.$$
+</div>
+<div class="box prf">
+  <span class="tag">증명 (극좌표)</span>
+  <p>$I=\int_{-\infty}^\infty e^{-x^2/2}dx$ 라 하면 $I^2=\iint e^{-(x^2+y^2)/2}dx\,dy$. 극좌표 $x=r\cos\theta,\ y=r\sin\theta$ 로 바꾸면
+  $I^2=\int_0^{2\pi}\!\!\int_0^\infty e^{-r^2/2}r\,dr\,d\theta=2\pi\big[-e^{-r^2/2}\big]_0^\infty=2\pi$. 따라서 $I=\sqrt{2\pi}$.
+  이로써 $\frac{1}{\sqrt{2\pi}\sigma}e^{-(x-\mu)^2/2\sigma^2}$ 의 전체 적분이 $1$ 임을 안다.</p>
+  <div class="qed">∎</div>
+</div>
+
+<h2 class="sub">급수 <span class="en">series</span></h2>
+<div class="box thm">
+  <span class="tag">기하급수·지수급수</span>
+  $$\sum_{n=0}^{\infty}r^n=\frac{1}{1-r}\ (|r|\lt1),\qquad \sum_{n=1}^{\infty}n\,r^{n-1}=\frac{1}{(1-r)^2},\qquad e^x=\sum_{n=0}^{\infty}\frac{x^n}{n!}.$$
+  <p>두 번째 식은 첫 식을 $r$ 로 미분해 얻는다.</p>
+</div>
+<div class="box ex">
+  <span class="tag">예 — 기하분포의 평균</span>
+  <p>$X\sim\text{GEO}(p)$ ($q=1-p$): $E(X)=\sum_{x=1}^\infty x\,p\,q^{x-1}=p\sum_{x=1}^\infty x q^{x-1}=p\cdot\dfrac{1}{(1-q)^2}=\dfrac{p}{p^2}=\dfrac1p$.</p>
+</div>
+
+<h2 class="sub">테일러 급수 <span class="en">Taylor series</span></h2>
+<div class="box def">
+  <span class="tag">정의</span>
+  <p>$f$ 가 $a$ 근방에서 충분히 매끄러우면</p>
+  $$f(x)=\sum_{n=0}^{\infty}\frac{f^{(n)}(a)}{n!}(x-a)^n
+  =f(a)+f'(a)(x-a)+\frac{f''(a)}{2!}(x-a)^2+\cdots$$
+  <p>($a=0$ 일 때를 매클로린 급수라 한다.)</p>
+</div>
+<div class="box ex">
+  <span class="tag">자주 쓰는 전개 ($a=0$)</span>
+  $$e^x=\sum_{n\ge0}\frac{x^n}{n!},\quad \frac{1}{1-x}=\sum_{n\ge0}x^n,\quad \ln(1+x)=\sum_{n\ge1}\frac{(-1)^{n-1}}{n}x^n,\quad (1+x)^\alpha=\sum_{n\ge0}\binom{\alpha}{n}x^n.$$
+</div>
+<div class="note">
+  <b>적률생성함수와의 연결:</b> $M_X(t)=E(e^{tX})=E\Big(\sum_r\dfrac{(tX)^r}{r!}\Big)=\sum_r\dfrac{t^r}{r!}E(X^r)$.
+  이 테일러 전개의 $t^r$ 계수가 $\dfrac{E(X^r)}{r!}$ 라서 $M_X^{(r)}(0)=E(X^r)$ (정리 2.27)이 나온다. 확률생성함수도 같은 원리($s^j$ 계수 $=P(X=j)$).
+</div>
+
+<h2 class="sub">다변수 변수변환 <span class="en">change of variables</span></h2>
+<div class="box thm">
+  <span class="tag">야코비안</span>
+  <p>$(x,y)\to(u,v)$ 일대일 변환에서</p>
+  $$\iint_R f(x,y)\,dx\,dy=\iint_{R'} f\big(x(u,v),y(u,v)\big)\,|J|\,du\,dv,\qquad J=\det\frac{\partial(x,y)}{\partial(u,v)}.$$
+  <p>$2.7$ 절의 결합변환(정리 2.25)에서 밀도함수에 $|J|$ 가 곱해지는 이유다.</p>
+</div>
+
+<nav class="pager">
+  <span class="spacer"></span>
+  <a class="next" href="2-1_random-variable.html">다음 →<small>2.1 확률변수의 정의</small></a>
+</nav>
+
+</body>
+</html>
