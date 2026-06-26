@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>2장 · 미적분 도구</title>
+<title>0장 · 미적분 도구</title>
 <link rel="stylesheet" href="../../../assets/note.css">
 <script>
   MathJax = {
@@ -17,12 +17,12 @@
 
 <header class="doc">
   <a class="home" href="../../../index.html">⌂ 홈</a>
-  <div class="ch">수리통계학 · 2장 확률변수</div>
-  <h1><span class="no">2.0</span>이 장을 위한 미적분 도구 <span class="en">calculus toolkit</span></h1>
+  <div class="ch">수리통계학 · 0장 기초 지식</div>
+  <h1><span class="no">0.1</span>미적분 도구 <span class="en">calculus toolkit</span></h1>
 </header>
 
-<p>2장에서 밀도함수의 적분, 기댓값, 감마·정규분포, 적률생성함수를 다루려면 몇 가지 미적분 도구가 필요하다.
-엄밀한 증명보다 <b>왜 그렇게 되는지</b> 와 <b>계산 예</b> 위주로 가볍게 정리한다.</p>
+<p>수리통계학(특히 2장 확률변수)에서 밀도함수의 적분, 기댓값, 감마·정규분포, 적률생성함수를 다루려면 몇 가지 미적분
+도구가 필요하다. 엄밀한 증명보다 <b>왜 그렇게 되는지</b> 와 <b>계산 예</b> 위주로 가볍게 정리한다.</p>
 
 <h2 class="sub">지수함수 <span class="en">exponential</span></h2>
 <div class="box def">
@@ -39,7 +39,7 @@
 <div class="box thm">
   <span class="tag">FTC</span>
   $$\frac{d}{dx}\int_a^x f(t)\,dt=f(x).$$
-  <p>그래서 연속형에서 cdf $F(x)=\int_{-\infty}^x f$ 를 미분하면 밀도함수 $f$ 가 된다(정리 2.2).</p>
+  <p>그래서 연속형에서 cdf $F(x)=\int_{-\infty}^x f$ 를 미분하면 밀도함수 $f$ 가 된다(2장 정리 2.2).</p>
 </div>
 
 <h2 class="sub">부분적분 <span class="en">integration by parts</span></h2>
@@ -112,7 +112,7 @@
 </div>
 <div class="note">
   <b>적률생성함수와의 연결:</b> $M_X(t)=E(e^{tX})=E\Big(\sum_r\dfrac{(tX)^r}{r!}\Big)=\sum_r\dfrac{t^r}{r!}E(X^r)$.
-  이 테일러 전개의 $t^r$ 계수가 $\dfrac{E(X^r)}{r!}$ 라서 $M_X^{(r)}(0)=E(X^r)$ (정리 2.27)이 나온다. 확률생성함수도 같은 원리($s^j$ 계수 $=P(X=j)$).
+  이 테일러 전개의 $t^r$ 계수가 $\dfrac{E(X^r)}{r!}$ 라서 $M_X^{(r)}(0)=E(X^r)$ (2장 정리 2.27)이 나온다. 확률생성함수도 같은 원리($s^j$ 계수 $=P(X=j)$).
 </div>
 
 <h2 class="sub">다변수 변수변환 <span class="en">change of variables</span></h2>
@@ -125,7 +125,7 @@
 
 <nav class="pager">
   <span class="spacer"></span>
-  <a class="next" href="2-1_random-variable.html">다음 →<small>2.1 확률변수의 정의</small></a>
+  <a class="next" href="../ch02/2-1_random-variable.html">이어보기 →<small>2장 확률변수</small></a>
 </nav>
 
 </body>
