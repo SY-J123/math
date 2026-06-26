@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2장 · 2.3 결합 및 조건부 확률분포</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">수리통계학 · 2장 확률변수</div>
+  <h1><span class="no">2.3</span>결합 및 조건부 확률분포 <span class="en">joint &amp; conditional</span></h1>
+</header>
+
+<p>여러 확률변수를 동시에 다루려면 그들의 <b>결합분포</b>가 필요하다. 거기서 한 변수만 떼어 본 것이 <b>주변분포</b>,
+한 변수를 관측했다는 조건의 분포가 <b>조건부분포</b>, 서로 영향이 없으면 <b>독립</b>이다.</p>
+
+<h2 class="sub"><span class="no">2.3.1</span>결합 확률분포</h2>
+<div class="box def">
+  <span class="tag">정의 2.3</span><span class="title">결합 확률밀도함수 <span class="en">joint pdf</span></span>
+  <p>두 확률변수 $X,Y$ 의 결합 밀도함수 $f_{X,Y}(x,y)$ 는 (1) $f_{X,Y}\ge0$, (2) 전체 합(적분)이 $1$ 이며,</p>
+  $$P\big((X,Y)\in A\big)=\begin{cases}\displaystyle\sum\sum_{(x,y)\in A}f_{X,Y}(x,y)&\text{이산형}\\[6pt]\displaystyle\iint_{A}f_{X,Y}(x,y)\,dx\,dy&\text{연속형}\end{cases}$$
+</div>
+<div class="box def">
+  <span class="tag">정의 2.4</span><span class="title">결합 분포함수 <span class="en">joint cdf</span></span>
+  <p>$k$ 개 확률변수에 대해 $F(x_1,\dots,x_k)=P(X_1\le x_1,\dots,X_k\le x_k)$. 연속형이면 밀도와의 관계는</p>
+  $$F(x_1,\dots,x_k)=\int_{-\infty}^{x_1}\!\!\cdots\int_{-\infty}^{x_k}f(t_1,\dots,t_k)\,dt_k\cdots dt_1,\qquad
+  f=\frac{\partial^k}{\partial x_1\cdots\partial x_k}F.\tag{2.6}$$
+</div>
+<div class="box thm">
+  <span class="tag">정리 2.3</span><span class="title">이변량 결합 cdf 의 성질</span>
+  <p>$F(x_1,x_2)$ 가 결합 cdf 이기 위한 조건: 각 변수에 대해 비감소·우연속이고
+  $F(-\infty,x_2)=F(x_1,-\infty)=0$, $F(\infty,\infty)=1$, 그리고 임의의 $a\lt b,\ c\lt d$ 에 대해
+  직사각형 확률 $F(b,d)-F(b,c)-F(a,d)+F(a,c)\ge0$.</p>
+</div>
+
+<h2 class="sub"><span class="no">2.3.2</span>주변 확률분포 <span class="en">marginal</span></h2>
+<div class="box thm">
+  <span class="tag">정리 2.4</span><span class="title">주변 밀도함수</span>
+  <p>결합분포에서 한 변수의 분포는 나머지를 합(적분)하여 얻는다.</p>
+  $$f_X(x)=\begin{cases}\displaystyle\sum_{y}f_{X,Y}(x,y)&\text{이산형}\\[6pt]\displaystyle\int_{-\infty}^{\infty}f_{X,Y}(x,y)\,dy&\text{연속형}\end{cases}\qquad(\text{$f_Y$ 도 대칭적으로}).$$
+</div>
+<div class="box prf">
+  <span class="tag">증명 (연속형)</span>
+  <p>$X$ 의 주변 cdf 는 $F_X(x)=P(X\le x)=P(X\le x,\,Y\lt\infty)=\int_{-\infty}^{x}\!\!\int_{-\infty}^{\infty}f_{X,Y}(t,y)\,dy\,dt$.
+  양변을 $x$ 로 미분하면 $f_X(x)=\int_{-\infty}^{\infty}f_{X,Y}(x,y)\,dy$.</p>
+  <div class="qed">∎</div>
+</div>
+<div class="box ex">
+  <span class="tag">예 2.10</span>
+  <p>$f_{X,Y}(x,y)=xy\,e^{-(x+y)}\,(x,y\gt0)$ 면 $f_X(x)=\int_0^\infty xy e^{-(x+y)}dy=xe^{-x}\int_0^\infty y e^{-y}dy=xe^{-x}$
+  (마찬가지로 $f_Y(y)=ye^{-y}$).</p>
+</div>
+
+<h2 class="sub"><span class="no">2.3.3</span>조건부 확률분포 <span class="en">conditional</span></h2>
+<div class="box def">
+  <span class="tag">정의 2.5</span><span class="title">조건부 밀도함수</span>
+  <p>$f_X(x)\gt0$ 인 $x$ 에서, $X=x$ 가 주어졌을 때 $Y$ 의 조건부 밀도함수는</p>
+  $$f_{Y\mid X}(y\mid x)=\frac{f_{X,Y}(x,y)}{f_X(x)}.$$
+  <p>($k\gt2$ 변수로 일반화: $f(x_{i+1},\dots,x_k\mid x_1,\dots,x_i)=\dfrac{f(x_1,\dots,x_k)}{f(x_1,\dots,x_i)}$, 식 2.7.)</p>
+</div>
+<div class="box ex">
+  <span class="tag">예 2.12</span>
+  <p>$f_{X,Y}(x,y)=x^2e^{-x(y+1)}\,(x,y\gt0)$. 주변 $f_X(x)=\int_0^\infty x^2e^{-x(y+1)}dy=xe^{-x}$ 이므로
+  $f_{Y\mid X}(y\mid x)=\dfrac{x^2e^{-x(y+1)}}{xe^{-x}}=xe^{-xy}$ — $X=x$ 조건하 $Y\sim\text{EXP}(1/x)$.</p>
+</div>
+
+<h2 class="sub"><span class="no">2.3.4</span>독립 확률변수 <span class="en">independence</span></h2>
+<div class="box def">
+  <span class="tag">정의 2.6</span><span class="title">독립</span>
+  <p>모든 사건 $A,B$ 에 대해 $P(X\in A,\,Y\in B)=P(X\in A)\,P(Y\in B)$ 이면 $X,Y$ 는 서로 독립이다.</p>
+</div>
+<div class="box thm">
+  <span class="tag">정리 2.5</span><span class="title">독립의 판정</span>
+  <p>$X,Y$ 가 독립일 필요충분조건은 결합밀도가 주변밀도의 <b>곱</b>으로 분리되는 것이다:</p>
+  $$f_{X,Y}(x,y)=f_X(x)\,f_Y(y)\quad(\text{모든 }x,y).$$
+</div>
+<div class="box prf">
+  <span class="tag">증명 (개요)</span>
+  <p>($\Rightarrow$) 독립이면 $A=(-\infty,x],\,B=(-\infty,y]$ 로 두어 $F_{X,Y}(x,y)=F_X(x)F_Y(y)$. 양변을 $x,y$ 로
+  편미분하면 $f_{X,Y}(x,y)=f_X(x)f_Y(y)$. ($\Leftarrow$) $f_{X,Y}=f_Xf_Y$ 이면 임의의 $A,B$ 에 대해
+  $P(X\in A,Y\in B)=\iint_{A\times B}f_Xf_Y=\big(\int_A f_X\big)\big(\int_B f_Y\big)=P(X\in A)P(Y\in B)$.</p>
+  <div class="qed">∎</div>
+</div>
+<div class="note">
+  $n$ 개 확률변수가 독립이고 같은 분포 $f$ 를 따르면(<b>랜덤표본</b><span class="en">random sample</span>)
+  $f(x_1,\dots,x_n)=f(x_1)f(x_2)\cdots f(x_n)$ (식 2.8). 이후 통계적 추론의 기본 전제다.
+</div>
+<div class="box ex">
+  <span class="tag">예 2.13</span>
+  <p>$f_{X,Y}(x,y)=\dfrac{2^{x+y}e^{-2}}{x!\,y!}$ 면 $f_X(x)=\dfrac{e^{-1}}{x!},\,f_Y(y)=\dfrac{e^{-1}}{y!}$ 의 곱과 같으므로 독립
+  (각각 $\text{POI}(1)$). 반면 정의역이 $0\le x\le y$ 처럼 한 변수가 다른 변수에 묶이면 곱으로 분리되지 않아 독립이 아니다.</p>
+</div>
+
+<nav class="pager">
+  <a href="2-2_distributions.html">← 이전<small>2.2 pdf·cdf</small></a>
+  <a class="next" href="2-4_expectation.html">다음 →<small>2.4 기댓값</small></a>
+</nav>
+
+</body>
+</html>

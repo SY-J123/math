@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2장 · 2.8 적률생성함수</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">수리통계학 · 2장 확률변수</div>
+  <h1><span class="no">2.8</span>적률생성함수 <span class="en">moment generating function</span></h1>
+</header>
+
+<div class="box def">
+  <span class="tag">정의 2.15</span><span class="title">적률 <span class="en">moments</span></span>
+  <p>$r$ 차 적률 $\mu_r'=E(X^r)$, $r$ 차 중심적률 $\mu_r=E[(X-\mu)^r]$. $\mu_1'=\mu$(평균), $\mu_2=\sigma^2$(분산),
+  $\mu_3/\sigma^3$=왜도<span class="en">skewness</span>, $\mu_4/\sigma^4$=첨도<span class="en">kurtosis</span>.</p>
+</div>
+<div class="box def">
+  <span class="tag">정의 2.16</span><span class="title">적률생성함수 <span class="en">mgf</span></span>
+  <p>$-h\lt t\lt h$ 에서 기댓값이 존재하면 $M_X(t)=E\big(e^{tX}\big)$ 를 $X$ 의 적률생성함수라 한다.</p>
+</div>
+<div class="box ex">
+  <span class="tag">대표 mgf</span>
+  <p>$B(n,p):\ (q+pe^t)^n$. &nbsp;$\text{POI}(\lambda):\ e^{\lambda(e^t-1)}$. &nbsp;$\text{EXP}(\theta):\ (1-\theta t)^{-1}\,(t\lt\tfrac1\theta)$.
+  &nbsp;$\text{GAM}(k,\theta):\ (1-\theta t)^{-k}$. &nbsp;$N(\mu,\sigma^2):\ \exp\!\big(\mu t+\tfrac12\sigma^2t^2\big)$.</p>
+</div>
+
+<div class="box thm">
+  <span class="tag">정리 2.27</span><span class="title">mgf 로부터 적률</span>
+  $$M_X^{(r)}(0)=E(X^r).$$
+</div>
+<div class="box prf">
+  <span class="tag">증명</span>
+  <p>$M_X(t)=E(e^{tX})=E\big(\sum_{r\ge0}\tfrac{(tX)^r}{r!}\big)=\sum_{r\ge0}\dfrac{t^r}{r!}E(X^r)$. 양변을 $t$ 로 $r$ 번
+  미분하고 $t=0$ 을 대입하면 $\frac{t^r}{r!}E(X^r)$ 항만 살아남아 $M_X^{(r)}(0)=E(X^r)$. (예: $M'(0)=E(X)$, $M''(0)=E(X^2)$.)</p>
+  <div class="qed">∎</div>
+</div>
+<div class="box ex">
+  <span class="tag">예 2.52</span>
+  <p>$B(n,p)$: $M(t)=(q+pe^t)^n$, $M'(t)=n(q+pe^t)^{n-1}pe^t$ → $M'(0)=np=E(X)$. $M''(0)$ 으로 $E(X^2)$ 를 구하면
+  $Var(X)=np(1-p)$.</p>
+</div>
+
+<div class="box thm">
+  <span class="tag">정리 2.28</span><span class="title">유일성 <span class="en">uniqueness</span></span>
+  <p>두 확률변수의 적률생성함수가 어떤 구간에서 일치하면 두 분포는 같다. 즉 mgf 는 분포를 <b>유일하게</b> 결정한다.</p>
+</div>
+<div class="note">
+  유일성 덕분에 “mgf 를 계산해 알려진 분포의 mgf 와 같으면 그 분포다” 라는 강력한 판별법이 생긴다 — 합·변환의 분포를 찾는 핵심 도구.
+</div>
+
+<div class="box thm">
+  <span class="tag">정리 2.29</span><span class="title">선형변환과 독립합의 mgf</span>
+  <p>(1) $Y=aX+b$ 이면 $M_Y(t)=e^{bt}M_X(at)$. &nbsp;(2) $X_1,\dots,X_n$ 이 독립이고 $Y=\sum_i X_i$ 이면</p>
+  $$M_Y(t)=\prod_{i=1}^{n}M_{X_i}(t).$$
+</div>
+<div class="box prf">
+  <span class="tag">증명</span>
+  <p>(1) $M_Y(t)=E[e^{t(aX+b)}]=e^{bt}E[e^{(at)X}]=e^{bt}M_X(at)$.
+  (2) 독립이면 $M_Y(t)=E[e^{t\sum X_i}]=E\big[\prod_i e^{tX_i}\big]=\prod_i E[e^{tX_i}]=\prod_i M_{X_i}(t)$
+  ($\because$ 독립이면 곱의 기댓값이 분리, 정리 2.7).</p>
+  <div class="qed">∎</div>
+</div>
+<div class="box ex">
+  <span class="tag">예 2.56–2.59 (합의 분포)</span>
+  <p>독립합의 mgf 가 곱이라는 점 + 유일성으로 분포가 곧장 나온다:</p>
+  <ul>
+    <li>독립 $\text{Ber}(p)$ $n$ 개의 합 → $(q+pe^t)^n$ → $B(n,p)$.</li>
+    <li>독립 $\text{POI}(\lambda_i)$ 들의 합 → $e^{(\sum\lambda_i)(e^t-1)}$ → $\text{POI}(\sum\lambda_i)$.</li>
+    <li>독립 $\text{EXP}(\theta)$ $n$ 개의 합 → $(1-\theta t)^{-n}$ → $\text{GAM}(n,\theta)$.</li>
+    <li>독립 정규합 $\sum a_iX_i$ ($X_i\sim N(\mu_i,\sigma_i^2)$) → $N\big(\sum a_i\mu_i,\ \sum a_i^2\sigma_i^2\big)$.</li>
+  </ul>
+</div>
+
+<div class="box def">
+  <span class="tag">정의 2.17</span><span class="title">결합 적률생성함수</span>
+  $$M_{\boldsymbol X}(t_1,\dots,t_k)=E\Big[\exp\Big(\sum_{i=1}^{k}t_iX_i\Big)\Big].$$
+</div>
+<div class="box thm">
+  <span class="tag">정리 2.30</span><span class="title">독립과 결합 mgf</span>
+  <p>$X,Y$ 가 독립일 필요충분조건은 결합 mgf 가 분리되는 것이다: $M_{X,Y}(t_1,t_2)=M_X(t_1)\,M_Y(t_2)$.</p>
+</div>
+
+<nav class="pager">
+  <a href="2-7_functions-of-rv.html">← 이전<small>2.7 확률변수의 함수</small></a>
+  <a class="next" href="2-9_pgf.html">다음 →<small>2.9 확률생성함수</small></a>
+</nav>
+
+</body>
+</html>

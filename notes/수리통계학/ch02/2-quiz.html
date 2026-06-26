@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2장 · 증명·정리 퀴즈</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+  .sheettitle{ margin:30px 0 4px; font-size:1.5rem; font-weight:800; }
+  .sheettitle .en{ font-weight:400; }
+  .answersheet{ page-break-before:always; }
+  .qrow{ margin:11px 0; line-height:1.6; }
+  .qid{ font-weight:800; color:var(--def); margin-right:8px; }
+  .qrow ol, .ans ol{ margin:4px 0 0; padding-left:26px; }
+  .qrow li, .ans li{ margin:4px 0; }
+  .ans{ margin:11px 0; padding-left:12px; border-left:3px solid var(--thm); }
+  .ans .qid{ color:var(--thm); }
+  @media print{ .pager, .home{ display:none; } a{ color:inherit; text-decoration:none; } }
+</style>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">수리통계학 · 2장 확률변수</div>
+  <h1><span class="no">퀴즈</span>2장 증명·정리 점검 <span class="en">recite every proof</span></h1>
+</header>
+
+<p>2장의 정의·정리·성질·증명과 주요 분포를 회상하기 위한 퀴즈다. <b>문제 시트</b>에서 풀고 <b>정답 시트</b>(다음 장)와 대조하라.</p>
+
+<!-- ===== 문제 시트 ===== -->
+<div class="sheettitle">■ 문제 시트 <span class="en">questions</span></div>
+
+<h2 class="sub">A. 분포의 기본 (2.1–2.2)</h2>
+<div class="qrow"><span class="qid">Q1</span>
+  <ol><li>확률밀도함수(이산 pmf / 연속 pdf)가 만족해야 할 두 조건을 각각 쓰라.</li>
+  <li>누적분포함수 $F(x)$ 의 정의를 쓰라.</li></ol></div>
+<div class="qrow"><span class="qid">Q2</span>cdf 가 갖춰야 할 성질(단조성·극한·우연속)을 쓰라.</div>
+<div class="qrow"><span class="qid">Q3</span>연속형에서 $f(x)=\dfrac{d}{dx}F(x)$ 임을 보여라.</div>
+
+<h2 class="sub">B. 결합·조건부·독립 (2.3)</h2>
+<div class="qrow"><span class="qid">Q4</span>
+  <ol><li>주변 밀도함수 $f_X(x)$ 를 결합밀도로 표현하라.</li>
+  <li>조건부 밀도함수 $f_{Y\mid X}(y\mid x)$ 의 정의를 쓰라.</li></ol></div>
+<div class="qrow"><span class="qid">Q5</span>$X,Y$ 가 독립일 필요충분조건이 $f_{X,Y}=f_Xf_Y$ 임을 보여라.</div>
+
+<h2 class="sub">C. 기댓값·분산·공분산·부등식 (2.4)</h2>
+<div class="qrow"><span class="qid">Q6</span>$E(aX+bY)=aE(X)+bE(Y)$ 를 보여라(선형성).</div>
+<div class="qrow"><span class="qid">Q7</span>$X,Y$ 가 독립이면 $E(XY)=E(X)E(Y)$ 임을 보여라.</div>
+<div class="qrow"><span class="qid">Q8</span>
+  <ol><li>$Var(aX+b)=a^2Var(X)$ 를 보여라.</li>
+  <li>$Var\big(\sum_{i=1}^n X_i\big)=\sum Var(X_i)+2\sum_{j\lt k}Cov(X_j,X_k)$ 를 보여라.</li></ol></div>
+<div class="qrow"><span class="qid">Q9</span>이중기댓값 $E[E(Y\mid X)]=E(Y)$ 를 보여라.</div>
+<div class="qrow"><span class="qid">Q10</span>전분산 공식 $Var(Y)=E[Var(Y\mid X)]+Var[E(Y\mid X)]$ 를 보여라.</div>
+<div class="qrow"><span class="qid">Q11</span>
+  <ol><li>마르코프 부등식 $P[u(X)\ge c]\le E[u(X)]/c$ 를 보여라.</li>
+  <li>이를 이용해 체비셰프 부등식 $P(|X-\mu|\ge k\sigma)\le 1/k^2$ 를 보여라.</li></ol></div>
+<div class="qrow"><span class="qid">Q12</span>코시–슈바르츠 부등식 $[E(XY)]^2\le E(X^2)E(Y^2)$ 를 보여라.</div>
+
+<h2 class="sub">D. 이산형 분포 (2.5)</h2>
+<div class="qrow"><span class="qid">Q13</span>다음 분포의 pmf·평균·분산을 각각 쓰라.
+  <ol><li>베르누이 $\text{Ber}(p)$</li><li>이항 $B(n,p)$</li><li>포아송 $\text{POI}(\lambda)$</li>
+  <li>기하 $\text{GEO}(p)$</li><li>음이항 $\text{NB}(r,p)$</li></ol></div>
+<div class="qrow"><span class="qid">Q14</span>$np=\lambda$ 로 두고 이항분포가 포아송분포로 수렴함을 보여라(정리 2.17).</div>
+<div class="qrow"><span class="qid">Q15</span>기하분포의 무기억성 $P(X\gt j+k\mid X\gt j)=P(X\gt k)$ 를 보여라.</div>
+
+<h2 class="sub">E. 연속형 분포 (2.6)</h2>
+<div class="qrow"><span class="qid">Q16</span>다음 분포의 pdf·평균·분산을 각각 쓰라.
+  <ol><li>균일 $U(a,b)$</li><li>지수 $\text{EXP}(\theta)$</li><li>정규 $N(\mu,\sigma^2)$</li>
+  <li>감마 $\text{GAM}(k,\theta)$</li><li>베타 $\text{BETA}(a,b)$</li></ol></div>
+<div class="qrow"><span class="qid">Q17</span>지수분포의 무기억성 $P(X\gt a+t\mid X\gt a)=P(X\gt t)$ 를 보여라.</div>
+<div class="qrow"><span class="qid">Q18</span>이변량 정규분포에서 조건부 $E(Y\mid x)$, $Var(Y\mid x)$ 를 쓰고, $\rho=0$ 과 독립의 관계를 설명하라.</div>
+
+<h2 class="sub">F. 변환·생성함수 (2.7–2.9)</h2>
+<div class="qrow"><span class="qid">Q19</span>단조변환 공식 $f_Y(y)=f_X(g^{-1}(y))\,|dg^{-1}(y)/dy|$ 를 보여라.</div>
+<div class="qrow"><span class="qid">Q20</span>독립 $X,Y$ 의 합 $Z=X+Y$ 에 대한 합성곱 공식 $f_Z(z)=\int f_X(x)f_Y(z-x)dx$ 를 보여라.</div>
+<div class="qrow"><span class="qid">Q21</span>
+  <ol><li>적률생성함수의 정의를 쓰고 $M_X^{(r)}(0)=E(X^r)$ 임을 보여라.</li>
+  <li>독립 $X_1,\dots,X_n$ 의 합 $Y=\sum X_i$ 에 대해 $M_Y(t)=\prod M_{X_i}(t)$ 임을 보여라.</li></ol></div>
+<div class="qrow"><span class="qid">Q22</span>확률생성함수 $G_X(s)=E(s^X)$ 의 정의와 세 성질(평균·독립합·확률복원)을 쓰라.</div>
+
+<!-- ===== 정답 시트 ===== -->
+<div class="answersheet">
+<div class="sheettitle">■ 정답 시트 <span class="en">answer key</span></div>
+
+<h2 class="sub">A. 분포의 기본</h2>
+<div class="ans"><span class="qid">A1.</span> (1) 이산: $f(x_i)\ge0,\ \sum f(x_i)=1$; 연속: $f(x)\ge0,\ \int_{-\infty}^\infty f=1$. (2) $F(x)=P(X\le x)$.</div>
+<div class="ans"><span class="qid">A2.</span> ① 비감소, ② $\lim_{x\to-\infty}F=0,\ \lim_{x\to\infty}F=1$, ③ 우연속.</div>
+<div class="ans"><span class="qid">A3.</span> $F(x)=\int_{-\infty}^x f(t)dt$ 의 양변을 미분, 미적분 기본정리로 $F'(x)=f(x)$.</div>
+
+<h2 class="sub">B. 결합·조건부·독립</h2>
+<div class="ans"><span class="qid">A4.</span> (1) $f_X(x)=\sum_y f_{X,Y}(x,y)$ 또는 $\int f_{X,Y}(x,y)dy$. (2) $f_{Y\mid X}(y\mid x)=\dfrac{f_{X,Y}(x,y)}{f_X(x)}$ ($f_X(x)\gt0$).</div>
+<div class="ans"><span class="qid">A5.</span> ($\Rightarrow$) 독립이면 $F_{X,Y}=F_XF_Y$, 편미분하면 $f_{X,Y}=f_Xf_Y$. ($\Leftarrow$) $f_{X,Y}=f_Xf_Y$ 이면 $P(X\in A,Y\in B)=\iint_{A\times B}f_Xf_Y=(\int_A f_X)(\int_B f_Y)=P(X\in A)P(Y\in B)$.</div>
+
+<h2 class="sub">C. 기댓값·분산·공분산·부등식</h2>
+<div class="ans"><span class="qid">A6.</span> $E(aX+bY)=\iint(ax+by)f_{X,Y}=a\iint xf_{X,Y}+b\iint yf_{X,Y}=aE(X)+bE(Y)$ (주변화).</div>
+<div class="ans"><span class="qid">A7.</span> 독립이라 $f_{X,Y}=f_Xf_Y$: $E(XY)=\iint xy f_Xf_Y=(\int xf_X)(\int yf_Y)=E(X)E(Y)$.</div>
+<div class="ans"><span class="qid">A8.</span> (1) $Var(aX+b)=E[(aX+b-a\mu-b)^2]=a^2E[(X-\mu)^2]=a^2Var(X)$.
+(2) $Var(\sum X_i)=E[(\sum(X_i-\mu_i))^2]=\sum E[(X_i-\mu_i)^2]+\sum_{j\ne k}E[(X_j-\mu_j)(X_k-\mu_k)]=\sum Var(X_i)+2\sum_{j\lt k}Cov(X_j,X_k)$.</div>
+<div class="ans"><span class="qid">A9.</span> $E[E(Y\mid X)]=\int(\int y\tfrac{f_{X,Y}}{f_X}dy)f_X dx=\iint y f_{X,Y}\,dydx=\int yf_Y dy=E(Y)$.</div>
+<div class="ans"><span class="qid">A10.</span> $E[Var(Y\mid X)]=E(Y^2)-E[(E(Y\mid X))^2]$, $Var[E(Y\mid X)]=E[(E(Y\mid X))^2]-[E(Y)]^2$. 더하면 $E(Y^2)-[E(Y)]^2=Var(Y)$.</div>
+<div class="ans"><span class="qid">A11.</span> (1) $A=\{u(x)\ge c\}$: $E[u(X)]\ge\int_A u f\ge c\int_A f=cP[u(X)\ge c]$.
+(2) $u=(X-\mu)^2$, $c=k^2\sigma^2$ 대입 → $P[(X-\mu)^2\ge k^2\sigma^2]\le\sigma^2/(k^2\sigma^2)=1/k^2$.</div>
+<div class="ans"><span class="qid">A12.</span> $0\le E[(tX-Y)^2]=t^2E(X^2)-2tE(XY)+E(Y^2)$, 판별식 $\le0$ → $[E(XY)]^2\le E(X^2)E(Y^2)$.</div>
+
+<h2 class="sub">D. 이산형 분포</h2>
+<div class="ans"><span class="qid">A13.</span>
+  <ol><li>Ber: $f(1)=p,f(0)=q$; $E=p$, $Var=pq$.</li>
+  <li>$B(n,p)$: $\binom nx p^xq^{n-x}$; $E=np$, $Var=npq$.</li>
+  <li>POI: $\dfrac{e^{-\lambda}\lambda^x}{x!}$; $E=\lambda$, $Var=\lambda$.</li>
+  <li>GEO: $pq^{x-1}$; $E=1/p$, $Var=q/p^2$.</li>
+  <li>NB: $\binom{x-1}{r-1}p^rq^{x-r}$; $E=r/p$, $Var=rq/p^2$.</li></ol></div>
+<div class="ans"><span class="qid">A14.</span> $p=\lambda/n$: $\binom nx p^x(1-p)^{n-x}=\dfrac{\lambda^x}{x!}\cdot\dfrac{n!}{(n-x)!n^x}(1-\tfrac\lambda n)^n(1-\tfrac\lambda n)^{-x}\to\dfrac{\lambda^x}{x!}\cdot1\cdot e^{-\lambda}\cdot1=\dfrac{e^{-\lambda}\lambda^x}{x!}$.</div>
+<div class="ans"><span class="qid">A15.</span> $P(X\gt m)=q^m$ 이므로 $P(X\gt j+k\mid X\gt j)=q^{j+k}/q^j=q^k=P(X\gt k)$.</div>
+
+<h2 class="sub">E. 연속형 분포</h2>
+<div class="ans"><span class="qid">A16.</span>
+  <ol><li>$U(a,b)$: $\tfrac1{b-a}$; $E=\tfrac{a+b}2$, $Var=\tfrac{(b-a)^2}{12}$.</li>
+  <li>EXP($\theta$): $\tfrac1\theta e^{-x/\theta}$; $E=\theta$, $Var=\theta^2$.</li>
+  <li>$N(\mu,\sigma^2)$: $\tfrac{1}{\sqrt{2\pi}\sigma}e^{-(x-\mu)^2/2\sigma^2}$; $E=\mu$, $Var=\sigma^2$.</li>
+  <li>GAM($k,\theta$): $\tfrac{1}{\theta^k\Gamma(k)}x^{k-1}e^{-x/\theta}$; $E=k\theta$, $Var=k\theta^2$.</li>
+  <li>BETA($a,b$): $\tfrac1{B(a,b)}x^{a-1}(1-x)^{b-1}$; $E=\tfrac a{a+b}$, $Var=\tfrac{ab}{(a+b)^2(a+b+1)}$.</li></ol></div>
+<div class="ans"><span class="qid">A17.</span> $P(X\gt s)=e^{-s/\theta}$ → $P(X\gt a+t\mid X\gt a)=e^{-(a+t)/\theta}/e^{-a/\theta}=e^{-t/\theta}=P(X\gt t)$.</div>
+<div class="ans"><span class="qid">A18.</span> $E(Y\mid x)=\mu_Y+\rho\tfrac{\sigma_Y}{\sigma_X}(x-\mu_X)$, $Var(Y\mid x)=\sigma_Y^2(1-\rho^2)$. 이변량 정규에서는 $\rho=0\iff$ 독립.</div>
+
+<h2 class="sub">F. 변환·생성함수</h2>
+<div class="ans"><span class="qid">A19.</span> $g$ 증가: $F_Y(y)=F_X(g^{-1}(y))$ 미분 → $f_X(g^{-1}(y))\tfrac{d}{dy}g^{-1}(y)$. 감소면 부호 반대라 절댓값.</div>
+<div class="ans"><span class="qid">A20.</span> $F_Z(z)=\int f_X(x)(\int_{-\infty}^{z-x}f_Y(y)dy)dx$, $z$ 로 미분 → $f_Z(z)=\int f_X(x)f_Y(z-x)dx$.</div>
+<div class="ans"><span class="qid">A21.</span> (1) $M_X(t)=E(e^{tX})=\sum_r\tfrac{t^r}{r!}E(X^r)$, $r$ 번 미분 후 $t=0$ → $M^{(r)}(0)=E(X^r)$.
+(2) 독립: $M_Y(t)=E[e^{t\sum X_i}]=E[\prod e^{tX_i}]=\prod E[e^{tX_i}]=\prod M_{X_i}(t)$.</div>
+<div class="ans"><span class="qid">A22.</span> $G_X(s)=E(s^X)=\sum_j p_js^j$. ① $E(X)=G_X'(1)$; ② 독립합 $G_{X+Y}=G_XG_Y$; ③ $P(X=k)=G_X^{(k)}(0)/k!$.</div>
+</div>
+
+<nav class="pager">
+  <a href="2-9_pgf.html">← 이전<small>2.9 확률생성함수</small></a>
+  <span class="spacer"></span>
+</nav>
+
+</body>
+</html>

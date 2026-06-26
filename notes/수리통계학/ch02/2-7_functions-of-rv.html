@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2장 · 2.7 확률변수들의 함수</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">수리통계학 · 2장 확률변수</div>
+  <h1><span class="no">2.7</span>확률변수들의 함수 <span class="en">functions of random variables</span></h1>
+</header>
+
+<p>$X$ 의 분포를 알 때 $Y=g(X)$ 나 $Z=g(X,Y)$ 의 분포를 구하는 방법을 다룬다.</p>
+
+<h2 class="sub"><span class="no">2.7.1</span>누적분포함수를 이용한 방법</h2>
+<p>이산형이면 $f_Y(y)=\displaystyle\sum_{\{x:\,g(x)=y\}}f_X(x)$. 연속형이면 먼저 cdf $F_Y(y)=P(g(X)\le y)$ 를 $X$ 의 확률로
+바꿔 적분한 뒤 미분한다.</p>
+<div class="box ex">
+  <span class="tag">예 2.39–2.42</span>
+  <p><b>2.39</b> $Y=\tfrac95X+32$(일대일): $f_Y(y)=\tfrac59 f_X\!\big(\tfrac{5(y-32)}{9}\big)$.</p>
+  <p><b>2.40</b> $Y=X^2$: $F_Y(y)=P(-\sqrt y\le X\le\sqrt y)$ 미분 → $f_Y(y)=\dfrac{1}{2\sqrt y}\big[f_X(\sqrt y)+f_X(-\sqrt y)\big]$.
+  $X\sim N(0,1)$ 이면 $Y\sim\text{GAM}(\tfrac12,2)$ (자유도 1 카이제곱).</p>
+  <p><b>2.41</b> $X\sim U(0,1)$, $Y=-\lambda\ln X$: $f_Y(y)=\tfrac1\lambda e^{-y/\lambda}$ — 지수분포.</p>
+  <p><b>2.42</b> 독립 $X,Y\sim U(0,1)$, $Z=X+Y$: $f_Z(z)=z\,(0\lt z\le1)$, $2-z\,(1\lt z\le2)$ — 삼각형 분포.</p>
+</div>
+<div class="box thm">
+  <span class="tag">정리 2.23</span><span class="title">단조변환 공식 <span class="en">monotone transformation</span></span>
+  <p>$g$ 가 일대일(단조)이고 $X\sim f_X$ 이면, $Y=g(X)$ 의 밀도함수는</p>
+  $$f_Y(y)=f_X\big(g^{-1}(y)\big)\,\Big|\frac{d}{dy}g^{-1}(y)\Big|.$$
+</div>
+<div class="box prf">
+  <span class="tag">증명</span>
+  <p>$g$ 가 증가하면 $F_Y(y)=P(g(X)\le y)=P(X\le g^{-1}(y))=F_X(g^{-1}(y))$. 미분하면
+  $f_Y(y)=f_X(g^{-1}(y))\cdot\frac{d}{dy}g^{-1}(y)$. $g$ 가 감소하면 $F_Y(y)=1-F_X(g^{-1}(y))$ 라 부호가 바뀌어
+  도함수에 절댓값이 붙는다. 두 경우를 합쳐 $|\,\cdot\,|$ 로 쓴다.</p>
+  <div class="qed">∎</div>
+</div>
+
+<h2 class="sub"><span class="no">2.7.2</span>결합변환</h2>
+<div class="box thm">
+  <span class="tag">정리 2.24</span><span class="title">이산형 결합변환</span>
+  <p>이산형 벡터 $\boldsymbol Y=g(\boldsymbol X)$ 의 결합 pmf 는 같은 값으로 가는 모든 점을 합한다:
+  $f_{\boldsymbol Y}(\boldsymbol y)=\sum_{\{\boldsymbol x:\,g(\boldsymbol x)=\boldsymbol y\}}f_{\boldsymbol X}(\boldsymbol x)$.</p>
+</div>
+<div class="box thm">
+  <span class="tag">정리 2.25</span><span class="title">연속형 결합변환 — 야코비안 <span class="en">Jacobian</span></span>
+  <p>$\boldsymbol Y=g(\boldsymbol X)$ 가 일대일이고 역변환 $x_i=h_i(\boldsymbol y)$ 가 연속 편도함수를 가지면</p>
+  $$f_{\boldsymbol Y}(\boldsymbol y)=f_{\boldsymbol X}\big(h_1(\boldsymbol y),\dots,h_n(\boldsymbol y)\big)\,|J|,\qquad
+  J=\det\!\Big(\frac{\partial(x_1,\dots,x_n)}{\partial(y_1,\dots,y_n)}\Big).$$
+</div>
+<div class="box ex">
+  <span class="tag">예 2.44–2.46</span>
+  <p><b>2.44</b> 독립 베르누이 $X_1,X_2,X_3$ 에서 $Y_1=X_1+X_2+X_3,\ Y_2=|X_3-X_2|$ 의 결합 pmf 를 표로 구한다(정리 2.24).</p>
+  <p><b>2.45</b> 독립 $X_1,X_2\sim\text{EXP}(1)$, $Y_1=X_1+X_2,\ Y_2=X_1-X_2$: $|J|=\tfrac12$ 이라
+  주변 $f_{Y_1}(y_1)=y_1e^{-y_1}$ (감마), $f_{Y_2}(y_2)=\tfrac12 e^{-|y_2|}$ (이중지수).</p>
+  <p><b>2.46</b> 독립 $X_1,X_2\sim N(0,1)$, $Y_2=X_1/X_2$: 야코비안 적분으로 $f_{Y_2}(y_2)=\dfrac{1}{\pi(1+y_2^2)}$ — <b>코시분포</b>.</p>
+</div>
+<div class="box thm">
+  <span class="tag">정리 2.26</span><span class="title">합성곱 <span class="en">convolution</span></span>
+  <p>$X,Y$ 가 독립이면 $Z=X+Y$ 의 분포는</p>
+  $$f_Z(z)=\begin{cases}\displaystyle\sum_{x}f_X(x)\,f_Y(z-x)&\text{이산형}\\[6pt]\displaystyle\int_{-\infty}^{\infty}f_X(x)\,f_Y(z-x)\,dx&\text{연속형}\end{cases}$$
+</div>
+<div class="box prf">
+  <span class="tag">증명 (연속형)</span>
+  <p>$F_Z(z)=P(X+Y\le z)=\iint_{x+y\le z}f_X(x)f_Y(y)\,dy\,dx=\int_{-\infty}^{\infty}f_X(x)\Big(\int_{-\infty}^{z-x}f_Y(y)\,dy\Big)dx$.
+  $z$ 로 미분하면 안쪽 적분이 $f_Y(z-x)$ 가 되어 $f_Z(z)=\int f_X(x)f_Y(z-x)\,dx$.</p>
+  <div class="qed">∎</div>
+</div>
+
+<nav class="pager">
+  <a href="2-6_continuous-distributions.html">← 이전<small>2.6 연속형 분포</small></a>
+  <a class="next" href="2-8_mgf.html">다음 →<small>2.8 적률생성함수</small></a>
+</nav>
+
+</body>
+</html>

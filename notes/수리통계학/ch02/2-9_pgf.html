@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2장 · 2.9 확률생성함수</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">수리통계학 · 2장 확률변수</div>
+  <h1><span class="no">2.9</span>확률생성함수 <span class="en">probability generating function</span></h1>
+</header>
+
+<p>음이 아닌 정숫값을 갖는 이산형 확률변수에 특히 유용한 생성함수다. mgf 에서 $e^t$ 자리에 $s$ 를 둔 것과 같다.</p>
+
+<div class="box def">
+  <span class="tag">정의 2.18</span><span class="title">확률생성함수 <span class="en">pgf</span></span>
+  <p>$X$ 가 값 $0,1,2,\dots$ 를 $p_j=P(X=j)$ 로 가질 때, $|s|\le1$ 에서</p>
+  $$G_X(s)=E\big(s^X\big)=\sum_{j=0}^{\infty}p_j\,s^j.$$
+  <p>주요 성질:</p>
+  <ol class="props">
+    <li><b>평균</b>: $E(X)=G_X'(1)$ &nbsp;(일반적으로 계승적률 $E[X(X-1)\cdots(X-k+1)]=G_X^{(k)}(1)$).</li>
+    <li><b>독립합</b>: $X,Y$ 독립이고 $Z=X+Y$ 이면 $G_Z(s)=G_X(s)\,G_Y(s)$.</li>
+    <li><b>확률 복원</b>: $P(X=k)=\dfrac{1}{k!}\,G_X^{(k)}(0)$.</li>
+  </ol>
+</div>
+<div class="box ex">
+  <span class="tag">예 2.61</span>
+  <p><b>이항</b> $B(n,p)$: 한 번의 베르누이 pgf 가 $q+ps$ 이므로 독립합으로 $G_X(s)=(q+ps)^n$.
+  여기서 $G_X'(1)=np=E(X)$.</p>
+  <p><b>포아송</b> $\text{POI}(\lambda)$: $G_X(s)=\sum_{j\ge0}\dfrac{e^{-\lambda}\lambda^j}{j!}s^j=e^{-\lambda}e^{\lambda s}=e^{\lambda(s-1)}$.
+  $G_X'(1)=\lambda=E(X)$.</p>
+</div>
+<div class="note">
+  성질 3은 $G_X(s)=\sum p_j s^j$ 를 $k$ 번 미분해 $s=0$ 을 넣으면 $k!\,p_k$ 만 남는 데서 나온다 — 분포를 pgf 로부터 완전히 복원할 수 있다.
+  여러 변수에는 결합 pgf $G_{X_1,\dots,X_r}(s_1,\dots,s_r)=E\big[\prod_i s_i^{X_i}\big]$ 를 쓴다.
+</div>
+
+<nav class="pager">
+  <a href="2-8_mgf.html">← 이전<small>2.8 적률생성함수</small></a>
+  <a class="next" href="2-quiz.html">다음 →<small>증명·정리 퀴즈</small></a>
+</nav>
+
+</body>
+</html>
