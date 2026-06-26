@@ -27,6 +27,13 @@
   $$\sum_{n=0}^{\infty}r^n=\frac{1}{1-r}\ (|r|\lt1),\qquad \sum_{n=1}^{\infty}n\,r^{n-1}=\frac{1}{(1-r)^2},\qquad e^x=\sum_{n=0}^{\infty}\frac{x^n}{n!}.$$
   <p>두 번째 식은 첫 식의 양변을 $r$ 로 미분해 얻는다(이산형 분포의 평균 계산에 자주 쓰임).</p>
 </div>
+<div class="box prf">
+  <span class="tag">유도</span>
+  <p>부분합 $S_N=\sum_{n=0}^N r^n$ 에서 $S_N-rS_N=1-r^{N+1}$ 이므로 $S_N=\dfrac{1-r^{N+1}}{1-r}$. $|r|\lt1$ 이면 $r^{N+1}\to0$ 이라
+  $\displaystyle\sum_{n=0}^\infty r^n=\frac{1}{1-r}$. 양변을 $r$ 로 미분하면 $\displaystyle\sum_{n=1}^\infty n r^{n-1}=\frac{1}{(1-r)^2}$.
+  지수급수 $e^x=\sum x^n/n!$ 는 아래 $e^x$ 의 테일러 전개다.</p>
+  <div class="qed">∎</div>
+</div>
 <div class="box ex">
   <span class="tag">예 — 기하분포의 평균</span>
   <p>$X\sim\text{GEO}(p)$ ($q=1-p$): $E(X)=\sum_{x=1}^\infty x\,p\,q^{x-1}=p\sum_{x=1}^\infty x q^{x-1}=p\cdot\dfrac{1}{(1-q)^2}=\dfrac{p}{p^2}=\dfrac1p$.</p>

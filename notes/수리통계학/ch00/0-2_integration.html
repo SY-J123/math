@@ -41,12 +41,24 @@
 </svg>
 <figcaption>$\int_a^x f$ 는 색칠된 넓이. 오른쪽 끝 $x$ 를 조금 늘리면 넓이가 $f(x)\,dx$ 만큼 는다 → 도함수 $=f(x)$.</figcaption>
 </figure>
+<div class="box prf">
+  <span class="tag">증명 (개요)</span>
+  <p>$A(x)=\int_a^x f(t)\,dt$ 라 하면 $A(x+h)-A(x)=\int_x^{x+h}f(t)\,dt$. $f$ 가 연속이면 적분의 평균값정리로 이 값은
+  $f(\xi)\,h$ ($\xi\in[x,x+h]$). 따라서 $\dfrac{A(x+h)-A(x)}{h}=f(\xi)\to f(x)$ ($h\to0$), 곧 $A'(x)=f(x)$.</p>
+  <div class="qed">∎</div>
+</div>
 
 <h2 class="sub">부분적분 <span class="en">integration by parts</span></h2>
 <div class="box thm">
   <span class="tag">공식</span>
   $$\int u\,dv = uv-\int v\,du.$$
-  <p>곱의 미분 $(uv)'=u'v+uv'$ 를 적분해 옮긴 것. “미분하면 간단해지는 쪽” 을 $u$ 로 잡는 게 요령($x^n$ → 미분하며 차수↓).</p>
+  <p>“미분하면 간단해지는 쪽” 을 $u$ 로 잡는 게 요령($x^n$ → 미분하며 차수↓).</p>
+</div>
+<div class="box prf">
+  <span class="tag">유도</span>
+  <p>곱의 미분법 $(uv)'=u'v+uv'$ 의 양변을 적분하면 $uv=\int u'v\,dx+\int uv'\,dx$. 이항하면
+  $\int uv'\,dx=uv-\int u'v\,dx$, 즉 $\int u\,dv=uv-\int v\,du$.</p>
+  <div class="qed">∎</div>
 </div>
 <div class="box ex">
   <span class="tag">예 — $\int_0^\infty x^n e^{-x}dx=n!$</span>
