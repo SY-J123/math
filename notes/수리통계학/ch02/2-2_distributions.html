@@ -49,14 +49,20 @@
   <p>함수 $F$ 가 어떤 확률변수의 cdf 이기 위한 필요충분조건은:</p>
   <ol class="props">
     <li>비감소(단조증가): $a\lt b \Rightarrow F(a)\le F(b)$,</li>
-    <li>$\displaystyle\lim_{x\to-\infty}F(x)=0$, &nbsp;$\displaystyle\lim_{x\to\infty}F(x)=1$,</li>
+    <li>양 끝에서의 극한: $x\to-\infty$ 이면 $F(x)\to0$, &nbsp;$x\to\infty$ 이면 $F(x)\to1$
+    &nbsp;(즉 $\displaystyle\lim_{x\to-\infty}F(x)=0,\ \lim_{x\to\infty}F(x)=1$),</li>
     <li>우연속<span class="en">right-continuous</span>: $\displaystyle\lim_{h\to0^+}F(x+h)=F(x)$.</li>
   </ol>
   <p>밀도함수로부터 $F$ 는 이산형 $F(x)=\displaystyle\sum_{x_i\le x}f(x_i)$ (2.2), 연속형 $F(x)=\displaystyle\int_{-\infty}^{x}f(t)\,dt$ (2.3).</p>
 </div>
+<div class="note">
+  <b>왜 우연속인가?</b> $F(x)=P(X\le x)$ 는 정의에서 점 $x$ 를 ‘$\le$’ 로 <b>포함</b>한다. 오른쪽에서 $x+h\,(h\to0^+)$ 로 다가가면
+  사건 $\{X\le x+h\}$ 가 $\{X\le x\}$ 로 줄어들어 $F(x+h)\to F(x)$ — 그래서 <b>오른쪽 연속</b>이다. 반면 왼쪽 극한은 $P(X\lt x)$ 라,
+  $x$ 에 확률질량(점프)이 있으면 $F(x)$ 보다 작다. 즉 정의의 ‘$\le$’ 가 cdf 를 (좌연속이 아니라) 우연속으로 만든다.
+</div>
 
 <div class="box ex">
-  <span class="tag">예 2.2 · 2.3</span>
+  <span class="tag">예 2.2 · 2.3</span><span class="title">cdf 구하기 (이산·연속)</span>
   <p><b>2.2</b> 동전 $3$ 회($p=\tfrac12$), $X=$ 앞면 수: pmf $f=\{\tfrac18,\tfrac38,\tfrac38,\tfrac18\}$ ($x=0,1,2,3$). cdf 는
   $0,\tfrac18,\tfrac48,\tfrac78,1$ 로 뛰어오르는 <b>계단함수</b>다.</p>
   <p><b>2.3</b> $f(x)=c(1+x)^{-2}\,(x\gt0)$: $\int_0^\infty c(1+x)^{-2}dx=c=1$ 이라 $c=1$. 그러면
@@ -75,7 +81,7 @@
   <div class="qed">∎</div>
 </div>
 <div class="box ex">
-  <span class="tag">예 2.4</span>
+  <span class="tag">예 2.4</span><span class="title">cdf 에서 pdf 미분 (지수형)</span>
   <p>$F(x)=1-e^{-x/\lambda}\,(x\gt0)$ 이면 $f(x)=F'(x)=\dfrac{1}{\lambda}e^{-x/\lambda}$ — 지수분포의 밀도함수다.</p>
 </div>
 

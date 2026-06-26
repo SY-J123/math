@@ -56,7 +56,7 @@
   <div class="qed">∎</div>
 </div>
 <div class="box ex">
-  <span class="tag">예 2.10</span>
+  <span class="tag">예 2.10</span><span class="title">주변밀도 구하기</span>
   <p>$f_{X,Y}(x,y)=xy\,e^{-(x+y)}\,(x,y\gt0)$ 면 $f_X(x)=\int_0^\infty xy e^{-(x+y)}dy=xe^{-x}\int_0^\infty y e^{-y}dy=xe^{-x}$
   (마찬가지로 $f_Y(y)=ye^{-y}$).</p>
 </div>
@@ -69,7 +69,7 @@
   <p>($k\gt2$ 변수로 일반화: $f(x_{i+1},\dots,x_k\mid x_1,\dots,x_i)=\dfrac{f(x_1,\dots,x_k)}{f(x_1,\dots,x_i)}$, 식 2.7.)</p>
 </div>
 <div class="box ex">
-  <span class="tag">예 2.12</span>
+  <span class="tag">예 2.12</span><span class="title">조건부밀도 구하기</span>
   <p>$f_{X,Y}(x,y)=x^2e^{-x(y+1)}\,(x,y\gt0)$. 주변 $f_X(x)=\int_0^\infty x^2e^{-x(y+1)}dy=xe^{-x}$ 이므로
   $f_{Y\mid X}(y\mid x)=\dfrac{x^2e^{-x(y+1)}}{xe^{-x}}=xe^{-xy}$ — $X=x$ 조건하 $Y\sim\text{EXP}(1/x)$.</p>
 </div>
@@ -96,7 +96,7 @@
   $f(x_1,\dots,x_n)=f(x_1)f(x_2)\cdots f(x_n)$ (식 2.8). 이후 통계적 추론의 기본 전제다.
 </div>
 <div class="box ex">
-  <span class="tag">예 2.13</span>
+  <span class="tag">예 2.13</span><span class="title">독립 판정</span>
   <p>$f_{X,Y}(x,y)=\dfrac{2^{x+y}e^{-2}}{x!\,y!}$ 면 $f_X(x)=\dfrac{e^{-1}}{x!},\,f_Y(y)=\dfrac{e^{-1}}{y!}$ 의 곱과 같으므로 독립
   (각각 $\text{POI}(1)$). 반면 정의역이 $0\le x\le y$ 처럼 한 변수가 다른 변수에 묶이면 곱으로 분리되지 않아 독립이 아니다.</p>
 </div>

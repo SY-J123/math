@@ -27,7 +27,7 @@
 <p>이산형이면 $f_Y(y)=\displaystyle\sum_{\{x:\,g(x)=y\}}f_X(x)$. 연속형이면 먼저 cdf $F_Y(y)=P(g(X)\le y)$ 를 $X$ 의 확률로
 바꿔 적분한 뒤 미분한다.</p>
 <div class="box ex">
-  <span class="tag">예 2.39–2.42</span>
+  <span class="tag">예 2.39–2.42</span><span class="title">변환된 변수의 분포 (cdf 법)</span>
   <p><b>2.39</b> $Y=\tfrac95X+32$(일대일): $f_Y(y)=\tfrac59 f_X\!\big(\tfrac{5(y-32)}{9}\big)$.</p>
   <p><b>2.40</b> $Y=X^2$: $F_Y(y)=P(-\sqrt y\le X\le\sqrt y)$ 미분 → $f_Y(y)=\dfrac{1}{2\sqrt y}\big[f_X(\sqrt y)+f_X(-\sqrt y)\big]$.
   $X\sim N(0,1)$ 이면 $Y\sim\text{GAM}(\tfrac12,2)$ (자유도 1 카이제곱).</p>
@@ -60,7 +60,7 @@
   J=\det\!\Big(\frac{\partial(x_1,\dots,x_n)}{\partial(y_1,\dots,y_n)}\Big).$$
 </div>
 <div class="box ex">
-  <span class="tag">예 2.44–2.46</span>
+  <span class="tag">예 2.44–2.46</span><span class="title">결합변환 (야코비안)</span>
   <p><b>2.44</b> 독립 베르누이 $X_1,X_2,X_3$ 에서 $Y_1=X_1+X_2+X_3,\ Y_2=|X_3-X_2|$ 의 결합 pmf 를 표로 구한다(정리 2.24).</p>
   <p><b>2.45</b> 독립 $X_1,X_2\sim\text{EXP}(1)$, $Y_1=X_1+X_2,\ Y_2=X_1-X_2$: $|J|=\tfrac12$ 이라
   주변 $f_{Y_1}(y_1)=y_1e^{-y_1}$ (감마), $f_{Y_2}(y_2)=\tfrac12 e^{-|y_2|}$ (이중지수).</p>
