@@ -36,15 +36,6 @@
   $$F(x_1,\dots,x_k)=\int_{-\infty}^{x_1}\!\!\cdots\int_{-\infty}^{x_k}f(t_1,\dots,t_k)\,dt_k\cdots dt_1,\qquad
   f=\frac{\partial^k}{\partial x_1\cdots\partial x_k}F.\tag{2.6}$$
 </div>
-<div class="box thm">
-  <span class="tag">정리 2.3</span><span class="title">이변량 결합 cdf 가 되기 위한 필요충분조건</span>
-  <p>$F(x_1,x_2)$ 가 이변량 결합 cdf 이기 위한 필요충분조건은:</p>
-  <ol class="props">
-    <li>각 변수에 대해 비감소이고 우연속,</li>
-    <li>$F(-\infty,x_2)=F(x_1,-\infty)=0$, &nbsp;$F(\infty,\infty)=1$,</li>
-    <li>임의의 $a\lt b,\ c\lt d$ 에 대해 $F(b,d)-F(b,c)-F(a,d)+F(a,c)\ge0$ (직사각형 확률이 음이 아님).</li>
-  </ol>
-</div>
 
 <div class="box ex">
   <span class="tag">예 2.6</span><span class="title">영역에서의 확률 — 적분구간 잡기</span>
@@ -69,6 +60,16 @@
   $$P(X\ge2Y)=\int_0^\infty xe^{-x}\Big[1-(\tfrac x2+1)e^{-x/2}\Big]dx=1-\frac{20}{27}=\frac{7}{27}.$$
   <p>순서를 바꿔 $y$ 를 바깥에 두면 $x$ 는 $2y\to\infty$, $y$ 는 $0\to\infty$ 라
   $\displaystyle\int_0^\infty\!\!\int_{2y}^\infty xy\,e^{-(x+y)}\,dx\,dy$ — 값은 같다.</p>
+</div>
+
+<div class="box thm">
+  <span class="tag">정리 2.3</span><span class="title">이변량 결합 cdf 가 되기 위한 필요충분조건</span>
+  <p>$F(x_1,x_2)$ 가 이변량 결합 cdf 이기 위한 필요충분조건은:</p>
+  <ol class="props">
+    <li>각 변수에 대해 비감소이고 우연속,</li>
+    <li>$F(-\infty,x_2)=F(x_1,-\infty)=0$, &nbsp;$F(\infty,\infty)=1$,</li>
+    <li>임의의 $a\lt b,\ c\lt d$ 에 대해 $F(b,d)-F(b,c)-F(a,d)+F(a,c)\ge0$ (직사각형 확률이 음이 아님).</li>
+  </ol>
 </div>
 
 <h2 class="sub"><span class="no">2.3.2</span>주변 확률분포 <span class="en">marginal</span></h2>
