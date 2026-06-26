@@ -152,6 +152,37 @@ $$P(A)=\lim_{n\to\infty}\frac{m}{n}.$$
   </details>
 </div>
 
+<h2 class="sub">확률의 부등식 — 부울·본페로니</h2>
+<p>합·교의 확률을 정확히 구하기 어려울 때 위·아래로 <b>한계(bound)</b>를 주는 두 부등식이다. (교재에서는 연습문제로 다루지만 자주 쓰이는 기본 성질이다.)</p>
+<div class="box thm">
+  <span class="tag">성질</span><span class="title">부울 부등식 <span class="en">Boole's inequality</span></span>
+  <p>임의의 사건 $A_1,A_2,\dots$ 에 대해</p>
+  $$P\Big(\bigcup_{i=1}^{\infty}A_i\Big)\le\sum_{i=1}^{\infty}P(A_i).$$
+</div>
+<div class="box prf">
+  <span class="tag">증명</span>
+  <p>겹치는 부분을 떼어내 <b>상호배반으로 바꾼다</b>: $B_1=A_1$, $B_k=A_k\cap(A_1\cup\cdots\cup A_{k-1})^c$ 로 두면
+  $B_k$ 들은 서로 배반이고 $B_k\subset A_k$, 그리고 $\bigcup_i B_i=\bigcup_i A_i$. 공리(3)으로</p>
+  $$P\Big(\bigcup_i A_i\Big)=P\Big(\bigcup_i B_i\Big)=\sum_i P(B_i)\le\sum_i P(A_i)\qquad(\because\ B_i\subset A_i\Rightarrow P(B_i)\le P(A_i)).$$
+  <div class="qed">∎</div>
+</div>
+<div class="box thm">
+  <span class="tag">성질</span><span class="title">본페로니 부등식 <span class="en">Bonferroni's inequality</span></span>
+  <p>$k$ 개 사건 $A_1,\dots,A_k$ 에 대해</p>
+  $$P\Big(\bigcap_{i=1}^{k}A_i\Big)\ge 1-\sum_{i=1}^{k}P(A_i^c).$$
+</div>
+<div class="box prf">
+  <span class="tag">증명</span>
+  <p>드 모르간으로 $\big(\bigcap_{i}A_i\big)^c=\bigcup_{i}A_i^c$ 이므로 $P\big(\bigcap_i A_i\big)=1-P\big(\bigcup_i A_i^c\big)$.
+  여기에 여사건들 $A_i^c$ 에 부울 부등식을 적용하면 $P\big(\bigcup_i A_i^c\big)\le\sum_i P(A_i^c)$ 이라</p>
+  $$P\Big(\bigcap_{i}A_i\Big)=1-P\Big(\bigcup_{i}A_i^c\Big)\ge 1-\sum_{i}P(A_i^c).$$
+  <div class="qed">∎</div>
+</div>
+<div class="note">
+  쓰임새: 각 사건이 “거의 확실”($P(A_i^c)$ 가 작음)할 때, 본페로니 부등식은 “그것들이 <b>동시에</b> 일어날 확률”의 하한을 준다.
+  여러 가설을 동시에 검정할 때의 <b>본페로니 교정</b>이 바로 이 부등식에 근거한다.
+</div>
+
 <nav class="pager">
   <a href="1-1_sample-space-events.html">← 이전<small>1.1 표본공간과 사건</small></a>
   <a class="next" href="1-3_conditional-probability.html">다음 →<small>1.3 조건부확률</small></a>
