@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>0장 · 극한과 성장 속도</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">수리통계학 · 0장 기초 지식</div>
+  <h1><span class="no">0.1</span>극한과 성장 속도 <span class="en">limits &amp; growth</span></h1>
+</header>
+
+<p>밀도함수의 적분이나 기댓값을 다룰 때 극한, 특히 “지수 대 다항” 의 성장 속도와 로피탈 정리가 자주 쓰인다.</p>
+
+<h2 class="sub">지수·로그 함수</h2>
+<div class="box def">
+  <span class="tag">$e^x,\ \ln x$</span>
+  <p>$e^x=\displaystyle\lim_{n\to\infty}\Big(1+\frac{x}{n}\Big)^n=\sum_{k=0}^{\infty}\frac{x^k}{k!}$, &nbsp;
+  $(e^{ax})'=a\,e^{ax}$, &nbsp;$\displaystyle\int e^{ax}\,dx=\frac{1}{a}e^{ax}$. &nbsp;$\ln x$ 는 $e^x$ 의 역함수, $(\ln x)'=\tfrac1x$.</p>
+  <p>포아송 근사에서 쓰는 $\Big(1-\dfrac{\lambda}{n}\Big)^n\to e^{-\lambda}$ 도 위 극한 정의에서 나온다.</p>
+</div>
+
+<h2 class="sub">로피탈 정리 <span class="en">L'Hôpital's rule</span></h2>
+<div class="box thm">
+  <span class="tag">정리</span>
+  <p>$x\to a$ ($a$ 는 유한값 또는 $\pm\infty$)에서 $\dfrac{f(x)}{g(x)}$ 가 $\dfrac00$ 또는 $\dfrac{\infty}{\infty}$ 꼴 부정형이고, $a$
+  근방에서 $f,g$ 가 미분가능($g'\ne0$)하며 $\displaystyle\lim\frac{f'}{g'}$ 가 존재하면</p>
+  $$\lim_{x\to a}\frac{f(x)}{g(x)}=\lim_{x\to a}\frac{f'(x)}{g'(x)}.$$
+</div>
+<div class="box ex">
+  <span class="tag">예</span>
+  <p>$\displaystyle\lim_{x\to0}\frac{\sin x}{x}\overset{0/0}{=}\lim\frac{\cos x}{1}=1$, &nbsp;
+  $\displaystyle\lim_{x\to\infty}\frac{x}{e^x}\overset{\infty/\infty}{=}\lim\frac{1}{e^x}=0$, &nbsp;
+  $\displaystyle\lim_{x\to0^+}x\ln x=\lim\frac{\ln x}{1/x}\overset{\infty/\infty}{=}\lim\frac{1/x}{-1/x^2}=\lim(-x)=0$.</p>
+</div>
+<div class="note">
+  $0\cdot\infty,\ \infty-\infty,\ 1^\infty$ 같은 부정형은 먼저 $\dfrac00$ 또는 $\dfrac\infty\infty$ 꼴로 변형한 뒤 로피탈을 적용한다(위 $x\ln x$ 예).
+</div>
+
+<h2 class="sub">성장 속도 <span class="en">growth rates</span></h2>
+<div class="box thm">
+  <span class="tag">지수 $\gg$ 다항</span>
+  <p>임의의 고정된 $n$ 에 대해</p>
+  $$\lim_{x\to\infty}\frac{x^n}{e^x}=0,\qquad\text{즉}\quad \lim_{x\to\infty}x^n e^{-x}=0.$$
+  <p>성장 속도 위계: $\ \ln x\ \ll\ x^a\ \ll\ e^x\ $ (임의의 $a\gt0$) — 지수함수가 어떤 거듭제곱·로그보다 빨리 커진다.</p>
+</div>
+<figure class="fig">
+<svg viewBox="0 0 250 170" role="img" aria-label="e^x가 x^2보다 빠르게 증가">
+  <line class="axis" x1="30" y1="150" x2="240" y2="150"/>
+  <line class="axis" x1="30" y1="158" x2="30" y2="14"/>
+  <polyline class="vec2" points="30,150 78,143 126,124 174,92 222,46"/>
+  <polyline class="vec" points="30,143 78,132 118,104 150,66 172,20"/>
+  <text class="lbl t" x="226" y="52">x²</text>
+  <text class="lbl b" x="176" y="24">eˣ</text>
+  <text class="lbl" x="236" y="148" text-anchor="start">x</text>
+</svg>
+<figcaption>$e^x$(파랑)는 $x^2$(초록)보다 훨씬 가파르게 치솟는다. 그래서 $x\to\infty$ 에서 비율 $x^2/e^x\to0$.</figcaption>
+</figure>
+<div class="box prf">
+  <span class="tag">증명</span>
+  <p>$x\gt0$ 에서 $e^x=\sum_{k\ge0}\dfrac{x^k}{k!}\gt\dfrac{x^{n+1}}{(n+1)!}$ 이므로
+  $0\lt\dfrac{x^n}{e^x}\lt\dfrac{(n+1)!}{x}\to0$. (또는 로피탈을 $n$ 번: $\dfrac{x^n}{e^x}\to\dfrac{n!}{e^x}\to0$.)</p>
+  <div class="qed">∎</div>
+</div>
+<div class="note">
+  이 때문에 감마함수 증명의 경계항 $\big[-t^{k-1}e^{-t}\big]_0^\infty=0$ 이 된다(지수가 다항을 누름).
+</div>
+
+<nav class="pager">
+  <span class="spacer"></span>
+  <a class="next" href="0-2_integration.html">다음 →<small>0.2 적분 기법</small></a>
+</nav>
+
+</body>
+</html>

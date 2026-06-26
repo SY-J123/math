@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>0장 · 적분 기법</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">수리통계학 · 0장 기초 지식</div>
+  <h1><span class="no">0.2</span>적분 기법 <span class="en">integration techniques</span></h1>
+</header>
+
+<h2 class="sub">미적분의 기본정리 <span class="en">FTC</span></h2>
+<div class="box thm">
+  <span class="tag">FTC</span>
+  $$\frac{d}{dx}\int_a^x f(t)\,dt=f(x).$$
+  <p>“$a$ 부터 $x$ 까지의 넓이” 를 $x$ 로 미분하면 그 끝점의 높이 $f(x)$ 가 된다. 그래서 연속형에서
+  cdf $F(x)=\int_{-\infty}^x f$ 를 미분하면 밀도 $f$ 가 나온다(2장 정리 2.2).</p>
+</div>
+<figure class="fig">
+<svg viewBox="0 0 250 160" role="img" aria-label="넓이의 미분은 끝점의 높이">
+  <path d="M30,140 C80,120 110,60 150,55 C190,50 215,80 235,70" fill="none" stroke="#1d6fb8" stroke-width="2"/>
+  <path d="M30,140 L30,140 C80,120 110,60 150,55 L150,140 Z" fill="#cfe3f3" opacity="0.7"/>
+  <line class="axis" x1="22" y1="140" x2="242" y2="140"/>
+  <line x1="150" y1="140" x2="150" y2="55" stroke="#888" stroke-dasharray="3 3"/>
+  <text class="lbl b" x="205" y="60">f(t)</text>
+  <text class="lbl" x="85" y="125">넓이 = F(x)</text>
+  <text class="lbl" x="150" y="152" text-anchor="middle">x</text>
+  <text class="lbl" x="30" y="152" text-anchor="middle">a</text>
+</svg>
+<figcaption>$\int_a^x f$ 는 색칠된 넓이. 오른쪽 끝 $x$ 를 조금 늘리면 넓이가 $f(x)\,dx$ 만큼 는다 → 도함수 $=f(x)$.</figcaption>
+</figure>
+
+<h2 class="sub">부분적분 <span class="en">integration by parts</span></h2>
+<div class="box thm">
+  <span class="tag">공식</span>
+  $$\int u\,dv = uv-\int v\,du.$$
+  <p>곱의 미분 $(uv)'=u'v+uv'$ 를 적분해 옮긴 것. “미분하면 간단해지는 쪽” 을 $u$ 로 잡는 게 요령($x^n$ → 미분하며 차수↓).</p>
+</div>
+<div class="box ex">
+  <span class="tag">예 — $\int_0^\infty x^n e^{-x}dx=n!$</span>
+  <p>$u=x,\ dv=e^{-x}dx$: $\displaystyle\int_0^\infty xe^{-x}dx=\big[-xe^{-x}\big]_0^\infty+\int_0^\infty e^{-x}dx=0+1=1$
+  ($\because$ 경계항은 성장속도로 $0$). 반복하면 $\int_0^\infty x^n e^{-x}dx=n!$.
+  또 $\displaystyle\int_0^\infty e^{-x/\theta}dx=\theta$, $\displaystyle\int_0^{a}ye^{-y}dy=1-(1+a)e^{-a}$ 등도 같은 방식.</p>
+</div>
+
+<h2 class="sub">다변수 변수변환 <span class="en">change of variables</span></h2>
+<div class="box thm">
+  <span class="tag">야코비안 <span class="en">Jacobian</span></span>
+  <p>$(x,y)\to(u,v)$ 일대일 변환에서</p>
+  $$\iint_R f(x,y)\,dx\,dy=\iint_{R'} f\big(x(u,v),y(u,v)\big)\,|J|\,du\,dv,\qquad J=\det\frac{\partial(x,y)}{\partial(u,v)}.$$
+</div>
+<figure class="fig">
+<svg viewBox="0 0 320 150" role="img" aria-label="변수변환으로 영역과 넓이 척도가 바뀜">
+  <g fill="none" stroke="#888"><line x1="20" y1="120" x2="140" y2="120"/><line x1="30" y1="130" x2="30" y2="20"/></g>
+  <path d="M45,105 C70,70 95,60 120,50 L120,105 Z" fill="#cfe3f3" stroke="#1d6fb8"/>
+  <text class="lbl" x="80" y="95" text-anchor="middle">R</text>
+  <text class="lbl" x="135" y="118">x</text><text class="lbl" x="30" y="16" text-anchor="middle">y</text>
+  <path d="M150,70 C170,60 190,60 205,70" fill="none" stroke="#0f8a7d" stroke-width="1.6" marker-end="url(#ar)"/>
+  <defs><marker id="ar" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#0f8a7d"/></marker></defs>
+  <text class="lbl t" x="178" y="56" text-anchor="middle">|J|</text>
+  <g fill="none" stroke="#888"><line x1="200" y1="120" x2="310" y2="120"/><line x1="210" y1="130" x2="210" y2="20"/></g>
+  <rect x="230" y="55" width="55" height="50" fill="#e9f6f4" stroke="#0f8a7d"/>
+  <text class="lbl" x="257" y="84" text-anchor="middle">R′</text>
+  <text class="lbl" x="305" y="118">u</text><text class="lbl" x="210" y="16" text-anchor="middle">v</text>
+</svg>
+<figcaption>변환은 영역 $R$ 을 $R'$ 으로 옮긴다. 작은 넓이조각이 $|J|$ 배로 늘거나 줄기 때문에 적분에 $|J|$ 를 곱한다.</figcaption>
+</figure>
+<div class="note">
+  $2.7$ 절 결합변환(정리 2.25)에서 밀도함수에 $|J|$ 가 곱해지는 이유다.
+</div>
+
+<nav class="pager">
+  <a href="0-1_limits.html">← 이전<small>0.1 극한과 성장 속도</small></a>
+  <a class="next" href="0-3_special-integrals.html">다음 →<small>0.3 감마·베타·가우스</small></a>
+</nav>
+
+</body>
+</html>

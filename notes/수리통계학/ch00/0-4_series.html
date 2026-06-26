@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>0장 · 급수와 테일러 전개</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">수리통계학 · 0장 기초 지식</div>
+  <h1><span class="no">0.4</span>급수와 테일러 전개 <span class="en">series &amp; Taylor</span></h1>
+</header>
+
+<h2 class="sub">기하급수·지수급수</h2>
+<div class="box thm">
+  <span class="tag">합 공식</span>
+  $$\sum_{n=0}^{\infty}r^n=\frac{1}{1-r}\ (|r|\lt1),\qquad \sum_{n=1}^{\infty}n\,r^{n-1}=\frac{1}{(1-r)^2},\qquad e^x=\sum_{n=0}^{\infty}\frac{x^n}{n!}.$$
+  <p>두 번째 식은 첫 식의 양변을 $r$ 로 미분해 얻는다(이산형 분포의 평균 계산에 자주 쓰임).</p>
+</div>
+<div class="box ex">
+  <span class="tag">예 — 기하분포의 평균</span>
+  <p>$X\sim\text{GEO}(p)$ ($q=1-p$): $E(X)=\sum_{x=1}^\infty x\,p\,q^{x-1}=p\sum_{x=1}^\infty x q^{x-1}=p\cdot\dfrac{1}{(1-q)^2}=\dfrac{p}{p^2}=\dfrac1p$.</p>
+</div>
+
+<h2 class="sub">테일러 급수 <span class="en">Taylor series</span></h2>
+<div class="box def">
+  <span class="tag">정의</span>
+  <p>$f$ 가 $a$ 근방에서 충분히 매끄러우면</p>
+  $$f(x)=\sum_{n=0}^{\infty}\frac{f^{(n)}(a)}{n!}(x-a)^n=f(a)+f'(a)(x-a)+\frac{f''(a)}{2!}(x-a)^2+\cdots$$
+  <p>($a=0$ 이면 매클로린 급수.) 다항식으로 함수를 근사하는 도구다 — 차수를 올릴수록 더 넓은 범위에서 정확해진다.</p>
+</div>
+<figure class="fig">
+<svg viewBox="0 0 250 150" role="img" aria-label="sin x를 1차 테일러 y=x로 근사">
+  <line class="axis" x1="14" y1="75" x2="238" y2="75"/>
+  <line class="axis" x1="125" y1="145" x2="125" y2="12"/>
+  <polyline class="vec" points="21,90 45,102 65,105 85,100 105,89 125,75 145,61 165,50 185,45 205,48 229,59"/>
+  <line x1="53" y1="129" x2="197" y2="21" stroke="#0f8a7d" stroke-width="1.8"/>
+  <text class="lbl b" x="210" y="58">sin x</text>
+  <text class="lbl t" x="196" y="18">y = x</text>
+</svg>
+<figcaption>$1$ 차 근사 $\sin x\approx x$ 는 $x=0$ 근방에서 곡선과 거의 겹치고, 멀어질수록 벌어진다. 차수를 올리면($x-\tfrac{x^3}{6}+\cdots$) 더 넓게 맞는다.</figcaption>
+</figure>
+<div class="box ex">
+  <span class="tag">자주 쓰는 전개 ($a=0$)</span>
+  $$e^x=\sum_{n\ge0}\frac{x^n}{n!},\quad \frac{1}{1-x}=\sum_{n\ge0}x^n,\quad \ln(1+x)=\sum_{n\ge1}\frac{(-1)^{n-1}}{n}x^n,\quad (1+x)^\alpha=\sum_{n\ge0}\binom{\alpha}{n}x^n.$$
+</div>
+<div class="note">
+  <b>적률생성함수와의 연결:</b> $M_X(t)=E(e^{tX})=E\Big(\sum_r\dfrac{(tX)^r}{r!}\Big)=\sum_r\dfrac{t^r}{r!}E(X^r)$.
+  이 테일러 전개의 $t^r$ 계수가 $\dfrac{E(X^r)}{r!}$ 라서 $M_X^{(r)}(0)=E(X^r)$ (2장 정리 2.27)이 나온다. 확률생성함수도 같은 원리($s^j$ 계수 $=P(X=j)$).
+</div>
+
+<nav class="pager">
+  <a href="0-3_special-integrals.html">← 이전<small>0.3 감마·베타·가우스</small></a>
+  <span class="spacer"></span>
+</nav>
+
+</body>
+</html>
