@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2장 · 2.2 확률밀도함수 및 확률분포함수</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">수리통계학 · 2장 확률변수</div>
+  <h1><span class="no">2.2</span>확률밀도함수 및 확률분포함수 <span class="en">pdf &amp; cdf</span></h1>
+</header>
+
+<h2 class="sub">확률밀도함수 <span class="en">probability density function</span></h2>
+<div class="box def">
+  <span class="tag">확률밀도함수</span>
+  <p>확률변수 $X$ 가 각 값을 가질 확률을 나타내는 함수 $f(x)$ 를 <b>확률밀도함수</b>라 한다.</p>
+  <p><b>이산형</b>(확률질량함수 <span class="en">pmf</span>): &nbsp;(1) $f(x_i)\ge0$, &nbsp;(2) $\displaystyle\sum_i f(x_i)=1$.</p>
+  <p><b>연속형</b>(<span class="en">pdf</span>): &nbsp;(1) $f(x)\ge0$, &nbsp;(2) $\displaystyle\int_{-\infty}^{\infty}f(x)\,dx=1$. 이때 $P(X=a)=0$ 이고 확률은 넓이로 잰다.</p>
+  <p>사건 $A$ 에 대한 확률은</p>
+  $$P(X\in A)=\begin{cases}\displaystyle\sum_{x_i\in A}f(x_i)&\text{이산형}\\[6pt]\displaystyle\int_A f(x)\,dx&\text{연속형}\end{cases}
+  \qquad P(a\le X\le b)=\int_a^b f(x)\,dx.\tag{2.1}$$
+</div>
+
+<div class="box ex">
+  <span class="tag">예 2.1</span>
+  <p>구간 $(0,3)$ 에서 $f(x)=\dfrac{x^2}{9}$ 는 확률밀도함수다: $f\ge0$ 이고 $\displaystyle\int_0^3\frac{x^2}{9}\,dx=\Big[\frac{x^3}{27}\Big]_0^3=1$.
+  이때 $\displaystyle P(0\lt X\lt2)=\int_0^2\frac{x^2}{9}\,dx=\frac{8}{27}$.</p>
+</div>
+
+<h2 class="sub">확률분포함수(누적분포함수) <span class="en">cdf</span></h2>
+<div class="box def">
+  <span class="tag">정의 2.2</span><span class="title">누적분포함수 <span class="en">cumulative distribution function</span></span>
+  <p>$$F(x)=P(X\le x),\qquad -\infty\lt x\lt\infty.$$
+  $X$ 가 밀도함수 $f$, 분포함수 $F$ 를 가짐을 각각 $X\sim f(x)$, $X\sim F(x)$ 로 쓴다.</p>
+</div>
+<div class="box thm">
+  <span class="tag">정리 2.1</span><span class="title">cdf 의 성질</span>
+  <p>함수 $F$ 가 어떤 확률변수의 cdf 이기 위한 필요충분조건은:</p>
+  <ol class="props">
+    <li>비감소(단조증가): $a\lt b \Rightarrow F(a)\le F(b)$,</li>
+    <li>$\displaystyle\lim_{x\to-\infty}F(x)=0$, &nbsp;$\displaystyle\lim_{x\to\infty}F(x)=1$,</li>
+    <li>우연속<span class="en">right-continuous</span>: $\displaystyle\lim_{h\to0^+}F(x+h)=F(x)$.</li>
+  </ol>
+  <p>밀도함수로부터 $F$ 는 이산형 $F(x)=\displaystyle\sum_{x_i\le x}f(x_i)$ (2.2), 연속형 $F(x)=\displaystyle\int_{-\infty}^{x}f(t)\,dt$ (2.3).</p>
+</div>
+
+<div class="box ex">
+  <span class="tag">예 2.2 · 2.3</span>
+  <p><b>2.2</b> 동전 $3$ 회($p=\tfrac12$), $X=$ 앞면 수: pmf $f=\{\tfrac18,\tfrac38,\tfrac38,\tfrac18\}$ ($x=0,1,2,3$). cdf 는
+  $0,\tfrac18,\tfrac48,\tfrac78,1$ 로 뛰어오르는 <b>계단함수</b>다.</p>
+  <p><b>2.3</b> $f(x)=c(1+x)^{-2}\,(x\gt0)$: $\int_0^\infty c(1+x)^{-2}dx=c=1$ 이라 $c=1$. 그러면
+  $F(x)=\int_0^x (1+t)^{-2}dt=1-\dfrac{1}{1+x}$, $\;P(1\lt X\lt2)=F(2)-F(1)=\tfrac23-\tfrac12=\tfrac16$.</p>
+</div>
+
+<div class="box thm">
+  <span class="tag">정리 2.2</span><span class="title">연속형에서 cdf 와 pdf 의 관계</span>
+  <p>연속형 확률변수에서 $F(x)=\displaystyle\int_{-\infty}^x f(t)\,dt$ 이면, $F$ 가 미분가능한 점에서</p>
+  $$f(x)=\frac{d}{dx}F(x).$$
+</div>
+<div class="box prf">
+  <span class="tag">증명</span>
+  <p>$F(x)=\int_{-\infty}^x f(t)\,dt$ 의 양변을 $x$ 로 미분하면, 미적분학의 기본정리에 의해 $F'(x)=f(x)$.
+  (거꾸로 밀도가 주어지면 적분이 cdf 이고, cdf 가 주어지면 미분이 밀도다.)</p>
+  <div class="qed">∎</div>
+</div>
+<div class="box ex">
+  <span class="tag">예 2.4</span>
+  <p>$F(x)=1-e^{-x/\lambda}\,(x\gt0)$ 이면 $f(x)=F'(x)=\dfrac{1}{\lambda}e^{-x/\lambda}$ — 지수분포의 밀도함수다.</p>
+</div>
+
+<nav class="pager">
+  <a href="2-1_random-variable.html">← 이전<small>2.1 확률변수의 정의</small></a>
+  <a class="next" href="2-3_joint-conditional.html">다음 →<small>2.3 결합·조건부 분포</small></a>
+</nav>
+
+</body>
+</html>

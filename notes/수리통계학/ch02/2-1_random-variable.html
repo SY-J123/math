@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2장 · 2.1 확률변수의 정의</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">수리통계학 · 2장 확률변수</div>
+  <h1><span class="no">2.1</span>확률변수의 정의 <span class="en">random variable</span></h1>
+</header>
+
+<p>1장에서 표본공간의 결과는 꼭 숫자가 아니어도 됐다(앞면 $H$, 뒷면 $T$ 등). 그러나 결과를 <b>수치</b>로 다루면
+평균·분산 같은 요약과 계산이 쉬워진다. 각 실험결과에 실수를 대응시키는 함수가 확률변수다.</p>
+
+<div class="box def">
+  <span class="tag">정의 2.1</span><span class="title">확률변수 <span class="en">random variable</span></span>
+  <p>표본공간 $S$ 위에 정의된 <b>실숫값 함수</b> $X:S\to\mathbb{R}$ 를 확률변수라 한다. 즉 각 실험결과 $s\in S$ 에
+  실수 $X(s)$ 를 대응시킨다.</p>
+</div>
+
+<div class="box ex">
+  <span class="tag">예</span>
+  <p>동전을 $3$ 회 던지는 실험에서 ‘앞면의 개수’ 를 $X$ 라 하면, 각 결과에 다음과 같이 수가 대응된다.</p>
+  <div class="scroll"><table class="data">
+    <tr><th>$s$</th><td>HHH</td><td>HHT</td><td>HTH</td><td>HTT</td><td>THH</td><td>THT</td><td>TTH</td><td>TTT</td></tr>
+    <tr><th>$X(s)$</th><td>3</td><td>2</td><td>2</td><td>1</td><td>2</td><td>1</td><td>1</td><td>0</td></tr>
+  </table></div>
+  <p>앞면이 나올 확률을 $p$ 라 하면 (각 던지기 독립)</p>
+  $$P(X=0)=(1-p)^3,\quad P(X=1)=3p(1-p)^2,\quad P(X=2)=3p^2(1-p),\quad P(X=3)=p^3.$$
+</div>
+
+<h2 class="sub">이산형과 연속형</h2>
+<div class="box def">
+  <span class="tag">분류</span>
+  <p><b>이산형 확률변수</b><span class="en">discrete</span>: 가질 수 있는 값이 유한개이거나 가산무한($\{0,1,2,\dots\}$ 처럼 셀 수 있는)인 경우.</p>
+  <p><b>연속형 확률변수</b><span class="en">continuous</span>: 어떤 구간 안의 모든 값을 가질 수 있는(셀 수 없는) 경우 — 예: 수명, 길이.</p>
+</div>
+<div class="note">
+  확률변수 $X$ 자체는 ‘함수’ 이고, 그 $X$ 가 각 값을 가질 확률을 기술하는 것이 다음 절의 <b>확률밀도함수·분포함수</b>다.
+</div>
+
+<nav class="pager">
+  <span class="spacer"></span>
+  <a class="next" href="2-2_distributions.html">다음 →<small>2.2 확률밀도함수·분포함수</small></a>
+</nav>
+
+</body>
+</html>
