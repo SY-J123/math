@@ -35,6 +35,22 @@
   <p>$\displaystyle\int_0^\infty e^{-x/\theta}\,dx=\big[-\theta e^{-x/\theta}\big]_0^\infty=\theta$. (포아송 근사에서 $(1-\tfrac{\lambda}{n})^n\to e^{-\lambda}$ 도 위 극한 정의에서 나온다.)</p>
 </div>
 
+<div class="box thm">
+  <span class="tag">성장 속도</span><span class="title">지수 $\gg$ 다항</span>
+  <p>임의의 고정된 $n$ 에 대해</p>
+  $$\lim_{x\to\infty}\frac{x^n}{e^x}=0,\qquad\text{즉}\quad \lim_{x\to\infty}x^n e^{-x}=0.$$
+  <p>성장 속도 위계: $\ \ln x\ \ll\ x^a\ \ll\ e^x\ $ (임의의 $a\gt0$) — 지수함수가 어떤 거듭제곱·로그보다 빨리 커진다.</p>
+</div>
+<div class="box prf">
+  <span class="tag">증명</span>
+  <p>$x\gt0$ 에서 $e^x=\sum_{k\ge0}\dfrac{x^k}{k!}\gt\dfrac{x^{n+1}}{(n+1)!}$ 이므로
+  $0\lt\dfrac{x^n}{e^x}\lt\dfrac{(n+1)!}{x}\to0$. (또는 로피탈을 $n$ 번 적용: $\dfrac{x^n}{e^x}\to\dfrac{n!}{e^x}\to0$.)</p>
+  <div class="qed">∎</div>
+</div>
+<div class="note">
+  이 때문에 감마함수 증명의 경계항 $\big[-t^{k-1}e^{-t}\big]_0^\infty=0$ 이 된다(지수가 다항을 누름).
+</div>
+
 <h2 class="sub">미적분의 기본정리 <span class="en">FTC</span></h2>
 <div class="box thm">
   <span class="tag">FTC</span>
