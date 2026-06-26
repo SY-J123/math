@@ -123,6 +123,18 @@
   <p>경계에서 서로 매끄럽게 이어진다(예: $x=y$ 에서 둘째·셋째가 모두 $x^4$, $x=y=1$ 에서 모두 $1$).</p>
 </div>
 
+<div class="box thm">
+  <span class="tag">고차원에서</span><span class="title">그림 대신 min 으로 적분구간 정하기</span>
+  <p>2차원까지는 받침을 <b>그려서</b> 경우를 나눴지만, 3차원 이상은 기하적으로 그릴 수 없다. 그래도 원리는 같다:</p>
+  <p><b>각 변수의 적분 상한 = 그 변수를 위에서 누르는 모든 경계의 최소값 $\min$.</b> 후보는 ⟨질의값(예 $x$)⟩,
+  ⟨받침의 끝(예 $1$)⟩, ⟨$u\lt v$ 같은 결합 제약(예 $v$)⟩. “받침 밖이면 받침에서 가져온다” 가 곧 $\min(\text{질의값},\ \text{받침 끝})$ 이다.</p>
+  <p>그러면 예 2.8 도 <b>경우 나눔 없이 한 줄</b>로 쓸 수 있다:</p>
+  $$F(x,y)=\int_0^{\min(y,\,1)}\!\!\int_0^{\min(x,\,v)} 8uv\,du\,dv.$$
+  <p>$\min$ 이 한계를 알아서 잘라 주므로 앞서 손으로 나눈 다섯 경우가 이 한 식에서 자동으로 나온다(예: $x\gt y$ 면 $v\le y$ 라
+  $\min(x,v)=v$ → $x$ 증발). 차원이 올라가도 $\int_0^{\min(\cdots)}$ 꼴로 <b>기계적으로</b> 쓸 수 있어 그림이 필요 없다 —
+  순서통계량 받침 $0\lt x_1\lt\cdots\lt x_n\lt1$ 처럼 변수들이 사슬로 묶인 경우에 특히 유용하다.</p>
+</div>
+
 <h2 class="sub"><span class="no">2.3.2</span>주변 확률분포 <span class="en">marginal</span></h2>
 <div class="box thm">
   <span class="tag">정리 2.4</span><span class="title">주변 밀도함수</span>
