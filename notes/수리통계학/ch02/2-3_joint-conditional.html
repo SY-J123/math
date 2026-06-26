@@ -97,8 +97,15 @@
   $$F(x,y)=\int_0^x\!\!\int_u^y 8uv\,dv\,du=\int_0^x 4u(y^2-u^2)\,du=2x^2y^2-x^4.$$
   <p><b>대각선 아래 ($x\gt y$)</b>: 받침이 $u\lt v\le y$ 로 잘려 $x$ 는 영향이 없다($u\lt v\le y\lt x$ 라 $u\le x$ 자동 만족).</p>
   $$F(x,y)=\int_0^y\!\!\int_u^y 8uv\,dv\,du=y^4\quad(y\text{ 만의 식}).$$
-  <p>경계에서는 $1$ 로 자른다: $x\le1\lt y$ 면 $2x^2-x^4$ ($y$ 를 $1$ 로), $x\ge1$ 이고 $0\lt y\lt1$ 이면 $y^4$,
-  $x\ge1,\,y\ge1$ 이면 $1$, $x\le0$ 또는 $y\le0$ 이면 $0$.</p>
+  <p>결국 케이스는 <b>$x,y$ 가 각각 받침의 어디(시작 전 · 안 · 끝 지난 뒤)에 놓이느냐의 가능한 조합</b>이다. 모으면:</p>
+  $$F(x,y)=\begin{cases}
+  0, & x\le0\ \text{또는}\ y\le0\quad(\text{받침 시작 전})\\[2pt]
+  2x^2y^2-x^4, & 0\lt x\le y\le1\quad(\text{대각선 위, 둘 다 안})\\[2pt]
+  y^4, & 0\lt y\lt x,\ y\le1\quad(\text{대각선 아래; }x\text{ 무관})\\[2pt]
+  2x^2-x^4, & 0\lt x\le1\lt y\quad(y\text{ 만 받침 끝 지남})\\[2pt]
+  1, & x\ge1\ \text{그리고}\ y\ge1\quad(\text{둘 다 끝 지남})
+  \end{cases}$$
+  <p>경계에서 서로 매끄럽게 이어진다(예: $x=y$ 에서 둘째·셋째가 모두 $x^4$, $x=y=1$ 에서 모두 $1$).</p>
 </div>
 
 <h2 class="sub"><span class="no">2.3.2</span>주변 확률분포 <span class="en">marginal</span></h2>
