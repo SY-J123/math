@@ -42,6 +42,25 @@
   $$\binom{n}{r}={}_nC_r=\frac{_nP_r}{r!}=\frac{n!}{r!\,(n-r)!},\qquad \binom{n}{r}=\binom{n}{n-r}.$$
 </div>
 
+<div class="box thm">
+  <span class="tag">성질</span><span class="title">파스칼 항등식 <span class="en">Pascal's identity</span></span>
+  $$\binom{n}{r}=\binom{n-1}{r-1}+\binom{n-1}{r}\qquad(1\le r\le n-1).$$
+</div>
+<div class="box prf">
+  <span class="tag">증명 (조합적)</span>
+  <p>특정 원소 하나 $a$ 를 정해 놓고, $n$ 개에서 $r$ 개를 뽑는 방법을 “$a$ 를 뽑았는가”로 나눈다.</p>
+  <ul>
+    <li><b>$a$ 를 포함</b>: 나머지 $n-1$ 개에서 $r-1$ 개를 더 뽑으면 되므로 $\dbinom{n-1}{r-1}$ 가지.</li>
+    <li><b>$a$ 를 제외</b>: $a$ 를 뺀 $n-1$ 개에서 $r$ 개를 뽑으므로 $\dbinom{n-1}{r}$ 가지.</li>
+  </ul>
+  <p>두 경우는 서로 배반이고 둘을 합치면 전체이므로, 합의 법칙으로
+  $\dbinom{n}{r}=\dbinom{n-1}{r-1}+\dbinom{n-1}{r}$. (대수적으로 두 항을 통분해도 같은 결과를 얻는다.)</p>
+  <div class="qed">∎</div>
+</div>
+<div class="note">
+  이 항등식이 곧 <b>파스칼의 삼각형</b><span class="en">Pascal's triangle</span> — 바로 위 두 수를 더해 아래 수를 만드는 규칙 — 의 근거다.
+</div>
+
 <h2 class="sub">이항정리와 다항정리</h2>
 <div class="box thm">
   <span class="tag">이항정리 <span class="en">binomial theorem</span></span>
