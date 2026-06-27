@@ -143,6 +143,15 @@
   <p>$X=x$ 가 주어졌을 때 $Y$ 의 평균:</p>
   $$E(Y\mid X=x)=\sum_y y\,f_{Y\mid X}(y\mid x)\ (\text{이산})\quad\text{또는}\quad\int_{-\infty}^{\infty} y\,f_{Y\mid X}(y\mid x)\,dy\ (\text{연속}).$$
 </div>
+<div class="box ex">
+  <span class="tag">예 2.24</span><span class="title">조건부 밀도·기댓값 (삼각형 균일)</span>
+  <p>$f_{X,Y}(x,y)=\tfrac12\ (0\le x\le y\le2)$. 주변밀도는</p>
+  $$f_X(x)=\int_x^2\tfrac12\,dy=\frac{2-x}{2}\ (0\le x\le2),\qquad f_Y(y)=\int_0^y\tfrac12\,dx=\frac{y}{2}\ (0\le y\le2).$$
+  <p>조건부 밀도와 조건부 기댓값:</p>
+  $$f_{Y\mid X}(y\mid x)=\frac{1/2}{(2-x)/2}=\frac{1}{2-x}\quad(x\le y\le2)\ \Rightarrow\ Y\mid X{=}x\sim U(x,2),$$
+  $$E(Y\mid X=x)=\int_x^2 y\cdot\frac{1}{2-x}\,dy=\frac{1}{2-x}\cdot\frac{4-x^2}{2}=\frac{2+x}{2}.$$
+  <p>(조건부가 $[x,2]$ 위 균일분포라 $E(Y\mid x)$ 가 그 중점 $\tfrac{x+2}{2}$ 로 나온다.)</p>
+</div>
 <div class="box thm">
   <span class="tag">정리 2.11</span><span class="title">이중기댓값 <span class="en">law of total expectation</span></span>
   $$E\big[E(Y\mid X)\big]=E(Y).$$
@@ -186,16 +195,6 @@
   $$E\big[Var(Y\mid X)\big]=E(Y^2)-E\big[(E(Y\mid X))^2\big].$$
   <p>또 $Var\big[E(Y\mid X)\big]=E\big[(E(Y\mid X))^2\big]-[E(Y)]^2$. 두 식을 더하면 $E(Y^2)-[E(Y)]^2=Var(Y)$.</p>
   <div class="qed">∎</div>
-</div>
-
-<div class="box ex">
-  <span class="tag">예 2.24</span><span class="title">조건부 밀도·기댓값 (삼각형 균일)</span>
-  <p>$f_{X,Y}(x,y)=\tfrac12\ (0\le x\le y\le2)$. 주변밀도는</p>
-  $$f_X(x)=\int_x^2\tfrac12\,dy=\frac{2-x}{2}\ (0\le x\le2),\qquad f_Y(y)=\int_0^y\tfrac12\,dx=\frac{y}{2}\ (0\le y\le2).$$
-  <p>조건부 밀도와 조건부 기댓값:</p>
-  $$f_{Y\mid X}(y\mid x)=\frac{1/2}{(2-x)/2}=\frac{1}{2-x}\quad(x\le y\le2)\ \Rightarrow\ Y\mid X{=}x\sim U(x,2),$$
-  $$E(Y\mid X=x)=\int_x^2 y\cdot\frac{1}{2-x}\,dy=\frac{1}{2-x}\cdot\frac{4-x^2}{2}=\frac{2+x}{2}.$$
-  <p>(조건부가 $[x,2]$ 위 균일분포라 $E(Y\mid x)$ 가 그 중점 $\tfrac{x+2}{2}$ 로 나온다.)</p>
 </div>
 
 <h2 class="sub"><span class="no">2.4.4</span>확률부등식</h2>
