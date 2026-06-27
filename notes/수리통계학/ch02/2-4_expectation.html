@@ -47,8 +47,11 @@
 </div>
 <div class="box prf">
   <span class="tag">증명 (연속형)</span>
-  <p>$E(aX+b)=\int(ax+b)f(x)dx=a\int xf(x)dx+b\int f(x)dx=aE(X)+b$ ($\because\int f=1$). 두 변수는
-  $E(aX+bY)=\iint(ax+by)f_{X,Y}\,dxdy=a\iint x f_{X,Y}+b\iint y f_{X,Y}=aE(X)+bE(Y)$ (주변화). 이산형도 합으로 동일.</p>
+  <p>한 변수 ($\because\int f=1$):</p>
+  $$E(aX+b)=\int(ax+b)f(x)\,dx=a\!\int xf(x)\,dx+b\!\int f(x)\,dx=aE(X)+b.$$
+  <p>두 변수 (주변화):</p>
+  $$\begin{aligned}E(aX+bY)&=\iint(ax+by)f_{X,Y}\,dx\,dy\\&=a\iint x f_{X,Y}\,dx\,dy+b\iint y f_{X,Y}\,dx\,dy=aE(X)+bE(Y).\end{aligned}$$
+  <p>이산형도 합으로 동일하다.</p>
   <div class="qed">∎</div>
 </div>
 <div class="box thm">
@@ -57,9 +60,9 @@
 </div>
 <div class="box prf">
   <span class="tag">증명</span>
-  <p>독립이면 $f_{X,Y}=f_Xf_Y$ 이므로
-  $E(XY)=\iint xy\,f_X(x)f_Y(y)\,dxdy=\Big(\int x f_X dx\Big)\Big(\int y f_Y dy\Big)=E(X)E(Y)$.
-  $g(X)h(Y)$ 도 같은 방식으로 분리된다.</p>
+  <p>독립이면 $f_{X,Y}=f_Xf_Y$ 이므로</p>
+  $$E(XY)=\iint xy\,f_X(x)f_Y(y)\,dx\,dy=\Big(\int x f_X\,dx\Big)\Big(\int y f_Y\,dy\Big)=E(X)E(Y).$$
+  <p>$g(X)h(Y)$ 도 같은 방식으로 분리된다.</p>
   <div class="qed">∎</div>
 </div>
 <div class="note">
@@ -106,8 +109,8 @@
 </div>
 <div class="box prf">
   <span class="tag">증명</span>
-  <p>$aX+b$ 의 평균은 $a\mu_X+b$, $cY+d$ 의 평균은 $c\mu_Y+d$ 이므로
-  $Cov(aX+b,cY+d)=E[(aX+b-a\mu_X-b)(cY+d-c\mu_Y-d)]=E[ac(X-\mu_X)(Y-\mu_Y)]=ac\,Cov(X,Y)$.</p>
+  <p>$aX+b$ 의 평균은 $a\mu_X+b$, $cY+d$ 의 평균은 $c\mu_Y+d$ 이므로</p>
+  $$\begin{aligned}Cov(aX+b,\,cY+d)&=E\big[(aX+b-a\mu_X-b)(cY+d-c\mu_Y-d)\big]\\&=E\big[ac(X-\mu_X)(Y-\mu_Y)\big]=ac\,Cov(X,Y).\end{aligned}$$
   <div class="qed">∎</div>
 </div>
 <div class="box thm">
@@ -116,8 +119,10 @@
 </div>
 <div class="box prf">
   <span class="tag">증명</span>
-  <p>$S=\sum X_i$, $E(S)=\sum\mu_i$ 라 하면 $Var(S)=E\big[(\sum(X_i-\mu_i))^2\big]
-  =E\big[\sum_i(X_i-\mu_i)^2+\sum_{j\ne k}(X_j-\mu_j)(X_k-\mu_k)\big]=\sum Var(X_i)+2\sum_{j\lt k}Cov(X_j,X_k)$.</p>
+  <p>$S=\sum X_i$, $E(S)=\sum\mu_i$ 라 하면</p>
+  $$\begin{aligned}Var(S)&=E\Big[\big(\textstyle\sum(X_i-\mu_i)\big)^2\Big]
+  =E\Big[\textstyle\sum_i(X_i-\mu_i)^2+\sum_{j\ne k}(X_j-\mu_j)(X_k-\mu_k)\Big]\\
+  &=\sum_i Var(X_i)+2\sum_{j\lt k}Cov(X_j,X_k).\end{aligned}$$
   <div class="qed">∎</div>
 </div>
 
@@ -133,8 +138,8 @@
 </div>
 <div class="box prf">
   <span class="tag">증명 (연속형)</span>
-  <p>$E[E(Y\mid X)]=\int E(Y\mid x)f_X(x)\,dx=\int\!\Big(\int y\,\tfrac{f_{X,Y}(x,y)}{f_X(x)}dy\Big)f_X(x)\,dx
-  =\iint y\,f_{X,Y}(x,y)\,dy\,dx=\int y f_Y(y)dy=E(Y)$.</p>
+  $$\begin{aligned}E\big[E(Y\mid X)\big]&=\int E(Y\mid x)f_X(x)\,dx=\int\!\Big(\int y\,\tfrac{f_{X,Y}(x,y)}{f_X(x)}\,dy\Big)f_X(x)\,dx\\
+  &=\iint y\,f_{X,Y}(x,y)\,dy\,dx=\int y\,f_Y(y)\,dy=E(Y).\end{aligned}$$
   <div class="qed">∎</div>
 </div>
 <div class="box thm">
@@ -152,9 +157,9 @@
 </div>
 <div class="box prf">
   <span class="tag">증명</span>
-  <p>$Var(Y\mid X)=E(Y^2\mid X)-[E(Y\mid X)]^2$ 의 기댓값을 취하면 $E[Var(Y\mid X)]=E(Y^2)-E\big[(E(Y\mid X))^2\big]$.
-  또 $Var[E(Y\mid X)]=E\big[(E(Y\mid X))^2\big]-\big(E[E(Y\mid X)]\big)^2=E\big[(E(Y\mid X))^2\big]-[E(Y)]^2$.
-  두 식을 더하면 $E(Y^2)-[E(Y)]^2=Var(Y)$.</p>
+  <p>$Var(Y\mid X)=E(Y^2\mid X)-[E(Y\mid X)]^2$ 의 기댓값을 취하면</p>
+  $$E\big[Var(Y\mid X)\big]=E(Y^2)-E\big[(E(Y\mid X))^2\big].$$
+  <p>또 $Var\big[E(Y\mid X)\big]=E\big[(E(Y\mid X))^2\big]-[E(Y)]^2$. 두 식을 더하면 $E(Y^2)-[E(Y)]^2=Var(Y)$.</p>
   <div class="qed">∎</div>
 </div>
 
@@ -165,9 +170,9 @@
 </div>
 <div class="box prf">
   <span class="tag">증명 (연속형)</span>
-  <p>$A=\{x: u(x)\ge c\}$ 라 하면
-  $E[u(X)]=\int u(x)f(x)dx\ge\int_A u(x)f(x)dx\ge\int_A c\,f(x)dx=c\,P[u(X)\ge c]$.
-  양변을 $c$ 로 나눈다.</p>
+  <p>$A=\{x: u(x)\ge c\}$ 라 하면</p>
+  $$E[u(X)]=\int u(x)f(x)\,dx\ge\int_A u(x)f(x)\,dx\ge\int_A c\,f(x)\,dx=c\,P[u(X)\ge c].$$
+  <p>양변을 $c$ 로 나눈다.</p>
   <div class="qed">∎</div>
 </div>
 <div class="box thm">
@@ -176,9 +181,9 @@
 </div>
 <div class="box prf">
   <span class="tag">증명</span>
-  <p>마르코프 부등식에서 $u(X)=(X-\mu)^2$, $c=k^2\sigma^2$ 로 두면
-  $P[(X-\mu)^2\ge k^2\sigma^2]\le\dfrac{E[(X-\mu)^2]}{k^2\sigma^2}=\dfrac{\sigma^2}{k^2\sigma^2}=\dfrac1{k^2}$.
-  좌변은 $P(|X-\mu|\ge k\sigma)$ 와 같다.</p>
+  <p>마르코프 부등식에서 $u(X)=(X-\mu)^2$, $c=k^2\sigma^2$ 로 두면</p>
+  $$P\big[(X-\mu)^2\ge k^2\sigma^2\big]\le\frac{E[(X-\mu)^2]}{k^2\sigma^2}=\frac{\sigma^2}{k^2\sigma^2}=\frac1{k^2}.$$
+  <p>좌변은 $P(|X-\mu|\ge k\sigma)$ 와 같다.</p>
   <div class="qed">∎</div>
 </div>
 <div class="box ex">
@@ -193,8 +198,10 @@
 </div>
 <div class="box prf">
   <span class="tag">증명</span>
-  <p>임의의 실수 $t$ 에 대해 $0\le E[(tX-Y)^2]=t^2E(X^2)-2t\,E(XY)+E(Y^2)$. 이 $t$ 에 대한 이차식이 항상
-  $\ge0$ 이려면 판별식 $\le0$: $4[E(XY)]^2-4E(X^2)E(Y^2)\le0$, 즉 $[E(XY)]^2\le E(X^2)E(Y^2)$.</p>
+  <p>임의의 실수 $t$ 에 대해</p>
+  $$0\le E[(tX-Y)^2]=t^2E(X^2)-2t\,E(XY)+E(Y^2).$$
+  <p>이 $t$ 에 대한 이차식이 항상 $\ge0$ 이려면 판별식 $\le0$:
+  $4[E(XY)]^2-4E(X^2)E(Y^2)\le0$, 즉 $[E(XY)]^2\le E(X^2)E(Y^2)$.</p>
   <div class="qed">∎</div>
 </div>
 
