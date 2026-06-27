@@ -200,8 +200,11 @@
 </div>
 <div class="box ex">
   <span class="tag">예 2.13</span><span class="title">독립 판정</span>
-  <p>$f_{X,Y}(x,y)=\dfrac{2^{x+y}e^{-2}}{x!\,y!}$ 면 $f_X(x)=\dfrac{e^{-1}}{x!},\,f_Y(y)=\dfrac{e^{-1}}{y!}$ 의 곱과 같으므로 독립
-  (각각 $\text{POI}(1)$). 반면 정의역이 $0\le x\le y$ 처럼 한 변수가 다른 변수에 묶이면 곱으로 분리되지 않아 독립이 아니다.</p>
+  <p>결합 pmf $f_{X,Y}(x,y)=\dfrac{2^{x+y}e^{-4}}{x!\,y!}$ ($x,y=0,1,2,\dots$). 주변 pmf 는</p>
+  $$f_X(x)=\sum_{y}\frac{2^{x+y}e^{-4}}{x!\,y!}=\frac{2^x e^{-4}}{x!}\sum_{y=0}^{\infty}\frac{2^y}{y!}=\frac{2^x e^{-4}}{x!}\,e^{2}=\frac{2^x e^{-2}}{x!}$$
+  <p>(가운데에서 <a href="../ch00/0-4_series.html">지수급수</a> $\sum_y \tfrac{2^y}{y!}=e^{2}$ 를 썼다). 마찬가지로 $f_Y(y)=\dfrac{2^y e^{-2}}{y!}$.
+  $f_{X,Y}=f_X f_Y$ 이므로 $X,Y$ 는 독립이다(각각 $\text{POI}(2)$).</p>
+  <p>반면 $f_{X,Y}=\tfrac12\ (0\le x\le y\le2)$ 는 받침이 삼각형이라 곱으로 분리되지 않아 독립이 아니다.</p>
 </div>
 
 <nav class="pager">
