@@ -25,7 +25,7 @@
 
 <h2 class="sub">지수·로그 함수 <span class="en">exponential &amp; logarithm</span></h2>
 <div class="box def">
-  <span class="tag">$e^x,\ \ln x$</span>
+  <span class="tag">$e^x,\ \ln x$</span><span class="title">지수·로그 함수</span>
   <p>$e^x=\displaystyle\lim_{n\to\infty}\Big(1+\frac{x}{n}\Big)^n=\sum_{k=0}^{\infty}\frac{x^k}{k!}$, &nbsp;
   $(e^{ax})'=a\,e^{ax}$, &nbsp;$\displaystyle\int e^{ax}\,dx=\frac{1}{a}e^{ax}$. &nbsp;$\ln x$ 는 $e^x$ 의 역함수, $(\ln x)'=\tfrac1x$.</p>
   <p>포아송 근사에서 쓰는 $\Big(1-\dfrac{\lambda}{n}\Big)^n\to e^{-\lambda}$ 도 위 극한 정의에서 나온다.</p>
@@ -33,7 +33,7 @@
 
 <h2 class="sub">로피탈 정리 <span class="en">L'Hôpital's rule</span></h2>
 <div class="box thm">
-  <span class="tag">정리</span>
+  <span class="tag">정리</span><span class="title">로피탈 정리 <span class="en">L'Hôpital</span></span>
   <p>$x\to a$ ($a$ 는 유한값 또는 $\pm\infty$)에서 $\dfrac{f(x)}{g(x)}$ 가 $\dfrac00$ 또는 $\dfrac{\infty}{\infty}$ 꼴 부정형이고, $a$
   근방에서 $f,g$ 가 미분가능($g'\ne0$)하며 $\displaystyle\lim\frac{f'}{g'}$ 가 존재하면</p>
   $$\lim_{x\to a}\frac{f(x)}{g(x)}=\lim_{x\to a}\frac{f'(x)}{g'(x)}.$$
@@ -47,7 +47,7 @@
   <div class="qed">∎</div>
 </div>
 <div class="box ex">
-  <span class="tag">예</span>
+  <span class="tag">예</span><span class="title">로피탈 적용</span>
   <p>$\displaystyle\lim_{x\to0}\frac{\sin x}{x}\overset{0/0}{=}\lim\frac{\cos x}{1}=1$, &nbsp;
   $\displaystyle\lim_{x\to\infty}\frac{x}{e^x}\overset{\infty/\infty}{=}\lim\frac{1}{e^x}=0$, &nbsp;
   $\displaystyle\lim_{x\to0^+}x\ln x=\lim\frac{\ln x}{1/x}\overset{\infty/\infty}{=}\lim\frac{1/x}{-1/x^2}=\lim(-x)=0$.</p>
