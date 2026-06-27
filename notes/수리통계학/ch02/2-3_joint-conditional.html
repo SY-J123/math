@@ -27,7 +27,12 @@
 <h2 class="sub"><span class="no">2.3.1</span>결합 확률분포 <span class="en">joint distribution</span></h2>
 <div class="box def">
   <span class="tag">정의 2.3</span><span class="title">결합 확률밀도함수 <span class="en">joint pdf</span></span>
-  <p>두 확률변수 $X,Y$ 의 결합 밀도함수 $f_{X,Y}(x,y)$ 는 (1) $f_{X,Y}\ge0$, (2) 전체 합(적분)이 $1$ 이며,</p>
+  <p>두 확률변수 $X,Y$ 의 결합 밀도함수 $f_{X,Y}(x,y)$ 는 다음 두 조건을 만족하고,</p>
+  <ol class="props">
+    <li>$f_{X,Y}(x,y)\ge0$</li>
+    <li>전체 합(적분)이 $1$</li>
+  </ol>
+  <p>임의의 사건(영역) $A$ 에 대해</p>
   $$P\big((X,Y)\in A\big)=\begin{cases}\displaystyle\sum\sum_{(x,y)\in A}f_{X,Y}(x,y)&\text{이산형}\\[6pt]\displaystyle\iint_{A}f_{X,Y}(x,y)\,dx\,dy&\text{연속형}\end{cases}$$
 </div>
 <div class="box def">

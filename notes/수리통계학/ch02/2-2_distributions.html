@@ -25,8 +25,12 @@
 <div class="box def">
   <span class="tag">확률밀도함수</span>
   <p>확률변수 $X$ 가 각 값을 가질 확률을 나타내는 함수 $f(x)$ 를 <b>확률밀도함수</b>라 한다.</p>
-  <p><b>이산형</b>(확률질량함수 <span class="en">pmf</span>): &nbsp;(1) $f(x_i)\ge0$, &nbsp;(2) $\displaystyle\sum_i f(x_i)=1$.</p>
-  <p><b>연속형</b>(<span class="en">pdf</span>): &nbsp;(1) $f(x)\ge0$, &nbsp;(2) $\displaystyle\int_{-\infty}^{\infty}f(x)\,dx=1$. 이때 $P(X=a)=0$ 이고 확률은 넓이로 잰다.</p>
+  <p><b>이산형</b>(확률질량함수 <span class="en">pmf</span>) / <b>연속형</b>(<span class="en">pdf</span>) 의 두 조건:</p>
+  <ol class="props">
+    <li>$f(x_i)\ge0$ (연속형은 $f(x)\ge0$)</li>
+    <li>전체 합이 $1$ — 이산형 $\displaystyle\sum_i f(x_i)=1$, 연속형 $\displaystyle\int_{-\infty}^{\infty}f(x)\,dx=1$</li>
+  </ol>
+  <p>연속형에서는 $P(X=a)=0$ 이고 확률은 넓이로 잰다.</p>
   <p>사건 $A$ 에 대한 확률은</p>
   $$P(X\in A)=\begin{cases}\displaystyle\sum_{x_i\in A}f(x_i)&\text{이산형}\\[6pt]\displaystyle\int_A f(x)\,dx&\text{연속형}\end{cases}
   \qquad P(a\le X\le b)=\int_a^b f(x)\,dx.\tag{2.1}$$

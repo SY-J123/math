@@ -107,6 +107,10 @@ mjx-container[display="true"]{ overflow-x:auto; overflow-y:hidden; padding-botto
 .pager a.next{ text-align:right; margin-left:auto; }
 .pager .spacer{ flex:1 1 auto; }
 
+/* ---- 디스플레이 수식: 길어도 박스를 넘지 않게 가로 스크롤 ---- */
+mjx-container[display="true"]{ max-width:100%; overflow-x:auto; overflow-y:hidden; }
+.box mjx-container, .ans mjx-container{ max-width:100%; }
+
 /* ---- 표 ---- */
 .scroll{ overflow-x:auto; }
 table.data{ border-collapse:collapse; margin:10px 0; font-size:0.85rem; width:100%; }

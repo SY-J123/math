@@ -62,14 +62,18 @@
 
 <div class="box thm">
   <span class="tag">정리 2.29</span><span class="title">선형변환과 독립합의 mgf</span>
-  <p>(1) $Y=aX+b$ 이면 $M_Y(t)=e^{bt}M_X(at)$. &nbsp;(2) $X_1,\dots,X_n$ 이 독립이고 $Y=\sum_i X_i$ 이면</p>
-  $$M_Y(t)=\prod_{i=1}^{n}M_{X_i}(t).$$
+  <ol class="props">
+    <li>$Y=aX+b$ 이면 $M_Y(t)=e^{bt}M_X(at)$.</li>
+    <li>$X_1,\dots,X_n$ 이 독립이고 $Y=\sum_i X_i$ 이면 $M_Y(t)=\displaystyle\prod_{i=1}^{n}M_{X_i}(t)$.</li>
+  </ol>
 </div>
 <div class="box prf">
   <span class="tag">증명</span>
-  <p>(1) $M_Y(t)=E[e^{t(aX+b)}]=e^{bt}E[e^{(at)X}]=e^{bt}M_X(at)$.
-  (2) 독립이면 $M_Y(t)=E[e^{t\sum X_i}]=E\big[\prod_i e^{tX_i}\big]=\prod_i E[e^{tX_i}]=\prod_i M_{X_i}(t)$
-  ($\because$ 독립이면 곱의 기댓값이 분리, 정리 2.7).</p>
+  <ol>
+    <li>$M_Y(t)=E[e^{t(aX+b)}]=e^{bt}E[e^{(at)X}]=e^{bt}M_X(at)$.</li>
+    <li>독립이면 $M_Y(t)=E[e^{t\sum X_i}]=E\big[\prod_i e^{tX_i}\big]=\prod_i E[e^{tX_i}]=\prod_i M_{X_i}(t)$
+    ($\because$ 독립이면 곱의 기댓값이 분리, 정리 2.7).</li>
+  </ol>
   <div class="qed">∎</div>
 </div>
 <div class="box ex">
