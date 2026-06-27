@@ -59,8 +59,14 @@
   <span class="tag">증명</span>
   <p>독립이면 $f_{X,Y}=f_Xf_Y$ 이므로
   $E(XY)=\iint xy\,f_X(x)f_Y(y)\,dxdy=\Big(\int x f_X dx\Big)\Big(\int y f_Y dy\Big)=E(X)E(Y)$.
-  $g(X)h(Y)$ 도 같은 방식으로 분리된다. (역은 일반적으로 성립하지 않는다.)</p>
+  $g(X)h(Y)$ 도 같은 방식으로 분리된다.</p>
   <div class="qed">∎</div>
+</div>
+<div class="note">
+  <b>역은 성립하지 않는다.</b> $E(XY)=E(X)E(Y)$ (즉 공분산 $0$, <b>무상관</b>)라고 해서 독립인 것은 아니다.
+  <b>반례(연습 2.35):</b> $U\sim U[0,2\pi)$ 에서 $X=\cos U,\ Y=\sin U$ 라 하면
+  $E(X)=E(Y)=0$, &nbsp;$E(XY)=\tfrac12E(\sin 2U)=0$ 이라 $Cov(X,Y)=0$. 그런데 $X^2+Y^2=1$ 로 완전히 묶여 있어 <b>독립이 아니다</b>.
+  (독립 $\Rightarrow$ 무상관은 참, 그 역은 거짓.)
 </div>
 
 <h2 class="sub"><span class="no">2.4.2</span>분산과 공분산</h2>
