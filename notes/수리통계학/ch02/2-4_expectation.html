@@ -81,12 +81,18 @@
     <li>$Var(aX+b)=a^2\,Var(X)$</li>
     <li>$X_1,\dots,X_n$ 이 <b>독립</b>이면 $Var\big(\textstyle\sum_i X_i\big)=\sum_i Var(X_i)$</li>
     <li>$Var(c)=0$ (상수의 분산은 $0$)</li>
+    <li>$X_1,X_2$ 가 <b>독립</b>이면 $Var(X_1-X_2)=Var(X_1)+Var(X_2)$</li>
   </ol>
 </div>
 <div class="box prf">
   <span class="tag">증명</span>
-  <p>(1) $E(aX+b)=a\mu+b$ 이므로 $Var(aX+b)=E[(aX+b-a\mu-b)^2]=E[a^2(X-\mu)^2]=a^2Var(X)$.
-  (2) $Var(\sum X_i)=\sum Var(X_i)+2\sum_{j\lt k}Cov(X_j,X_k)$ (정리 2.10)인데, 독립이면 $Cov=0$ 이므로 합이 분산의 합과 같다.</p>
+  <ol>
+    <li>$E(aX+b)=a\mu+b$ 이므로 $Var(aX+b)=E\big[(aX+b-(a\mu+b))^2\big]=E[a^2(X-\mu)^2]=a^2\,Var(X)$.</li>
+    <li>$Var\big(\sum_i X_i\big)=\sum_i Var(X_i)+2\sum_{j\lt k}Cov(X_j,X_k)$ (정리 2.10)인데, 독립이면 $Cov=0$ 이므로 분산의 합과 같다.</li>
+    <li>(1)에서 $a=0$ 으로 두면 $Var(c)=0^2\cdot Var(X)=0$ (상수는 편차가 항상 $0$).</li>
+    <li>$X_1-X_2=X_1+(-1)X_2$ 로 본다. 성질 (1)에 의해 $Var(-X_2)=(-1)^2\,Var(X_2)=Var(X_2)$ —
+    <b>계수 $-1$ 이 제곱되어 $+$ 로 바뀐다</b>. 독립이므로 (2)에 의해 $Var(X_1-X_2)=Var(X_1)+Var(-X_2)=Var(X_1)+Var(X_2)$.</li>
+  </ol>
   <div class="qed">∎</div>
 </div>
 <div class="box def">
