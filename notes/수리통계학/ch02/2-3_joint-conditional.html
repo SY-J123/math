@@ -152,6 +152,21 @@
   <div class="qed">∎</div>
 </div>
 <div class="box ex">
+  <span class="tag">예 2.9</span><span class="title">다항분포의 주변분포 — 이중 시그마가 하나로</span>
+  <p>세 범주의 확률이 $\tfrac16,\tfrac26,\tfrac36$ 인 시행을 $n$ 번 반복했을 때 각 범주의 횟수 $(X_1,X_2,X_3)$ 의 결합 pmf(다항분포):</p>
+  $$f(x_1,x_2,x_3)=\frac{n!}{x_1!\,x_2!\,x_3!}\Big(\tfrac16\Big)^{x_1}\Big(\tfrac26\Big)^{x_2}\Big(\tfrac36\Big)^{x_3},\qquad x_1+x_2+x_3=n.$$
+  <p>$X_1$ 의 주변 pmf 는 나머지 $x_2,x_3$ 에 대해 합한다. 두 가지가 핵심이다.</p>
+  <p><b>① 이중합이 사실은 단일합.</b> $x_1+x_2+x_3=n$ 이라 $x_1$ 을 고정하면 $x_3=n-x_1-x_2$ 가 <b>자동으로 정해진다</b> —
+  자유로운 건 $x_2$ 하나뿐. 그래서 “$\sum_{x_2}\sum_{x_3}$” 은 실제로 $\sum_{x_2=0}^{\,n-x_1}$ 한 줄이다($x_3$ 는 따라옴).</p>
+  <p><b>② 그 단일합은 이항정리로 닫힌다.</b> $m=n-x_1$ 로 두고 $x_1$ 항을 밖으로 빼면</p>
+  $$f_{X_1}(x_1)=\frac{n!}{x_1!}\Big(\tfrac16\Big)^{x_1}\sum_{x_2=0}^{m}\frac{1}{x_2!\,(m-x_2)!}\Big(\tfrac26\Big)^{x_2}\Big(\tfrac36\Big)^{m-x_2}.$$
+  <p>$\dfrac{1}{x_2!(m-x_2)!}=\dfrac{1}{m!}\dbinom{m}{x_2}$ 이고, 이항정리로
+  $\sum_{x_2=0}^{m}\binom{m}{x_2}(\tfrac26)^{x_2}(\tfrac36)^{m-x_2}=(\tfrac26+\tfrac36)^m=(\tfrac56)^m$ 이므로</p>
+  $$f_{X_1}(x_1)=\frac{n!}{x_1!\,m!}\Big(\tfrac16\Big)^{x_1}\Big(\tfrac56\Big)^{m}=\binom{n}{x_1}\Big(\tfrac16\Big)^{x_1}\Big(\tfrac56\Big)^{n-x_1}\ \sim\ B\!\Big(n,\tfrac16\Big).$$
+  <p>즉 다항분포의 한 성분의 주변분포는 “그 범주냐 아니냐” 의 <b>이항분포</b> $B(n,p_i)$ ($X_2\sim B(n,\tfrac26),\ X_3\sim B(n,\tfrac36)$ 도 같은 방식).</p>
+</div>
+
+<div class="box ex">
   <span class="tag">예 2.10</span><span class="title">주변밀도 구하기</span>
   <p>$f_{X,Y}(x,y)=xy\,e^{-(x+y)}\,(x,y\gt0)$ 면 $f_X(x)=\int_0^\infty xy e^{-(x+y)}dy=xe^{-x}\int_0^\infty y e^{-y}dy=xe^{-x}$
   (마찬가지로 $f_Y(y)=ye^{-y}$).</p>
