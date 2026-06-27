@@ -42,8 +42,9 @@
 </div>
 <div class="box prf">
   <span class="tag">증명</span>
-  <p>$M_X(t)=E(e^{tX})=E\big(\sum_{r\ge0}\tfrac{(tX)^r}{r!}\big)=\sum_{r\ge0}\dfrac{t^r}{r!}E(X^r)$ (지수함수의 <a href="../ch00/0-4_series.html">급수 전개</a>). 양변을 $t$ 로 $r$ 번
-  미분하고 $t=0$ 을 대입하면 $\frac{t^r}{r!}E(X^r)$ 항만 살아남아 $M_X^{(r)}(0)=E(X^r)$. (예: $M'(0)=E(X)$, $M''(0)=E(X^2)$.)</p>
+  <p>지수함수의 <a href="../ch00/0-4_series.html">급수 전개</a>로</p>
+  $$M_X(t)=E(e^{tX})=E\Big(\sum_{r\ge0}\tfrac{(tX)^r}{r!}\Big)=\sum_{r\ge0}\frac{t^r}{r!}E(X^r).$$
+  <p>양변을 $t$ 로 $r$ 번 미분하고 $t=0$ 을 대입하면 $\frac{t^r}{r!}E(X^r)$ 항만 살아남아 $M_X^{(r)}(0)=E(X^r)$. (예: $M'(0)=E(X)$, $M''(0)=E(X^2)$.)</p>
   <div class="qed">∎</div>
 </div>
 <div class="box ex">
@@ -71,8 +72,8 @@
   <span class="tag">증명</span>
   <ol>
     <li>$M_Y(t)=E[e^{t(aX+b)}]=e^{bt}E[e^{(at)X}]=e^{bt}M_X(at)$.</li>
-    <li>독립이면 $M_Y(t)=E[e^{t\sum X_i}]=E\big[\prod_i e^{tX_i}\big]=\prod_i E[e^{tX_i}]=\prod_i M_{X_i}(t)$
-    ($\because$ 독립이면 곱의 기댓값이 분리, 정리 2.7).</li>
+    <li>독립이면 ($\because$ 곱의 기댓값이 분리, 정리 2.7)
+    $$M_Y(t)=E\big[e^{t\sum X_i}\big]=E\Big[\prod_i e^{tX_i}\Big]=\prod_i E[e^{tX_i}]=\prod_i M_{X_i}(t).$$</li>
   </ol>
   <div class="qed">∎</div>
 </div>

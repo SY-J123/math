@@ -54,8 +54,9 @@
   <p>단위시간(구간)에 평균 $\lambda$ 회 발생하는 희귀사건의 횟수:</p>
   $$f(x)=\frac{e^{-\lambda}\lambda^x}{x!},\quad x=0,1,2,\dots\tag{2.24}$$
   $$E(X)=\lambda,\qquad Var(X)=\lambda.\tag{2.25}$$
-  <p>($E(X)=\sum_{x\ge1}x\frac{e^{-\lambda}\lambda^x}{x!}=\lambda\sum_{x\ge1}\frac{e^{-\lambda}\lambda^{x-1}}{(x-1)!}=\lambda$.
-  $E[X(X-1)]=\lambda^2$ 에서 $E(X^2)=\lambda^2+\lambda$, 따라서 $Var=\lambda$.)</p>
+  <p>유도:</p>
+  $$E(X)=\sum_{x\ge1}x\,\frac{e^{-\lambda}\lambda^x}{x!}=\lambda\sum_{x\ge1}\frac{e^{-\lambda}\lambda^{x-1}}{(x-1)!}=\lambda.$$
+  <p>$E[X(X-1)]=\lambda^2$ 에서 $E(X^2)=\lambda^2+\lambda$, 따라서 $Var(X)=\lambda^2+\lambda-\lambda^2=\lambda$.</p>
 </div>
 <div class="box thm">
   <span class="tag">정리 2.17</span><span class="title">포아송에 의한 이항분포 근사</span>
