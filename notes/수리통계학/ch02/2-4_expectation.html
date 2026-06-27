@@ -27,6 +27,12 @@
   $$E(X)=\mu=\begin{cases}\displaystyle\sum_x x\,f(x)&\text{이산형}\\[6pt]\displaystyle\int_{-\infty}^{\infty}x\,f(x)\,dx&\text{연속형}\end{cases}$$
   <p>함수의 기댓값: $\displaystyle E[g(X)]=\sum_x g(x)f(x)$ (이산, 2.9) $=\displaystyle\int_{-\infty}^{\infty}g(x)f(x)\,dx$ (연속, 2.10).</p>
 </div>
+<div class="note">
+  <b>$Y=g(X)$ 의 기댓값 — 두 가지 계산법.</b> $Y$ 의 분포를 따로 구해 $E_Y(Y)=\sum_y y\,f_Y(y)$ 로 계산할 수도, $X$ 의 분포에서 곧바로
+  $E_X[g(X)]=\sum_x g(x)\,f_X(x)$ 로 계산할 수도 있는데, 둘은 항상 같다:
+  $$E(Y)=E_Y(Y)=\sum_y y\,f_Y(y)=\sum_x g(x)\,f_X(x)=E_X[g(X)].$$
+  그래서 보통은 $f_Y$ 를 구하지 않고 $f_X$ 에서 바로 $\sum g(x)f_X(x)$ (식 2.9·2.10)로 구한다 — <b>무의식적 통계학자의 법칙</b><span class="en">LOTUS</span>.
+</div>
 <div class="box ex">
   <span class="tag">예 2.15 · 2.16</span><span class="title">기댓값 계산 (이산·연속)</span>
   <p><b>2.15</b> 동전 $3$ 회 $X=$앞면 수: $E(X)=0\cdot\tfrac18+1\cdot\tfrac38+2\cdot\tfrac38+3\cdot\tfrac18=\tfrac32$.</p>
