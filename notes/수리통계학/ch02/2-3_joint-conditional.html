@@ -181,10 +181,17 @@
   $$f_{X,Y}(x,y)=f_X(x)\,f_Y(y)\quad(\text{모든 }x,y).$$
 </div>
 <div class="box prf">
-  <span class="tag">증명 (개요)</span>
-  <p>($\Rightarrow$) 독립이면 $A=(-\infty,x],\,B=(-\infty,y]$ 로 두어 $F_{X,Y}(x,y)=F_X(x)F_Y(y)$. 양변을 $x,y$ 로
-  편미분하면 $f_{X,Y}(x,y)=f_X(x)f_Y(y)$. ($\Leftarrow$) $f_{X,Y}=f_Xf_Y$ 이면 임의의 $A,B$ 에 대해
-  $P(X\in A,Y\in B)=\iint_{A\times B}f_Xf_Y=\big(\int_A f_X\big)\big(\int_B f_Y\big)=P(X\in A)P(Y\in B)$.</p>
+  <span class="tag">증명</span>
+  <p>두 확률변수가 연속형인 경우만 고려하기로 한다. 임의의 실수구간 $A$ 와 $B$ 에 대해</p>
+  $$\begin{aligned}
+  \int_B\!\!\int_A f_{X,Y}(x,y)\,dx\,dy
+  &=P(X\in A,\ Y\in B)\\
+  &=P(X\in A)\cdot P(Y\in B)\\
+  &=\int_A f_X(x)\,dx\cdot\int_B f_Y(y)\,dy\\
+  &=\int_B\!\!\int_A f_X(x)\,f_Y(y)\,dx\,dy
+  \end{aligned}$$
+  <p>가 성립함이 서로 독립일 필요충분조건이다. 모든 구간 $A,B$ 에 대해 두 적분이 같으므로
+  $f_{X,Y}(x,y)=f_X(x)\cdot f_Y(y)$. 이산형 확률변수에 대해서는 $\int$ 을 $\sum$ 으로 바꾸어 같은 방법으로 증명이 가능하다.</p>
   <div class="qed">∎</div>
 </div>
 <div class="note">
