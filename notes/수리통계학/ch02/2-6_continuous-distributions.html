@@ -21,14 +21,14 @@
   <h1><span class="no">2.6</span>연속형 확률분포 <span class="en">continuous distributions</span></h1>
 </header>
 
-<h2 class="sub">균일분포 <span class="en">uniform</span></h2>
+<h2 class="sub">균일분포 <span class="en">uniform distribution</span></h2>
 <div class="box def">
   <span class="tag">$X\sim U(a,b)$</span>
   $$f(x)=\frac{1}{b-a},\ a\le x\le b;\qquad F(x)=\frac{x-a}{b-a}\ (a\le x\le b).\tag{2.36}$$
   $$E(X)=\frac{a+b}{2},\qquad Var(X)=\frac{(b-a)^2}{12}.$$
 </div>
 
-<h2 class="sub">지수분포 <span class="en">exponential</span></h2>
+<h2 class="sub">지수분포 <span class="en">exponential distribution</span></h2>
 <div class="box def">
   <span class="tag">$X\sim\text{EXP}(\theta)$</span>
   <p>포아송 과정에서 사건 사이의 대기시간. 척도모수 $\theta=1/\lambda$:</p>
@@ -46,7 +46,7 @@
   <div class="qed">∎</div>
 </div>
 
-<h2 class="sub">정규분포 <span class="en">normal</span></h2>
+<h2 class="sub">정규분포 <span class="en">normal distribution</span></h2>
 <div class="box def">
   <span class="tag">$X\sim N(\mu,\sigma^2)$</span>
   $$f(x)=\frac{1}{\sqrt{2\pi}\,\sigma}\exp\!\Big[-\frac{(x-\mu)^2}{2\sigma^2}\Big],\quad-\infty\lt x\lt\infty.\tag{2.42}$$
@@ -63,7 +63,7 @@
   <p>$X\sim N(25,16)$: $P(20\le X\le35)=\Phi\big(\tfrac{35-25}{4}\big)-\Phi\big(\tfrac{20-25}{4}\big)=\Phi(2.5)-\Phi(-1.25)\approx0.8882$.</p>
 </div>
 
-<h2 class="sub">이변량 정규분포 <span class="en">bivariate normal</span></h2>
+<h2 class="sub">이변량 정규분포 <span class="en">bivariate normal distribution</span></h2>
 <div class="box thm">
   <span class="tag">정리 2.21 · 2.22</span><span class="title">$(X,Y)\sim\text{BVN}$ 의 적률·조건부분포</span>
   <p>모수 $\mu_X,\mu_Y,\sigma_X,\sigma_Y,\rho$ 에 대해 주변분포는 $X\sim N(\mu_X,\sigma_X^2)$, $Y\sim N(\mu_Y,\sigma_Y^2)$ 이고
@@ -72,7 +72,7 @@
   <p>특히 이변량 정규에서는 $\rho=0\iff X,Y$ 독립.</p>
 </div>
 
-<h2 class="sub">감마분포 <span class="en">gamma</span></h2>
+<h2 class="sub">감마분포 <span class="en">gamma distribution</span></h2>
 <div class="box def">
   <span class="tag">정의 2.13</span><span class="title">감마함수</span>
   <p>$\Gamma(k)=\displaystyle\int_0^\infty t^{k-1}e^{-t}\,dt\ (k\gt0)$. 성질: $\Gamma(k)=(k-1)\Gamma(k-1)$, $\Gamma(n)=(n-1)!$, $\Gamma(\tfrac12)=\sqrt\pi$.</p>
@@ -84,7 +84,7 @@
   <p>형상모수 $k$, 척도모수 $\theta$. $k=1$ 이면 지수분포, $k$ 가 정수면 독립 지수분포 $k$ 개의 합(얼랑분포).</p>
 </div>
 
-<h2 class="sub">베타분포 <span class="en">beta</span></h2>
+<h2 class="sub">베타분포 <span class="en">beta distribution</span></h2>
 <div class="box def">
   <span class="tag">정의 2.14</span><span class="title">베타함수</span>
   <p>$B(a,b)=\displaystyle\int_0^1 x^{a-1}(1-x)^{b-1}\,dx=\dfrac{\Gamma(a)\Gamma(b)}{\Gamma(a+b)}$.</p>
