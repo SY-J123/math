@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>0장 · 이차식과 판별식</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">수리통계학 · 0장 기초 지식</div>
+  <h1><span class="no">0.7</span>이차식과 판별식 <span class="en">quadratic &amp; discriminant</span></h1>
+</header>
+
+<p>이차식의 근의 개수와 부호를 한 수로 판정하는 도구. “이차식이 모든 값에서 $\ge0$” 을 쓰는 증명(코시–슈바르츠 등)에서 핵심이다.</p>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">판별식 <span class="en">discriminant</span></span>
+  <p>이차식 $at^2+bt+c$ ($a\ne0$) 의 판별식은</p>
+  $$D=b^2-4ac.$$
+</div>
+
+<div class="box thm">
+  <span class="tag">성질</span><span class="title">근의 개수</span>
+  <ol class="props">
+    <li>$D\gt0$: 서로 다른 두 실근</li>
+    <li>$D=0$: 중근(한 실근)</li>
+    <li>$D\lt0$: 실근 없음</li>
+  </ol>
+</div>
+<figure class="fig">
+<svg viewBox="0 0 320 130" role="img" aria-label="판별식 부호에 따른 포물선과 x축 교점">
+  <line class="axis" x1="10" y1="95" x2="310" y2="95"/>
+  <path d="M35,72 Q60,150 85,72" fill="none" stroke="#1d6fb8" stroke-width="2"/>
+  <path d="M135,72 Q160,118 185,72" fill="none" stroke="#0f8a7d" stroke-width="2"/>
+  <path d="M235,66 Q260,100 285,66" fill="none" stroke="#c0506a" stroke-width="2"/>
+  <text class="lbl b" x="60" y="120" text-anchor="middle">D &gt; 0</text>
+  <text class="lbl" x="60" y="60" text-anchor="middle">실근 2</text>
+  <text class="lbl t" x="160" y="120" text-anchor="middle">D = 0</text>
+  <text class="lbl" x="160" y="60" text-anchor="middle">중근</text>
+  <text class="lbl" x="260" y="120" text-anchor="middle" fill="#c0506a">D &lt; 0</text>
+  <text class="lbl" x="260" y="56" text-anchor="middle">실근 0</text>
+</svg>
+<figcaption>$a\gt0$(아래로 볼록)일 때: $D\gt0$ 면 $x$축과 두 번 만나고, $D=0$ 이면 접하고, $D\lt0$ 이면 만나지 않아 항상 축 위(양수)에 있다.</figcaption>
+</figure>
+
+<div class="box thm">
+  <span class="tag">성질</span><span class="title">이차식의 부호</span>
+  <p>$a\gt0$ 이면 이차식은 아래로 볼록(최솟값을 가짐)이므로</p>
+  $$at^2+bt+c\ge0\ \ (\text{모든 } t)\iff D=b^2-4ac\le0.$$
+  <p>($a\lt0$ 이면 위로 볼록이라 “항상 $\le0$” 와 같은 조건이 된다.)</p>
+</div>
+
+<div class="note">
+  <b>활용 — 코시–슈바르츠 부등식:</b> $0\le E[(tX-Y)^2]=t^2E(X^2)-2t\,E(XY)+E(Y^2)$ 가 <b>모든 $t$ 에서</b> $\ge0$ 이므로,
+  $t$ 에 대한 이 이차식의 판별식이 $\le0$:
+  $$4[E(XY)]^2-4E(X^2)E(Y^2)\le0\ \Rightarrow\ [E(XY)]^2\le E(X^2)E(Y^2).$$
+  (2장 정리 2.16의 증명이 바로 이 논법이다.)
+</div>
+
+<nav class="pager">
+  <a href="0-6_triangle-inequality.html">← 이전<small>0.6 삼각부등식</small></a>
+  <span class="spacer"></span>
+</nav>
+
+</body>
+</html>
