@@ -23,14 +23,14 @@
 
 <h2 class="sub">균일분포 <span class="en">uniform distribution</span></h2>
 <div class="box def">
-  <span class="tag">$X\sim U(a,b)$</span>
+  <span class="tag">$X\sim U(a,b)$</span><span class="title">균일분포</span>
   $$f(x)=\frac{1}{b-a},\ a\le x\le b;\qquad F(x)=\frac{x-a}{b-a}\ (a\le x\le b).\tag{2.36}$$
   $$E(X)=\frac{a+b}{2},\qquad Var(X)=\frac{(b-a)^2}{12}.$$
 </div>
 
 <h2 class="sub">지수분포 <span class="en">exponential distribution</span></h2>
 <div class="box def">
-  <span class="tag">$X\sim\text{EXP}(\theta)$</span>
+  <span class="tag">$X\sim\text{EXP}(\theta)$</span><span class="title">지수분포</span>
   <p>포아송 과정에서 사건 사이의 대기시간. 척도모수 $\theta=1/\lambda$:</p>
   $$f(x)=\frac{1}{\theta}e^{-x/\theta},\ x\gt0;\qquad F(x)=1-e^{-x/\theta}.$$
   $$E(X)=\theta,\qquad Var(X)=\theta^2.\tag{2.41}$$
@@ -48,7 +48,7 @@
 
 <h2 class="sub">정규분포 <span class="en">normal distribution</span></h2>
 <div class="box def">
-  <span class="tag">$X\sim N(\mu,\sigma^2)$</span>
+  <span class="tag">$X\sim N(\mu,\sigma^2)$</span><span class="title">정규분포</span>
   $$f(x)=\frac{1}{\sqrt{2\pi}\,\sigma}\exp\!\Big[-\frac{(x-\mu)^2}{2\sigma^2}\Big],\quad-\infty\lt x\lt\infty.\tag{2.42}$$
   $$E(X)=\mu,\qquad Var(X)=\sigma^2.\tag{2.44}$$
   <p>종 모양·$x=\mu$ 대칭. 선형변환 $Y=aX+b\sim N(a\mu+b,\ a^2\sigma^2)$ (2.43).</p>
@@ -79,7 +79,7 @@
   (정의·성질의 증명은 <a href="../ch00/0-3_special-integrals.html">0.3 감마·베타·가우스 적분</a>.)</p>
 </div>
 <div class="box def">
-  <span class="tag">$X\sim\text{GAM}(k,\theta)$</span>
+  <span class="tag">$X\sim\text{GAM}(k,\theta)$</span><span class="title">감마분포</span>
   $$f(x)=\frac{1}{\theta^k\Gamma(k)}x^{k-1}e^{-x/\theta},\ x\gt0.\tag{2.50}$$
   $$E(X)=k\theta,\qquad Var(X)=k\theta^2.$$
   <p>형상모수 $k$, 척도모수 $\theta$. $k=1$ 이면 지수분포, $k$ 가 정수면 독립 지수분포 $k$ 개의 합(얼랑분포).</p>
@@ -91,7 +91,7 @@
   $$B(a,b)=\int_0^1 x^{a-1}(1-x)^{b-1}\,dx=\frac{\Gamma(a)\Gamma(b)}{\Gamma(a+b)}.$$
 </div>
 <div class="box def">
-  <span class="tag">$X\sim\text{BETA}(a,b)$</span>
+  <span class="tag">$X\sim\text{BETA}(a,b)$</span><span class="title">베타분포</span>
   $$f(x)=\frac{1}{B(a,b)}x^{a-1}(1-x)^{b-1},\ 0\lt x\lt1.$$
   $$E(X)=\frac{a}{a+b},\qquad Var(X)=\frac{ab}{(a+b)^2(a+b+1)}.$$
   <p>$[0,1]$ 위의 분포라 비율·확률의 모형으로 쓰인다. $a=b=1$ 이면 $U(0,1)$.</p>

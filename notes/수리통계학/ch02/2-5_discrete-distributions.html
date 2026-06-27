@@ -23,7 +23,7 @@
 
 <h2 class="sub">베르누이 분포 <span class="en">Bernoulli distribution</span></h2>
 <div class="box def">
-  <span class="tag">$X\sim\text{Ber}(p)$</span>
+  <span class="tag">$X\sim\text{Ber}(p)$</span><span class="title">베르누이 분포</span>
   <p>성공(1)·실패(0) 두 결과, 성공확률 $p$ ($q=1-p$): $f(1)=p,\ f(0)=q$.</p>
   $$E(X)=p,\qquad Var(X)=p(1-p)=pq.\tag{2.18}$$
   <p>($E(X)=1\cdot p+0\cdot q=p$, $E(X^2)=p$ 이므로 $Var=p-p^2=pq$.) 지시함수 $I_A$ 는 $p=P(A)$ 인 베르누이다.</p>
@@ -31,7 +31,7 @@
 
 <h2 class="sub">이항분포 <span class="en">binomial distribution</span></h2>
 <div class="box def">
-  <span class="tag">$X\sim B(n,p)$</span>
+  <span class="tag">$X\sim B(n,p)$</span><span class="title">이항분포</span>
   <p>독립인 베르누이 시행 $n$ 회에서 성공 횟수 $X=\sum_{i=1}^n X_i$:</p>
   $$f(x)=\binom{n}{x}p^x q^{n-x},\quad x=0,1,\dots,n.\tag{2.20}$$
   $$E(X)=np,\qquad Var(X)=npq.\tag{2.21–22}$$
@@ -50,7 +50,7 @@
 
 <h2 class="sub">포아송 분포 <span class="en">Poisson distribution</span></h2>
 <div class="box def">
-  <span class="tag">$X\sim\text{POI}(\lambda)$</span>
+  <span class="tag">$X\sim\text{POI}(\lambda)$</span><span class="title">포아송 분포</span>
   <p>단위시간(구간)에 평균 $\lambda$ 회 발생하는 희귀사건의 횟수:</p>
   $$f(x)=\frac{e^{-\lambda}\lambda^x}{x!},\quad x=0,1,2,\dots\tag{2.24}$$
   $$E(X)=\lambda,\qquad Var(X)=\lambda.\tag{2.25}$$
@@ -72,7 +72,7 @@
 
 <h2 class="sub">기하분포 <span class="en">geometric distribution</span></h2>
 <div class="box def">
-  <span class="tag">$X\sim\text{GEO}(p)$</span>
+  <span class="tag">$X\sim\text{GEO}(p)$</span><span class="title">기하분포</span>
   <p>첫 성공이 나올 때까지의 시행 횟수:</p>
   $$f(x)=p(1-p)^{x-1},\quad x=1,2,\dots\tag{2.27}$$
   $$E(X)=\frac1p,\qquad Var(X)=\frac{1-p}{p^2}=\frac{q}{p^2}.\tag{2.28–29}$$
@@ -92,7 +92,7 @@
 
 <h2 class="sub">음이항분포 <span class="en">negative binomial distribution</span></h2>
 <div class="box def">
-  <span class="tag">$X\sim\text{NB}(r,p)$</span>
+  <span class="tag">$X\sim\text{NB}(r,p)$</span><span class="title">음이항분포</span>
   <p>$r$ 번째 성공이 나올 때까지의 시행 횟수:</p>
   $$f(x)=\binom{x-1}{r-1}p^r(1-p)^{x-r},\quad x=r,r+1,\dots\tag{2.30}$$
   $$E(X)=\frac{r}{p},\qquad Var(X)=\frac{rq}{p^2}.\tag{2.31–32}$$
