@@ -177,6 +177,16 @@
   <div class="qed">∎</div>
 </div>
 
+<div class="box ex">
+  <span class="tag">예 2.24</span><span class="title">조건부 밀도·기댓값 (삼각형 균일)</span>
+  <p>$f_{X,Y}(x,y)=\tfrac12\ (0\le x\le y\le2)$. 주변밀도는</p>
+  $$f_X(x)=\int_x^2\tfrac12\,dy=\frac{2-x}{2}\ (0\le x\le2),\qquad f_Y(y)=\int_0^y\tfrac12\,dx=\frac{y}{2}\ (0\le y\le2).$$
+  <p>조건부 밀도와 조건부 기댓값:</p>
+  $$f_{Y\mid X}(y\mid x)=\frac{1/2}{(2-x)/2}=\frac{1}{2-x}\quad(x\le y\le2)\ \Rightarrow\ Y\mid X{=}x\sim U(x,2),$$
+  $$E(Y\mid X=x)=\int_x^2 y\cdot\frac{1}{2-x}\,dy=\frac{1}{2-x}\cdot\frac{4-x^2}{2}=\frac{2+x}{2}.$$
+  <p>(조건부가 $[x,2]$ 위 균일분포라 $E(Y\mid x)$ 가 그 중점 $\tfrac{x+2}{2}$ 로 나온다.)</p>
+</div>
+
 <h2 class="sub"><span class="no">2.4.4</span>확률부등식</h2>
 <div class="box thm">
   <span class="tag">정리 2.14</span><span class="title">마르코프 부등식 <span class="en">Markov</span></span>
