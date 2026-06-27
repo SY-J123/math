@@ -139,9 +139,9 @@
 
 <h2 class="sub"><span class="no">2.4.3</span>조건부 기댓값</h2>
 <div class="box def">
-  <span class="tag">정의 2.10 · 2.11</span><span class="title">조건부 기댓값·분산</span>
-  <p>$E(Y\mid X=x)=\displaystyle\sum_y y\,f_{Y\mid X}(y\mid x)$ 또는 $\displaystyle\int y\,f_{Y\mid X}(y\mid x)\,dy$.</p>
-  $$Var(Y\mid x)=E\big[(Y-E(Y\mid x))^2\mid x\big]=E(Y^2\mid x)-[E(Y\mid x)]^2.\tag{2.15}$$
+  <span class="tag">정의 2.10</span><span class="title">조건부 기댓값 <span class="en">conditional expectation</span></span>
+  <p>$X=x$ 가 주어졌을 때 $Y$ 의 평균:</p>
+  $$E(Y\mid X=x)=\sum_y y\,f_{Y\mid X}(y\mid x)\ (\text{이산})\quad\text{또는}\quad\int_{-\infty}^{\infty} y\,f_{Y\mid X}(y\mid x)\,dy\ (\text{연속}).$$
 </div>
 <div class="box thm">
   <span class="tag">정리 2.11</span><span class="title">이중기댓값 <span class="en">law of total expectation</span></span>
@@ -164,6 +164,17 @@
   <span class="tag">증명</span>
   <p>독립이면 $f_{Y\mid X}(y\mid x)=\dfrac{f_X(x)f_Y(y)}{f_X(x)}=f_Y(y)$ 이므로 $E(Y\mid x)=\int y f_Y(y)dy=E(Y)$.</p>
   <div class="qed">∎</div>
+</div>
+<div class="box def">
+  <span class="tag">정의 2.11</span><span class="title">조건부 분산 <span class="en">conditional variance</span></span>
+  <p>$X=x$ 가 주어졌을 때 $Y$ 의 흩어짐 — 보통의 분산을 조건부 분포에서 계산한 것이다:</p>
+  $$Var(Y\mid x)=E\big[(Y-E(Y\mid x))^2\mid x\big]=E(Y^2\mid x)-[E(Y\mid x)]^2.\tag{2.15}$$
+</div>
+<div class="box ex">
+  <span class="tag">예 2.26</span><span class="title">조건부 분산 계산</span>
+  <p>조건부분포가 $f_{Y\mid X}(y\mid x)=xe^{-xy}$ ($y\gt0$), 즉 $Y\mid X{=}x\sim\text{EXP}(1/x)$ 일 때
+  $E(Y\mid x)=\tfrac1x$, $E(Y^2\mid x)=\tfrac{2}{x^2}$ 이므로</p>
+  $$Var(Y\mid x)=E(Y^2\mid x)-[E(Y\mid x)]^2=\frac{2}{x^2}-\frac{1}{x^2}=\frac{1}{x^2}.$$
 </div>
 <div class="box thm">
   <span class="tag">정리 2.13</span><span class="title">전분산 공식 <span class="en">law of total variance</span></span>
