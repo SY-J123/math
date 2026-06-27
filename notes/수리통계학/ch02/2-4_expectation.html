@@ -119,6 +119,13 @@
 </div>
 <div class="box prf">
   <span class="tag">증명</span>
+  <p><span class="step">방법 1 (편차 형태).</span> $S=\sum_i X_i$, $E(S)=\sum_i\mu_i$ 라 하면</p>
+  $$\begin{aligned}
+  Var(S)&=E\Big[\Big(\sum_i(X_i-\mu_i)\Big)^2\Big]\\
+  &=E\Big[\sum_i(X_i-\mu_i)^2+\sum_{j\ne k}(X_j-\mu_j)(X_k-\mu_k)\Big]\\
+  &=\sum_i Var(X_i)+2\!\sum_{j\lt k}Cov(X_j,X_k).
+  \end{aligned}$$
+  <p><span class="step">방법 2 (교재 — $E[(\sum X_i)^2]-[E(\sum X_i)]^2$ 전개).</span></p>
   $$\begin{aligned}
   Var\Big(\sum_{i=1}^{n}X_i\Big)
   &=E\Big[\Big(\sum_{i=1}^{n}X_i\Big)^2\Big]-\Big[E\Big(\sum_{i=1}^{n}X_i\Big)\Big]^2\\
