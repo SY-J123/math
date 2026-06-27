@@ -153,6 +153,12 @@
   &=\iint y\,f_{X,Y}(x,y)\,dy\,dx=\int y\,f_Y(y)\,dy=E(Y).\end{aligned}$$
   <div class="qed">∎</div>
 </div>
+<div class="note">
+  <b>직관 — 적분하면 그 변수가 사라진다.</b>
+  <b>① 함수로 보기:</b> $E(Y\mid x)=\int y\,f_{Y\mid X}(y\mid x)\,dy$ 는 $y$ 를 적분해 없앤 ‘$x$ 의 함수’ — 그래서 바깥 적분은 그냥 $X$ 함수의 기댓값이다.
+  <b>② 약분:</b> 곱셈정리로 $f_{Y\mid X}(y\mid x)\,f_X(x)=f_{X,Y}(x,y)$, 즉 조건부밀도의 분모 $f_X(x)$ 가 바깥 $f_X(x)$ 와 <b>약분</b>돼 결합밀도가 된다(두 적분이 합쳐지는 비결).
+  <b>③ 변수 소거:</b> 이제 $x$ 로 적분하면 결합밀도가 $Y$ 의 주변밀도 $\int f_{X,Y}\,dx=f_Y(y)$ 로 줄고($x$ 증발), 끝으로 $\int y\,f_Y(y)\,dy=E(Y)$.
+</div>
 <div class="box thm">
   <span class="tag">정리 2.12</span><span class="title">독립일 때의 조건부 기댓값</span>
   <p>$X,Y$ 가 독립이면 $E(Y\mid x)=E(Y)$, $E(X\mid y)=E(X)$.</p>
