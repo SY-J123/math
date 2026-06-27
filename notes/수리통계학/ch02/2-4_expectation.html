@@ -197,6 +197,14 @@
   <div class="qed">∎</div>
 </div>
 
+<div class="box thm">
+  <span class="tag">성질</span><span class="title">전분산 공식의 따름</span>
+  <ol class="props">
+    <li>$E[Var(Y\mid X)]\le Var(Y)$ — 조건부 분산의 기댓값은 무조건부 분산보다 작거나 같다 ($\because Var[E(Y\mid X)]\ge0$). 즉 $X$ 의 정보를 쓰면 $Y$ 의 분산이 줄거나 같아진다.</li>
+    <li>$X,Y$ 가 독립이면 $E(Y\mid X)=E(Y)$ 가 상수라 $Var[E(Y\mid X)]=0$. 따라서 $E[Var(Y\mid X)]=Var(Y)$ — 조건을 줘도 분산이 줄지 않는다.</li>
+  </ol>
+</div>
+
 <h2 class="sub"><span class="no">2.4.4</span>확률부등식</h2>
 <div class="box thm">
   <span class="tag">정리 2.14</span><span class="title">마르코프 부등식 <span class="en">Markov</span></span>
