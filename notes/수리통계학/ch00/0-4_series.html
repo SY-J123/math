@@ -21,18 +21,27 @@
   <h1><span class="no">0.4</span>급수와 테일러 전개 <span class="en">series &amp; Taylor</span></h1>
 </header>
 
-<h2 class="sub">기하급수·지수급수 <span class="en">geometric &amp; exponential series</span></h2>
+<h2 class="sub">등비급수와 지수급수 <span class="en">geometric &amp; exponential series</span></h2>
 <div class="box thm">
-  <span class="tag">합 공식</span><span class="title">기하급수·지수급수</span>
-  $$\sum_{n=0}^{\infty}r^n=\frac{1}{1-r}\ (|r|\lt1),\qquad \sum_{n=1}^{\infty}n\,r^{n-1}=\frac{1}{(1-r)^2},\qquad e^x=\sum_{n=0}^{\infty}\frac{x^n}{n!}.$$
-  <p>두 번째 식은 첫 식의 양변을 $r$ 로 미분해 얻는다(이산형 분포의 평균 계산에 자주 쓰임).</p>
+  <span class="tag">합 공식</span><span class="title">등비급수</span>
+  <p>첫째항 $a$, 공비 $r$ 인 등비수열의 합:</p>
+  <ol class="props">
+    <li>유한합: $\displaystyle\sum_{k=0}^{n-1}ar^k=a\,\frac{1-r^n}{1-r}\quad(r\ne1)$.</li>
+    <li>무한합: $\displaystyle\sum_{k=0}^{\infty}ar^k=\frac{a}{1-r}\quad(|r|\lt1)$.</li>
+    <li>미분형: $\displaystyle\sum_{k=1}^{\infty}k\,r^{k-1}=\frac{1}{(1-r)^2}\quad(|r|\lt1)$.</li>
+  </ol>
+  <p>③은 ②($a=1$)의 양변을 $r$ 로 미분해 얻으며, 이산형 분포의 평균 계산에 자주 쓰인다.</p>
 </div>
 <div class="box prf">
   <span class="tag">유도</span>
-  <p>부분합 $S_N=\sum_{n=0}^N r^n$ 에서 $S_N-rS_N=1-r^{N+1}$ 이므로 $S_N=\dfrac{1-r^{N+1}}{1-r}$. $|r|\lt1$ 이면 $r^{N+1}\to0$ 이라
-  $\displaystyle\sum_{n=0}^\infty r^n=\frac{1}{1-r}$. 양변을 $r$ 로 미분하면 $\displaystyle\sum_{n=1}^\infty n r^{n-1}=\frac{1}{(1-r)^2}$.
-  지수급수 $e^x=\sum x^n/n!$ 는 아래 $e^x$ 의 테일러 전개다.</p>
+  <p>유한합은 $S_n=\sum_{k=0}^{n-1}ar^k$ 에 대해 $S_n-rS_n=a(1-r^n)$ 이므로 $S_n=a\dfrac{1-r^n}{1-r}$. $|r|\lt1$ 이면 $r^n\to0$ 이라
+  무한합은 $\dfrac{a}{1-r}$. 무한합($a=1$)의 양변을 $r$ 로 미분하면 $\displaystyle\sum_{k=1}^\infty kr^{k-1}=\dfrac{1}{(1-r)^2}$.</p>
   <div class="qed">∎</div>
+</div>
+<div class="box thm">
+  <span class="tag">합 공식</span><span class="title">지수급수</span>
+  $$e^x=\sum_{n=0}^{\infty}\frac{x^n}{n!}\ \ (\text{모든 }x),\qquad \text{특히}\ \ \sum_{k=0}^{\infty}\frac{\lambda^k}{k!}=e^{\lambda}.$$
+  <p>$e^x$ 의 테일러(매클로린) 전개다(아래 절). 포아송분포의 정규화 $\sum_x e^{-\lambda}\lambda^x/x!=1$ 이나 적률 계산에 쓰인다.</p>
 </div>
 <div class="box ex">
   <span class="tag">예 — 기하분포의 평균</span>
