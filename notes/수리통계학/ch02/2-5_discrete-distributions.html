@@ -107,6 +107,26 @@
 <div class="note">
   공분산이 <b>음수</b>인 것은 자연스럽다 — 전체 횟수가 $\sum_i X_i=n$ 으로 고정이라, 한 범주가 많이 나오면 다른 범주는 적게 나올 수밖에 없다.
 </div>
+<div class="box ex">
+  <span class="tag">예 2.31</span><span class="title">다항분포의 공분산 (조건부 기댓값 이용)</span>
+  <p>$(X_1,X_2,X_3)\sim\text{MULT}(n,p_1,p_2,p_3)$ 라 하자. 주변분포는 $X_1\sim B(n,p_1)$, $X_2\sim B(n,p_2)$ 이고, 조건부분포는</p>
+  $$X_2\mid X_1=x_1\ \sim\ B\!\left(n-x_1,\ \frac{p_2}{1-p_1}\right).$$
+  <p>($X_1=x_1$ 이 정해지면 남은 $n-x_1$ 번의 시행에서 ‘범주 1 을 제외한 조건’ 하에 범주 2 가 나올 확률이 $p_2/(1-p_1)$ 이기 때문.)
+  <a href="2-4_expectation.html">이중기댓값정리(정리 2.11)</a> $E(X_1X_2)=E\big[E(X_1X_2\mid X_1)\big]$ 를 쓰면, $X_1$ 이 주어지면 $X_1$ 은 상수이므로</p>
+  $$
+  \begin{aligned}
+  E(X_1X_2)&=E\big[X_1\,E(X_2\mid X_1)\big]
+   =E\!\left[X_1\cdot(n-X_1)\frac{p_2}{1-p_1}\right]\\
+  &=\frac{p_2}{1-p_1}\big[\,nE(X_1)-E(X_1^2)\,\big].
+  \end{aligned}
+  $$
+  <p>$X_1\sim B(n,p_1)$ 라 $E(X_1)=np_1$, $E(X_1^2)=Var(X_1)+(EX_1)^2=np_1(1-p_1)+n^2p_1^2$. 따라서
+  $nE(X_1)-E(X_1^2)=n(n-1)p_1(1-p_1)$ 이고</p>
+  $$E(X_1X_2)=\frac{p_2}{1-p_1}\cdot n(n-1)p_1(1-p_1)=n(n-1)p_1p_2.$$
+  <p>그러므로</p>
+  $$Cov(X_1,X_2)=E(X_1X_2)-E(X_1)E(X_2)=n(n-1)p_1p_2-(np_1)(np_2)=-np_1p_2.$$
+  <p>앞의 지시함수법으로 얻은 $Cov(X_i,X_j)=-np_ip_j$ 와 같은 결과를, 이번엔 조건부분포로 다시 유도한 것이다.</p>
+</div>
 
 <h2 class="sub">포아송 분포 <span class="en">Poisson distribution</span></h2>
 <div class="box def">

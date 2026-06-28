@@ -53,9 +53,7 @@
 <div class="qrow"><span class="qid">Q6</span>확률변수 $X,Y,Z$ 의 결합밀도가 받침 $\{0\lt x\lt y\lt z\lt1\}$ 에서 $f(x,y,z)=6$, 그 외 $0$ 이다.
   <ol><li>$\iiint f=1$ 임을 적분구간을 바르게 잡아 확인하여라.</li>
   <li>$P\!\big(Z\lt\tfrac12\big)$ 를 구하여라.</li></ol></div>
-<div class="qrow"><span class="qid">Q7</span>어떤 시행의 결과가 세 범주 중 하나이고 각 범주의 확률이 $\tfrac16,\tfrac26,\tfrac36$ 이다. 이 시행을 독립적으로 $n$ 번 반복할 때 각 범주가 나온 횟수를 $(X_1,X_2,X_3)$ 이라 하자.
-  <ol><li>$(X_1,X_2,X_3)$ 의 결합 pmf 를 구하여라.</li>
-  <li>$X_1$ 의 주변분포를 구하여라.</li></ol></div>
+<div class="qrow"><span class="qid">Q7</span>다항분포 $(X_1,\dots,X_k)\sim\text{MULT}(n;p_1,\dots,p_k)$ 에서 각 $X_i$ 의 주변분포가 <b>어떤 분포</b>인지 쓰고 증명하라.</div>
 <div class="qrow"><span class="qid">Q8</span>
   <ol><li>두 확률변수 $X,Y$ 가 독립이라는 것의 정의를 식으로 쓰라.</li>
   <li>독립일 필요충분조건을 밀도함수로 식으로 쓰고 증명하라.</li></ol></div>
@@ -126,7 +124,7 @@
   ④ (직사각형 비음) $a_1\le b_1,\ a_2\le b_2\Rightarrow F(b_1,b_2)-F(a_1,b_2)-F(b_1,a_2)+F(a_1,a_2)\ge0$.</div>
 <div class="ans"><span class="qid">A5.</span> (1) $f_X(x)=\displaystyle\int_{-\infty}^\infty f_{X,Y}(x,y)\,dy$ (이산 $\sum_y$). 증명: $F_X(x)=\int_{-\infty}^x\!\big(\int_{-\infty}^\infty f_{X,Y}(u,y)\,dy\big)du$ 를 $x$ 로 미분하면 괄호 안 $=f_X(x)$. (2) $f_{Y\mid X}(y\mid x)=\dfrac{f_{X,Y}(x,y)}{f_X(x)}\ (f_X(x)\gt0)$.</div>
 <div class="ans"><span class="qid">A6.</span> 받침 $0\lt x\lt y\lt z\lt1$ 에서 안쪽 변수의 상한은 바로 바깥 변수다($x\!:0\to y$, $y\!:0\to z$, $z\!:0\to1$). (1) $\displaystyle\int_0^1\!\!\int_0^z\!\!\int_0^y 6\,dx\,dy\,dz=\int_0^1\!\!\int_0^z 6y\,dy\,dz=\int_0^1 3z^2\,dz=1$. (2) $z$ 의 상한만 $\tfrac12$ 로 바꾸면 $P(Z\lt\tfrac12)=\displaystyle\int_0^{1/2}3z^2\,dz=\big(\tfrac12\big)^3=\tfrac18$.</div>
-<div class="ans"><span class="qid">A7.</span> (1) 다항분포: $f(x_1,x_2,x_3)=\dfrac{n!}{x_1!\,x_2!\,x_3!}\Big(\tfrac16\Big)^{x_1}\Big(\tfrac26\Big)^{x_2}\Big(\tfrac36\Big)^{x_3}$, $x_1+x_2+x_3=n$. (2) 범주 1을 ‘성공’(확률 $\tfrac16$), 나머지 두 범주를 ‘실패’로 묶으면 $X_1\sim B\big(n,\tfrac16\big)$.</div>
+<div class="ans"><span class="qid">A7.</span> $X_i\sim B(n,p_i)$. 증명: 범주 $i$ 를 ‘성공’, 나머지 전부를 ‘실패’로 묶으면 성공확률 $p_i$ 인 $n$ 번 독립시행의 성공 횟수이므로 $X_i\sim B(n,p_i)$.</div>
 <div class="ans"><span class="qid">A8.</span> (1) $F_{X,Y}(x,y)=F_X(x)F_Y(y)\ (\forall x,y)$. (2) 필요충분조건 $f_{X,Y}(x,y)=f_X(x)f_Y(y)$. ($\Rightarrow$) $F_{X,Y}=F_XF_Y$ 편미분 → $f_{X,Y}=f_Xf_Y$. ($\Leftarrow$) $P(X\in A,Y\in B)=\iint_{A\times B}f_Xf_Y=\big(\int_A f_X\big)\big(\int_B f_Y\big)=P(X\in A)P(Y\in B)$.</div>
 
 <h2 class="sub">C. 기댓값·분산·공분산</h2>
