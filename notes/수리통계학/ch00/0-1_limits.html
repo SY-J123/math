@@ -25,7 +25,7 @@
 
 <h2 class="sub">지수·로그 함수 <span class="en">exponential &amp; logarithm</span></h2>
 <div class="box def">
-  <span class="tag">$e^x,\ \ln x$</span><span class="title">지수·로그 함수</span>
+  <span class="tag">정의</span><span class="title">지수·로그 함수</span>
   <p>$e^x=\displaystyle\lim_{n\to\infty}\Big(1+\frac{x}{n}\Big)^n=\sum_{k=0}^{\infty}\frac{x^k}{k!}$, &nbsp;
   $(e^{ax})'=a\,e^{ax}$, &nbsp;$\displaystyle\int e^{ax}\,dx=\frac{1}{a}e^{ax}$. &nbsp;$\ln x$ 는 $e^x$ 의 역함수, $(\ln x)'=\tfrac1x$.</p>
   <p>포아송 근사에서 쓰는 $\Big(1-\dfrac{\lambda}{n}\Big)^n\to e^{-\lambda}$ 도 위 극한 정의에서 나온다.</p>
@@ -39,7 +39,7 @@
   $$\lim_{x\to a}\frac{f(x)}{g(x)}=\lim_{x\to a}\frac{f'(x)}{g'(x)}.$$
 </div>
 <div class="box prf">
-  <span class="tag">증명 (개요, $0/0$ 꼴)</span>
+  <span class="tag">증명 (개요)</span>
   <p>$f(a)=g(a)=0$ 이라 두자. <b>코시 평균값정리</b>에 의해 $a$ 와 $x$ 사이의 어떤 $c$ 가 존재하여
   $$\frac{f(x)}{g(x)}=\frac{f(x)-f(a)}{g(x)-g(a)}=\frac{f'(c)}{g'(c)}.$$
   $x\to a$ 이면 $c$ 도 $a$ 와 $x$ 사이에 끼여 $c\to a$ 이므로 $\dfrac{f(x)}{g(x)}\to\displaystyle\lim_{t\to a}\dfrac{f'(t)}{g'(t)}$.
@@ -58,7 +58,7 @@
 
 <h2 class="sub">성장 속도 <span class="en">growth rates</span></h2>
 <div class="box thm">
-  <span class="tag">지수 $\gg$ 다항</span>
+  <span class="tag">정리</span><span class="title">지수와 다항의 성장 비교</span>
   <p>임의의 고정된 $n$ 에 대해</p>
   $$\lim_{x\to\infty}\frac{x^n}{e^x}=0,\qquad\text{즉}\quad \lim_{x\to\infty}x^n e^{-x}=0.$$
   <p>성장 속도 위계: $\ \ln x\ \ll\ x^a\ \ll\ e^x\ $ (임의의 $a\gt0$) — 지수함수가 어떤 거듭제곱·로그보다 빨리 커진다.</p>

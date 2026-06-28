@@ -23,16 +23,51 @@
 
 <h2 class="sub">베르누이 분포 <span class="en">Bernoulli distribution</span></h2>
 <div class="box def">
-  <span class="tag">$X\sim\text{Ber}(p)$</span><span class="title">베르누이 분포</span>
-  <p>성공(1)·실패(0) 두 결과, 성공확률 $p$ ($q=1-p$): $f(1)=p,\ f(0)=q$.</p>
+  <span class="tag">정의</span><span class="title">베르누이 분포</span>
+  <p>$X\sim\text{Ber}(p)$. 성공(1)·실패(0) 두 결과, 성공확률 $p$ ($q=1-p$): $f(1)=p,\ f(0)=q$.</p>
   $$E(X)=p,\qquad Var(X)=p(1-p)=pq.\tag{2.18}$$
-  <p>($E(X)=1\cdot p+0\cdot q=p$, $E(X^2)=p$ 이므로 $Var=p-p^2=pq$.) 지시함수 $I_A$ 는 $p=P(A)$ 인 베르누이다.</p>
+  <p>($E(X)=1\cdot p+0\cdot q=p$, $E(X^2)=p$ 이므로 $Var=p-p^2=pq$.) 사건 $A$ 의 <b>지시함수</b> $I_A$ 는 $p=P(A)$ 인 베르누이다(아래 소절).</p>
+</div>
+
+<h2 class="sub">지시함수 <span class="en">indicator function</span></h2>
+<div class="box def">
+  <span class="tag">정의</span><span class="title">지시함수</span>
+  <p>사건(가측집합) $A$ 에 대해 표본점 $\omega$ 가 $A$ 에 드는지를 $0,1$ 로 알려 주는 확률변수:</p>
+  $$I_A(\omega)=\begin{cases}1,&\omega\in A,\\[2pt]0,&\omega\notin A.\end{cases}$$
+  <p>값이 $\{0,1\}$ 뿐이고 $P(I_A=1)=P(A)$ 이므로 $I_A\sim\text{Ber}\big(P(A)\big)$. 가장 단순한 이산형 확률변수다.</p>
+</div>
+<div class="box thm">
+  <span class="tag">성질</span><span class="title">지시함수의 성질</span>
+  <ol class="props">
+    <li><b>멱등</b><span class="en">idempotent</span>: $I_A^2=I_A$ (값이 $0$ 또는 $1$ 이라 제곱해도 그대로). 더 일반적으로 $I_A^k=I_A\ (k\ge1)$.</li>
+    <li><b>여사건</b>: $I_{A^c}=1-I_A$.</li>
+    <li><b>교집합 = 곱</b>: $I_{A\cap B}=I_A\,I_B=\min(I_A,I_B)$.</li>
+    <li><b>합집합 = 포함배제</b>: $I_{A\cup B}=I_A+I_B-I_A I_B=\max(I_A,I_B)$.</li>
+    <li><b>단조</b>: $A\subseteq B\iff I_A\le I_B$.</li>
+  </ol>
+</div>
+<div class="box thm">
+  <span class="tag">성질</span><span class="title">지시함수의 기댓값</span>
+  <p>핵심은 <b>기댓값이 곧 확률</b>이라는 것 — 확률을 적분/합으로 다룰 수 있게 해 주는 다리다.</p>
+  $$E(I_A)=1\cdot P(A)+0\cdot P(A^c)=P(A).\tag{$\star$}$$
+  <p>멱등성에서 $E(I_A^2)=E(I_A)=P(A)$ 이므로</p>
+  $$Var(I_A)=E(I_A^2)-\big(E I_A\big)^2=P(A)-P(A)^2=P(A)\,P(A^c).$$
+  <p>두 사건이면 $I_AI_B=I_{A\cap B}$ 라 $E(I_AI_B)=P(A\cap B)$, 따라서</p>
+  $$Cov(I_A,I_B)=P(A\cap B)-P(A)P(B).$$
+  <p>(독립 $\iff Cov=0\iff P(A\cap B)=P(A)P(B)$.)</p>
+</div>
+<div class="box ex">
+  <span class="tag">활용</span><span class="title">지시함수법 <span class="en">indicator method</span></span>
+  <p>세고 싶은 횟수를 지시함수의 합으로 쪼개면, 기댓값의 <b>선형성</b>만으로 평균이 나온다 — 독립이 필요 없다.</p>
+  $$X=\sum_{i=1}^n I_{A_i}\ \Longrightarrow\ E(X)=\sum_{i=1}^n E(I_{A_i})=\sum_{i=1}^n P(A_i).$$
+  <p>이항분포가 바로 이 꼴이다: $A_i=\{i\text{회째 성공}\}$, $P(A_i)=p$ 라 두면 $X=\sum I_{A_i}\sim B(n,p)$ 이고 $E(X)=np$ (아래 이항분포).
+  $A_i$ 가 독립이 아니어도 평균 공식은 그대로 성립한다는 점이 이 방법의 힘이다.</p>
 </div>
 
 <h2 class="sub">이항분포 <span class="en">binomial distribution</span></h2>
 <div class="box def">
-  <span class="tag">$X\sim B(n,p)$</span><span class="title">이항분포</span>
-  <p>독립인 베르누이 시행 $n$ 회에서 성공 횟수 $X=\sum_{i=1}^n X_i$:</p>
+  <span class="tag">정의</span><span class="title">이항분포</span>
+  <p>$X\sim B(n,p)$. 독립인 베르누이 시행 $n$ 회에서 성공 횟수 $X=\sum_{i=1}^n X_i$:</p>
   $$f(x)=\binom{n}{x}p^x q^{n-x},\quad x=0,1,\dots,n.\tag{2.20}$$
   $$E(X)=np,\qquad Var(X)=npq.\tag{2.21–22}$$
 </div>
@@ -50,8 +85,8 @@
 
 <h2 class="sub">포아송 분포 <span class="en">Poisson distribution</span></h2>
 <div class="box def">
-  <span class="tag">$X\sim\text{POI}(\lambda)$</span><span class="title">포아송 분포</span>
-  <p>단위시간(구간)에 평균 $\lambda$ 회 발생하는 희귀사건의 횟수:</p>
+  <span class="tag">정의</span><span class="title">포아송 분포</span>
+  <p>$X\sim\text{POI}(\lambda)$. 단위시간(구간)에 평균 $\lambda$ 회 발생하는 희귀사건의 횟수:</p>
   $$f(x)=\frac{e^{-\lambda}\lambda^x}{x!},\quad x=0,1,2,\dots\tag{2.24}$$
   $$E(X)=\lambda,\qquad Var(X)=\lambda.\tag{2.25}$$
   <p>유도:</p>
@@ -72,8 +107,8 @@
 
 <h2 class="sub">기하분포 <span class="en">geometric distribution</span></h2>
 <div class="box def">
-  <span class="tag">$X\sim\text{GEO}(p)$</span><span class="title">기하분포</span>
-  <p>첫 성공이 나올 때까지의 시행 횟수:</p>
+  <span class="tag">정의</span><span class="title">기하분포</span>
+  <p>$X\sim\text{GEO}(p)$. 첫 성공이 나올 때까지의 시행 횟수:</p>
   $$f(x)=p(1-p)^{x-1},\quad x=1,2,\dots\tag{2.27}$$
   $$E(X)=\frac1p,\qquad Var(X)=\frac{1-p}{p^2}=\frac{q}{p^2}.\tag{2.28–29}$$
   <p>($\sum_{x\ge1}xpq^{x-1}=p\frac{d}{dq}\sum q^x=p\frac{1}{(1-q)^2}\cdot$ … 미분 기법으로 $E(X)=1/p$.)</p>
@@ -92,8 +127,8 @@
 
 <h2 class="sub">음이항분포 <span class="en">negative binomial distribution</span></h2>
 <div class="box def">
-  <span class="tag">$X\sim\text{NB}(r,p)$</span><span class="title">음이항분포</span>
-  <p>$r$ 번째 성공이 나올 때까지의 시행 횟수:</p>
+  <span class="tag">정의</span><span class="title">음이항분포</span>
+  <p>$X\sim\text{NB}(r,p)$. $r$ 번째 성공이 나올 때까지의 시행 횟수:</p>
   $$f(x)=\binom{x-1}{r-1}p^r(1-p)^{x-r},\quad x=r,r+1,\dots\tag{2.30}$$
   $$E(X)=\frac{r}{p},\qquad Var(X)=\frac{rq}{p^2}.\tag{2.31–32}$$
   <p>$X=\sum_{i=1}^r X_i$ (독립인 기하분포의 합)이므로 평균·분산이 기하분포의 $r$ 배다.</p>

@@ -54,7 +54,7 @@
   <p>$[0,1]$ 위 적분이라 베타분포 $\text{BETA}(a,b)$ 의 정규화 상수로 쓰인다.</p>
 </div>
 <div class="box prf">
-  <span class="tag">유도 — $B(a,b)=\dfrac{\Gamma(a)\Gamma(b)}{\Gamma(a+b)}$</span>
+  <span class="tag">유도</span><span class="title">베타–감마 관계</span>
   <p>$\Gamma(a)\Gamma(b)=\displaystyle\int_0^\infty x^{a-1}e^{-x}dx\int_0^\infty y^{b-1}e^{-y}dy
   =\iint_{x,y\gt0}x^{a-1}y^{b-1}e^{-(x+y)}\,dx\,dy$. 치환 $x=ts,\ y=t(1-s)$ ($t=x+y\gt0,\ s\in(0,1)$, 야코비안 $|J|=t$):</p>
   $$\Gamma(a)\Gamma(b)=\int_0^\infty\!\!\int_0^1 (ts)^{a-1}\big(t(1-s)\big)^{b-1}e^{-t}\,t\,ds\,dt
@@ -88,7 +88,7 @@
   <div class="qed">∎</div>
 </div>
 <div class="box prf">
-  <span class="tag">따름 — $\Gamma(\tfrac12)=\sqrt\pi$</span>
+  <span class="tag">따름정리</span><span class="title">감마함수의 반정수값</span>
   <p>$\Gamma(\tfrac12)=\displaystyle\int_0^\infty t^{-1/2}e^{-t}dt$ 에서 $t=\tfrac{u^2}{2}$ ($dt=u\,du,\ t^{-1/2}=\sqrt2/u$)로 치환하면
   $\Gamma(\tfrac12)=\int_0^\infty\tfrac{\sqrt2}{u}e^{-u^2/2}\,u\,du=\sqrt2\int_0^\infty e^{-u^2/2}du=\sqrt2\cdot\tfrac{\sqrt{2\pi}}{2}=\sqrt\pi$
   ($\because\int_0^\infty e^{-u^2/2}du=\tfrac12\sqrt{2\pi}$).</p>
