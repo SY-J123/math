@@ -146,6 +146,36 @@
     <li>2회 이상 발생 확률은 무시할 만큼 작다: $\displaystyle\lim_{h\to0}\frac{P(\ge2\text{회})}{h}=0$ (이를 $o(h)$ 로 쓴다).</li>
     <li>겹치지 않는 구간들의 발생 횟수는 서로 독립이다.</li>
   </ol>
+  <figure class="fig">
+  <svg viewBox="0 0 380 104" role="img" aria-label="구간 [0,t]를 길이 t/n인 n개 소구간으로 분할">
+    <text class="lbl" x="206" y="18" text-anchor="middle" fill="#c0506a">● = 사건 A 발생</text>
+    <circle cx="73.8" cy="40" r="3.5" fill="#c0506a"/>
+    <circle cx="206.6" cy="40" r="3.5" fill="#c0506a"/>
+    <circle cx="306.2" cy="40" r="3.5" fill="#c0506a"/>
+    <rect x="90.4" y="53" width="33.2" height="14" fill="#1d6fb8" fill-opacity="0.16"/>
+    <line x1="24" y1="60" x2="356" y2="60" stroke="#333" stroke-width="1.5"/>
+    <g stroke="#333" stroke-width="1.2">
+      <line x1="24" y1="53" x2="24" y2="67"/>
+      <line x1="57.2" y1="53" x2="57.2" y2="67"/>
+      <line x1="90.4" y1="53" x2="90.4" y2="67"/>
+      <line x1="123.6" y1="53" x2="123.6" y2="67"/>
+      <line x1="156.8" y1="53" x2="156.8" y2="67"/>
+      <line x1="190" y1="53" x2="190" y2="67"/>
+      <line x1="223.2" y1="53" x2="223.2" y2="67"/>
+      <line x1="256.4" y1="53" x2="256.4" y2="67"/>
+      <line x1="289.6" y1="53" x2="289.6" y2="67"/>
+      <line x1="322.8" y1="53" x2="322.8" y2="67"/>
+      <line x1="356" y1="53" x2="356" y2="67"/>
+    </g>
+    <line x1="90.4" y1="74" x2="123.6" y2="74" stroke="#1d6fb8" stroke-width="1.2"/>
+    <line x1="90.4" y1="71" x2="90.4" y2="77" stroke="#1d6fb8" stroke-width="1.2"/>
+    <line x1="123.6" y1="71" x2="123.6" y2="77" stroke="#1d6fb8" stroke-width="1.2"/>
+    <text class="lbl" x="107" y="90" text-anchor="middle" fill="#1d6fb8">h = t/n</text>
+    <text class="lbl" x="24" y="90" text-anchor="middle">0</text>
+    <text class="lbl" x="356" y="90" text-anchor="middle">t</text>
+  </svg>
+  <figcaption>구간 $[0,t]$ 를 길이 $h=t/n$ 인 $n$ 개 소구간으로 나눈다. 각 소구간은 ‘사건 발생(●, 확률 $\approx\lambda h=\lambda t/n$) / 미발생’ 두 결과뿐인 <b>베르누이 시행</b> — 전체는 $B(n,\lambda t/n)$, $n\to\infty$ 가 포아송이 된다.</figcaption>
+  </figure>
   <p>구간 $[0,t]$ 를 길이 $h=t/n$ 인 $n$ 개 소구간으로 쪼개면, 각 소구간은 ‘1회 발생(확률 $\approx\lambda t/n$) / 미발생’ 의 <b>베르누이 시행</b>으로 볼 수 있다. (2회 이상 발생하는 경우는 다 합쳐도 $n\cdot o(t/n)\to0$ 이라 사라진다.) 가정 ③으로 소구간들이 독립이라 발생 횟수는 근사적으로 $B\big(n,\tfrac{\lambda t}{n}\big)$ 이고, $n\to\infty$ 극한을 취하면</p>
   $$
   \begin{aligned}
