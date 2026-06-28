@@ -34,8 +34,12 @@
 </div>
 <div class="box prf">
   <span class="tag">유도</span>
-  <p>유한합은 $S_n=\sum_{k=0}^{n-1}ar^k$ 에 대해 $S_n-rS_n=a(1-r^n)$ 이므로 $S_n=a\dfrac{1-r^n}{1-r}$. $|r|\lt1$ 이면 $r^n\to0$ 이라
-  무한합은 $\dfrac{a}{1-r}$. 무한합($a=1$)의 양변을 $r$ 로 미분하면 $\displaystyle\sum_{k=1}^\infty kr^{k-1}=\dfrac{1}{(1-r)^2}$.</p>
+  <p><b>① 유한합.</b> $S_n=a+ar+ar^2+\cdots+ar^{n-1}$ 에 $r$ 을 곱한 $rS_n=ar+ar^2+\cdots+ar^n$ 을 빼면 가운데 항이 모두 소거되어</p>
+  $$S_n-rS_n=a-ar^n=a(1-r^n)\ \Rightarrow\ S_n=a\,\frac{1-r^n}{1-r}\quad(r\ne1).$$
+  <p><b>② 무한합.</b> $|r|\lt1$ 이면 $n\to\infty$ 일 때 $r^n\to0$ 이므로</p>
+  $$\sum_{k=0}^{\infty}ar^k=\lim_{n\to\infty}a\,\frac{1-r^n}{1-r}=\frac{a}{1-r}.$$
+  <p><b>③ 미분형.</b> ②에서 $a=1$ 로 둔 $\displaystyle\sum_{k=0}^{\infty}r^k=\frac{1}{1-r}$ 의 양변을 $r$ 로 미분하면 (좌변은 항별 미분)</p>
+  $$\sum_{k=1}^{\infty}k\,r^{k-1}=\frac{d}{dr}\Big(\frac{1}{1-r}\Big)=\frac{1}{(1-r)^2}.$$
   <div class="qed">∎</div>
 </div>
 <div class="box thm">
