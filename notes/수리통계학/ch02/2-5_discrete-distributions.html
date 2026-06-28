@@ -176,7 +176,7 @@
   </svg>
   <figcaption>구간 $[0,t]$ 를 길이 $h=t/n$ 인 $n$ 개 소구간으로 나눈다. 각 소구간은 ‘사건 발생(●, 확률 $\approx\lambda h=\lambda t/n$) / 미발생’ 두 결과뿐인 <b>베르누이 시행</b> — 전체는 $B(n,\lambda t/n)$, $n\to\infty$ 가 포아송이 된다.</figcaption>
   </figure>
-  <p>구간 $[0,t]$ 를 길이 $h=t/n$ 인 $n$ 개 소구간으로 쪼개면, 각 소구간은 ‘1회 발생(확률 $\approx\lambda t/n$) / 미발생’ 의 <b>베르누이 시행</b>으로 볼 수 있다. (2회 이상 발생하는 경우는 다 합쳐도 $n\cdot o(t/n)\to0$ 이라 사라진다.) 가정 ③으로 소구간들이 독립이라 발생 횟수는 근사적으로 $B\big(n,\tfrac{\lambda t}{n}\big)$ 이고, $n\to\infty$ 극한을 취하면</p>
+  <p>구간 $[0,t]$ 를 길이 $h=t/n$ 인 $n$ 개 소구간으로 쪼개면, 각 소구간은 ‘1회 발생(확률 $\approx\lambda t/n$) / 미발생’ 의 <b>베르누이 시행</b>으로 볼 수 있다 (한 소구간에 <b>2회 이상</b> 몰리는 경우는 아래에서 보듯 극한에서 사라진다). 가정 ③으로 소구간들이 독립이라 발생 횟수는 근사적으로 $B\big(n,\tfrac{\lambda t}{n}\big)$ 이고, $n\to\infty$ 극한을 취하면</p>
   $$
   \begin{aligned}
   P(X(t)=x)&=\binom{n}{x}\Big(\frac{\lambda t}{n}\Big)^x\Big(1-\frac{\lambda t}{n}\Big)^{n-x}\\
@@ -185,6 +185,15 @@
   \end{aligned}
   $$
   <p>즉 구간 $[0,t]$ 의 발생 횟수는 $\text{POI}(\lambda t)$ 를 따르고, $t=1$ 이면 식 (2.24) 의 $f(x)=e^{-\lambda}\lambda^x/x!$ 를 얻는다. (극한 $(1-\tfrac{\lambda t}{n})^n\to e^{-\lambda t}$ 는 <a href="../ch00/0-1_limits.html">0.1 극한</a> 의 $e^x$ 정의에서 온다.)</p>
+  <p><b>‘2회 이상’ 항이 사라지는 이유.</b> 가정 ②로 <b>한</b> 소구간에서 2회 이상 일어날 확률은 $o(t/n)$ 이다. ‘어느 소구간에서든 2회 이상’ 일어날 확률은 합집합 상계(부울 부등식)로 묶이는데, 소구간이 $n$ 개이므로</p>
+  $$
+  \begin{aligned}
+  P\Big(\bigcup_{i=1}^n\{i\text{번째 소구간에서 }\ge2\text{회}\}\Big)
+  &\le\sum_{i=1}^n o\!\Big(\tfrac tn\Big)=n\cdot o\!\Big(\tfrac tn\Big)\\
+  &=t\cdot\frac{o(t/n)}{t/n}\ \xrightarrow{\ n\to\infty\ }\ t\cdot 0=0.
+  \end{aligned}
+  $$
+  <p>여기서 $o(t/n)$ 은 정의상 $t/n$ 보다 빨리 $0$ 으로 가는 양이라 $\dfrac{o(t/n)}{t/n}\to0$. 그래서 $n$ 을 키우면 ‘한 칸에 사건이 두 번 이상 몰리는’ 확률이 통째로 $0$ 이 되어, 극한에서는 각 소구간이 <b>0회 또는 1회</b> 인 베르누이만 남는다.</p>
 </div>
 <div class="note">
   이 유도는 “구간을 잘게 쪼개 각 조각을 베르누이로 본 뒤 극한” 이라는 점에서 아래 <b>정리 2.17</b>(이항 → 포아송 근사)과 같은 계산이다. 차이는, 여기서는 <b>포아송 과정의 가정</b>에서 출발해 분포 자체를 <b>도출</b>한다는 것.
