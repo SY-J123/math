@@ -245,6 +245,14 @@
   $$E(X)=\frac{r}{p},\qquad Var(X)=\frac{rq}{p^2}.\tag{2.31–32}$$
   <p>$X=\sum_{i=1}^r X_i$ (독립인 기하분포의 합)이므로 평균·분산이 기하분포의 $r$ 배다.</p>
 </div>
+<div class="box thm">
+  <span class="tag">성질</span><span class="title">음이항분포와 이항분포의 관계</span>
+  <p>$r\le n$ 인 상수 $n$ 에 대해, $X\sim\text{NB}(r,p)$ 의 누적확률은 이항분포로 바꿔 계산할 수 있다. $n$ 번의 베르누이 시행에서의 성공 횟수를 $Y\sim B(n,p)$ 라 하면</p>
+  $$P(X\le n)=P(Y\ge r)=\sum_{k=r}^{n}\binom{n}{k}p^k(1-p)^{n-k}.$$
+</div>
+<div class="note">
+  <b>왜 $\{X\le n\}=\{Y\ge r\}$ 인가:</b> $X$ 는 ‘$r$ 번째 성공이 나오는 시행 번호’다. ‘$r$ 번째 성공이 $n$ 번째 시행 안에 나온다’($X\le n$)는 것은, 곧 ‘처음 $n$ 번의 시행에서 성공이 이미 $r$ 번 이상 나왔다’($Y\ge r$)는 것과 <b>정확히 같은 사건</b>이다 (한쪽이 성립하면 다른 쪽도 성립). 그래서 셈하기 번거로운 음이항의 꼬리합을 익숙한 이항합으로 바꿔 계산할 수 있다.
+</div>
 <div class="box ex">
   <span class="tag">예 2.35</span><span class="title">음이항 적용 (야구 시리즈)</span>
   <p>$7$ 전 $4$ 선승 시리즈, 매 경기 승률 $p=0.7$. 정확히 $5$ 경기 만에 우승($X=5$, $r=4$):
