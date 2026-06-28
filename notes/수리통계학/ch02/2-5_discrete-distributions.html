@@ -139,6 +139,27 @@
   <p>$E[X(X-1)]=\lambda^2$ 에서 $E(X^2)=\lambda^2+\lambda$, 따라서 $Var(X)=\lambda^2+\lambda-\lambda^2=\lambda$.</p>
 </div>
 <div class="box thm">
+  <span class="tag">유도</span><span class="title">포아송 과정에서의 유도</span>
+  <p>희귀사건 $A$ 의 발생 횟수를 다음 <b>세 가정</b>(포아송 과정)으로 모형화한다. 아주 짧은 길이 $h$ 의 구간에서:</p>
+  <ol class="props">
+    <li>1회 발생 확률이 길이에 비례: $\displaystyle\lim_{h\to0}\frac{P(1\text{회})}{h}=\lambda$.</li>
+    <li>2회 이상 발생 확률은 무시할 만큼 작다: $\displaystyle\lim_{h\to0}\frac{P(\ge2\text{회})}{h}=0$ (이를 $o(h)$ 로 쓴다).</li>
+    <li>겹치지 않는 구간들의 발생 횟수는 서로 독립이다.</li>
+  </ol>
+  <p>구간 $[0,t]$ 를 길이 $h=t/n$ 인 $n$ 개 소구간으로 쪼개면, 각 소구간은 ‘1회 발생(확률 $\approx\lambda t/n$) / 미발생’ 의 <b>베르누이 시행</b>으로 볼 수 있다. (2회 이상 발생하는 경우는 다 합쳐도 $n\cdot o(t/n)\to0$ 이라 사라진다.) 가정 ③으로 소구간들이 독립이라 발생 횟수는 근사적으로 $B\big(n,\tfrac{\lambda t}{n}\big)$ 이고, $n\to\infty$ 극한을 취하면</p>
+  $$
+  \begin{aligned}
+  P(X(t)=x)&=\binom{n}{x}\Big(\frac{\lambda t}{n}\Big)^x\Big(1-\frac{\lambda t}{n}\Big)^{n-x}\\
+  &=\frac{(\lambda t)^x}{x!}\underbrace{\frac{n(n-1)\cdots(n-x+1)}{n^x}}_{\to\,1}\underbrace{\Big(1-\frac{\lambda t}{n}\Big)^{n}}_{\to\,e^{-\lambda t}}\underbrace{\Big(1-\frac{\lambda t}{n}\Big)^{-x}}_{\to\,1}\\
+  &\xrightarrow{\ n\to\infty\ }\ e^{-\lambda t}\,\frac{(\lambda t)^x}{x!},\qquad x=0,1,2,\dots
+  \end{aligned}
+  $$
+  <p>즉 구간 $[0,t]$ 의 발생 횟수는 $\text{POI}(\lambda t)$ 를 따르고, $t=1$ 이면 식 (2.24) 의 $f(x)=e^{-\lambda}\lambda^x/x!$ 를 얻는다. (극한 $(1-\tfrac{\lambda t}{n})^n\to e^{-\lambda t}$ 는 <a href="../ch00/0-1_limits.html">0.1 극한</a> 의 $e^x$ 정의에서 온다.)</p>
+</div>
+<div class="note">
+  이 유도는 “구간을 잘게 쪼개 각 조각을 베르누이로 본 뒤 극한” 이라는 점에서 아래 <b>정리 2.17</b>(이항 → 포아송 근사)과 같은 계산이다. 차이는, 여기서는 <b>포아송 과정의 가정</b>에서 출발해 분포 자체를 <b>도출</b>한다는 것.
+</div>
+<div class="box thm">
   <span class="tag">정리 2.17</span><span class="title">포아송에 의한 이항분포 근사</span>
   <p>$np=\lambda$ 를 고정한 채 $n\to\infty,\ p\to0$ 이면</p>
   $$\binom{n}{x}p^x(1-p)^{n-x}\ \longrightarrow\ \frac{e^{-\lambda}\lambda^x}{x!}.$$
