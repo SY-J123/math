@@ -227,10 +227,14 @@
 </div>
 <div class="box prf">
   <span class="tag">증명</span>
-  <p>$P(X\gt m)=\sum_{x\gt m}pq^{x-1}=q^{m}$ 이므로
-  $P(X\gt j+k\mid X\gt j)=\dfrac{P(X\gt j+k)}{P(X\gt j)}=\dfrac{q^{j+k}}{q^{j}}=q^{k}=P(X\gt k)$.
-  이미 $j$ 회 실패했다는 정보가 앞으로의 대기에 영향을 주지 않는다.</p>
+  <p>먼저 꼬리확률을 구한다. 합을 $(1-p)^k$ 로 묶으면 남는 합이 기하분포의 전체 확률 $1$ 이므로</p>
+  $$P(X\gt k)=\sum_{j=k+1}^{\infty}p(1-p)^{j-1}=(1-p)^k\underbrace{\sum_{l=1}^{\infty}p(1-p)^{l-1}}_{=\,1}=(1-p)^k.$$
+  <p>한편 $\{X\gt j+k\}\subset\{X\gt j\}$ 이므로 두 사건의 교사건은 $\{X\gt j+k\}$ 이고, 따라서</p>
+  $$P(X\gt j+k\mid X\gt j)=\frac{P(X\gt j+k,\,X\gt j)}{P(X\gt j)}=\frac{P(X\gt j+k)}{P(X\gt j)}=\frac{(1-p)^{j+k}}{(1-p)^{j}}=(1-p)^k=P(X\gt k).$$
   <div class="qed">∎</div>
+</div>
+<div class="note">
+  이로부터 $P(X\gt j+k)=P(X\gt j)\,P(X\gt k)$ 도 알 수 있다. (무기억성의 구체적 의미는 2.6절 지수분포에서 다룬다.)
 </div>
 
 <h2 class="sub">음이항분포 <span class="en">negative binomial distribution</span></h2>
