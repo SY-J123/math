@@ -72,15 +72,40 @@
   $$E(X)=np,\qquad Var(X)=npq.\tag{2.21–22}$$
 </div>
 <div class="box prf">
-  <span class="tag">평균·분산 (독립합)</span>
+  <span class="tag">증명 (평균·분산)</span>
   <p>$X=\sum X_i$ ($X_i\sim\text{Ber}(p)$ 독립)이므로 선형성으로 $E(X)=\sum E(X_i)=np$, 독립이라 $Var(X)=\sum Var(X_i)=npq$.</p>
   <div class="qed">∎</div>
 </div>
 <div class="note">
   비복원추출(유한모집단)에서는 <b>초기하분포</b><span class="en">hypergeometric</span>
   $f(x)=\dbinom{r}{x}\dbinom{w}{n-x}\big/\dbinom{N}{n}$ ($N=r+w$). 모집단이 크면 $p=r/N$ 인 이항분포로 근사된다.
-  결과가 $k$ 종류면 <b>다항분포</b> $\text{MULT}(n,p_1,\dots,p_k)$: $P=\dfrac{n!}{x_1!\cdots x_k!}p_1^{x_1}\cdots p_k^{x_k}$,
-  각 $X_i\sim B(n,p_i)$ 이고 $Cov(X_i,X_j)=-np_ip_j$ (음의 공분산).
+  (성공/실패 두 결과를 $k$ 종류로 늘리면 <b>다항분포</b> — 아래에서 따로 다룬다.)
+</div>
+
+<h2 class="sub">다항분포 <span class="en">multinomial distribution</span></h2>
+<div class="box def">
+  <span class="tag">정의</span><span class="title">다항분포</span>
+  <p>각 시행의 결과가 $k$ 개 범주 중 하나이고 범주확률이 $p_1,\dots,p_k$ ($\sum_i p_i=1$)인 독립시행을 $n$ 회 할 때, 각 범주가 나온 횟수 $\mathbf X=(X_1,\dots,X_k)$ (단 $\sum_i X_i=n$)의 결합 pmf:</p>
+  $$f(x_1,\dots,x_k)=\frac{n!}{x_1!\,x_2!\cdots x_k!}\,p_1^{x_1}p_2^{x_2}\cdots p_k^{x_k},\qquad \sum_{i=1}^k x_i=n.$$
+  <p>$k=2$ 이면 $(X_1,X_2)=(X,n-X)$ 로 이항분포가 된다 — <b>이항분포의 다범주 일반화</b>. 계수 $\dfrac{n!}{x_1!\cdots x_k!}$ 는 <a href="../ch01/1-4_counting.html">다항정리</a>의 다항계수다.</p>
+</div>
+<div class="box thm">
+  <span class="tag">성질</span><span class="title">다항분포의 적률</span>
+  <ol class="props">
+    <li>주변분포는 이항분포: $X_i\sim B(n,p_i)$. 따라서 $E(X_i)=np_i$, $Var(X_i)=np_i(1-p_i)$.</li>
+    <li>두 범주의 공분산은 음수: $Cov(X_i,X_j)=-np_ip_j$ ($i\ne j$).</li>
+  </ol>
+</div>
+<div class="box prf">
+  <span class="tag">증명 (주변·공분산)</span>
+  <p>① <b>주변분포.</b> 범주 $i$ 를 ‘성공’, 나머지 전부를 ‘실패’로 묶으면 성공확률 $p_i$ 인 $n$ 번 독립시행의 성공 횟수이므로 $X_i\sim B(n,p_i)$.</p>
+  <p>② <b>공분산.</b> $m$ 번째 시행이 범주 $i$ 이면 $1$ 인 지시함수 $I_{im}$ 으로 $X_i=\sum_{m=1}^n I_{im}$. 한 시행은 한 범주뿐이라 $i\ne j$ 면 $I_{im}I_{jm}=0$, 곧 $E(I_{im}I_{jm})=0$ 이므로</p>
+  $$Cov(I_{im},I_{jm})=0-p_ip_j=-p_ip_j.$$
+  <p>서로 다른 시행은 독립이라 그 공분산은 $0$. 따라서 $Cov(X_i,X_j)=\sum_{m=1}^n Cov(I_{im},I_{jm})=-np_ip_j$.</p>
+  <div class="qed">∎</div>
+</div>
+<div class="note">
+  공분산이 <b>음수</b>인 것은 자연스럽다 — 전체 횟수가 $\sum_i X_i=n$ 으로 고정이라, 한 범주가 많이 나오면 다른 범주는 적게 나올 수밖에 없다.
 </div>
 
 <h2 class="sub">포아송 분포 <span class="en">Poisson distribution</span></h2>
