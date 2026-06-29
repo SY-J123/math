@@ -66,6 +66,40 @@
   $$E(X)=\mu,\qquad Var(X)=\sigma^2.\tag{2.44}$$
   <p>종 모양·$x=\mu$ 대칭. 선형변환 $Y=aX+b\sim N(a\mu+b,\ a^2\sigma^2)$ (2.43).</p>
 </div>
+<figure class="fig">
+<svg viewBox="0 0 170 170" role="img" aria-label="과녁: 중심을 겨냥한 탄착점이 중심에 몰려 있음">
+  <circle cx="85" cy="85" r="70" fill="none" stroke="#bbb" stroke-width="1"/>
+  <circle cx="85" cy="85" r="52" fill="none" stroke="#bbb" stroke-width="1"/>
+  <circle cx="85" cy="85" r="34" fill="none" stroke="#bbb" stroke-width="1"/>
+  <circle cx="85" cy="85" r="16" fill="none" stroke="#1d6fb8" stroke-width="1.2"/>
+  <line x1="85" y1="8" x2="85" y2="162" stroke="#e0e0e0" stroke-width="0.8"/>
+  <line x1="8" y1="85" x2="162" y2="85" stroke="#e0e0e0" stroke-width="0.8"/>
+  <g fill="#c0506a">
+    <circle cx="85" cy="85" r="2.6"/><circle cx="92" cy="80" r="2.6"/><circle cx="79" cy="90" r="2.6"/>
+    <circle cx="88" cy="94" r="2.6"/><circle cx="76" cy="78" r="2.6"/><circle cx="97" cy="88" r="2.6"/>
+    <circle cx="82" cy="73" r="2.6"/><circle cx="70" cy="92" r="2.6"/><circle cx="100" cy="76" r="2.6"/>
+    <circle cx="73" cy="100" r="2.6"/><circle cx="105" cy="95" r="2.6"/><circle cx="66" cy="74" r="2.6"/>
+    <circle cx="94" cy="105" r="2.6"/><circle cx="60" cy="96" r="2.6"/><circle cx="110" cy="70" r="2.6"/>
+  </g>
+  <text class="lbl" x="120" y="120" fill="#c0506a">탄착점 (X,Y)</text>
+</svg>
+<figcaption>과녁 중심 $(0,0)$ 을 겨냥해 쏜 탄착점 $(X,Y)$. 중심 가까이 몰리고 멀수록 드물며, <b>방향과 무관</b>(회전대칭)하다 — 이 두 성질만으로 정규분포가 나온다.</figcaption>
+</figure>
+<div class="box thm">
+  <span class="tag">유도</span><span class="title">과녁 모형에서의 유도 <span class="en">Herschel–Maxwell</span></span>
+  <p>과녁 중심을 겨냥한 탄착점 $(X,Y)$ 에 대해 다음 <b>두 가정</b>만 둔다.</p>
+  <ol class="props">
+    <li><b>독립·동일분포:</b> 가로 오차 $X$ 와 세로 오차 $Y$ 는 독립이고 같은 밀도 $f$ 를 가진다.</li>
+    <li><b>회전대칭:</b> 탄착점의 밀도는 방향과 무관하고 중심거리 $r=\sqrt{x^2+y^2}$ 에만 의존한다.</li>
+  </ol>
+  <p>독립이라 결합밀도는 $f(x)f(y)$, 회전대칭이라 그것이 $x^2+y^2$ 의 함수 $h$ 이므로</p>
+  $$f(x)f(y)=h(x^2+y^2).$$
+  <p>양변에 로그를 씌워 $L=\ln f$ 로 두면 $L(x)+L(y)=\ln h(x^2+y^2)$. 양변을 $x$, $y$ 로 각각 편미분해 비교하면</p>
+  $$\frac{L'(x)}{2x}=\frac{L'(y)}{2y}\quad(\text{모든 }x,y)\ \Rightarrow\ \frac{L'(x)}{2x}=\text{상수}=-k.$$
+  <p>따라서 $L'(x)=-2kx$, 적분하면 $L(x)=-kx^2+c$, 곧 $f(x)=Ce^{-kx^2}$. 적분이 $1$ 이 되도록 $k=\dfrac{1}{2\sigma^2}$, $C=\dfrac{1}{\sqrt{2\pi}\,\sigma}$ 로 정하면</p>
+  $$f(x)=\frac{1}{\sqrt{2\pi}\,\sigma}\,e^{-x^2/2\sigma^2}\ \sim\ N(0,\sigma^2),$$
+  <p>중심이 $\mu$ 면 $x$ 를 $x-\mu$ 로 옮겨 식 (2.42)의 $N(\mu,\sigma^2)$ 을 얻는다. (정규화 상수의 $\sqrt{2\pi}$ 는 <a href="../ch00/0-3_special-integrals.html">0.3 가우스 적분</a> $\int e^{-x^2/2}dx=\sqrt{2\pi}$ 에서 온다.)</p>
+</div>
 <div class="box thm">
   <span class="tag">정리 2.20</span><span class="title">표준화 <span class="en">standardization</span></span>
   <p>$Z=\dfrac{X-\mu}{\sigma}\sim N(0,1)$ 이고, $\phi,\Phi$ 를 표준정규의 pdf·cdf 라 하면</p>
