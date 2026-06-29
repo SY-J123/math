@@ -37,6 +37,14 @@
   $$E(X)=\theta,\qquad Var(X)=\theta^2.\tag{2.41}$$
 </div>
 <div class="box thm">
+  <span class="tag">유도</span><span class="title">포아송 과정에서의 유도 (대기시간)</span>
+  <p>발생률 $\lambda$ 인 <a href="2-5_discrete-distributions.html">포아송 과정</a>에서 시간 $t$ 동안의 발생 수는 $Y_t\sim\text{POI}(\lambda t)$ 다. 첫 사건까지의 <b>대기시간</b> $X$ 에 대해, ‘$t$ 보다 오래 걸린다’($X\gt t$)는 것은 ‘시간 $t$ 동안 한 번도 안 일어났다’($Y_t=0$)는 것과 같은 사건이므로</p>
+  $$P(X\gt t)=P(Y_t=0)=\frac{e^{-\lambda t}(\lambda t)^0}{0!}=e^{-\lambda t}.$$
+  <p>여사건으로 cdf 를, 미분으로 pdf 를 얻는다:</p>
+  $$F_X(t)=1-P(X\gt t)=1-e^{-\lambda t},\qquad f_X(t)=F_X'(t)=\lambda e^{-\lambda t}\ (t\gt0).$$
+  <p>척도모수 $\theta=1/\lambda$ 로 바꾸면 $f_X(t)=\tfrac1\theta e^{-t/\theta}$ — 위 정의의 지수분포다. 즉 <b>포아송 과정의 사건 사이 간격이 지수분포</b>를 따른다.</p>
+</div>
+<div class="box thm">
   <span class="tag">정리 2.19</span><span class="title">무기억성 <span class="en">memoryless</span></span>
   $$P(X\gt a+t\mid X\gt a)=P(X\gt t).$$
 </div>
