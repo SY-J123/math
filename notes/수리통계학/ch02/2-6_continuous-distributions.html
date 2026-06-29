@@ -64,7 +64,7 @@
   <p>$X\sim N(\mu,\sigma^2)$:</p>
   $$f(x)=\frac{1}{\sqrt{2\pi}\,\sigma}\exp\!\Big[-\frac{(x-\mu)^2}{2\sigma^2}\Big],\quad-\infty\lt x\lt\infty.\tag{2.42}$$
   $$E(X)=\mu,\qquad Var(X)=\sigma^2.\tag{2.44}$$
-  <p>종 모양·$x=\mu$ 대칭. 선형변환 $Y=aX+b\sim N(a\mu+b,\ a^2\sigma^2)$ (2.43).</p>
+  <p>종 모양·$x=\mu$ 대칭. (선형변환·표준화 성질은 아래 참조.)</p>
 </div>
 <figure class="fig">
 <svg viewBox="0 0 150 150" style="display:block;margin:0 auto;width:100%;max-width:190px" role="img" aria-label="과녁: 중심을 겨냥한 탄착점이 중심에 몰려 있음">
@@ -110,6 +110,23 @@
   <p>$A=\sqrt{k/2\pi}=\dfrac{1}{\sqrt{2\pi}\,\sigma}$ 와 $k=1/\sigma^2$ 을 넣으면</p>
   $$f(x)=\frac{1}{\sqrt{2\pi}\,\sigma}\,e^{-x^2/2\sigma^2}\ \sim\ N(0,\sigma^2),$$
   <p>중심이 $\mu$ 면 $x\to x-\mu$ 로 옮겨 식 (2.42)의 $N(\mu,\sigma^2)$ 을 얻는다.</p>
+</div>
+<div class="box thm">
+  <span class="tag">성질</span><span class="title">정규분포의 선형변환</span>
+  <p>정규확률변수는 <b>선형변환을 해도 다시 정규분포</b>를 따른다. $X\sim N(\mu,\sigma^2)$ 이고 $Y=aX+b$ ($a\ne0$, $b$ 는 상수)이면</p>
+  $$Y\sim N\big(a\mu+b,\ a^2\sigma^2\big).\tag{2.43}$$
+  <p>특히 $a=\tfrac1\sigma,\ b=-\tfrac\mu\sigma$ 로 두면 $Z=\dfrac{X-\mu}{\sigma}\sim N(0,1)$ — 아래 표준화가 그 특수한 경우다.</p>
+</div>
+<div class="box prf">
+  <span class="tag">증명</span>
+  <p>$a\gt0$ 라 하자. $Y$ 의 cdf 를 $X$ 의 확률로 바꾼 뒤 정규밀도를 대입하면</p>
+  $$F_Y(y)=P(aX+b\le y)=P\!\Big(X\le\frac{y-b}{a}\Big)=\int_{-\infty}^{(y-b)/a}\frac{1}{\sqrt{2\pi}\,\sigma}e^{-(x-\mu)^2/2\sigma^2}\,dx.$$
+  <p>$t=ax+b$ (즉 $dx=\tfrac1a\,dt$, 상한은 $x=\tfrac{y-b}{a}\Rightarrow t=y$)로 치환하면</p>
+  $$F_Y(y)=\int_{-\infty}^{y}\frac{1}{\sqrt{2\pi}\,a\sigma}\exp\!\Big\{-\frac{[\,t-(a\mu+b)\,]^2}{2a^2\sigma^2}\Big\}\,dt.$$
+  <p>$y$ 로 미분하면 $Y$ 의 밀도가 나온다:</p>
+  $$f_Y(y)=\frac{d}{dy}F_Y(y)=\frac{1}{\sqrt{2\pi}\,a\sigma}\exp\!\Big\{-\frac{[\,y-(a\mu+b)\,]^2}{2a^2\sigma^2}\Big\},$$
+  <p>이는 곧 $N(a\mu+b,\ a^2\sigma^2)$ 의 밀도다. ($a\lt0$ 이면 $a$ 를 $|a|$ 로 바꿔 같은 결과를 얻는다.)</p>
+  <div class="qed">∎</div>
 </div>
 <div class="box thm">
   <span class="tag">정리 2.20</span><span class="title">표준화 <span class="en">standardization</span></span>
