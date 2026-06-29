@@ -95,9 +95,14 @@
   $$f(x)f(y)=h(x^2+y^2).$$
   <p>양변에 로그를 씌워 $L=\ln f$ 로 두면 $L(x)+L(y)=\ln h(x^2+y^2)$. 양변을 $x$, $y$ 로 각각 편미분해 비교하면</p>
   $$\frac{L'(x)}{2x}=\frac{L'(y)}{2y}\quad(\text{모든 }x,y).$$
-  <p>좌변은 오직 $x$ 만으로, 우변은 오직 $y$ 만으로 이루어진 식이다. 서로 독립으로 움직이는 두 변수에 대해 이 값이 <b>항상 같으려면</b>, $x$ 나 $y$ 에 영향받지 않는 <b>어떤 일정한 상수</b>일 수밖에 없다. 그 상수를 $-k$ 라 두면 $L'(x)=-2kx$, 적분하면 $L(x)=-kx^2+c$, 곧 $f(x)=Ce^{-kx^2}$. 적분이 $1$ 이 되도록 $k=\dfrac{1}{2\sigma^2}$, $C=\dfrac{1}{\sqrt{2\pi}\,\sigma}$ 로 정하면</p>
+  <p>좌변은 오직 $x$ 만으로, 우변은 오직 $y$ 만으로 이루어진 식이다. 서로 독립으로 움직이는 두 변수에 대해 이 값이 <b>항상 같으려면</b>, $x$ 나 $y$ 에 영향받지 않는 <b>어떤 일정한 상수</b>일 수밖에 없다. 그 상수를 $-k$ 라 두면 $L'(x)=-2kx$, 적분하면 $L(x)=-kx^2+c$, 곧 $f(x)=Ce^{-kx^2}$ 이다. 남은 두 상수 $C,k$ 는 <b>두 조건으로 연립</b>해서 정해진다.</p>
+  <p><b>① 전체 적분 $=1$.</b> <a href="../ch00/0-3_special-integrals.html">가우스 적분</a> $\int_{-\infty}^\infty e^{-kx^2}dx=\sqrt{\pi/k}$ 를 쓰면 $C$ 가 $k$ 에 묶인다:</p>
+  $$C\int_{-\infty}^\infty e^{-kx^2}dx=C\sqrt{\tfrac{\pi}{k}}=1\ \Rightarrow\ C=\sqrt{\tfrac{k}{\pi}}.\tag{A}$$
+  <p><b>② 분산 $=\sigma^2$.</b> (A)를 대입하고 $\int_{-\infty}^\infty x^2 e^{-kx^2}dx=\tfrac{1}{2k}\sqrt{\pi/k}$ 를 쓰면 $x$ 가 모두 정리되어</p>
+  $$\sigma^2=\int_{-\infty}^\infty x^2\,Ce^{-kx^2}\,dx=\frac{1}{2k}\ \Rightarrow\ k=\frac{1}{2\sigma^2}.\tag{B}$$
+  <p>(B)를 (A)에 도로 넣으면 $C=\sqrt{k/\pi}=\dfrac{1}{\sqrt{2\pi}\,\sigma}$. 두 상수를 넣으면</p>
   $$f(x)=\frac{1}{\sqrt{2\pi}\,\sigma}\,e^{-x^2/2\sigma^2}\ \sim\ N(0,\sigma^2),$$
-  <p>중심이 $\mu$ 면 $x$ 를 $x-\mu$ 로 옮겨 식 (2.42)의 $N(\mu,\sigma^2)$ 을 얻는다. (정규화 상수의 $\sqrt{2\pi}$ 는 <a href="../ch00/0-3_special-integrals.html">0.3 가우스 적분</a> $\int e^{-x^2/2}dx=\sqrt{2\pi}$ 에서 온다.)</p>
+  <p>중심이 $\mu$ 면 $x$ 를 $x-\mu$ 로 옮겨 식 (2.42)의 $N(\mu,\sigma^2)$ 을 얻는다.</p>
 </div>
 <div class="box thm">
   <span class="tag">성질</span><span class="title">정규분포의 선형변환</span>
