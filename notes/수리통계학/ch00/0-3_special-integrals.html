@@ -83,9 +83,11 @@
   <span class="tag">증명 (극좌표)</span>
   <p><b>① 제곱해서 2차원으로.</b> $I=\int_{-\infty}^\infty e^{-x^2/2}dx$ 는 1차원에서 부정적분이 초등함수로 안 나온다. 대신 같은 적분을 변수 이름만 $x,y$ 로 바꿔 곱하면, 지수끼리 더해져 평면 전체의 이중적분이 된다:</p>
   $$I^2=\Big(\int_{-\infty}^\infty e^{-x^2/2}dx\Big)\Big(\int_{-\infty}^\infty e^{-y^2/2}dy\Big)=\iint_{\mathbb R^2}e^{-(x^2+y^2)/2}\,dx\,dy.$$
-  <p><b>② 극좌표로 바꾼다.</b> 평면의 점을 중심거리 $r$ 과 각 $\theta$ 로 나타내면 $x=r\cos\theta,\ y=r\sin\theta$ 이고 $x^2+y^2=r^2$. 평면 전체는 $r:0\to\infty,\ \theta:0\to2\pi$ 로 덮인다. 이때 <b>넓이조각</b>의 크기가 그냥 $dr\,d\theta$ 가 아니라는 점이 핵심이다:</p>
-  $$dx\,dy=\underbrace{dr}_{\text{반지름 두께}}\times\underbrace{r\,d\theta}_{\text{둘레 길이}}=r\,dr\,d\theta.$$
-  <p>반지름 $r$ 에서 각을 $d\theta$ 만큼 돌면 호의 길이가 (반지름)$\times$(각)$=r\,d\theta$ 라서 $r$ 이 곱해진다(아래 그림). 그러므로</p>
+  <p><b>② 극좌표로 바꾼다.</b> $x=r\cos\theta,\ y=r\sin\theta$ 이고 $x^2+y^2=r^2$. 평면 전체는 $r:0\to\infty,\ \theta:0\to2\pi$ 로 덮인다. <a href="0-2_integration.html">변수변환</a>에서 $dx\,dy$ 는 <b>야코비안 행렬식</b> $|J|$ 배가 되는데, $|J|$ 는 $(x,y)$ 를 새 변수 $(r,\theta)$ 로 편미분한 행렬식이다:</p>
+  $$|J|=\left|\det\!\begin{pmatrix}\partial x/\partial r&\partial x/\partial\theta\\[2pt]\partial y/\partial r&\partial y/\partial\theta\end{pmatrix}\right|
+  =\left|\det\!\begin{pmatrix}\cos\theta&-r\sin\theta\\[2pt]\sin\theta&\ \ r\cos\theta\end{pmatrix}\right|
+  =r\cos^2\theta+r\sin^2\theta=r.$$
+  <p>그래서 <b>$dx\,dy=|J|\,dr\,d\theta=r\,dr\,d\theta$</b>. (기하적으로도 반지름 $r$ 에서 각을 $d\theta$ 돌면 호 길이가 $r\,d\theta$ 라 넓이조각이 $dr\times r\,d\theta$ — 아래 그림.) 그러므로</p>
   <figure class="fig">
   <svg viewBox="0 0 185 150" style="display:block;margin:0 auto;width:100%;max-width:230px" role="img" aria-label="극좌표 넓이조각: 반지름 두께 dr, 둘레 길이 r dθ">
     <polygon points="78.9,94 97.9,83 80.2,61.1 65.5,77.5" fill="#1d6fb8" fill-opacity="0.18"/>
