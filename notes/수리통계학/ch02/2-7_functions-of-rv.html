@@ -46,6 +46,22 @@
   도함수에 절댓값이 붙는다. 두 경우를 합쳐 $|\,\cdot\,|$ 로 쓴다.</p>
   <div class="qed">∎</div>
 </div>
+<div class="box thm">
+  <span class="tag">정리</span><span class="title">확률적분변환 <span class="en">probability integral transform</span></span>
+  <p>연속확률변수 $X$ 의 cdf $F$ 가 연속이고 (순)증가하면, $X$ 를 <b>자기 자신의 cdf</b> 에 넣은</p>
+  $$U=F(X)\ \sim\ U(0,1)$$
+  <p>이 된다. 즉 어떤 연속분포든 그 cdf 로 변환하기만 하면 ‘무지성으로’ 균일분포 $U(0,1)$ 이 나온다.</p>
+</div>
+<div class="box prf">
+  <span class="tag">증명</span>
+  <p>$0\le u\le1$ 에 대해 $F$ 가 증가하므로 $F(X)\le u\iff X\le F^{-1}(u)$. 따라서</p>
+  $$P(U\le u)=P\big(F(X)\le u\big)=P\big(X\le F^{-1}(u)\big)=F\big(F^{-1}(u)\big)=u.$$
+  <p>$U$ 의 cdf 가 $F_U(u)=u\ (0\le u\le1)$ 이므로 $U\sim U(0,1)$.</p>
+  <div class="qed">∎</div>
+</div>
+<div class="note">
+  <b>역변환 — 난수 생성:</b> 거꾸로 $U\sim U(0,1)$ 이면 $X=F^{-1}(U)$ 의 cdf 가 $F$ 다 ($P(X\le x)=P(U\le F(x))=F(x)$). 그래서 원하는 분포 $F$ 의 난수는 <b>$U(0,1)$ 난수에 $F^{-1}$ 만 씌우면</b> 만들어진다(역변환 표본추출). 위 <b>예 2.41</b>($X\sim U(0,1)$ 에 $-\lambda\ln X$)이 그 예 — 지수분포 cdf 의 역함수 $F^{-1}(u)=-\lambda\ln(1-u)$ 를 쓴 것과 본질적으로 같다($X$ 와 $1-X$ 가 모두 $U(0,1)$).
+</div>
 
 <h2 class="sub"><span class="no">2.7.2</span>결합변환</h2>
 <div class="box thm">
