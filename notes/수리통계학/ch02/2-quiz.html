@@ -107,6 +107,13 @@
   <li>독립 $X_1,\dots,X_n$ 의 합 $Y=\sum X_i$ 의 mgf 성질을 식으로 쓰고 증명하라.</li></ol></div>
 <div class="qrow"><span class="qid">Q29</span>확률생성함수 $G_X(s)$ 의 정의와 세 성질(평균·독립합·확률복원)을 각각 식으로 쓰라.</div>
 
+<h2 class="sub">I. 기초 도구 (0장 — 2장에서 쓰는 것)</h2>
+<div class="qrow"><span class="qid">Q30</span>가우스 적분 $\int_{-\infty}^{\infty}e^{-x^2/2}\,dx$ 의 값을 쓰고, $I^2$ 을 이용한 증명을 간략히 보여라. (정규분포 정규화에 사용)</div>
+<div class="qrow"><span class="qid">Q31</span>감마함수 $\Gamma(k)$ 의 정의와 세 가지 성질을 식으로 쓰라. (감마분포에 사용)</div>
+<div class="qrow"><span class="qid">Q32</span>베타함수 $B(a,b)$ 의 정의와 감마함수와의 관계를 식으로 쓰라. (베타분포에 사용)</div>
+<div class="qrow"><span class="qid">Q33</span>등비급수의 <b>유한합·무한합·미분형</b>을 각각 식으로 쓰라. (기하·음이항분포, 무기억성에 사용)</div>
+<div class="qrow"><span class="qid">Q34</span>지수급수 $\sum_{k=0}^{\infty}\dfrac{\lambda^k}{k!}$ 의 값과 극한 $\lim_{n\to\infty}\big(1-\tfrac{\lambda}{n}\big)^n$ 의 값을 쓰라. (포아송분포·근사에 사용)</div>
+
 <!-- ===== 정답 시트 ===== -->
 <div class="answersheet">
 <div class="sheettitle">■ 정답 시트 <span class="en">answer key</span></div>
@@ -176,6 +183,13 @@
 <div class="ans"><span class="qid">A27.</span> $f_Z(z)=\displaystyle\int_{-\infty}^\infty f_X(x)f_Y(z-x)\,dx$. 증명: $F_Z(z)=\int f_X(x)\big(\int_{-\infty}^{z-x}f_Y(y)dy\big)dx$ 를 $z$ 로 미분.</div>
 <div class="ans"><span class="qid">A28.</span> (1) $M_X(t)=E(e^{tX})$; $M_X^{(r)}(0)=E(X^r)$. 증명: $M_X(t)=\sum_r\tfrac{t^r}{r!}E(X^r)$ 를 $r$ 번 미분 후 $t=0$. (2) 독립 $\Rightarrow M_Y(t)=\prod_i M_{X_i}(t)$: $E[e^{t\sum X_i}]=E[\prod e^{tX_i}]=\prod E[e^{tX_i}]$.</div>
 <div class="ans"><span class="qid">A29.</span> $G_X(s)=E(s^X)=\sum_j p_js^j$. ① $E(X)=G_X'(1)$; ② 독립합 $G_{X+Y}(s)=G_X(s)G_Y(s)$; ③ 확률복원 $P(X=k)=\dfrac{G_X^{(k)}(0)}{k!}$.</div>
+
+<h2 class="sub">I. 기초 도구 (0장)</h2>
+<div class="ans"><span class="qid">A30.</span> $\displaystyle\int_{-\infty}^{\infty}e^{-x^2/2}dx=\sqrt{2\pi}$. 증명: $I^2=\iint_{\mathbb R^2}e^{-(x^2+y^2)/2}dx\,dy$, 극좌표($dx\,dy=r\,dr\,d\theta$)로 $I^2=\int_0^{2\pi}\!\int_0^\infty e^{-r^2/2}r\,dr\,d\theta=\int_0^{2\pi}1\,d\theta=2\pi$, 곧 $I=\sqrt{2\pi}$.</div>
+<div class="ans"><span class="qid">A31.</span> $\Gamma(k)=\displaystyle\int_0^\infty t^{k-1}e^{-t}dt\ (k\gt0)$. ① $\Gamma(k)=(k-1)\Gamma(k-1)$; ② $\Gamma(n)=(n-1)!$ ($n$ 자연수); ③ $\Gamma(\tfrac12)=\sqrt\pi$.</div>
+<div class="ans"><span class="qid">A32.</span> $B(a,b)=\displaystyle\int_0^1 x^{a-1}(1-x)^{b-1}dx=\dfrac{\Gamma(a)\Gamma(b)}{\Gamma(a+b)}$.</div>
+<div class="ans"><span class="qid">A33.</span> 유한합 $\displaystyle\sum_{k=0}^{n-1}ar^k=a\dfrac{1-r^n}{1-r}\ (r\ne1)$; 무한합 $\displaystyle\sum_{k=0}^{\infty}ar^k=\dfrac{a}{1-r}\ (|r|\lt1)$; 미분형 $\displaystyle\sum_{k=1}^{\infty}kr^{k-1}=\dfrac{1}{(1-r)^2}$.</div>
+<div class="ans"><span class="qid">A34.</span> $\displaystyle\sum_{k=0}^{\infty}\frac{\lambda^k}{k!}=e^{\lambda}$; $\displaystyle\lim_{n\to\infty}\big(1-\tfrac{\lambda}{n}\big)^n=e^{-\lambda}$.</div>
 </div>
 
 <nav class="pager">
