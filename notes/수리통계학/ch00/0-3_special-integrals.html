@@ -81,10 +81,30 @@
 </figure>
 <div class="box prf">
   <span class="tag">증명 (극좌표)</span>
-  <p>$I=\int_{-\infty}^\infty e^{-x^2/2}dx$ 라 하면 $I^2=\iint e^{-(x^2+y^2)/2}dx\,dy$. 극좌표 $x=r\cos\theta,\ y=r\sin\theta$
-  ($dx\,dy=r\,dr\,d\theta$)로 바꾸면</p>
-  $$I^2=\int_0^{2\pi}\!\!\int_0^\infty e^{-r^2/2}r\,dr\,d\theta=2\pi\big[-e^{-r^2/2}\big]_0^\infty=2\pi.$$
-  <p>따라서 $I=\sqrt{2\pi}$. (제곱해서 2차원으로 옮긴 뒤 극좌표로 푸는 것이 핵심 — 1차원 그대로는 부정적분이 초등함수로 안 된다.)</p>
+  <p><b>① 제곱해서 2차원으로.</b> $I=\int_{-\infty}^\infty e^{-x^2/2}dx$ 는 1차원에서 부정적분이 초등함수로 안 나온다. 대신 같은 적분을 변수 이름만 $x,y$ 로 바꿔 곱하면, 지수끼리 더해져 평면 전체의 이중적분이 된다:</p>
+  $$I^2=\Big(\int_{-\infty}^\infty e^{-x^2/2}dx\Big)\Big(\int_{-\infty}^\infty e^{-y^2/2}dy\Big)=\iint_{\mathbb R^2}e^{-(x^2+y^2)/2}\,dx\,dy.$$
+  <p><b>② 극좌표로 바꾼다.</b> 평면의 점을 중심거리 $r$ 과 각 $\theta$ 로 나타내면 $x=r\cos\theta,\ y=r\sin\theta$ 이고 $x^2+y^2=r^2$. 평면 전체는 $r:0\to\infty,\ \theta:0\to2\pi$ 로 덮인다. 이때 <b>넓이조각</b>의 크기가 그냥 $dr\,d\theta$ 가 아니라는 점이 핵심이다:</p>
+  $$dx\,dy=\underbrace{dr}_{\text{반지름 두께}}\times\underbrace{r\,d\theta}_{\text{둘레 길이}}=r\,dr\,d\theta.$$
+  <p>반지름 $r$ 에서 각을 $d\theta$ 만큼 돌면 호의 길이가 (반지름)$\times$(각)$=r\,d\theta$ 라서 $r$ 이 곱해진다(아래 그림). 그러므로</p>
+  <figure class="fig">
+  <svg viewBox="0 0 185 150" style="display:block;margin:0 auto;width:100%;max-width:230px" role="img" aria-label="극좌표 넓이조각: 반지름 두께 dr, 둘레 길이 r dθ">
+    <polygon points="78.9,94 97.9,83 80.2,61.1 65.5,77.5" fill="#1d6fb8" fill-opacity="0.18"/>
+    <line x1="20" y1="128" x2="104.9" y2="79" stroke="#888" stroke-width="1"/>
+    <line x1="20" y1="128" x2="85.6" y2="55.2" stroke="#888" stroke-width="1"/>
+    <path d="M78.9,94 A68,68 0 0 0 65.5,77.5" fill="none" stroke="#1d6fb8" stroke-width="1.4"/>
+    <path d="M97.9,83 A90,90 0 0 0 80.2,61.1" fill="none" stroke="#1d6fb8" stroke-width="1.4"/>
+    <text class="lbl" x="100" y="95" fill="#1d6fb8">dr</text>
+    <text class="lbl" x="99" y="72" fill="#1d6fb8">r dθ</text>
+    <text class="lbl b" x="52" y="104">r</text>
+    <text class="lbl" x="40" y="121">dθ</text>
+    <text class="lbl" x="10" y="134">O</text>
+  </svg>
+  <figcaption>극좌표 넓이조각: 반지름 방향 두께 $dr$, 둘레 방향 길이 $r\,d\theta$ → 넓이 $dx\,dy=r\,dr\,d\theta$. 이 $r$ 이 적분을 풀리게 한다.</figcaption>
+  </figure>
+  $$I^2=\int_0^{2\pi}\!\!\int_0^\infty e^{-r^2/2}\,r\,dr\,d\theta.$$
+  <p><b>③ 안쪽 적분이 풀린다.</b> 바로 이 $r$ 덕분에 $u=r^2/2$ ($du=r\,dr$) 치환이 딱 맞아떨어진다:</p>
+  $$\int_0^\infty e^{-r^2/2}\,r\,dr=\int_0^\infty e^{-u}\,du=\big[-e^{-u}\big]_0^\infty=1.$$
+  <p><b>④ 마무리.</b> 남은 $\theta$ 적분은 $\int_0^{2\pi}1\,d\theta=2\pi$. 따라서 $I^2=2\pi$, 곧 $I=\sqrt{2\pi}$.</p>
   <div class="qed">∎</div>
 </div>
 <div class="box prf">
