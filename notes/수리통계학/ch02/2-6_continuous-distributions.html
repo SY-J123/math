@@ -94,8 +94,8 @@
   <p>독립이라 결합밀도는 $f(x)f(y)$, 회전대칭이라 그것이 $x^2+y^2$ 의 함수 $h$ 이므로</p>
   $$f(x)f(y)=h(x^2+y^2).$$
   <p>양변에 로그를 씌워 $L=\ln f$ 로 두면 $L(x)+L(y)=\ln h(x^2+y^2)$. 양변을 $x$, $y$ 로 각각 편미분해 비교하면</p>
-  $$\frac{L'(x)}{2x}=\frac{L'(y)}{2y}\quad(\text{모든 }x,y)\ \Rightarrow\ \frac{L'(x)}{2x}=\text{상수}=-k.$$
-  <p>따라서 $L'(x)=-2kx$, 적분하면 $L(x)=-kx^2+c$, 곧 $f(x)=Ce^{-kx^2}$. 적분이 $1$ 이 되도록 $k=\dfrac{1}{2\sigma^2}$, $C=\dfrac{1}{\sqrt{2\pi}\,\sigma}$ 로 정하면</p>
+  $$\frac{L'(x)}{2x}=\frac{L'(y)}{2y}\quad(\text{모든 }x,y).$$
+  <p>좌변은 오직 $x$ 만으로, 우변은 오직 $y$ 만으로 이루어진 식이다. 서로 독립으로 움직이는 두 변수에 대해 이 값이 <b>항상 같으려면</b>, $x$ 나 $y$ 에 영향받지 않는 <b>어떤 일정한 상수</b>일 수밖에 없다. 그 상수를 $-k$ 라 두면 $L'(x)=-2kx$, 적분하면 $L(x)=-kx^2+c$, 곧 $f(x)=Ce^{-kx^2}$. 적분이 $1$ 이 되도록 $k=\dfrac{1}{2\sigma^2}$, $C=\dfrac{1}{\sqrt{2\pi}\,\sigma}$ 로 정하면</p>
   $$f(x)=\frac{1}{\sqrt{2\pi}\,\sigma}\,e^{-x^2/2\sigma^2}\ \sim\ N(0,\sigma^2),$$
   <p>중심이 $\mu$ 면 $x$ 를 $x-\mu$ 로 옮겨 식 (2.42)의 $N(\mu,\sigma^2)$ 을 얻는다. (정규화 상수의 $\sqrt{2\pi}$ 는 <a href="../ch00/0-3_special-integrals.html">0.3 가우스 적분</a> $\int e^{-x^2/2}dx=\sqrt{2\pi}$ 에서 온다.)</p>
 </div>
