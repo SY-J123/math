@@ -135,9 +135,61 @@
   <p>따라서 $\displaystyle\int_{-\infty}^\infty\frac{1}{\sqrt{2\pi}}e^{-x^2/2}dx=1$ 이고, 일반 $N(\mu,\sigma^2)$ 도 $z=(x-\mu)/\sigma$ 치환으로 $\int f=1$. 이것이 정규화상수 속 $\sqrt{2\pi}$ 의 출처다 (같은 <a href="../ch00/0-3_special-integrals.html">가우스 적분</a>).</p>
   <div class="qed">∎</div>
 </div>
+<div class="box def">
+  <span class="tag">정의</span><span class="title">표준정규 누적분포함수 <span class="en">standard normal CDF</span></span>
+  <p>표준정규 $Z\sim N(0,1)$ 의 누적분포함수를 $\Phi$ 로 쓴다:</p>
+  $$\Phi(z)=P(Z\le z)=\int_{-\infty}^{z}\phi(t)\,dt=\int_{-\infty}^{z}\frac{1}{\sqrt{2\pi}}e^{-t^2/2}\,dt.$$
+  <p>이 적분은 초등함수로 닫힌 꼴이 없으므로, 값은 <b>표준정규분포표</b>나 수치계산으로 구한다. 미적분의 기본정리에서 $\Phi'(z)=\phi(z)$ 다.</p>
+</div>
+<figure class="fig">
+<svg viewBox="0 0 280 132" role="img" aria-label="표준정규 밀도 아래 z 왼쪽 넓이가 누적확률 Φ(z)">
+  <path d="M18.4,110 L18.4,109.5 L48.8,105.5 L64,99.2 L79.2,87.8 L94.4,71.1 L109.6,51.9 L124.8,36.2 L140,30 L155.2,36.2 L170.4,51.9 L170.4,110 Z" fill="#eef5fb" stroke="none"/>
+  <line x1="14" y1="110" x2="266" y2="110" class="axis"/>
+  <path d="M18.4,109.5 L48.8,105.5 L64,99.2 L79.2,87.8 L94.4,71.1 L109.6,51.9 L124.8,36.2 L140,30 L155.2,36.2 L170.4,51.9 L185.6,71.1 L200.8,87.8 L216,99.2 L231.2,105.5 L261.6,109.5" fill="none" stroke="#1d6fb8" stroke-width="1.8"/>
+  <line x1="170.4" y1="51.9" x2="170.4" y2="110" stroke="#1d6fb8" stroke-width="1" stroke-dasharray="3 2"/>
+  <text x="140" y="124" class="lbl" text-anchor="middle">0</text>
+  <text x="170.4" y="124" class="lbl b" text-anchor="middle">z</text>
+  <text x="92" y="74" class="lbl b">Φ(z)</text>
+</svg>
+<figcaption>$\Phi(z)$ 는 표준정규 밀도 $\phi$ 아래에서 $z$ <b>왼쪽 넓이</b>(누적확률 $P(Z\le z)$)다. 곡선이 $0$ 대칭이라 왼쪽꼬리와 오른쪽꼬리 넓이가 같아 $\Phi(-z)=1-\Phi(z)$ 가 성립한다.</figcaption>
+</figure>
+<div class="box thm">
+  <span class="tag">성질</span><span class="title">$\Phi$ 의 성질</span>
+  <ol class="props">
+    <li>$\Phi(-\infty)=0$, $\Phi(\infty)=1$ 이고 $\Phi$ 는 단조증가하는 연속함수다.</li>
+    <li><b>대칭성:</b> $\Phi(-z)=1-\Phi(z)$. 특히 $\Phi(0)=\tfrac12$.</li>
+    <li><b>구간확률:</b> $P(a\le Z\le b)=\Phi(b)-\Phi(a)$, &nbsp;$P(Z\gt z)=1-\Phi(z)$.</li>
+    <li><b>일반 정규의 표준화:</b> $X\sim N(\mu,\sigma^2)$ 이면 $F(x)=P(X\le x)=\Phi\!\Big(\dfrac{x-\mu}{\sigma}\Big)$, 따라서
+      $$P(a\le X\le b)=\Phi\!\Big(\frac{b-\mu}{\sigma}\Big)-\Phi\!\Big(\frac{a-\mu}{\sigma}\Big).$$</li>
+  </ol>
+</div>
 <div class="box ex">
   <span class="tag">예 2.38</span><span class="title">정규확률 계산 (표준화)</span>
   <p>$X\sim N(25,16)$: $P(20\le X\le35)=\Phi\big(\tfrac{35-25}{4}\big)-\Phi\big(\tfrac{20-25}{4}\big)=\Phi(2.5)-\Phi(-1.25)\approx0.8882$.</p>
+</div>
+
+<div class="box prf">
+  <span class="tag">유도</span><span class="title">평균 $=\mu$, 분산 $=\sigma^2$</span>
+  <p>표준정규밀도 $\phi(z)=\dfrac{1}{\sqrt{2\pi}}e^{-z^2/2}$ 와 위 표준화 치환 $z=\dfrac{x-\mu}{\sigma}$ (곧 $x=\mu+\sigma z$, $dx=\sigma\,dz$)를 공통으로 쓴다. 자주 등장하는 세 적분을 먼저 정리해 둔다:</p>
+  $$\int_{-\infty}^{\infty}\phi(z)\,dz=1\ (\text{정규화}),\qquad
+    \int_{-\infty}^{\infty} z\,\phi(z)\,dz=0\ (\text{기함수}),\qquad
+    \int_{-\infty}^{\infty} z^2\,\phi(z)\,dz=1.$$
+  <p>셋째 적분은 <b>부분적분</b>으로 얻는다 — $u=z$, $dv=z\,e^{-z^2/2}dz$ ($v=-e^{-z^2/2}$, $du=dz$)라 두면</p>
+  $$\int_{-\infty}^{\infty} z^2\phi(z)\,dz=\frac{1}{\sqrt{2\pi}}\Big\{\underbrace{\big[-z\,e^{-z^2/2}\big]_{-\infty}^{\infty}}_{=\,0}+\int_{-\infty}^{\infty} e^{-z^2/2}\,dz\Big\}
+    =\frac{1}{\sqrt{2\pi}}\big(0+\sqrt{2\pi}\big)=1,$$
+  <p>경계항은 $z\to\pm\infty$ 에서 $z\,e^{-z^2/2}\to0$ 이라 사라지고, 남은 적분은 <a href="../ch00/0-3_special-integrals.html">가우스 적분</a> $\int_{-\infty}^\infty e^{-z^2/2}dz=\sqrt{2\pi}$ (위 정규화 증명)이다.</p>
+  <p><b>① 평균.</b> 치환 $x=\mu+\sigma z$ 로 바꾸면</p>
+  $$E(X)=\int_{-\infty}^{\infty} x\,f(x)\,dx=\int_{-\infty}^{\infty}(\mu+\sigma z)\,\phi(z)\,dz
+    =\mu\underbrace{\int\phi\,dz}_{=1}+\sigma\underbrace{\int z\,\phi\,dz}_{=0}=\mu.$$
+  <p><b>② 분산.</b> $Var(X)=E(X^2)-[E(X)]^2$ 이므로 $E(X^2)$ 을 직접 구한다. 같은 치환으로 $x^2=(\mu+\sigma z)^2=\mu^2+2\mu\sigma z+\sigma^2 z^2$ 이라</p>
+  $$\begin{aligned}
+  E(X^2)&=\int_{-\infty}^{\infty} x^2 f(x)\,dx=\int_{-\infty}^{\infty}(\mu^2+2\mu\sigma z+\sigma^2 z^2)\,\phi(z)\,dz\\
+  &=\mu^2\underbrace{\int\phi\,dz}_{=1}+2\mu\sigma\underbrace{\int z\,\phi\,dz}_{=0}+\sigma^2\underbrace{\int z^2\,\phi\,dz}_{=1}
+   =\mu^2+\sigma^2.
+  \end{aligned}$$
+  <p>따라서</p>
+  $$Var(X)=E(X^2)-[E(X)]^2=(\mu^2+\sigma^2)-\mu^2=\sigma^2.$$
+  <div class="qed">∎</div>
 </div>
 
 <h2 class="sub">이변량 정규분포 <span class="en">bivariate normal distribution</span></h2>
