@@ -9,5 +9,7 @@ Desktop.ini
 references/
 
 # 교과서 스캔 원본(저작권) — 노트 작성용 소스, 커밋 제외
+# 타임스탬프 파일명(예: 20260630_085333.jpg)인 폰 촬영본은 모든 챕터에서 제외
+notes/**/2026*.jpg
 notes/**/ch01/2026*.jpg
 notes/**/*_scan*.jpg

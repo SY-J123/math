@@ -137,6 +137,27 @@ figure.fig figcaption{ font-size:0.82rem; color:var(--muted); margin-top:6px; }
 .fig .cellhi2{ fill:#e9f6f4; stroke:#0f8a7d; stroke-width:1.4; }
 .fig .num{ font-size:12px; fill:#333; }
 
+/* ---- 인덱스·과목 페이지 (목차) ---- */
+p.lead{ color:var(--muted); }
+ul.cards{ list-style:none; margin:24px 0; padding:0; display:grid; gap:14px;
+          grid-template-columns:repeat(auto-fill, minmax(250px,1fr)); }
+ul.cards a{ display:block; padding:18px; border:1px solid var(--line); border-radius:10px;
+            background:#fafafa; color:var(--ink); text-decoration:none; }
+ul.cards a:hover{ background:var(--def-bg); border-color:var(--def); }
+ul.cards a b{ font-size:1.12rem; color:var(--def); }
+ul.cards a .en{ display:block; margin-top:1px; }
+ul.cards a small{ display:block; color:var(--muted); font-size:0.82rem; margin-top:9px; line-height:1.55; }
+.chapter{ margin:18px 0; }
+.chapter h3{ font-size:1.02rem; margin:0 0 10px; padding-bottom:4px; border-bottom:1px solid var(--line); }
+.chapter h3 .en{ font-weight:400; }
+ul.toc{ list-style:none; margin:0; padding:0; display:grid; gap:8px;
+        grid-template-columns:repeat(auto-fill, minmax(240px,1fr)); }
+ul.toc a{ display:block; padding:11px 14px; border:1px solid var(--line); border-radius:8px;
+          background:#fafafa; color:var(--ink); text-decoration:none; line-height:1.4; }
+ul.toc a:hover{ background:var(--def-bg); border-color:var(--def); }
+ul.toc a b{ color:var(--def); }
+ul.toc a small{ display:block; color:var(--muted); font-size:0.8rem; }
+
 /* ---- 인쇄 ---- */
 @media print{
   @page{ size:A4; margin:15mm; }

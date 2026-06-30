@@ -116,6 +116,46 @@ $$I+X+X^2+\cdots+X^{n-1}=(X^n-I)(X-I)^{-1}.\tag{4.27}$$
   <div class="qed">∎</div>
 </div>
 
+<h2 class="sub">다항식으로 역행렬 구하기</h2>
+<p>$A$ 가 어떤 다항식을 만족하고 그 <b>상수항이 $0$ 이 아니면</b>, 그 식을 옮기는 것만으로 역행렬이 곧바로 나온다.</p>
+<div class="box thm">
+  <span class="tag">성질</span>
+  <p>$c_kA^k+\cdots+c_1A+c_0I=0$ 이고 $c_0\neq0$ 이면 $A$ 는 정칙이고</p>
+  $$A^{-1}=-\frac{1}{c_0}\big(c_kA^{k-1}+\cdots+c_2A+c_1I\big).$$
+</div>
+<div class="box prf">
+  <span class="tag">증명</span>
+  <p>상수항만 우변으로 넘기고 좌변을 $A$ 로 묶으면 $A\big(c_kA^{k-1}+\cdots+c_1I\big)=-c_0I$. 양변을 $-c_0$ 로 나누면
+  $A\cdot\big[-\tfrac1{c_0}(c_kA^{k-1}+\cdots+c_1I)\big]=I$ 이므로 괄호 안이 $A^{-1}$ 이다. ($A$ 와 그 다항식은 가환이라 좌우 어느 쪽으로 곱해도 같다.)</p>
+  <div class="qed">∎</div>
+</div>
+<div class="box ex">
+  <span class="tag">예</span>
+  <ol class="props">
+    <li>$A^2-4A-9I=0$ 이면 $A(A-4I)=9I$ 이므로 $A^{-1}=\dfrac1 9(A-4I)$.</li>
+    <li>$X^2+2X+I=0$ 이면 $X(X+2I)=-I$ 이므로 $X^{-1}=-(X+2I)$, $(X+2I)^{-1}=-X$ — 둘 다 정칙. 한편
+    $(X+I)^2=X^2+2X+I=0$ 인데 제곱이 $0$ 인 비영행렬은 정칙일 수 없으므로 $X+I$ 는 <b>비정칙</b>이다.</li>
+  </ol>
+</div>
+
+<h2 class="sub">대합행렬과 특이행렬의 예</h2>
+<div class="box thm">
+  <span class="tag">성질</span><span class="title">하우스홀더 행렬 <span class="en">Householder</span></span>
+  <p>$w'w=1$ 인 열벡터 $w$ 로 $H=I-2ww'$ 를 만들면 $H$ 는 대칭이고 자기 자신이 역행렬이다(<b>대합</b><span class="en">involution</span>):</p>
+  $$H'=H,\qquad H^2=I,\qquad \text{따라서 } H=H^{-1}.$$
+</div>
+<div class="box prf">
+  <span class="tag">증명</span>
+  <p>$(ww')'=ww'$ 이라 $H'=I-2ww'=H$. 또 $w'w=1$ 을 쓰면</p>
+  $$H^2=(I-2ww')(I-2ww')=I-4ww'+4w\underbrace{(w'w)}_{=1}w'=I-4ww'+4ww'=I.$$
+  <p>그러므로 $H^{-1}=H$ 이고, $H'H=H^2=I$ 라 $H$ 는 직교행렬이기도 하다. (기하적으로 $w$ 에 수직인 초평면에 대한 <b>반사</b>이므로 두 번 반사하면 제자리, 곧 $H^2=I$.)</p>
+  <div class="qed">∎</div>
+</div>
+<div class="note">
+  반대로 <b>특이</b>행렬의 예: 임의의 비영벡터 $v$ 에 대해 $A=vv'-(v'v)I$ 는 항상 비정칙이다. $Av=v(v'v)-(v'v)v=0$ 으로
+  $Av=0$ 인 $v\neq0$ 이 존재하므로($Ax=0$ 의 비자명해), 표 4.2 에 의해 $|A|=0$ 이다.
+</div>
+
 <nav class="pager">
   <a href="4-5_direct-sum-product.html">← 이전<small>4.10–4.11 직합과 직적</small></a>
   <a class="next" href="4-7_rank.html">다음 →<small>4.13–4.16 행렬의 계수</small></a>

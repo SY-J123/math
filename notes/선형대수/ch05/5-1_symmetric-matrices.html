@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>5장 · 5.1 대칭행렬</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">선형대수 · 5장 특수한 행렬</div>
+  <h1><span class="no">5.1</span>대칭행렬 <span class="en">symmetric matrices</span></h1>
+</header>
+
+<div class="note">
+  특별한 성질을 가지는 행렬들에는 그 성질에 따라 이름이 붙는다. 비록 그런 행렬이 특정 응용에서만 쓰이더라도,
+  자주 등장하는 구조에 이름을 두면 다루기가 편하다. 5장은 그런 <b>특수한 행렬</b>들을 모아 다루고, 그 첫 번째가 <b>대칭행렬</b>이다.
+</div>
+
+<div class="box def">
+  <span class="tag">정의 5.1</span><span class="title">대칭행렬 <span class="en">symmetric matrix</span></span>
+  <p>정방행렬 $A$ 가 그 전치와 같으면, 즉</p>
+  $$A=A',\qquad\text{다시 말해 모든 } i,j \text{ 에 대해 } a_{ij}=a_{ji}\tag{5.1}$$
+  <p>이면 $A$ 를 <b>대칭행렬</b>이라 한다. 대칭은 <b>정방행렬</b>에서만 정의된다.</p>
+</div>
+
+<figure class="fig">
+<svg viewBox="0 0 250 200" role="img" aria-label="대칭행렬은 주대각선을 거울축으로 양쪽이 같다">
+  <!-- 3x3 grid, cell 46, origin (62,24) -->
+  <g font-size="15" text-anchor="middle">
+    <!-- diagonal cells (gray) -->
+    <rect class="cell" x="62"  y="24"  width="46" height="46"/>
+    <rect class="cell" x="108" y="70"  width="46" height="46"/>
+    <rect class="cell" x="154" y="116" width="46" height="46"/>
+    <!-- pair (1,2)&(2,1) blue -->
+    <rect class="cellhi" x="108" y="24" width="46" height="46"/>
+    <rect class="cellhi" x="62"  y="70" width="46" height="46"/>
+    <!-- pair (1,3)&(3,1) teal -->
+    <rect class="cellhi2" x="154" y="24"  width="46" height="46"/>
+    <rect class="cellhi2" x="62"  y="116" width="46" height="46"/>
+    <!-- pair (2,3)&(3,2) purple -->
+    <rect x="154" y="70"  width="46" height="46" fill="#f4eefa" stroke="#7b3fa0" stroke-width="1.4"/>
+    <rect x="108" y="116" width="46" height="46" fill="#f4eefa" stroke="#7b3fa0" stroke-width="1.4"/>
+    <!-- numbers -->
+    <text x="85"  y="52"  class="num">2</text>
+    <text x="131" y="98"  class="num">3</text>
+    <text x="177" y="144" class="num">5</text>
+    <text x="131" y="52"  fill="#1d6fb8">7</text>
+    <text x="85"  y="98"  fill="#1d6fb8">7</text>
+    <text x="177" y="52"  fill="#0f8a7d">6</text>
+    <text x="85"  y="144" fill="#0f8a7d">6</text>
+    <text x="177" y="98"  fill="#7b3fa0">−1</text>
+    <text x="131" y="144" fill="#7b3fa0">−1</text>
+  </g>
+  <!-- main-diagonal mirror axis -->
+  <line x1="62" y1="24" x2="200" y2="162" class="aux"/>
+  <text x="214" y="166" font-size="11" fill="#888">거울축</text>
+</svg>
+<figcaption>대칭행렬은 <b>주대각선</b>을 거울축으로 양쪽이 같다 — $a_{ij}=a_{ji}$. 같은 색 두 칸이 항상 같은 값이고, 대각(회색)은 자기 짝이 자신이다.</figcaption>
+</figure>
+
+<h2 class="sub"><span class="no">5.1.1</span>대칭행렬들의 곱 <span class="en">product of symmetric matrices</span></h2>
+<p>대칭행렬들의 곱은 일반적으로 대칭이 아니다. $A=A'$, $B=B'$ 이면 곱의 전치 규칙 $(AB)'=B'A'$ 에서</p>
+$$(AB)'=B'A'=BA.$$
+<p>그런데 일반적으로 $BA\neq AB$ 이므로, $AB$ 는 일반적으로 대칭이 아니다. (위 식은 곧 <b>$AB$ 가 대칭 $\iff AB=BA$</b> 임을 말한다.)</p>
+<div class="box ex">
+  <span class="tag">예제 5.1</span>
+  <p>$A=\big[\begin{smallmatrix}1&2\\2&3\end{smallmatrix}\big]$, $B=\big[\begin{smallmatrix}3&7\\7&6\end{smallmatrix}\big]$ 는 둘 다 대칭이지만</p>
+  $$(AB)'=\begin{bmatrix}17&19\\27&32\end{bmatrix}'=\begin{bmatrix}17&27\\19&32\end{bmatrix}=BA\neq AB=\begin{bmatrix}17&19\\27&32\end{bmatrix}.$$
+</div>
+
+<h2 class="sub"><span class="no">5.1.2</span>$AA'$ 과 $A'A$ 의 성질</h2>
+<p>어떤 행렬과 그 행렬의 전치와의 곱은 <b>항상 존재하며 대칭</b>이다:</p>
+$$(AA')'=(A')'A'=AA',\qquad (A'A)'=A'(A')'=A'A.\tag{5.2}$$
+<p>어떤 행렬이 대칭임을 보이는 방법은 이렇게 그 전치와 자기 자신이 같음을 보이는 것이다. 비록 $AA'$ 과 $A'A$ 가 둘 다 대칭이어도
+<b>서로 같은 것은 아니다</b>. 사실 $A$ 가 정방행렬이 아니면 차수부터 다르다 — $A_{r\times c}$ 에 대해</p>
+$$AA'=A_{r\times c}(A')_{c\times r}\ \text{은 } r\times r,\qquad A'A=(A')_{c\times r}A_{r\times c}\ \text{은 } c\times c.$$
+<div class="box ex">
+  <span class="tag">예제 5.2</span>
+  <p>$A=\big[\begin{smallmatrix}1&2&-1\\3&0&1\end{smallmatrix}\big]$ 에 대해</p>
+  $$AA'=\begin{bmatrix}6&2\\2&10\end{bmatrix}\ (2\times2),\qquad
+    A'A=\begin{bmatrix}10&2&2\\2&4&-2\\2&-2&2\end{bmatrix}\ (3\times3).$$
+</div>
+<div class="box thm">
+  <span class="tag">성질</span><span class="title">그람행렬 — 행·열의 내적</span>
+  <ol class="props">
+    <li>$AA'$ 의 $(i,k)$ 원소는 $A$ 의 <b>$i$ 번째 행과 $k$ 번째 행의 내적</b>이다. 특히 $i$ 번째 대각원소는 $\sum_{j=1}^{c}a_{ij}^2$ ($i$ 행 원소들의 제곱합).</li>
+    <li>$A'A$ 의 $(j,m)$ 원소는 $A$ 의 <b>$j$ 번째 열과 $m$ 번째 열의 내적</b>이다. $j$ 번째 대각원소는 $\sum_{i=1}^{r}a_{ij}^2$ ($j$ 열 원소들의 제곱합).</li>
+    <li>그러므로 실수행렬 $A$ 의 $AA'$, $A'A$ 의 <b>대각원소는 모두 $\ge 0$</b> 이다.</li>
+  </ol>
+</div>
+<div class="note">
+  이렇게 벡터들 사이의 모든 내적(자기 자신과의 내적 = 길이의 제곱, 서로의 내적 = 각도 정보)을 모아 놓은 행렬을 <b>그람행렬</b><span class="en">Gram matrix</span>이라 한다.
+  <b>대각원소가 각 벡터의 길이²</b>, <b>비대각원소가 두 벡터의 내적</b>이며, 대칭인 것은 내적이 $u'v=v'u$ 로 대칭이기 때문이다.
+</div>
+
+<h3 class="sub">$A'A=0$ 이면 $A=0$</h3>
+<div class="box thm">
+  <span class="tag">성질</span>
+  $$A'A=0\ \Rightarrow\ A=0,\tag{5.5}$$
+  $$tr(A'A)=0\ \Rightarrow\ A=0.\tag{5.6}$$
+</div>
+<div class="box prf">
+  <span class="tag">증명</span>
+  <p>($5.5$) $A'A=0$ 이면 그 대각원소도 모두 $0$ 이다. $A'A$ 의 $j$ 번째 대각원소는 $A$ 의 $j$ 열과 자기 자신의 내적이므로,
+  $A$ 가 $r\times c$ 일 때 $j=1,\dots,c$ 에 대해</p>
+  $$\sum_{k=1}^{r}a_{kj}^2=0.$$
+  <p>실수의 제곱합이 $0$ 이면 그 수들이 모두 $0$ 이므로 모든 $a_{kj}=0$, 즉 $A=0$.</p>
+  <p>($5.6$) 같은 사실을 대각합으로 본 것이다.</p>
+  $$tr(A'A)=\sum_{j=1}^{c}(A'A\text{ 의 }j\text{ 번째 대각원소})=\sum_{j=1}^{c}\sum_{k=1}^{r}a_{kj}^2.\tag{5.7}$$
+  <p>이 제곱합이 $0$ 이면 역시 모든 $a_{kj}=0$, 곧 $A=0$.</p>
+  <div class="qed">∎</div>
+</div>
+<div class="note">
+  $(5.5)$–$(5.6)$ 은 특정 수치행렬에는 거의 쓸 일이 없지만, $A$ 가 <b>다른 행렬들의 함수 꼴</b>로 주어질 때 “어떤 행렬이 $0$ 이다”를
+  증명하는 강력한 도구다. 예를 들어 실수행렬 $P,Q,X$ 에 대해
+  $$PXX'=QXX'\ \Rightarrow\ PX=QX$$
+  를 증명할 수 있다.
+</div>
+<div class="box prf">
+  <span class="tag">증명 ($PXX'=QXX'\Rightarrow PX=QX$)</span>
+  <p>핵심 항등식은</p>
+  $$(PXX'-QXX')(P'-Q')=(PX-QX)(PX-QX)'.\tag{5.8}$$
+  <p>(좌변을 전개하면 $(P-Q)XX'(P'-Q')=(P-Q)X\big[(P-Q)X\big]'$ 로 우변과 같다.)
+  만약 $PXX'=QXX'$ 이면 좌변이 $0$ 이므로 우변도 $0$, 즉 $(PX-QX)(PX-QX)'=0$.
+  여기에 $(5.5)$ 를 행렬 $M=(PX-QX)'$ 에 적용하면 ($MM'$ 꼴이 $0$) $PX-QX=0$, 곧 $PX=QX$.</p>
+  <div class="qed">∎</div>
+</div>
+
+<h2 class="sub"><span class="no">5.1.3</span>벡터들의 곱 <span class="en">products of vectors</span></h2>
+<p>두 벡터의 <b>내적</b> $x'y$ 는 스칼라이므로 그 자신이 전치와 같다 — 자명하게 대칭이다:</p>
+$$x'y=(x'y)'=y'x.$$
+<p>반면 두 벡터의 <b>외적</b><span class="en">outer product</span> $xy'$ 는 반드시 대칭이 되지는 않는다. 전치 규칙에서</p>
+$$(xy')'=yx',$$
+<p>이므로 $xy'$ 와 $yx'$ 는 서로 전치 관계일 뿐 일반적으로 $xy'\neq(xy')'$ 이다. 그 곱이 정방행렬이 되어도 마찬가지다.</p>
+<div class="box ex">
+  <span class="tag">예제 5.3</span>
+  <p>$x'=[1\ 0\ 2]$, $y'=[2\ 2\ 1]$, $z'=[3\ 2]$ 에 대해</p>
+  $$xy'=\begin{bmatrix}2&2&1\\0&0&0\\4&4&2\end{bmatrix},\qquad
+    yx'=\begin{bmatrix}2&0&4\\2&0&4\\1&0&2\end{bmatrix}=(xy')'$$
+  <p>둘 다 대칭이 아니며 서로 전치 관계다. 또 $xz'$ ($3\times2$) 와 $zx'$ ($2\times3$) 은 정방행렬조차 아니다.</p>
+</div>
+<figure class="fig">
+<svg viewBox="0 0 280 190" role="img" aria-label="외적은 rank-1 — 모든 출력이 x 방향 직선 위에 놓인다">
+  <defs>
+    <marker id="ob" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#1d6fb8"/></marker>
+    <marker id="og" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#999"/></marker>
+  </defs>
+  <line class="axis" x1="30" y1="150" x2="265" y2="150"/>
+  <line class="axis" x1="40" y1="180" x2="40" y2="20"/>
+  <!-- span line of x: direction (2,1), through origin (40,150); scale 42 -->
+  <line x1="40" y1="150" x2="250" y2="45" stroke="#1d6fb8" stroke-width="5" opacity="0.18"/>
+  <!-- two arbitrary input vectors (gray) -->
+  <line style="stroke:#999;stroke-width:2.2;fill:none" x1="40" y1="150" x2="92" y2="70" marker-end="url(#og)"/>
+  <line style="stroke:#999;stroke-width:2.2;fill:none" x1="40" y1="150" x2="150" y2="132" marker-end="url(#og)"/>
+  <!-- their images on the x-line (blue) -->
+  <line class="vec" x1="40" y1="150" x2="124" y2="108" marker-end="url(#ob)"/>
+  <line class="vec" x1="40" y1="150" x2="208" y2="66" marker-end="url(#ob)"/>
+  <text class="lbl" x="90" y="64" fill="#777">v₁</text>
+  <text class="lbl" x="152" y="146" fill="#777">v₂</text>
+  <text class="lbl b" x="120" y="122">xy′v₁</text>
+  <text class="lbl b" x="206" y="60">xy′v₂</text>
+  <text class="lbl b" x="244" y="40">span x</text>
+</svg>
+<figcaption>외적 $xy'$ 는 <b>rank 1</b> 행렬이다: $(xy')v=x\,(y'v)$ 로, 어떤 입력 $v$ 를 넣어도 출력은 늘 $x$ 의 스칼라배 —
+평면을 $x$ 가 놓인 <b>직선 하나로 납작하게 누른다</b>. 모든 열이 $x$ 의 배수라 계수가 1 인 것과 같은 이야기다.</figcaption>
+</figure>
+
+<h2 class="sub"><span class="no">5.1.4</span>외적의 합 <span class="en">sum of outer products</span></h2>
+<p>$a_1,\dots,a_c$ 를 $A$ 의 <b>열</b>, $\beta_1',\dots,\beta_c'$ 를 $B$ 의 <b>행</b>이라 하면, 곱 $AB$ 는 외적들의 합으로 쓸 수 있다:</p>
+$$AB=\begin{bmatrix}a_1&a_2&\cdots&a_c\end{bmatrix}
+  \begin{bmatrix}\beta_1'\\\beta_2'\\\vdots\\\beta_c'\end{bmatrix}=\sum_{j=1}^{c}a_j\beta_j'.\tag{5.11}$$
+<p>즉 $A$ 의 각 열과 대응되는 $B$ 의 행의 <b>외적(rank-1 조각)을 모두 더한 것</b>이다. (앞 절의 내적 기반 정의와 같은 곱을, ‘열$\times$행’ 으로 묶어 본 다른 관점이다.)</p>
+<div class="box ex">
+  <span class="tag">예제 5.4</span>
+  $$AB=\begin{bmatrix}1&4\\2&5\\3&6\end{bmatrix}\begin{bmatrix}7&8\\9&10\end{bmatrix}
+    =\begin{bmatrix}1\\2\\3\end{bmatrix}[7\ 8]+\begin{bmatrix}4\\5\\6\end{bmatrix}[9\ 10]
+    =\begin{bmatrix}7&8\\14&16\\21&24\end{bmatrix}+\begin{bmatrix}36&40\\45&50\\54&60\end{bmatrix}
+    =\begin{bmatrix}43&48\\59&66\\75&84\end{bmatrix}.$$
+</div>
+<div class="box thm">
+  <span class="tag">성질</span>
+  <p>$(5.11)$ 에서 $B=A'$ 인 특별한 경우, $A'$ 의 행은 $A$ 의 열 $a_j'$ 이므로</p>
+  $$AA'=\sum_{j=1}^{c}a_ja_j'.\tag{5.12}$$
+  <p>즉 $AA'$ 은 $A$ 의 각 열과 그 자신의 외적들의 합이다 (각 항이 대칭인 rank-1 이라 합도 대칭).</p>
+</div>
+
+<h2 class="sub"><span class="no">5.1.5</span>기초벡터 <span class="en">elementary vectors</span></h2>
+<p>$(5.12)$ 의 특별한 경우로 $A=I_n$ 을 넣으면</p>
+$$I_n=\sum_{i=1}^{n}e_ie_i'.$$
+<p>여기서 $e_i$ 는 $I_n$ 의 $i$ 번째 열, 곧 <b>$i$ 번째 원소만 $1$ 이고 나머지는 $0$</b> 인 벡터다. 이를 <b>기초벡터</b><span class="en">elementary vector</span>라 하고,
+차수 $n$ 을 밝힐 필요가 있으면 $e_i^{(n)}$ 으로 쓴다.</p>
+<p>기초벡터들끼리의 외적은 한 원소만 $1$ 이고 나머지는 $0$ 인 행렬이 된다. 예를 들어 $e_1=[1\,0\,0]'$, $e_2=[0\,1\,0]'$ 이면</p>
+$$E_{12}=e_1e_2'=\begin{bmatrix}0&1&0\\0&0&0\\0&0&0\end{bmatrix}.$$
+<p>일반적으로 $E_{ij}=e_ie_j'$ 는 $(i,j)$ 원소만 $1$ 이고 나머지는 $0$ 인 행렬이며, 물론 $I=\sum_i E_{ii}$ 다. 이 $E_{ij}$ 들은 행렬대수 계산에서 특히 유용하다.</p>
+<div class="box thm">
+  <span class="tag">성질</span><span class="title">행·열 뽑아내기</span>
+  <p>기초벡터는 행렬의 특정 행·열을 골라낸다:</p>
+  $$e_i'A=\alpha_i'\ (A\text{ 의 }i\text{ 번째 행}),\qquad Ae_j=a_j\ (A\text{ 의 }j\text{ 번째 열}).$$
+</div>
+<div class="box ex">
+  <span class="tag">예</span>
+  <p>$e_2=[0\ 1]'$, $A=\big[\begin{smallmatrix}2&3\\5&7\end{smallmatrix}\big]$ 이면 $e_2'A=[5\ 7]$ (2행), $Ae_2=\big[\begin{smallmatrix}3\\7\end{smallmatrix}\big]$ (2열).</p>
+</div>
+
+<h2 class="sub"><span class="no">5.1.6</span>왜대칭행렬 <span class="en">skew-symmetric matrix</span></h2>
+<div class="box def">
+  <span class="tag">정의</span><span class="title">왜대칭행렬</span>
+  <p>전치가 자기 자신의 부호를 뒤집은 것과 같은 행렬, 즉 $B'=-B$ 인 행렬을 <b>왜대칭행렬</b>이라 한다. 성분으로는</p>
+  $$b_{ii}=0\ (\text{대각원소는 모두 }0),\qquad b_{ij}=-b_{ji}\ (\text{비대각은 대칭 위치끼리 부호 반대}).$$
+</div>
+<div class="box ex">
+  <span class="tag">예</span>
+  $$B=\begin{bmatrix}0&1&-3\\-1&0&2\\3&-2&0\end{bmatrix},\qquad B'=\begin{bmatrix}0&-1&3\\1&0&-2\\-3&2&0\end{bmatrix}=-B.$$
+</div>
+<div class="note">
+  <b>대칭 + 왜대칭 분해.</b> 임의의 정방행렬 $A$ 는 대칭부분과 왜대칭부분의 합으로 유일하게 쪼개진다:
+  $$A=\underbrace{\tfrac12(A+A')}_{\text{대칭}}+\underbrace{\tfrac12(A-A')}_{\text{왜대칭}}.$$
+  앞 항은 전치해도 그대로($=\tfrac12(A'+A)$)라 대칭, 뒤 항은 전치하면 부호가 뒤집혀 왜대칭이다.
+</div>
+
+<nav class="pager">
+  <a href="../ch04/4-8_permutation-factorization.html">← 이전<small>4.17–4.18 치환행렬·최대계수인수분해</small></a>
+  <span class="spacer"></span>
+</nav>
+
+</body>
+</html>

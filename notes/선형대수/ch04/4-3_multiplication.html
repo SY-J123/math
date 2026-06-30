@@ -62,6 +62,22 @@ $$a'x=\begin{bmatrix}3&1&10\end{bmatrix}\begin{bmatrix}50\\100\\30\end{bmatrix}=
 $b$ 를 $a$ 에 <b>사영</b>한 길이 $\lVert b\rVert\cos\theta$ 이고, 내적은 여기에 $\lVert a\rVert$ 를 곱한 값이다.
 $\theta=90^\circ$ 면 사영이 $0$ 이라 $a'b=0$ (직교).</figcaption>
 </figure>
+<div class="box thm">
+  <span class="tag">성질</span><span class="title">코시–슈바르츠 부등식 <span class="en">Cauchy–Schwarz</span></span>
+  $$\Big(\sum_{i=1}^{n}x_iy_i\Big)^2\le\Big(\sum_{i=1}^{n}x_i^2\Big)\Big(\sum_{i=1}^{n}y_i^2\Big),\qquad\text{즉}\quad (x'y)^2\le(x'x)(y'y).$$
+  <p>등호는 $y$ 가 $x$ 의 스칼라배일 때(두 벡터가 평행)만 성립한다.</p>
+</div>
+<div class="box prf">
+  <span class="tag">증명</span>
+  <p>$x\neq0$ 일 때, $y$ 에서 $x$ 방향 성분을 뺀 잔차벡터 $z=y-\dfrac{x'y}{x'x}\,x$ 를 자기 자신과 내적하면 $z'z\ge0$ 이다. 전개하면</p>
+  $$0\le z'z=y'y-2\frac{x'y}{x'x}(x'y)+\Big(\frac{x'y}{x'x}\Big)^2(x'x)=y'y-\frac{(x'y)^2}{x'x}.$$
+  <p>양변에 $x'x\;(>0)$ 를 곱하면 $(x'y)^2\le(x'x)(y'y)$. 등호는 $z=0$, 곧 $y=\dfrac{x'y}{x'x}x$ 로 $y$ 가 $x$ 에 평행할 때다. ($x=0$ 이면 양변이 $0$.)</p>
+  <div class="qed">∎</div>
+</div>
+<div class="note">
+  <b>1 벡터와의 곱.</b> 원소가 모두 $1$ 인 열벡터 $1_n$ 을 쓰면 합·평균을 행렬곱으로 쓸 수 있다. $n\times n$ 행렬 $A$ 에 대해
+  $A1_n$ 은 각 <b>행의 합</b>을 모은 열벡터, $1_n'A$ 는 각 <b>열의 합</b>을 모은 행벡터, 그리고 $1_n'A\,1_n=\sum_{i,j}a_{ij}$ 는 <b>전체 원소의 합</b>이다.
+</div>
 
 <h2 class="sub"><span class="no">4.7.2</span>행렬과 벡터의 곱</h2>
 <p>두 도시의 가격을 행렬 $A$ 의 두 행으로 두면, $Ax$ 는 각 행과 $x$ 의 내적을 세로로 쌓은 열벡터다.</p>
@@ -196,6 +212,11 @@ $$D=\begin{bmatrix}1.05&0\\0&1.20\end{bmatrix},\quad
   $$tr(AB)=\sum_{i=1}^{r}\sum_{j=1}^{c}a_{ij}b_{ji}=\sum_{j=1}^{c}\sum_{i=1}^{r}b_{ji}a_{ij}=tr(BA).$$
   <p>$B=A'$ 이면 $b_{ji}=a_{ij}$ 이므로 $tr(AA')=\sum_{i,j}a_{ij}^2$ (모든 원소의 제곱합).</p>
   <div class="qed">∎</div>
+</div>
+<div class="note">
+  <b>따름정리.</b> $tr(A'A)=\sum_{i,j}a_{ij}^2$ 는 제곱들의 합이므로 항상 $\ge0$ 이고,
+  $$tr(A'A)=0\iff \text{모든 } a_{ij}=0\iff A=0.$$
+  ‘대각합이 $0$ 이면 행렬이 $0$’ 이라는 이 동치는, 어떤 양($\lVert A\rVert^2=tr(A'A)$, 프로베니우스 노름의 제곱)이 $0$ 임을 보여 $A=0$ 을 증명할 때 자주 쓰인다.
 </div>
 
 <h2 class="sub"><span class="no">4.7.12</span>행렬의 거듭제곱</h2>

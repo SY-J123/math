@@ -101,6 +101,29 @@ $$\begin{bmatrix}1&2\\3&4\end{bmatrix}\begin{bmatrix}0&2\\3&3\end{bmatrix}=\begi
   그대로 행렬에 옮길 때 가장 흔히 저지르는 오류다. 멱등행렬은 통계학의 사영행렬·잔차행렬에서 핵심 역할을 한다.
 </div>
 
+<h3 class="sub"><span class="no">4.9.1</span>이항공식의 행렬판 — 비가환의 결과</h3>
+<p>스칼라의 곱셈공식 $(x+y)^2=x^2+2xy+y^2$, $(x+y)(x-y)=x^2-y^2$ 은 <b>$xy=yx$ 에 기대고 있다</b>.
+행렬은 일반적으로 비가환이라 가운데 항이 합쳐지지 않는다.</p>
+<div class="box thm">
+  <span class="tag">성질</span><span class="title">곱셈공식의 전개</span>
+  <ol class="props">
+    <li>$(X+Y)^2=X^2+XY+YX+Y^2$. &nbsp;가운데가 $2XY$ 로 합쳐지려면 $XY=YX$ 여야 하므로 일반적으로 $\neq X^2+2XY+Y^2$.</li>
+    <li>$(A+B)(A-B)=A^2-AB+BA-B^2$. &nbsp;따라서 $(A+B)(A-B)=A^2-B^2\iff AB=BA$.</li>
+    <li>$(A+B)(A+B)'=AA'+AB'+BA'+BB'$. &nbsp;(이쪽은 전치라 항상 성립 — $(A+B)'=A'+B'$ 만 쓰면 된다.)</li>
+  </ol>
+</div>
+<div class="box prf">
+  <span class="tag">증명</span>
+  <p>① 분배법칙으로 $(X+Y)(X+Y)=X(X+Y)+Y(X+Y)=X^2+XY+YX+Y^2$. $XY$ 와 $YX$ 는 일반적으로 다르므로 그대로 둔다.</p>
+  <p>② $(A+B)(A-B)=A^2-AB+BA-B^2$. 이것이 $A^2-B^2$ 과 같을 필요충분조건은 $-AB+BA=0$, 곧 $AB=BA$.</p>
+  <p>③ $(A+B)'=A'+B'$ 이므로 $(A+B)(A+B)'=(A+B)(A'+B')=AA'+AB'+BA'+BB'$ — 좌우 순서만 지키면 가환 가정이 필요 없다.</p>
+  <div class="qed">∎</div>
+</div>
+<div class="note">
+  요점은 <b>“가운데 항을 함부로 합치지 말라”</b> 다. $2XY$ 로 묶는 순간 $XY=YX$ 를 몰래 가정한 셈이 된다.
+  ①②는 가환일 때만 스칼라 공식과 일치하고, ③은 전치곱이라 늘 성립한다.
+</div>
+
 <nav class="pager">
   <a href="4-3_multiplication.html">← 이전<small>4.7 행렬의 곱셈</small></a>
   <a class="next" href="4-5_direct-sum-product.html">다음 →<small>4.10–4.11 직합과 직적</small></a>
