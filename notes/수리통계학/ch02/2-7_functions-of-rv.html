@@ -27,7 +27,7 @@
 <p>이산형이면 $f_Y(y)=\displaystyle\sum_{\{x:\,g(x)=y\}}f_X(x)$. 연속형이면 먼저 cdf $F_Y(y)=P(g(X)\le y)$ 를 $X$ 의 확률로
 바꿔 적분한 뒤 미분한다.</p>
 <div class="note">
-  <b>왜 합인가:</b> $Y=g(X)$ 라 사건 $\{Y=y\}$ 는 $y$ 의 <b>역상</b><span class="en">preimage</span> $g^{-1}(y)=\{x:g(x)=y\}$ 위의 사건과 같다. 이 역상의 점들에 대응하는 $\{X=x_i\}$ 는 서로 <b>상호배반</b>이므로, 그 합사건의 확률은 <a href="../ch01/1-2_probability-axioms.html">가산가법성</a>으로 각 확률의 합이 된다:
+  <b>역상·상호배반:</b> $Y=g(X)$ 라 사건 $\{Y=y\}$ 는 $y$ 의 <b>역상</b><span class="en">preimage</span> $g^{-1}(y)=\{x:g(x)=y\}$ 위의 사건과 같다. 이 역상의 점들에 대응하는 $\{X=x_i\}$ 는 서로 <b>상호배반</b>이므로, 그 합사건의 확률은 <a href="../ch01/1-2_probability-axioms.html">가산가법성</a>으로 각 확률의 합이 된다:
   $$f_Y(y)=P\Big(\bigcup_{x\in g^{-1}(y)}\{X=x\}\Big)=\sum_{\{x:\,g(x)=y\}}f_X(x).$$
   (예: $Y=X^2$ 면 $g^{-1}(4)=\{-2,2\}$ 라 $f_Y(4)=f_X(-2)+f_X(2)$.)
 </div>
@@ -71,30 +71,32 @@
   <p>이는 <a href="2-6_continuous-distributions.html">$\text{GAM}(\tfrac12,2)$</a>, 곧 <b>자유도 1 인 카이제곱분포</b> $\chi^2(1)$ 의 밀도다 — <b>표준정규의 제곱이 $\chi^2(1)$</b> 이라는 중요한 사실.</p>
 </div>
 <div class="box ex">
-  <span class="tag">예 2.42</span><span class="title">$Z=X+Y$, 독립 $U(0,1)$ — 삼각형 분포</span>
-  <p>독립 $X,Y\sim U(0,1)$ (밀도 $1$ on $[0,1]$)의 합 $Z=X+Y$ 는 $[0,2]$ 값을 갖는다. cdf 는 단위정사각형에서 $x+y\le z$ 인 영역의 <b>넓이</b>다:</p>
-  $$F_Z(z)=P(X+Y\le z)=\text{넓이}\big\{(x,y)\in[0,1]^2:\ x+y\le z\big\}.$$
-  <ul class="props">
-    <li>$0\le z\le1$: 다리 길이 $z$ 인 직각삼각형이라 넓이 $=\dfrac{z^2}{2}$. 미분하면 $f_Z(z)=z$.</li>
-    <li>$1\lt z\le2$: 정사각형에서 다리 $2-z$ 인 삼각형을 뺀 것이라 넓이 $=1-\dfrac{(2-z)^2}{2}$. 미분하면 $f_Z(z)=2-z$.</li>
-  </ul>
-  $$f_Z(z)=\begin{cases}z,&0\lt z\le1,\\[2pt]2-z,&1\lt z\le2,\\[2pt]0,&\text{그 외}.\end{cases}$$
-  <figure class="fig">
-  <svg viewBox="0 0 240 132" role="img" aria-label="두 균일분포 합의 삼각형 밀도">
-    <polygon points="30,110 120,40 210,110" fill="#e9f6f4" stroke="#0f8a7d" stroke-width="1.6"/>
-    <line class="axis" x1="24" y1="110" x2="222" y2="110"/>
-    <line class="axis" x1="30" y1="120" x2="30" y2="24"/>
-    <line x1="120" y1="110" x2="120" y2="40" stroke="#bbb" stroke-width="1" stroke-dasharray="3 2"/>
-    <text class="lbl" x="30" y="124" text-anchor="middle">0</text>
-    <text class="lbl" x="120" y="124" text-anchor="middle">1</text>
-    <text class="lbl" x="210" y="124" text-anchor="middle">2</text>
-    <text class="lbl" x="120" y="34" text-anchor="middle" fill="#0f8a7d">1</text>
-    <text class="lbl" x="150" y="66" fill="#0f8a7d">f_Z(z)</text>
-    <text class="lbl" x="205" y="124" fill="#777">z</text>
-  </svg>
-  <figcaption>$Z=X+Y$ 의 밀도는 $z=1$ 에서 정점 $1$ 인 <b>삼각형 분포</b> — 합이 중앙(1 부근)이 되는 경우가 가장 많다.</figcaption>
-  </figure>
-  <p>독립합이므로 <b>합성곱</b>(정리 2.26, 아래)으로도 같은 결과가 나온다: $f_Z(z)=\int f_X(x)f_Y(z-x)\,dx$ 가 두 상자 $[0,1]$ 이 겹치는 구간의 길이, 곧 $z$ 또는 $2-z$ 가 된다.</p>
+  <span class="tag">예 2.42</span><span class="title">$Z=X+Y$, 독립 $U(0,1)$</span>
+  <p>독립 $X,Y\sim U(0,1)$ (밀도 $f_X(x)=f_Y(y)=1$ on $[0,1]$)의 합 $Z=X+Y\in[0,2]$ 의 밀도를 <b>합성곱</b>(정리 2.26)으로 구한다:</p>
+  $$f_Z(z)=\int_{-\infty}^{\infty} f_X(x)\,f_Y(z-x)\,dx.$$
+  <p>피적분함수는 $0\le x\le1$ 이고 $0\le z-x\le1$ 일 때만 $1$(그 외 $0$)이다. 두 부등식을 $x$ 로 풀면 $x\in\big[\max(0,z-1),\ \min(1,z)\big]$ 이라, <b>적분구간이 $z$ 에 따라 갈린다</b>:</p>
+  $$0\le z\le1:\quad f_Z(z)=\int_{0}^{z} 1\,dx=z,$$
+  $$1\lt z\le2:\quad f_Z(z)=\int_{z-1}^{1} 1\,dx=1-(z-1)=2-z,$$
+  <p>그 외에는 $0$ 이다. 정리하면</p>
+  $$f_Z(z)=\begin{cases}z,&0\lt z\le1,\\[2pt]2-z,&1\lt z\le2,\\[2pt]0,&\text{그 외}\end{cases}$$
+  <p>로 $z=1$ 에서 최대인 삼각형 모양의 밀도다.</p>
+</div>
+<div class="box thm">
+  <span class="tag">요령</span><span class="title">합성곱에서 적분구간 구하기</span>
+  <p><b>① 적분범위 = 두 지지집합의 겹침.</b> $f_Z(z)=\displaystyle\int f_X(x)\,f_Y(z-x)\,dx$ 에서 피적분함수는 $x$ 와 $z-x$ 가 <b>둘 다 각자의 지지집합에 들 때만</b> $0$ 이 아니다. 위 예($X,Y\in[0,1]$)라면 $x\in[0,1]$ 이고 $z-x\in[0,1]\Leftrightarrow x\in[z-1,\,z]$ 이므로, 실제 적분범위는 두 구간의 교집합</p>
+  $$x\in\big[\max(0,\,z-1),\ \min(1,\,z)\big].$$
+  <p>이 상·하한의 <b>표현이 바뀌는 $z$</b> 에서 밀도의 식도 바뀐다. $\min(1,z)$ 와 $\max(0,z-1)$ 이 모두 $z=1$ 에서 갈리므로 경계점이 $z=0,1,2$ 가 되어 $[0,1]$·$[1,2]$ 두 조각이 나온 것이다.</p>
+  <p><b>② 경계점을 기계적으로 찾기 — 꼭짓점 대입·정렬.</b> 각 변수 지지집합의 <b>양 끝값</b>의 모든 조합(지지집합 상자의 꼭짓점)을 합에 대입해 나온 값들을 모아 <b>중복 제거 후 정렬</b>하면, 그것이 곧 구간분할의 경계점이다. $Z=X+Y$, $X,Y\in[0,1]$ 이면 꼭짓점 합 $\{0,\ 1,\ 1,\ 2\}\to$ 경계점 $0,1,2$.</p>
+</div>
+<div class="box ex">
+  <span class="tag">예 (다변량 확대)</span><span class="title">삼변량 합 $W=X+Y+Z$ 의 구간분할</span>
+  <p>범위가 서로 달라도 같은 원리가 그대로 확장된다. $X\in[0,1]$, $Y\in[0,2]$, $Z\in[0,3]$ 의 합 $W=X+Y+Z$ 에서 지지집합 상자의 <b>$2^3=8$ 개 꼭짓점</b>(각 변수의 양 끝값 조합)을 $W$ 에 대입하면:</p>
+  <div class="scroll"><table class="data">
+    <tr><th>$(x,y,z)$</th><td>(0,0,0)</td><td>(1,0,0)</td><td>(0,2,0)</td><td>(0,0,3)</td><td>(1,2,0)</td><td>(1,0,3)</td><td>(0,2,3)</td><td>(1,2,3)</td></tr>
+    <tr><th>$W$</th><td>0</td><td>1</td><td>2</td><td>3</td><td>3</td><td>4</td><td>5</td><td>6</td></tr>
+  </table></div>
+  <p>나온 값 $\{0,1,2,3,3,4,5,6\}$ 에서 중복을 지우고 정렬하면 경계점 $0,1,2,3,4,5,6$, 곧 <b>6개 구간</b> $[0,1],(1,2],\dots,(5,6]$ 으로 쪼개진다. 각 구간에서 겹침(적분구간)이 달라 $f_W$ 의 식이 구간마다 바뀐다.</p>
+  <p>변수 개수가 $n$ 으로 늘어도 루틴은 같다 — <b>꼭짓점 $2^n$ 개 대입 → 중복 제거·정렬 → 구간분할</b>, 그리고 각 구간에서 적분구간을 잡아 적분한다. (모든 범위가 같을 때는 ‘최댓값을 취한 변수 개수’가 곧 합과 일치하는 특수경우일 뿐이다.)</p>
 </div>
 
 <h2 class="sub"><span class="no">2.7.2</span>결합변환</h2>
