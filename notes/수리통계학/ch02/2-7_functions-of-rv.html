@@ -26,13 +26,10 @@
 <h2 class="sub"><span class="no">2.7.1</span>누적분포함수를 이용한 방법</h2>
 <p>이산형이면 $f_Y(y)=\displaystyle\sum_{\{x:\,g(x)=y\}}f_X(x)$. 연속형이면 먼저 cdf $F_Y(y)=P(g(X)\le y)$ 를 $X$ 의 확률로
 바꿔 적분한 뒤 미분한다.</p>
-<div class="box ex">
-  <span class="tag">예 2.39–2.42</span><span class="title">변환된 변수의 분포 (cdf 법)</span>
-  <p><b>2.39</b> $Y=\tfrac95X+32$(일대일): $f_Y(y)=\tfrac59 f_X\!\big(\tfrac{5(y-32)}{9}\big)$.</p>
-  <p><b>2.40</b> $Y=X^2$: $F_Y(y)=P(-\sqrt y\le X\le\sqrt y)$ 미분 → $f_Y(y)=\dfrac{1}{2\sqrt y}\big[f_X(\sqrt y)+f_X(-\sqrt y)\big]$.
-  $X\sim N(0,1)$ 이면 $Y\sim\text{GAM}(\tfrac12,2)$ (자유도 1 카이제곱).</p>
-  <p><b>2.41</b> $X\sim U(0,1)$, $Y=-\lambda\ln X$: $f_Y(y)=\tfrac1\lambda e^{-y/\lambda}$ — 지수분포.</p>
-  <p><b>2.42</b> 독립 $X,Y\sim U(0,1)$, $Z=X+Y$: $f_Z(z)=z\,(0\lt z\le1)$, $2-z\,(1\lt z\le2)$ — 삼각형 분포.</p>
+<div class="note">
+  <b>왜 합인가:</b> $Y=g(X)$ 라 사건 $\{Y=y\}$ 는 $y$ 의 <b>역상</b><span class="en">preimage</span> $g^{-1}(y)=\{x:g(x)=y\}$ 위의 사건과 같다. 이 역상의 점들에 대응하는 $\{X=x_i\}$ 는 서로 <b>상호배반</b>이므로, 그 합사건의 확률은 <a href="../ch01/1-2_probability-axioms.html">가산가법성</a>으로 각 확률의 합이 된다:
+  $$f_Y(y)=P\Big(\bigcup_{x\in g^{-1}(y)}\{X=x\}\Big)=\sum_{\{x:\,g(x)=y\}}f_X(x).$$
+  (예: $Y=X^2$ 면 $g^{-1}(4)=\{-2,2\}$ 라 $f_Y(4)=f_X(-2)+f_X(2)$.)
 </div>
 <div class="box thm">
   <span class="tag">정리 2.23</span><span class="title">단조변환 공식 <span class="en">monotone transformation</span></span>
@@ -60,7 +57,44 @@
   <div class="qed">∎</div>
 </div>
 <div class="note">
-  <b>역변환 — 난수 생성:</b> 거꾸로 $U\sim U(0,1)$ 이면 $X=F^{-1}(U)$ 의 cdf 가 $F$ 다 ($P(X\le x)=P(U\le F(x))=F(x)$). 그래서 원하는 분포 $F$ 의 난수는 <b>$U(0,1)$ 난수에 $F^{-1}$ 만 씌우면</b> 만들어진다(역변환 표본추출). 위 <b>예 2.41</b>($X\sim U(0,1)$ 에 $-\lambda\ln X$)이 그 예 — 지수분포 cdf 의 역함수 $F^{-1}(u)=-\lambda\ln(1-u)$ 를 쓴 것과 본질적으로 같다($X$ 와 $1-X$ 가 모두 $U(0,1)$).
+  <b>역변환 — 난수 생성:</b> 거꾸로 $U\sim U(0,1)$ 이면 $X=F^{-1}(U)$ 의 cdf 가 $F$ 다 ($P(X\le x)=P(U\le F(x))=F(x)$). 그래서 원하는 분포 $F$ 의 난수는 <b>$U(0,1)$ 난수에 $F^{-1}$ 만 씌우면</b> 만들어진다(역변환 표본추출). 예를 들어 $X\sim U(0,1)$ 에 $-\lambda\ln X$ 를 씌우면 지수분포 $\text{EXP}(\lambda)$ 가 나오는데, 이는 지수분포 cdf 의 역함수 $F^{-1}(u)=-\lambda\ln(1-u)$ 를 쓴 것과 본질적으로 같다($X$ 와 $1-X$ 가 모두 $U(0,1)$ 이므로).
+</div>
+<div class="box ex">
+  <span class="tag">예 2.40</span><span class="title">$Y=X^2$ — 비단조(다대일) 변환</span>
+  <p>$g(x)=x^2$ 은 일대일이 아니라 $\pm\sqrt y$ 두 값이 같은 $y\gt0$ 으로 간다(역상 $g^{-1}(y)=\{-\sqrt y,\ \sqrt y\}$). 단조변환 공식(정리 2.23)을 바로 쓸 수 없으니 cdf 로 간다. $y\gt0$ 에서</p>
+  $$F_Y(y)=P(X^2\le y)=P(-\sqrt y\le X\le\sqrt y)=F_X(\sqrt y)-F_X(-\sqrt y).$$
+  <p>$y$ 로 미분한다(연쇄법칙, $\tfrac{d}{dy}\sqrt y=\tfrac{1}{2\sqrt y}$, $\tfrac{d}{dy}(-\sqrt y)=-\tfrac{1}{2\sqrt y}$). 두 역상의 기여가 <b>더해진다</b>:</p>
+  $$f_Y(y)=f_X(\sqrt y)\,\frac{1}{2\sqrt y}-f_X(-\sqrt y)\Big(-\frac{1}{2\sqrt y}\Big)=\frac{1}{2\sqrt y}\big[f_X(\sqrt y)+f_X(-\sqrt y)\big],\quad y\gt0.$$
+  <p>위 <b>역상 note</b> 의 “상호배반 사건을 더한다”가 연속형에서도 그대로 나타난 것 — 단조변환 공식을 다대일로 일반화한 꼴이다.</p>
+  <p><b>특수경우 $X\sim N(0,1)$.</b> $f_X$ 가 우함수라 $f_X(\sqrt y)=f_X(-\sqrt y)=\tfrac{1}{\sqrt{2\pi}}e^{-y/2}$ 이므로</p>
+  $$f_Y(y)=\frac{1}{\sqrt y}\cdot\frac{1}{\sqrt{2\pi}}e^{-y/2}=\frac{1}{\sqrt{2\pi}}\,y^{-1/2}e^{-y/2},\quad y\gt0,$$
+  <p>이는 <a href="2-6_continuous-distributions.html">$\text{GAM}(\tfrac12,2)$</a>, 곧 <b>자유도 1 인 카이제곱분포</b> $\chi^2(1)$ 의 밀도다 — <b>표준정규의 제곱이 $\chi^2(1)$</b> 이라는 중요한 사실.</p>
+</div>
+<div class="box ex">
+  <span class="tag">예 2.42</span><span class="title">$Z=X+Y$, 독립 $U(0,1)$ — 삼각형 분포</span>
+  <p>독립 $X,Y\sim U(0,1)$ (밀도 $1$ on $[0,1]$)의 합 $Z=X+Y$ 는 $[0,2]$ 값을 갖는다. cdf 는 단위정사각형에서 $x+y\le z$ 인 영역의 <b>넓이</b>다:</p>
+  $$F_Z(z)=P(X+Y\le z)=\text{넓이}\big\{(x,y)\in[0,1]^2:\ x+y\le z\big\}.$$
+  <ul class="props">
+    <li>$0\le z\le1$: 다리 길이 $z$ 인 직각삼각형이라 넓이 $=\dfrac{z^2}{2}$. 미분하면 $f_Z(z)=z$.</li>
+    <li>$1\lt z\le2$: 정사각형에서 다리 $2-z$ 인 삼각형을 뺀 것이라 넓이 $=1-\dfrac{(2-z)^2}{2}$. 미분하면 $f_Z(z)=2-z$.</li>
+  </ul>
+  $$f_Z(z)=\begin{cases}z,&0\lt z\le1,\\[2pt]2-z,&1\lt z\le2,\\[2pt]0,&\text{그 외}.\end{cases}$$
+  <figure class="fig">
+  <svg viewBox="0 0 240 132" role="img" aria-label="두 균일분포 합의 삼각형 밀도">
+    <polygon points="30,110 120,40 210,110" fill="#e9f6f4" stroke="#0f8a7d" stroke-width="1.6"/>
+    <line class="axis" x1="24" y1="110" x2="222" y2="110"/>
+    <line class="axis" x1="30" y1="120" x2="30" y2="24"/>
+    <line x1="120" y1="110" x2="120" y2="40" stroke="#bbb" stroke-width="1" stroke-dasharray="3 2"/>
+    <text class="lbl" x="30" y="124" text-anchor="middle">0</text>
+    <text class="lbl" x="120" y="124" text-anchor="middle">1</text>
+    <text class="lbl" x="210" y="124" text-anchor="middle">2</text>
+    <text class="lbl" x="120" y="34" text-anchor="middle" fill="#0f8a7d">1</text>
+    <text class="lbl" x="150" y="66" fill="#0f8a7d">f_Z(z)</text>
+    <text class="lbl" x="205" y="124" fill="#777">z</text>
+  </svg>
+  <figcaption>$Z=X+Y$ 의 밀도는 $z=1$ 에서 정점 $1$ 인 <b>삼각형 분포</b> — 합이 중앙(1 부근)이 되는 경우가 가장 많다.</figcaption>
+  </figure>
+  <p>독립합이므로 <b>합성곱</b>(정리 2.26, 아래)으로도 같은 결과가 나온다: $f_Z(z)=\int f_X(x)f_Y(z-x)\,dx$ 가 두 상자 $[0,1]$ 이 겹치는 구간의 길이, 곧 $z$ 또는 $2-z$ 가 된다.</p>
 </div>
 
 <h2 class="sub"><span class="no">2.7.2</span>결합변환</h2>
