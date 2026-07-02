@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>5장 · 5.4–5.5 직교행렬</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">선형대수 · 5장 특수한 행렬</div>
+  <h1><span class="no">5.4–5.5</span>직교행렬 <span class="en">orthogonal matrix</span></h1>
+</header>
+
+<h2 class="sub"><span class="no">5.4</span>직교행렬 <span class="en">orthogonal matrix</span></h2>
+<div class="box def">
+  <span class="tag">정의</span><span class="title">노름·정규벡터·직교·정규직교</span>
+  <p><b>노름</b><span class="en">norm</span>: 실수벡터 $x=[x_1\ \cdots\ x_n]'$ 의 길이</p>
+  $$\lVert x\rVert=\sqrt{x'x}=\Big(\sum_{i=1}^{n}x_i^2\Big)^{1/2}.\tag{5.24}$$
+  <ul class="props">
+    <li><b>정규벡터(단위벡터)</b><span class="en">normal/unit vector</span>: $x'x=1$. 영이 아닌 $x$ 는 $u=\dfrac{1}{\sqrt{x'x}}\,x$ 로 정규화하면 $u'u=1$.</li>
+    <li><b>직교</b>: $x'y=0$ (동치로 $y'x=0$). 예: $[1\ 2\ 2\ 4]\,[6\ 3\ -2\ -2]'=6+6-4-8=0$.</li>
+    <li><b>정규직교</b><span class="en">orthonormal</span>: 단위이면서 서로 직교. 벡터 집합 $\{x_i\}$ 가 $x_i'x_i=1$, $x_i'x_j=0\ (i\ne j)$ 을 만족하면 <b>정규직교집합</b>.</li>
+  </ul>
+</div>
+<div class="box def">
+  <span class="tag">정의 5.2</span><span class="title">직교행렬 <span class="en">orthogonal matrix</span></span>
+  <p>다음을 만족하는 정방행렬 $P$ 를 <b>직교행렬</b>이라 한다:</p>
+  $$PP'=P'P=I.\tag{5.25}$$
+  <p>이는 $P$ 의 <b>행들도, 열들도 각각 정규직교집합</b>임을 뜻한다. 세 조건 (i) $P$ 가 정방, (ii) $P'P=I$, (iii) $PP'=I$ 중 <b>임의의 두 개가 나머지 하나를 유도</b>한다.</p>
+</div>
+<div class="note">
+  정방이 아니면 한쪽만 성립할 수 있다. $P=\big[\begin{smallmatrix}1&0&0\\0&1&0\end{smallmatrix}\big]$ 은 정규직교 <b>행</b>을 가져 $PP'=I_2$ 이지만 $P'P=\big[\begin{smallmatrix}1&0&0\\0&1&0\\0&0&0\end{smallmatrix}\big]\ne I_3$. 일반적으로 정규직교 열을 가진 $P_{r\times c}$ 는 $P'P=I_c$ 지만 $PP'$ 은 항등행렬이 아니다.
+</div>
+<figure class="fig">
+<svg viewBox="0 0 250 180" role="img" aria-label="직교행렬은 길이와 각도를 보존하는 회전(또는 반사)">
+  <defs>
+    <marker id="ob" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#1d6fb8"/></marker>
+    <marker id="ot" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#0f8a7d"/></marker>
+  </defs>
+  <circle cx="120" cy="95" r="62" fill="none" stroke="#ddd" stroke-width="1"/>
+  <line class="axis" x1="46" y1="95" x2="194" y2="95"/>
+  <line class="axis" x1="120" y1="165" x2="120" y2="25"/>
+  <!-- v at ~18deg, Gv at ~72deg, same radius 62 -->
+  <line class="vec" x1="120" y1="95" x2="179" y2="76" marker-end="url(#ob)"/>
+  <line class="vec2" x1="120" y1="95" x2="139" y2="36" marker-end="url(#ot)"/>
+  <path d="M156,88 A38,38 0 0 0 132,58" fill="none" stroke="#888" stroke-width="1"/>
+  <text class="lbl b" x="182" y="72">v</text>
+  <text class="lbl t" x="140" y="30">Pv</text>
+  <text class="lbl" x="150" y="66" fill="#888">θ</text>
+</svg>
+<figcaption>직교행렬은 <b>길이와 각도를 보존</b>하는 변환 — 곧 <b>회전</b> 또는 <b>반사</b>다. $\lVert Pv\rVert^2=(Pv)'(Pv)=v'P'Pv=v'v=\lVert v\rVert^2$ 이라 벡터가 원 위에서 돌 뿐 길이는 그대로다. 이로부터 $\det P=\pm1$ (회전 $+1$, 반사 $-1$).</figcaption>
+</figure>
+<div class="box thm">
+  <span class="tag">성질</span>
+  <p>직교행렬끼리의 곱도 직교행렬이다($P,Q$ 직교 $\Rightarrow (PQ)(PQ)'=PQQ'P'=I$).</p>
+</div>
+<div class="box ex">
+  <span class="tag">예제 5.10</span>
+  $$A=\frac{1}{\sqrt6}\begin{bmatrix}\sqrt2&\sqrt2&\sqrt2\\ \sqrt3&-\sqrt3&0\\ 1&1&-2\end{bmatrix}$$
+  <p>는 각 열(행)이 정규직교라 $A'A=AA'=I$ 인 직교행렬이다.</p>
+</div>
+<div class="box thm">
+  <span class="tag">정리 5.2</span><span class="title">QR 분해 <span class="en">QR decomposition</span></span>
+  <p>$A$ 가 $n\times p$ ($n\ge p$)이고 계수 $p$ 이면, 정규직교 열을 갖는 $n\times p$ 행렬 $Q$ 와 $p\times p$ 상삼각행렬 $R$ 로</p>
+  $$A=QR.$$
+</div>
+
+<h3 class="sub"><span class="no">5.4.1</span>특수한 직교행렬 — 헬머트·기븐스·하우스홀더</h3>
+<div class="box def">
+  <span class="tag">정의</span><span class="title">헬머트 행렬 <span class="en">Helmert matrix</span></span>
+  <p>$n\times n$ 헬머트 행렬 $H_n$ 은 첫 행이 $n^{-1/2}1_n'$, 그 아래 $i$ 번째 행($i=1,\dots,n-1$)이 $\big[\underbrace{1\ \cdots\ 1}_{i}\ \ -i\ \ \underbrace{0\ \cdots\ 0}_{n-i-1}\big]\big/\sqrt{i(i+1)}$ 인 직교행렬이다. 예:</p>
+  $$H_4=\begin{bmatrix}1/\sqrt4&1/\sqrt4&1/\sqrt4&1/\sqrt4\\ 1/\sqrt2&-1/\sqrt2&0&0\\ 1/\sqrt6&1/\sqrt6&-2/\sqrt6&0\\ 1/\sqrt{12}&1/\sqrt{12}&1/\sqrt{12}&-3/\sqrt{12}\end{bmatrix}.$$
+  <p>첫 행은 평균(합)을, 나머지 행들은 <a href="5-2_all-ones-matrix.html">평균 대비 대조</a>를 준다.</p>
+</div>
+<div class="box def">
+  <span class="tag">정의</span><span class="title">기븐스 행렬 <span class="en">Givens matrix</span></span>
+  <p>$2\times2$ 회전 $\big[\begin{smallmatrix}\cos\theta&\sin\theta\\-\sin\theta&\cos\theta\end{smallmatrix}\big]$ 을 항등행렬에 심은 것이다. $n\times n$ 의 $G_{rs}$ 는 항등행렬에서 네 원소만 $g_{rr}=g_{ss}=\cos\theta_{rs}$, $-g_{rs}=g_{sr}=\sin\theta_{rs}$ 로 바뀐 직교행렬이다. 예($3\times3$):</p>
+  $$G_{12}=\begin{bmatrix}\cos\alpha&\sin\alpha&0\\-\sin\alpha&\cos\alpha&0\\0&0&1\end{bmatrix},\quad
+    G_{13}=\begin{bmatrix}\cos\beta&0&\sin\beta\\0&1&0\\-\sin\beta&0&\cos\beta\end{bmatrix},\quad
+    G_{23}=\begin{bmatrix}1&0&0\\0&\cos\gamma&\sin\gamma\\0&-\sin\gamma&\cos\gamma\end{bmatrix}.$$
+  <p>한 좌표평면에서의 회전이라, $A$ 앞에 기븐스 행렬들을 곱해 특정 원소를 $0$ 으로 만들며 <b>삼각화</b><span class="en">triangulation</span>할 수 있다(기븐스 변환).</p>
+</div>
+<div class="box def">
+  <span class="tag">정의</span><span class="title">하우스홀더 행렬 <span class="en">Householder matrix</span></span>
+  <p>$h'h=1$ 인 $h$ 로 만든 $H=I-2hh'$ 이다. <a href="5-1_symmetric-matrices.html">대칭·직교·대합</a>($H'=H$, $H^2=I$, 곧 $H=H^{-1}$)이며 기하적으로 $h$ 에 수직인 초평면에 대한 <b>반사</b>다. 임의의 영 아닌 $x$ 를 첫 좌표축으로 반사시켜 나머지 성분을 $0$ 으로 만든다:</p>
+  $$Hx=[\lambda\ 0\ \cdots\ 0]',\qquad
+    \begin{cases}\lambda=-(\operatorname{sign}x_1)\sqrt{x'x},\\ h_1=\sqrt{\tfrac12(1-x_1/\lambda)},\\ h_i=-x_i/(2h_1\lambda)\ (i\ge2).\end{cases}\tag{5.27}$$
+  <p>반사라 길이는 보존되어 $|\lambda|=\lVert x\rVert$ 다. 기븐스처럼 정방행렬의 삼각화에 쓰인다(하우스홀더 변환).</p>
+</div>
+
+<h2 class="sub"><span class="no">5.5</span>직교행렬의 매개변수화 <span class="en">parameterization</span></h2>
+<div class="note">
+  $n\times n$ 직교행렬의 $n^2$ 개 원소는 독립이 아니다. $A'A=I$ 이 $n(n+1)/2$ 개의 제약(대각 $n$ 개 + 비대각 대칭 $n(n-1)/2$ 개)을 주므로, <b>자유 매개변수는 $n^2-\dfrac{n(n+1)}{2}=\dfrac{n(n-1)}{2}$ 개</b>다. 랜덤 직교행렬 생성 등에서 이 매개변수화가 쓰인다. 대표적 두 가지를 든다.
+</div>
+<div class="box thm">
+  <span class="tag">표현 I</span><span class="title">지수 표현 <span class="en">exponential representation</span></span>
+  <p>$\det A=1$ 인 직교행렬 $A$ 는 왜대칭행렬 $T$ (주대각 위 원소 $n(n-1)/2$ 개가 매개변수)로</p>
+  $$A=\exp(T)=\sum_{i=0}^{\infty}\frac{1}{i!}T^i,\qquad T^0=I_n.\tag{5.28–29}$$
+</div>
+<div class="box thm">
+  <span class="tag">표현 II</span><span class="title">케일리 표현 <span class="en">Cayley's representation</span></span>
+  <p>$-1$ 을 고윳값으로 갖지 않는 $n\times n$ 직교행렬 $A$ 는 왜대칭행렬 $U$ 로</p>
+  $$A=(I_n-U)(I_n+U)^{-1}.$$
+</div>
+<div class="note">
+  두 표현 모두 <b>왜대칭행렬</b>(<a href="5-1_symmetric-matrices.html">5.1.6</a>)을 매개변수 그릇으로 쓴다 — 왜대칭행렬의 자유 원소가 정확히 $n(n-1)/2$ 개라 직교행렬의 자유도와 맞아떨어진다.
+</div>
+
+<nav class="pager">
+  <a href="5-3_idempotent.html">← 이전<small>5.3 멱등행렬</small></a>
+  <span class="spacer"></span>
+</nav>
+
+</body>
+</html>

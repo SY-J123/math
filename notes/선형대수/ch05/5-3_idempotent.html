@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>5장 · 5.3 멱등행렬</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">선형대수 · 5장 특수한 행렬</div>
+  <h1><span class="no">5.3</span>멱등행렬 <span class="en">idempotent matrix</span></h1>
+</header>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">멱등행렬 <span class="en">idempotent matrix</span></span>
+  <p>자기 제곱이 자신과 같은 행렬, 즉 $K^2=K$ 를 만족하는 행렬을 <b>멱등행렬</b>이라 한다. (idem = 라틴어로 ‘같다’, potent = ‘거듭제곱’.)
+  모든 멱등행렬은 <b>정방행렬</b>이다($K^2$ 이 존재해야 하므로). 임의의 양의 정수 $r$ 에 대해 $K^r=K$ 다.</p>
+</div>
+<div class="box thm">
+  <span class="tag">성질</span>
+  <ol class="props">
+    <li>$K$ 가 멱등이면 $I-K$ 도 멱등이다: $(I-K)^2=I-K$. (단 $K-I$ 는 일반적으로 멱등이 아니다.)</li>
+    <li>교환되는 두 멱등행렬의 곱도 멱등이다: $EF=FE$ 이고 $E^2=E,\ F^2=F$ 이면 $(EF)^2=EF$.</li>
+  </ol>
+</div>
+<div class="box prf">
+  <span class="tag">증명</span>
+  <p>① $(I-K)^2=I-2K+K^2=I-2K+K=I-K$.
+  &nbsp;② $(EF)^2=EFEF=E(FE)F=E(EF)F=E^2F^2=EF$ (가운데서 $FE=EF$ 사용).</p>
+  <div class="qed">∎</div>
+</div>
+
+<figure class="fig">
+<svg viewBox="0 0 270 176" role="img" aria-label="멱등행렬은 사영 — 두 번 사영해도 같다">
+  <defs>
+    <marker id="pb" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#1d6fb8"/></marker>
+    <marker id="pt" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#0f8a7d"/></marker>
+  </defs>
+  <!-- subspace line -->
+  <line x1="20" y1="140" x2="228" y2="88" stroke="#888" stroke-width="4" opacity="0.18"/>
+  <!-- v (blue) off the line -->
+  <line class="vec" x1="20" y1="140" x2="140" y2="40" marker-end="url(#pb)"/>
+  <!-- Kv = foot on line (teal) -->
+  <line class="vec2" x1="20" y1="140" x2="156" y2="106" marker-end="url(#pt)"/>
+  <!-- perpendicular v -> foot -->
+  <line class="aux" x1="140" y1="40" x2="156" y2="106"/>
+  <!-- right-angle mark at foot -->
+  <path d="M148.5,107.9 L146.8,100.6 L154.1,98.9" fill="none" stroke="#888" stroke-width="1"/>
+  <text class="lbl b" x="140" y="34">v</text>
+  <text class="lbl t" x="160" y="120">Kv</text>
+  <text class="lbl" x="196" y="98" fill="#777">부분공간</text>
+</svg>
+<figcaption>멱등행렬은 <b>사영</b><span class="en">projection</span>이다. 벡터 $v$ 를 부분공간으로 사영한 $Kv$ 는 이미 그 공간 위에 있으므로 <b>다시 사영해도 그대로</b> — 곧 $K(Kv)=Kv$, 즉 $K^2=K$. <a href="5-2_all-ones-matrix.html">중심화행렬 $C=I-\tfrac1n J$</a> 가 그 예다.</figcaption>
+</figure>
+
+<h2 class="sub">관련 행렬 — 멱영·멱1</h2>
+<div class="box def">
+  <span class="tag">정의</span><span class="title">멱영행렬·멱1행렬</span>
+  <p>$A^2=0$ (또는 어떤 $k$ 에 대해 $A^k=0$)을 만족하는 $A$ 를 <b>멱영행렬</b><span class="en">nilpotent</span>,
+  $A^2=I$ 를 만족하는 $A$ 를 <b>멱1행렬</b><span class="en">unipotent</span>이라 한다. 변형으로 어떤 $k\gt2$ 에서 $A^k=A$, $A^k=0$, $A^k=I$ 를 만족하는 행렬도 있다.</p>
+</div>
+<div class="box ex">
+  <span class="tag">예제 5.9</span>
+  <p>$A=\begin{bmatrix}1&2&5\\2&4&10\\-1&-2&-5\end{bmatrix}$ 는 $A^2=0$ 인 멱영행렬, $B=\begin{bmatrix}I&X\\0&-I\end{bmatrix}$ 는 $B^2=I$ 인 멱1행렬이다.
+  또 $B=\begin{bmatrix}0&0&6\\ \tfrac12&0&0\\0&\tfrac13&0\end{bmatrix}$ 는 $B^2\ne I$ 이지만 $B^3=I$ 를 만족한다.</p>
+</div>
+<div class="box ex">
+  <span class="tag">예제 5.8</span><span class="title">멱등행렬의 예</span>
+  <p><a href="5-2_all-ones-matrix.html">중심화행렬 $I-\bar J_n$</a> 은 멱등이다. 또 $AGA=A$ 를 만족하는 $G$ 에 대해 $GA$ 는 멱등이다 — $(GA)^2=G(AGA)=GA$. 이런 $G$ 를 $A$ 의 <b>일반화역행렬</b><span class="en">generalized inverse</span>이라 하며, 상세한 성질은 8장에서 다룬다.</p>
+</div>
+
+<h2 class="sub">계수 = 대각합</h2>
+<div class="box thm">
+  <span class="tag">정리 5.1</span><span class="title">멱등행렬의 계수는 대각합과 같다</span>
+  <p>$K$ 가 $n\times n$ 멱등행렬이면</p>
+  $$r(K)=tr(K).$$
+</div>
+<div class="box prf">
+  <span class="tag">증명</span>
+  <p>$K$ 의 계수를 $r$ 이라 하자. 열공간의 기저를 이루는 선형독립 열 $l_1,\dots,l_r$ 을 모아 $L=[l_1\ \cdots\ l_r]$ ($n\times r$, 최대열계수)로 두면, $K$ 의 각 열은 이들의 일차결합이므로 적당한 $r\times n$ 행렬 $M$ 으로</p>
+  $$K=LM.\tag{5.20}$$
+  <p>$M$ 의 계수는 행 수 $r$ 을 넘지 못하고 $r(K)\le r(M)$ 이므로 $r(M)=r$ (최대행계수)이다. 멱등성 $K^2=K$ 에서</p>
+  $$LMLM=LM.\tag{5.21}$$
+  <p>$L$ 이 최대열계수라 $L'L$ ($r\times r$)은 정칙이다. (5.21) 왼쪽에 $(L'L)^{-1}L'$ 를 곱하면</p>
+  $$MLM=M.\tag{5.22}$$
+  <p>$M$ 이 최대행계수라 $MM'$ 이 정칙이다. (5.22) 오른쪽에 $M'(MM')^{-1}$ 를 곱하면</p>
+  $$ML=I_r.\tag{5.23}$$
+  <p>따라서 (5.20)·(5.23)과 대각합의 순환성으로</p>
+  $$r(K)=r=tr(I_r)=tr(ML)=tr(LM)=tr(K).$$
+  <div class="qed">∎</div>
+</div>
+<div class="note">
+  대각합은 대각원소의 합이라 계수보다 계산이 쉽다. 통계학에서 <b>사영행렬</b>(대칭·멱등)이 자주 등장하는데, 그 <b>계수(=자유도)가 곧 대각합</b>이라는 이 정리가 분산분석·회귀의 자유도 계산의 근거가 된다.
+</div>
+
+<nav class="pager">
+  <a href="5-2_all-ones-matrix.html">← 이전<small>5.2 모든 원소가 같은 행렬</small></a>
+  <a class="next" href="5-4_orthogonal.html">다음 →<small>5.4 직교행렬</small></a>
+</nav>
+
+</body>
+</html>
