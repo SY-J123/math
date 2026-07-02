@@ -102,8 +102,18 @@
 <h2 class="sub"><span class="no">2.7.2</span>결합변환</h2>
 <div class="box thm">
   <span class="tag">정리 2.24</span><span class="title">이산형 결합변환</span>
-  <p>이산형 벡터 $\boldsymbol Y=g(\boldsymbol X)$ 의 결합 pmf 는 같은 값으로 가는 모든 점을 합한다:
-  $f_{\boldsymbol Y}(\boldsymbol y)=\sum_{\{\boldsymbol x:\,g(\boldsymbol x)=\boldsymbol y\}}f_{\boldsymbol X}(\boldsymbol x)$.</p>
+  <p>이산형 벡터 $\boldsymbol Y=g(\boldsymbol X)$ 의 결합 pmf 는 같은 값으로 가는 모든 점을 합한다:</p>
+  $$f_{\boldsymbol Y}(\boldsymbol y)=\sum_{\{\boldsymbol x:\,g(\boldsymbol x)=\boldsymbol y\}}f_{\boldsymbol X}(\boldsymbol x).$$
+  <p>특히 $g$ 가 <b>일대일</b>이면 역상 $\{\boldsymbol x:g(\boldsymbol x)=\boldsymbol y\}$ 이 점 하나 $\boldsymbol x=g^{-1}(\boldsymbol y)$ 뿐이라 합이 한 항으로 줄어든다:
+  $$f_{\boldsymbol Y}(\boldsymbol y)=f_{\boldsymbol X}\big(g^{-1}(\boldsymbol y)\big).$$
+  <p>(연속형 정리 2.25 와 달리 야코비안 $|J|$ 가 붙지 않는다.)</p>
+</div>
+<div class="box prf">
+  <span class="tag">증명</span>
+  <p>사건 $\{\boldsymbol Y=\boldsymbol y\}$ 는 $g(\boldsymbol X)=\boldsymbol y$, 곧 $\boldsymbol X$ 가 역상 $g^{-1}(\boldsymbol y)=\{\boldsymbol x:g(\boldsymbol x)=\boldsymbol y\}$ 안의 어느 한 점을 갖는 사건과 <b>같다</b>. 이 점들에 대응하는 $\{\boldsymbol X=\boldsymbol x\}$ 들은 서로 <b>상호배반</b>이므로, <a href="../ch01/1-2_probability-axioms.html">가산가법성</a>으로 합사건의 확률이 각 확률의 합이 된다:</p>
+  $$f_{\boldsymbol Y}(\boldsymbol y)=P(\boldsymbol Y=\boldsymbol y)=P\Big(\bigcup_{\boldsymbol x\in g^{-1}(\boldsymbol y)}\{\boldsymbol X=\boldsymbol x\}\Big)=\sum_{\{\boldsymbol x:\,g(\boldsymbol x)=\boldsymbol y\}}f_{\boldsymbol X}(\boldsymbol x).$$
+  <p>$g$ 가 일대일이면 역상이 한 점뿐이라 합에 항이 하나만 남아 $f_{\boldsymbol Y}(\boldsymbol y)=f_{\boldsymbol X}(g^{-1}(\boldsymbol y))$ 다. 이산형은 확률이 <b>점에 붙은 질량</b>이라 일대일 변환이 점의 이름표만 바꿔 질량을 통째로 옮길 뿐, 연속형처럼 밀도를 늘이고 줄이는 배율($|J|$)이 개입하지 않는다.</p>
+  <div class="qed">∎</div>
 </div>
 <div class="box thm">
   <span class="tag">정리 2.25</span><span class="title">연속형 결합변환 — 야코비안 <span class="en">Jacobian</span></span>
@@ -112,10 +122,29 @@
   J=\det\!\Big(\frac{\partial(x_1,\dots,x_n)}{\partial(y_1,\dots,y_n)}\Big).$$
 </div>
 <div class="box ex">
-  <span class="tag">예 2.44–2.45</span><span class="title">결합변환 (야코비안)</span>
-  <p><b>2.44</b> 독립 베르누이 $X_1,X_2,X_3$ 에서 $Y_1=X_1+X_2+X_3,\ Y_2=|X_3-X_2|$ 의 결합 pmf 를 표로 구한다(정리 2.24).</p>
-  <p><b>2.45</b> 독립 $X_1,X_2\sim\text{EXP}(1)$, $Y_1=X_1+X_2,\ Y_2=X_1-X_2$: $|J|=\tfrac12$ 이라
-  주변 $f_{Y_1}(y_1)=y_1e^{-y_1}$ (감마), $f_{Y_2}(y_2)=\tfrac12 e^{-|y_2|}$ (이중지수).</p>
+  <span class="tag">예 2.44</span><span class="title">이산형 결합변환 (표)</span>
+  <p>독립 베르누이 $X_1,X_2,X_3$ 에서 $Y_1=X_1+X_2+X_3,\ Y_2=|X_3-X_2|$ 의 결합 pmf 를 표로 구한다(정리 2.24).</p>
+</div>
+<div class="box ex">
+  <span class="tag">예 2.45</span><span class="title">독립 지수분포의 합·차 — 야코비안으로 결합밀도, 다시 주변분포</span>
+  <p>독립 $X_1,X_2\sim\text{EXP}(1)$ 에서 $Y_1=X_1+X_2$(합), $Y_2=X_1-X_2$(차)의 분포를 구한다. 독립이므로 $\boldsymbol X$ 의 결합밀도는 두 밀도의 곱이다:</p>
+  $$f_{X_1,X_2}(x_1,x_2)=e^{-x_1}\,e^{-x_2}=e^{-(x_1+x_2)},\qquad x_1\gt0,\ x_2\gt0.$$
+  <p><b>① 역변환.</b> $y_1=x_1+x_2,\ y_2=x_1-x_2$ 를 $x$ 에 대해 풀면</p>
+  $$x_1=h_1(\boldsymbol y)=\frac{y_1+y_2}{2},\qquad x_2=h_2(\boldsymbol y)=\frac{y_1-y_2}{2}.$$
+  <p><b>② 지지집합 변환.</b> $x_1\gt0,\ x_2\gt0$ 을 $\boldsymbol y$ 로 옮기면 $y_1+y_2\gt0$ 이고 $y_1-y_2\gt0$, 곧 $y_1\gt|y_2|$ 다 ($y_1\gt0$ 이고 $-y_1\lt y_2\lt y_1$). 변수변환에선 <b>지지집합도 같이 옮겨야</b> 뒤의 적분범위가 정해진다.</p>
+  <p><b>③ 야코비안(정리 2.25).</b> 역변환의 편도함수 행렬식은</p>
+  $$J=\det\!\begin{pmatrix}\dfrac{\partial x_1}{\partial y_1}&\dfrac{\partial x_1}{\partial y_2}\\[6pt]\dfrac{\partial x_2}{\partial y_1}&\dfrac{\partial x_2}{\partial y_2}\end{pmatrix}
+  =\det\!\begin{pmatrix}\tfrac12&\tfrac12\\[4pt]\tfrac12&-\tfrac12\end{pmatrix}=-\tfrac12\ \Rightarrow\ |J|=\tfrac12.$$
+  <p><b>④ 결합밀도.</b> $f_{\boldsymbol X}$ 에 역변환을 넣고 $|J|$ 를 곱한다. 지수의 어깨 $x_1+x_2=y_1$ 이라 $y_2$ 가 사라져</p>
+  $$f_{Y_1,Y_2}(y_1,y_2)=f_{X_1,X_2}(h_1,h_2)\,|J|=e^{-y_1}\cdot\tfrac12=\tfrac12\,e^{-y_1},\qquad y_1\gt|y_2|.$$
+  <p><b>⑤ 주변분포</b>(결합에서 나머지 변수를 적분해 없앰). 지지집합 $y_1\gt|y_2|$ 에 유의한다.</p>
+  <p>• $Y_1$: 고정된 $y_1\gt0$ 에서 $y_2$ 는 $-y_1$ 부터 $y_1$ 까지 —</p>
+  $$f_{Y_1}(y_1)=\int_{-y_1}^{y_1}\tfrac12 e^{-y_1}\,dy_2=\tfrac12 e^{-y_1}\cdot(2y_1)=y_1e^{-y_1},\quad y_1\gt0,$$
+  <p>이는 <a href="2-6_continuous-distributions.html">$\text{GAM}(2,1)$</a> 다. <b>독립 지수 두 개의 합이 감마</b>라는 사실로, 아래 합성곱(정리 2.26)으로 얻는 결과와 일치한다.</p>
+  <p>• $Y_2$: 고정된 $y_2$ 에서 $y_1$ 은 $|y_2|$ 부터 $\infty$ 까지 —</p>
+  $$f_{Y_2}(y_2)=\int_{|y_2|}^{\infty}\tfrac12 e^{-y_1}\,dy_1=\tfrac12 e^{-|y_2|},\quad-\infty\lt y_2\lt\infty,$$
+  <p>이는 <b>이중지수(라플라스) 분포</b>다.</p>
+  <p><b>종속성.</b> 곱 $f_{Y_1}(y_1)f_{Y_2}(y_2)=\tfrac12\,y_1e^{-y_1}e^{-|y_2|}$ 은 결합밀도 $\tfrac12 e^{-y_1}$ 과 다르다 — 지지집합이 사각형이 아니라 $y_1\gt|y_2|$ 인 <b>삼각형(쐐기)</b>이라 결합이 두 주변으로 쪼개지지 않는다. 즉 $Y_1,Y_2$ 는 <b>독립이 아니다</b>.</p>
 </div>
 <div class="box ex">
   <span class="tag">예 2.46</span><span class="title">두 표준정규의 비 $X_1/X_2$ — 코시분포</span>
