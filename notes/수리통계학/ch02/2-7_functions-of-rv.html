@@ -112,11 +112,25 @@
   J=\det\!\Big(\frac{\partial(x_1,\dots,x_n)}{\partial(y_1,\dots,y_n)}\Big).$$
 </div>
 <div class="box ex">
-  <span class="tag">예 2.44–2.46</span><span class="title">결합변환 (야코비안)</span>
+  <span class="tag">예 2.44–2.45</span><span class="title">결합변환 (야코비안)</span>
   <p><b>2.44</b> 독립 베르누이 $X_1,X_2,X_3$ 에서 $Y_1=X_1+X_2+X_3,\ Y_2=|X_3-X_2|$ 의 결합 pmf 를 표로 구한다(정리 2.24).</p>
   <p><b>2.45</b> 독립 $X_1,X_2\sim\text{EXP}(1)$, $Y_1=X_1+X_2,\ Y_2=X_1-X_2$: $|J|=\tfrac12$ 이라
   주변 $f_{Y_1}(y_1)=y_1e^{-y_1}$ (감마), $f_{Y_2}(y_2)=\tfrac12 e^{-|y_2|}$ (이중지수).</p>
-  <p><b>2.46</b> 독립 $X_1,X_2\sim N(0,1)$, $Y_2=X_1/X_2$: 야코비안 적분으로 $f_{Y_2}(y_2)=\dfrac{1}{\pi(1+y_2^2)}$ — <b>코시분포</b>.</p>
+</div>
+<div class="box ex">
+  <span class="tag">예 2.46</span><span class="title">두 표준정규의 비 $X_1/X_2$ — 코시분포</span>
+  <p>독립 $X_1,X_2\sim N(0,1)$ 에서 $Y_2=X_1/X_2$ 의 분포를 구한다. 비 하나만으로는 2차원 일대일 변환이 안 되므로, <b>보조변수</b> $Y_1=X_2$ 를 도입해 $2\to2$ 일대일 변환으로 만든다.</p>
+  <p><b>① 역변환 ($x_1,x_2$ 구하기).</b> $Y_1=X_2$, $Y_2=X_1/X_2$ 를 $X_1,X_2$ 에 대해 풀면</p>
+  $$x_2=y_1,\qquad x_1=x_2\,y_2=y_1y_2.$$
+  <p><b>② 야코비안.</b></p>
+  $$J=\det\begin{bmatrix}\partial x_1/\partial y_1&\partial x_1/\partial y_2\\[2pt]\partial x_2/\partial y_1&\partial x_2/\partial y_2\end{bmatrix}
+    =\det\begin{bmatrix}y_2&y_1\\ 1&0\end{bmatrix}=-y_1,\qquad |J|=|y_1|.$$
+  <p><b>③ 결합밀도.</b> $f_{X_1,X_2}(x_1,x_2)=\dfrac{1}{2\pi}e^{-(x_1^2+x_2^2)/2}$ 에 역변환과 $|J|$ 를 대입(정리 2.25):</p>
+  $$f_{Y_1,Y_2}(y_1,y_2)=\frac{1}{2\pi}e^{-(y_1^2y_2^2+y_1^2)/2}\,|y_1|=\frac{|y_1|}{2\pi}\,e^{-y_1^2(1+y_2^2)/2}.$$
+  <p><b>④ 보조변수 적분 (주변분포).</b> $y_1$ 을 적분해 없앤다. 피적분함수가 $y_1$ 의 우함수라 $2\int_0^\infty$ 로 바꾸고, $a=\dfrac{1+y_2^2}{2}$ 에 대해 $\displaystyle\int_0^\infty y_1 e^{-ay_1^2}dy_1=\frac{1}{2a}$ 를 쓰면</p>
+  $$f_{Y_2}(y_2)=\int_{-\infty}^{\infty}\frac{|y_1|}{2\pi}e^{-y_1^2(1+y_2^2)/2}\,dy_1
+    =\frac{2}{2\pi}\cdot\frac{1}{2a}=\frac{1}{\pi(1+y_2^2)},\qquad-\infty\lt y_2\lt\infty.$$
+  <p>곧 <b>코시분포</b><span class="en">Cauchy</span>다 — 표준정규 둘의 비는 코시분포를 따르며, 평균이 존재하지 않는 두꺼운 꼬리 분포다.</p>
 </div>
 <div class="box thm">
   <span class="tag">정리 2.26</span><span class="title">합성곱 <span class="en">convolution</span></span>
@@ -128,6 +142,18 @@
   $$F_Z(z)=P(X+Y\le z)=\iint_{x+y\le z}f_X(x)f_Y(y)\,dy\,dx=\int_{-\infty}^{\infty}f_X(x)\Big(\int_{-\infty}^{z-x}f_Y(y)\,dy\Big)dx.$$
   <p>$z$ 로 미분하면 안쪽 적분이 $f_Y(z-x)$ 가 되어 $f_Z(z)=\displaystyle\int f_X(x)f_Y(z-x)\,dx$.</p>
   <div class="qed">∎</div>
+</div>
+<div class="box prf">
+  <span class="tag">증명 (조건부 — 이중기댓값정리)</span>
+  <p>같은 결과가 <a href="2-4_expectation.html">이중기댓값정리(정리 2.11)</a> $E[g]=E\big[E[g\mid X]\big]$ 에서도 곧바로 나온다. 확률을 지시함수의 기댓값 $P(A)=E[\mathbf 1_A]$ 로 보고 $A=\{X+Y\le z\}$ 에 적용하면</p>
+  $$F_Z(z)=P(X+Y\le z)=E\big[\mathbf 1(X+Y\le z)\big]=E\Big[\,E\big[\mathbf 1(X+Y\le z)\mid X\big]\Big]=E\big[P(Y\le z-X\mid X)\big].$$
+  <p>$X$ 를 조건으로 걸면 $X$ 는 상수처럼 다뤄지고, 독립이라 조건부확률이 $F_Y(z-X)$ 다. 바깥 기댓값은 $X$ 로 적분하는 것이므로</p>
+  $$F_Z(z)=E\big[F_Y(z-X)\big]=\int_{-\infty}^{\infty}F_Y(z-x)\,f_X(x)\,dx.$$
+  <p>$z$ 로 미분하면 $\dfrac{d}{dz}F_Y(z-x)=f_Y(z-x)$ 라 $f_Z(z)=\displaystyle\int f_X(x)\,f_Y(z-x)\,dx$ — 앞과 같은 합성곱이다.</p>
+  <div class="qed">∎</div>
+</div>
+<div class="note">
+  <b>합성곱과 이중기댓값정리의 관계:</b> 합성곱은 곧 <b>“한 변수 $X$ 로 조건을 걸어 안쪽을 먼저 처리하고, 그 결과를 다시 $X$ 로 평균낸다”</b>는 이중기댓값(전확률)의 구조 그 자체다. 지시함수에 대한 이중기댓값 $P(A)=E\big[P(A\mid X)\big]$ 에서 $A=\{X+Y\le z\}$ 로 두면 안쪽 조건부확률이 $F_Y(z-X)$ 가 되고, 이를 $X$ 로 적분(= 바깥 기댓값)한 것이 바로 합성곱 적분 $\int F_Y(z-x)f_X(x)dx$ 다. 첫 번째 증명의 이중적분을 “안쪽 적분(= 조건부) → 바깥 적분(= $X$ 평균)” 으로 읽은 것과 같다.
 </div>
 
 <nav class="pager">
