@@ -158,10 +158,6 @@
   $$f_Z(z)=\int_{-\infty}^{\infty}\frac{d}{dz}F_Y(z-x)\,f_X(x)\,dx=\int_{-\infty}^{\infty}f_Y(z-x)\,f_X(x)\,dx.$$
   <div class="qed">∎</div>
 </div>
-<div class="note">
-  <b>합성곱과 이중기댓값정리의 관계:</b> 합성곱은 곧 <b>“한 변수 $X$ 로 조건을 걸어 안쪽을 먼저 처리하고, 그 결과를 다시 $X$ 로 평균낸다”</b>는 이중기댓값(전확률)의 구조 그 자체다. 지시함수에 대한 이중기댓값 $P(A)=E\big[P(A\mid X)\big]$ 에서 $A=\{X+Y\le z\}$ 로 두면 안쪽 조건부확률이 $F_Y(z-X)$ 가 되고, 이를 $X$ 로 적분(= 바깥 기댓값)한 것이 바로 합성곱 적분 $\int F_Y(z-x)f_X(x)dx$ 다. 첫 번째 증명의 이중적분을 “안쪽 적분(= 조건부) → 바깥 적분(= $X$ 평균)” 으로 읽은 것과 같다.
-</div>
-
 <nav class="pager">
   <a href="2-6_continuous-distributions.html">← 이전<small>2.6 연속형 분포</small></a>
   <a class="next" href="2-8_mgf.html">다음 →<small>2.8 적률생성함수</small></a>
