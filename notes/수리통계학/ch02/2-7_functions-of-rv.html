@@ -145,11 +145,17 @@
 </div>
 <div class="box prf">
   <span class="tag">증명 (조건부 — 이중기댓값정리)</span>
-  <p>핵심 다리는 <b><a href="2-5_discrete-distributions.html">지시함수</a>의 기댓값이 곧 확률</b>이라는 것이다 — $E[I_A]=P(A)$. 이 항등식으로 확률을 기댓값으로 바꾸면 <a href="2-4_expectation.html">이중기댓값정리(정리 2.11)</a> $E[g]=E\big[E[g\mid X]\big]$ 를 적용할 수 있다. $A=\{X+Y\le z\}$ 로 두면</p>
-  $$F_Z(z)=P(X+Y\le z)=E\big[I(X+Y\le z)\big]=E\Big[\,E\big[I(X+Y\le z)\mid X\big]\Big]=E\big[P(Y\le z-X\mid X)\big].$$
-  <p>$X$ 를 조건으로 걸면 $X$ 는 상수처럼 다뤄지고, 독립이라 조건부확률이 $F_Y(z-X)$ 다. 바깥 기댓값은 $X$ 로 적분하는 것이므로</p>
-  $$F_Z(z)=E\big[F_Y(z-X)\big]=\int_{-\infty}^{\infty}F_Y(z-x)\,f_X(x)\,dx.$$
-  <p>$z$ 로 미분하면 $\dfrac{d}{dz}F_Y(z-x)=f_Y(z-x)$ 라 $f_Z(z)=\displaystyle\int f_X(x)\,f_Y(z-x)\,dx$ — 앞과 같은 합성곱이다.</p>
+  <p>핵심 다리는 <b><a href="2-5_discrete-distributions.html">지시함수</a>의 기댓값이 곧 확률</b>이라는 것 — $E[I_A]=P(A)$. 이걸로 확률을 기댓값으로 바꾸면 <a href="2-4_expectation.html">이중기댓값정리(정리 2.11)</a> $E[g]=E\big[E[g\mid X]\big]$ 를 쓸 수 있다.</p>
+  $$
+  \begin{aligned}
+  F_Z(z)=P(Z\le z)=P(X+Y\le z)&=E\big[I(X+Y\le z)\big]\\
+  &=E\Big[\,E\big[I(X+Y\le z)\mid X=x\big]\Big]=E\big[P(X+Y\le z\mid X=x)\big]\\
+  &=E\big[P(Y\le z-x)\big]=E\big[F_Y(z-x)\big]\qquad(\because\ X,Y\ \text{독립})\\
+  &=\int_{-\infty}^{\infty}F_Y(z-x)\,f_X(x)\,dx.
+  \end{aligned}
+  $$
+  <p>가운데에서 조건 $X=x$ 를 대입하면 $\{X+Y\le z\}$ 가 $\{Y\le z-x\}$ 로 바뀌고, 독립이라 조건이 떨어져 $P(Y\le z-x)=F_Y(z-x)$ 가 된다. 끝으로 $z$ 로 미분하면 $\dfrac{d}{dz}F_Y(z-x)=f_Y(z-x)$ 이므로</p>
+  $$f_Z(z)=\int_{-\infty}^{\infty}\frac{d}{dz}F_Y(z-x)\,f_X(x)\,dx=\int_{-\infty}^{\infty}f_Y(z-x)\,f_X(x)\,dx.$$
   <div class="qed">∎</div>
 </div>
 <div class="note">
