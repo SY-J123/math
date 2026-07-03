@@ -187,6 +187,22 @@
   $$f_Z(z)=\int_{-\infty}^{\infty}\frac{d}{dz}F_Y(z-x)\,f_X(x)\,dx=\int_{-\infty}^{\infty}f_Y(z-x)\,f_X(x)\,dx.$$
   <div class="qed">∎</div>
 </div>
+<div class="box ex">
+  <span class="tag">예 2.47</span><span class="title">$Z=X+Y$ 두 가지 풀이 — 결합변환과 합성곱</span>
+  <p>독립 $X,Y\sim U(0,1)$ 의 합 $Z=X+Y$ 의 밀도를 <b>결합변환</b>과 <b>합성곱</b> 두 방법으로 구해, 앞의 예 2.42와 같은 삼각분포가 나옴을 확인한다.</p>
+  <p><b>풀이 1 — 결합변환(야코비안).</b> 합만으로는 2차원 변환이 안 되므로 보조변수 $U=X$ 를 두어 $(x,y)\to(z,u)=(x+y,\ x)$ 로 변환한다. ① 역변환 $x=u,\ y=z-u$. ② 야코비안:</p>
+  $$J=\det\begin{bmatrix}\partial x/\partial z&\partial x/\partial u\\[2pt]\partial y/\partial z&\partial y/\partial u\end{bmatrix}=\det\begin{bmatrix}0&1\\ 1&-1\end{bmatrix}=-1,\qquad |J|=1.$$
+  <p>③ $f_{X,Y}=1$ (단위정사각형)이라 $f_{Z,U}(z,u)=f_{X,Y}(u,\,z-u)\,|J|=1$ (단 $0\le u\le1,\ 0\le z-u\le1$). ④ 주어진 $z$ 에서 $u\in[\max(0,z-1),\ \min(1,z)]$ 를 적분:</p>
+  $$f_Z(z)=\begin{cases}\displaystyle\int_0^z du=z,&0\lt z\le1,\\[4pt]\displaystyle\int_{z-1}^1 du=2-z,&1\lt z\le2,\\[4pt]0,&\text{그 외}.\end{cases}$$
+  <p><b>풀이 2 — 합성곱(지시함수).</b> 정리 2.26 에 $f_X=f_Y=I_{(0,1)}$ 를 넣는다. $0\le Z\le2$ 라 적분영역에 주의하며 두 지시함수를 $z$ 구간별로 정리한다:</p>
+  $$f_Z(z)=\int_{-\infty}^{\infty} I_{(0,1)}(x)\,I_{(0,1)}(z-x)\,dx.$$
+  <p>$I_{(0,1)}(z-x)=1\iff z-1\lt x\lt z$ 이므로 $I_{(0,1)}(x)$ 와 겹치는 $x$ 범위가 $z$ 에 따라 갈린다 — $0\lt z\le1$ 이면 $x\in(0,z)$, $1\lt z\le2$ 이면 $x\in(z-1,1)$:</p>
+  $$f_Z(z)=I_{(0,1)}(z)\int_0^{z}dx+I_{[1,2)}(z)\int_{z-1}^{1}dx=z\,I_{(0,1)}(z)+(2-z)\,I_{[1,2)}(z),$$
+  <p>곧 풀이 1과 같은 <b>삼각분포</b>다.</p>
+  <div class="note" style="margin-top:8px">
+    두 풀이의 관계: <b>합성곱은 “합 $Z=X+Y$ 에 보조변수 $U=X$ 를 더한 결합변환에서 $U$ 를 적분해 없앤” 특수한 경우</b>다. $|J|=1$ 이라 결합변환식이 곧 합성곱 적분과 일치한다.
+  </div>
+</div>
 <nav class="pager">
   <a href="2-6_continuous-distributions.html">← 이전<small>2.6 연속형 분포</small></a>
   <a class="next" href="2-8_mgf.html">다음 →<small>2.8 적률생성함수</small></a>
