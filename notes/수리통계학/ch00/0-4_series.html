@@ -54,10 +54,18 @@
 
 <h2 class="sub">테일러 급수 <span class="en">Taylor series</span></h2>
 <div class="box def">
-  <span class="tag">정의</span><span class="title">테일러 급수</span>
-  <p>$f$ 가 $a$ 근방에서 충분히 매끄러우면</p>
-  $$f(x)=\sum_{n=0}^{\infty}\frac{f^{(n)}(a)}{n!}(x-a)^n=f(a)+f'(a)(x-a)+\frac{f''(a)}{2!}(x-a)^2+\cdots$$
-  <p>($a=0$ 이면 매클로린 급수.) 다항식으로 함수를 근사하는 도구다 — 차수를 올릴수록 더 넓은 범위에서 정확해진다.</p>
+  <span class="tag">정의</span><span class="title">테일러 급수와 테일러 다항식</span>
+  <p>$f$ 가 $a$ 근방에서 무한번 미분가능하면, <b>$n$ 차 테일러 다항식</b> $T_n$ 과 <b>테일러 급수</b>는</p>
+  $$T_n(x)=\sum_{i=0}^{n}\frac{f^{(i)}(a)}{i!}(x-a)^i,\qquad
+    \sum_{n=0}^{\infty}\frac{f^{(n)}(a)}{n!}(x-a)^n=f(a)+f'(a)(x-a)+\frac{f''(a)}{2!}(x-a)^2+\cdots$$
+  <p>$a=0$ 이면 <b>매클로린 급수</b>다. 다항식으로 함수를 근사하는 도구이며, 차수를 올릴수록 더 넓은 범위에서 정확해진다.</p>
+</div>
+<div class="box prf">
+  <span class="tag">유도</span><span class="title">계수 $f^{(n)}(a)/n!$ 의 출처</span>
+  <p>$f$ 가 멱급수 $f(x)=\sum_{n\ge0}c_n(x-a)^n$ 로 표현된다고 가정하고, 수렴반경 안에서 <b>항별 미분</b>한 뒤 $x=a$ 를 넣는다. $(x-a)^k$ 항은 $n$ 번 미분하면 $k\lt n$ 일 때 사라지고 $k=n$ 일 때 상수 $n!\,c_n$ 만 남으며 $k\gt n$ 항은 $x=a$ 에서 $0$ 이므로</p>
+  $$f^{(n)}(a)=n!\,c_n\ \Rightarrow\ c_n=\frac{f^{(n)}(a)}{n!}.$$
+  <p>(예: $f(a)=c_0$, $f'(a)=c_1$, $f''(a)=2!\,c_2$, $f'''(a)=3!\,c_3$.) 그래서 멱급수로 나타낼 수 있으면 계수는 이 꼴로 <b>유일하게</b> 정해진다.</p>
+  <div class="qed">∎</div>
 </div>
 <figure class="fig">
 <svg viewBox="0 0 250 150" role="img" aria-label="sin x를 1차 테일러 y=x로 근사">
@@ -70,9 +78,39 @@
 </svg>
 <figcaption>$1$ 차 근사 $\sin x\approx x$ 는 $x=0$ 근방에서 곡선과 거의 겹치고, 멀어질수록 벌어진다. 차수를 올리면($x-\tfrac{x^3}{6}+\cdots$) 더 넓게 맞는다.</figcaption>
 </figure>
+<div class="box thm">
+  <span class="tag">테일러 정리</span><span class="title">다항식과 나머지</span>
+  <p>$f(x)=T_n(x)+R_n(x)$ 로 쓰고 $R_n$ 을 <b>나머지</b><span class="en">remainder</span>라 한다. $f$ 가 자기 테일러 급수와 같을 필요충분조건은 나머지가 사라지는 것이다:</p>
+  $$f(x)=\sum_{n=0}^{\infty}\frac{f^{(n)}(a)}{n!}(x-a)^n\ \iff\ \lim_{n\to\infty}R_n(x)=0.$$
+  <p>급수가 수렴하더라도 그 합이 $f$ 라는 보장은 없으므로, <b>$R_n\to0$ 을 반드시 확인</b>해야 한다.</p>
+</div>
+<div class="box thm">
+  <span class="tag">성질</span><span class="title">나머지 항 — 라그랑주형·적분형·테일러 부등식</span>
+  <ul class="props">
+    <li><b>라그랑주형</b>: $a$ 와 $x$ 사이의 어떤 $z$ 에 대해 $R_n(x)=\dfrac{f^{(n+1)}(z)}{(n+1)!}(x-a)^{n+1}$ ($n=0$ 이면 평균값정리).</li>
+    <li><b>적분형</b>: $R_n(x)=\dfrac{1}{n!}\displaystyle\int_a^x (x-t)^n\,f^{(n+1)}(t)\,dt$.</li>
+    <li><b>테일러 부등식</b>: $|x-a|\le d$ 에서 $|f^{(n+1)}|\le M$ 이면 $|R_n(x)|\le\dfrac{M}{(n+1)!}\,|x-a|^{n+1}$.</li>
+  </ul>
+</div>
 <div class="box ex">
-  <span class="tag">공식</span><span class="title">자주 쓰는 매클로린 전개</span>
-  $$e^x=\sum_{n\ge0}\frac{x^n}{n!},\quad \frac{1}{1-x}=\sum_{n\ge0}x^n,\quad \ln(1+x)=\sum_{n\ge1}\frac{(-1)^{n-1}}{n}x^n,\quad (1+x)^\alpha=\sum_{n\ge0}\binom{\alpha}{n}x^n.$$
+  <span class="tag">공식</span><span class="title">주요 매클로린 전개</span>
+  <ul class="props">
+    <li>$e^x=\displaystyle\sum_{n\ge0}\frac{x^n}{n!}$ &nbsp;(모든 $x$).</li>
+    <li>$\sin x=\displaystyle\sum_{n\ge0}\frac{(-1)^n}{(2n+1)!}\,x^{2n+1}$ &nbsp;(모든 $x$).</li>
+    <li>$\cos x=\displaystyle\sum_{n\ge0}\frac{(-1)^n}{(2n)!}\,x^{2n}$ &nbsp;(모든 $x$).</li>
+    <li>$\dfrac{1}{1-x}=\displaystyle\sum_{n\ge0}x^n$ &nbsp;($|x|\lt1$).</li>
+    <li>$\ln(1+x)=\displaystyle\sum_{n\ge1}\frac{(-1)^{n-1}}{n}\,x^n$ &nbsp;($-1\lt x\le1$).</li>
+    <li>$(1+x)^\alpha=\displaystyle\sum_{n\ge0}\binom{\alpha}{n}x^n$ &nbsp;($|x|\lt1$).</li>
+  </ul>
+</div>
+<div class="box prf">
+  <span class="tag">유도</span><span class="title">$e^x$·$\sin x$·$\cos x$ 전개와 수렴</span>
+  <ul class="props">
+    <li>$e^x$: $f^{(n)}(x)=e^x$ 라 $f^{(n)}(0)=1$ → $\sum_{n\ge0}x^n/n!$. <b>수렴</b>: $|x|\le d$ 에서 $|f^{(n+1)}|\le e^d$ 이므로 테일러 부등식으로 $|R_n|\le\dfrac{e^d}{(n+1)!}|x|^{n+1}\to0$ (모든 $x$).</li>
+    <li>$\sin x$: 도함수가 $\cos x,-\sin x,-\cos x,\sin x$ 로 4주기라 $f^{(n)}(0)=0,1,0,-1,\dots$ → 홀수 차수만 남아 $x-\dfrac{x^3}{3!}+\dfrac{x^5}{5!}-\cdots$. $|f^{(n+1)}|\le1$ 이라 $R_n\to0$ (모든 $x$).</li>
+    <li>$\cos x$: $\sin x$ 의 급수를 <b>항별 미분</b>하면 곧바로 얻는다.</li>
+  </ul>
+  <div class="qed">∎</div>
 </div>
 <div class="note">
   <b>적률생성함수와의 연결:</b> $M_X(t)=E(e^{tX})=E\Big(\sum_r\dfrac{(tX)^r}{r!}\Big)=\sum_r\dfrac{t^r}{r!}E(X^r)$.
