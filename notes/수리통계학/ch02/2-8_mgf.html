@@ -36,23 +36,39 @@
   <span class="tag">정의 2.16</span><span class="title">적률생성함수 <span class="en">mgf</span></span>
   <p>$-h\lt t\lt h$ 에서 기댓값이 존재하면 $M_X(t)=E\big(e^{tX}\big)$ 를 $X$ 의 적률생성함수라 한다.</p>
 </div>
-<div class="box ex">
-  <span class="tag">대표 mgf</span><span class="title">주요 분포의 적률생성함수</span>
-  <p>$B(n,p):\ (q+pe^t)^n$. &nbsp;$\text{POI}(\lambda):\ e^{\lambda(e^t-1)}$. &nbsp;$\text{EXP}(\theta):\ (1-\theta t)^{-1}\,(t\lt\tfrac1\theta)$.
-  &nbsp;$\text{GAM}(k,\theta):\ (1-\theta t)^{-k}$. &nbsp;$N(\mu,\sigma^2):\ \exp\!\big(\mu t+\tfrac12\sigma^2t^2\big)$.</p>
-</div>
-
 <div class="box thm">
   <span class="tag">정리 2.27</span><span class="title">mgf 로부터 적률</span>
   $$M_X^{(r)}(0)=E(X^r).$$
 </div>
 <div class="box prf">
   <span class="tag">증명</span>
-  <p>지수함수의 <a href="../ch00/0-4_series.html">급수 전개</a>로</p>
+  <p>‘적률생성’ 이라는 이름의 근거다. 지수함수의 <a href="../ch00/0-4_series.html">급수 전개</a>로</p>
   $$M_X(t)=E(e^{tX})=E\Big(\sum_{r\ge0}\tfrac{(tX)^r}{r!}\Big)=\sum_{r\ge0}\frac{t^r}{r!}E(X^r).$$
   <p>양변을 $t$ 로 $r$ 번 미분하고 $t=0$ 을 대입하면 $\frac{t^r}{r!}E(X^r)$ 항만 살아남아 $M_X^{(r)}(0)=E(X^r)$. (예: $M'(0)=E(X)$, $M''(0)=E(X^2)$.)</p>
   <div class="qed">∎</div>
 </div>
+<div class="box ex">
+  <span class="tag">대표 mgf</span><span class="title">주요 분포의 적률생성함수</span>
+  <ul class="props">
+    <li>$B(n,p)$: $(q+pe^t)^n$.</li>
+    <li>$\text{POI}(\lambda)$: $e^{\lambda(e^t-1)}$.</li>
+    <li>$\text{EXP}(\theta)$: $(1-\theta t)^{-1}$ ($t\lt\tfrac1\theta$).</li>
+    <li>$\text{GAM}(k,\theta)$: $(1-\theta t)^{-k}$ ($t\lt\tfrac1\theta$).</li>
+    <li>$N(\mu,\sigma^2)$: $\exp\!\big(\mu t+\tfrac12\sigma^2t^2\big)$.</li>
+  </ul>
+</div>
+<div class="box prf">
+  <span class="tag">유도</span><span class="title">대표 mgf 유도</span>
+  <p>정의 $M_X(t)=E(e^{tX})$ 에 각 분포를 넣어 합·적분을 계산한다.</p>
+  <ul class="props">
+    <li>$B(n,p)$: $\displaystyle\sum_{x=0}^{n}e^{tx}\binom nx p^xq^{n-x}=\sum_{x}\binom nx(pe^t)^xq^{n-x}=(q+pe^t)^n$ (이항정리).</li>
+    <li>$\text{POI}(\lambda)$: $\displaystyle\sum_{x\ge0}e^{tx}\frac{e^{-\lambda}\lambda^x}{x!}=e^{-\lambda}\sum_{x}\frac{(\lambda e^t)^x}{x!}=e^{-\lambda}e^{\lambda e^t}=e^{\lambda(e^t-1)}$ (지수급수).</li>
+    <li>$\text{EXP}(\theta)$: $\displaystyle\int_0^\infty e^{tx}\frac1\theta e^{-x/\theta}dx=\frac1\theta\int_0^\infty e^{-(1/\theta-t)x}dx=\frac1\theta\cdot\frac{1}{1/\theta-t}=(1-\theta t)^{-1}$ ($t\lt\tfrac1\theta$).</li>
+    <li>$\text{GAM}(k,\theta)$: $\displaystyle\int_0^\infty e^{tx}\frac{x^{k-1}e^{-x/\theta}}{\theta^k\Gamma(k)}dx$ 에서 지수를 $-(1/\theta-t)x$ 로 묶어 감마적분하면 $(1-\theta t)^{-k}$.</li>
+    <li>$N(\mu,\sigma^2)$: 지수 $tx-\dfrac{(x-\mu)^2}{2\sigma^2}$ 를 $x$ 에 대해 <b>완전제곱</b>하면 $-\dfrac{(x-\mu-\sigma^2t)^2}{2\sigma^2}+\mu t+\tfrac12\sigma^2t^2$; 앞부분은 적분하면 $1$ 이라 $M(t)=\exp\!\big(\mu t+\tfrac12\sigma^2t^2\big)$.</li>
+  </ul>
+</div>
+
 <div class="box ex">
   <span class="tag">예 2.52</span><span class="title">mgf 로 평균·분산</span>
   <p>$B(n,p)$: $M(t)=(q+pe^t)^n$, $M'(t)=n(q+pe^t)^{n-1}pe^t$ → $M'(0)=np=E(X)$. $M''(0)$ 으로 $E(X^2)$ 를 구하면
