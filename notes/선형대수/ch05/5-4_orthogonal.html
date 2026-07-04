@@ -32,11 +32,31 @@
     <li><b>정규직교</b><span class="en">orthonormal</span>: 단위이면서 서로 직교. 벡터 집합 $\{x_i\}$ 가 $x_i'x_i=1$, $x_i'x_j=0\ (i\ne j)$ 을 만족하면 <b>정규직교집합</b>.</li>
   </ul>
 </div>
+<div class="box prf">
+  <span class="tag">증명</span><span class="title">직교 $\iff$ 내적 $=0$ (피타고라스)</span>
+  <p>두 벡터가 직각이면 $x,\ y,\ x-y$ 가 직각삼각형을 이뤄 <b>피타고라스 정리</b>가 성립해야 한다:</p>
+  $$\lVert x\rVert^2+\lVert y\rVert^2=\lVert x-y\rVert^2.$$
+  <p>오른쪽 빗변을 $\lVert\cdot\rVert^2=(\cdot)'(\cdot)$ 로 전개하면 ($x'y=y'x$ 라 가운데 두 항이 합쳐진다)</p>
+  $$\lVert x-y\rVert^2=(x-y)'(x-y)=x'x-2x'y+y'y=\lVert x\rVert^2-2x'y+\lVert y\rVert^2.$$
+  <p>이를 피타고라스 식에 대입하고 양변의 $\lVert x\rVert^2,\ \lVert y\rVert^2$ 을 소거하면 $0=-2x'y$, 곧</p>
+  $$x'y=0.$$
+  <p>거꾸로 $x'y=0$ 이면 위 전개에서 $\lVert x-y\rVert^2=\lVert x\rVert^2+\lVert y\rVert^2$ 이 되어 직각이다. 따라서 <b>“직각”(기하) $\iff$ “내적 $=0$”(대수)</b> — 그림 없이 내적값만으로 직교를 판정할 수 있는 근거다.</p>
+  <div class="qed">∎</div>
+</div>
 <div class="box def">
   <span class="tag">정의 5.2</span><span class="title">직교행렬 <span class="en">orthogonal matrix</span></span>
   <p>다음을 만족하는 정방행렬 $P$ 를 <b>직교행렬</b>이라 한다:</p>
   $$PP'=P'P=I.\tag{5.25}$$
   <p>이는 $P$ 의 <b>행들도, 열들도 각각 정규직교집합</b>임을 뜻한다. 세 조건 (i) $P$ 가 정방, (ii) $P'P=I$, (iii) $PP'=I$ 중 <b>임의의 두 개가 나머지 하나를 유도</b>한다.</p>
+</div>
+<div class="box prf">
+  <span class="tag">유도</span><span class="title">$P'P=I$ 와 열의 정규직교성</span>
+  <p>$P$ 를 열 $p_1,\dots,p_n$ 으로 나누면 $P=[\,p_1\ p_2\ \cdots\ p_n\,]$ 이고 $P'$ 의 각 행은 $p_i'$ 다. 곱 $P'P$ 의 $(i,j)$ 원소가 $p_i'p_j$ 이므로</p>
+  $$P'P=\begin{bmatrix}p_1'p_1&p_1'p_2&\cdots&p_1'p_n\\ p_2'p_1&p_2'p_2&\cdots&p_2'p_n\\ \vdots&\vdots&\ddots&\vdots\\ p_n'p_1&p_n'p_2&\cdots&p_n'p_n\end{bmatrix}.$$
+  <p>이 행렬이 $I$ 가 되려면 <b>대각</b>은 $p_i'p_i=\lVert p_i\rVert^2=1$ (각 열이 단위벡터), <b>비대각</b>은 $p_i'p_j=0\ (i\ne j)$ (서로 직교)여야 한다. 곧</p>
+  $$P'P=I\iff \{p_1,\dots,p_n\}\ \text{이 정규직교집합}.$$
+  <p>같은 계산을 $PP'$ 에 하면 $P$ 의 <b>행들</b>에 대한 정규직교 조건이 나온다. (이는 <a href="5-1_symmetric-matrices.html">그람행렬</a> $A'A$ 의 특수한 경우 — 열들이 정규직교라 대각 $1$·비대각 $0$ 인 $I$ 가 된 것이다.)</p>
+  <div class="qed">∎</div>
 </div>
 <div class="note">
   정방이 아니면 한쪽만 성립할 수 있다. $P=\big[\begin{smallmatrix}1&0&0\\0&1&0\end{smallmatrix}\big]$ 은 정규직교 <b>행</b>을 가져 $PP'=I_2$ 이지만 $P'P=\big[\begin{smallmatrix}1&0&0\\0&1&0\\0&0&0\end{smallmatrix}\big]\ne I_3$. 일반적으로 정규직교 열을 가진 $P_{r\times c}$ 는 $P'P=I_c$ 지만 $PP'$ 은 항등행렬이 아니다.
@@ -80,7 +100,13 @@
   <span class="tag">정의</span><span class="title">헬머트 행렬 <span class="en">Helmert matrix</span></span>
   <p>$n\times n$ 헬머트 행렬 $H_n$ 은 첫 행이 $n^{-1/2}1_n'$, 그 아래 $i$ 번째 행($i=1,\dots,n-1$)이 $\big[\underbrace{1\ \cdots\ 1}_{i}\ \ -i\ \ \underbrace{0\ \cdots\ 0}_{n-i-1}\big]\big/\sqrt{i(i+1)}$ 인 직교행렬이다. 예:</p>
   $$H_4=\begin{bmatrix}1/\sqrt4&1/\sqrt4&1/\sqrt4&1/\sqrt4\\ 1/\sqrt2&-1/\sqrt2&0&0\\ 1/\sqrt6&1/\sqrt6&-2/\sqrt6&0\\ 1/\sqrt{12}&1/\sqrt{12}&1/\sqrt{12}&-3/\sqrt{12}\end{bmatrix}.$$
-  <p>첫 행은 평균(합)을, 나머지 행들은 <a href="5-2_all-ones-matrix.html">평균 대비 대조</a>를 준다.</p>
+  <p><b>무엇을 하는 행렬인가.</b> 데이터 벡터 $x$ 에 곱하면 $Hx$ 의 <b>첫 성분</b>은 $\tfrac{1}{\sqrt n}\sum_i x_i=\sqrt n\,\bar x$ 로 <b>평균(합) 정보</b>를, <b>나머지 $n-1$ 개 성분</b>은 서로 직교하는 <b>대조</b><span class="en">contrast</span>로 <b>평균을 뺀 변동 정보</b>를 담는다. $i$ 번째 행 $[\,1\ \cdots\ 1\ (-i)\ 0\ \cdots\,]/\sqrt{i(i+1)}$ 은 “앞 $i$ 개의 합 대 그 다음 관측값”을 비교하는 대조를 단위길이로 정규화한 것이다.</p>
+</div>
+<div class="box thm">
+  <span class="tag">쓰임</span><span class="title">제곱합의 직교분해 (평균 1 + 편차 $n-1$)</span>
+  <p>$H$ 가 직교라 길이를 보존한다: $\lVert Hx\rVert^2=\lVert x\rVert^2=\sum_i x_i^2$. 이때 $Hx$ 의 첫 성분 제곱은 $(\sqrt n\,\bar x)^2=n\bar x^2$ 이고, 나머지 $n-1$ 개 성분의 제곱합은</p>
+  $$\sum_{i=1}^{n}x_i^2-n\bar x^2=\sum_{i=1}^{n}(x_i-\bar x)^2$$
+  <p>곧 <a href="5-2_all-ones-matrix.html">평균에 대한 편차제곱합</a>이다. 즉 헬머트 변환은 총제곱합을 <b>평균 몫(자유도 $1$) + 편차 몫(자유도 $n-1$)</b>으로 직교분해해 준다 — 표본분산의 자유도가 $n-1$ 인 이유, 정규자료에서 $\bar x$ 와 $s^2$ 의 독립성 유도 등에 쓰인다.</p>
 </div>
 <div class="box def">
   <span class="tag">정의</span><span class="title">기븐스 행렬 <span class="en">Givens matrix</span></span>
