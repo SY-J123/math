@@ -32,8 +32,13 @@
 </div>
 <div class="box ex">
   <span class="tag">대표 mgf</span><span class="title">주요 분포의 적률생성함수</span>
-  <p>$B(n,p):\ (q+pe^t)^n$. &nbsp;$\text{POI}(\lambda):\ e^{\lambda(e^t-1)}$. &nbsp;$\text{EXP}(\theta):\ (1-\theta t)^{-1}\,(t\lt\tfrac1\theta)$.
-  &nbsp;$\text{GAM}(k,\theta):\ (1-\theta t)^{-k}$. &nbsp;$N(\mu,\sigma^2):\ \exp\!\big(\mu t+\tfrac12\sigma^2t^2\big)$.</p>
+  <ul>
+    <li>$B(n,p):\ M_X(t)=(q+pe^t)^n$</li>
+    <li>$\text{POI}(\lambda):\ M_X(t)=e^{\lambda(e^t-1)}$</li>
+    <li>$\text{EXP}(\theta):\ M_X(t)=(1-\theta t)^{-1}\quad(t\lt\tfrac1\theta)$</li>
+    <li>$\text{GAM}(k,\theta):\ M_X(t)=(1-\theta t)^{-k}\quad(t\lt\tfrac1\theta)$</li>
+    <li>$N(\mu,\sigma^2):\ M_X(t)=\exp\!\big(\mu t+\tfrac12\sigma^2t^2\big)$</li>
+  </ul>
 </div>
 
 <div class="box thm">
@@ -89,8 +94,10 @@
 </div>
 
 <div class="box def">
-  <span class="tag">정의 2.17</span><span class="title">결합 적률생성함수</span>
+  <span class="tag">정의 2.17</span><span class="title">결합 적률생성함수 <span class="en">joint mgf</span></span>
   $$M_{\boldsymbol X}(t_1,\dots,t_k)=E\Big[\exp\Big(\sum_{i=1}^{k}t_iX_i\Big)\Big].$$
+  <p>나머지 인수를 모두 $0$ 으로 두면 $X_i$ 의 <b>주변 적률생성함수</b>가 된다 <span class="en">(식 2.62)</span>:</p>
+  $$M_{X_i}(t_i)=M_{\boldsymbol X}(0,\dots,0,\,t_i,\,0,\dots,0).$$
 </div>
 <div class="box thm">
   <span class="tag">정리 2.30</span><span class="title">독립과 결합 mgf</span>

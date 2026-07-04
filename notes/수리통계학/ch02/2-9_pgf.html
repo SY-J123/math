@@ -34,6 +34,23 @@
     <li><b>확률 복원</b>: $P(X=k)=\dfrac{1}{k!}\,G_X^{(k)}(0)$.</li>
   </ol>
 </div>
+<div class="box prf">
+  <span class="tag">증명</span><span class="title">성질 3: 확률 복원</span>
+  <p>pgf 를 급수로 펼치면</p>
+  $$G_X(s)=p_0+p_1 s+p_2 s^2+p_3 s^3+p_4 s^4+\cdots.$$
+  <p>이를 $s$ 로 세 번 미분해 보자. 미분할 때마다 각 항의 지수가 계수로 <b>앞으로 내려와 곱해진다</b>:</p>
+  <ol>
+    <li>$G_X'(s)=p_1+2p_2 s+3p_3 s^2+4p_4 s^3+\cdots$</li>
+    <li>$G_X''(s)=2\!\cdot\!1\,p_2+3\!\cdot\!2\,p_3 s+4\!\cdot\!3\,p_4 s^2+\cdots$</li>
+    <li>$G_X'''(s)=3\!\cdot\!2\!\cdot\!1\,p_3+4\!\cdot\!3\!\cdot\!2\,p_4 s+\cdots$</li>
+  </ol>
+  <p>세 번째 도함수의 상수항은 $p_3$ 이 <b>덜렁 남는 게 아니라</b> 지수 $3,2,1$ 이 도미노처럼 내려와 곱해진 $3!=6$ 이 함께 붙은 $3!\,p_3$ 이다. 여기에 $s=0$ 을 넣으면 나머지 항($s$ 를 포함)은 모두 사라지고</p>
+  $$G_X'''(0)=3!\,p_3\quad\Longrightarrow\quad p_3=\frac{1}{3!}\,G_X'''(0).$$
+  <p>같은 논리를 $k$ 번 미분에 적용하면 $s^k$ 항의 계수가 $k(k-1)\cdots1=k!$ 로 내려와</p>
+  $$G_X^{(k)}(0)=k!\,p_k\quad\Longrightarrow\quad p_k=\frac{1}{k!}\,G_X^{(k)}(0).$$
+  <p>즉 앞의 $\tfrac1{k!}$ 은 미분에서 생긴 <b>계수 찌꺼기 $k!$ 을 털어내</b> 순수한 확률 $p_k$ 만 남기기 위한 것이다.</p>
+  <div class="qed">∎</div>
+</div>
 <div class="box ex">
   <span class="tag">예 2.61</span><span class="title">이항·포아송의 pgf</span>
   <p><b>이항</b> $B(n,p)$: 한 번의 베르누이 pgf 가 $q+ps$ 이므로 독립합으로 $G_X(s)=(q+ps)^n$.
@@ -42,7 +59,7 @@
   $G_X'(1)=\lambda=E(X)$.</p>
 </div>
 <div class="note">
-  성질 3은 $G_X(s)=\sum p_j s^j$ 를 $k$ 번 미분해 $s=0$ 을 넣으면 $k!\,p_k$ 만 남는 데서 나온다 — 분포를 pgf 로부터 완전히 복원할 수 있다.
+  성질 3 덕분에 분포를 pgf 로부터 완전히 복원할 수 있다.
   여러 변수에는 결합 pgf $G_{X_1,\dots,X_r}(s_1,\dots,s_r)=E\big[\prod_i s_i^{X_i}\big]$ 를 쓴다.
 </div>
 

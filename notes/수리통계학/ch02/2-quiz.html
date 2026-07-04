@@ -53,7 +53,10 @@
 <div class="qrow"><span class="qid">Q6</span>확률변수 $X,Y,Z$ 의 결합밀도가 받침 $\{0\lt x\lt y\lt z\lt1\}$ 에서 $f(x,y,z)=6$, 그 외 $0$ 이다.
   <ol><li>$\iiint f=1$ 임을 적분구간을 바르게 잡아 확인하여라.</li>
   <li>$P\!\big(Z\lt\tfrac12\big)$ 를 구하여라.</li></ol></div>
-<div class="qrow"><span class="qid">Q7</span>다항분포 $(X_1,\dots,X_k)\sim\text{MULT}(n;p_1,\dots,p_k)$ 에서 각 $X_i$ 의 주변분포가 <b>어떤 분포</b>인지 쓰고 증명하라.</div>
+<div class="qrow"><span class="qid">Q7</span>다항분포 $(X_1,\dots,X_k)\sim\text{MULT}(n;p_1,\dots,p_k)$ 에 대하여
+  <ol><li>결합 확률질량함수의 정의를 식으로 쓰라.</li>
+  <li>각 $X_i$ 의 주변분포가 <b>어떤 분포</b>인지 쓰고 증명하라.</li>
+  <li>서로 다른 두 범주의 횟수 $X_i,X_j$ 가 <b>음의 공분산</b>을 가짐, 즉 $Cov(X_i,X_j)=-np_ip_j\ (\lt0)$ 임을 <b>지시함수</b>로 보여라. (부호가 왜 음수인지도 설명하라.)</li></ol></div>
 <div class="qrow"><span class="qid">Q8</span>
   <ol><li>두 확률변수 $X,Y$ 가 독립이라는 것의 정의를 식으로 쓰라.</li>
   <li>독립일 필요충분조건을 밀도함수로 식으로 쓰고 증명하라.</li></ol></div>
@@ -89,30 +92,58 @@
 <div class="qrow"><span class="qid">Q20</span>다음 분포의 pmf·평균·분산을 각각 식으로 쓰라.
   <ol><li>베르누이 $\text{Ber}(p)$</li><li>이항 $B(n,p)$</li><li>포아송 $\text{POI}(\lambda)$</li>
   <li>기하 $\text{GEO}(p)$</li><li>음이항 $\text{NB}(r,p)$</li></ol></div>
-<div class="qrow"><span class="qid">Q21</span>이항분포의 포아송 근사(정리 2.17)를 식으로 쓰고 증명하라.</div>
-<div class="qrow"><span class="qid">Q22</span>기하분포의 무기억성을 식으로 쓰고 증명하라.</div>
+<div class="qrow"><span class="qid">Q21</span>포아송 분포를 <b>포아송 과정</b>에서 유도하려 한다.
+  <ol><li>세 가정을 쓰고, 구간을 $n$ 등분해 $n\to\infty$ 극한으로 pmf $f(x)=e^{-\lambda}\lambda^x/x!$ 를 유도하라.</li>
+  <li>극한에서 ‘한 소구간에 2회 이상’ 항이 사라지는 이유를 $o(h)$ 와 부울 부등식으로 설명하라.</li></ol></div>
+<div class="qrow"><span class="qid">Q22</span>포아송 분포의 <b>평균과 분산</b>을 각각 급수 계산으로 유도하라($E[X(X-1)]$ 를 활용).</div>
+<div class="qrow"><span class="qid">Q23</span>이항분포의 포아송 근사(정리 2.17)를 식으로 쓰고 증명하라.</div>
+<div class="qrow"><span class="qid">Q24</span>기하분포의 무기억성을 식으로 쓰고 증명하라(먼저 꼬리확률 $P(X\gt k)$ 를 구할 것).</div>
+<div class="qrow"><span class="qid">Q25</span>음이항분포 $X\sim\text{NB}(r,p)$ 와 이항분포 $Y\sim B(n,p)$ 의 관계식($P(X\le n)$ 를 이항합으로)을 쓰고, 두 사건이 왜 같은지 설명하라.</div>
 
 <h2 class="sub">G. 연속형 분포 (2.6)</h2>
-<div class="qrow"><span class="qid">Q23</span>다음 분포의 pdf·평균·분산을 각각 식으로 쓰라.
+<div class="qrow"><span class="qid">Q26</span>다음 분포의 pdf·평균·분산을 각각 식으로 쓰라.
   <ol><li>균일 $U(a,b)$</li><li>지수 $\text{EXP}(\theta)$</li><li>정규 $N(\mu,\sigma^2)$</li>
   <li>감마 $\text{GAM}(k,\theta)$</li><li>베타 $\text{BETA}(a,b)$</li></ol></div>
-<div class="qrow"><span class="qid">Q24</span>지수분포의 무기억성을 식으로 쓰고 증명하라.</div>
-<div class="qrow"><span class="qid">Q25</span>이변량 정규분포의 조건부 $E(Y\mid x)$, $Var(Y\mid x)$ 를 식으로 쓰고, $\rho=0$ 과 독립의 관계를 설명하라.</div>
+<div class="qrow"><span class="qid">Q27</span>발생률 $\lambda$ 인 포아송 과정에서 첫 사건까지의 대기시간이 지수분포를 따름을 유도하라(‘$X\gt t$’ 를 발생 수 사건으로 바꿀 것).</div>
+<div class="qrow"><span class="qid">Q28</span>지수분포의 무기억성을 식으로 쓰고 증명하라.</div>
+<div class="qrow"><span class="qid">Q29</span>정규분포를 <b>과녁(회전대칭) 모형</b>의 두 가정에서 유도하라 — $f(x)=Ce^{-kx^2}$ 꼴이 나오는 과정과, 두 상수 $C,k$ 를 정하는 두 조건을 쓰라.</div>
+<div class="qrow"><span class="qid">Q30</span>
+  <ol><li>정규확률변수의 선형변환 성질($X\sim N(\mu,\sigma^2)$, $Y=aX+b$)을 식으로 쓰고 증명하라.</li>
+  <li>표준화 $Z=\tfrac{X-\mu}{\sigma}$ 의 분포를 쓰고, $F(x)$ 를 $\Phi$ 로 나타내라.</li></ol></div>
+<div class="qrow"><span class="qid">Q31</span>정규분포 $N(\mu,\sigma^2)$ 의 <b>평균과 분산</b>을 표준화 치환으로 유도하라(필요한 세 적분 $\int\phi,\int z\phi,\int z^2\phi$ 를 먼저 정리).</div>
+<div class="qrow"><span class="qid">Q32</span>이변량 정규분포의 결합 적률생성함수 $M(t_1,t_2)$ 를 식으로 쓰고, 이를 미분해 $E(X)$, $Var(X)$, $Cov(X,Y)$ 를 유도하라.</div>
+<div class="qrow"><span class="qid">Q33</span>이변량 정규분포의 <b>주변분포</b>가 일변량 정규임을 유도하라(지수 안 이차식을 $v$ 로 완전제곱).</div>
+<div class="qrow"><span class="qid">Q34</span>이변량 정규분포의 조건부 $E(Y\mid x)$, $Var(Y\mid x)$ 를 식으로 쓰고, $\rho=0$ 과 독립의 관계를 설명하라.</div>
 
 <h2 class="sub">H. 변환·생성함수 (2.7–2.9)</h2>
-<div class="qrow"><span class="qid">Q26</span>단조변환 $Y=g(X)$ 의 밀도 공식을 식으로 쓰고 증명하라.</div>
-<div class="qrow"><span class="qid">Q27</span>독립 $X,Y$ 의 합 $Z=X+Y$ 에 대한 합성곱 공식을 식으로 쓰고 증명하라.</div>
-<div class="qrow"><span class="qid">Q28</span>
-  <ol><li>적률생성함수의 정의를 식으로 쓰고, 적률과의 관계($r$ 차 적률)를 식으로 쓰고 증명하라.</li>
+<div class="qrow"><span class="qid">Q35</span>단조(일대일)변환 $Y=g(X)$ 의 밀도 공식을 식으로 쓰고 증명하라.</div>
+<div class="qrow"><span class="qid">Q36</span>확률적분변환($U=F(X)$)의 결과를 식으로 쓰고 증명하라.</div>
+<div class="qrow"><span class="qid">Q37</span>결합변환의 밀도 공식을 <b>이산형·연속형</b> 각각 식으로 쓰라(연속형은 야코비안 $|J|$ 포함, 이산형에는 왜 $|J|$ 가 없는지도).</div>
+<div class="qrow"><span class="qid">Q38</span>독립 $X_1,X_2\sim\text{EXP}(1)$ 에서 $Y_1=X_1+X_2$, $Y_2=X_1-X_2$ 라 하자.
+  <ol><li>야코비안으로 $(Y_1,Y_2)$ 의 결합밀도와 그 지지집합을 구하여라.</li>
+  <li>$Y_1,Y_2$ 의 주변분포를 각각 구하고, 두 변수가 독립인지 판정하여라.</li></ol></div>
+<div class="qrow"><span class="qid">Q39</span>독립 $X_1,X_2\sim N(0,1)$ 에서 비 $Y=X_1/X_2$ 의 분포를 구하여라(보조변수를 도입해 야코비안 사용).</div>
+<div class="qrow"><span class="qid">Q40</span>독립 $X,Y\sim U(0,1)$ 의 합 $Z=X+Y$ 의 밀도를 합성곱으로 구하여라(적분구간이 $z$ 에 따라 갈리는 점에 유의).</div>
+<div class="qrow"><span class="qid">Q41</span>합성곱 $f_Z(z)=\int f_X(x)f_Y(z-x)\,dx$ 에서 <b>적분구간</b>을 구하는 요령을 설명하라(두 지지집합의 겹침, 경계점 찾는 법).</div>
+<div class="qrow"><span class="qid">Q42</span>독립 $X,Y$ 의 합 $Z=X+Y$ 의 합성곱 공식을 식으로 쓰고, <b>두 가지 방법</b>(cdf 미분 / 이중기댓값정리)으로 증명하라.</div>
+<div class="qrow"><span class="qid">Q43</span>$r$ 차 적률 $\mu_r'$ 와 $r$ 차 중심적률 $\mu_r$ 의 정의를 식으로 쓰고, $\mu_1'$, $\mu_2$ 가 각각 무엇인지 쓰라.</div>
+<div class="qrow"><span class="qid">Q44</span>적률생성함수의 정의를 식으로 쓰고, 적률과의 관계($r$ 차 적률)를 식으로 쓰고 증명하라.</div>
+<div class="qrow"><span class="qid">Q45</span>다음 분포의 적률생성함수를 각각 식으로 쓰라: $B(n,p)$, $\text{POI}(\lambda)$, $\text{EXP}(\theta)$, $\text{GAM}(k,\theta)$, $N(\mu,\sigma^2)$.</div>
+<div class="qrow"><span class="qid">Q46</span>$B(n,p)$ 의 mgf 를 이용해 평균과 분산을 구하여라($M'(0)$, $M''(0)$).</div>
+<div class="qrow"><span class="qid">Q47</span>적률생성함수의 유일성 정리를 식(또는 진술)으로 쓰고, 이것이 왜 강력한 판별법이 되는지 설명하라.</div>
+<div class="qrow"><span class="qid">Q48</span>
+  <ol><li>선형변환 $Y=aX+b$ 의 mgf 성질을 식으로 쓰고 증명하라.</li>
   <li>독립 $X_1,\dots,X_n$ 의 합 $Y=\sum X_i$ 의 mgf 성질을 식으로 쓰고 증명하라.</li></ol></div>
-<div class="qrow"><span class="qid">Q29</span>확률생성함수 $G_X(s)$ 의 정의와 세 성질(평균·독립합·확률복원)을 각각 식으로 쓰라.</div>
+<div class="qrow"><span class="qid">Q49</span>결합 적률생성함수의 정의를 식으로 쓰고, 거기서 $X_i$ 의 주변 mgf 를 얻는 식을 쓰라.</div>
+<div class="qrow"><span class="qid">Q50</span>$X,Y$ 가 독립일 필요충분조건을 결합 mgf 로 식으로 쓰라.</div>
+<div class="qrow"><span class="qid">Q51</span>확률생성함수 $G_X(s)$ 의 정의와 세 성질(평균·독립합·확률복원)을 각각 식으로 쓰라.</div>
 
 <h2 class="sub">I. 기초 도구 (0장 — 2장에서 쓰는 것)</h2>
-<div class="qrow"><span class="qid">Q30</span>가우스 적분 $\int_{-\infty}^{\infty}e^{-x^2/2}\,dx$ 의 값을 쓰고, $I^2$ 을 이용한 증명을 간략히 보여라. (정규분포 정규화에 사용)</div>
-<div class="qrow"><span class="qid">Q31</span>감마함수 $\Gamma(k)$ 의 정의와 세 가지 성질을 식으로 쓰라. (감마분포에 사용)</div>
-<div class="qrow"><span class="qid">Q32</span>베타함수 $B(a,b)$ 의 정의와 감마함수와의 관계를 식으로 쓰라. (베타분포에 사용)</div>
-<div class="qrow"><span class="qid">Q33</span>등비급수의 <b>유한합·무한합·미분형</b>을 각각 식으로 쓰라. (기하·음이항분포, 무기억성에 사용)</div>
-<div class="qrow"><span class="qid">Q34</span>지수급수 $\sum_{k=0}^{\infty}\dfrac{\lambda^k}{k!}$ 의 값과 극한 $\lim_{n\to\infty}\big(1-\tfrac{\lambda}{n}\big)^n$ 의 값을 쓰라. (포아송분포·근사에 사용)</div>
+<div class="qrow"><span class="qid">Q52</span>가우스 적분 $\int_{-\infty}^{\infty}e^{-x^2/2}\,dx$ 의 값을 쓰고, $I^2$ 을 이용한 증명을 간략히 보여라. (정규분포 정규화에 사용)</div>
+<div class="qrow"><span class="qid">Q53</span>감마함수 $\Gamma(k)$ 의 정의와 세 가지 성질을 식으로 쓰라. (감마분포에 사용)</div>
+<div class="qrow"><span class="qid">Q54</span>베타함수 $B(a,b)$ 의 정의와 감마함수와의 관계를 식으로 쓰라. (베타분포에 사용)</div>
+<div class="qrow"><span class="qid">Q55</span>등비급수의 <b>유한합·무한합·미분형</b>을 각각 식으로 쓰라. (기하·음이항분포, 무기억성에 사용)</div>
+<div class="qrow"><span class="qid">Q56</span>지수급수 $\sum_{k=0}^{\infty}\dfrac{\lambda^k}{k!}$ 의 값과 극한 $\lim_{n\to\infty}\big(1-\tfrac{\lambda}{n}\big)^n$ 의 값을 쓰라. (포아송분포·근사에 사용)</div>
 
 <!-- ===== 정답 시트 ===== -->
 <div class="answersheet">
@@ -131,7 +162,10 @@
   ④ (직사각형 비음) $a_1\le b_1,\ a_2\le b_2\Rightarrow F(b_1,b_2)-F(a_1,b_2)-F(b_1,a_2)+F(a_1,a_2)\ge0$.</div>
 <div class="ans"><span class="qid">A5.</span> (1) $f_X(x)=\displaystyle\int_{-\infty}^\infty f_{X,Y}(x,y)\,dy$ (이산 $\sum_y$). 증명: $F_X(x)=\int_{-\infty}^x\!\big(\int_{-\infty}^\infty f_{X,Y}(u,y)\,dy\big)du$ 를 $x$ 로 미분하면 괄호 안 $=f_X(x)$. (2) $f_{Y\mid X}(y\mid x)=\dfrac{f_{X,Y}(x,y)}{f_X(x)}\ (f_X(x)\gt0)$.</div>
 <div class="ans"><span class="qid">A6.</span> 받침 $0\lt x\lt y\lt z\lt1$ 에서 안쪽 변수의 상한은 바로 바깥 변수다($x\!:0\to y$, $y\!:0\to z$, $z\!:0\to1$). (1) $\displaystyle\int_0^1\!\!\int_0^z\!\!\int_0^y 6\,dx\,dy\,dz=\int_0^1\!\!\int_0^z 6y\,dy\,dz=\int_0^1 3z^2\,dz=1$. (2) $z$ 의 상한만 $\tfrac12$ 로 바꾸면 $P(Z\lt\tfrac12)=\displaystyle\int_0^{1/2}3z^2\,dz=\big(\tfrac12\big)^3=\tfrac18$.</div>
-<div class="ans"><span class="qid">A7.</span> $X_i\sim B(n,p_i)$. 증명: 범주 $i$ 를 ‘성공’, 나머지 전부를 ‘실패’로 묶으면 성공확률 $p_i$ 인 $n$ 번 독립시행의 성공 횟수이므로 $X_i\sim B(n,p_i)$.</div>
+<div class="ans"><span class="qid">A7.</span>
+  <ol><li>$f(x_1,\dots,x_k)=\dfrac{n!}{x_1!\cdots x_k!}\,p_1^{x_1}\cdots p_k^{x_k}$, &nbsp;$\sum_i x_i=n$.</li>
+  <li>$X_i\sim B(n,p_i)$. 증명: 범주 $i$ 를 ‘성공’, 나머지 전부를 ‘실패’로 묶으면 성공확률 $p_i$ 인 $n$ 번 독립시행의 성공 횟수이므로 $X_i\sim B(n,p_i)$.</li>
+  <li>$Cov(X_i,X_j)=-np_ip_j\ (\lt0,\ i\ne j)$. 증명: $m$ 번째 시행이 범주 $i$ 이면 $1$ 인 지시함수로 $X_i=\sum_{m=1}^n I_{im}$. 한 시행은 한 범주뿐이라 $i\ne j$ 면 $I_{im}I_{jm}=0$ 이므로 $Cov(I_{im},I_{jm})=0-p_ip_j=-p_ip_j$; 서로 다른 시행은 독립이라 공분산 $0$. 따라서 $Cov(X_i,X_j)=\sum_m(-p_ip_j)=-np_ip_j$. (합 $\sum X_i=n$ 이 고정이라 부호가 음.)</li></ol></div>
 <div class="ans"><span class="qid">A8.</span> (1) $F_{X,Y}(x,y)=F_X(x)F_Y(y)\ (\forall x,y)$. (2) 필요충분조건 $f_{X,Y}(x,y)=f_X(x)f_Y(y)$. ($\Rightarrow$) $F_{X,Y}=F_XF_Y$ 편미분 → $f_{X,Y}=f_Xf_Y$. ($\Leftarrow$) $P(X\in A,Y\in B)=\iint_{A\times B}f_Xf_Y=\big(\int_A f_X\big)\big(\int_B f_Y\big)=P(X\in A)P(Y\in B)$.</div>
 
 <h2 class="sub">C. 기댓값·분산·공분산</h2>
@@ -165,31 +199,55 @@
   <li>POI: $\dfrac{e^{-\lambda}\lambda^x}{x!}$; $E=\lambda$, $Var=\lambda$.</li>
   <li>GEO: $pq^{x-1}$; $E=1/p$, $Var=q/p^2$.</li>
   <li>NB: $\binom{x-1}{r-1}p^rq^{x-r}$; $E=r/p$, $Var=rq/p^2$.</li></ol></div>
-<div class="ans"><span class="qid">A21.</span> $np=\lambda$ 로 두고 $n\to\infty$ 면 $\binom nx p^x(1-p)^{n-x}\to\dfrac{e^{-\lambda}\lambda^x}{x!}$. 증명: $\binom nx p^x(1-p)^{n-x}=\dfrac{\lambda^x}{x!}\cdot\dfrac{n!}{(n-x)!n^x}\big(1-\tfrac\lambda n\big)^n\big(1-\tfrac\lambda n\big)^{-x}\to\dfrac{\lambda^x}{x!}\cdot1\cdot e^{-\lambda}\cdot1$.</div>
-<div class="ans"><span class="qid">A22.</span> $P(X\gt j+k\mid X\gt j)=P(X\gt k)$. 증명: $P(X\gt m)=q^m$ 이므로 $=q^{j+k}/q^j=q^k=P(X\gt k)$.</div>
+<div class="ans"><span class="qid">A21.</span> (1) 가정: 짧은 길이 $h$ 에서 ① $\lim_{h\to0}P(1\text{회})/h=\lambda$, ② $\lim_{h\to0}P(\ge2\text{회})/h=0$ ($o(h)$), ③ 겹치지 않는 구간은 독립. $[0,t]$ 를 $h=t/n$ 로 $n$ 등분하면 각 소구간은 성공확률 $\approx\lambda t/n$ 인 베르누이, 독립이라 $B(n,\lambda t/n)$ 이고 $n\to\infty$ 에서
+$\binom nx(\tfrac{\lambda t}n)^x(1-\tfrac{\lambda t}n)^{n-x}\to e^{-\lambda t}\dfrac{(\lambda t)^x}{x!}$; $t=1$ 이면 $e^{-\lambda}\lambda^x/x!$.
+(2) 한 소구간 $\ge2$ 회 확률은 $o(t/n)$. 부울 부등식으로 ‘어느 소구간에서든 $\ge2$ 회’ 확률 $\le n\cdot o(t/n)=t\cdot\dfrac{o(t/n)}{t/n}\to t\cdot0=0$. 따라서 극한에서 각 소구간은 $0,1$ 회뿐인 베르누이만 남는다.</div>
+<div class="ans"><span class="qid">A22.</span> $E(X)=\sum_{x\ge1}x\dfrac{e^{-\lambda}\lambda^x}{x!}=\lambda\sum_{x\ge1}\dfrac{e^{-\lambda}\lambda^{x-1}}{(x-1)!}=\lambda$. &nbsp;$E[X(X-1)]=\sum_{x\ge2}\dfrac{e^{-\lambda}\lambda^x}{(x-2)!}=\lambda^2$ 이므로 $E(X^2)=\lambda^2+\lambda$, 따라서 $Var(X)=\lambda^2+\lambda-\lambda^2=\lambda$.</div>
+<div class="ans"><span class="qid">A23.</span> $np=\lambda$ 로 두고 $n\to\infty$ 면 $\binom nx p^x(1-p)^{n-x}\to\dfrac{e^{-\lambda}\lambda^x}{x!}$. 증명: $\binom nx p^x(1-p)^{n-x}=\dfrac{\lambda^x}{x!}\cdot\dfrac{n!}{(n-x)!n^x}\big(1-\tfrac\lambda n\big)^n\big(1-\tfrac\lambda n\big)^{-x}\to\dfrac{\lambda^x}{x!}\cdot1\cdot e^{-\lambda}\cdot1$.</div>
+<div class="ans"><span class="qid">A24.</span> $P(X\gt j+k\mid X\gt j)=P(X\gt k)$. 증명: 꼬리확률 $P(X\gt m)=\sum_{j\gt m}pq^{j-1}=q^m$ 이고 $\{X\gt j+k\}\subset\{X\gt j\}$ 이므로 $=q^{j+k}/q^j=q^k=P(X\gt k)$.</div>
+<div class="ans"><span class="qid">A25.</span> $Y\sim B(n,p)$ 라 하면 $P(X\le n)=P(Y\ge r)=\sum_{k=r}^{n}\binom nk p^k(1-p)^{n-k}$. 이유: ‘$r$ 번째 성공이 $n$ 번째 시행 이내에 나온다’($X\le n$)는 것은 ‘처음 $n$ 번 시행에서 성공이 이미 $r$ 번 이상 나왔다’($Y\ge r$)는 것과 <b>정확히 같은 사건</b>이다.</div>
 
 <h2 class="sub">G. 연속형 분포</h2>
-<div class="ans"><span class="qid">A23.</span>
+<div class="ans"><span class="qid">A26.</span>
   <ol><li>$U(a,b)$: $\tfrac1{b-a}$; $E=\tfrac{a+b}2$, $Var=\tfrac{(b-a)^2}{12}$.</li>
   <li>EXP($\theta$): $\tfrac1\theta e^{-x/\theta}$; $E=\theta$, $Var=\theta^2$.</li>
   <li>$N(\mu,\sigma^2)$: $\tfrac{1}{\sqrt{2\pi}\sigma}e^{-(x-\mu)^2/2\sigma^2}$; $E=\mu$, $Var=\sigma^2$.</li>
   <li>GAM($k,\theta$): $\tfrac{1}{\theta^k\Gamma(k)}x^{k-1}e^{-x/\theta}$; $E=k\theta$, $Var=k\theta^2$.</li>
   <li>BETA($a,b$): $\tfrac1{B(a,b)}x^{a-1}(1-x)^{b-1}$; $E=\tfrac a{a+b}$, $Var=\tfrac{ab}{(a+b)^2(a+b+1)}$.</li></ol></div>
-<div class="ans"><span class="qid">A24.</span> $P(X\gt a+t\mid X\gt a)=P(X\gt t)$. 증명: $P(X\gt s)=e^{-s/\theta}$ 이므로 $=e^{-(a+t)/\theta}/e^{-a/\theta}=e^{-t/\theta}=P(X\gt t)$.</div>
-<div class="ans"><span class="qid">A25.</span> $E(Y\mid x)=\mu_Y+\rho\tfrac{\sigma_Y}{\sigma_X}(x-\mu_X)$, $Var(Y\mid x)=\sigma_Y^2(1-\rho^2)$. 이변량 정규에서는 $\rho=0\iff$ 독립.</div>
+<div class="ans"><span class="qid">A27.</span> 발생률 $\lambda$ 인 포아송 과정에서 $Y_t\sim\text{POI}(\lambda t)$. 대기시간 $X$ 에 대해 $\{X\gt t\}=\{Y_t=0\}$ 이므로 $P(X\gt t)=e^{-\lambda t}(\lambda t)^0/0!=e^{-\lambda t}$. 따라서 $F(t)=1-e^{-\lambda t}$, $f(t)=F'(t)=\lambda e^{-\lambda t}\ (t\gt0)$; $\theta=1/\lambda$ 면 $f(t)=\tfrac1\theta e^{-t/\theta}$ — 지수분포.</div>
+<div class="ans"><span class="qid">A28.</span> $P(X\gt a+t\mid X\gt a)=P(X\gt t)$. 증명: $P(X\gt s)=e^{-s/\theta}$ 이므로 $=e^{-(a+t)/\theta}/e^{-a/\theta}=e^{-t/\theta}=P(X\gt t)$.</div>
+<div class="ans"><span class="qid">A29.</span> 가정 ① $X,Y$ 독립·동일밀도 $f$, ② 회전대칭 → $f(x)f(y)=h(x^2+y^2)$. $L=\ln f$ 로 두면 $L(x)+L(y)=\ln h(x^2+y^2)$; $x,y$ 로 각각 편미분해 비교하면 $\dfrac{L'(x)}{2x}=\dfrac{L'(y)}{2y}=$ 상수 $-k$. 적분하면 $L(x)=-kx^2+c$, 곧 $f(x)=Ce^{-kx^2}$. 두 상수는 <b>① 전체 적분 $=1$</b>($C\sqrt{\pi/k}=1\Rightarrow C=\sqrt{k/\pi}$)과 <b>② 분산 $=\sigma^2$</b>($\int x^2Ce^{-kx^2}dx=\tfrac1{2k}=\sigma^2\Rightarrow k=\tfrac1{2\sigma^2}$)로 정해져 $f(x)=\tfrac1{\sqrt{2\pi}\sigma}e^{-x^2/2\sigma^2}$; 중심을 $\mu$ 로 옮기면 $N(\mu,\sigma^2)$.</div>
+<div class="ans"><span class="qid">A30.</span> (1) $Y=aX+b\sim N(a\mu+b,\ a^2\sigma^2)$. 증명($a\gt0$): $F_Y(y)=P(X\le\tfrac{y-b}a)=\int_{-\infty}^{(y-b)/a}\tfrac1{\sqrt{2\pi}\sigma}e^{-(x-\mu)^2/2\sigma^2}dx$; $t=ax+b$ 치환 후 $y$ 로 미분하면 $f_Y(y)=\tfrac1{\sqrt{2\pi}\,a\sigma}\exp\{-\tfrac{[y-(a\mu+b)]^2}{2a^2\sigma^2}\}$ — 곧 $N(a\mu+b,a^2\sigma^2)$ ($a\lt0$ 이면 $|a|$). (2) $a=\tfrac1\sigma,\ b=-\tfrac\mu\sigma$ 이면 $Z=\tfrac{X-\mu}\sigma\sim N(0,1)$; $F(x)=\Phi\big(\tfrac{x-\mu}\sigma\big)$.</div>
+<div class="ans"><span class="qid">A31.</span> $z=\tfrac{x-\mu}\sigma$ (곧 $x=\mu+\sigma z$)로 치환. 세 적분: $\int\phi\,dz=1$, $\int z\phi\,dz=0$(기함수), $\int z^2\phi\,dz=1$(부분적분). ① $E(X)=\int(\mu+\sigma z)\phi\,dz=\mu\cdot1+\sigma\cdot0=\mu$. ② $E(X^2)=\int(\mu+\sigma z)^2\phi\,dz=\mu^2+2\mu\sigma\cdot0+\sigma^2\cdot1=\mu^2+\sigma^2$, 따라서 $Var(X)=E(X^2)-\mu^2=\sigma^2$.</div>
+<div class="ans"><span class="qid">A32.</span> $M(t_1,t_2)=\exp\{\mu_X t_1+\mu_Y t_2+\tfrac12(\sigma_X^2 t_1^2+2\rho\sigma_X\sigma_Y t_1t_2+\sigma_Y^2 t_2^2)\}$. 어깨를 $g$ 라 하면 $g_{t_1}=\mu_X+\sigma_X^2t_1+\rho\sigma_X\sigma_Y t_2$, $g_{t_1t_1}=\sigma_X^2$, $g_{t_1t_2}=\rho\sigma_X\sigma_Y$; $M(0,0)=1$. $E(X)=M_{t_1}|_0=g_{t_1}(0)=\mu_X$. $E(X^2)=(Mg_{t_1}^2+Mg_{t_1t_1})|_0=\mu_X^2+\sigma_X^2\Rightarrow Var(X)=\sigma_X^2$. $E(XY)=(Mg_{t_1}g_{t_2}+Mg_{t_1t_2})|_0=\mu_X\mu_Y+\rho\sigma_X\sigma_Y\Rightarrow Cov(X,Y)=\rho\sigma_X\sigma_Y$.</div>
+<div class="ans"><span class="qid">A33.</span> $f_X(x)=\int f(x,y)\,dy$. $u=\tfrac{x-\mu_X}{\sigma_X},v=\tfrac{y-\mu_Y}{\sigma_Y}$ 로 두고 완전제곱 $u^2-2\rho uv+v^2=(v-\rho u)^2+u^2(1-\rho^2)$ 를 쓰면 $u$ 만의 인자 $e^{-u^2/2}$ 가 적분 밖으로 빠지고, 남은 정규형 적분이 $\sqrt{2\pi(1-\rho^2)}$ 라 $\sqrt{1-\rho^2}$ 가 약분되어 $f_X(x)=\tfrac1{\sqrt{2\pi}\sigma_X}e^{-u^2/2}\sim N(\mu_X,\sigma_X^2)$ (대칭으로 $Y\sim N(\mu_Y,\sigma_Y^2)$).</div>
+<div class="ans"><span class="qid">A34.</span> $E(Y\mid x)=\mu_Y+\rho\tfrac{\sigma_Y}{\sigma_X}(x-\mu_X)$, $Var(Y\mid x)=\sigma_Y^2(1-\rho^2)$. 이변량 정규에서는 $\rho=0\iff$ 독립($\rho=0$ 이면 결합밀도·결합 mgf 가 $x,y$ 로 분리).</div>
 
 <h2 class="sub">H. 변환·생성함수</h2>
-<div class="ans"><span class="qid">A26.</span> $f_Y(y)=f_X\big(g^{-1}(y)\big)\,\big|\tfrac{d}{dy}g^{-1}(y)\big|$. 증명: $g$ 증가면 $F_Y(y)=F_X(g^{-1}(y))$ 미분 → $f_X(g^{-1}(y))\tfrac{d}{dy}g^{-1}(y)$; 감소면 부호 반대라 절댓값.</div>
-<div class="ans"><span class="qid">A27.</span> $f_Z(z)=\displaystyle\int_{-\infty}^\infty f_X(x)f_Y(z-x)\,dx$. 증명: $F_Z(z)=\int f_X(x)\big(\int_{-\infty}^{z-x}f_Y(y)dy\big)dx$ 를 $z$ 로 미분.</div>
-<div class="ans"><span class="qid">A28.</span> (1) $M_X(t)=E(e^{tX})$; $M_X^{(r)}(0)=E(X^r)$. 증명: $M_X(t)=\sum_r\tfrac{t^r}{r!}E(X^r)$ 를 $r$ 번 미분 후 $t=0$. (2) 독립 $\Rightarrow M_Y(t)=\prod_i M_{X_i}(t)$: $E[e^{t\sum X_i}]=E[\prod e^{tX_i}]=\prod E[e^{tX_i}]$.</div>
-<div class="ans"><span class="qid">A29.</span> $G_X(s)=E(s^X)=\sum_j p_js^j$. ① $E(X)=G_X'(1)$; ② 독립합 $G_{X+Y}(s)=G_X(s)G_Y(s)$; ③ 확률복원 $P(X=k)=\dfrac{G_X^{(k)}(0)}{k!}$.</div>
+<div class="ans"><span class="qid">A35.</span> $f_Y(y)=f_X\big(g^{-1}(y)\big)\,\big|\tfrac{d}{dy}g^{-1}(y)\big|$. 증명: $g$ 증가면 $F_Y(y)=F_X(g^{-1}(y))$ 미분 → $f_X(g^{-1}(y))\tfrac{d}{dy}g^{-1}(y)$; 감소면 부호 반대라 절댓값.</div>
+<div class="ans"><span class="qid">A36.</span> $F$ 가 연속·순증가면 $U=F(X)\sim U(0,1)$. 증명: $0\le u\le1$ 에서 $P(U\le u)=P(F(X)\le u)=P(X\le F^{-1}(u))=F(F^{-1}(u))=u$ 이므로 $U$ 의 cdf 가 $u$, 곧 $U\sim U(0,1)$.</div>
+<div class="ans"><span class="qid">A37.</span> 이산형 $f_{\boldsymbol Y}(\boldsymbol y)=\sum_{\{\boldsymbol x:g(\boldsymbol x)=\boldsymbol y\}}f_{\boldsymbol X}(\boldsymbol x)$ (일대일이면 $f_{\boldsymbol X}(g^{-1}(\boldsymbol y))$). 연속형 $f_{\boldsymbol Y}(\boldsymbol y)=f_{\boldsymbol X}\big(h_1(\boldsymbol y),\dots,h_n(\boldsymbol y)\big)\,|J|$, $J=\det\big(\tfrac{\partial(x_1,\dots,x_n)}{\partial(y_1,\dots,y_n)}\big)$. 이산형은 확률이 점에 붙은 질량이라 일대일 변환이 질량을 통째로 옮길 뿐 밀도를 늘이고 줄이는 배율 $|J|$ 가 개입하지 않는다.</div>
+<div class="ans"><span class="qid">A38.</span> 역변환 $x_1=\tfrac{y_1+y_2}2,\ x_2=\tfrac{y_1-y_2}2$, $|J|=\tfrac12$. (1) $f_{Y_1,Y_2}(y_1,y_2)=e^{-(x_1+x_2)}\cdot\tfrac12=\tfrac12 e^{-y_1}$, 지지집합 $y_1\gt|y_2|$. (2) $f_{Y_1}(y_1)=\int_{-y_1}^{y_1}\tfrac12 e^{-y_1}dy_2=y_1e^{-y_1}\ (y_1\gt0)$ — $\text{GAM}(2,1)$; $f_{Y_2}(y_2)=\int_{|y_2|}^\infty\tfrac12 e^{-y_1}dy_1=\tfrac12 e^{-|y_2|}$ — 이중지수(라플라스). 곱 $f_{Y_1}f_{Y_2}\ne f_{Y_1,Y_2}$ (받침이 삼각형 $y_1\gt|y_2|$) 이므로 <b>독립 아님</b>.</div>
+<div class="ans"><span class="qid">A39.</span> 보조변수 $Y_1=X_2$ 도입, 역변환 $x_2=y_1,\ x_1=y_1y_2$, $|J|=|y_1|$. 결합밀도 $f_{Y_1,Y_2}=\tfrac1{2\pi}e^{-y_1^2(1+y_2^2)/2}|y_1|$. $y_1$ 을 적분(우함수라 $2\int_0^\infty$, $\int_0^\infty y_1e^{-ay_1^2}dy_1=\tfrac1{2a}$, $a=\tfrac{1+y_2^2}2$)하면 $f_{Y_2}(y_2)=\dfrac1{\pi(1+y_2^2)}$ — <b>코시분포</b>.</div>
+<div class="ans"><span class="qid">A40.</span> $f_Z(z)=\int f_X(x)f_Y(z-x)dx$; 피적분함수는 $x\in[0,1]$ 이고 $z-x\in[0,1]$ 일 때만 $1$, 곧 $x\in[\max(0,z-1),\min(1,z)]$. $0\lt z\le1$: $\int_0^z 1\,dx=z$; $1\lt z\le2$: $\int_{z-1}^1 1\,dx=2-z$; 그 외 $0$ — $z=1$ 에서 최대인 삼각형 밀도.</div>
+<div class="ans"><span class="qid">A41.</span> 적분범위 = 두 지지집합의 겹침. $x$ 는 자기 지지집합에, $z-x$ 도 자기 지지집합에 들어야 하므로 두 조건을 $x$ 로 풀어 교집합을 취한다(예: $X,Y\in[0,1]$ → $x\in[\max(0,z-1),\min(1,z)]$). 상·하한 표현이 바뀌는 $z$ 가 경계점 — <b>지지집합 상자의 꼭짓점(각 변수 양 끝값 조합)을 합에 대입해 중복 제거·정렬</b>하면 구간분할이 나온다.</div>
+<div class="ans"><span class="qid">A42.</span> $f_Z(z)=\int f_X(x)f_Y(z-x)\,dx$ (이산 $\sum_x$). <b>방법 1(cdf):</b> $F_Z(z)=\iint_{x+y\le z}f_Xf_Y=\int f_X(x)\big(\int_{-\infty}^{z-x}f_Y\,dy\big)dx$ 를 $z$ 로 미분. <b>방법 2(이중기댓값):</b> $E[I_A]=P(A)$ 로 $F_Z(z)=E[I(X+Y\le z)]=E\big[E[I\mid X]\big]=E[P(Y\le z-x)]=E[F_Y(z-x)]=\int F_Y(z-x)f_X(x)\,dx$ (독립), $z$ 로 미분하면 합성곱.</div>
+<div class="ans"><span class="qid">A43.</span> $r$ 차 적률 $\mu_r'=E(X^r)$; $r$ 차 중심적률 $\mu_r=E[(X-\mu)^r]$. $\mu_1'=\mu$(평균), $\mu_2=\sigma^2$(분산).</div>
+<div class="ans"><span class="qid">A44.</span> $M_X(t)=E(e^{tX})$ ($-h\lt t\lt h$); $M_X^{(r)}(0)=E(X^r)$. 증명: $M_X(t)=E\big(\sum_r\tfrac{(tX)^r}{r!}\big)=\sum_r\tfrac{t^r}{r!}E(X^r)$ 를 $r$ 번 미분 후 $t=0$ 대입하면 $\tfrac{t^r}{r!}E(X^r)$ 항만 남아 $M^{(r)}(0)=E(X^r)$.</div>
+<div class="ans"><span class="qid">A45.</span> $B(n,p):\ (q+pe^t)^n$; &nbsp;$\text{POI}(\lambda):\ e^{\lambda(e^t-1)}$; &nbsp;$\text{EXP}(\theta):\ (1-\theta t)^{-1}\ (t\lt\tfrac1\theta)$; &nbsp;$\text{GAM}(k,\theta):\ (1-\theta t)^{-k}\ (t\lt\tfrac1\theta)$; &nbsp;$N(\mu,\sigma^2):\ \exp(\mu t+\tfrac12\sigma^2t^2)$.</div>
+<div class="ans"><span class="qid">A46.</span> $M(t)=(q+pe^t)^n$. $M'(t)=n(q+pe^t)^{n-1}pe^t\Rightarrow M'(0)=np=E(X)$. $M''(0)=E(X^2)=n(n-1)p^2+np$, 따라서 $Var(X)=E(X^2)-(np)^2=np-np^2=np(1-p)=npq$.</div>
+<div class="ans"><span class="qid">A47.</span> (유일성) 두 확률변수의 mgf 가 어떤 구간에서 일치하면 두 분포는 같다 — mgf 가 분포를 <b>유일하게</b> 결정한다. 활용: 합·변환의 mgf 를 계산해 알려진 분포의 mgf 와 같으면 곧 그 분포라고 판정할 수 있다(합·변환 분포 판별의 핵심 도구).</div>
+<div class="ans"><span class="qid">A48.</span> (1) $Y=aX+b\Rightarrow M_Y(t)=e^{bt}M_X(at)$. 증명: $M_Y(t)=E[e^{t(aX+b)}]=e^{bt}E[e^{(at)X}]=e^{bt}M_X(at)$. (2) 독립 $\Rightarrow M_Y(t)=\prod_i M_{X_i}(t)$. 증명: $M_Y(t)=E[e^{t\sum X_i}]=E[\prod_i e^{tX_i}]=\prod_i E[e^{tX_i}]=\prod_i M_{X_i}(t)$ (독립이라 곱의 기댓값 분리).</div>
+<div class="ans"><span class="qid">A49.</span> $M_{\boldsymbol X}(t_1,\dots,t_k)=E\big[\exp(\sum_{i=1}^k t_iX_i)\big]$. 주변 mgf 는 나머지 인수를 $0$ 으로: $M_{X_i}(t_i)=M_{\boldsymbol X}(0,\dots,0,t_i,0,\dots,0)$.</div>
+<div class="ans"><span class="qid">A50.</span> $X,Y$ 독립 $\iff M_{X,Y}(t_1,t_2)=M_X(t_1)\,M_Y(t_2)$ (결합 mgf 가 분리).</div>
+<div class="ans"><span class="qid">A51.</span> $G_X(s)=E(s^X)=\sum_j p_js^j$. ① $E(X)=G_X'(1)$; ② 독립합 $G_{X+Y}(s)=G_X(s)G_Y(s)$; ③ 확률복원 $P(X=k)=\dfrac{G_X^{(k)}(0)}{k!}$.</div>
 
 <h2 class="sub">I. 기초 도구 (0장)</h2>
-<div class="ans"><span class="qid">A30.</span> $\displaystyle\int_{-\infty}^{\infty}e^{-x^2/2}dx=\sqrt{2\pi}$. 증명: $I^2=\iint_{\mathbb R^2}e^{-(x^2+y^2)/2}dx\,dy$, 극좌표($dx\,dy=r\,dr\,d\theta$)로 $I^2=\int_0^{2\pi}\!\int_0^\infty e^{-r^2/2}r\,dr\,d\theta=\int_0^{2\pi}1\,d\theta=2\pi$, 곧 $I=\sqrt{2\pi}$.</div>
-<div class="ans"><span class="qid">A31.</span> $\Gamma(k)=\displaystyle\int_0^\infty t^{k-1}e^{-t}dt\ (k\gt0)$. ① $\Gamma(k)=(k-1)\Gamma(k-1)$; ② $\Gamma(n)=(n-1)!$ ($n$ 자연수); ③ $\Gamma(\tfrac12)=\sqrt\pi$.</div>
-<div class="ans"><span class="qid">A32.</span> $B(a,b)=\displaystyle\int_0^1 x^{a-1}(1-x)^{b-1}dx=\dfrac{\Gamma(a)\Gamma(b)}{\Gamma(a+b)}$.</div>
-<div class="ans"><span class="qid">A33.</span> 유한합 $\displaystyle\sum_{k=0}^{n-1}ar^k=a\dfrac{1-r^n}{1-r}\ (r\ne1)$; 무한합 $\displaystyle\sum_{k=0}^{\infty}ar^k=\dfrac{a}{1-r}\ (|r|\lt1)$; 미분형 $\displaystyle\sum_{k=1}^{\infty}kr^{k-1}=\dfrac{1}{(1-r)^2}$.</div>
-<div class="ans"><span class="qid">A34.</span> $\displaystyle\sum_{k=0}^{\infty}\frac{\lambda^k}{k!}=e^{\lambda}$; $\displaystyle\lim_{n\to\infty}\big(1-\tfrac{\lambda}{n}\big)^n=e^{-\lambda}$.</div>
+<div class="ans"><span class="qid">A52.</span> $\displaystyle\int_{-\infty}^{\infty}e^{-x^2/2}dx=\sqrt{2\pi}$. 증명: $I^2=\iint_{\mathbb R^2}e^{-(x^2+y^2)/2}dx\,dy$, 극좌표($dx\,dy=r\,dr\,d\theta$)로 $I^2=\int_0^{2\pi}\!\int_0^\infty e^{-r^2/2}r\,dr\,d\theta=\int_0^{2\pi}1\,d\theta=2\pi$, 곧 $I=\sqrt{2\pi}$.</div>
+<div class="ans"><span class="qid">A53.</span> $\Gamma(k)=\displaystyle\int_0^\infty t^{k-1}e^{-t}dt\ (k\gt0)$. ① $\Gamma(k)=(k-1)\Gamma(k-1)$; ② $\Gamma(n)=(n-1)!$ ($n$ 자연수); ③ $\Gamma(\tfrac12)=\sqrt\pi$.</div>
+<div class="ans"><span class="qid">A54.</span> $B(a,b)=\displaystyle\int_0^1 x^{a-1}(1-x)^{b-1}dx=\dfrac{\Gamma(a)\Gamma(b)}{\Gamma(a+b)}$.</div>
+<div class="ans"><span class="qid">A55.</span> 유한합 $\displaystyle\sum_{k=0}^{n-1}ar^k=a\dfrac{1-r^n}{1-r}\ (r\ne1)$; 무한합 $\displaystyle\sum_{k=0}^{\infty}ar^k=\dfrac{a}{1-r}\ (|r|\lt1)$; 미분형 $\displaystyle\sum_{k=1}^{\infty}kr^{k-1}=\dfrac{1}{(1-r)^2}$.</div>
+<div class="ans"><span class="qid">A56.</span> $\displaystyle\sum_{k=0}^{\infty}\frac{\lambda^k}{k!}=e^{\lambda}$; $\displaystyle\lim_{n\to\infty}\big(1-\tfrac{\lambda}{n}\big)^n=e^{-\lambda}$.</div>
 </div>
 
 <nav class="pager">
