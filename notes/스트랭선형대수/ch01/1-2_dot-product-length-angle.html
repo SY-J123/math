@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>스트랭 선형대수 · 1.2 내적으로부터의 길이와 각</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">스트랭 선형대수 · 1장 벡터</div>
+  <h1><span class="no">1.2</span>내적으로부터의 길이와 각 <span class="en">lengths &amp; angles from the dot product</span></h1>
+</header>
+
+<div class="note">
+  선형결합(1.1)이 벡터의 <b>대수</b>였다면, 내적은 벡터의 <b>기하</b>(길이·각·수직)를 수식으로 끌어낸다. 이 절의 모든 것이 내적 $v\cdot w$ 하나에서 나온다.
+</div>
+
+<h2 class="sub">내적 <span class="en">dot product</span></h2>
+<div class="box def">
+  <span class="tag">정의</span><span class="title">내적</span>
+  <p>두 벡터의 같은 자리 성분을 곱해 모두 더한 <b>한 개의 수</b>:</p>
+  $$v\cdot w=v_1w_1+v_2w_2\ (\text{2차원}),\qquad v\cdot w=\sum_{i=1}^{n}v_iw_i\ (\text{$n$차원}).$$
+  <p>대칭이다: $v\cdot w=w\cdot v$.</p>
+</div>
+
+<h2 class="sub">길이(노름) <span class="en">length / norm</span></h2>
+<div class="box def">
+  <span class="tag">정의</span><span class="title">벡터의 길이</span>
+  <p>벡터와 <b>자기 자신</b>의 내적이 길이의 제곱이다:</p>
+  $$v\cdot v=v_1^2+\cdots+v_n^2=\lVert v\rVert^2,\qquad \lVert v\rVert=\sqrt{v\cdot v}.$$
+</div>
+<div class="box ex">
+  <span class="tag">예</span>
+  <ul class="props">
+    <li>$\lVert(1,2)\rVert=\sqrt5$, &nbsp;$\lVert(1,2,3)\rVert=\sqrt{14}$.</li>
+    <li>$v=(1,5,5,7)$: $\lVert v\rVert^2=1+25+25+49=100$, $\lVert v\rVert=10$.</li>
+    <li>$n$차원 $(1,1,\dots,1)$ 의 길이는 $\sqrt n$.</li>
+  </ul>
+</div>
+<div class="note">
+  $v\cdot v=\lVert v\rVert^2$ 은 곧 <b>피타고라스 정리</b>다. 성분 $v_1,v_2$ 를 직각삼각형의 두 변으로 보면 빗변의 제곱이 $v_1^2+v_2^2$ 이기 때문이다.
+</div>
+
+<h2 class="sub">단위벡터 <span class="en">unit vector</span></h2>
+<div class="box def">
+  <span class="tag">정의</span><span class="title">단위벡터와 정규화</span>
+  <p>길이가 $1$ 인 벡터가 <b>단위벡터</b>다. 영이 아닌 $v$ 를 그 길이로 나누면 단위벡터가 된다:</p>
+  $$u=\frac{v}{\lVert v\rVert}\quad\Rightarrow\quad \lVert u\rVert=1.$$
+  <ul class="props">
+    <li>표준단위벡터 $i=(1,0)$ 는 $x$ 축 방향.</li>
+    <li>$u=(\cos\theta,\sin\theta)$ 도 단위벡터다: $u\cdot u=\cos^2\theta+\sin^2\theta=1$.</li>
+    <li>$v=(1,5,5,7)$ 는 $\lVert v\rVert=10$ 이라 $u=\tfrac{1}{10}v$.</li>
+  </ul>
+</div>
+
+<h2 class="sub">수직인 벡터 <span class="en">perpendicular / orthogonal</span></h2>
+<div class="box thm">
+  <span class="tag">성질</span><span class="title">내적 $=0$ 이 직교</span>
+  <p>두 (영 아닌) 벡터가 <b>수직</b>일 필요충분조건은 내적이 $0$ 인 것이다:</p>
+  $$v\perp w\iff v\cdot w=0.$$
+</div>
+<div class="box prf">
+  <span class="tag">증명 (피타고라스)</span>
+  <p>내적을 전개하면</p>
+  $$\lVert v+w\rVert^2=(v+w)\cdot(v+w)=v\cdot v+2\,v\cdot w+w\cdot w=\lVert v\rVert^2+2\,v\cdot w+\lVert w\rVert^2.$$
+  <p>직각삼각형에서 $\lVert v+w\rVert^2=\lVert v\rVert^2+\lVert w\rVert^2$ 이 성립하는 것은 가운데 항 $2\,v\cdot w=0$, 곧 $v\cdot w=0$ 일 때뿐이다.</p>
+  <div class="qed">∎</div>
+</div>
+<figure class="fig">
+<svg viewBox="0 0 210 150" role="img" aria-label="v와 w가 수직이면 v+w가 빗변인 직각삼각형">
+  <defs>
+    <marker id="pb" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#1d6fb8"/></marker>
+    <marker id="pt" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#0f8a7d"/></marker>
+    <marker id="pp" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#7b3fa0"/></marker>
+  </defs>
+  <!-- O=(35,120), v=(4,0)*20 -> (115,120), w from v up -> (115,60)=v+w -->
+  <line class="vec" x1="35" y1="120" x2="112" y2="120" marker-end="url(#pb)"/>
+  <line class="vec2" x1="115" y1="120" x2="115" y2="63" marker-end="url(#pt)"/>
+  <line class="vec3" x1="35" y1="120" x2="112" y2="63" marker-end="url(#pp)"/>
+  <path d="M104,120 L104,111 L113,111" fill="none" stroke="#888" stroke-width="1"/>
+  <text class="lbl b" x="72" y="135">v</text>
+  <text class="lbl t" x="120" y="92">w</text>
+  <text class="lbl p" x="60" y="86">v+w</text>
+</svg>
+<figcaption>$v\perp w$ 이면 $v,w,v+w$ 가 직각삼각형을 이뤄 $\lVert v+w\rVert^2=\lVert v\rVert^2+\lVert w\rVert^2$. 이 관계가 성립하는 것과 $v\cdot w=0$ 은 같은 말이다.</figcaption>
+</figure>
+<div class="box ex">
+  <span class="tag">예</span>
+  <ul class="props">
+    <li>$v=(1,1)$, $w=(1,-1)$: $v\cdot w=1-1=0$ — 각 $45^\circ$ 와 $-45^\circ$ 라 수직.</li>
+    <li>$v=(4,2)$, $w=(-1,2)$: $v\cdot w=-4+4=0$ — 수직.</li>
+  </ul>
+</div>
+
+<h2 class="sub">사잇각과 코사인 공식 <span class="en">cosine formula</span></h2>
+<div class="box thm">
+  <span class="tag">코사인 공식</span>
+  <p>두 벡터의 사잇각 $\theta$ 는 내적으로 정해진다:</p>
+  $$v\cdot w=\lVert v\rVert\,\lVert w\rVert\cos\theta,\qquad
+    \cos\theta=\frac{v\cdot w}{\lVert v\rVert\,\lVert w\rVert}.$$
+  <p>특히 <b>단위벡터</b>면 $v\cdot w=\cos\theta$ 자체다. ($-1\le\cos\theta\le1$ 에서 슈바르츠 부등식이 곧장 나온다.)</p>
+</div>
+<figure class="fig">
+<svg viewBox="0 0 220 150" role="img" aria-label="두 벡터의 사잇각 θ와 코사인">
+  <defs>
+    <marker id="ab" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#1d6fb8"/></marker>
+    <marker id="at" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#0f8a7d"/></marker>
+  </defs>
+  <line class="axis" x1="30" y1="120" x2="205" y2="120"/>
+  <line class="vec" x1="40" y1="120" x2="160" y2="55" marker-end="url(#ab)"/>
+  <line class="vec2" x1="40" y1="120" x2="185" y2="105" marker-end="url(#at)"/>
+  <path d="M78,102 A44,44 0 0 0 84,113" fill="none" stroke="#888" stroke-width="1.2"/>
+  <text class="lbl b" x="162" y="50">v</text>
+  <text class="lbl t" x="188" y="103">w</text>
+  <text class="lbl" x="70" y="112" fill="#888">θ</text>
+</svg>
+<figcaption>$\cos\theta=\dfrac{v\cdot w}{\lVert v\rVert\lVert w\rVert}$. 내적의 부호가 각을 알려준다 — $v\cdot w\gt0$ 이면 예각, $=0$ 이면 직각($90^\circ$), $\lt0$ 이면 둔각.</figcaption>
+</figure>
+<div class="box ex">
+  <span class="tag">예</span><span class="title">삼각함수 덧셈정리가 나온다</span>
+  <p>단위벡터 $v=(\cos\alpha,\sin\alpha)$, $w=(\cos\beta,\sin\beta)$ 의 사잇각은 $\beta-\alpha$ 이므로 $v\cdot w=\cos(\beta-\alpha)$. 성분으로 계산하면</p>
+  $$\cos(\beta-\alpha)=\cos\alpha\cos\beta+\sin\alpha\sin\beta.$$
+  <p>즉 코사인 덧셈정리가 내적의 특수한 경우다.</p>
+</div>
+
+<h2 class="sub">슈바르츠·삼각부등식 <span class="en">Schwarz &amp; triangle</span></h2>
+<div class="box thm">
+  <span class="tag">부등식</span>
+  <ul class="props">
+    <li><b>슈바르츠</b><span class="en">Schwarz</span>: $|v\cdot w|\le\lVert v\rVert\,\lVert w\rVert$ ($|\cos\theta|\le1$ 에서).</li>
+    <li><b>삼각부등식</b><span class="en">triangle</span>: $\lVert v+w\rVert\le\lVert v\rVert+\lVert w\rVert$.</li>
+  </ul>
+</div>
+<div class="box prf">
+  <span class="tag">증명 (삼각부등식)</span>
+  <p>내적으로 전개하고 슈바르츠($v\cdot w\le\lVert v\rVert\lVert w\rVert$)를 쓰면</p>
+  $$\lVert v+w\rVert^2=\lVert v\rVert^2+2\,v\cdot w+\lVert w\rVert^2\le\lVert v\rVert^2+2\lVert v\rVert\lVert w\rVert+\lVert w\rVert^2=\big(\lVert v\rVert+\lVert w\rVert\big)^2.$$
+  <p>양변에 제곱근을 취하면 $\lVert v+w\rVert\le\lVert v\rVert+\lVert w\rVert$. (한 변의 길이는 다른 두 변의 합을 넘지 못한다.)</p>
+  <div class="qed">∎</div>
+</div>
+<div class="box ex">
+  <span class="tag">예</span><span class="title">슈바르츠에서 산술–기하 평균</span>
+  <p>$v=(a,b)$, $w=(b,a)$ 면 $v\cdot w=2ab$, $\lVert v\rVert\lVert w\rVert=a^2+b^2$. 슈바르츠 $|2ab|\le a^2+b^2$ 는 곧</p>
+  $$ab\le\tfrac12(a^2+b^2),\qquad \tfrac12(a^2+b^2)-ab=\tfrac12(a-b)^2\ge0.$$
+  <p>등호는 $a=b$(두 벡터가 평행)일 때다.</p>
+</div>
+
+<h2 class="sub">3차원 공간 안의 평면 <span class="en">plane in $\mathbb R^3$</span></h2>
+<div class="box def">
+  <span class="tag">성질</span><span class="title">법선벡터와 평면</span>
+  <p>영 아닌 $n=(n_1,n_2,n_3)$ 에 <b>수직</b>인 벡터 $w$ 들의 모임은 원점을 지나는 <b>평면</b>이다:</p>
+  $$n\cdot w=0\ \iff\ n_1w_1+n_2w_2+n_3w_3=0.$$
+  <p>$n$ 을 그 평면의 <b>법선벡터</b>라 한다. 2차원의 “직선이냐 점이냐” 가 3차원에서 “평면” 으로 올라간 것이다.</p>
+</div>
+
+<h2 class="sub">확인문제 <span class="en">worked example</span></h2>
+<div class="box ex">
+  <span class="tag">예 1.2A</span><span class="title">$v=(3,4)$, $w=(4,3)$</span>
+  <ul class="props">
+    <li>내적: $v\cdot w=3\cdot4+4\cdot3=24$.</li>
+    <li>길이: $\lVert v\rVert=\lVert w\rVert=\sqrt{9+16}=5$.</li>
+    <li>코사인: $\cos\theta=\dfrac{24}{5\cdot5}=\dfrac{24}{25}$. (슈바르츠 $24\lt25$ 확인.)</li>
+    <li>삼각부등식: $v+w=(7,7)$ 라 $\lVert v+w\rVert=7\sqrt2\approx9.9$, $\lVert v\rVert+\lVert w\rVert=10$ — $7\sqrt2\lt10$ 성립.</li>
+  </ul>
+</div>
+
+<nav class="pager">
+  <a href="1-1_vectors-linear-combinations.html">← 이전<small>1.1 벡터와 선형결합</small></a>
+  <span class="spacer"></span>
+</nav>
+
+</body>
+</html>
