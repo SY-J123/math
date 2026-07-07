@@ -68,6 +68,17 @@
     <li>$N(\mu,\sigma^2)$: 지수 $tx-\dfrac{(x-\mu)^2}{2\sigma^2}$ 를 $x$ 에 대해 <b>완전제곱</b>하면 $-\dfrac{(x-\mu-\sigma^2t)^2}{2\sigma^2}+\mu t+\tfrac12\sigma^2t^2$; 앞부분은 적분하면 $1$ 이라 $M(t)=\exp\!\big(\mu t+\tfrac12\sigma^2t^2\big)$.</li>
   </ul>
 </div>
+<div class="box prf">
+  <span class="tag">유도</span><span class="title">정규분포 mgf — 표준화 방법</span>
+  <p><b>① 표준정규 $Z\sim N(0,1)$.</b> 지수를 합치고 완전제곱 $z^2-2tz=(z-t)^2-t^2$ 를 쓰면</p>
+  $$M_Z(t)=\frac1{\sqrt{2\pi}}\int_{-\infty}^{\infty}e^{tz-z^2/2}\,dz
+    =e^{t^2/2}\cdot\frac1{\sqrt{2\pi}}\int_{-\infty}^{\infty}e^{-(z-t)^2/2}\,dz
+    =e^{t^2/2}.$$
+  <p>가운데 적분은 $N(t,1)$ 의 전구간 pdf 적분이라 $1$.</p>
+  <p><b>② 일반 $X\sim N(\mu,\sigma^2)$.</b> $X=\mu+\sigma Z$ 로 놓고 선형변환 성질($M_{aX+b}(t)=e^{bt}M_X(at)$)을 쓰면</p>
+  $$M_X(t)=E\big(e^{t(\mu+\sigma Z)}\big)=e^{\mu t}\,M_Z(\sigma t)=e^{\mu t}\,e^{(\sigma t)^2/2}=\exp\!\big(\mu t+\tfrac12\sigma^2t^2\big).$$
+  <div class="qed">∎</div>
+</div>
 
 <div class="box ex">
   <span class="tag">예 2.52</span><span class="title">mgf 로 평균·분산</span>
