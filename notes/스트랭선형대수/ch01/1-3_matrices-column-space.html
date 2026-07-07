@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>스트랭 선형대수 · 1.3 행렬과 열공간</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">스트랭 선형대수 · 1장 벡터</div>
+  <h1><span class="no">1.3</span>행렬과 열공간 <span class="en">matrices &amp; column space</span></h1>
+</header>
+
+<div class="note">
+  1.1 은 선형결합(<b>대수</b>), 1.2 는 내적(<b>기하</b>)이었다. 1.3 은 이 둘을 <b>행렬</b>로 묶는다. 행렬 $A$ 에 벡터 $x$ 를 곱한 $Ax$ 를 <b>행(내적)</b>과 <b>열(선형결합)</b> 두 관점으로 보고, 열들이 만들 수 있는 모든 결과의 모임인 <b>열공간</b> $C(A)$ 에 이른다.
+</div>
+
+<h2 class="sub">행렬 <span class="en">matrix</span></h2>
+<div class="box def">
+  <span class="tag">정의</span><span class="title">$m\times n$ 행렬</span>
+  <p>수를 $m$ 행 $n$ 열로 늘어놓은 직사각형 배열이 <b>행렬</b>이다. $m=n$ 이면 <b>정사각행렬</b><span class="en">square matrix</span>.</p>
+  <p>열을 벡터로 보아 $A=[\,a_1\ a_2\ \cdots\ a_n\,]$ 로 쓴다. 각 열 $a_j$ 는 $m$ 차원 벡터다.</p>
+  $$A=\begin{bmatrix}1&2\\3&4\\5&6\end{bmatrix}\ (3\times2),\qquad m=3\ \text{행},\ \ n=2\ \text{열}.$$
+</div>
+<div class="box ex">
+  <span class="tag">예</span><span class="title">자주 나오는 정사각행렬</span>
+  <ul class="props">
+    <li><b>항등행렬</b><span class="en">identity</span> $I=\begin{bmatrix}1&0&0\\0&1&0\\0&0&1\end{bmatrix}$ — 대각선만 $1$.</li>
+    <li><b>대각행렬</b><span class="en">diagonal</span> $\begin{bmatrix}2&0&0\\0&4&0\\0&0&5\end{bmatrix}$ — 대각선 밖은 모두 $0$.</li>
+    <li><b>삼각행렬</b><span class="en">triangular</span> $\begin{bmatrix}2&1&-3\\0&4&7\\0&0&5\end{bmatrix}$ — 한쪽 삼각이 $0$.</li>
+    <li><b>대칭행렬</b><span class="en">symmetric</span> $\begin{bmatrix}2&1&-3\\1&4&7\\-3&7&5\end{bmatrix}$ — $A=A^{\mathsf T}$, 대각선 기준 거울대칭.</li>
+  </ul>
+</div>
+
+<h2 class="sub">행렬 곱하기 벡터 $Ax$ — 두 관점 <span class="en">rows &amp; columns</span></h2>
+<div class="box thm">
+  <span class="tag">두 가지 계산법</span>
+  <ul class="props">
+    <li><b>행 관점(내적)</b>: $Ax$ 의 각 성분은 $A$ 의 한 행과 $x$ 의 <b>내적</b>이다.</li>
+    <li><b>열 관점(선형결합)</b>: $Ax$ 는 $A$ 의 <b>열들의 선형결합</b>이다 — $Ax=x_1a_1+x_2a_2+\cdots+x_na_n$.</li>
+  </ul>
+  <p>두 방법의 답은 언제나 같다. 하지만 선형대수의 핵심은 <b>열 관점</b>이다.</p>
+</div>
+<div class="box ex">
+  <span class="tag">예</span><span class="title">$\begin{bmatrix}1&2\\3&4\\5&6\end{bmatrix}\begin{bmatrix}7\\8\end{bmatrix}$ 를 두 방법으로</span>
+  <p><b>행(내적):</b> 각 행과 $(7,8)$ 의 내적</p>
+  $$\begin{bmatrix}1&2\\3&4\\5&6\end{bmatrix}\begin{bmatrix}7\\8\end{bmatrix}
+    =\begin{bmatrix}1\cdot7+2\cdot8\\3\cdot7+4\cdot8\\5\cdot7+6\cdot8\end{bmatrix}
+    =\begin{bmatrix}23\\53\\83\end{bmatrix}.$$
+  <p><b>열(선형결합):</b> 두 열을 $7,8$ 배 하여 더함</p>
+  $$7\begin{bmatrix}1\\3\\5\end{bmatrix}+8\begin{bmatrix}2\\4\\6\end{bmatrix}
+    =\begin{bmatrix}23\\53\\83\end{bmatrix}.$$
+</div>
+<figure class="fig">
+<svg viewBox="0 0 220 160" role="img" aria-label="Ax는 열 a1, a2의 선형결합">
+  <defs>
+    <marker id="cb" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#1d6fb8"/></marker>
+    <marker id="ct" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#0f8a7d"/></marker>
+    <marker id="cp" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#7b3fa0"/></marker>
+  </defs>
+  <polygon points="45,135 109,103 141,39 77,71" fill="#7b3fa0" fill-opacity="0.07" stroke="none"/>
+  <line class="aux" x1="109" y1="103" x2="141" y2="39"/>
+  <line class="aux" x1="77" y1="71" x2="141" y2="39"/>
+  <line class="vec"  x1="45" y1="135" x2="106" y2="104" marker-end="url(#cb)"/>
+  <line class="vec2" x1="45" y1="135" x2="74"  y2="72"  marker-end="url(#ct)"/>
+  <line class="vec3" x1="45" y1="135" x2="138" y2="41" marker-end="url(#cp)"/>
+  <text class="lbl b" x="88" y="127">a₁</text>
+  <text class="lbl t" x="52" y="86">a₂</text>
+  <text class="lbl p" x="118" y="34">Ax = x₁a₁ + x₂a₂</text>
+</svg>
+<figcaption>$Ax$ 는 열 $a_1,a_2$ 를 $x_1,x_2$ 배 해서 더한 것 — 두 열의 <b>선형결합</b>이다. $x$ 를 바꾸면 결과가 두 열이 펼치는 평면 위를 움직인다.</figcaption>
+</figure>
+<div class="box ex">
+  <span class="tag">예</span><span class="title">차이행렬 <span class="en">difference matrix</span></span>
+  <p>곱하면 이웃 성분의 <b>차</b>가 나오는 행렬이다:</p>
+  $$Ax=\begin{bmatrix}-1&1&0&0\\0&-1&1&0\\0&0&-1&1\end{bmatrix}
+    \begin{bmatrix}x_1\\x_2\\x_3\\x_4\end{bmatrix}
+    =\begin{bmatrix}x_2-x_1\\x_3-x_2\\x_4-x_3\end{bmatrix}.$$
+  <p>미분 $\dfrac{d}{dt}$ 의 이산판이다 — 연속의 도함수에 대응하는 <b>차분</b>.</p>
+</div>
+
+<h2 class="sub">선형독립과 선형종속 <span class="en">independence</span></h2>
+<div class="box def">
+  <span class="tag">정의</span><span class="title">선형독립인 열</span>
+  <p>어떤 열도 나머지 열들의 선형결합으로 만들 수 없으면 열들이 <b>선형독립</b>이다. 식으로는</p>
+  $$Ax=x_1a_1+\cdots+x_na_n=0\ \Longrightarrow\ x=(0,\dots,0)\ \text{뿐}.$$
+  <p>영벡터를 만드는 방법이 <b>자명한 것 하나뿐</b>이면 독립, 다른 방법이 있으면 <b>선형종속</b>.</p>
+</div>
+<div class="box ex">
+  <span class="tag">예</span><span class="title">독립 · 종속 · 랭크 1</span>
+  <ul class="props">
+    <li><b>독립</b>: $A_1=\begin{bmatrix}1&0&0\\2&4&0\\3&5&6\end{bmatrix}$ — 세 열이 서로를 못 만든다. 어떤 $b=(b_1,b_2,b_3)$ 도 $A_1x=b$ 로 얻는다.</li>
+    <li><b>종속(평면)</b>: $A_2=\begin{bmatrix}1&2&3\\1&4&5\\6&0&6\end{bmatrix}$ — $(1\text{열})+(2\text{열})=(3\text{열})$. 독립열은 $2$ 개.</li>
+    <li><b>종속(직선, 랭크 1)</b>: $A_3=\begin{bmatrix}1&3&4\\2&6&8\\5&15&20\end{bmatrix}$ — $a_2=3a_1,\ a_3=4a_1$. 세 열이 한 직선 위.</li>
+  </ul>
+</div>
+
+<h2 class="sub">열공간 <span class="en">column space $C(A)$</span></h2>
+<div class="box def">
+  <span class="tag">정의</span><span class="title">열공간과 생성</span>
+  <p>$A$ 의 열들의 <b>모든</b> 선형결합 $Ax$ 를 모은 집합이 <b>열공간</b> $C(A)$ 다 — 곧 열들이 <b>생성</b><span class="en">span</span>하는 공간:</p>
+  $$C(A)=\{\,Ax:\ x\in\mathbb R^n\,\}.$$
+  <p>$Ax=b$ 가 풀린다 $\iff$ $b$ 가 $C(A)$ 안에 있다. 열공간은 원점을 지나는 <b>부분공간</b>이다.</p>
+</div>
+<div class="box thm">
+  <span class="tag">$3\times3$ 열공간의 네 가지 모습</span>
+  <ul class="props">
+    <li>독립열 $3$ 개 → $C(A)=\mathbb R^3$ (공간 전체). 예 $\begin{bmatrix}1&0&0\\0&1&0\\0&0&1\end{bmatrix}$.</li>
+    <li>독립열 $2$ 개 → 원점을 지나는 <b>평면</b>. 예 $\begin{bmatrix}1&0&0\\0&1&0\\0&0&0\end{bmatrix}$ ($xy$ 평면).</li>
+    <li>독립열 $1$ 개 → 원점을 지나는 <b>직선</b>. 예 $\begin{bmatrix}1&0&0\\0&0&0\\0&0&0\end{bmatrix}$ ($x$ 축).</li>
+    <li>독립열 $0$ 개 → <b>원점 하나</b>. 영행렬.</li>
+  </ul>
+</div>
+<figure class="fig">
+<svg viewBox="0 0 460 130" role="img" aria-label="열공간의 네 가지: 점, 직선, 평면, 공간">
+  <!-- 점 -->
+  <circle cx="55" cy="78" r="3.2" fill="#7b3fa0"/>
+  <text class="lbl" x="35" y="108">점 · 랭크 0</text>
+  <!-- 직선 -->
+  <line class="vec" x1="140" y1="103" x2="200" y2="53"/>
+  <circle cx="170" cy="78" r="2.6" fill="#333"/>
+  <text class="lbl" x="145" y="108">직선 · 랭크 1</text>
+  <!-- 평면 -->
+  <polygon points="260,70 320,50 350,86 290,106" fill="#0f8a7d" fill-opacity="0.14" stroke="#0f8a7d" stroke-width="1.2"/>
+  <circle cx="305" cy="78" r="2.6" fill="#333"/>
+  <text class="lbl" x="270" y="122">평면 · 랭크 2</text>
+  <!-- 공간 (정육면체) -->
+  <g stroke="#1d6fb8" stroke-width="1.2" fill="none">
+    <rect x="392" y="58" width="40" height="40"/>
+    <rect x="405" y="45" width="40" height="40"/>
+    <line x1="392" y1="58" x2="405" y2="45"/>
+    <line x1="432" y1="58" x2="445" y2="45"/>
+    <line x1="392" y1="98" x2="405" y2="85"/>
+    <line x1="432" y1="98" x2="445" y2="85"/>
+  </g>
+  <text class="lbl" x="393" y="122">공간 ℝ³ · 랭크 3</text>
+</svg>
+<figcaption>독립인 열의 개수가 늘수록 열공간은 <b>점 → 직선 → 평면 → 공간</b> 으로 한 차원씩 커진다. 이 개수가 곧 <b>랭크</b>다.</figcaption>
+</figure>
+
+<h2 class="sub">랭크 · 기저 · $A=CR$ <span class="en">rank, basis</span></h2>
+<div class="box def">
+  <span class="tag">정의</span><span class="title">랭크와 기저</span>
+  <ul class="props">
+    <li><b>랭크</b><span class="en">rank</span> $r$: $A$ 의 <b>선형독립인 열의 개수</b>. 열공간의 차원이다.</li>
+    <li><b>기저</b><span class="en">basis</span>: 열공간을 생성하는 <b>독립인 열 $r$ 개</b>. 나머지 $n-r$ 개 열은 이들의 선형결합.</li>
+  </ul>
+</div>
+<div class="box thm">
+  <span class="tag">분해 $A=CR$</span>
+  <p>독립인 열 $r$ 개를 모아 $m\times r$ 행렬 $C$ 로, 각 열을 그 기저로 <b>어떻게 조합하는지</b>를 $r\times n$ 행렬 $R$ 로 두면</p>
+  $$A=C\,R.$$
+  <p>$C$ 는 <b>열공간</b>의 기저, $R$ 의 행들은 <b>행공간</b><span class="en">row space</span>의 기저다. 여기서 <b>열 랭크 $=$ 행 랭크</b> 가 나온다(1.4 절).</p>
+</div>
+<div class="box ex">
+  <span class="tag">예</span><span class="title">랭크 1 행렬</span>
+  <p>$A_6=\begin{bmatrix}1&3&-2\\4&12&-8\\2&6&-4\end{bmatrix}$ 는 $a_2=3a_1,\ a_3=-2a_1$ 이라 모든 열이 $a_1=(1,4,2)$ 방향.</p>
+  <p>열공간은 $ca_1=(c,4c,2c)$ 인 <b>직선 하나</b>. 랭크 $1$ 행렬은 “한 열 $\times$ 한 행” 으로 쓰이고, 모든 랭크 $r$ 행렬은 랭크 $1$ 행렬 $r$ 개의 합이다.</p>
+</div>
+
+<div class="note">
+  한 줄 요약 — 행렬은 “열들의 묶음”이고, $Ax$ 는 그 <b>열들의 선형결합</b>이다. 만들 수 있는 모든 $Ax$ 가 <b>열공간</b> $C(A)$ 이며, 그 차원(독립열의 수)이 <b>랭크</b>다.
+</div>
+
+<nav class="pager">
+  <a href="1-2_dot-product-length-angle.html">← 이전<small>1.2 내적으로부터의 길이와 각</small></a>
+  <a href="../index.html">목차 →<small>스트랭 선형대수</small></a>
+</nav>
+
+</body>
+</html>
