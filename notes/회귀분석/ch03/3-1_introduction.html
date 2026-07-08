@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3장 · 3.1 서론</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">회귀분석 · 3장 단순회귀분석</div>
+  <h1><span class="no">3.1</span>서론 <span class="en">introduction</span></h1>
+</header>
+
+<p>대다수 연구의 주된 관심은 관련된 <b>변수</b><span class="en">variables</span> 사이의 상호 연관성을 찾는 데 있다.
+예컨대 사람은 신생아에서 성인이 될 때까지 나이가 들수록 키가 자라므로 <b>나이–키</b> 사이의 함수관계를 생각해 볼 수 있고,
+어떤 플라스틱 제품의 강도가 그것을 만드는 기계의 온도와 연관된다면 <b>온도–강도</b> 사이의 함수관계를 규명하는 것도 흥미 있는 연구가 된다.</p>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">반응변수와 설명변수 <span class="en">response &amp; explanatory variables</span></span>
+  <ol class="props">
+    <li><b>반응변수</b>(response variable) 또는 <b>종속변수</b>(dependent variable): 관심의 대상이 되는 결과 변수 (키·강도 등). 보통 $Y$ 로 쓴다.</li>
+    <li><b>설명변수</b>(explanatory variable) 또는 <b>독립변수</b>(independent variable): 반응변수에 영향을 주는 변수 (나이·온도 등). 보통 $X$ 로 쓴다.</li>
+  </ol>
+</div>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">회귀분석과 단순회귀분석 <span class="en">(simple) regression analysis</span></span>
+  <p>설명변수와 반응변수 사이의 함수관계를 실험자료로부터 추구하는 통계적 방법을 <b>회귀분석</b>(regression analysis)이라 한다.
+  일반적으로는 여러 개의 설명변수를 다루지만, 이 장에서는 가장 간단한 경우 — <b>한 개의 설명변수</b>와 반응변수의 <b>선형관계</b>(linear relation)만 다룬다.
+  이런 분석을 <b>단순회귀분석</b>(simple regression analysis)이라 한다.</p>
+</div>
+
+<h2 class="sub">'회귀'라는 이름의 유래 <span class="en">origin of the term "regression"</span></h2>
+<p>'회귀(regression)'라는 용어는 우생학자 <b>Galton</b>이 처음 썼다. 그는 아버지의 키 $X$ 와 성인이 된 아들의 키 $Y$ 의 관계를 조사했는데,
+키가 큰 아버지의 아들은 아버지보다 작고 키가 작은 아버지의 아들은 아버지보다 커서, 아들의 키가 전체 평균 쪽으로 <b>되돌아가는(regress)</b> 경향을 관찰했다.
+뒤이어 <b>Pearson</b>은 $1{,}078$ 가족의 부자(父子) 신장(단위: 인치)을 수집하여, 아버지 키 $X=x$ 가 주어졌을 때 아들의 평균 키를 다음 <b>회귀직선</b>으로 추정하였다.</p>
+$$\hat E(Y\mid X=x)=33.887+0.514\,x.$$
+<p>기울기 $0.514<1$ 이라는 점이 핵심이다 — 아버지가 평균보다 큰 만큼을 아들은 그 절반 정도밖에 물려받지 못하고, 나머지는 평균 쪽으로 되돌아간다.</p>
+
+<figure class="fig">
+<svg viewBox="0 0 280 190" role="img" aria-label="아버지 키와 아들 키의 산점도와 회귀직선">
+  <line class="axis" x1="45" y1="160" x2="265" y2="160"/>
+  <line class="axis" x1="45" y1="160" x2="45" y2="25"/>
+  <line class="vec" x1="60" y1="145" x2="250" y2="52"/>
+  <g fill="#5a5a5a">
+    <circle cx="70" cy="138" r="2.6"/><circle cx="85" cy="121" r="2.6"/>
+    <circle cx="98" cy="129" r="2.6"/><circle cx="112" cy="110" r="2.6"/>
+    <circle cx="126" cy="114" r="2.6"/><circle cx="140" cy="96" r="2.6"/>
+    <circle cx="156" cy="102" r="2.6"/><circle cx="170" cy="84" r="2.6"/>
+    <circle cx="186" cy="90" r="2.6"/><circle cx="200" cy="71" r="2.6"/>
+    <circle cx="216" cy="76" r="2.6"/><circle cx="240" cy="59" r="2.6"/>
+  </g>
+  <circle cx="150" cy="98" r="3.8" fill="#1d6fb8"/>
+  <text class="lbl b" x="156" y="96">$(\bar x,\bar y)$</text>
+  <text class="lbl" x="150" y="178" text-anchor="middle">아버지의 키 (father's height)</text>
+  <text class="lbl" x="14" y="95" transform="rotate(-90 14,95)" text-anchor="middle">아들의 키</text>
+</svg>
+<figcaption>그림 3.1 — 아버지 키 $X$ 와 아들 키 $Y$ 의 산점도와 회귀직선. 직선은 평균점 $(\bar x,\bar y)$ 를 지나고 기울기가 $1$ 보다 작다.</figcaption>
+</figure>
+
+<h2 class="sub">평균으로의 회귀 <span class="en">regression toward the mean</span></h2>
+<p>왜 아들 키가 평균으로 되돌아가는지는 이변량 정규분포로 설명된다. 확률벡터 $\binom{X}{Y}$ 가 평균벡터와 공분산행렬</p>
+$$\mu=\begin{pmatrix}\mu_X\\[2pt] \mu_Y\end{pmatrix},\qquad
+\Sigma=\begin{pmatrix}\sigma_X^2 & \rho\,\sigma_X\sigma_Y\\[3pt] \rho\,\sigma_X\sigma_Y & \sigma_Y^2\end{pmatrix}$$
+<p>인 이차원 정규분포를 따른다 하자. 설명을 간단히 하려고 $\mu_X=\mu_Y=\mu$, $\sigma_X^2=\sigma_Y^2=\sigma^2$, 그리고 $0<\rho<1$ 을 가정하면, $X=x$ 에서 아들의 평균 키는</p>
+$$E(Y\mid X=x)=\mu_Y+\rho\frac{\sigma_Y}{\sigma_X}(x-\mu_X)=\rho\,x+(1-\rho)\,\mu.\tag{3.1}$$
+<p>$\rho<1$ 이므로 아버지 키 $x$ 가 평균보다 크면 ($x>\mu$)</p>
+$$\mu<\underbrace{\mu+\rho(x-\mu)}_{E(Y\mid x)}<x,$$
+<p>즉 아들의 평균 키는 아버지 키 $x$ 보다 평균 $\mu$ 쪽으로 당겨진다. 반대로 $x<\mu$ 이면 $x<\mu+\rho(x-\mu)<\mu$ 로 역시 평균 쪽으로 당겨진다. 이것이 <b>평균으로의 회귀</b>다.</p>
+<div class="note">
+  극단적인 값의 부모가 극단적이지 않은 자녀를 낳는 것은 유전이 '약해서'가 아니라, 상관 $|\rho|<1$ 인 두 변수라면 <b>수학적으로 항상 나타나는 현상</b>이다.
+  $\rho=1$ 이면 되돌아감이 없고($E(Y\mid x)=x$), $\rho=0$ 이면 회귀직선이 수평이 되어 $X$ 가 $Y$ 예측에 아무 쓸모가 없다.
+</div>
+
+<nav class="pager">
+  <span class="spacer"></span>
+  <a class="next" href="3-2_basic-concepts.html">다음 →<small>3.2 회귀분석의 기본개념</small></a>
+</nav>
+
+</body>
+</html>

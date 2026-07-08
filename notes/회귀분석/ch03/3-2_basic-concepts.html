@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3장 · 3.2 회귀분석의 기본개념</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">회귀분석 · 3장 단순회귀분석</div>
+  <h1><span class="no">3.2</span>회귀분석의 기본개념 <span class="en">basic concepts</span></h1>
+</header>
+
+<h2 class="sub"><span class="no">3.2.1</span>산점도 <span class="en">scatter plot</span></h2>
+<p>두 변수의 함수관계를 연구하는 첫 단계는 관측값을 <b>시각화</b>하는 일이다.
+<b>산점도</b>(scatter plot)를 그려 보면 두 변수의 관계를 대략적으로 짐작할 수 있다.</p>
+
+<div class="box ex">
+  <span class="tag">예</span><span class="title">광고료와 총판매액</span>
+  <p>비슷한 여건에 있는 상점 $10$ 곳을 표본(sample)으로 뽑아 연간 광고료와 총판매액을 조사하니 자료가 [표 3.1]과 같았다 하자.</p>
+  <div class="scroll">
+  <table class="data">
+    <caption style="caption-side:top; font-size:0.8rem; color:var(--muted); margin-bottom:4px;">표 3.1 &nbsp; 표본상점의 광고료와 총판매액</caption>
+    <tr>
+      <th>상점번호</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th>
+    </tr>
+    <tr>
+      <th>광고료<br><small>(10만원)</small></th>
+      <td>4</td><td>8</td><td>9</td><td>8</td><td>8</td><td>12</td><td>6</td><td>10</td><td>6</td><td>9</td>
+    </tr>
+    <tr>
+      <th>총판매액<br><small>(100만원)</small></th>
+      <td>9</td><td>20</td><td>22</td><td>15</td><td>17</td><td>30</td><td>18</td><td>25</td><td>10</td><td>20</td>
+    </tr>
+  </table>
+  </div>
+</div>
+
+<p>광고료를 설명변수 $X$, 총판매액을 반응변수 $Y$ 로 하여 산점도를 그리면 [그림 3.2]와 같다.
+이 그림에서 $X$ 가 커지면 대체로 $Y$ 도 커지며, 그 관계가 대략 <b>직선</b>에 가깝다는 것을 알 수 있다.</p>
+
+<figure class="fig">
+<svg viewBox="0 0 300 200" role="img" aria-label="광고료와 총판매액의 산점도 (직선 관계)">
+  <line class="axis" x1="40" y1="170" x2="285" y2="170"/>
+  <line class="axis" x1="40" y1="170" x2="40" y2="20"/>
+  <g fill="#1d6fb8">
+    <circle cx="60"  cy="160"   r="3"/>
+    <circle cx="155" cy="91.9"  r="3"/>
+    <circle cx="178.75" cy="79.5" r="3"/>
+    <circle cx="155" cy="122.9" r="3"/>
+    <circle cx="155" cy="110.5" r="3"/>
+    <circle cx="250" cy="30"    r="3"/>
+    <circle cx="107.5" cy="104.3" r="3"/>
+    <circle cx="202.5" cy="61"  r="3"/>
+    <circle cx="107.5" cy="153.8" r="3"/>
+    <circle cx="178.75" cy="91.9" r="3"/>
+  </g>
+  <text class="lbl" x="162" y="192" text-anchor="middle">광고료 $X$ (10만원)</text>
+  <text class="lbl" x="14" y="98" transform="rotate(-90 14,98)" text-anchor="middle">총판매액 $Y$</text>
+</svg>
+<figcaption>그림 3.2 — 광고료와 총판매액의 산점도. $X$ 가 증가하면 $Y$ 가 증가하고, 대략 직선 관계다.</figcaption>
+</figure>
+
+<div class="note">
+  만약 산점도가 [그림 3.3]처럼 <b>곡선</b> 형태라면 직선보다 곡선을 적합시키는 것이 타당하다.
+  이때는 <b>곡선회귀</b>(curvilinear regression) 또는 <b>다항회귀</b>(polynomial regression)를 쓰며, 이는 9장에서 다룬다.
+</div>
+
+<figure class="fig">
+<svg viewBox="0 0 300 200" role="img" aria-label="곡선 관계를 보이는 산점도">
+  <line class="axis" x1="40" y1="170" x2="285" y2="170"/>
+  <line class="axis" x1="40" y1="170" x2="40" y2="20"/>
+  <path class="aux" d="M55,150 Q160,20 275,50"/>
+  <g fill="#7b3fa0">
+    <circle cx="60" cy="152" r="3"/><circle cx="72" cy="138" r="3"/>
+    <circle cx="88" cy="120" r="3"/><circle cx="100" cy="112" r="3"/>
+    <circle cx="118" cy="92" r="3"/><circle cx="132" cy="80" r="3"/>
+    <circle cx="150" cy="66" r="3"/><circle cx="168" cy="58" r="3"/>
+    <circle cx="188" cy="52" r="3"/><circle cx="210" cy="48" r="3"/>
+    <circle cx="235" cy="49" r="3"/><circle cx="262" cy="54" r="3"/>
+  </g>
+  <text class="lbl" x="162" y="192" text-anchor="middle">$X$</text>
+  <text class="lbl" x="14" y="98" transform="rotate(-90 14,98)" text-anchor="middle">$Y$</text>
+</svg>
+<figcaption>그림 3.3 — 곡선 관계를 보이는 산점도. 직선보다 곡선(곡선·다항회귀)이 적합하다.</figcaption>
+</figure>
+
+<h2 class="sub"><span class="no">3.2.2</span>기본가정 <span class="en">basic assumptions</span></h2>
+<p>단순회귀분석은 설명변수 $X$ 와 반응변수 $Y$ 사이에 다음 세 가지 가정을 전제조건으로 삼는다.</p>
+
+<div class="box def">
+  <span class="tag">가정 (1)</span><span class="title">선형성 <span class="en">linearity</span></span>
+  <p>주어진 $X=x$ 에서 $Y$ 의 기댓값이 다음 선형식으로 표현된다.</p>
+  $$E(Y\mid X=x)=\beta_0+\beta_1 x.$$
+  <p>여기서 '선형'은 <b>회귀계수</b> $\beta_0,\beta_1$ 에 대한 선형을 뜻하며, $x$ 에 대한 선형을 뜻하지 않는다. 예컨대</p>
+  $$E(Y\mid X=x)=\beta_0+\beta_1 x+\beta_2 x^2\tag{3.2}$$
+  <p>은 $x$ 에 대해선 이차 곡선이지만 $\beta_0,\beta_1,\beta_2$ 에 대해선 여전히 선형이라 회귀모형에 속한다.</p>
+</div>
+
+<div class="box def">
+  <span class="tag">가정 (2)</span><span class="title">정규성과 등분산성 <span class="en">normality &amp; homoscedasticity</span></span>
+  <p>주어진 $x$ 에서 $Y$ 는 <b>정규분포</b>(normal distribution)를 따른다. 평균 $E(Y\mid X=x)=\beta_0+\beta_1 x$ 는 $x$ 에 따라 변하지만,
+  <b>분산은 $x$ 의 값에 관계없이 일정</b>하다. 앞을 <b>정규성</b>, 뒤를 <b>등분산성</b>이라 부른다.</p>
+</div>
+<div class="note">
+  등분산성은 회귀분석에서 강한 가정일 수 있다. 예컨대 연령–혈압 연구에서 연령이 높을수록 관측된 혈압의 <b>변동</b>도 커지는 경향이 있다.
+  즉 평균이 큰 개체·집단에서 분산도 커지면 등분산 가정이 만족되지 않는다.
+</div>
+
+<div class="box def">
+  <span class="tag">가정 (3)</span><span class="title">독립성 <span class="en">independence</span></span>
+  <p>설명변수 $X$ 는 확률변수가 아니라 <b>고정된 값</b>으로 가정하고, 반응변수 $Y$ 는 측정오차를 수반하는 <b>확률변수</b>(random variable)다.
+  또 $Y$ 의 측정오차들은 서로 <b>독립</b>이다.</p>
+</div>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">단순회귀모형 <span class="en">simple linear regression model</span></span>
+  <p>위 세 가정 아래 $i$ 번째 관측을 다음과 같이 표현한다.</p>
+  $$y_i=\beta_0+\beta_1 x_i+\varepsilon_i,\qquad \varepsilon_i\overset{\text{iid}}{\sim} N(0,\sigma^2)\tag{3.3}$$
+  <ol class="props">
+    <li>$y_i$ : 반응변수 $Y$ 의 $i$ 번째 관측값</li>
+    <li>$\beta_0,\ \beta_1$ : 모집단의 회귀계수</li>
+    <li>$x_i$ : $X$ 의 고정된 $i$ 번째 값</li>
+    <li>$\varepsilon_i$ : $i$ 번째 오차항 — $N(0,\sigma^2)$ 을 따르고 다른 오차항과 독립</li>
+  </ol>
+  <p>'단순(simple)'은 설명변수가 하나임을 뜻하며, 이런 모형을 설명변수가 하나인 <b>일차 모형</b>(first-order model)이라고도 부른다.
+  첨자 $i$ 를 빼고 $X=x$ 로 주어졌을 때의 반응변수를 일반형으로 쓰면</p>
+  $$Y=\beta_0+\beta_1 x+\varepsilon.\tag{3.4}$$
+</div>
+
+<p>주어진 $x$ 에서 $Y$ 의 기댓값이 $E(Y\mid X=x)=\beta_0+\beta_1 x$ 이므로 (3.4)는 $Y=E(Y\mid X=x)+\varepsilon$,
+곧 오차항 $\varepsilon=Y-E(Y\mid X=x)$ 로 표현된다. 이때 확률변수 $Y$ 와 $\varepsilon$ 은 각각 다음 분포를 가진다.</p>
+$$Y\mid X\sim N\!\big(E(Y\mid X=x),\ \sigma^2\big)\tag{3.5}$$
+$$\varepsilon\mid X\sim N(0,\ \sigma^2)\tag{3.6}$$
+<p>따라서 두 조건부 분산이 같다.</p>
+$$Var(Y\mid X)=Var(\varepsilon\mid X)=\sigma^2.$$
+
+<div class="note">
+  <b>등분산 vs 이분산.</b> $Y$ 의 분산이 $x$ 에 관계없이 일정하면 <b>등분산</b>(homoscedastic),
+  $X=x$ 에 따라 달라지면 <b>이분산</b>(heteroscedastic)이라 한다. 이분산인 경우는 3.8절·12장에서 별도로 다룬다.
+  또 독립성 가정은 서로 다른 오차항의 공분산이 $Cov(\varepsilon_i,\varepsilon_j)=0\ (i\neq j)$ 임을 뜻하며, 이 가정이 깨지는 경우는 12.4절에서 다룬다.
+</div>
+
+<div class="note">
+  <b>$Y$ on $X$ vs $X$ on $Y$.</b> 실제로는 $X$ 도 확률변수인 경우가 흔하다. 그럴 때는
+  $X$ 에 대한 $Y$ 의 회귀(regression of $Y$ on $X$) $E(Y\mid X=x)$ 뿐 아니라
+  $Y$ 에 대한 $X$ 의 회귀(regression of $X$ on $Y$) $E(X\mid Y=y)$ 를 구하는 것도 의미가 있는데, 이 둘은 일반적으로 <b>서로 같지 않다</b>.
+</div>
+
+<p>식 (3.5)·(3.6)의 성질을 알기 쉽게 나타내면 [그림 3.4]와 같다. 각 $x$ 마다 평균이 회귀직선 위의 값 $\beta_0+\beta_1 x$,
+표준편차가 $\sigma$ 로 일정한 정규분포가 세워져 있다. 예를 들어 $x=6$ 에서 $Y$ 의 평균은 $E(Y\mid X=6)=\beta_0+6\beta_1$ 이다.</p>
+
+<figure class="fig">
+<svg viewBox="0 0 320 220" role="img" aria-label="회귀직선 위에 각 x마다 세워진 정규분포">
+  <line class="axis" x1="40" y1="180" x2="305" y2="180"/>
+  <line class="axis" x1="40" y1="180" x2="40" y2="20"/>
+  <line class="vec" x1="55" y1="165" x2="295" y2="45"/>
+  <text class="lbl b" x="258" y="40">$E(Y\mid X=x)=\beta_0+\beta_1 x$</text>
+  <g fill="#eef5fb" stroke="#1d6fb8" stroke-width="1.3">
+    <path transform="translate(98.6,143.2)"  d="M0,-22 C14.3,-12.1 26,-3.96 26,0 C26,3.96 14.3,12.1 0,22"/>
+    <path transform="translate(142.3,121.4)" d="M0,-22 C14.3,-12.1 26,-3.96 26,0 C26,3.96 14.3,12.1 0,22"/>
+    <path transform="translate(185.9,99.5)"  d="M0,-22 C14.3,-12.1 26,-3.96 26,0 C26,3.96 14.3,12.1 0,22"/>
+    <path transform="translate(229.5,77.7)"  d="M0,-22 C14.3,-12.1 26,-3.96 26,0 C26,3.96 14.3,12.1 0,22"/>
+    <path transform="translate(273.2,56)"    d="M0,-22 C14.3,-12.1 26,-3.96 26,0 C26,3.96 14.3,12.1 0,22"/>
+  </g>
+  <g stroke="#bbb" stroke-dasharray="3 3">
+    <line x1="98.6" y1="180" x2="98.6" y2="143.2"/>
+    <line x1="142.3" y1="180" x2="142.3" y2="121.4"/>
+    <line x1="185.9" y1="180" x2="185.9" y2="99.5"/>
+    <line x1="229.5" y1="180" x2="229.5" y2="77.7"/>
+    <line x1="273.2" y1="180" x2="273.2" y2="56"/>
+  </g>
+  <g class="lbl" text-anchor="middle" fill="#5a5a5a">
+    <text x="98.6" y="194">4</text><text x="142.3" y="194">6</text>
+    <text x="185.9" y="194">8</text><text x="229.5" y="194">10</text><text x="273.2" y="194">12</text>
+  </g>
+  <text class="lbl" x="175" y="212" text-anchor="middle">$X$ (광고료)</text>
+  <text class="lbl" x="14" y="105" transform="rotate(-90 14,105)" text-anchor="middle">$Y$ (총판매액)</text>
+</svg>
+<figcaption>그림 3.4 — $Y\mid X\sim N\big(E(Y\mid X=x),\sigma^2\big)$ 의 도해. 각 $x$ 에서 평균은 회귀직선을 따라 움직이고, 분산 $\sigma^2$ 은 일정하다(등분산).</figcaption>
+</figure>
+
+<p>때로는 (3.4)를 표본평균 $\bar x$ 를 중심으로 정리한 <b>대체모형</b>(alternative model)으로 쓰기도 한다.</p>
+$$Y=\beta_0+\beta_1 x+\varepsilon=(\beta_0+\beta_1\bar x)+\beta_1(x-\bar x)+\varepsilon=\beta_0'+\beta_1(x-\bar x)+\varepsilon.\tag{3.7}$$
+<div class="note">
+  $\beta_0'=\beta_0+\beta_1\bar x$ 는 $x=\bar x$ 일 때의 $Y$ 평균이다. 이렇게 <b>중심화</b>하면 절편의 추정이 안정되고,
+  다음 절(3.3 회귀선의 추정)의 최소제곱 계산에서 $\beta_0'$ 과 $\beta_1$ 의 추정이 서로 분리되어 간단해진다.
+</div>
+
+<nav class="pager">
+  <a href="3-1_introduction.html">← 이전<small>3.1 서론</small></a>
+  <span class="spacer"></span>
+</nav>
+
+</body>
+</html>
