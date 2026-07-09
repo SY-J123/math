@@ -45,7 +45,7 @@
 키가 큰 아버지의 아들은 아버지보다 작고 키가 작은 아버지의 아들은 아버지보다 커서, 아들의 키가 전체 평균 쪽으로 <b>되돌아가는(regress)</b> 경향을 관찰했다.
 뒤이어 <b>Pearson</b>은 $1{,}078$ 가족의 부자(父子) 신장(단위: 인치)을 수집하여, 아버지 키 $X=x$ 가 주어졌을 때 아들의 평균 키를 다음 <b>회귀직선</b>으로 추정하였다.</p>
 $$\hat E(Y\mid X=x)=33.887+0.514\,x.$$
-<p>기울기 $0.514<1$ 이라는 점이 핵심이다 — 아버지가 평균보다 큰 만큼을 아들은 그 절반 정도밖에 물려받지 못하고, 나머지는 평균 쪽으로 되돌아간다.</p>
+<p>기울기 $0.514\lt1$ 이라는 점이 핵심이다 — 아버지가 평균보다 큰 만큼을 아들은 그 절반 정도밖에 물려받지 못하고, 나머지는 평균 쪽으로 되돌아간다.</p>
 
 <figure class="fig">
 <svg viewBox="0 0 280 190" role="img" aria-label="아버지 키와 아들 키의 산점도와 회귀직선">
@@ -61,7 +61,7 @@ $$\hat E(Y\mid X=x)=33.887+0.514\,x.$$
     <circle cx="216" cy="76" r="2.6"/><circle cx="240" cy="59" r="2.6"/>
   </g>
   <circle cx="150" cy="98" r="3.8" fill="#1d6fb8"/>
-  <text class="lbl b" x="156" y="96">$(\bar x,\bar y)$</text>
+  <text class="lbl b" x="156" y="96">(x̄, ȳ)</text>
   <text class="lbl" x="150" y="178" text-anchor="middle">아버지의 키 (father's height)</text>
   <text class="lbl" x="14" y="95" transform="rotate(-90 14,95)" text-anchor="middle">아들의 키</text>
 </svg>
@@ -72,13 +72,13 @@ $$\hat E(Y\mid X=x)=33.887+0.514\,x.$$
 <p>왜 아들 키가 평균으로 되돌아가는지는 이변량 정규분포로 설명된다. 확률벡터 $\binom{X}{Y}$ 가 평균벡터와 공분산행렬</p>
 $$\mu=\begin{pmatrix}\mu_X\\[2pt] \mu_Y\end{pmatrix},\qquad
 \Sigma=\begin{pmatrix}\sigma_X^2 & \rho\,\sigma_X\sigma_Y\\[3pt] \rho\,\sigma_X\sigma_Y & \sigma_Y^2\end{pmatrix}$$
-<p>인 이차원 정규분포를 따른다 하자. 설명을 간단히 하려고 $\mu_X=\mu_Y=\mu$, $\sigma_X^2=\sigma_Y^2=\sigma^2$, 그리고 $0<\rho<1$ 을 가정하면, $X=x$ 에서 아들의 평균 키는</p>
+<p>인 이차원 정규분포를 따른다 하자. 설명을 간단히 하려고 $\mu_X=\mu_Y=\mu$, $\sigma_X^2=\sigma_Y^2=\sigma^2$, 그리고 $0\lt\rho\lt1$ 을 가정하면, $X=x$ 에서 아들의 평균 키는</p>
 $$E(Y\mid X=x)=\mu_Y+\rho\frac{\sigma_Y}{\sigma_X}(x-\mu_X)=\rho\,x+(1-\rho)\,\mu.\tag{3.1}$$
-<p>$\rho<1$ 이므로 아버지 키 $x$ 가 평균보다 크면 ($x>\mu$)</p>
-$$\mu<\underbrace{\mu+\rho(x-\mu)}_{E(Y\mid x)}<x,$$
-<p>즉 아들의 평균 키는 아버지 키 $x$ 보다 평균 $\mu$ 쪽으로 당겨진다. 반대로 $x<\mu$ 이면 $x<\mu+\rho(x-\mu)<\mu$ 로 역시 평균 쪽으로 당겨진다. 이것이 <b>평균으로의 회귀</b>다.</p>
+<p>$\rho\lt1$ 이므로 아버지 키 $x$ 가 평균보다 크면 ($x>\mu$)</p>
+$$\mu\lt\underbrace{\mu+\rho(x-\mu)}_{E(Y\mid x)}\lt x,$$
+<p>즉 아들의 평균 키는 아버지 키 $x$ 보다 평균 $\mu$ 쪽으로 당겨진다. 반대로 $x\lt\mu$ 이면 $x\lt\mu+\rho(x-\mu)\lt\mu$ 로 역시 평균 쪽으로 당겨진다. 이것이 <b>평균으로의 회귀</b>다.</p>
 <div class="note">
-  극단적인 값의 부모가 극단적이지 않은 자녀를 낳는 것은 유전이 '약해서'가 아니라, 상관 $|\rho|<1$ 인 두 변수라면 <b>수학적으로 항상 나타나는 현상</b>이다.
+  극단적인 값의 부모가 극단적이지 않은 자녀를 낳는 것은 유전이 '약해서'가 아니라, 상관 $|\rho|\lt1$ 인 두 변수라면 <b>수학적으로 항상 나타나는 현상</b>이다.
   $\rho=1$ 이면 되돌아감이 없고($E(Y\mid x)=x$), $\rho=0$ 이면 회귀직선이 수평이 되어 $X$ 가 $Y$ 예측에 아무 쓸모가 없다.
 </div>
 
