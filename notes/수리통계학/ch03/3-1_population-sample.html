@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3장 · 3.1 모집단과 표본</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">수리통계학 · 3장 표본분포 및 그의 근사</div>
+  <h1><span class="no">3.1</span>모집단과 표본 <span class="en">population &amp; sample</span></h1>
+</header>
+
+<p>통계이론의 주된 활용은 연구대상 전체를 직접 조사하는 대신 그 <b>일부(표본)</b>를 관찰해, 관찰된 자료로부터
+전체의 성격에 대한 <b>귀납적</b><span class="en">inductive</span> 추론을 하는 것이다. 이 장에서는 표본으로부터 계산한 값이
+어떤 분포를 따르는지를 다룬다 — 이것이 이후 <b>추정·가설검정</b>의 바탕이 된다.</p>
+
+<h2 class="sub">모집단과 표본 <span class="en">population and sample</span></h2>
+<div class="box def">
+  <span class="tag">정의 3.1</span><span class="title">모집단과 표본</span>
+  <p>연구 또는 관찰의 대상이 되는 <b>총체</b><span class="en">totality</span>를 <b>모집단</b><span class="en">population</span>이라 하고,
+  모집단의 성격을 규명하기 위해 실제로 관찰·조사하는 그 일부를 <b>표본</b><span class="en">sample</span>이라 한다.</p>
+</div>
+<div class="box def">
+  <span class="tag">정의 3.2</span><span class="title">랜덤표본 <span class="en">random sample</span></span>
+  <p>확률변수 $X_1,X_2,\dots,X_n$ 의 결합 확률밀도함수가 모집단의 밀도 $f(\cdot)$ 의 <b>곱</b>으로
+  나타나면, 즉</p>
+  $$f_{X_1,\dots,X_n}(x_1,\dots,x_n)=f(x_1)f(x_2)\cdots f(x_n)=\prod_{i=1}^{n}f(x_i)$$
+  <p>이면 $X_1,\dots,X_n$ 을 크기 $n$ 인 (밀도 $f$ 인 모집단으로부터의) <b>랜덤표본</b>이라 한다. 즉 각 $X_i$ 는
+  <b>서로 독립이며 동일한 분포</b>를 가진다 <span class="en">iid, independent and identically distributed</span>.</p>
+</div>
+<div class="box ex">
+  <span class="tag">예 3.1</span><span class="title">베르누이 모집단의 랜덤표본</span>
+  <p>모수 $p$ 인 베르누이 분포 $f(x)=p^xq^{1-x}\ (x=0,1;\ p+q=1)$ 로부터 크기 $10$ 인 랜덤표본
+  $X_1,\dots,X_{10}$ 을 얻었다면, 독립성에 의해 결합 pmf 는</p>
+  $$f_{X_1,\dots,X_{10}}(x_1,\dots,x_{10})=\prod_{i=1}^{10}p^{x_i}q^{1-x_i}
+     =p^{\sum x_i}\,q^{\,10-\sum x_i},\qquad x_i=0\ \text{또는}\ 1.$$
+</div>
+
+<h2 class="sub">통계량 <span class="en">statistic</span></h2>
+<div class="box def">
+  <span class="tag">정의 3.3</span><span class="title">통계량 <span class="en">statistic</span></span>
+  <p><b>미지의 모수를 포함하지 않는</b> 랜덤표본의 함수 $T=T(X_1,X_2,\dots,X_n)$ 을 통계량이라 한다.
+  통계량은 확률변수들의 함수이므로 그 자체도 <b>확률변수</b>이다.</p>
+</div>
+<div class="box ex">
+  <span class="tag">예 3.2</span><span class="title">통계량인 것과 아닌 것</span>
+  <p>밀도 $f(x;\theta)$ ($\theta$ 는 미지) 로부터의 랜덤표본 $X_1,\dots,X_n$ 에 대하여</p>
+  <ul class="props">
+    <li>표본평균 $\overline{X}_n=\sum_{i=1}^n X_i/n$, 표본최댓값 $\max\{X_1,\dots,X_n\}$ 등은 <b>통계량이다</b>.</li>
+    <li>$\overline{X}_n-\theta$, $\max\{X_1/\theta,\dots,X_n/\theta\}$ 등은 미지의 모수 $\theta$ 에 의존하므로 <b>통계량이 아니다</b>.</li>
+  </ul>
+</div>
+
+<h2 class="sub">표본적률 <span class="en">sample moments</span></h2>
+<div class="box def">
+  <span class="tag">정의 3.4</span><span class="title">표본적률과 표본중심적률</span>
+  <p>크기 $n$ 인 랜덤표본 $X_1,\dots,X_n$ 에 대하여</p>
+  <ul class="props">
+    <li>$r$ 차 <b>표본적률</b><span class="en">sample moment</span>: $\displaystyle m_r'=\frac1n\sum_{i=1}^n X_i^{\,r}$.</li>
+    <li>$r$ 차 <b>표본중심적률</b><span class="en">central sample moment</span>: $\displaystyle m_r=\frac1n\sum_{i=1}^n (X_i-\overline{X}_n)^r$.</li>
+  </ul>
+</div>
+<div class="box def">
+  <span class="tag">정의</span><span class="title">표본평균과 표본분산</span>
+  <ul class="props">
+    <li><b>표본평균</b><span class="en">sample mean</span>: $\displaystyle \overline{X}_n=\frac1n\sum_{i=1}^n X_i\ (=m_1')$.</li>
+    <li><b>표본분산</b><span class="en">sample variance</span>: $\displaystyle S_n^2=\frac{1}{n-1}\sum_{i=1}^n (X_i-\overline{X}_n)^2$.</li>
+  </ul>
+</div>
+<div class="note">
+  표본분산은 $2$ 차 표본중심적률 $m_2$ 와 달리 $n$ 이 아니라 <b>$n-1$</b> 로 나눈다. 아래 정리에서 보듯 이 $n-1$ 덕분에
+  $E(S_n^2)=\sigma^2$ 이 되어 모분산의 <b>불편추정량</b><span class="en">unbiased</span>이 된다.
+</div>
+
+<h2 class="sub">표본평균과 표본분산의 성질 <span class="en">properties</span></h2>
+<div class="box thm">
+  <span class="tag">정리 3.1</span><span class="title">표본평균·표본분산의 기댓값과 분산</span>
+  <p>평균 $\mu$, 분산 $\sigma^2$ 인 모집단으로부터의 랜덤표본 $X_1,\dots,X_n$ 에 대하여</p>
+  <ol class="props">
+    <li>$E(\overline{X}_n)=\mu$</li>
+    <li>$\operatorname{Var}(\overline{X}_n)=\dfrac{\sigma^2}{n}$</li>
+    <li>$E(S_n^2)=\sigma^2$</li>
+    <li>$\operatorname{Var}(S_n^2)=\dfrac1n\left(\mu_4-\dfrac{n-3}{n-1}\sigma^4\right),\quad n>1$ &nbsp;($\mu_4$ 는 모집단의 $4$ 차 중심적률)</li>
+  </ol>
+</div>
+<div class="box prf">
+  <span class="tag">증명</span>
+  <p><b>① 표본평균의 기댓값.</b> 기댓값의 선형성으로</p>
+  $$E(\overline{X}_n)=E\!\left(\frac1n\sum_{i=1}^n X_i\right)=\frac1n\sum_{i=1}^n E(X_i)=\frac1n\,n\mu=\mu.$$
+  <p><b>② 표본평균의 분산.</b> $X_i$ 가 서로 <a href="../ch02/2-4_expectation.html">독립</a>이라 분산이 합으로 분리되므로</p>
+  $$\operatorname{Var}(\overline{X}_n)=\frac1{n^2}\operatorname{Var}\!\left(\sum_{i=1}^n X_i\right)
+     =\frac1{n^2}\sum_{i=1}^n \operatorname{Var}(X_i)=\frac1{n^2}\,n\sigma^2=\frac{\sigma^2}{n}.$$
+  <p><b>③ 표본분산의 기댓값.</b> 먼저 다음 항등식을 쓴다:</p>
+  $$\sum_{i=1}^n (X_i-\overline{X}_n)^2=\sum_{i=1}^n (X_i-\mu)^2-n(\overline{X}_n-\mu)^2.$$
+  <p>양변에 기댓값을 취하면, $E[(X_i-\mu)^2]=\sigma^2$ 이고 $E[(\overline{X}_n-\mu)^2]=\operatorname{Var}(\overline{X}_n)=\sigma^2/n$ 이므로</p>
+  $$E\!\left[\sum_{i=1}^n (X_i-\overline{X}_n)^2\right]=n\sigma^2-n\cdot\frac{\sigma^2}{n}=(n-1)\sigma^2.$$
+  <p>따라서 $E(S_n^2)=\dfrac{1}{n-1}(n-1)\sigma^2=\sigma^2$. (④ $\operatorname{Var}(S_n^2)$ 의 계산은 연습문제로 남긴다.)</p>
+  <div class="qed">∎</div>
+</div>
+
+<nav class="pager">
+  <span class="spacer"></span>
+  <a class="next" href="3-2_normal-related-distributions.html">다음 →<small>3.2 정규분포와 관련된 분포들</small></a>
+</nav>
+
+</body>
+</html>
