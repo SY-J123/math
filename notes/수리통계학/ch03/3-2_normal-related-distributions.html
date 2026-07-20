@@ -118,6 +118,33 @@
      \frac{x^{(n-2)/2}}{[\,1+nx/m\,]^{(n+m)/2}},\qquad x>0. \tag{3.3}$$
   <p>두 표본의 <b>분산비</b>에 대한 추론에 쓰인다.</p>
 </div>
+<div class="box prf">
+  <span class="tag">증명 <span class="en">밀도함수 (3.3)의 유도</span></span>
+  <p><b>전략.</b> 이변량 변수변환 공식을 쓴다. 일대일 변환 $(U,V)\mapsto(X,Y)$ 의 역변환을 $u=g(x,y),\ v=h(x,y)$ 라 하면</p>
+  $$f_{X,Y}(x,y)=f_{U,V}\big(g(x,y),\,h(x,y)\big)\,|J|,\qquad
+  J=\frac{\partial(u,v)}{\partial(x,y)}.$$
+  <p>즉 ① $(U,V)$ 의 결합밀도를 쓰고 → ② 위 공식으로 $(X,Y)$ 의 결합밀도를 얻은 뒤 → ③ 보조변수 $y$ 를 적분으로
+  소거해 $X$ 의 주변밀도를 얻는다.</p>
+  <p><b>① 결합밀도.</b> $U\sim\chi^2(n)$ 과 $V\sim\chi^2(m)$ 이 독립이므로 결합밀도는 각 밀도 (3.1)의 곱이다:</p>
+  $$f_{U,V}(u,v)=\frac{1}{\Gamma(n/2)\,\Gamma(m/2)\,2^{(n+m)/2}}\;u^{n/2-1}\,v^{m/2-1}\,e^{-(u+v)/2},\qquad u\gt0,\ v\gt0.$$
+  <p><b>② 변수변환.</b> 관심 변수 $X=\dfrac{U/n}{V/m}$ 에 보조변수 $Y=V$ 를 붙여 일대일 변환을 만들면, 역변환과 야코비안은</p>
+  $$u=\frac nm\,xy,\quad v=y;\qquad
+  J=\begin{vmatrix}\dfrac{\partial u}{\partial x}&\dfrac{\partial u}{\partial y}\\[6pt]\dfrac{\partial v}{\partial x}&\dfrac{\partial v}{\partial y}\end{vmatrix}
+  =\begin{vmatrix}\dfrac nm\,y&\dfrac nm\,x\\[6pt]0&1\end{vmatrix}=\frac nm\,y.$$
+  <p>전략의 변환공식에 $g(x,y)=\frac nm xy,\ h(x,y)=y$ 를 대입하고 $x$ 와 $y$ 의 거듭제곱을 각각 모으면, $x\gt0,\ y\gt0$ 에서</p>
+  $$f_{X,Y}(x,y)=\frac{(n/m)^{n/2}}{\Gamma(n/2)\,\Gamma(m/2)\,2^{(n+m)/2}}\;
+  x^{n/2-1}\,y^{(n+m)/2-1}\exp\!\left[-\frac y2\Big(1+\frac{nx}{m}\Big)\right].$$
+  <p>($y$ 의 지수: $u^{n/2-1}$ 에서 $n/2-1$, $v^{m/2-1}$ 에서 $m/2-1$, 야코비안에서 $1$ — 합이 $(n+m)/2-1$.)</p>
+  <p><b>③ 주변화 — 감마적분.</b> $a=\dfrac12\Big(1+\dfrac{nx}m\Big)$ 로 두면
+  <a href="../ch00/0-3_special-integrals.html">감마적분</a>
+  $\displaystyle\int_0^\infty y^{(n+m)/2-1}e^{-ay}\,dy=\frac{\Gamma[(n+m)/2]}{a^{(n+m)/2}}
+  =\Gamma[(n+m)/2]\cdot\frac{2^{(n+m)/2}}{(1+nx/m)^{(n+m)/2}}$ 이므로, $y$ 를 적분해 소거하면 $2^{(n+m)/2}$ 이 약분되어</p>
+  $$f_X(x)=\int_0^\infty f_{X,Y}(x,y)\,dy
+  =\frac{\Gamma[(n+m)/2]}{\Gamma(n/2)\,\Gamma(m/2)}\left(\frac nm\right)^{n/2}
+  \frac{x^{(n-2)/2}}{[\,1+nx/m\,]^{(n+m)/2}},\qquad x\gt0.$$
+  <p>이것이 식 (3.3)이다 ($x^{n/2-1}=x^{(n-2)/2}$).</p>
+  <div class="qed">∎</div>
+</div>
 <figure class="fig">
   <svg viewBox="0 0 360 195" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="F분포 밀도의 대략적 형태">
     <line x1="45" y1="175" x2="348" y2="175" stroke="currentColor" stroke-width="1"/>
