@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3장 · 3.3 정규분포로부터의 표본추출</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">수리통계학 · 3장 표본분포 및 그의 근사</div>
+  <h1><span class="no">3.3</span>정규분포로부터의 표본추출 <span class="en">sampling from a normal distribution</span></h1>
+</header>
+
+<p>통계적 추정이나 검정에서 정규분포의 역할은 지대하다. 관측되는 확률변수는 여러 요소의 <b>합의 꼴</b>로
+생각될 수 있고, <b>중심극한정리</b>에 의하면 이런 합의 분포는 정규분포로 근사되기
+때문이다. 또한 모분포에 대한 정규성 가정은 분포이론의 수리적 접근을 쉽게 해 준다. 여기서는 정규분포로부터
+얻은 랜덤표본의 함수로 표현되는 확률변수들 — 표본평균·표본분산과 그로부터 파생되는 통계량 — 의 분포를 살펴본다.</p>
+
+<!-- ================= 정규분포 합 ================= -->
+<h2 class="sub">정규분포의 합 <span class="en">sum of independent normals</span></h2>
+<div class="box thm">
+  <span class="tag">정리 3.8</span><span class="title">독립 정규분포의 합</span>
+  <p>서로 독립인 확률변수 $X_i\ (i=1,\dots,n)$ 들이 각각 정규분포 $N(\mu_i,\sigma_i^2)$ 을 따르면, 그 합은</p>
+  $$\sum_{i=1}^n X_i\ \sim\ N\!\left(\sum_{i=1}^n\mu_i,\ \sum_{i=1}^n\sigma_i^2\right).$$
+</div>
+<div class="box prf">
+  <span class="tag">증명</span>
+  <p>정규분포 $N(\mu_i,\sigma_i^2)$ 의 <a href="../ch02/2-8_mgf.html">적률생성함수</a>가 $\exp\!\left(\mu_i t+\sigma_i^2 t^2/2\right)$ 이고
+  독립합의 mgf 는 곱이므로</p>
+  $$M(t)=\prod_{i=1}^n M_{X_i}(t)=\prod_{i=1}^n\exp\!\left(\mu_i t+\tfrac{\sigma_i^2 t^2}{2}\right)
+  =\exp\!\left[t\sum_{i=1}^n\mu_i+\frac{t^2}{2}\sum_{i=1}^n\sigma_i^2\right].$$
+  <p>이는 $N\!\left(\sum\mu_i,\ \sum\sigma_i^2\right)$ 의 mgf 이므로, mgf 의 <b>유일성</b>에 의해 $\sum X_i$ 는 그 정규분포를 따른다.</p>
+  <div class="qed">∎</div>
+</div>
+<div class="box thm">
+  <span class="tag">따름정리</span><span class="title">표본평균의 분포</span>
+  <p>평균이 $\mu$, 분산이 $\sigma^2$ 인 정규분포 $N(\mu,\sigma^2)$ 로부터의 크기 $n$ 인 랜덤표본의 표본평균
+  $\overline{X}_n=\dfrac1n\sum_{i=1}^n X_i$ 는</p>
+  $$\overline{X}_n\ \sim\ N\!\left(\mu,\ \frac{\sigma^2}{n}\right).$$
+  <p>($\sum X_i\sim N(n\mu,\,n\sigma^2)$ 에 정규분포의 선형변환 성질을 적용한 것이다.)</p>
+</div>
+<div class="box ex">
+  <span class="tag">예 3.5</span><span class="title">제품 생산시간</span>
+  <p>제품 1개를 생산하는 데 걸리는 시간을 $X\sim N(6,2^2)$ 이라 하고, 각 제품의 생산시간이 서로 독립이라 하자.
+  10개를 만드는 데 걸리는 시간이 70 이상일 확률은? 정리 3.8 에 의해 $X_1+\cdots+X_{10}\sim N(60,40)$ 이므로</p>
+  $$P\!\left(\sum_{i=1}^{10}X_i\ge70\right)
+  =P\!\left[\frac{\sum X_i-60}{\sqrt{40}}\ge\frac{70-60}{\sqrt{40}}\right]
+  =1-\Phi(1.58)=0.057.$$
+</div>
+
+<!-- ================= 표본평균과 표본분산 ================= -->
+<h2 class="sub">표본평균과 표본분산의 분포 <span class="en">distribution of sample mean and variance</span></h2>
+<div class="note">
+  표본평균 $\overline{X}_n=\sum X_i/n$ 과 표본분산 $S_n^2=\sum_{i=1}^n(X_i-\overline{X}_n)^2/(n-1)$ 의 관계를 알아보자.
+  그런데 $\sum_{i=1}^n(X_i-\overline{X}_n)=0$ 이라는 <b>제약</b> 때문에 편차 $(X_i-\overline{X}_n)$ 들은 서로 독립이 아니다.
+  따라서 각 편차가 정규분포를 따름에도 <a href="3-2_normal-related-distributions.html">정리 3.5(정규 표준화 제곱합)</a>를
+  $S_n^2$ 의 분포에 곧바로 쓸 수 없다.
+</div>
+<div class="box thm">
+  <span class="tag">정리 3.9</span><span class="title">표본평균·표본분산의 독립성과 $S_n^2$ 의 분포</span>
+  <p>$X_1,\dots,X_n$ 을 $N(\mu,\sigma^2)$ 으로부터의 크기 $n$ 인 랜덤표본이라 하면,</p>
+  <ol class="props">
+    <li>$\overline{X}_n$ 와 $S_n^2=\displaystyle\sum_{i=1}^n(X_i-\overline{X}_n)^2/(n-1)$ 은 서로 <b>독립</b>이며,</li>
+    <li>$\dfrac{(n-1)S_n^2}{\sigma^2}$ 은 자유도 $n-1$ 인 카이제곱분포를 따른다.</li>
+  </ol>
+</div>
+<div class="box prf">
+  <span class="tag">증명</span>
+  <p><b>준비 — 제곱합 분해.</b> 다음 항등식에서 출발한다:</p>
+  $$\sum_{i=1}^n\frac{(x_i-\mu)^2}{\sigma^2}
+  =\sum_{i=1}^n\frac{(x_i-\overline{x}_n)^2}{\sigma^2}+\frac{n(\overline{x}_n-\mu)^2}{\sigma^2}.$$
+  <p>그러면 랜덤표본의 결합확률밀도함수는</p>
+  $$f(x_1,\dots,x_n)=\frac{1}{(2\pi)^{n/2}\sigma^n}\exp\!\left[-\frac{1}{2}\sum_{i=1}^n\Big(\frac{x_i-\mu}{\sigma}\Big)^2\right]
+  =\frac{1}{(2\pi)^{n/2}\sigma^n}\exp\!\left[-\frac{1}{2\sigma^2}\Big(\sum_{i=1}^n(x_i-\overline{x}_n)^2+n(\overline{x}_n-\mu)^2\Big)\right].$$
+  <p><b>① 독립성 — 변수변환.</b> 변환 $y_1=\overline{x}_n,\ y_i=x_i-\overline{x}_n\ (i=2,\dots,n)$ 을 쓰면
+  $\sum_{i=1}^n(x_i-\overline{x}_n)=0$ 에서 $x_1-\overline{x}_n=-\sum_{i=2}^n y_i$ 이므로</p>
+  $$\sum_{i=1}^n(x_i-\overline{x}_n)^2=\Big(\sum_{i=2}^n y_i\Big)^2+\sum_{i=2}^n y_i^2,\qquad
+  x_1=y_1-\sum_{i=2}^n y_i,\quad x_i=y_1+y_i\ (i\ge2).$$
+  <p>이 변환의 야코비안은 $|J|=n$ 이고, $Y$ 들의 결합밀도는</p>
+  $$g(y_1,\dots,y_n)=\frac{n}{(2\pi)^{n/2}\sigma^n}
+  \exp\!\left[-\frac{1}{2\sigma^2}\Big(\big(\textstyle\sum_{i=2}^n y_i\big)^2+\sum_{i=2}^n y_i^2+n(y_1-\mu)^2\Big)\right].$$
+  <p>이는 <b>$y_1$ 만의 함수</b> $\exp\!\big[-n(y_1-\mu)^2/2\sigma^2\big]$ 와 <b>$(y_2,\dots,y_n)$ 만의 함수</b>의 곱이므로,
+  $Y_1=\overline{X}_n$ 과 $(Y_2,\dots,Y_n)=(X_2-\overline{X}_n,\dots,X_n-\overline{X}_n)$ 은 독립이다. 한편
+  $X_1-\overline{X}_n=-\sum_{i=2}^n(X_i-\overline{X}_n)$ 도 이 편차들의 함수이고, $S_n^2$ 역시 편차들만의 함수이므로,
+  $\overline{X}_n$ 와 $S_n^2$ 은 서로 독립이다.</p>
+  <p><b>② $S_n^2$ 의 분포 — mgf.</b> 준비 단계의 항등식을 확률변수로 쓰면</p>
+  $$V_1=\sum_{i=1}^n\frac{(X_i-\mu)^2}{\sigma^2}
+  =\underbrace{\frac{(n-1)S_n^2}{\sigma^2}}_{V_2}+\underbrace{\frac{n(\overline{X}_n-\mu)^2}{\sigma^2}}_{V_3}.$$
+  <p>여기서 $\dfrac{X_i-\mu}{\sigma}\sim N(0,1)$ 이 독립이므로 $V_1\sim\chi^2(n)$ 이고,
+  $V_3=\Big(\dfrac{\overline{X}_n-\mu}{\sigma/\sqrt n}\Big)^2\sim\chi^2(1)$ 이다. 또 ①에서 $V_2$(는 $S_n^2$ 의 함수)와
+  $V_3$(는 $\overline{X}_n$ 의 함수)는 독립이므로 $M_{V_1}(t)=M_{V_2}(t)\,M_{V_3}(t)$, 따라서</p>
+  $$M_{V_2}(t)=\frac{M_{V_1}(t)}{M_{V_3}(t)}=\frac{(1-2t)^{-n/2}}{(1-2t)^{-1/2}}=(1-2t)^{-(n-1)/2}.$$
+  <p>이는 $\chi^2(n-1)$ 의 mgf 이므로 (<a href="3-2_normal-related-distributions.html">정리 3.2</a>), 유일성에 의해
+  $V_2=\dfrac{(n-1)S_n^2}{\sigma^2}\sim\chi^2(n-1)$.</p>
+  <div class="qed">∎</div>
+</div>
+<div class="box ex">
+  <span class="tag">예 3.6</span><span class="title">(예 3.5 계속) 표본분산</span>
+  <p>예 3.5의 $10$ 개 랜덤표본($\sigma^2=4$)에서 표본분산이 $5$ 보다 클 확률을 구하자.
+  정리 3.9에 의해 $\dfrac{9\,S_{10}^2}{4}\sim\chi^2(9)$ 이므로</p>
+  $$P(S_{10}^2>5)=P\!\left[\frac{9S_{10}^2}{4}>\frac{45}{4}\right]=P\!\left[\chi^2(9)>11.25\right]\approx0.259.$$
+</div>
+
+<!-- ================= 두 표본 분산비 ================= -->
+<h2 class="sub">두 정규표본의 분산비 <span class="en">ratio of two sample variances</span></h2>
+<div class="box thm">
+  <span class="tag">정리 3.10</span><span class="title">분산비와 $F$ 분포</span>
+  <p>$N(\mu_X,\sigma_X^2)$ 로부터 크기 $n$ 인 랜덤표본 $X_1,\dots,X_n$ 과 $N(\mu_Y,\sigma_Y^2)$ 로부터 크기 $m$ 인
+  랜덤표본 $Y_1,\dots,Y_m$ 을 얻고, 두 표본이 서로 독립이라 하자. 그러면</p>
+  $$F=\frac{S_X^2/\sigma_X^2}{S_Y^2/\sigma_Y^2}\ \sim\ F(n-1,\,m-1),$$
+  <p>단 $S_X^2=\dfrac{1}{n-1}\displaystyle\sum_{i=1}^n(X_i-\overline{X}_n)^2$, $\ S_Y^2=\dfrac{1}{m-1}\displaystyle\sum_{i=1}^m(Y_i-\overline{Y}_m)^2$.</p>
+</div>
+<div class="box prf">
+  <span class="tag">증명</span>
+  <p>정리 3.9(2)에 의해 두 확률변량</p>
+  $$\frac{(n-1)S_X^2}{\sigma_X^2}\sim\chi^2(n-1),\qquad \frac{(m-1)S_Y^2}{\sigma_Y^2}\sim\chi^2(m-1)$$
+  <p>은 (두 표본이 독립이므로) 서로 독립이다. 각각을 자유도로 나눈 비가 곧 $F$ 이므로,
+  <a href="3-2_normal-related-distributions.html">$F$ 분포의 정의 (3.2)</a>에 의하여</p>
+  $$F=\frac{\big[(n-1)S_X^2/\sigma_X^2\big]/(n-1)}{\big[(m-1)S_Y^2/\sigma_Y^2\big]/(m-1)}
+  =\frac{S_X^2/\sigma_X^2}{S_Y^2/\sigma_Y^2}\ \sim\ F(n-1,\,m-1).$$
+  <div class="qed">∎</div>
+</div>
+<div class="note">
+  특히 $\sigma_X^2=\sigma_Y^2$ 인 경우, 표본분산비 $S_X^2/S_Y^2\sim F(n-1,\,m-1)$ 이 된다 — 두 모분산이 같은지에 대한
+  검정의 바탕이 된다.
+</div>
+
+<!-- ================= 스튜던트화 t ================= -->
+<h2 class="sub">스튜던트화 $t$ 통계량 <span class="en">Studentized t statistic</span></h2>
+<div class="box thm">
+  <span class="tag">정리 3.11</span><span class="title">모평균에 대한 $t$ 통계량</span>
+  <p>$N(\mu,\sigma^2)$ 으로부터의 랜덤표본 $X_1,\dots,X_n$ 에 대하여, 확률변량</p>
+  $$T=\frac{\sqrt n\,(\overline{X}_n-\mu)}{\sqrt{\displaystyle\sum_{i=1}^n(X_i-\overline{X}_n)^2/(n-1)}}
+  =\frac{\overline{X}_n-\mu}{S_n/\sqrt n}$$
+  <p>은 자유도 $n-1$ 인 $t$ 분포를 따른다. 여기서 $S_n=\sqrt{S_n^2}$.</p>
+</div>
+<div class="box prf">
+  <span class="tag">증명</span>
+  <p>두 확률변량</p>
+  $$Z=\frac{\sqrt n\,(\overline{X}_n-\mu)}{\sigma}\sim N(0,1),\qquad
+  U=\frac{(n-1)S_n^2}{\sigma^2}=\sum_{i=1}^n\frac{(X_i-\overline{X}_n)^2}{\sigma^2}\sim\chi^2(n-1)$$
+  <p>은 정리 3.9에 의해 서로 독립이다. 따라서 <a href="3-2_normal-related-distributions.html">$t$ 분포의 정의 (3.5)</a>에 의해</p>
+  $$T=\frac{Z}{\sqrt{U/(n-1)}}
+  =\frac{\sqrt n\,(\overline{X}_n-\mu)/\sigma}{\sqrt{\big[(n-1)S_n^2/\sigma^2\big]/(n-1)}}
+  =\frac{\sqrt n\,(\overline{X}_n-\mu)}{S_n}\ \sim\ t(n-1).$$
+  <div class="qed">∎</div>
+</div>
+<div class="note">
+  <b>스튜던트화<span class="en">Studentization</span>.</b> $\mu$ 가 알려져 있을 때 $T$ 는 통계량이며 이를
+  <b>스튜던트화 $t$ 통계량</b>이라 한다. $\mu$ 를 모를 때에도 $T$ 는 $t$ 분포를 따르지만 미지의 모수를 포함하므로
+  통계량은 아니다. 이러한 스튜던트화는 추정량에 끼어드는 <b>장애모수<span class="en">nuisance parameter</span></b>
+  (추정 대상 이외의 모수) 인 분산 $\sigma^2$ 을 표본분산으로 바꿔 소거하는 데서 비롯된다.
+</div>
+<div class="note">
+  자유도 $n-1$ 이 커지면 $t$ 분포는 $N(0,1)$ 로 가까워진다. 정리 3.11에서 분모
+  $\sqrt{\sum(X_i-\overline{X}_n)^2/(n-1)}$ 가 표본크기 $n$ 이 커질수록 $\sigma$ 로 수렴하므로 $T$ 의 분포가
+  표준정규로 근사되기 때문이다(슬럿츠키 정리). 부표에서도 자유도가 무한대인 행의 백분위수가 표준정규분포의
+  백분위수와 일치함을 확인할 수 있다.
+</div>
+
+<nav class="pager">
+  <a href="3-2_normal-related-distributions.html">← 이전<small>3.2 정규분포와 관련된 분포들</small></a>
+  <span class="spacer"></span>
+</nav>
+
+</body>
+</html>
