@@ -196,6 +196,34 @@
      \qquad -\infty\lt x\lt\infty. \tag{3.6}$$
   <p>정규분포의 모평균에 대한 추정 및 가설검정에서 매우 중요한 역할을 한다.</p>
 </div>
+<div class="box prf">
+  <span class="tag">증명 <span class="en">밀도함수 (3.6)의 유도</span></span>
+  <p><b>전략.</b> $F$ 분포와 같이 이변량 변수변환을 쓴다. 관심 변수 $X=\dfrac{Z}{\sqrt{U/k}}$ 에 보조변수
+  $W=U$ 를 붙여 일대일 변환 $(Z,U)\mapsto(X,W)$ 을 만든 뒤, $(X,W)$ 의 결합밀도에서 $w$ 를 적분으로
+  소거해 $X$ 의 주변밀도를 얻는다.</p>
+  <p><b>① 결합밀도.</b> $Z\sim N(0,1)$ 과 $U\sim\chi^2(k)$ 이 독립이므로 결합밀도는 표준정규밀도와 밀도 (3.1)의 곱이다:</p>
+  $$f_{Z,U}(z,u)=\frac{1}{\sqrt{2\pi}}\,e^{-z^2/2}\cdot\frac{1}{\Gamma(k/2)\,2^{k/2}}\,u^{k/2-1}e^{-u/2},
+  \qquad -\infty\lt z\lt\infty,\ u\gt0.$$
+  <p><b>② 변수변환.</b> $X=\dfrac{Z}{\sqrt{U/k}}$ 에 $W=U$ 를 붙인 변환의 역변환과 야코비안은</p>
+  $$z=x\sqrt{\tfrac wk},\quad u=w;\qquad
+  J=\begin{vmatrix}\dfrac{\partial z}{\partial x}&\dfrac{\partial z}{\partial w}\\[6pt]\dfrac{\partial u}{\partial x}&\dfrac{\partial u}{\partial w}\end{vmatrix}
+  =\begin{vmatrix}\sqrt{\dfrac wk}&\dfrac{x}{2\sqrt{kw}}\\[6pt]0&1\end{vmatrix}=\sqrt{\frac wk}.$$
+  <p>변환공식 $f_{X,W}(x,w)=f_{Z,U}\big(x\sqrt{w/k},\,w\big)\,|J|$ 에 대입하고 $w$ 의 거듭제곱을 모으면
+  ($w^{k/2-1}\cdot w^{1/2}=w^{(k+1)/2-1}$), $-\infty\lt x\lt\infty,\ w\gt0$ 에서</p>
+  $$f_{X,W}(x,w)=\frac{1}{\sqrt{k\pi}\,\Gamma(k/2)\,2^{(k+1)/2}}\;
+  w^{(k+1)/2-1}\exp\!\left[-\frac w2\Big(1+\frac{x^2}{k}\Big)\right].$$
+  <p>(상수: $\dfrac{1}{\sqrt{2\pi}}\cdot\dfrac{1}{\Gamma(k/2)\,2^{k/2}}\cdot\dfrac{1}{\sqrt k}$ 에서
+  $\sqrt{2\pi}\cdot2^{k/2}\cdot\sqrt k=2^{(k+1)/2}\sqrt{k\pi}$.)</p>
+  <p><b>③ 주변화 — 감마적분.</b> $a=\dfrac12\Big(1+\dfrac{x^2}k\Big)$ 로 두면
+  <a href="../ch00/0-3_special-integrals.html">감마적분</a>
+  $\displaystyle\int_0^\infty w^{(k+1)/2-1}e^{-aw}\,dw=\frac{\Gamma[(k+1)/2]}{a^{(k+1)/2}}
+  =\Gamma[(k+1)/2]\cdot\frac{2^{(k+1)/2}}{(1+x^2/k)^{(k+1)/2}}$ 이므로, $w$ 를 적분해 소거하면 $2^{(k+1)/2}$ 이 약분되어</p>
+  $$f_X(x)=\int_0^\infty f_{X,W}(x,w)\,dw
+  =\frac{\Gamma[(k+1)/2]}{\Gamma(k/2)\sqrt{k\pi}}\cdot\frac{1}{(1+x^2/k)^{(k+1)/2}},
+  \qquad -\infty\lt x\lt\infty.$$
+  <p>이것이 식 (3.6)이다.</p>
+  <div class="qed">∎</div>
+</div>
 <figure class="fig">
   <svg viewBox="0 0 360 195" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="t분포와 표준정규분포 밀도 비교">
     <line x1="12" y1="175" x2="348" y2="175" stroke="currentColor" stroke-width="1"/>
