@@ -170,7 +170,29 @@
   <p>$E(U)=n$ 이고, $V\sim\chi^2(m)$ 에 대해 감마적분으로
   $E\!\left(\dfrac1V\right)=\dfrac{1}{m-2}\ (m>2)$ 를 얻으므로</p>
   $$E(X)=\frac mn\cdot n\cdot\frac{1}{m-2}=\frac{m}{m-2}.$$
-  <p>분산에 대한 증명은 생략한다(같은 방식으로 $E(X^2)$ 을 계산).</p>
+  <div class="qed">∎</div>
+</div>
+<div class="box prf">
+  <span class="tag">증명 <span class="en">분산</span></span>
+  <p><b>전략.</b> $\operatorname{Var}(X)=E(X^2)-[E(X)]^2$ 이므로, 평균과 같은 방식으로
+  $X^2=\dfrac{m^2}{n^2}\cdot\dfrac{U^2}{V^2}$ 의 기대값을 독립성으로 분리해 계산한다.</p>
+  <p><b>① $E(U^2)$.</b> 정리 3.2 에서 $E(U)=n$, $\operatorname{Var}(U)=2n$ 이므로</p>
+  $$E(U^2)=\operatorname{Var}(U)+[E(U)]^2=2n+n^2=n(n+2).$$
+  <p><b>② $E(1/V^2)$.</b> $V\sim\chi^2(m)$ 의 밀도 (3.1)에 대해 <a href="../ch00/0-3_special-integrals.html">감마적분</a>을 쓰면</p>
+  $$E\!\left(\frac{1}{V^2}\right)
+  =\int_0^\infty \frac1{v^2}\cdot\frac{1}{\Gamma(m/2)\,2^{m/2}}\,v^{m/2-1}e^{-v/2}\,dv
+  =\frac{\Gamma\!\left(\frac m2-2\right)2^{m/2-2}}{\Gamma\!\left(\frac m2\right)2^{m/2}},$$
+  <p>여기서 $\Gamma\!\left(\frac m2\right)=\left(\frac m2-1\right)\left(\frac m2-2\right)\Gamma\!\left(\frac m2-2\right)$ 이므로</p>
+  $$E\!\left(\frac{1}{V^2}\right)=\frac{1}{4\left(\frac m2-1\right)\left(\frac m2-2\right)}=\frac{1}{(m-2)(m-4)}\qquad(m>4).$$
+  <p><b>③ $E(X^2)$.</b> $U,V$ 가 독립이므로 $U^2$ 과 $1/V^2$ 도 독립이고,</p>
+  $$E(X^2)=\frac{m^2}{n^2}\,E(U^2)\,E\!\left(\frac{1}{V^2}\right)
+  =\frac{m^2}{n^2}\cdot n(n+2)\cdot\frac{1}{(m-2)(m-4)}
+  =\frac{m^2(n+2)}{n(m-2)(m-4)}.$$
+  <p><b>④ 분산.</b> 평균 $E(X)=\dfrac m{m-2}$ 를 빼서 통분하면</p>
+  $$\operatorname{Var}(X)=\frac{m^2(n+2)}{n(m-2)(m-4)}-\frac{m^2}{(m-2)^2}
+  =\frac{m^2}{m-2}\cdot\frac{(n+2)(m-2)-n(m-4)}{n(m-2)(m-4)},$$
+  <p>분자를 전개하면 $(n+2)(m-2)-n(m-4)=2(n+m-2)$ 이므로</p>
+  $$\operatorname{Var}(X)=\frac{2m^2(n+m-2)}{n(m-2)^2(m-4)}\qquad(m>4).$$
   <div class="qed">∎</div>
 </div>
 <div class="box thm">
