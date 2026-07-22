@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3장 · 3.4 대수의 법칙과 중심극한정리</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">수리통계학 · 3장 표본분포 및 그의 근사</div>
+  <h1><span class="no">3.4</span>대수의 법칙과 중심극한정리 <span class="en">law of large numbers &amp; central limit theorem</span></h1>
+</header>
+
+<p>앞 절에서는 모분포에 대한 <b>정규성 가정</b> 아래 통계량들의 정확한 표본분포를 구했다. 이 절에서는 표본의
+크기가 충분히 클 때 <b>모분포의 형태와 무관하게</b> 널리 사용되는 통계량들의 표본분포 <b>근사</b>를 다룬다.
+그 바탕이 되는 두 정리가 <b>대수의 법칙</b>과 <b>중심극한정리</b>이며, 각각 확률변수의 서로 다른 두 가지
+수렴 개념 — <b>확률적 수렴</b>과 <b>분포수렴</b> — 위에 서 있다.</p>
+
+<!-- ================= 3.4.1 대수의 법칙 ================= -->
+<h2 class="sub">3.4.1 대수의 법칙 <span class="en">law of large numbers</span></h2>
+<div class="box def">
+  <span class="tag">정의 3.5</span><span class="title">확률적 수렴 <span class="en">convergence in probability</span></span>
+  <p>확률변수의 열 $X_1,X_2,\dots,X_n,\dots$ 과 확률변수 $X$ 가 같은 확률공간에 정의되어 있다고 하자.
+  임의의 $\epsilon\gt0$ 에 대하여</p>
+  $$\lim_{n\to\infty}P\big(|X_n-X|\ge\epsilon\big)=0,\qquad\text{또는 동등하게}\qquad
+  \lim_{n\to\infty}P\big(|X_n-X|\lt\epsilon\big)=1$$
+  <p>을 만족하면, $X_n$ 이 $X$ 로 <b>확률적으로 수렴</b>한다고 말하고 $X_n\xrightarrow{\ p\ }X$ 로 표기한다.</p>
+</div>
+<div class="note">
+  실수열 수렴의 $\epsilon$-$N$ 정의를 확률의 언어로 옮긴 것이다 — $n$ 이 커질수록 $X_n$ 이 $X$ 의
+  $\epsilon$-근방 안에 있을 <b>확률</b>이 $1$ 에 가까워진다.
+</div>
+<div class="box thm">
+  <span class="tag">정리 3.12</span><span class="title">대수의 법칙 <span class="en">law of large numbers</span></span>
+  <p>평균이 $\mu\lt\infty$ 인 확률밀도함수 $f(x)$ 로부터 랜덤표본 $X_1,X_2,\dots,X_n$ 을 얻었다고 하면,
+  표본평균은 모평균으로 확률적으로 수렴한다:</p>
+  $$\overline{X}_n\xrightarrow{\ p\ }\mu.$$
+</div>
+<div class="box prf">
+  <span class="tag">증명</span>
+  <p>증명의 편의를 위해 분산이 유한하다고 가정하자: $\sigma^2\lt\infty$. 임의의 $\epsilon\gt0$ 에 대해
+  <a href="../ch02/2-4_expectation.html">체비셰프 부등식</a>(정리 2.15)을 쓰면</p>
+  $$P\big[\,|\overline{X}_n-\mu|\lt\epsilon\,\big]=P\big[\,|\overline{X}_n-\mu|^2\lt\epsilon^2\,\big]
+  \ge 1-\frac{E(\overline{X}_n-\mu)^2}{\epsilon^2}$$
+  <p>이고, $E(\overline{X}_n-\mu)^2=\operatorname{Var}(\overline{X}_n)=\sigma^2/n$ 이므로</p>
+  $$P\big[\,|\overline{X}_n-\mu|\lt\epsilon\,\big]\ \ge\ 1-\frac{\sigma^2/n}{\epsilon^2}\ \longrightarrow\ 1
+  \qquad(n\to\infty).$$
+  <div class="qed">∎</div>
+</div>
+<div class="note">
+  표본분산이 모분산으로 확률적으로 수렴하는 것($S_n^2\xrightarrow{\ p\ }\sigma^2$)도 적절한 조건하에서
+  성립한다 — 증명의 뼈대는 같다(연습문제).
+</div>
+<div class="box ex">
+  <span class="tag">예 3.7</span><span class="title">표본비율의 수렴</span>
+  <p>$X_1,X_2,\dots,X_n$ 이 서로 독립인 베르누이($p$) 확률변수라고 하자. $E(X_1)=p$ 이므로, 표본비율은
+  대수의 법칙에 의해 모비율로 확률적으로 수렴한다:</p>
+  $$\hat p_n=\frac1n\sum_{i=1}^n X_i\ \xrightarrow{\ p\ }\ p.$$
+</div>
+
+<!-- ================= 3.4.2 중심극한정리 ================= -->
+<h2 class="sub">3.4.2 중심극한정리 <span class="en">central limit theorem</span></h2>
+<div class="box def">
+  <span class="tag">정의 3.6</span><span class="title">분포수렴 <span class="en">convergence in distribution</span></span>
+  <p>확률변수의 열 $X_1,X_2,\dots,X_n,\dots$ 이 누적확률분포함수 $F_{X_1},F_{X_2},\dots,F_{X_n},\dots$ 을
+  각각 갖고, 확률변수 $X$ 가 누적확률분포함수 $F_X$ 를 갖는다고 하자. $F_X$ 가 연속인 모든 점 $x$ 에서</p>
+  $$\lim_{n\to\infty}F_{X_n}(x)=F_X(x)$$
+  <p>가 만족되면, $X_n$ 이 $X$ 로 <b>분포수렴</b>한다고 말하고 $X_n\xrightarrow{\ d\ }X$ 로 표기한다.</p>
+</div>
+<div class="note">
+  수렴하는 대상이 확률변수 자체가 아니라 <b>누적분포함수</b>라는 점, 그리고 $F_X$ 의 <b>연속점에서만</b>
+  수렴을 요구한다는 점이 확률적 수렴과 다르다. 분포수렴은 극한 확률분포로 확률을 <b>근사</b>하는 데 쓰인다.
+</div>
+<div class="box thm">
+  <span class="tag">정리 3.13</span><span class="title">적률생성함수의 수렴과 분포수렴 <span class="en">continuity theorem</span></span>
+  <p>확률변수 $X_1,X_2,\dots$ 의 누적분포함수가 $F_1,F_2,\dots$ 이고 적률생성함수가 $M_1(t),M_2(t),\dots$ 라고
+  하자. 어떤 $t$ 의 개구간 $-h\lt t\lt h$ 에 대하여</p>
+  $$\lim_{n\to\infty}M_n(t)=M(t)$$
+  <p>가 성립하며 $M(t)$ 가 누적분포함수 $F(x)$ 를 갖는 어떤 확률분포의 적률생성함수이면, $F(x)$ 가 연속인
+  모든 점에서 $\displaystyle\lim_{n\to\infty}F_n(x)=F(x)$ 가 성립한다.</p>
+</div>
+<div class="note">
+  이산형 확률변수에 대해서는 <a href="../ch02/2-9_pgf.html">확률생성함수</a>를 이용할 수도 있다 —
+  $0\le s\lt1$ 에서 $\lim_n G_n(s)=G(s)$ 이면 $\lim_n P(X_n=k)=a_k$ ($G(s)=\sum_k a_k s^k$).
+  증명은 이 책의 수준을 벗어나므로 생략한다.
+</div>
+<div class="box thm">
+  <span class="tag">정리 3.14</span><span class="title">중심극한정리 <span class="en">central limit theorem</span></span>
+  <p>평균과 분산이 각각 $\mu$ 와 $\sigma^2\lt\infty$ 인 확률밀도함수 $f(x)$ 로부터 랜덤표본
+  $X_1,X_2,\dots,X_n$ 을 얻었다면, 확률변량</p>
+  $$Z_n=\frac{\displaystyle\sum_{i=1}^n X_i-E\Big(\sum_{i=1}^n X_i\Big)}{\sqrt{\operatorname{Var}\Big(\displaystyle\sum_{i=1}^n X_i\Big)}}
+  =\frac{\displaystyle\sum_{i=1}^n(X_i-\mu)}{\sqrt n\,\sigma}$$
+  <p>는 표본의 크기 $n$ 이 무한대에 접근함에 따라 표준정규분포 $N(0,1)$ 로 분포수렴한다.</p>
+</div>
+<div class="box prf">
+  <span class="tag">증명</span>
+  <p>완전한 증명은 수학적인 면에서 이 책의 수준을 벗어나므로, 여기서는 <b>적률생성함수가 존재하는 경우</b>만
+  다룬다.</p>
+  <p><b>① 중심화된 mgf.</b> 랜덤표본이므로 $X_i-\mu$ 의 적률생성함수는 모든 $i$ 에 대해 동일하다. 이를</p>
+  $$m(t)=E\big[e^{t(X_i-\mu)}\big]$$
+  <p>라 하면 $m(0)=1$ 이고, $m'(0)=E(X_i-\mu)=0$, $m''(0)=E(X_i-\mu)^2=\sigma^2$ 이다.</p>
+  <p><b>② 테일러 전개.</b> <a href="../ch00/0-4_series.html">테일러 정리</a>(평균값형 나머지)에 의해</p>
+  $$m(t)=m(0)+m'(0)\,t+\frac{m''(\xi)\,t^2}{2}
+  =1+\frac{\sigma^2t^2}{2}+\frac{[\,m''(\xi)-\sigma^2\,]\,t^2}{2},\qquad 0\lt\xi\lt t.$$
+  <p>(둘째 등호는 $\frac{m''(\xi)t^2}2$ 에 $\frac{\sigma^2t^2}2$ 을 더하고 뺀 것.)</p>
+  <p><b>③ $Z_n$ 의 mgf.</b> $Z_n=\sum_{i=1}^n(X_i-\mu)\big/(\sqrt n\,\sigma)$ 이고 독립합의 mgf 는 곱이므로
+  (<a href="../ch02/2-8_mgf.html">정리 2.29</a>)</p>
+  $$M_{Z_n}(t)=\prod_{i=1}^n M_{X_i-\mu}\!\Big(\frac{t}{\sqrt n\,\sigma}\Big)
+  =\Big[\,m\Big(\frac{t}{\sqrt n\,\sigma}\Big)\Big]^n
+  =\left[\,1+\frac{t^2}{2n}+\frac{[\,m''(\xi)-\sigma^2\,]\,t^2}{2n\sigma^2}\,\right]^n,
+  \qquad 0\lt\xi\lt\frac{t}{\sqrt n\,\sigma}.$$
+  <p><b>④ 극한.</b> $n\to\infty$ 일 때 $t/(\sqrt n\,\sigma)\to0$ 이므로 $\xi\to0$ 이고, mgf 는 정의구간에서
+  무한히 미분가능하므로 $m''$ 은 $0$ 에서 연속 — 따라서 $m''(\xi)-\sigma^2\to m''(0)-\sigma^2=0$. 즉 괄호 안은
+  $1+\frac{t^2/2+o(1)}{n}$ 꼴이 되어 <a href="../ch00/0-1_limits.html">지수함수 극한</a>에 의해</p>
+  $$\lim_{n\to\infty}M_{Z_n}(t)=\exp\!\big(t^2/2\big).$$
+  <p>이는 $N(0,1)$ 의 적률생성함수이므로, 정리 3.13과 mgf 의 유일성(<a href="../ch02/2-8_mgf.html">정리 2.28</a>)에
+  의해 $Z_n\xrightarrow{\ d\ }N(0,1)$.</p>
+  <div class="qed">∎</div>
+</div>
+<div class="note">
+  <b>모분포와 무관.</b> 중심극한정리는 모분포의 형태에 관계없이 <b>유한한 평균과 분산만 존재하면</b> 성립한다
+  (실제로 코시 확률변수같이 평균이 존재하지 않는 경우는 성립하지 않는다). 확률변량 $Z_n$ 은
+  $$Z_n=\frac{\overline{X}_n-E(\overline{X}_n)}{\sqrt{\operatorname{Var}(\overline{X}_n)}}
+  =\frac{\overline{X}_n-\mu}{\sigma/\sqrt n} \tag{3.8}$$
+  와 같이 표본평균으로 표현할 수도 있으므로, 표본평균 $\overline{X}_n$ 또는 표본합 $\sum X_i$ 의 분포를
+  정규분포로 근사하는 데 쓰인다. 물론 근사의 정확성은 표본의 크기와 모확률밀도함수 $f(x)$ 에 의존한다.
+</div>
+<div class="box ex">
+  <span class="tag">예 3.8</span><span class="title">정규분포에 의한 근사 — 연속형</span>
+  <p>$X_1,X_2,\dots,X_n$ 이 $U(0,1)$ 로부터 얻은 랜덤표본이라 하자. $E(X_i)=\tfrac12$, $\operatorname{Var}(X_i)=\tfrac1{12}$
+  이므로 중심극한정리에 의해 표본합의 분포를 $\sum_{i=1}^n X_i\approx N\!\big(\tfrac n2,\ \tfrac n{12}\big)$ 으로
+  근사할 수 있다. 즉 $Z\sim N(0,1)$ 이라 할 때,</p>
+  $$P\Big[a\le\sum_{i=1}^n X_i\le b\Big]
+  =P\left[\frac{a-n/2}{\sqrt{n/12}}\le\frac{\sum X_i-n/2}{\sqrt{n/12}}\le\frac{b-n/2}{\sqrt{n/12}}\right]
+  \fallingdotseq\varPhi\!\left[\frac{b-n/2}{\sqrt{n/12}}\right]-\varPhi\!\left[\frac{a-n/2}{\sqrt{n/12}}\right].$$
+  <p>$\sum X_i$ 와 관련된 확률 계산을 표준정규분포의 누적분포함수 $\varPhi$ 로 바꿔 계산할 수 있다.</p>
+</div>
+<div class="box ex">
+  <span class="tag">예 3.9</span><span class="title">정규분포에 의한 근사 — 이산형(이항분포)</span>
+  <p>$X\sim B(n,p)$ 는 서로 독립이며 '성공' 확률이 $p$ 인 $n$ 개의 베르누이 확률변수 $X_1,\dots,X_n$ 의 합
+  $\sum X_i$ 와 같은 분포를 갖는다. $E(X_i)=p$, $\operatorname{Var}(X_i)=pq\ (q=1-p)$ 이므로, 중심극한정리에 의해
+  $\big(\sum X_i-np\big)\big/\sqrt{npq}$ 는 $n$ 이 클 때 근사적으로 $N(0,1)$ 을 따른다. 따라서</p>
+  $$P\big[a\le X\le b\big]
+  \fallingdotseq\varPhi\!\left[\frac{b-np}{\sqrt{npq}}\right]-\varPhi\!\left[\frac{a-np}{\sqrt{npq}}\right].$$
+</div>
+<figure class="fig">
+  <svg viewBox="0 0 720 205" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="n이 커질수록 정규에 가까워지는 이항분포 B(n,0.75)">
+    <line x1="10" y1="175" x2="710" y2="175" stroke="currentColor" stroke-width="1"/>
+    <!-- B(5,0.75) -->
+    <g fill="currentColor" opacity="0.65">
+      <rect x="15" y="174" width="20" height="1"/>
+      <rect x="39" y="171" width="20" height="4"/>
+      <rect x="63" y="149" width="20" height="26"/>
+      <rect x="87" y="96" width="20" height="79"/>
+      <rect x="111" y="56" width="20" height="119"/>
+      <rect x="135" y="104" width="20" height="71"/>
+    </g>
+    <text x="55" y="192" font-size="11" fill="currentColor">B(5, 0.75)</text>
+    <!-- B(10,0.75) -->
+    <g fill="currentColor" opacity="0.65">
+      <rect x="195" y="174" width="16" height="1"/>
+      <rect x="214" y="168" width="16" height="7"/>
+      <rect x="233" y="152" width="16" height="23"/>
+      <rect x="252" y="117" width="16" height="58"/>
+      <rect x="271" y="75" width="16" height="100"/>
+      <rect x="290" y="62" width="16" height="113"/>
+      <rect x="309" y="100" width="16" height="75"/>
+      <rect x="328" y="152" width="16" height="23"/>
+    </g>
+    <text x="235" y="192" font-size="11" fill="currentColor">B(10, 0.75)</text>
+    <!-- B(20,0.75) -->
+    <g fill="currentColor" opacity="0.65">
+      <rect x="375" y="170" width="12" height="5"/>
+      <rect x="389" y="160" width="12" height="15"/>
+      <rect x="403" y="141" width="12" height="34"/>
+      <rect x="417" y="113" width="12" height="62"/>
+      <rect x="431" y="82" width="12" height="93"/>
+      <rect x="445" y="64" width="12" height="111"/>
+      <rect x="459" y="71" width="12" height="104"/>
+      <rect x="473" y="101" width="12" height="74"/>
+      <rect x="487" y="138" width="12" height="37"/>
+      <rect x="501" y="163" width="12" height="12"/>
+      <rect x="515" y="173" width="12" height="2"/>
+    </g>
+    <text x="415" y="192" font-size="11" fill="currentColor">B(20, 0.75)</text>
+    <!-- B(50,0.75) -->
+    <g fill="currentColor" opacity="0.65">
+      <rect x="553" y="172" width="7" height="3"/>
+      <rect x="562" y="169" width="7" height="6"/>
+      <rect x="571" y="163" width="7" height="12"/>
+      <rect x="580" y="152" width="7" height="23"/>
+      <rect x="589" y="135" width="7" height="40"/>
+      <rect x="598" y="114" width="7" height="61"/>
+      <rect x="607" y="91" width="7" height="84"/>
+      <rect x="616" y="71" width="7" height="104"/>
+      <rect x="625" y="59" width="7" height="116"/>
+      <rect x="634" y="59" width="7" height="116"/>
+      <rect x="643" y="71" width="7" height="104"/>
+      <rect x="652" y="91" width="7" height="84"/>
+      <rect x="661" y="114" width="7" height="61"/>
+      <rect x="670" y="135" width="7" height="40"/>
+      <rect x="679" y="152" width="7" height="23"/>
+      <rect x="688" y="163" width="7" height="12"/>
+      <rect x="697" y="169" width="7" height="6"/>
+    </g>
+    <text x="600" y="192" font-size="11" fill="currentColor">B(50, 0.75)</text>
+  </svg>
+  <figcaption>그림 3.4 · $n$ 의 크기에 따른 이항확률변수 $B(n,0.75)$ 의 확률밀도함수 — $n$ 이 커짐에 따라
+  정규분포에 가까워진다. $n$ 이 크더라도 $p$ 가 너무 작아서 $np$ 가 작으면 치우침이 남는데, 그런 경우에는
+  <a href="../ch02/2-5_discrete-distributions.html">포아송 근사</a>를 사용한다(예 2.33).</figcaption>
+</figure>
+<div class="box def">
+  <span class="tag">보정</span><span class="title">연속성 수정 <span class="en">continuity correction</span></span>
+  <p>이항확률변수는 이산형인 반면 정규확률변수는 이를 반영한 연속형이므로, 연속성 수정을 하여 근사의 정확성을
+  더 높일 수 있다. $X\sim B(n,p)$ 는 정수값만을 취하므로 정수 $k$ 에 대해 $P(X\le k)=P(X\lt k+1)$ 인데,
+  연속형인 정규분포로 근사할 때 $k$ 를 쓰는지 $k+1$ 을 쓰는지에 따라 결과가 달라진다. 그래서 정수 $a$ 와 $b$ 에
+  대해 그 <b>중간값</b>을 이용해</p>
+  $$P\Big(a-\frac12\ \le\ X\ \le\ b+\frac12\Big)$$
+  <p>로 근사하며, 이를 <b>연속성 수정</b>이라고 한다:</p>
+  $$P\big[a\le X\le b\big]\fallingdotseq
+  \varPhi\!\left[\frac{b+1/2-np}{\sqrt{npq}}\right]-\varPhi\!\left[\frac{a-1/2-np}{\sqrt{npq}}\right].$$
+</div>
+<div class="box ex">
+  <span class="tag">예</span><span class="title">연속성 수정의 효과</span>
+  <p>$n=50$, $p=0.75$, $a=36$, $b=37$ 이라 하자 ($np=37.5$, $npq=9.375$). 연속성 수정 없는 정규근사는</p>
+  $$\varPhi\!\left[\frac{37-37.5}{\sqrt{9.375}}\right]-\varPhi\!\left[\frac{36-37.5}{\sqrt{9.375}}\right]=0.1230,$$
+  <p>연속성 수정을 통한 정규근사는</p>
+  $$\varPhi\!\left[\frac{37.5-37.5}{\sqrt{9.375}}\right]-\varPhi\!\left[\frac{35.5-37.5}{\sqrt{9.375}}\right]=0.2432$$
+  <p>가 된다. 이항분포로 직접 계산한 정확한 값은 $P(36\le X\le37)=0.2371$ — 연속성 수정 쪽이 훨씬 가깝다.</p>
+</div>
+
+<!-- ================= 3.4.3 그 외의 관련 내용 ================= -->
+<h2 class="sub">3.4.3 그 외의 관련 내용 <span class="en">Slutsky &amp; delta method</span></h2>
+<div class="note">
+  중심극한정리는 표본의 크기가 충분히 큰 경우 표본분포를 근사하는 데 활용할 수 있다. 이제 표본분포의 근사에
+  관련된 몇 가지 내용들 — 슬럿츠키 정리와 델타 방법 — 을 살펴본다.
+</div>
+<div class="box thm">
+  <span class="tag">정리 3.15</span><span class="title">슬럿츠키 정리 <span class="en">Slutsky's theorem</span></span>
+  <p>확률변수의 열 $X_1,X_2,\dots,X_n$ 이 상수 $c$ 로 확률적으로 수렴하고(즉 $X_n\xrightarrow{\ p\ }c$),
+  확률변수의 열 $Y_1,Y_2,\dots,Y_n$ 은 확률변수 $Z$ 로 분포수렴한다고 하자(즉 $Y_n\xrightarrow{\ d\ }Z$). 그러면</p>
+  <ol class="props">
+    <li>$Y_n+X_n\xrightarrow{\ d\ }Z+c$</li>
+    <li>$X_nY_n\xrightarrow{\ d\ }cZ$</li>
+  </ol>
+</div>
+<div class="box prf">
+  <span class="tag">증명 <span class="en">(1)의 개요</span></span>
+  <p>엄밀한 증명은 이 책의 수준을 벗어나므로 (1)만 간단히 살펴본다. 임의의 양수 $\epsilon$ 에 대해,
+  사건을 $|X_n-c|\lt\epsilon$ 인 경우와 아닌 경우로 나누면</p>
+  $$F_{Y_n+X_n}(z)=P(Y_n+X_n\le z)
+  \le P\big(Y_n\le z-c+\epsilon\big)+P\big(|X_n-c|\ge\epsilon\big)$$
+  <p>($\because$ $|X_n-c|\lt\epsilon$ 이면 $X_n\gt c-\epsilon$ 이므로 $Y_n\le z-X_n\lt z-c+\epsilon$). 반대 방향으로도</p>
+  $$P\big(Y_n\le z-c-\epsilon\big)\le P(Y_n+X_n\le z)+P\big(|X_n-c|\ge\epsilon\big)$$
+  <p>($\because$ $|X_n-c|\lt\epsilon$ 이고 $Y_n\le z-c-\epsilon$ 이면 $Y_n+X_n\lt z$). 두 부등식을 합치면</p>
+  $$P\big(Y_n\le z-c-\epsilon\big)-P\big(|X_n-c|\ge\epsilon\big)
+  \ \le\ F_{Y_n+X_n}(z)\ \le\
+  P\big(Y_n\le z-c+\epsilon\big)+P\big(|X_n-c|\ge\epsilon\big).$$
+  <p>$n\to\infty$ 에서 $P(|X_n-c|\ge\epsilon)\to0$ (확률적 수렴)이고 $P(Y_n\le z-c\mp\epsilon)\to P(Z\le z-c\mp\epsilon)$
+  (분포수렴, 연속점에서). 이어서 $\epsilon\downarrow0$ 을 취하면, $Z$ 의 누적분포함수가 $z-c$ 에서 연속인 모든 점 $z$ 에서
+  양쪽 끝이 $P(Z\le z-c)=P(Z+c\le z)$ 로 모이므로</p>
+  $$F_{Y_n+X_n}(z)\ \longrightarrow\ F_{Z+c}(z).$$
+  <div class="qed">∎</div>
+</div>
+<div class="box ex">
+  <span class="tag">예 3.10</span><span class="title">스튜던트화 통계량의 극한분포</span>
+  <p>평균과 분산이 각각 $\mu$ 와 $\sigma^2\lt\infty$ 인 모분포로부터 랜덤표본 $X_1,\dots,X_n$ 을 얻고
+  (<b>정규 가정 없음</b>), 표본평균과 표본표준편차를 각각 $\overline{X}_n,\ S_n$ 이라 하자.
+  $S_n\xrightarrow{\ p\ }\sigma$ (연습문제)이고 중심극한정리에 의해
+  $\dfrac{\overline{X}_n-\mu}{\sigma/\sqrt n}\xrightarrow{\ d\ }N(0,1)$ 이므로, 슬럿츠키 정리(2)를 사용하면</p>
+  $$\frac{\overline{X}_n-\mu}{S_n/\sqrt n}
+  =\frac{\sigma}{S_n}\cdot\frac{\overline{X}_n-\mu}{\sigma/\sqrt n}
+  \ \xrightarrow{\ d\ }\ N(0,1).$$
+  <p>한편 모분포가 정규분포인 경우 $\dfrac{\overline{X}_n-\mu}{S_n/\sqrt n}\sim t(n-1)$ 인데
+  (<a href="3-3_sampling-from-normal.html">정리 3.11</a>), 이 두 사실을 종합하면 자유도가 커질 때 $t$ 분포가
+  표준정규분포로 가까워지는 것을 다시 확인할 수 있다.</p>
+</div>
+<div class="box thm">
+  <span class="tag">정리 3.16</span><span class="title">델타 방법 <span class="en">delta method</span></span>
+  <p>확률변수의 열 $X_1,X_2,\dots,X_n,\dots$ 에 대하여</p>
+  $$\sqrt n\,(X_n-\theta)\ \xrightarrow{\ d\ }\ N(0,\sigma^2)$$
+  <p>이라고 하자. 이때 함수 $g(\theta)$ 의 연속인 도함수 $g'(\theta)$ 가 존재하고 $0$ 이 아니면</p>
+  $$\sqrt n\,\big(g(X_n)-g(\theta)\big)\ \xrightarrow{\ d\ }\ N\!\big(0,\ \sigma^2[g'(\theta)]^2\big)$$
+  <p>이 성립한다.</p>
+</div>
+<div class="box prf">
+  <span class="tag">증명</span>
+  <p><b>① 평균값 정리.</b> $X_n$ 과 $\theta$ 사이의 어떤 $\tilde\theta$ 에 대하여</p>
+  $$g(X_n)-g(\theta)=g'(\tilde\theta)\,(X_n-\theta).$$
+  <p><b>② $g'(\tilde\theta)$ 의 수렴.</b> $\sqrt n(X_n-\theta)\xrightarrow{\ d\ }N(0,\sigma^2)$ 이고
+  $1/\sqrt n\to0$ 이므로 슬럿츠키 정리(2)에 의해
+  $X_n-\theta=\frac{1}{\sqrt n}\cdot\sqrt n(X_n-\theta)\xrightarrow{\ d\ }0$, 즉 $X_n\xrightarrow{\ p\ }\theta$
+  (상수로의 분포수렴은 확률적 수렴과 같다). $\tilde\theta$ 는 $X_n$ 과 $\theta$ 사이에 있으므로
+  $\tilde\theta\xrightarrow{\ p\ }\theta$ 이고, $g'$ 이 연속이므로 $g'(\tilde\theta)\xrightarrow{\ p\ }g'(\theta)$.</p>
+  <p><b>③ 결론.</b> ①에서 $\sqrt n\big[g(X_n)-g(\theta)\big]=g'(\tilde\theta)\cdot\sqrt n\,(X_n-\theta)$ 이므로,
+  슬럿츠키 정리(2)에 의해</p>
+  $$\sqrt n\,\big(g(X_n)-g(\theta)\big)\ \xrightarrow{\ d\ }\ g'(\theta)\cdot N(0,\sigma^2)=N\!\big(0,\sigma^2[g'(\theta)]^2\big).$$
+  <div class="qed">∎</div>
+</div>
+<div class="box ex">
+  <span class="tag">예 3.11</span><span class="title">분산안정화 변환 <span class="en">variance stabilizing transformation</span></span>
+  <p>포아송($\lambda$) 분포로부터 랜덤표본 $X_1,\dots,X_n$ 이 주어졌을 때, 중심극한정리에 의해
+  $Z_n=\sqrt n\,(\overline{X}_n-\lambda)\xrightarrow{\ d\ }N(0,\lambda)$ 가 성립한다
+  ($\because E(X_i)=\operatorname{Var}(X_i)=\lambda$). 이제 함수 $g(x)=\sqrt x$ 를 고려하면
+  $g'(\lambda)=\dfrac{1}{2\sqrt\lambda}$, $[g'(\lambda)]^2=\dfrac{1}{4\lambda}$ 이 되어, 델타 방법에 의해</p>
+  $$\sqrt n\,\Big(\sqrt{\overline{X}_n}-\sqrt\lambda\Big)\ \xrightarrow{\ d\ }\ N\!\Big(0,\ \frac14\Big).$$
+  <p>극한분포의 분산이 모수 $\lambda$ 에 의존하지 않게 되었다 — 이런 변환을 <b>분산안정화 변환</b>이라고 한다.</p>
+</div>
+<div class="box def">
+  <span class="tag">확장</span><span class="title">다변량 델타 방법 — 근사 평균과 분산</span>
+  <p>델타 방법의 아이디어는 점근적 정규성 가정 없이, 확률변량의 함수의 기댓값·분산의 <b>근삿값</b>을 구하는
+  데에도 활용된다. 확률벡터 $X=(X_1,\dots,X_k)$ 의 기댓값이 $E(X)=(\theta_1,\dots,\theta_k)=\theta$ 일 때,
+  테일러 전개</p>
+  $$g(x)\approx g(\theta)+\sum_{i=1}^k g_i{}'(\theta)\,(x_i-\theta_i),\qquad
+  g_i{}'(\theta)=\frac{\partial}{\partial x_i}g(x)\Big|_{x=\theta}$$
+  <p>에서 다음 근사식들을 얻는다. 기댓값은 $E(X_i-\theta_i)=0$ 에서</p>
+  $$E\,g(X)\ \approx\ g(\theta)+\sum_{i=1}^k g_i{}'(\theta)\,E(X_i-\theta_i)=g(\theta), \tag{3.9}$$
+  <p>분산은 $\operatorname{Var} g(X)\approx E\big[(g(X)-g(\theta))^2\big]\approx
+  E\Big[\big(\sum_i g_i{}'(\theta)(X_i-\theta_i)\big)^2\Big]$ 을 전개하여</p>
+  $$\operatorname{Var}\,g(X)\ \approx\ \sum_{i=1}^k[\,g_i{}'(\theta)\,]^2\operatorname{Var}(X_i)
+  +2\sum_{i\gt j}g_i{}'(\theta)\,g_j{}'(\theta)\operatorname{Cov}(X_i,X_j). \tag{3.10}$$
+</div>
+<div class="box ex">
+  <span class="tag">예 3.12</span><span class="title">비추정량의 근사 평균·분산 <span class="en">ratio-type estimator</span></span>
+  <p>두 개의 표본 $X_1,\dots,X_n$ 과 $Y_1,\dots,Y_m$ 의 기댓값이 각각 $\mu_X$ 와 $\mu_Y$ 일 때, 두 모평균의 비
+  $g(\mu_X,\mu_Y)=\dfrac{\mu_X}{\mu_Y}$ 를 표본평균비 $\dfrac{\overline{X}_n}{\overline{Y}_m}$ 로 추정하는
+  경우를 생각하자. 편도함수는</p>
+  $$\frac{\partial}{\partial\mu_X}g(\mu_X,\mu_Y)=\frac{1}{\mu_Y},\qquad
+  \frac{\partial}{\partial\mu_Y}g(\mu_X,\mu_Y)=-\frac{\mu_X}{\mu_Y^2}$$
+  <p>이므로, 식 (3.9)와 (3.10)을 각각 이용하면</p>
+  $$E\!\left(\frac{\overline{X}_n}{\overline{Y}_m}\right)\approx\frac{\mu_X}{\mu_Y},$$
+  $$\operatorname{Var}\!\left(\frac{\overline{X}_n}{\overline{Y}_m}\right)
+  \approx\frac{1}{\mu_Y^2}\operatorname{Var}(\overline{X}_n)
+  +\frac{\mu_X^2}{\mu_Y^4}\operatorname{Var}(\overline{Y}_m)
+  -2\frac{\mu_X}{\mu_Y^3}\operatorname{Cov}(\overline{X}_n,\overline{Y}_m)
+  =\left(\frac{\mu_X}{\mu_Y}\right)^2\!\left(\frac{\operatorname{Var}(\overline{X}_n)}{\mu_X^2}
+  +\frac{\operatorname{Var}(\overline{Y}_m)}{\mu_Y^2}
+  -2\frac{\operatorname{Cov}(\overline{X}_n,\overline{Y}_m)}{\mu_X\mu_Y}\right)$$
+  <p>로 근사할 수 있다.</p>
+</div>
+
+<nav class="pager">
+  <a href="3-3_sampling-from-normal.html">← 이전<small>3.3 정규분포로부터의 표본추출</small></a>
+  <span class="spacer"></span>
+</nav>
+
+</body>
+</html>
