@@ -104,6 +104,68 @@
   $V_2=\dfrac{(n-1)S_n^2}{\sigma^2}\sim\chi^2(n-1)$.</p>
   <div class="qed">∎</div>
 </div>
+<div class="box prf">
+  <span class="tag">별증 <span class="en">직교행렬 이용</span></span>
+  <p><b>전략.</b> 표본벡터 $X=(X_1,\dots,X_n)^\top$ 를 직교행렬 $Q$ 로 회전한 $Y=QX$ 를 만들어,
+  첫 성분 $Y_1$ 에는 표본평균이, 나머지 성분 $Y_2,\dots,Y_n$ 에는 편차제곱합이 나뉘어 담기게 한다.
+  정규분포는 회전해도 성분들의 독립이 유지되므로, 서로 겹치지 않는 성분의 함수인 $\overline{X}_n$ 과 $S_n^2$ 은
+  독립이 된다. 덤으로 $(n-1)S_n^2/\sigma^2\sim\chi^2(n-1)$ 까지 얻는다.</p>
+  <p><b>준비 ① 직교행렬과 길이 보존.</b> $Q^\top Q=QQ^\top=I$, 즉 $Q^{-1}=Q^\top$ 인 행렬을
+  <b>직교행렬<span class="en">orthogonal matrix</span></b>이라 한다. 행(열)벡터들이 길이 $1$ 이고 서로
+  수직<span class="en">orthonormal</span>이라는 뜻이며, 기하적으로는 공간을 찌그러뜨리지 않는
+  <b>회전·반사 변환</b>이다. 특히 제곱합(길이)을 보존한다:</p>
+  $$\|Qx\|^2=x^\top Q^\top Q\,x=x^\top x=\|x\|^2.$$
+  <p><b>준비 ② 랜덤표본의 공분산행렬.</b> 공분산행렬 $\operatorname{Cov}(X)=E\big[(X-\mu_X)(X-\mu_X)^\top\big]$ 은
+  $n\times n$ 행렬로, 대각원소는 각 변수의 분산 $\operatorname{Var}(X_i)$, 비대각원소는 두 변수 사이의
+  공분산 $\operatorname{Cov}(X_i,X_j)$ 이다. $X_i$ 들이 iid 이므로 서로의 공분산이 $0$ — 비대각은 전부 $0$,
+  대각은 전부 $\sigma^2$:</p>
+  $$\operatorname{Cov}(X)=\sigma^2 I.$$
+  <p><b>준비 ③ 회전 후의 공분산.</b> $Y=QX$ 라 하면 $E(Y)=Q\,E(X)$ 이고, $(AB)^\top=B^\top A^\top$ 과
+  상수행렬이 기대값 밖으로 나오는 성질에서</p>
+  $$\operatorname{Cov}(Y)=E\big[Q(X-\mu_X)(X-\mu_X)^\top Q^\top\big]=Q\operatorname{Cov}(X)\,Q^\top
+  =Q(\sigma^2 I)Q^\top=\sigma^2 QQ^\top=\sigma^2 I.$$
+  <p>즉 회전 후에도 <b>모든 성분의 분산이 $\sigma^2$ 이고, 모든 쌍의 공분산이 $0$</b> 이다.</p>
+  <p><b>준비 ④ 공분산 0 → 상호 독립 (정규분포 한정).</b> 일반적으로 공분산 $0$ 은 무상관까지만 보장한다.
+  그러나 $X$ 가 다변량 정규벡터이고 $Y=QX$ 는 그 선형변환이므로 $Y$ 도 <b>다변량 정규분포</b>를 따른다.
+  다변량 정규의 결합밀도에 $\Sigma=\sigma^2 I$ 를 넣으면 지수 안의 이차형식이</p>
+  $$(y-\mu_Y)^\top(\sigma^2 I)^{-1}(y-\mu_Y)=\frac{1}{\sigma^2}\sum_{i=1}^n(y_i-\mu_i)^2$$
+  <p>으로 성분별로 완전히 분리되고, 결합밀도가 주변밀도들의 곱으로 인수분해된다:</p>
+  $$f(y_1,\dots,y_n)=\prod_{i=1}^n f_i(y_i).$$
+  <p>이것이 <b>상호<span class="en">mutually</span> 독립</b>의 정의 그 자체다. (쌍별 독립이 아니라 전체 상호 독립.
+  단, "각 $Y_i$ 가 개별로 정규"만으로는 부족하고 <b>결합분포가 다변량 정규</b>여야 한다는 점에 주의.)</p>
+  <p><b>준비 ⑤ 겹치지 않는 성분의 함수.</b> $Y_1,\dots,Y_n$ 이 상호 독립이면, <b>겹치지 않는<span class="en">disjoint</span>
+  인덱스 부분집합들의 함수끼리도 독립</b>이다 — 어떤 함수 $g,h$ 든 $g(Y_1)$ 과 $h(Y_2,\dots,Y_n)$ 은 독립.
+  (겹치는 경우는 안 된다 — 예: $Y_1+Y_2$ 와 $Y_2+Y_3$ 는 $Y_2$ 를 공유하므로 일반적으로 독립이 아니다.)</p>
+  <p><b>① 직교행렬 구성.</b> 첫 행이 $\left(\tfrac{1}{\sqrt n},\dots,\tfrac{1}{\sqrt n}\right)$ 인 직교행렬 $Q$ 를 잡는다
+  (나머지 $n-1$ 개 행은 첫 행과 수직이 되도록 채운다 — 헬머트<span class="en">Helmert</span> 행렬이 대표적).
+  $Y=QX$ 로 정의한다.</p>
+  <p><b>② 첫 성분 = 표본평균.</b></p>
+  $$Y_1=\frac{1}{\sqrt n}\sum_{i=1}^n X_i=\sqrt n\,\overline{X}_n.$$
+  <p>평균을 보면, $2$ 행 이하는 첫 행 $\tfrac1{\sqrt n}\mathbf 1$ 과 수직이므로
+  $E(Y_1)=\sqrt n\,\mu$, $\ E(Y_2)=\cdots=E(Y_n)=0$.</p>
+  <p><b>③ 나머지 성분의 제곱합 = 편차제곱합.</b> 준비 ①(길이 보존)에서 $\sum_i Y_i^2=\sum_i X_i^2$ 이므로</p>
+  $$\sum_{i=2}^n Y_i^2=\sum_{i=1}^n X_i^2-Y_1^2=\sum_{i=1}^n X_i^2-n\overline{X}_n^2
+  =\sum_{i=1}^n(X_i-\overline{X}_n)^2=(n-1)S_n^2.$$
+  <p><b>④ 독립성.</b> 준비 ③에서 $\operatorname{Cov}(Y)=\sigma^2 I$ (비대각 전부 $0$), 준비 ④에서 $Y$ 는
+  다변량 정규 → $Y_1,\dots,Y_n$ 은 상호 독립.</p>
+  <p><b>⑤ 결론.</b></p>
+  <ul class="props">
+    <li>$\overline{X}_n=\tfrac{1}{\sqrt n}\,Y_1$ → <b>$Y_1$ 만의 함수</b></li>
+    <li>$S_n^2=\tfrac{1}{n-1}\displaystyle\sum_{i=2}^n Y_i^2$ → <b>$Y_2,\dots,Y_n$ 만의 함수</b> (제곱합)</li>
+  </ul>
+  <p>두 함수는 겹치지 않는 성분 집합 $\{1\}$ 과 $\{2,\dots,n\}$ 에서 나왔으므로 준비 ⑤에 의해
+  $\overline{X}_n$ 과 $S_n^2$ 은 독립이다.</p>
+  <p><b>따름 — $S_n^2$ 의 분포.</b> $Y_2,\dots,Y_n$ 은 서로 독립인 $N(0,\sigma^2)$ 이므로
+  (<a href="3-2_normal-related-distributions.html">정리 3.5</a>)</p>
+  $$\frac{(n-1)S_n^2}{\sigma^2}=\sum_{i=2}^n\left(\frac{Y_i}{\sigma}\right)^2\sim\chi^2(n-1).$$
+  <div class="qed">∎</div>
+</div>
+<div class="note">
+  <b>논리 사슬 요약.</b> 직교행렬로 좌표축 회전 → 제곱합 보존 + 공분산 $\sigma^2 I$ 유지 → 다변량 정규라서
+  무상관이 상호 독립으로 격상 → 평균 방향($Y_1$)과 편차 방향($Y_2,\dots,Y_n$)이 겹치지 않게 분리 → 독립.
+  정규분포만이 "회전해도 성분 독립이 유지"되는 성질을 가지므로, 표본평균과 표본분산의 독립은
+  정규분포의 <b>특성화<span class="en">characterization</span></b>이기도 하다.
+</div>
 <div class="box ex">
   <span class="tag">예 3.6</span><span class="title">(예 3.5 계속) 표본분산</span>
   <p>예 3.5의 $10$ 개 랜덤표본($\sigma^2=4$)에서 표본분산이 $5$ 보다 클 확률을 구하자.
