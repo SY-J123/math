@@ -57,9 +57,30 @@
   \qquad(n\to\infty).$$
   <div class="qed">∎</div>
 </div>
-<div class="note">
-  표본분산이 모분산으로 확률적으로 수렴하는 것($S_n^2\xrightarrow{\ p\ }\sigma^2$)도 적절한 조건하에서
-  성립한다 — 증명의 뼈대는 같다(연습문제).
+<div class="box thm">
+  <span class="tag">정리</span><span class="title">표본분산의 확률수렴</span>
+  <p>$E(X_1^4)\lt\infty$ 인 모분포로부터 랜덤표본 $X_1,\dots,X_n$ 을 얻으면, 표본분산은 모분산으로
+  확률적으로 수렴한다:</p>
+  $$S_n^2=\frac{1}{n-1}\sum_{i=1}^n(X_i-\overline{X}_n)^2\ \xrightarrow{\ p\ }\ \sigma^2.$$
+</div>
+<div class="box prf">
+  <span class="tag">증명</span>
+  <p><b>① 분해.</b> $\displaystyle\sum_{i=1}^n(X_i-\overline{X}_n)^2=\sum_{i=1}^n(X_i-\mu)^2-n(\overline{X}_n-\mu)^2$
+  이므로</p>
+  $$S_n^2=\frac{n}{n-1}\left[\frac1n\sum_{i=1}^n(X_i-\mu)^2-(\overline{X}_n-\mu)^2\right].$$
+  <p><b>② 첫째 항 — 대수의 법칙.</b> $Y_i=(X_i-\mu)^2$ 으로 두면 $Y_1,\dots,Y_n$ 도 iid 이고
+  $E(Y_i)=\sigma^2$ 이며, $E(X_1^4)\lt\infty$ 에서 $\operatorname{Var}(Y_i)\lt\infty$ 이다. 따라서
+  $Y_i$ 들에 정리 3.12를 적용하면</p>
+  $$\frac1n\sum_{i=1}^n(X_i-\mu)^2\ \xrightarrow{\ p\ }\ \sigma^2.$$
+  <p><b>③ 둘째 항 — $0$ 으로 수렴.</b> 임의의 $\epsilon\gt0$ 에 대해 정리 3.12에 의해</p>
+  $$P\big[(\overline{X}_n-\mu)^2\ge\epsilon\big]=P\big[\,|\overline{X}_n-\mu|\ge\sqrt\epsilon\,\big]\ \longrightarrow\ 0,
+  \qquad\text{즉}\quad(\overline{X}_n-\mu)^2\xrightarrow{\ p\ }0.$$
+  <p><b>④ 결합.</b> $A_n\xrightarrow{\ p\ }a$, $B_n\xrightarrow{\ p\ }b$ 이면</p>
+  $$P\big(|(A_n-B_n)-(a-b)|\ge\epsilon\big)
+  \le P\big(|A_n-a|\ge\tfrac\epsilon2\big)+P\big(|B_n-b|\ge\tfrac\epsilon2\big)\ \longrightarrow\ 0$$
+  <p>이므로 차 $A_n-B_n$ 도 $a-b$ 로 확률수렴한다. ②③에서 괄호 안은 $\sigma^2$ 으로 확률수렴하고,
+  앞의 $\frac{n}{n-1}$ 은 $1$ 로 수렴하는 상수열이므로 $S_n^2\xrightarrow{\ p\ }\sigma^2$.</p>
+  <div class="qed">∎</div>
 </div>
 <div class="box ex">
   <span class="tag">예 3.7</span><span class="title">표본비율의 수렴</span>
@@ -276,7 +297,8 @@
   <span class="tag">예 3.10</span><span class="title">스튜던트화 통계량의 극한분포</span>
   <p>평균과 분산이 각각 $\mu$ 와 $\sigma^2\lt\infty$ 인 모분포로부터 랜덤표본 $X_1,\dots,X_n$ 을 얻고
   (<b>정규 가정 없음</b>), 표본평균과 표본표준편차를 각각 $\overline{X}_n,\ S_n$ 이라 하자.
-  $S_n\xrightarrow{\ p\ }\sigma$ (연습문제)이고 중심극한정리에 의해
+  $S_n^2\xrightarrow{\ p\ }\sigma^2$ (표본분산의 확률수렴 정리)에서 $S_n\xrightarrow{\ p\ }\sigma$ 이고
+  ($\sqrt{\cdot}$ 이 연속함수이므로 확률수렴이 보존된다), 중심극한정리에 의해
   $\dfrac{\overline{X}_n-\mu}{\sigma/\sqrt n}\xrightarrow{\ d\ }N(0,1)$ 이므로, 슬럿츠키 정리(2)를 사용하면</p>
   $$\frac{\overline{X}_n-\mu}{S_n/\sqrt n}
   =\frac{\sigma}{S_n}\cdot\frac{\overline{X}_n-\mu}{\sigma/\sqrt n}
