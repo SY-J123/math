@@ -297,7 +297,53 @@
   <p>로 근사하며, 이를 <b>연속성 수정</b>이라고 한다:</p>
   $$P\big[a\le X\le b\big]\fallingdotseq
   \varPhi\!\left[\frac{b+1/2-np}{\sqrt{npq}}\right]-\varPhi\!\left[\frac{a-1/2-np}{\sqrt{npq}}\right].$$
+  <p>히스토그램 관점에서 보면 명확하다 — 이산형 확률 $P(X=k)$ 는 <b>중앙이 $k$ 인 폭 $1$ 짜리 막대의
+  넓이</b>이고 정규근사는 곡선 아래의 <b>적분</b>인데, 적분 경계를 정수 $a,b$(막대의 중앙)로 잡으면 양끝
+  막대의 바깥쪽 절반이 잘려 나간다. 막대 전체를 커버하려면 경계를 좌우로 $\tfrac12$ 씩 늘려야 한다(그림 3.5).</p>
 </div>
+<figure class="fig">
+  <svg viewBox="0 0 360 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="연속성 수정의 기하학 — 막대 중앙까지만 적분하면 양끝 막대의 절반이 잘린다">
+    <line x1="12" y1="170" x2="348" y2="170" stroke="currentColor" stroke-width="1"/>
+    <!-- 히스토그램 막대 (폭 1 = 52px, 중앙이 정수) -->
+    <rect x="50"  y="115" width="52" height="55"  fill="currentColor" opacity="0.10"/>
+    <rect x="102" y="79"  width="52" height="91"  fill="currentColor" opacity="0.32"/>
+    <rect x="154" y="54"  width="52" height="116" fill="currentColor" opacity="0.32"/>
+    <rect x="206" y="54"  width="52" height="116" fill="currentColor" opacity="0.10"/>
+    <rect x="258" y="79"  width="52" height="91"  fill="currentColor" opacity="0.10"/>
+    <!-- 정규 곡선 -->
+    <polyline fill="none" stroke="currentColor" stroke-width="1.5"
+      points="24,144 50,130 76,115 102,96 128,79 154,64 180,54 206,50 232,54 258,64 284,79 310,96 336,115"/>
+    <!-- 수정 전 경계: 막대의 중앙 -->
+    <line x1="128" y1="48" x2="128" y2="170" stroke="currentColor" stroke-width="1" stroke-dasharray="4 3"/>
+    <line x1="180" y1="48" x2="180" y2="170" stroke="currentColor" stroke-width="1" stroke-dasharray="4 3"/>
+    <text x="128" y="44" font-size="10" fill="currentColor" text-anchor="middle">a=36</text>
+    <text x="180" y="44" font-size="10" fill="currentColor" text-anchor="middle">b=37</text>
+    <!-- 수정 후 경계: 막대의 가장자리 -->
+    <line x1="102" y1="34" x2="102" y2="170" stroke="currentColor" stroke-width="1.6"/>
+    <line x1="206" y1="34" x2="206" y2="170" stroke="currentColor" stroke-width="1.6"/>
+    <text x="99"  y="28" font-size="10" fill="currentColor" text-anchor="end">a−½=35.5</text>
+    <text x="209" y="28" font-size="10" fill="currentColor" text-anchor="start">b+½=37.5</text>
+    <!-- 값 눈금 -->
+    <text x="76"  y="182" font-size="10" fill="currentColor" text-anchor="middle">35</text>
+    <text x="128" y="182" font-size="10" fill="currentColor" text-anchor="middle">36</text>
+    <text x="180" y="182" font-size="10" fill="currentColor" text-anchor="middle">37</text>
+    <text x="232" y="182" font-size="10" fill="currentColor" text-anchor="middle">38</text>
+    <text x="284" y="182" font-size="10" fill="currentColor" text-anchor="middle">39</text>
+    <!-- 아래 브래킷: 수정 전 -->
+    <line x1="128" y1="196" x2="180" y2="196" stroke="currentColor" stroke-width="1" stroke-dasharray="4 3"/>
+    <line x1="128" y1="192" x2="128" y2="200" stroke="currentColor" stroke-width="1"/>
+    <line x1="180" y1="192" x2="180" y2="200" stroke="currentColor" stroke-width="1"/>
+    <text x="192" y="200" font-size="10" fill="currentColor">수정 없음 — 양끝 막대의 바깥 절반을 놓침</text>
+    <!-- 아래 브래킷: 수정 후 -->
+    <line x1="102" y1="216" x2="206" y2="216" stroke="currentColor" stroke-width="1.6"/>
+    <line x1="102" y1="212" x2="102" y2="220" stroke="currentColor" stroke-width="1"/>
+    <line x1="206" y1="212" x2="206" y2="220" stroke="currentColor" stroke-width="1"/>
+    <text x="218" y="220" font-size="10" fill="currentColor">연속성 수정 — 두 막대 전체를 커버</text>
+  </svg>
+  <figcaption>그림 3.5 · 연속성 수정의 기하학 — 이산형 확률 $P(X=k)$ 는 중앙이 $k$ 인 폭 $1$ 막대의 넓이다.
+  정규근사(곡선 아래 적분)의 경계를 막대의 <b>중앙</b>인 $36,\,37$ 로 잡으면 두 막대의 바깥쪽 절반이 잘려
+  나가므로, 경계를 좌우로 $\tfrac12$ 씩 늘린 $[35.5,\,37.5]$ 로 잡아야 막대 전체가 커버된다.</figcaption>
+</figure>
 <div class="box ex">
   <span class="tag">예</span><span class="title">연속성 수정의 효과</span>
   <p>$n=50$, $p=0.75$, $a=36$, $b=37$ 이라 하자 ($np=37.5$, $npq=9.375$). 연속성 수정 없는 정규근사는</p>
