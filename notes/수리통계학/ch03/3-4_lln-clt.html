@@ -145,6 +145,52 @@
   의해 $Z_n\xrightarrow{\ d\ }N(0,1)$.</p>
   <div class="qed">∎</div>
 </div>
+<div class="box prf">
+  <span class="tag">별증 <span class="en">표준화와 차수 심사</span></span>
+  <p><b>배경 — mgf 의 테일러 전개.</b> mgf 의 $k$ 차 미분값은 $k$ 차 적률이다:
+  $M^{(k)}(0)=E(Y^k)$ (<a href="../ch02/2-8_mgf.html">2.8절</a>). 따라서 $0$ 에서
+  <a href="../ch00/0-4_series.html">테일러 전개</a>하면</p>
+  $$M_Y(s)=1+E(Y)\,s+\frac{E(Y^2)}{2!}\,s^2+\underbrace{\frac{E(Y^3)}{3!}\,s^3+\cdots}_{r(s)}$$
+  <p>계수가 $\frac1{k!}$ 이 아니라 $\frac{E(Y^k)}{k!}$ — <b>3차 이상 계수에 분포의 개성(왜도·첨도)이 산다</b>.
+  나머지항 $r(s)$ 는 테일러 정리에 의해 마지막으로 쓴 항보다 한 차수 빠르게 죽는다:
+  $0$ 근방에서 $|r(s)|\le C|s|^3$ ($C$ 는 상수). $0$ 을 포함하는 개구간에서 mgf 가 존재해야
+  이 미분·전개·평가가 전부 정당화된다.</p>
+  <p><b>① 표준화.</b> $Y_i=\dfrac{X_i-\mu}{\sigma}$ 로 두면 $E(Y_i)=0$, $E(Y_i^2)=1$ 이고
+  $Z_n=\dfrac1{\sqrt n}\displaystyle\sum_{i=1}^n Y_i$. 위 전개에 대입하면</p>
+  $$M_Y(s)=1+\frac{s^2}{2}+r(s),\qquad |r(s)|\le C|s|^3.$$
+  <p>$0\cdot1\cdot2$ 차 항은 모든 분포에서 동일하게 고정되고, 분포의 개성은 전부 $r(s)$ 에 수납된다.</p>
+  <p><b>② mgf 곱 분해.</b> 독립이므로 기대값이 곱으로 갈라지고, 동일분포이므로 같은 $M_Y$ 의 거듭제곱이 된다:</p>
+  $$M_{Z_n}(t)=E\Big[\prod_{i=1}^n e^{\frac{t}{\sqrt n}Y_i}\Big]
+  =\prod_{i=1}^n E\big[e^{\frac{t}{\sqrt n}Y_i}\big]
+  =\Big[M_Y\big(\tfrac{t}{\sqrt n}\big)\Big]^n.$$
+  <p><b>③ 전개 대입.</b> $t$ 를 고정하면 $n\to\infty$ 일 때 $s=t/\sqrt n\to0$ — 전개가 유효한 영역으로 들어간다:</p>
+  $$M_{Z_n}(t)=\Big[1+\frac{t^2}{2n}+r_n\Big]^n,\qquad
+  |r_n|\le C\Big|\frac{t}{\sqrt n}\Big|^3=\frac{C|t|^3}{n^{3/2}}.$$
+  <p><b>④ 속도 심사.</b> $(1+x_n)^n$ 의 극한은 $n\,x_n$ 이 결정하므로, 괄호 안 각 항을 $n$ 배 확대해 판정한다:</p>
+  <ul class="props">
+    <li>$1$ 차 항 — 표준화로 <b>사전 제거</b> (있었다면 $n$ 배 시 $\sqrt n\,t$ 로 발산했을 항)</li>
+    <li>$2$ 차 항 $\dfrac{t^2}{2n}$ — $n$ 배 하면 $\dfrac{t^2}{2}$: <b>생존</b></li>
+    <li>$3$ 차 이상 $r_n$ — $n$ 배 해도 $\le\dfrac{C|t|^3}{\sqrt n}\to0$: <b>소멸</b></li>
+  </ul>
+  <p>계수 $E(Y^3),E(Y^4),\dots$ 는 고정된 상수이고 움직이는 것은 $s\to0$ 뿐이므로, $s$ 의 차수가 높을수록
+  빨리 죽는다 — 생존선($n^{-1}$, 즉 $2$ 차)보다 격이 낮은 $3$ 차 이상은 형태를 불문하고 전멸한다. 따라서</p>
+  $$\lim_{n\to\infty}M_{Z_n}(t)=e^{t^2/2}.$$
+  <p><b>⑤ 마무리.</b> $e^{t^2/2}$ 는 $N(0,1)$ 의 mgf 이므로, 연속성 정리(정리 3.13)에 의해
+  $Z_n\xrightarrow{\ d\ }N(0,1)$.</p>
+  <div class="qed">∎</div>
+</div>
+<div class="note">
+  <b>개념 한 문장.</b> 표준화가 $1$ 차(평균)를 미리 지우고, $\sqrt n$ 스케일링이 $2$ 차(분산)를 $n$ 제곱과
+  정확히 균형 맞는 $\frac1n$ 스케일에 올려놓으며, $3$ 차 이상(분포의 모양)은 차수가 높아 $n$ 의 확대를 못
+  버티고 전멸한다 — 그래서 어떤 분포에서 출발하든 살아남는 정보는 분산뿐이고, 도착지는 항상 정규분포다.
+  <b>각 가정의 담당:</b>
+  <ul class="props">
+    <li>iid → ② 의 곱 분해</li>
+    <li>분산 유한 → $2$ 차 적률의 존재</li>
+    <li>mgf 의 $0$ 근방 존재 → 전개의 정당화 + 연속성 정리 적용</li>
+    <li>표준화 → $1$ 차 항 제거</li>
+  </ul>
+</div>
 <div class="note">
   <b>모분포와 무관.</b> 중심극한정리는 모분포의 형태에 관계없이 <b>유한한 평균과 분산만 존재하면</b> 성립한다
   (실제로 코시 확률변수같이 평균이 존재하지 않는 경우는 성립하지 않는다). 확률변량 $Z_n$ 은
