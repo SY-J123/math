@@ -120,6 +120,40 @@
   =\frac{\displaystyle\sum_{i=1}^n(X_i-\mu)}{\sqrt n\,\sigma}$$
   <p>는 표본의 크기 $n$ 이 무한대에 접근함에 따라 표준정규분포 $N(0,1)$ 로 분포수렴한다.</p>
 </div>
+<div class="box thm">
+  <span class="tag">보조정리</span><span class="title">1차 나머지항의 라그랑주 표현 <span class="en">Lagrange remainder</span></span>
+  <p>$f$ 가 $a$ 를 포함하는 개구간에서 두 번 미분가능하다고 하자. $1$ 차 근사가 못 담은 <b>전부</b>를
+  나머지항으로 정의하면</p>
+  $$R_1(x):=f(x)-f(a)-f'(a)(x-a)\qquad\Longleftrightarrow\qquad f(x)=f(a)+f'(a)(x-a)+R_1(x),$$
+  <p>이 $R_1$ 은 $a$ 와 $x$ 사이의 어떤 $\xi$ 에 대해 다음 꼴로 표현된다:</p>
+  $$R_1(x)=\frac{f''(\xi)}{2}\,(x-a)^2.$$
+</div>
+<div class="box prf">
+  <span class="tag">증명</span>
+  <p><b>⓪ 정의 확인.</b> $R_1$ 은 정의이므로 $f(x)=f(a)+f'(a)(x-a)+R_1(x)$ 는 무조건 성립한다 — 여기에는
+  아무 미스터리가 없다. 문제는 이 덩어리 $R_1(x)$ 의 <b>정체</b>다.</p>
+  <p><b>① 검증 장치.</b> $x\ne a$ 를 고정하고 비율 $M:=\dfrac{R_1(x)}{(x-a)^2/2}$ 로 두자(그냥 비율이다).
+  보조함수</p>
+  $$g(u)=f(u)-f(a)-f'(a)(u-a)-M\,\frac{(u-a)^2}{2}$$
+  <p>를 정의하면 $g(a)=0$, $g'(a)=0$ 이고, $M$ 의 정의에 의해
+  $g(x)=R_1(x)-M\dfrac{(x-a)^2}{2}=0$.</p>
+  <p><b>② 롤 정리 2연쇄.</b> 양끝에서 값이 같은 미분가능 함수는 그 사이에서 도함수가 $0$ 인 점을 갖는다
+  (롤<span class="en">Rolle</span> 정리):</p>
+  <ul class="props">
+    <li>$g(a)=g(x)=0$ 이므로 $g'(\xi_1)=0$ 인 $\xi_1$ 이 $a$ 와 $x$ 사이에 존재</li>
+    <li>$g'(a)=g'(\xi_1)=0$ 이므로 $g''(\xi)=0$ 인 $\xi$ 가 $a$ 와 $\xi_1$ 사이에 존재</li>
+  </ul>
+  <p><b>③ 정체 판명.</b> $g''(u)=f''(u)-M$ 이므로 $g''(\xi)=0$ 은 곧 $M=f''(\xi)$. 따라서</p>
+  $$R_1(x)=\frac{f''(\xi)}{2}\,(x-a)^2,\qquad \xi\ \text{는 }a\text{ 와 }x\text{ 사이}.$$
+  <div class="qed">∎</div>
+</div>
+<div class="note">
+  나머지항을 "무한 꼬리를 하나로 정리한 것"으로 읽으면 혼란스럽다 — 정리한 적이 없다. $R_1$ 은 처음부터
+  "$f(x)$ 에서 $1$ 차 근사를 뺀 것" <b>하나</b>로 정의된 대상이고, 보조정리는 그 덩어리가 하필
+  $\frac{f''(\xi)}{2}(x-a)^2$ 라는 깔끔한 꼴이 된다는 <b>발견</b>이다. 정확한 위치를 모르는 $\xi$ 가
+  $a$ 와 $x$ 사이에 <b>끼어 있다</b>는 사실이 핵심 — $x\to a$ 이면 $\xi\to a$ 가 강제되므로, $f''$ 이
+  연속이면 극한에서 나머지항을 통제할 수 있다. 아래 증명이 정확히 이 지점을 쓴다.
+</div>
 <div class="box prf">
   <span class="tag">증명</span>
   <p>완전한 증명은 수학적인 면에서 이 책의 수준을 벗어나므로, 여기서는 <b>적률생성함수가 존재하는 경우</b>만
@@ -127,35 +161,24 @@
   <p><b>① 중심화된 mgf.</b> 랜덤표본이므로 $X_i-\mu$ 의 적률생성함수는 모든 $i$ 에 대해 동일하다. 이를</p>
   $$m(t)=E\big[e^{t(X_i-\mu)}\big]$$
   <p>라 하면 $m(0)=1$ 이고, $m'(0)=E(X_i-\mu)=0$, $m''(0)=E(X_i-\mu)^2=\sigma^2$ 이다.</p>
-  <p><b>② 테일러 전개 — 라그랑주 나머지항.</b> 먼저 배경을 정리하자.
-  <a href="../ch00/0-4_series.html">테일러 정리</a>에 의하면, $f$ 가 $0$ 을 포함하는 구간에서 $k+1$ 번
-  미분가능할 때</p>
-  $$f(t)=f(0)+f'(0)\,t+\cdots+\frac{f^{(k)}(0)}{k!}\,t^k
-  +\underbrace{\frac{f^{(k+1)}(\xi)}{(k+1)!}\,t^{k+1}}_{\text{라그랑주 나머지항}}$$
-  <p>을 만족하는 $\xi$ 가 $0$ 과 $t$ 사이에 존재한다. 나머지항의 모양은 "전개의 <b>다음 차수 항</b>에서
-  미분값을 $0$ 대신 사이점 $\xi$ 에서 평가한 것"이다:</p>
-  <ul class="props">
-    <li>$k=0$ 이면 $f(t)=f(0)+f'(\xi)\,t$ — <b>평균값정리</b> 그 자체이고, 라그랑주 나머지항은 그 고차 일반화다.</li>
-    <li>근사식($\approx$)이 아니라 유한 차수에서 끊은 <b>정확한 등식</b>이다 — 절단 오차 전체가 $\xi$ 한 점에 수납된다.</li>
-    <li>$\xi$ 의 정확한 위치는 모르지만 <b>$0$ 과 $t$ 사이</b>라는 것은 안다 — $t\to0$ 이면 $\xi\to0$ 이 강제되므로,
-    $f^{(k+1)}$ 이 $0$ 에서 연속이면 나머지항의 계수를 극한에서 통제할 수 있다. (④에서 이 성질을 쓴다.)</li>
-  </ul>
-  <p>mgf 는 정의구간 $-h\lt t\lt h$ 에서 무한히 미분가능하므로, $m$ 에 $k=1$ 로 적용하면</p>
-  $$m(t)=m(0)+m'(0)\,t+\frac{m''(\xi)\,t^2}{2}
-  =1+\frac{\sigma^2t^2}{2}+\frac{[\,m''(\xi)-\sigma^2\,]\,t^2}{2},\qquad 0\lt\xi\lt t$$
-  <p>($t\lt0$ 인 경우는 $t\lt\xi\lt0$). 둘째 등호는 $\frac{m''(\xi)t^2}2$ 에 $\frac{\sigma^2t^2}2$ 을 더하고 뺀
-  것으로, "주항 $\frac{\sigma^2t^2}2$ + 오차 $\frac{[m''(\xi)-\sigma^2]t^2}2$" 꼴로 분리해 두는 정리다.</p>
+  <p><b>② 나머지항의 정체.</b> $1$ 차 근사가 못 담은 전부를 $R_1(s):=m(s)-m(0)-m'(0)\,s=m(s)-1$ 로
+  정의하자. mgf 는 정의구간 $-h\lt s\lt h$ 에서 무한히 미분가능하므로 보조정리를 적용할 수 있고,
+  $0$ 과 $s$ 사이의 어떤 $\xi$ 에 대해</p>
+  $$m(s)=1+R_1(s)=1+\frac{m''(\xi)}{2}\,s^2$$
+  <p>— <a href="../ch00/0-4_series.html">테일러 급수</a>의 $1$ 차 전개 꼴($0$·$1$ 차 항 + 나머지항)로
+  표현된 것이다.</p>
   <p><b>③ $Z_n$ 의 mgf.</b> $Z_n=\sum_{i=1}^n(X_i-\mu)\big/(\sqrt n\,\sigma)$ 이고 독립합의 mgf 는 곱이므로
-  (<a href="../ch02/2-8_mgf.html">정리 2.29</a>)</p>
+  (<a href="../ch02/2-8_mgf.html">정리 2.29</a>), ②에 $s=\dfrac{t}{\sqrt n\,\sigma}$ 를 대입하면</p>
   $$M_{Z_n}(t)=\prod_{i=1}^n M_{X_i-\mu}\!\Big(\frac{t}{\sqrt n\,\sigma}\Big)
   =\Big[\,m\Big(\frac{t}{\sqrt n\,\sigma}\Big)\Big]^n
-  =\left[\,1+\frac{t^2}{2n}+\frac{[\,m''(\xi)-\sigma^2\,]\,t^2}{2n\sigma^2}\,\right]^n,
-  \qquad 0\lt\xi\lt\frac{t}{\sqrt n\,\sigma}.$$
-  <p><b>④ 극한.</b> $n\to\infty$ 일 때 $t/(\sqrt n\,\sigma)\to0$ 이므로 $\xi\to0$ 이고, mgf 는 정의구간에서
-  무한히 미분가능하므로 $m''$ 은 $0$ 에서 연속 — 따라서 $m''(\xi)-\sigma^2\to m''(0)-\sigma^2=0$. 즉 괄호 안은
-  $1+\frac{t^2/2+o(1)}{n}$ 꼴이 되어 <a href="../ch00/0-1_limits.html">지수함수 극한</a>에 의해</p>
+  =\left[\,1+\frac{m''(\xi_n)\,t^2}{2n\sigma^2}\,\right]^n,
+  \qquad \xi_n \text{ 은 } 0 \text{ 과 } \tfrac{t}{\sqrt n\,\sigma} \text{ 사이}.$$
+  <p><b>④ $\xi_n$ 붙잡기.</b> $t$ 를 고정하면 $n\to\infty$ 일 때 $t/(\sqrt n\,\sigma)\to0$ 이고, $\xi_n$ 은
+  $0$ 과 그 사이에 <b>끼어 있으므로</b> $\xi_n\to0$ 이 강제된다. $m''$ 은 $0$ 에서 연속이므로
+  $m''(\xi_n)\to m''(0)=\sigma^2$, 즉 괄호 안은 $1+\dfrac{a_n}{n}$ ($a_n=\dfrac{m''(\xi_n)\,t^2}{2\sigma^2}\to\dfrac{t^2}2$)
+  꼴이 되어 <a href="../ch00/0-1_limits.html">지수함수 극한</a>에 의해</p>
   $$\lim_{n\to\infty}M_{Z_n}(t)=\exp\!\big(t^2/2\big).$$
-  <p>이는 $N(0,1)$ 의 적률생성함수이므로, 정리 3.13과 mgf 의 유일성(<a href="../ch02/2-8_mgf.html">정리 2.28</a>)에
+  <p><b>⑤ 마무리.</b> 이는 $N(0,1)$ 의 적률생성함수이므로, 정리 3.13과 mgf 의 유일성(<a href="../ch02/2-8_mgf.html">정리 2.28</a>)에
   의해 $Z_n\xrightarrow{\ d\ }N(0,1)$.</p>
   <div class="qed">∎</div>
 </div>
