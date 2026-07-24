@@ -422,16 +422,20 @@
 </div>
 <div class="box prf">
   <span class="tag">증명</span>
-  <p><b>① 평균값 정리.</b> $X_n$ 과 $\theta$ 사이의 어떤 $\tilde\theta$ 에 대하여</p>
-  $$g(X_n)-g(\theta)=g'(\tilde\theta)\,(X_n-\theta).$$
-  <p><b>② $g'(\tilde\theta)$ 의 수렴.</b> $\sqrt n(X_n-\theta)\xrightarrow{\ d\ }N(0,\sigma^2)$ 이고
-  $1/\sqrt n\to0$ 이므로 슬럿츠키 정리(2)에 의해
-  $X_n-\theta=\frac{1}{\sqrt n}\cdot\sqrt n(X_n-\theta)\xrightarrow{\ d\ }0$, 즉 $X_n\xrightarrow{\ p\ }\theta$
-  (상수로의 분포수렴은 확률적 수렴과 같다). $\tilde\theta$ 는 $X_n$ 과 $\theta$ 사이에 있으므로
+  <p><b>평균값 정리</b>에 의해, $X_n$ 과 $\theta$ 사이의 어떤 $\tilde\theta$ 에 대하여</p>
+  $$g'(\tilde\theta)=\frac{g(X_n)-g(\theta)}{X_n-\theta}
+  \qquad\Longleftrightarrow\qquad
+  g(X_n)=g'(\tilde\theta)\,(X_n-\theta)+g(\theta). \tag{$\ast$}$$
+  <p><b>슬럿츠키 정리</b>에 의해, $\dfrac{1}{\sqrt n}\xrightarrow{\ p\ }0$ 이므로</p>
+  $$X_n-\theta=\frac{1}{\sqrt n}\cdot\underbrace{\sqrt n\,(X_n-\theta)}_{\xrightarrow{\ d\ }\ N(0,\sigma^2)}
+  \ \xrightarrow{\ d\ }\ 0\cdot N(0,\sigma^2)=0,$$
+  $$X_n-\theta\ \xrightarrow{\ p\ }\ 0\qquad\Longrightarrow\qquad X_n\ \xrightarrow{\ p\ }\ \theta$$
+  <p>(상수로의 분포수렴은 확률적 수렴과 같다). $X_n\xrightarrow{\ p\ }\theta$ 이므로, $X_n$ 과 $\theta$ 사이에
+  끼어 있는 $\tilde\theta$ 도 조임정리<span class="en">squeeze theorem</span>에 의해
   $\tilde\theta\xrightarrow{\ p\ }\theta$ 이고, $g'$ 이 연속이므로 $g'(\tilde\theta)\xrightarrow{\ p\ }g'(\theta)$.</p>
-  <p><b>③ 결론.</b> ①에서 $\sqrt n\big[g(X_n)-g(\theta)\big]=g'(\tilde\theta)\cdot\sqrt n\,(X_n-\theta)$ 이므로,
-  슬럿츠키 정리(2)에 의해</p>
-  $$\sqrt n\,\big(g(X_n)-g(\theta)\big)\ \xrightarrow{\ d\ }\ g'(\theta)\cdot N(0,\sigma^2)=N\!\big(0,\sigma^2[g'(\theta)]^2\big).$$
+  <p>식 $(\ast)$ 을 정리하면, 다시 슬럿츠키 정리(2)에 의해</p>
+  $$\sqrt n\,\big(g(X_n)-g(\theta)\big)=g'(\tilde\theta)\cdot\sqrt n\,(X_n-\theta)
+  \ \xrightarrow{\ d\ }\ g'(\theta)\cdot N(0,\sigma^2)=N\!\big(0,\ \sigma^2[g'(\theta)]^2\big).$$
   <div class="qed">∎</div>
 </div>
 <div class="box ex">
