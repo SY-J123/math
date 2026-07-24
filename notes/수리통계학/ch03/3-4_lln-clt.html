@@ -370,20 +370,27 @@
 </div>
 <div class="box prf">
   <span class="tag">증명 <span class="en">(1)의 개요</span></span>
-  <p>엄밀한 증명은 이 책의 수준을 벗어나므로 (1)만 간단히 살펴본다. 임의의 양수 $\epsilon$ 에 대해,
-  사건을 $|X_n-c|\lt\epsilon$ 인 경우와 아닌 경우로 나누면</p>
-  $$F_{Y_n+X_n}(z)=P(Y_n+X_n\le z)
-  \le P\big(Y_n\le z-c+\epsilon\big)+P\big(|X_n-c|\ge\epsilon\big)$$
-  <p>($\because$ $|X_n-c|\lt\epsilon$ 이면 $X_n\gt c-\epsilon$ 이므로 $Y_n\le z-X_n\lt z-c+\epsilon$). 반대 방향으로도</p>
-  $$P\big(Y_n\le z-c-\epsilon\big)\le P(Y_n+X_n\le z)+P\big(|X_n-c|\ge\epsilon\big)$$
-  <p>($\because$ $|X_n-c|\lt\epsilon$ 이고 $Y_n\le z-c-\epsilon$ 이면 $Y_n+X_n\lt z$). 두 부등식을 합치면</p>
+  <p>엄밀한 증명은 이 책의 수준을 벗어나므로 (1)만 간단히 살펴본다. 임의의 양수 $\epsilon$ 에 대해</p>
+  $$\begin{aligned}
+  F_{Y_n+X_n}(z)&=P\big(Y_n+X_n\le z\big)\\
+  &=P\big(Y_n+X_n\le z,\ |X_n-c|\lt\epsilon\big)+P\big(Y_n+X_n\le z,\ |X_n-c|\ge\epsilon\big)\\
+  &\le P\big(Y_n\le z-c+\epsilon\big)+P\big(|X_n-c|\ge\epsilon\big)
+  \end{aligned}$$
+  <p>이고,</p>
+  $$\begin{aligned}
+  P\big(Y_n\le z-c-\epsilon\big)
+  &=P\big(Y_n\le z-c-\epsilon,\ |X_n-c|\lt\epsilon\big)+P\big(Y_n\le z-c-\epsilon,\ |X_n-c|\ge\epsilon\big)\\
+  &\le P\big(Y_n+X_n\le z\big)+P\big(|X_n-c|\ge\epsilon\big)
+  \end{aligned}$$
+  <p>이므로,</p>
   $$P\big(Y_n\le z-c-\epsilon\big)-P\big(|X_n-c|\ge\epsilon\big)
   \ \le\ F_{Y_n+X_n}(z)\ \le\
   P\big(Y_n\le z-c+\epsilon\big)+P\big(|X_n-c|\ge\epsilon\big).$$
-  <p>$n\to\infty$ 에서 $P(|X_n-c|\ge\epsilon)\to0$ (확률적 수렴)이고 $P(Y_n\le z-c\mp\epsilon)\to P(Z\le z-c\mp\epsilon)$
-  (분포수렴, 연속점에서). 이어서 $\epsilon\downarrow0$ 을 취하면, $Z$ 의 누적분포함수가 $z-c$ 에서 연속인 모든 점 $z$ 에서
-  양쪽 끝이 $P(Z\le z-c)=P(Z+c\le z)$ 로 모이므로</p>
-  $$F_{Y_n+X_n}(z)\ \longrightarrow\ F_{Z+c}(z).$$
+  <p>$n\to\infty$ ($X_n\xrightarrow{\ p\ }c$, $Y_n\xrightarrow{\ d\ }Z$) 후 $\epsilon\downarrow0$
+  ($F_Z$ 가 $z-c$ 에서 연속인 점 $z$):</p>
+  $$P\big(Z\le z-c\big)\ \le\ \lim_{n\to\infty}F_{Y_n+X_n}(z)\ \le\ P\big(Z\le z-c\big)
+  \qquad\Longrightarrow\qquad
+  F_{Y_n+X_n}(z)\ \longrightarrow\ P\big(Z+c\le z\big)=F_{Z+c}(z).$$
   <div class="qed">∎</div>
 </div>
 <div class="box ex">
