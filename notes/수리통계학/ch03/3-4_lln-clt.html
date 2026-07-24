@@ -370,27 +370,32 @@
 </div>
 <div class="box prf">
   <span class="tag">증명 <span class="en">(1)의 개요</span></span>
-  <p>엄밀한 증명은 이 책의 수준을 벗어나므로 (1)만 간단히 살펴본다. 임의의 양수 $\epsilon$ 에 대해</p>
+  <p>엄밀한 증명은 이 책의 수준을 벗어나므로 (1)의 증명에 대해 간단히 살펴보도록 하자. 수렴을 보이기
+  위해서는 $Y_n+X_n$ 의 누적분포함수가 $n$ 이 커질 때 $Z+c$ 의 누적분포함수로 수렴하는지 확인하면 되는데,
+  임의의 양수 $\epsilon$ 에 대해</p>
   $$\begin{aligned}
   F_{Y_n+X_n}(z)&=P\big(Y_n+X_n\le z\big)\\
   &=P\big(Y_n+X_n\le z,\ |X_n-c|\lt\epsilon\big)+P\big(Y_n+X_n\le z,\ |X_n-c|\ge\epsilon\big)\\
+  &\le P\big(Y_n+X_n\le z,\ |X_n-c|\lt\epsilon\big)+P\big(|X_n-c|\ge\epsilon\big)\\
   &\le P\big(Y_n\le z-c+\epsilon\big)+P\big(|X_n-c|\ge\epsilon\big)
   \end{aligned}$$
   <p>이고,</p>
   $$\begin{aligned}
-  P\big(Y_n\le z-c-\epsilon\big)
-  &=P\big(Y_n\le z-c-\epsilon,\ |X_n-c|\lt\epsilon\big)+P\big(Y_n\le z-c-\epsilon,\ |X_n-c|\ge\epsilon\big)\\
+  P\big(Y_n+c+\epsilon\le z\big)
+  &=P\big(Y_n+c+\epsilon\le z,\ |X_n-c|\lt\epsilon\big)+P\big(Y_n+c+\epsilon\le z,\ |X_n-c|\ge\epsilon\big)\\
+  &\le P\big(Y_n+X_n\le z,\ |X_n-c|\lt\epsilon\big)+P\big(|X_n-c|\ge\epsilon\big)\\
   &\le P\big(Y_n+X_n\le z\big)+P\big(|X_n-c|\ge\epsilon\big)
   \end{aligned}$$
-  <p>이므로,</p>
+  <p>이므로</p>
+  $$F_{Y_n+X_n}(z)\ \ge\ P\big(Y_n\le z-c-\epsilon\big)-P\big(|X_n-c|\ge\epsilon\big)$$
+  <p>임을 알 수 있다. 즉,</p>
   $$P\big(Y_n\le z-c-\epsilon\big)-P\big(|X_n-c|\ge\epsilon\big)
   \ \le\ F_{Y_n+X_n}(z)\ \le\
-  P\big(Y_n\le z-c+\epsilon\big)+P\big(|X_n-c|\ge\epsilon\big).$$
-  <p>$n\to\infty$ ($X_n\xrightarrow{\ p\ }c$, $Y_n\xrightarrow{\ d\ }Z$) 후 $\epsilon\downarrow0$
-  ($F_Z$ 가 $z-c$ 에서 연속인 점 $z$):</p>
-  $$P\big(Z\le z-c\big)\ \le\ \lim_{n\to\infty}F_{Y_n+X_n}(z)\ \le\ P\big(Z\le z-c\big)
-  \qquad\Longrightarrow\qquad
-  F_{Y_n+X_n}(z)\ \longrightarrow\ P\big(Z+c\le z\big)=F_{Z+c}(z).$$
+  P\big(Y_n\le z-c+\epsilon\big)+P\big(|X_n-c|\ge\epsilon\big)$$
+  <p>이다. 위 식은 임의의 양수 $\epsilon$ 에 대해 항상 성립하고, $Y_n$ 의 분포수렴과 $X_n$ 의 확률적 수렴을
+  이용하면 $Z$ 가 $z-c$ 에서 연속일 때 좌변과 우변이 모두 $P(Z\le z-c)=P(Z+c\le z)$ 로 수렴한다. 즉,
+  $Z+c$ 의 누적분포함수가 연속인 모든 점 $z$ 에서 $Y_n+X_n$ 의 누적분포함수가 $Z+c$ 의 누적분포함수로
+  수렴하므로, $Y_n+X_n$ 은 $Z+c$ 로 분포수렴한다.</p>
   <div class="qed">∎</div>
 </div>
 <div class="box ex">
