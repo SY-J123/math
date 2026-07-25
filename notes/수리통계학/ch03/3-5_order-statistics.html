@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3장 · 3.5 순서통계량</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">수리통계학 · 3장 표본분포 및 그의 근사</div>
+  <h1><span class="no">3.5</span>순서통계량 <span class="en">order statistics</span></h1>
+</header>
+
+<p>확률밀도함수가 $f(x)$, 누적분포함수가 $F(x)$ 인 모집단으로부터 크기 $n$ 인 랜덤표본 $X_1,X_2,\dots,X_n$ 을
+얻어, 이를 <b>작은 것부터 크기순으로 나열</b>한 것을 <b>순서통계량<span class="en">order statistic</span></b>이라 한다:</p>
+$$X_{(1)}\le X_{(2)}\le\cdots\le X_{(n)}. \tag{3.11}$$
+<p>순서통계량의 활용은 8장 비모수적 통계방법에서 두드러진다. 여기서는 그 기본 성질만 살펴본다.</p>
+
+<!-- ================= 결합밀도 ================= -->
+<h2 class="sub">순서통계량의 결합밀도 <span class="en">joint density of order statistics</span></h2>
+<div class="note">
+  연속형 $X_1,\dots,X_n\mapsto X_{(1)},\dots,X_{(n)}$ 은 <b>1:1 변환이 아니다</b>(어떤 정렬된 값 하나에는 $n!$ 개의
+  원래 표본이 대응). 그래서 변환영역을 각각 1:1 이 되는 조각으로 나눈 뒤 합친다.
+</div>
+<div class="box prf">
+  <span class="tag">유도 <span class="en">n=3 인 경우</span></span>
+  <p>표본공간을 $3!=6$ 개의 서로소 영역으로 나누면, 각 영역에서 $(X_1,X_2,X_3)\mapsto(X_{(1)},X_{(2)},X_{(3)})$ 은
+  1:1 이다. 예컨대</p>
+  $$\begin{aligned}
+  A_1=\{x_1\lt x_2\lt x_3\}&\ \Rightarrow\ (X_{(1)},X_{(2)},X_{(3)})=(X_1,X_2,X_3),\\
+  A_2=\{x_2\lt x_1\lt x_3\}&\ \Rightarrow\ (X_{(1)},X_{(2)},X_{(3)})=(X_2,X_1,X_3),\\
+  &\ \ \vdots\\
+  A_6=\{x_3\lt x_2\lt x_1\}&\ \Rightarrow\ (X_{(1)},X_{(2)},X_{(3)})=(X_3,X_2,X_1),
+  \end{aligned}$$
+  <p>이며 변환된 영역은 모두 $B=\{x_{(1)}\lt x_{(2)}\lt x_{(3)}\}$ 이다. 각 조각의 변환은 좌표의 위치만 서로 바뀌므로
+  야코비안의 절댓값이 $|J_i|=1$ 이고, 결합밀도는 $f(x_{(1)})f(x_{(2)})f(x_{(3)})$ 이다. 가능한 $3!$ 가지를 모두 더하면</p>
+  $$g(x_{(1)},x_{(2)},x_{(3)})=3!\,f(x_{(1)})f(x_{(2)})f(x_{(3)}).$$
+  <div class="qed">∎</div>
+</div>
+<div class="box def">
+  <span class="tag">정리 <span class="en">순서통계량의 결합밀도</span></span><span class="title">결합 확률밀도함수</span>
+  <p>$f$ 가 연속일 때, 순서통계량 $X_{(1)},\dots,X_{(n)}$ 의 결합 확률밀도함수는</p>
+  $$g(x_{(1)},\dots,x_{(n)})=
+  \begin{cases}
+  n!\,f(x_{(1)})\,f(x_{(2)})\cdots f(x_{(n)}), & x_{(1)}\lt x_{(2)}\lt\cdots\lt x_{(n)},\\[4pt]
+  0, & \text{그 외}
+  \end{cases}\tag{3.12}$$
+  <p>($n!$ 은 하나의 정렬값에 대응하는 원래 표본의 가짓수이다.)</p>
+</div>
+<div class="box ex">
+  <span class="tag">예 3.13</span><span class="title">$f(x)=3x^2$ 로부터의 결합밀도</span>
+  <p>$X_1,X_2,X_3$ 을 $f(x)=3x^2\ (0\lt x\lt1)$ 로부터의 랜덤표본이라 하자. $0\lt x_{(1)}\lt x_{(2)}\lt x_{(3)}\lt1$ 인 경우</p>
+  $$g(x_{(1)},x_{(2)},x_{(3)})=3!\,(3x_{(1)}^2)(3x_{(2)}^2)(3x_{(3)}^2)=162\,x_{(1)}^2\,x_{(2)}^2\,x_{(3)}^2,$$
+  <p>그 외의 경우는 $0$ 이다.</p>
+</div>
+
+<!-- ================= k번째 순서통계량 ================= -->
+<h2 class="sub">$k$ 번째 순서통계량의 분포 <span class="en">distribution of the k-th order statistic</span></h2>
+<div class="box thm">
+  <span class="tag">정리 3.17</span><span class="title">$X_{(k)}$ 의 확률밀도함수</span>
+  <p>랜덤표본 $X_1,\dots,X_n$ 을 밀도 $f(x)$, 분포함수 $F(x)$ 인 모집단에서 얻고, $a\lt x\lt b$ 에서 $f(x)\gt0$ 이라 하자.
+  $k$ 번째 순서통계량 $X_{(k)}$ 의 확률밀도함수는</p>
+  $$f_{X_{(k)}}(x_{(k)})=
+  \begin{cases}
+  \dfrac{n!}{(k-1)!\,(n-k)!}\,[F(x_{(k)})]^{k-1}\,[1-F(x_{(k)})]^{n-k}\,f(x_{(k)}), & a\lt x_{(k)}\lt b,\\[8pt]
+  0, & \text{그 외.}
+  \end{cases}$$
+</div>
+<div class="box prf">
+  <span class="tag">증명 <span class="en">직관적 유도</span></span>
+  <p>$X_{(k)}=x_{(k)}$ 이려면, 관측값 중 <b>$1$ 개</b>는 $x_{(k)}$ 이고, <b>$(k-1)$ 개</b>는 $x_{(k)}$ 보다 작으며,
+  <b>$(n-k)$ 개</b>는 $x_{(k)}$ 보다 커야 한다. 각 사건의 확률은</p>
+  $$P[X\le x_{(k)}]=F(x_{(k)}),\quad P[X\gt x_{(k)}]=1-F(x_{(k)}),\quad \text{그리고 } x_{(k)}\text{ 에서 밀도}=f(x_{(k)}).$$
+  <figure class="fig">
+    <svg viewBox="0 0 380 92" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="k번째 순서통계량의 배치">
+      <line x1="16" y1="60" x2="366" y2="60" stroke="currentColor" stroke-width="1"/>
+      <line x1="16" y1="55" x2="16" y2="65" stroke="currentColor" stroke-width="1"/>
+      <line x1="176" y1="55" x2="176" y2="65" stroke="currentColor" stroke-width="1"/>
+      <line x1="206" y1="55" x2="206" y2="65" stroke="currentColor" stroke-width="1"/>
+      <line x1="366" y1="55" x2="366" y2="65" stroke="currentColor" stroke-width="1"/>
+      <circle cx="191" cy="60" r="3.5" fill="currentColor"/>
+      <text x="96" y="46" font-size="11" fill="currentColor" text-anchor="middle">작은 값 (k−1)개</text>
+      <text x="191" y="82" font-size="11" fill="currentColor" text-anchor="middle">x(k)</text>
+      <text x="286" y="46" font-size="11" fill="currentColor" text-anchor="middle">큰 값 (n−k)개</text>
+    </svg>
+    <figcaption>그림 3.4 · $X_{(k)}=x_{(k)}$ 이려면 나머지 $(k-1)$ 개는 왼쪽, $(n-k)$ 개는 오른쪽에 놓여야 한다.</figcaption>
+  </figure>
+  <p>이러한 배치가 $\dfrac{n!}{(k-1)!\,(n-k)!}$ 가지(작은 값·큰 값들끼리는 순서를 따지지 않으므로 중복 제거) 가능하므로,
+  이들을 곱하면 위 정리의 밀도를 얻는다.</p>
+  <div class="qed">∎</div>
+</div>
+<div class="box thm">
+  <span class="tag">따름정리</span><span class="title">$X_{(i)}$ 와 $X_{(j)}$ 의 결합밀도 ($i\lt j$)</span>
+  <p>같은 논리로, 두 순서통계량 $X_{(i)},X_{(j)}$ 의 결합밀도는 ($x_{(i)}\lt x_{(j)}$ 에서)</p>
+  $$\begin{aligned}
+  f_{X_{(i)},X_{(j)}}(x_{(i)},x_{(j)})=\ &\frac{n!}{(i-1)!\,(j-i-1)!\,(n-j)!}\,[F(x_{(i)})]^{i-1}f(x_{(i)})\\
+  &\times[F(x_{(j)})-F(x_{(i)})]^{j-i-1}f(x_{(j)})\,[1-F(x_{(j)})]^{n-j}.
+  \end{aligned}$$
+</div>
+
+<!-- ================= 최소·최댓값 ================= -->
+<h2 class="sub">표본최솟값과 표본최댓값 <span class="en">sample minimum and maximum</span></h2>
+<p>응용성이 높은 표본최솟값 $X_{(1)}$ 과 표본최댓값 $X_{(n)}$ 의 분포는 정리 3.17로도 구할 수 있지만, 분포함수로부터
+직접 간단히 얻을 수 있다. 누적분포함수는 각각</p>
+$$\begin{aligned}
+G_1(x_{(1)})&=P[X_{(1)}\le x_{(1)}]=1-P[\text{모든 }X_i\gt x_{(1)}]=1-[1-F(x_{(1)})]^n,\\
+G_n(x_{(n)})&=P[X_{(n)}\le x_{(n)}]=P[\text{모든 }X_i\le x_{(n)}]=[F(x_{(n)})]^n,
+\end{aligned}$$
+<p>이고, 연속형인 경우 이를 미분하면 확률밀도함수는 각각</p>
+$$f_{X_{(1)}}(x_{(1)})=\frac{d}{dx_{(1)}}G_1(x_{(1)})=n\,[1-F(x_{(1)})]^{n-1}f(x_{(1)}), \tag{3.13}$$
+$$f_{X_{(n)}}(x_{(n)})=\frac{d}{dx_{(n)}}G_n(x_{(n)})=n\,[F(x_{(n)})]^{n-1}f(x_{(n)}). \tag{3.14}$$
+<div class="box ex">
+  <span class="tag">예 3.14</span><span class="title">지수분포 표본의 최솟값</span>
+  <p>$X_1,\dots,X_n$ 을 지수분포 $f(x)=\dfrac1\lambda e^{-x/\lambda}\ (x\gt0)$ 로부터의 랜덤표본이라 하자.
+  $F(x)=1-e^{-x/\lambda}$ 이므로 (3.13)에서</p>
+  $$f_{X_{(1)}}(x_{(1)})=n\,[1-(1-e^{-x_{(1)}/\lambda})]^{n-1}\frac1\lambda e^{-x_{(1)}/\lambda}
+  =\frac n\lambda\exp\!\left(-\frac{n\,x_{(1)}}{\lambda}\right),\qquad x_{(1)}\gt0.$$
+  <p>즉 표본최솟값 $X_{(1)}$ 은 <b>평균 $\lambda/n$ 인 지수분포</b>를 따른다.</p>
+</div>
+
+<!-- ================= 중위수·범위 ================= -->
+<h2 class="sub">표본중위수와 표본범위 <span class="en">sample median and range</span></h2>
+<div class="box def">
+  <span class="tag">정의</span><span class="title">표본중위수·표본범위</span>
+  <p><b>표본중위수<span class="en">sample median</span></b>는 크기가 중간인 순서통계량이다:</p>
+  <ul class="props">
+    <li>$n$ 이 홀수: $\ \tilde X=X_{(k)},\quad k=\dfrac{n+1}{2}.$</li>
+    <li>$n$ 이 짝수: $\ \tilde X=\dfrac{X_{(k)}+X_{(k+1)}}{2},\quad k=\dfrac{n}{2}.$</li>
+  </ul>
+  <p>분포의 <b>위치</b>를 나타내는 데 쓰인다. 한편 표본최댓값과 최솟값의 차</p>
+  $$R=X_{(n)}-X_{(1)}$$
+  <p>을 <b>표본범위<span class="en">sample range</span></b>라 하며, 분포의 <b>흩어진 정도</b>를 재는 척도로 쓰인다.</p>
+</div>
+
+<nav class="pager">
+  <a href="3-4_lln-clt.html">← 이전<small>3.4 대수의 법칙과 중심극한정리</small></a>
+  <span class="spacer"></span>
+</nav>
+
+</body>
+</html>
