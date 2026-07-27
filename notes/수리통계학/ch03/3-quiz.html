@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3장 · 증명·정리 퀴즈</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+  .sheettitle{ margin:30px 0 4px; font-size:1.5rem; font-weight:800; }
+  .sheettitle .en{ font-weight:400; }
+  .answersheet{ page-break-before:always; }
+  .qrow{ margin:11px 0; line-height:1.6; }
+  .qid{ font-weight:800; color:var(--def); margin-right:8px; }
+  .qrow ol, .ans ol{ margin:4px 0 0; padding-left:26px; }
+  .qrow li, .ans li{ margin:4px 0; }
+  .ans{ margin:11px 0; padding-left:12px; border-left:3px solid var(--thm); }
+  .ans .qid{ color:var(--thm); }
+  .mark{ color:#d64541; font-weight:800; margin:0 5px 0 2px; letter-spacing:2px; }
+  .src{ font-size:.82em; font-weight:700; color:var(--ex); margin-left:6px; white-space:nowrap; }
+  @media print{ .pager, .home{ display:none; } a{ color:inherit; text-decoration:none; } .mark{ color:#000; } }
+</style>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">수리통계학 · 3장 표본분포 및 그의 근사</div>
+  <h1><span class="no">퀴즈</span>3장 증명·정리 점검 <span class="en">recite every proof</span></h1>
+</header>
+
+<!-- ===== 문제 시트 ===== -->
+<div class="sheettitle">■ 문제 시트 <span class="en">questions</span></div>
+
+<h2 class="sub">A. 모집단과 표본 (3.1)</h2>
+<div class="qrow"><span class="qid">Q1</span>
+  <ol><li>크기 $n$ 인 <b>랜덤표본</b>의 정의를 결합 확률밀도함수로 쓰라.</li>
+  <li><b>통계량</b>의 정의를 쓰고, 통계량인 것과 아닌 것의 예를 하나씩 들라.</li></ol></div>
+<div class="qrow"><span class="qid">Q2</span>다음 네 가지의 정의를 각각 식으로 쓰라. 표본분산에서 $n$ 이 아니라 $n-1$ 로 나누는 이유도 한 줄로 쓰라.
+  <ol><li>$r$ 차 표본적률 $m_r'$</li><li>$r$ 차 표본중심적률 $m_r$</li><li>표본평균 $\overline{X}_n$</li><li>표본분산 $S_n^2$</li></ol></div>
+<div class="qrow"><span class="qid">Q3</span>평균 $\mu$, 분산 $\sigma^2$ 인 모집단으로부터의 랜덤표본에 대하여 다음을 식으로 쓰고 증명하라.
+  <ol><li>$E(\overline{X}_n)$</li><li>$\operatorname{Var}(\overline{X}_n)$</li></ol></div>
+<div class="qrow"><span class="qid">Q4</span><span class="mark">★</span>$E(S_n^2)=\sigma^2$ 임을 증명하라 (먼저 편차제곱합의 항등식을 쓸 것).</div>
+<div class="qrow"><span class="qid">Q5</span><span class="mark">★★</span>$\operatorname{Var}(S_n^2)=\dfrac1n\left(\mu_4-\dfrac{n-3}{n-1}\sigma^4\right)$ 을 유도하라.
+  <ol><li>중심화 $Y_i=X_i-\mu$ 와 $W=(n-1)S_n^2$ 로 문제를 $E(W^2)$ 계산으로 환원하라.</li>
+  <li>세 기댓값 $E[(\sum Y_i^2)^2]$, $E[(\sum Y_i^2)\overline{Y}_n^2]$, $E(\overline{Y}_n^4)$ 을 항 개수 세기로 구하라.</li>
+  <li>조립하여 최종식을 얻으라.</li></ol></div>
+
+<h2 class="sub">B. 정규분포와 관련된 분포들 (3.2)</h2>
+<div class="qrow"><span class="qid">Q6</span>카이제곱분포 $\chi^2(n)$ 에 대하여
+  <ol><li>감마분포와의 관계와 확률밀도함수를 식으로 쓰라.</li>
+  <li>mgf·평균·분산(정리 3.2)을 각각 식으로 쓰고 증명하라.</li></ol></div>
+<div class="qrow"><span class="qid">Q7</span>카이제곱분포의 <b>가법성</b>(정리 3.3)을 식으로 쓰고 증명하라.</div>
+<div class="qrow"><span class="qid">Q8</span><span class="mark">★</span>$Z\sim N(0,1)$ 이면 $Z^2\sim\chi^2(1)$ 임(정리 3.4)을 mgf 로 증명하라.</div>
+<div class="qrow"><span class="qid">Q9</span>서로 독립인 $X_i\sim N(\mu_i,\sigma_i^2)$ 의 표준화 제곱합의 분포(정리 3.5)를 식으로 쓰고 증명하라.
+  랜덤표본 $X_1,\dots,X_n\sim N(\mu,\sigma^2)$ 에 대한 따름 결과도 쓰라.</div>
+<div class="qrow"><span class="qid">Q10</span><span class="mark">★★</span>$F$ 분포에 대하여
+  <ol><li>정의(식 3.2)를 쓰라.</li>
+  <li>확률밀도함수(식 3.3)를 <b>변수변환 3단계</b>(결합밀도 → 야코비안 변환 → 감마적분 주변화)로 유도하라.</li></ol></div>
+<div class="qrow"><span class="qid">Q11</span>$X\sim F(n,m)$ 에 대하여
+  <ol><li>$E(X)=\dfrac{m}{m-2}\ (m\gt2)$ 를 유도하라 ($E(1/V)$ 를 감마적분으로 구할 것).</li>
+  <li>$\dfrac1X$ 의 분포와 백분위수 관계식(식 3.4)을 쓰고 이유를 설명하라.</li></ol></div>
+<div class="qrow"><span class="qid">Q12</span>$t$ 분포에 대하여
+  <ol><li>정의(식 3.5)와 확률밀도함수(식 3.6)의 꼴을 쓰라.</li>
+  <li>평균·분산(정리 3.7)을 쓰라.</li>
+  <li>$X\sim t(n)$ 이면 $X^2\sim F(1,n)$ 인 이유를 설명하라.</li></ol></div>
+
+<h2 class="sub">C. 정규분포로부터의 표본추출 (3.3)</h2>
+<div class="qrow"><span class="qid">Q13</span>독립 정규분포의 합(정리 3.8)을 식으로 쓰고 mgf 로 증명하라.
+  표본평균 $\overline{X}_n$ 의 분포(따름정리)도 쓰라.</div>
+<div class="qrow"><span class="qid">Q14</span><span class="mark">★★</span>정리 3.9(1): $N(\mu,\sigma^2)$ 랜덤표본에서 $\overline{X}_n$ 과 $S_n^2$ 이 <b>독립</b>임을 직교행렬로 증명하라.
+  <ol><li>준비 다섯 가지(직교행렬의 길이 보존, $\operatorname{Cov}(X)=\sigma^2 I$, 회전 후 공분산, 공분산 0 → 상호 독립, 겹치지 않는 성분의 함수)를 정리하라.</li>
+  <li>$Q$ 의 구성 → $Y_1=\sqrt n\,\overline{X}_n$ → $\sum_{i=2}^n Y_i^2=(n-1)S_n^2$ → 독립 결론의 순서로 본증명을 완성하라.</li></ol></div>
+<div class="qrow"><span class="qid">Q15</span><span class="mark">★</span>정리 3.9(2): $\dfrac{(n-1)S_n^2}{\sigma^2}\sim\chi^2(n-1)$ 임을 결합밀도 직접 유도(회전 대칭 → 극좌표 cdf → 치환·미분 → 정규화)로 증명하라.</div>
+<div class="qrow"><span class="qid">Q16</span>두 독립 정규표본의 분산비에 대한 정리 3.10을 식으로 쓰고 증명하라.
+  $\sigma_X^2=\sigma_Y^2$ 일 때의 특수형도 쓰라.</div>
+<div class="qrow"><span class="qid">Q17</span><span class="mark">★</span>정리 3.11: $T=\dfrac{\overline{X}_n-\mu}{S_n/\sqrt n}\sim t(n-1)$ 임을 증명하라.
+  <b>스튜던트화</b>와 <b>장애모수</b>의 뜻도 설명하라.</div>
+
+<h2 class="sub">D. 대수의 법칙과 중심극한정리 (3.4)</h2>
+<div class="qrow"><span class="qid">Q18</span><b>확률적 수렴</b>(정의 3.5)의 정의를 식으로 쓰라.</div>
+<div class="qrow"><span class="qid">Q19</span><span class="mark">★</span>대수의 법칙(정리 3.12)을 식으로 쓰고 체비셰프 부등식으로 증명하라.</div>
+<div class="qrow"><span class="qid">Q20</span>표본분산의 확률수렴 정리를 식으로 쓰고 증명하라 (필요한 가정과, 3.1의 어떤 결과를 쓰는지 명시).</div>
+<div class="qrow"><span class="qid">Q21</span><b>분포수렴</b>(정의 3.6)의 정의를 식으로 쓰고, 확률적 수렴과 다른 점 두 가지를 쓰라.</div>
+<div class="qrow"><span class="qid">Q22</span>적률생성함수의 수렴과 분포수렴에 관한 정리 3.13(연속성 정리)을 진술하라.</div>
+<div class="qrow"><span class="qid">Q23</span><span class="mark">★★</span>중심극한정리(정리 3.14)를 식으로 쓰고, mgf 가 존재하는 경우의 증명을 ①~⑤ 단계
+  (중심화 mgf → 라그랑주 테일러 전개 → $Z_n$ 의 mgf → 극한 → 유일성)로 완성하라.</div>
+<div class="qrow"><span class="qid">Q24</span><span class="mark">★</span>1차 나머지항의 라그랑주 표현(보조정리)을 식으로 쓰고, $M$ 도입 → 보조함수 → 롤 정리 $2$ 연쇄의
+  <b>미분 게임</b>으로 증명하라.</div>
+<div class="qrow"><span class="qid">Q25</span>이항분포 $B(n,p)$ 의 정규근사에서 <b>연속성 수정</b>의 식을 쓰고, 히스토그램 관점에서 왜 $\pm\tfrac12$ 를 붙이는지 설명하라.</div>
+<div class="qrow"><span class="qid">Q26</span>슬럿츠키 정리(정리 3.15)에 대하여
+  <ol><li>두 결론을 식으로 쓰라.</li>
+  <li><span class="mark">★</span>정규 가정 없이 $\dfrac{\overline{X}_n-\mu}{S_n/\sqrt n}\xrightarrow{\ d\ }N(0,1)$ 임을 유도하라.<span class="src">예 3.10</span></li></ol></div>
+<div class="qrow"><span class="qid">Q27</span><span class="mark">★★</span>델타 방법(정리 3.16)을 식으로 쓰고, 평균값 정리 → 슬럿츠키 → 조임정리의 순서로 증명하라.</div>
+<div class="qrow"><span class="qid">Q28</span>포아송($\lambda$) 표본에서 $g(x)=\sqrt x$ 가 <b>분산안정화 변환</b>이 됨을 델타 방법으로 보여라.<span class="src">예 3.11</span></div>
+<div class="qrow"><span class="qid">Q29</span>다변량 델타 방법의 근사식 (3.9)·(3.10) — $E\,g(X)$ 와 $\operatorname{Var}g(X)$ 의 근삿값 — 을 각각 식으로 쓰라.</div>
+
+<h2 class="sub">E. 순서통계량 (3.5)</h2>
+<div class="qrow"><span class="qid">Q30</span><span class="mark">★</span>순서통계량의 결합밀도(식 3.12)를 쓰고, 정렬이 1:1 변환이 아님에도 어떻게 유도하는지
+  (영역 분할 → 치환 야코비안 → $n!$ 배) 논리를 완성하라.</div>
+<div class="qrow"><span class="qid">Q31</span><span class="mark">★</span>$k$ 번째 순서통계량 $X_{(k)}$ 의 확률밀도함수(정리 3.17)를 쓰고 배치 논리로 유도하라.
+  두 순서통계량 $X_{(i)},X_{(j)}\ (i\lt j)$ 의 결합밀도 꼴도 쓰라.</div>
+<div class="qrow"><span class="qid">Q32</span>표본최솟값 $X_{(1)}$ 과 표본최댓값 $X_{(n)}$ 에 대하여
+  <ol><li>누적분포함수를 각각 유도하고 미분해 밀도 (3.13)·(3.14)를 얻으라.</li>
+  <li>지수분포 $\text{EXP}(\lambda)$ 표본의 최솟값이 어떤 분포를 따르는지 구하라.<span class="src">예 3.14</span></li></ol></div>
+<div class="qrow"><span class="qid">Q33</span>표본중위수($n$ 홀수·짝수)와 표본범위의 정의를 쓰고, 각각 무엇을 재는 척도인지 쓰라.</div>
+
+<!-- ===== 정답 시트 ===== -->
+<div class="answersheet">
+<div class="sheettitle">■ 정답 시트 <span class="en">answer key</span></div>
+
+<h2 class="sub">A. 모집단과 표본</h2>
+<div class="ans"><span class="qid">A1.</span> (1) $f_{X_1,\dots,X_n}(x_1,\dots,x_n)=\prod_{i=1}^n f(x_i)$ — 각 $X_i$ 가 iid.
+  (2) 미지의 모수를 포함하지 않는 표본의 함수 $T(X_1,\dots,X_n)$; 통계량 예: $\overline{X}_n$, $\max X_i$ / 아닌 예: $\overline{X}_n-\theta$ ($\theta$ 미지).</div>
+<div class="ans"><span class="qid">A2.</span> (1) $m_r'=\frac1n\sum X_i^{\,r}$ (2) $m_r=\frac1n\sum(X_i-\overline{X}_n)^r$
+  (3) $\overline{X}_n=\frac1n\sum X_i$ (4) $S_n^2=\frac1{n-1}\sum(X_i-\overline{X}_n)^2$.
+  $n-1$ 로 나누면 $E(S_n^2)=\sigma^2$ — 모분산의 불편추정량이 된다.</div>
+<div class="ans"><span class="qid">A3.</span> (1) $E(\overline{X}_n)=\frac1n\sum E(X_i)=\mu$ (선형성).
+  (2) 독립이라 분산이 합으로 분리: $\operatorname{Var}(\overline{X}_n)=\frac1{n^2}\sum\operatorname{Var}(X_i)=\frac{\sigma^2}n$.</div>
+<div class="ans"><span class="qid">A4.</span> 항등식 $\sum(X_i-\overline{X}_n)^2=\sum(X_i-\mu)^2-n(\overline{X}_n-\mu)^2$ 에 기댓값:
+  $E[\cdot]=n\sigma^2-n\cdot\frac{\sigma^2}n=(n-1)\sigma^2$, 따라서 $E(S_n^2)=\sigma^2$.</div>
+<div class="ans"><span class="qid">A5.</span>
+  <ol><li>$Y_i=X_i-\mu$ ($E Y_i=0$, $EY_i^2=\sigma^2$, $EY_i^4=\mu_4$), $W=(n-1)S_n^2=\sum Y_i^2-n\overline{Y}_n^2$;
+  $\operatorname{Var}(S_n^2)=\dfrac{E(W^2)}{(n-1)^2}-\sigma^4$.</li>
+  <li>지수 $1$ 인 인수가 홀로 남는 항은 $E(Y_i)=0$ 으로 소멸.
+  (i) $E[(\sum Y_i^2)^2]=n\mu_4+n(n-1)\sigma^4$ ($i=j$ 항 $n$ 개, $i\ne j$ 항 $n(n-1)$ 개);
+  (ii) $E[(\sum Y_i^2)\overline{Y}_n^2]=\dfrac{\mu_4+(n-1)\sigma^4}{n}$ ($\overline{Y}_n^2=\frac1{n^2}\sum_{j,k}Y_jY_k$ 에서 $j=k$ 만 생존);
+  (iii) $E(\overline{Y}_n^4)=\dfrac{\mu_4+3(n-1)\sigma^4}{n^3}$ (모두 같은 첨자 $n$ 개 + 두 쌍 $3n(n-1)$ 개).</li>
+  <li>$E(W^2)=\text{(i)}-2n\text{(ii)}+n^2\text{(iii)}=\dfrac{(n-1)^2}{n}\mu_4+\dfrac{(n-1)(n^2-2n+3)}{n}\sigma^4$
+  → $\operatorname{Var}(S_n^2)=\dfrac{\mu_4}n+\dfrac{(n^2-2n+3)-(n^2-n)}{n(n-1)}\sigma^4=\dfrac1n\Big(\mu_4-\dfrac{n-3}{n-1}\sigma^4\Big)$.</li></ol></div>
+
+<h2 class="sub">B. 정규분포와 관련된 분포들</h2>
+<div class="ans"><span class="qid">A6.</span> (1) $\chi^2(n)=\text{GAM}(\tfrac n2,2)$;
+  $f(x)=\frac{1}{\Gamma(n/2)}(\tfrac12)^{n/2}x^{n/2-1}e^{-x/2}\ (x\gt0)$.
+  (2) 감마 mgf $(1-\theta t)^{-k}$ 에 $k=\tfrac n2,\theta=2$: $M(t)=(1-2t)^{-n/2}\ (t\lt\tfrac12)$;
+  $E=k\theta=n$, $\operatorname{Var}=k\theta^2=2n$.</div>
+<div class="ans"><span class="qid">A7.</span> 독립 $X_i\sim\chi^2(k_i)$ → $\sum X_i\sim\chi^2(\sum k_i)$.
+  독립합의 mgf 는 곱: $\prod(1-2t)^{-k_i/2}=(1-2t)^{-\sum k_i/2}$ — 자유도 $\sum k_i$ 인 카이제곱의 mgf, 유일성으로 결론.</div>
+<div class="ans"><span class="qid">A8.</span> $M_{Z^2}(t)=\int\frac1{\sqrt{2\pi}}e^{tz^2-z^2/2}dz=\int\frac1{\sqrt{2\pi}}e^{-z^2(1-2t)/2}dz
+  =(1-2t)^{-1/2}\ (t\lt\tfrac12)$ (가우스적분) — $\chi^2(1)$ 의 mgf 이므로 유일성에 의해 $Z^2\sim\chi^2(1)$.</div>
+<div class="ans"><span class="qid">A9.</span> $V=\sum_{i=1}^k\big(\frac{X_i-\mu_i}{\sigma_i}\big)^2\sim\chi^2(k)$.
+  표준화 → 각각 iid $N(0,1)$ → 정리 3.4로 제곱은 $\chi^2(1)$ → 가법성(정리 3.3)으로 합은 $\chi^2(k)$.
+  따름: $\sum_{i=1}^n\frac{(X_i-\mu)^2}{\sigma^2}\sim\chi^2(n)$.</div>
+<div class="ans"><span class="qid">A10.</span> (1) 독립 $U\sim\chi^2(n),V\sim\chi^2(m)$ 에 대해 $X=\dfrac{U/n}{V/m}\sim F(n,m)$.
+  (2) ① $f_{U,V}(u,v)=\frac{u^{n/2-1}v^{m/2-1}e^{-(u+v)/2}}{\Gamma(n/2)\Gamma(m/2)2^{(n+m)/2}}$;
+  ② 보조변수 $Y=V$, 역변환 $u=\frac nm xy,\ v=y$, $|J|=\frac nm y$ →
+  $f_{X,Y}(x,y)=\frac{(n/m)^{n/2}}{\Gamma(n/2)\Gamma(m/2)2^{(n+m)/2}}x^{n/2-1}y^{(n+m)/2-1}e^{-\frac y2(1+\frac{nx}m)}$;
+  ③ $a=\frac12(1+\frac{nx}m)$ 의 감마적분 $\int_0^\infty y^{(n+m)/2-1}e^{-ay}dy=\Gamma[\tfrac{n+m}2]a^{-(n+m)/2}$ 로 $y$ 소거, $2^{(n+m)/2}$ 약분 →
+  $f_X(x)=\frac{\Gamma[(n+m)/2]}{\Gamma(n/2)\Gamma(m/2)}\big(\frac nm\big)^{n/2}\frac{x^{(n-2)/2}}{[1+nx/m]^{(n+m)/2}}\ (x\gt0)$.</div>
+<div class="ans"><span class="qid">A11.</span> (1) $X=\frac mn\cdot\frac UV$, $U$ 와 $1/V$ 독립 →
+  $E(X)=\frac mn E(U)E(\frac1V)=\frac mn\cdot n\cdot\frac1{m-2}=\frac m{m-2}$ ($E(\frac1V)=\frac1{m-2}$ 는 감마적분, $m\gt2$).
+  (2) $\frac1X=\frac{V/m}{U/n}\sim F(m,n)$; $\dfrac{1}{F_\alpha(n,m)}=F_{1-\alpha}(m,n)$ — 상측 $\alpha$ 점의 역수는 자유도를 바꾼 분포의 상측 $1-\alpha$ 점.</div>
+<div class="ans"><span class="qid">A12.</span> (1) $Z\sim N(0,1)\perp U\sim\chi^2(k)$, $X=\dfrac{Z}{\sqrt{U/k}}\sim t(k)$;
+  $f(x)=\frac{\Gamma[(k+1)/2]}{\Gamma(k/2)\sqrt{k\pi}}(1+x^2/k)^{-(k+1)/2}$.
+  (2) $E(X)=0\ (n\gt1)$, $\operatorname{Var}(X)=\frac n{n-2}\ (n\gt2)$.
+  (3) $X^2=\dfrac{Z^2/1}{U/n}$ — 분자 $Z^2\sim\chi^2(1)$ 을 자유도 $1$ 로, 분모를 자유도 $n$ 으로 나눈 비 → $F(1,n)$.</div>
+
+<h2 class="sub">C. 정규분포로부터의 표본추출</h2>
+<div class="ans"><span class="qid">A13.</span> $\sum X_i\sim N(\sum\mu_i,\sum\sigma_i^2)$.
+  $M(t)=\prod\exp(\mu_it+\tfrac{\sigma_i^2t^2}2)=\exp[t\sum\mu_i+\tfrac{t^2}2\sum\sigma_i^2]$ — 해당 정규의 mgf, 유일성.
+  따름: $\overline{X}_n\sim N(\mu,\sigma^2/n)$ ($\sum X_i\sim N(n\mu,n\sigma^2)$ 에 선형변환).</div>
+<div class="ans"><span class="qid">A14.</span>
+  <ol><li>준비: ① $Q^\top Q=I$ → $\|Qx\|^2=\|x\|^2$ (길이 보존); ② iid 라 $\operatorname{Cov}(X)=\sigma^2I$;
+  ③ $\operatorname{Cov}(QX)=Q(\sigma^2I)Q^\top=\sigma^2I$; ④ $Y=QX$ 는 다변량 정규 — $\Sigma=\sigma^2I$ 면 결합밀도가
+  성분별로 인수분해 → 상호 독립; ⑤ 겹치지 않는 성분의 함수 $g(Y_1)$ 과 $h(Y_2,\dots,Y_n)$ 은 독립.</li>
+  <li>첫 행이 $(\tfrac1{\sqrt n},\dots,\tfrac1{\sqrt n})$ 인 직교행렬 $Q$ (헬머트), $Y=QX$:
+  $Y_1=\tfrac1{\sqrt n}\sum X_i=\sqrt n\,\overline{X}_n$;
+  길이 보존에서 $\sum_{i=2}^nY_i^2=\sum X_i^2-Y_1^2=\sum X_i^2-n\overline{X}_n^2=(n-1)S_n^2$;
+  ③·④로 $Y_1,\dots,Y_n$ 상호 독립; $\overline{X}_n$ 은 $Y_1$ 만의, $S_n^2$ 은 $Y_2,\dots,Y_n$ 만의 함수 → 독립.</li></ol></div>
+<div class="ans"><span class="qid">A15.</span> $Z_i=Y_{i+1}/\sigma$ ($i=1,\dots,n-1$) 는 iid $N(0,1)$ 이고 $W=\frac{(n-1)S_n^2}{\sigma^2}=\sum Z_i^2$.
+  ① 결합밀도 $(2\pi)^{-(n-1)/2}e^{-r^2/2}$ 는 $r=\|z\|$ 에만 의존(회전 대칭);
+  ② $P(W\le w)=c_n\int_0^{\sqrt w}r^{n-2}e^{-r^2/2}dr$ (구면 표면적 $\propto r^{n-2}$);
+  ③ $t=r^2$ 치환 후 $w$ 로 미분: $f_W(w)=C\,w^{(n-1)/2-1}e^{-w/2}$;
+  ④ 감마적분 정규화로 $C=\big[\Gamma(\tfrac{n-1}2)2^{(n-1)/2}\big]^{-1}$ — 자유도 $n-1$ 카이제곱 밀도.</div>
+<div class="ans"><span class="qid">A16.</span> $F=\dfrac{S_X^2/\sigma_X^2}{S_Y^2/\sigma_Y^2}\sim F(n-1,m-1)$.
+  정리 3.9(2)로 $\frac{(n-1)S_X^2}{\sigma_X^2}\sim\chi^2(n-1)$, $\frac{(m-1)S_Y^2}{\sigma_Y^2}\sim\chi^2(m-1)$ — 두 표본 독립이라 서로 독립.
+  각각 자유도로 나눈 비 → $F$ 분포 정의. $\sigma_X^2=\sigma_Y^2$ 이면 $S_X^2/S_Y^2\sim F(n-1,m-1)$.</div>
+<div class="ans"><span class="qid">A17.</span> $Z=\frac{\sqrt n(\overline{X}_n-\mu)}{\sigma}\sim N(0,1)$,
+  $U=\frac{(n-1)S_n^2}{\sigma^2}\sim\chi^2(n-1)$, 정리 3.9로 독립 →
+  $T=\frac{Z}{\sqrt{U/(n-1)}}=\frac{\sqrt n(\overline{X}_n-\mu)}{S_n}\sim t(n-1)$ ($\sigma$ 가 약분).
+  스튜던트화: 장애모수(추정 대상 외의 모수) $\sigma^2$ 을 표본분산으로 바꿔 소거하는 것.</div>
+
+<h2 class="sub">D. 대수의 법칙과 중심극한정리</h2>
+<div class="ans"><span class="qid">A18.</span> 임의의 $\epsilon\gt0$ 에 대해 $\lim_{n\to\infty}P(|X_n-X|\ge\epsilon)=0$
+  (동등하게 $\lim P(|X_n-X|\lt\epsilon)=1$) 이면 $X_n\xrightarrow{\ p\ }X$.</div>
+<div class="ans"><span class="qid">A19.</span> $\overline{X}_n\xrightarrow{\ p\ }\mu$. ($\sigma^2\lt\infty$ 가정)
+  체비셰프: $P(|\overline{X}_n-\mu|\ge\epsilon)\le\dfrac{\operatorname{Var}(\overline{X}_n)}{\epsilon^2}=\dfrac{\sigma^2}{n\epsilon^2}\to0$.</div>
+<div class="ans"><span class="qid">A20.</span> $E(X_1^4)\lt\infty$ 이면 $S_n^2\xrightarrow{\ p\ }\sigma^2$.
+  3.1의 결과 $E(S_n^2)=\sigma^2$, $\operatorname{Var}(S_n^2)=\frac1n(\mu_4-\frac{n-3}{n-1}\sigma^4)$ 에 체비셰프:
+  $P(|S_n^2-\sigma^2|\ge\epsilon)\le\frac1{n\epsilon^2}(\mu_4-\tfrac{n-3}{n-1}\sigma^4)\to0$ (괄호는 유계, 앞의 $\frac1n\to0$).</div>
+<div class="ans"><span class="qid">A21.</span> $F_X$ 가 연속인 모든 점에서 $\lim_n F_{X_n}(x)=F_X(x)$ 이면 $X_n\xrightarrow{\ d\ }X$.
+  차이: ① 수렴 대상이 확률변수가 아니라 <b>누적분포함수</b>, ② $F_X$ 의 <b>연속점에서만</b> 요구 (같은 확률공간일 필요도 없음).</div>
+<div class="ans"><span class="qid">A22.</span> 개구간 $-h\lt t\lt h$ 에서 $\lim_n M_n(t)=M(t)$ 이고 $M(t)$ 가 어떤 분포(cdf $F$)의 mgf 이면,
+  $F$ 의 연속점마다 $\lim_n F_n(x)=F(x)$.</div>
+<div class="ans"><span class="qid">A23.</span> $Z_n=\dfrac{\sum(X_i-\mu)}{\sqrt n\,\sigma}\xrightarrow{\ d\ }N(0,1)$.
+  ① $m(t)=E[e^{t(X_i-\mu)}]$: $m(0)=1$, $m'(0)=0$, $m''(0)=\sigma^2$.
+  ② 라그랑주: $m(t)=1+\frac{\sigma^2t^2}2+\frac{[m''(\xi)-\sigma^2]t^2}2$ ($0\lt\xi\lt t$; 주항+오차로 분리).
+  ③ 독립합 mgf 는 곱: $M_{Z_n}(t)=\big[m\big(\frac t{\sqrt n\sigma}\big)\big]^n=\big[1+\frac{t^2}{2n}+\frac{[m''(\xi)-\sigma^2]t^2}{2n\sigma^2}\big]^n$.
+  ④ $n\to\infty$ 에서 $\xi$ 는 $0$ 과 $\frac t{\sqrt n\sigma}$ 사이에 끼어 $\xi\to0$, $m''$ 연속 → 오차항 $\to0$;
+  $[1+\frac{t^2/2+o(1)}n]^n\to e^{t^2/2}$.
+  ⑤ $e^{t^2/2}$ 는 $N(0,1)$ 의 mgf — 정리 3.13과 유일성으로 $Z_n\xrightarrow{\ d\ }N(0,1)$.</div>
+<div class="ans"><span class="qid">A24.</span> $R(x)=f(x)-f(a)-f'(a)(x-a)=\dfrac{f''(\xi)}2(x-a)^2$ ($a$ 와 $x$ 사이 $\xi$).
+  ① $R$ 정의 ② $x$ 고정, $R(x)=\frac{(x-a)^2}2M$ 으로 $M$ 정의
+  ③ $g(u)=f(u)-f(a)-f'(a)(u-a)-\frac{(u-a)^2}2M$: $g(a)=g'(a)=0$ (접선 일치), $g(x)=0$ ($M$ 의 정의)
+  ④ 롤 2연쇄: $g(a)=g(x)=0$ → $g'(\xi_1)=0$; $g'(a)=g'(\xi_1)=0$ → $g''(\xi_2)=0$
+  ⑤ $g''(u)=f''(u)-M$ 이므로 $M=f''(\xi_2)$.</div>
+<div class="ans"><span class="qid">A25.</span> $P(a\le X\le b)\fallingdotseq\varPhi\big[\frac{b+1/2-np}{\sqrt{npq}}\big]-\varPhi\big[\frac{a-1/2-np}{\sqrt{npq}}\big]$.
+  $P(X=k)$ 는 중앙이 $k$ 인 폭 $1$ 막대의 넓이인데, 적분 경계를 막대 <b>중앙</b> $a,b$ 로 잡으면 양끝 막대의 바깥 절반이 잘린다 —
+  막대 전체를 덮으려면 경계를 좌우로 $\tfrac12$ 씩 확장해야 한다.</div>
+<div class="ans"><span class="qid">A26.</span> (1) $X_n\xrightarrow{\ p\ }c,\ Y_n\xrightarrow{\ d\ }Z$ 이면
+  ① $Y_n+X_n\xrightarrow{\ d\ }Z+c$ ② $X_nY_n\xrightarrow{\ d\ }cZ$.
+  (2) $S_n^2\xrightarrow{\ p\ }\sigma^2$ → $S_n\xrightarrow{\ p\ }\sigma$ ($\sqrt{\cdot}$ 연속) → $\frac\sigma{S_n}\xrightarrow{\ p\ }1$;
+  CLT 로 $\frac{\overline{X}_n-\mu}{\sigma/\sqrt n}\xrightarrow{\ d\ }N(0,1)$; 슬럿츠키(2):
+  $\frac{\overline{X}_n-\mu}{S_n/\sqrt n}=\frac{\sigma}{S_n}\cdot\frac{\overline{X}_n-\mu}{\sigma/\sqrt n}\xrightarrow{\ d\ }1\cdot N(0,1)$.</div>
+<div class="ans"><span class="qid">A27.</span> $\sqrt n(X_n-\theta)\xrightarrow{\ d\ }N(0,\sigma^2)$, $g'$ 연속·$g'(\theta)\ne0$ 이면
+  $\sqrt n(g(X_n)-g(\theta))\xrightarrow{\ d\ }N(0,\sigma^2[g'(\theta)]^2)$.
+  ① MVT: $X_n$ 과 $\theta$ 사이 $\tilde\theta$ 로 $g(X_n)-g(\theta)=g'(\tilde\theta)(X_n-\theta)$.
+  ② 슬럿츠키: $X_n-\theta=\frac1{\sqrt n}\cdot\sqrt n(X_n-\theta)\xrightarrow{\ d\ }0\cdot N(0,\sigma^2)=0$ →
+  상수로의 분포수렴 = 확률수렴이므로 $X_n\xrightarrow{\ p\ }\theta$.
+  ③ 조임: $\tilde\theta$ 가 사이에 끼어 $\tilde\theta\xrightarrow{\ p\ }\theta$, $g'$ 연속 → $g'(\tilde\theta)\xrightarrow{\ p\ }g'(\theta)$;
+  슬럿츠키(2)로 $g'(\tilde\theta)\cdot\sqrt n(X_n-\theta)\xrightarrow{\ d\ }g'(\theta)N(0,\sigma^2)$.</div>
+<div class="ans"><span class="qid">A28.</span> CLT: $\sqrt n(\overline{X}_n-\lambda)\xrightarrow{\ d\ }N(0,\lambda)$ ($E=\operatorname{Var}=\lambda$).
+  $g(x)=\sqrt x$, $g'(\lambda)=\frac1{2\sqrt\lambda}$, $[g'(\lambda)]^2=\frac1{4\lambda}$ → 델타 방법:
+  $\sqrt n(\sqrt{\overline{X}_n}-\sqrt\lambda)\xrightarrow{\ d\ }N(0,\lambda\cdot\frac1{4\lambda})=N(0,\tfrac14)$ — 분산이 $\lambda$ 무관.</div>
+<div class="ans"><span class="qid">A29.</span> 테일러 $g(x)\approx g(\theta)+\sum_i g_i{}'(\theta)(x_i-\theta_i)$ 에서
+  (3.9) $E\,g(X)\approx g(\theta)$;
+  (3.10) $\operatorname{Var}g(X)\approx\sum_i[g_i{}'(\theta)]^2\operatorname{Var}(X_i)+2\sum_{i\gt j}g_i{}'(\theta)g_j{}'(\theta)\operatorname{Cov}(X_i,X_j)$.</div>
+
+<h2 class="sub">E. 순서통계량</h2>
+<div class="ans"><span class="qid">A30.</span> $g(x_{(1)},\dots,x_{(n)})=n!\,f(x_{(1)})\cdots f(x_{(n)})$ ($x_{(1)}\lt\cdots\lt x_{(n)}$, 그 외 $0$).
+  정렬은 $n!$ 개 표본이 한 점으로 모여 1:1 이 아님 → 순서가 고정된 $n!$ 개 서로소 영역으로 분할하면 각 영역에서 1:1 치환이고 $|J|=1$;
+  iid 라 밀도가 순서에 불변이므로 각 영역의 기여가 모두 $\prod f(x_{(i)})$ 로 동일 → 합해서 $n!$ 배.
+  경계($x_i=x_j$)는 연속형에서 확률 $0$ 이라 무시.</div>
+<div class="ans"><span class="qid">A31.</span> $f_{X_{(k)}}(x)=\dfrac{n!}{(k-1)!(n-k)!}[F(x)]^{k-1}[1-F(x)]^{n-k}f(x)$.
+  배치: $1$ 개는 $x$ (밀도 $f$), $(k-1)$ 개는 그보다 작음(각각 $F$), $(n-k)$ 개는 큼(각각 $1-F$);
+  같은 쪽끼리 순서를 안 따지므로 배치 수는 $\frac{n!}{(k-1)!\,1!\,(n-k)!}$.
+  두 개 결합 ($x_{(i)}\lt x_{(j)}$):
+  $\frac{n!}{(i-1)!(j-i-1)!(n-j)!}[F(x_{(i)})]^{i-1}f(x_{(i)})[F(x_{(j)})-F(x_{(i)})]^{j-i-1}f(x_{(j)})[1-F(x_{(j)})]^{n-j}$.</div>
+<div class="ans"><span class="qid">A32.</span> (1) $G_1(x)=1-P(\text{모두 }\gt x)=1-[1-F(x)]^n$ → $f_{X_{(1)}}=n[1-F]^{n-1}f$;
+  $G_n(x)=P(\text{모두 }\le x)=[F(x)]^n$ → $f_{X_{(n)}}=n[F]^{n-1}f$.
+  (2) $F=1-e^{-x/\lambda}$ 대입: $f_{X_{(1)}}(x)=\frac n\lambda e^{-nx/\lambda}$ — 평균 $\lambda/n$ 인 지수분포.</div>
+<div class="ans"><span class="qid">A33.</span> 중위수: $n$ 홀수 $\tilde X=X_{(k)},\ k=\frac{n+1}2$; 짝수 $\tilde X=\frac{X_{(k)}+X_{(k+1)}}2,\ k=\frac n2$ — 분포의 <b>위치</b> 척도.
+  범위: $R=X_{(n)}-X_{(1)}$ — <b>흩어진 정도</b>의 척도.</div>
+
+</div>
+
+<nav class="pager">
+  <a href="3-5_order-statistics.html">← 이전<small>3.5 순서통계량</small></a>
+  <span class="spacer"></span>
+</nav>
+
+</body>
+</html>
