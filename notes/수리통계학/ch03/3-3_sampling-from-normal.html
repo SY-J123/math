@@ -123,30 +123,29 @@
   <div class="qed">∎</div>
 </div>
 <div class="box prf">
-  <span class="tag">증명 <span class="en">(2) $(n-1)S_n^2/\sigma^2$ 의 분포 — 결합밀도 직접 유도</span></span>
-  <p><b>출발점.</b> 증명 (1)의 회전에서 $(n-1)S_n^2=\sum_{i=2}^n Y_i^2$ 이고, $Y_2,\dots,Y_n$ 은 서로 독립인
-  $N(0,\sigma^2)$ 이다. 따라서 $Z_i=Y_{i+1}/\sigma\ (i=1,\dots,n-1)$ 로 두면 $Z_1,\dots,Z_{n-1}$ 은 iid $N(0,1)$ 이고</p>
-  $$W:=\frac{(n-1)S_n^2}{\sigma^2}=\sum_{i=1}^{n-1}Z_i^2.$$
-  <p>(<a href="3-2_normal-related-distributions.html">정리 3.5</a>를 인용하면 $W\sim\chi^2(n-1)$ 이 바로 나오지만,
-  여기서는 결합밀도를 적분해 mgf 없이 밀도함수를 직접 유도한다.)</p>
-  <p><b>① 회전 대칭.</b> $(Z_1,\dots,Z_{n-1})$ 의 결합밀도는</p>
-  $$f(z_1,\dots,z_{n-1})=(2\pi)^{-(n-1)/2}\,e^{-\frac12\sum_i z_i^2}=(2\pi)^{-(n-1)/2}\,e^{-r^2/2},\qquad r=\|z\|,$$
-  <p>즉 방향과는 무관하게 원점으로부터의 거리 $r$ 에만 의존한다.</p>
-  <p><b>② cdf 를 극좌표로.</b> $W=\|Z\|^2$ 이므로, $w\gt0$ 에 대해 결합밀도를 반지름별로 모아 적분하면</p>
-  $$P(W\le w)=\int_{\|z\|^2\le w}(2\pi)^{-(n-1)/2}\,e^{-\|z\|^2/2}\,dz
-  =c_n\int_0^{\sqrt w} r^{\,n-2}\,e^{-r^2/2}\,dr.$$
-  <p>($n-1$ 차원 공간에서 반지름 $r$ 인 구면의 표면적이 $r^{\,n-2}$ 에 비례하기 때문이다.
-  비례상수 $c_n$ 은 뒤에서 정규화로 결정되므로 계산할 필요가 없다.)</p>
-  <p><b>③ 치환과 미분.</b> $t=r^2\ (dt=2r\,dr)$ 로 치환하면</p>
-  $$P(W\le w)=\frac{c_n}{2}\int_0^w t^{(n-3)/2}\,e^{-t/2}\,dt,$$
-  <p>이를 $w$ 로 미분해 밀도를 얻으면</p>
-  $$f_W(w)=C\,w^{(n-1)/2-1}\,e^{-w/2},\qquad w\gt0.$$
-  <p><b>④ 정규화 상수.</b> $\int_0^\infty f_W(w)\,dw=1$ 과 <a href="../ch00/0-3_special-integrals.html">감마적분</a>
-  $\displaystyle\int_0^\infty w^{(n-1)/2-1}e^{-w/2}\,dw=\Gamma\!\left(\tfrac{n-1}2\right)2^{(n-1)/2}$ 에서</p>
-  $$C=\frac{1}{\Gamma\!\left(\tfrac{n-1}2\right)2^{(n-1)/2}},\qquad
-  f_W(w)=\frac{1}{\Gamma\!\left(\tfrac{n-1}2\right)}\left(\frac12\right)^{(n-1)/2}w^{(n-1)/2-1}e^{-w/2}.$$
-  <p>이는 밀도 (3.1)에서 자유도 $n-1$ 인 카이제곱분포의 확률밀도함수다. 따라서
-  $\dfrac{(n-1)S_n^2}{\sigma^2}\sim\chi^2(n-1)$.</p>
+  <span class="tag">증명 <span class="en">(2) $(n-1)S_n^2/\sigma^2$ 의 분포 — mgf 이용</span></span>
+  <p><b>① 제곱합 분해.</b> 편차제곱합의 항등식
+  $\sum_{i=1}^n(X_i-\mu)^2=\sum_{i=1}^n(X_i-\overline{X}_n)^2+n(\overline{X}_n-\mu)^2$ 의 양변을 $\sigma^2$ 으로 나누면</p>
+  $$V_1:=\sum_{i=1}^n\frac{(X_i-\mu)^2}{\sigma^2}
+  =\underbrace{\frac{(n-1)S_n^2}{\sigma^2}}_{V_2}
+  +\underbrace{\frac{n(\overline{X}_n-\mu)^2}{\sigma^2}}_{V_3},
+  \qquad\text{즉}\quad V_1=V_2+V_3.$$
+  <p><b>② 세 변량의 분포와 독립성.</b></p>
+  <ul class="props">
+    <li>$V_1$: 표준화 제곱합이므로 <a href="3-2_normal-related-distributions.html">정리 3.5</a>에 의해 $V_1\sim\chi^2(n)$.</li>
+    <li>$V_3=\left(\dfrac{\overline{X}_n-\mu}{\sigma/\sqrt n}\right)^{\!2}$: $\overline{X}_n\sim N(\mu,\sigma^2/n)$ 의
+    표준화 제곱이므로 정리 3.4에 의해 $V_3\sim\chi^2(1)$.</li>
+    <li>$V_2$ 는 $S_n^2$ 만의 함수, $V_3$ 은 $\overline{X}_n$ 만의 함수인데, (1)에서 $\overline{X}_n$ 과 $S_n^2$ 이
+    독립이므로 $V_2$ 와 $V_3$ 도 서로 <b>독립</b>이다.</li>
+  </ul>
+  <p><b>③ 독립합의 mgf.</b> $V_1=V_2+V_3$ 이고 $V_2\perp V_3$ 이므로 독립합의 mgf 는 곱이다
+  (<a href="../ch02/2-8_mgf.html">정리 2.29</a>):</p>
+  $$M_{V_1}(t)=M_{V_2}(t)\,M_{V_3}(t).$$
+  <p><b>④ 나눗셈으로 $M_{V_2}$ 결정.</b> 카이제곱 mgf(정리 3.2) $M_{\chi^2(k)}(t)=(1-2t)^{-k/2}$ 를 대입해 풀면</p>
+  $$M_{V_2}(t)=\frac{M_{V_1}(t)}{M_{V_3}(t)}=\frac{(1-2t)^{-n/2}}{(1-2t)^{-1/2}}
+  =(1-2t)^{-(n-1)/2},\qquad t\lt\tfrac12.$$
+  <p><b>⑤ 유일성.</b> 이는 자유도 $n-1$ 인 카이제곱분포의 mgf 이므로, mgf 의 유일성에 의해</p>
+  $$V_2=\frac{(n-1)S_n^2}{\sigma^2}\ \sim\ \chi^2(n-1).$$
   <div class="qed">∎</div>
 </div>
 <div class="note">

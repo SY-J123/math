@@ -77,7 +77,8 @@
 <div class="qrow"><span class="qid">Q14</span><span class="mark">★★</span>정리 3.9(1): $N(\mu,\sigma^2)$ 랜덤표본에서 $\overline{X}_n$ 과 $S_n^2$ 이 <b>독립</b>임을 직교행렬로 증명하라.
   <ol><li>준비 다섯 가지(직교행렬의 길이 보존, $\operatorname{Cov}(X)=\sigma^2 I$, 회전 후 공분산, 공분산 0 → 상호 독립, 겹치지 않는 성분의 함수)를 정리하라.</li>
   <li>$Q$ 의 구성 → $Y_1=\sqrt n\,\overline{X}_n$ → $\sum_{i=2}^n Y_i^2=(n-1)S_n^2$ → 독립 결론의 순서로 본증명을 완성하라.</li></ol></div>
-<div class="qrow"><span class="qid">Q15</span><span class="mark">★</span>정리 3.9(2): $\dfrac{(n-1)S_n^2}{\sigma^2}\sim\chi^2(n-1)$ 임을 결합밀도 직접 유도(회전 대칭 → 극좌표 cdf → 치환·미분 → 정규화)로 증명하라.</div>
+<div class="qrow"><span class="qid">Q15</span><span class="mark">★</span>정리 3.9(2): $\dfrac{(n-1)S_n^2}{\sigma^2}\sim\chi^2(n-1)$ 임을 mgf 로 증명하라
+  (제곱합 분해 $V_1=V_2+V_3$ → 분포·독립성 확인 → mgf 나눗셈 → 유일성).</div>
 <div class="qrow"><span class="qid">Q16</span>두 독립 정규표본의 분산비에 대한 정리 3.10을 식으로 쓰고 증명하라.
   $\sigma_X^2=\sigma_Y^2$ 일 때의 특수형도 쓰라.</div>
 <div class="qrow"><span class="qid">Q17</span><span class="mark">★</span>정리 3.11: $T=\dfrac{\overline{X}_n-\mu}{S_n/\sqrt n}\sim t(n-1)$ 임을 증명하라.
@@ -173,11 +174,13 @@
   $Y_1=\tfrac1{\sqrt n}\sum X_i=\sqrt n\,\overline{X}_n$;
   길이 보존에서 $\sum_{i=2}^nY_i^2=\sum X_i^2-Y_1^2=\sum X_i^2-n\overline{X}_n^2=(n-1)S_n^2$;
   ③·④로 $Y_1,\dots,Y_n$ 상호 독립; $\overline{X}_n$ 은 $Y_1$ 만의, $S_n^2$ 은 $Y_2,\dots,Y_n$ 만의 함수 → 독립.</li></ol></div>
-<div class="ans"><span class="qid">A15.</span> $Z_i=Y_{i+1}/\sigma$ ($i=1,\dots,n-1$) 는 iid $N(0,1)$ 이고 $W=\frac{(n-1)S_n^2}{\sigma^2}=\sum Z_i^2$.
-  ① 결합밀도 $(2\pi)^{-(n-1)/2}e^{-r^2/2}$ 는 $r=\|z\|$ 에만 의존(회전 대칭);
-  ② $P(W\le w)=c_n\int_0^{\sqrt w}r^{n-2}e^{-r^2/2}dr$ (구면 표면적 $\propto r^{n-2}$);
-  ③ $t=r^2$ 치환 후 $w$ 로 미분: $f_W(w)=C\,w^{(n-1)/2-1}e^{-w/2}$;
-  ④ 감마적분 정규화로 $C=\big[\Gamma(\tfrac{n-1}2)2^{(n-1)/2}\big]^{-1}$ — 자유도 $n-1$ 카이제곱 밀도.</div>
+<div class="ans"><span class="qid">A15.</span> ① 항등식 $\sum(X_i-\mu)^2=\sum(X_i-\overline{X}_n)^2+n(\overline{X}_n-\mu)^2$ 을 $\sigma^2$ 으로 나눠
+  $V_1=\sum\frac{(X_i-\mu)^2}{\sigma^2}=\underbrace{\tfrac{(n-1)S_n^2}{\sigma^2}}_{V_2}+\underbrace{\tfrac{n(\overline{X}_n-\mu)^2}{\sigma^2}}_{V_3}$.
+  ② $V_1\sim\chi^2(n)$ (정리 3.5); $V_3=\big(\frac{\overline{X}_n-\mu}{\sigma/\sqrt n}\big)^2\sim\chi^2(1)$ (정리 3.4);
+  $V_2$ 는 $S_n^2$ 만의, $V_3$ 은 $\overline{X}_n$ 만의 함수 + (1)의 독립성 → $V_2\perp V_3$.
+  ③ $M_{V_1}(t)=M_{V_2}(t)M_{V_3}(t)$ (독립합 mgf 곱) →
+  $M_{V_2}(t)=\frac{(1-2t)^{-n/2}}{(1-2t)^{-1/2}}=(1-2t)^{-(n-1)/2}$.
+  ④ 유일성으로 $V_2\sim\chi^2(n-1)$.</div>
 <div class="ans"><span class="qid">A16.</span> $F=\dfrac{S_X^2/\sigma_X^2}{S_Y^2/\sigma_Y^2}\sim F(n-1,m-1)$.
   정리 3.9(2)로 $\frac{(n-1)S_X^2}{\sigma_X^2}\sim\chi^2(n-1)$, $\frac{(m-1)S_Y^2}{\sigma_Y^2}\sim\chi^2(m-1)$ — 두 표본 독립이라 서로 독립.
   각각 자유도로 나눈 비 → $F$ 분포 정의. $\sigma_X^2=\sigma_Y^2$ 이면 $S_X^2/S_Y^2\sim F(n-1,m-1)$.</div>
