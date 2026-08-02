@@ -22,19 +22,17 @@
 </header>
 
 <h2 class="sub">추정론의 개요 <span class="en">overview of estimation</span></h2>
-<p><b>추정이론</b><span class="en">estimation theory</span>은 다음 장의 <b>검정이론</b><span class="en">testing theory</span>과 함께
-<b>통계적 추론</b><span class="en">statistical inference</span>의 가장 중요한 분야다. 관찰 대상인 확률변수 $X$ 의 분포를
-확률분포모형 $P_\theta(x)$ 또는 밀도함수 $f(x;\theta)\ (\theta\in\Omega)$ 로 나타내고, <b>미지의 모수 $\theta$ 를 제외한
-분포의 유형은 결정되어 있다</b>고 가정한다. 여기서 $\Omega$ 는 모수가 가질 수 있는 값의 집합, 즉 <b>모수공간</b>이다.</p>
-<p>크기 $n$ 인 <a href="../ch03/3-1_population-sample.html">랜덤표본</a> $X=(X_1,\dots,X_n)$ 으로 모수의 함수 $g(\theta)$ 를 추정하는데,
-방법은 두 가지다:</p>
+<p><b>추정</b><span class="en">estimation</span>은 검정과 함께 <b>통계적 추론</b>의 두 축이다. 밀도 $f(x;\theta)$ 에서 미지의 모수
+$\theta\in\Omega$(<b>모수공간</b>)만 모른다고 보고, <a href="../ch03/3-1_population-sample.html">랜덤표본</a> $X=(X_1,\dots,X_n)$ 으로
+모수의 함수 $g(\theta)$ 를 추정한다.</p>
 <ul class="props">
-  <li><b>점추정</b><span class="en">point estimation</span>: 표본에 근거한 통계량 $T(X)$ <b>하나의 값</b>으로 $g(\theta)$ 를 추정.</li>
-  <li><b>구간추정</b><span class="en">interval estimation</span>: 두 통계량으로 만든 구간 $[T_1(X),T_2(X)]$ 에 $g(\theta)$ 가 포함될 확률을 고려.</li>
+  <li><b>점추정</b><span class="en">point</span>: 통계량 $T(X)$ <b>하나의 값</b>으로 추정.</li>
+  <li><b>구간추정</b><span class="en">interval</span>: 구간 $[T_1(X),T_2(X)]$ 에 $g(\theta)$ 가 포함될 확률을 고려.</li>
 </ul>
-<p>구간추정이 더 많은 정보를 주지만, 보통 <b>점추정값에 오차한계를 더해</b> 구간추정을 만들므로 좋은 점추정량을 찾는 것이 우선이다.
-이 장은 주로 점추정을 다룬다. 기본 접근으로 <b>적률</b>과 <b>가능도</b>의 원리를 쓰고, 추정량의 선택기준으로는
-<b>평균제곱오차<span class="en">MSE</span>의 최소화</b>(→ 최소분산 비편향추정량)를 사용한다. 구간추정에서는 주축변량, 마지막 절에서는 베이즈 추정량을 다룬다.</p>
+<div class="note">
+  이 장은 주로 <b>점추정</b>. 접근원리 = <b>적률·가능도</b>, 선택기준 = <b>MSE 최소화</b>(→ 최소분산 비편향추정량).
+  구간추정은 주축변량, 마지막 절은 베이즈.
+</div>
 
 <h2 class="sub">추정량과 추정값 <span class="en">estimator &amp; estimate</span></h2>
 <div class="box def">
