@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>4장 · 4.2 최대가능도 추정법</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">수리통계학 · 4장 추정</div>
+  <h1><span class="no">4.2</span>최대가능도 추정법 <span class="en">maximum likelihood estimation</span></h1>
+</header>
+
+<p><b>최대가능도 추정법</b>은 <b>관측된 데이터를 가장 그럴듯하게 만들어 주는 모수를 고르는 방법</b>이다.
+성공률이 $p$ 인 베르누이 분포에서 크기 $10$ 인 랜덤표본을 뽑는데, 성공률이 $0.1$ 이거나 $0.9$ 둘 중 하나임을
+알고 있다고 하자. 관측치 $10$ 개의 합이 $8$ 이었다면 성공률을 $0.1$ 과 $0.9$ 중 무엇으로 추정해야 할까?
+누구나 $0.9$ 를 고를 것이다 — <b>$0.9$ 가 참일 경우 합이 $8$ 인 관측치를 얻을 확률이 $0.1$ 이 참일 경우보다
+높기 때문</b>이다. 이런 생각이 가능도원리를 사용하는 최대가능도 추정법의 간단한 예다.</p>
+
+<!-- ================= 가능도함수 ================= -->
+<h2 class="sub">가능도함수 <span class="en">likelihood function</span></h2>
+<div class="box def">
+  <span class="tag">정의</span><span class="title">가능도함수 <span class="en">likelihood function</span></span>
+  <p>확률변수 $X_1,X_2,\dots,X_n$ 의 결합 확률밀도함수를 $f(x_1,x_2,\dots,x_n;\theta)$ 라 하자.
+  이 함수는 고정된 모수 $\theta$ 에 대하여 $(x_1,\dots,x_n)$ 의 함수로 사용되지만, 반대로 관측치
+  $X_1=x_1,\dots,X_n=x_n$ 이 주어졌을 때 <b>모수 $\theta\,(\in\Omega)$ 의 함수</b>로 생각해 볼 수도 있다.
+  이를</p>
+  $$L(\theta)=L(\theta\,;x_1,x_2,\dots,x_n)=f(x_1,x_2,\dots,x_n;\theta)$$
+  <p>로 표기하고 $X_1,X_2,\dots,X_n$ 의 <b>가능도함수</b>라고 한다 — 주어진 자료 $(x_1,\dots,x_n)$ 이
+  얻어질 가능성을 $\theta$ 에 대한 함수로 나타낸 것이다.</p>
+</div>
+<div class="note">
+  특정한 $\theta$ 값과 $x_1,\dots,x_n$ 이 주어진 상태에서 확률밀도함수와 가능도함수는 <b>같은 함수값</b>을 갖는다.
+  그러나 $y=x^2+z$ 를 $f(x)=x^2+z$ 처럼 $x$ 의 함수로 볼 수도 있고 $g(z)=x^2+z$ 처럼 $z$ 의 함수로 볼 수도
+  있지만 $f$ 와 $g$ 가 다른 함수이듯이, <b>가능도함수와 확률밀도함수는 함수로서는 서로 다르다</b>.
+  특히 가능도함수는 $\theta$ 의 함수이므로 확률밀도함수가 아니라는 점에 유의하자.
+</div>
+<div class="box thm">
+  <span class="tag">성질</span><span class="title">독립 표본·랜덤표본의 가능도함수</span>
+  <p>$X_1,\dots,X_n$ 이 서로 독립이고 $X_i$ 가 확률밀도함수 $f_i(x_i;\theta)$ 를 가지면, 결합밀도가 곱이므로</p>
+  $$L(\theta\,;x_1,x_2,\dots,x_n)=\prod_{i=1}^n f_i(x_i;\theta)=f_1(x_1;\theta)\,f_2(x_2;\theta)\cdots f_n(x_n;\theta).$$
+  <p>특히 $X_1,\dots,X_n$ 이 확률밀도함수 $f(x;\theta)$ 로부터의 <b>랜덤표본</b>이면 $f_i(x_i;\theta)=f(x_i;\theta)$ 이므로</p>
+  $$L(\theta\,;x_1,x_2,\dots,x_n)=\prod_{i=1}^n f(x_i;\theta). \tag{4.3}$$
+</div>
+
+<!-- ================= 최대가능도 추정량 ================= -->
+<h2 class="sub">최대가능도 추정량 <span class="en">maximum likelihood estimator</span></h2>
+<div class="box def">
+  <span class="tag">정의 4.2</span><span class="title">최대가능도 추정량 <span class="en">MLE</span></span>
+  <p>랜덤표본의 가능도함수 $L(\theta\,;x_1,x_2,\dots,x_n)$ 을 <b>최대화하는</b> $\theta$ 의 값을
+  $\hat\theta=\hat\theta(x_1,x_2,\dots,x_n)\in\Omega$ 라고 할 때,
+  $\hat\theta=\hat\theta(X_1,X_2,\dots,X_n)$ 을 모수 $\theta$ 의
+  <b>최대가능도 추정량</b><span class="en">maximum likelihood estimator</span>이라고 한다.</p>
+</div>
+<div class="note">
+  최대가능도 추정량의 의미는 <b>'실제로 관측된' 자료가 얻어질 확률을 가장 높게 만드는</b>(즉, 주어진 관측값을
+  가장 잘 설명하는) $\theta$ 의 값을 모수 $\theta$ 의 추정량으로 삼는 것이다.
+</div>
+<div class="box ex">
+  <span class="tag">예 4.4</span><span class="title">가능도함수표 읽기 — 이항분포 $B(5,p)$</span>
+  <p>$X_1,X_2,\dots,X_5$ 가 서로 독립인 베르누이($p$) 확률변수라고 하자. 이때 $Y=\sum_{i=1}^5 X_i$ 는
+  $B(5,p)$ 분포를 따르며, $Y$ 의 확률밀도함수는 몇 가지 다른 $p$ 에 대해서 다음과 같이 주어진다.</p>
+  <div class="scroll">
+  <table class="data">
+    <caption style="caption-side:top; font-size:0.8rem; color:var(--muted); margin-bottom:4px;">$Y=y$ 일 때 $p$ 별 가능도 (행: $Y$, 열: $p$)</caption>
+    <tr><th>$Y\backslash p$</th><th>0.1</th><th>0.2</th><th>0.3</th><th>0.4</th><th>0.5</th><th>0.6</th><th>0.7</th><th>0.8</th><th>0.9</th><th>1.0</th></tr>
+    <tr><th>0</th><td>0.59050</td><td>0.32768</td><td>0.16807</td><td>0.07776</td><td>0.03125</td><td>0.01024</td><td>0.00243</td><td>0.00032</td><td>0.00005</td><td>0.0</td></tr>
+    <tr><th>1</th><td>0.32800</td><td>0.40960</td><td>0.36015</td><td>0.25920</td><td>0.15625</td><td>0.07680</td><td>0.02835</td><td>0.00640</td><td>0.00045</td><td>0.0</td></tr>
+    <tr><th>2</th><td>0.07290</td><td>0.20480</td><td>0.30870</td><td>0.34560</td><td>0.31250</td><td>0.23040</td><td>0.13230</td><td>0.05120</td><td>0.00810</td><td>0.0</td></tr>
+    <tr style="background:rgba(214,69,65,0.08);"><th>3</th><td>0.00810</td><td>0.05120</td><td>0.13230</td><td>0.23040</td><td>0.31250</td><td><b>0.34560</b></td><td>0.30870</td><td>0.20480</td><td>0.07290</td><td>0.0</td></tr>
+    <tr><th>4</th><td>0.00045</td><td>0.00640</td><td>0.02835</td><td>0.07680</td><td>0.15625</td><td>0.25920</td><td>0.36015</td><td>0.40960</td><td>0.32800</td><td>0.0</td></tr>
+    <tr><th>5</th><td>0.00005</td><td>0.00032</td><td>0.00243</td><td>0.01024</td><td>0.03125</td><td>0.07776</td><td>0.16807</td><td>0.32768</td><td>0.59050</td><td>1.0</td></tr>
+  </table>
+  </div>
+  <p>가능도함수는 $Y=y$ 로 주어졌을 때 모수 $p$ 에 대한 함수이므로 위의 표를 <b>가로로 읽어서</b> 구할 수 있다.
+  가령 $Y=3$ 이 주어지면, $Y=3$ 인 행을 살펴보아 $p=0.6$ 에서 가능도가 $0.34560$ 으로 최대가 되므로
+  최대가능도 추정값은 $0.6$ 이다. 반면 $Y=1$ 이라면 $0.2$ 가 최대가능도 추정값이 된다.
+  $p$ 가 성공률이므로 $Y$ 의 값이 $1$ 보다는 $3$ 으로 클 때 $p$ 도 클 것이라고 추측하는 것이 합리적이다.
+  (물론 $p$ 에 대하여 $0$ 과 $1$ 사이의 모든 값을 고려하여야 하나 편의상 생략하였다.)</p>
+</div>
+
+<!-- ================= 로그가능도함수 ================= -->
+<h2 class="sub">로그가능도함수 <span class="en">log-likelihood</span></h2>
+<div class="box thm">
+  <span class="tag">방법</span><span class="title">로그가능도함수의 최대화</span>
+  <p>가능도함수 $L(\theta\,;x_1,\dots,x_n)$ 을 최대화하는 $\theta$ 를 찾는 문제는 <b>로그가능도함수</b></p>
+  $$\log L(\theta\,;x_1,x_2,\dots,x_n)=\log\prod_{i=1}^n f_i(x_i;\theta)=\sum_{i=1}^n\log f_i(x_i;\theta) \tag{4.4}$$
+  <p>를 최대화하는 $\theta$ 를 찾는 것과 같다. 많은 경우 이 문제는</p>
+  $$\frac{d}{d\theta}\log L(\theta\,;x_1,x_2,\dots,x_n)=0$$
+  <p>의 해를 구하는 문제로 귀착된다.</p>
+</div>
+<div class="note">
+  로그를 쓰면 계산이 편해지는 이유:
+  <ul class="props">
+    <li>로그함수가 <b>단조증가</b>이므로 $L(\theta)$ 를 최대로 만드는 $\theta$ 에서 $\log L(\theta)$ 도 최대가 되고, 그 반대도 성립한다.</li>
+    <li>랜덤표본의 가능도함수는 주변 확률밀도함수의 <b>곱</b>인데, 로그를 취하면 <b>합</b>이 되어 미분을 통한 최댓값 계산이 훨씬 쉬워진다.</li>
+  </ul>
+  주의: $\frac{d}{d\theta}\log L=0$ 을 만족하는 값이 곧 최대화한다는 보장은 없으며, 엄밀한 의미의 최대화 여부를
+  <b>$2$ 차 미분</b> 등을 통해서 가려야 한다. 참고로 여기서 쓰는 $\log$ 는 다른 설명이 없는 한 <b>자연로그</b>다.
+</div>
+<div class="box ex">
+  <span class="tag">예 4.5</span><span class="title">지수분포 $\text{EXP}(\theta)$ 의 MLE</span>
+  <p>$X_1,\dots,X_n$ 을 $\text{EXP}(\theta)$ 에서 추출된 랜덤표본이라고 할 때, $\theta$ 의 최대가능도 추정량을
+  구해 보자. 이 표본의 가능도함수는 $x_i\gt0,\ i=1,\dots,n$ 일 때</p>
+  $$L(\theta\,;x_1,x_2,\dots,x_n)=\prod_{i=1}^n f(x_i;\theta)
+  =\Big(\frac1\theta\Big)^{\!n}\exp\!\Big(-\sum_{i=1}^n x_i/\theta\Big)$$
+  <p>가 되며, 로그가능도함수는</p>
+  $$\log L(\theta\,;x_1,x_2,\dots,x_n)=-n\log\theta-\sum_{i=1}^n x_i/\theta$$
+  <p>가 된다. 이를 $\theta$ 에 대해 미분하면 $\dfrac{d}{d\theta}\log L(\theta)=-\dfrac n\theta+\displaystyle\sum_{i=1}^n x_i/\theta^2$
+  이고, 이를 $0$ 으로 만드는 $\theta$ 의 값은 $\bar x_n$ 이다. $\theta=\bar x_n$ 일 때의 $2$ 차 미분값은 $0$ 보다
+  작으므로 이 값에서 로그가능도함수가 최대가 된다. 즉, $\theta$ 의 최대가능도 추정량은 $\overline{X}_n$ 이다.</p>
+</div>
+<div class="box ex">
+  <span class="tag">예 4.6</span><span class="title">포아송분포 $\text{POI}(\lambda)$ 의 MLE</span>
+  <p>$X_1,\dots,X_n$ 을 포아송($\lambda$) 분포로부터 구한 랜덤표본이라고 하자. 이때 가능도함수는</p>
+  $$L(\lambda\,;x_1,x_2,\dots,x_n)=\prod_{i=1}^n f(x_i;\lambda)
+  =\frac{\exp(-n\lambda)\,\lambda^{\sum x_i}}{\prod_{i=1}^n x_i!}$$
+  <p>이며, 따라서 로그가능도함수는</p>
+  $$\log L(\lambda\,;x_1,x_2,\dots,x_n)=-n\lambda+\sum_{i=1}^n x_i\log\lambda-\log\Big(\prod_{i=1}^n x_i!\Big)$$
+  <p>이다. 그런데</p>
+  $$\frac{d}{d\lambda}\log L(\lambda\,;x_1,x_2,\dots,x_n)=-n+\sum_{i=1}^n\frac{x_i}{\lambda}=0$$
+  <p>을 만족하는 $\hat\lambda=\bar x_n$ 은</p>
+  $$\frac{d^2}{d\lambda^2}\log L(\lambda\,;x_1,x_2,\dots,x_n)\Big|_{\lambda=\bar x_n}
+  =-\sum_{i=1}^n\frac{x_i}{\lambda^2}\Big|_{\lambda=\bar x_n}=-\frac{n}{\bar x_n}\lt0$$
+  <p>을 만족시키므로($\bar x_n\gt0$ 을 가정) 가능도함수를 최대화하는 최대가능도 추정량은 $\overline{X}_n$ 이다
+  ($\bar x_n=0$ 의 경우는 예 4.10 참조).</p>
+</div>
+<div class="note">
+  경우에 따라서 $2$ 차 미분을 확인하지 않아도 극값에서 가능도함수가 최대가 됨이 쉽게 보여질 수 있다.
+  위의 포아송 예제에서 $\lambda\to0$ 에서 $\log L(\theta)\to-\infty$ 이고, $\lambda\to\infty$ 에서
+  $\log L(\theta)\to-\infty$ 이면서 극값은 단 하나만 존재하므로 그 극값이 함수를 최대로 만드는 값일 수밖에 없다.
+</div>
+<div class="box thm">
+  <span class="tag">확장</span><span class="title">모수가 벡터인 경우</span>
+  <p>정의 4.2는 모수가 두 개 이상인 벡터 $\theta=(\theta_1,\theta_2,\dots,\theta_k)$ 로 표현되는 경우에도 성립한다.
+  이러한 경우, $k$ 개의 연립방정식</p>
+  $$\frac{d}{d\theta_i}\log L(\theta_1,\theta_2,\dots,\theta_k)=0,\qquad i=1,2,\dots,k$$
+  <p>을 풀어서 구한 해가 로그가능도함수를 최대화하는지의 여부를 가려 최대가능도 추정량
+  $(\hat\theta_1,\hat\theta_2,\dots,\hat\theta_k)$ 을 구할 수 있다.</p>
+</div>
+<div class="box ex">
+  <span class="tag">예 4.7</span><span class="title">정규분포 $N(\mu,\sigma^2)$ 의 MLE</span>
+  <p>$X_1,\dots,X_n$ 을 $N(\mu,\sigma^2)$ 으로부터 얻은 랜덤표본이라고 하자. 이때 가능도함수는</p>
+  $$L(\mu,\sigma^2;x_1,x_2,\dots,x_n)=\prod_{i=1}^n f(x_i;\mu,\sigma^2)
+  =\frac{1}{(2\pi\sigma^2)^{n/2}}\exp\!\Big[-\sum_{i=1}^n(x_i-\mu)^2/2\sigma^2\Big]$$
+  <p>이며, 따라서 로그가능도함수는</p>
+  $$\log L(\mu,\sigma^2;x_1,x_2,\dots,x_n)=-(n/2)\log(2\pi\sigma^2)-\sum_{i=1}^n(x_i-\mu)^2/2\sigma^2$$
+  <p>이다. 이 로그가능도함수를 최대화하는 $(\mu,\sigma^2)$ 값은 두 연립방정식</p>
+  $$\frac{d}{d\mu}\log L(\mu,\sigma^2;x_1,\dots,x_n)=\sum_{i=1}^n\frac{(x_i-\mu)}{\sigma^2}=0,\qquad
+  \frac{d}{d\sigma^2}\log L(\mu,\sigma^2;x_1,\dots,x_n)=-\frac{n}{2\sigma^2}+\frac{\sum_{i=1}^n(x_i-\mu)^2}{2\sigma^4}=0$$
+  <p>의 해를 구하고, 이들이 로그가능도함수를 최대화함을 확인함으로써 구할 수 있다. 이렇게 구한
+  최대가능도 추정량은</p>
+  $$(\hat\mu,\ \hat\sigma^2)=\Big(\overline{X}_n,\ \sum_{i=1}^n(X_i-\overline{X}_n)^2/n\Big)$$
+  <p>이 된다.</p>
+  <p><b>최대화 확인.</b> 로그가능도함수의 $2$ 차 미분은 $2\times2$ 행렬이 되므로 이 행렬이 주어진 극값에서
+  음정치행렬인지 확인할 수도 있지만, 다음 방법을 쓸 수도 있다. 항등식
+  $\sum_{i=1}^n(x_i-\mu)^2=\sum_{i=1}^n(x_i-\bar x_n)^2+n(\bar x_n-\mu)^2$ 에서 $\mu\ne\bar x_n$ 이라면
+  $\sum(x_i-\mu)^2\gt\sum(x_i-\bar x_n)^2$ 이므로, <b>임의의 $\sigma^2$ 값에서</b> $\log L(\mu,\sigma^2)$ 가
+  $\mu=\bar x_n$ 에서 최대화됨을 알 수 있다. $\mu$ 를 $\bar x_n$ 으로 치환하고 나면 $\log L(\bar x_n,\sigma^2)$ 는
+  $\sigma^2$ 만의 함수이고, 이는 $n^{-1}\sum_{i=1}^n(x_i-\bar x_n)^2$ 에서 최대가 된다. 그러므로
+  $(\hat\mu,\hat\sigma^2)$ 에서 로그가능도함수가 최대가 된다.</p>
+</div>
+<div class="box ex">
+  <span class="tag">예 4.8</span><span class="title">로지스틱분포 — 폐쇄형 해가 없는 경우</span>
+  <p>$X_1,\dots,X_n$ 을 로지스틱 분포로부터 얻은 랜덤표본이라고 하자. 로지스틱 확률밀도함수는</p>
+  $$f(x;\theta)=\frac{\exp\{-(x-\theta)\}}{(1+\exp\{-(x-\theta)\})^2},\qquad
+  -\infty\lt x\lt\infty,\ -\infty\lt\theta\lt\infty$$
+  <p>이므로 로그가능도함수는</p>
+  $$\log L(\theta)=\sum_{i=1}^n\log f(x_i;\theta)=n\theta-n\bar x_n-2\sum_{i=1}^n\log\big(1+\exp(-(x_i-\theta))\big)$$
+  <p>가 된다. $\dfrac{d}{d\theta}\log L(\theta)=n-2\displaystyle\sum_{i=1}^n\frac{\exp(-(x_i-\theta))}{1+\exp(-(x_i-\theta))}=0$
+  의 해는 간단한 폐쇄형이 존재하지 않으나, $\dfrac{d}{d\theta}\log L(\theta)$ 이 $\theta$ 에 대해 단조감소하며
+  ($\frac{d^2}{d\theta^2}\log L(\theta)\lt0$) $\theta$ 가 $-\infty$ 로 갈 때 $n$ 으로 그리고 $\theta$ 가 $+\infty$ 로
+  갈 때 $-n$ 으로 접근하므로 <b>유일해</b>를 가진다는 것을 알 수 있다. 그리고 이 해는 <b>수치적 방법</b>을 통해
+  구할 수 있다.</p>
+</div>
+
+<!-- ================= 미분으로 구해지지 않는 경우 ================= -->
+<h2 class="sub">미분으로 구해지지 않는 경우 <span class="en">non-differentiable likelihood</span></h2>
+<div class="note">
+  가능도함수가 미분 가능하면 위의 예제들에서와 같은 방법으로 최대가능도 추정량을 구할 수 있으나,
+  가능도함수가 <b>언제나 미분 가능한 것은 아니며</b>, 따라서 최대가능도 추정량이 언제나 가능도함수의
+  미분과정을 통해서만 구해지는 것은 아니다.
+</div>
+<div class="box ex">
+  <span class="tag">예 4.9</span><span class="title">균일분포 $U(0,\theta)$ 의 MLE — 형태로 찾기</span>
+  <p>$X_1,\dots,X_n$ 을 $U(0,\theta)$ 로부터 얻은 랜덤표본이라고 하자. 이때 가능도함수는</p>
+  $$L(\theta\,;x_1,x_2,\dots,x_n)=\prod_{i=1}^n f(x_i;\theta)
+  =\begin{cases}\dfrac{1}{\theta^n}, & 0\le x_i\le\theta\text{인 경우}\\[6pt] 0, & \text{그 외의 경우}\end{cases}$$
+  <p>이 되며, 모든 $\theta$ 에 대해 연속이 아니므로 모수 $\theta$ 에 대하여 <b>미분 가능하지 않다</b>.
+  이 경우, 미분을 하는 대신 가능도함수의 <b>형태</b>를 살펴보면 쉽게 최대가능도 추정량을 구할 수 있다.</p>
+  <figure class="fig">
+    <svg viewBox="0 0 320 170" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="균일분포 가능도함수의 그래프 — 표본최댓값에서 최대">
+      <line x1="40" y1="140" x2="300" y2="140" stroke="currentColor" stroke-width="1"/>
+      <line x1="40" y1="140" x2="40" y2="20" stroke="currentColor" stroke-width="1"/>
+      <line x1="120" y1="140" x2="120" y2="38" stroke="currentColor" stroke-width="1" stroke-dasharray="4 3"/>
+      <path d="M120,38 C150,60 180,86 230,104 C255,111 280,116 296,118" fill="none" stroke="currentColor" stroke-width="1.6"/>
+      <circle cx="120" cy="38" r="3.2" fill="currentColor"/>
+      <text x="26" y="26" font-size="11" fill="currentColor">L(θ)</text>
+      <text x="120" y="156" font-size="11" fill="currentColor" text-anchor="middle">x(n)</text>
+      <text x="302" y="156" font-size="11" fill="currentColor" text-anchor="end">θ</text>
+    </svg>
+    <figcaption>$L(\theta)$ 는 $\theta\lt x_{(n)}$ 에서 $0$ 이고, $\theta\ge x_{(n)}$ 에서 $\theta^{-n}$ 으로
+    <b>감소</b>한다 — $\theta=x_{(n)}$ 에서 최대.</figcaption>
+  </figure>
+  <p>조건 '$0\le x_i\le\theta$ (모든 $i$)' 는 '$\theta\ge x_{(n)}$(표본최댓값)' 과 같고, $\theta^{-n}$ 은 $\theta$ 의
+  감소함수이므로 가능도함수는 $\theta=x_{(n)}$ 에서 최대가 된다. 즉 최대가능도 추정량이 표본최댓값
+  $X_{(n)}$ 인 것은 위 그래프로부터 자명하다.</p>
+</div>
+
+<!-- ================= 존재성과 유일성 ================= -->
+<h2 class="sub">존재성과 유일성 <span class="en">existence &amp; uniqueness</span></h2>
+<div class="note">
+  최대가능도 추정량이 <b>언제나 존재한다는 보장은 없으며</b>, <b>유일하지 않을 수도</b> 있다.
+</div>
+<div class="box ex">
+  <span class="tag">예 4.10</span><span class="title">존재하지 않는 경우 — 포아송, $\bar x_n=0$</span>
+  <p>$X_1,\dots,X_n$ 을 $\lambda\gt0$ 인 포아송($\lambda$) 분포로부터 구한 랜덤표본이라고 하자. 예 4.6에서</p>
+  $$\frac{d}{d\lambda}\log L(\lambda\,;x_1,x_2,\dots,x_n)=-n+\sum_{i=1}^n\frac{x_i}{\lambda}=0$$
+  <p>이고, $\bar x_n\gt0$ 일 때 $\lambda$ 의 최대가능도 추정량이 $\overline{X}_n$ 임을 보였다. 그런데 랜덤표본에서
+  얻은 관측치 $\bar x_n$ 의 값이 공교롭게도 $0$ 이었다고 하자. 이 경우 로그가능도함수의 $1$ 차 미분은
+  $-n\lt0$ 으로 <b>항상 음의 값</b>을 가지게 되는데, $\lambda$ 값의 범위는 <b>개구간</b> $(0,\infty)$ 이므로
+  최대가능도 추정량은 <b>존재하지 않는다</b>.</p>
+</div>
+<div class="box ex">
+  <span class="tag">예 4.11</span><span class="title">유일하지 않은 경우 — $U[\theta-1,\theta+1]$</span>
+  <p>$X_1,\dots,X_n$ 을 $U[\theta-1,\theta+1]$ 로부터 얻은 랜덤표본이라고 하자. 이때 가능도함수는</p>
+  $$L(\theta\,;x_1,x_2,\dots,x_n)=\prod_{i=1}^n\frac12\,I_{[\theta-1,\theta+1]}(x_i)
+  =2^{-n}\,I_{[\theta-1\,\le\,x_{(1)},\,x_{(n)}\,\le\,\theta+1]}
+  =2^{-n}\,I_{[x_{(n)}-1,\ x_{(1)}+1]}(\theta)$$
+  <p>이 되고, 이 함수는 구간 $[x_{(n)}-1,\ x_{(1)}+1]$ 의 <b>모든 점</b>에서 최댓값 $2^{-n}$ 을 가지므로
+  구간 $[X_{(n)}-1,\ X_{(1)}+1]$ 내의 모든 점이 최대가능도 추정량이 된다. 즉, 최대가능도 추정량이
+  <b>유일하지 않다</b>.</p>
+</div>
+<div class="box ex">
+  <span class="tag">예 4.12</span><span class="title">Hardy–Weinberg 모형의 MLE</span>
+  <p>$3$ 가지 타입의 개체들로 구성된 모집단에서 크기가 $n$ 인 랜덤표본을 추출했을 때, 다음의
+  Hardy–Weinberg 모형을 고려하자:</p>
+  $$(N_1,N_2,N_3)\sim\text{MULT}(n,p_1,p_2,p_3),$$
+  $$p_1=\theta^2,\quad p_2=2\theta(1-\theta),\quad p_3=(1-\theta)^2,\qquad 0\lt\theta\lt1.$$
+  <p>$N_1=n_1,\ N_2=n_2,\ N_3=n_3$ 이 주어졌을 때 이 랜덤표본의 가능도함수는</p>
+  $$L(\theta)=\frac{n!}{n_1!\,n_2!\,n_3!}\,\theta^{2n_1}\big(2\theta(1-\theta)\big)^{n_2}(1-\theta)^{2n_3}$$
+  <p>이 되며, 로그가능도함수는</p>
+  $$\log L(\theta)=\log\frac{n!}{n_1!\,n_2!\,n_3!}+2n_1\log\theta+n_2\log2\theta+n_2\log(1-\theta)+2n_3\log(1-\theta)$$
+  <p>가 된다. 이를 미분하면</p>
+  $$\frac{d}{d\theta}\log L(\theta)=\frac{2n_1}{\theta}+\frac{n_2}{\theta}-\frac{n_2}{1-\theta}-\frac{2n_3}{1-\theta}$$
+  <p>이고 ($n_1\ne n$ 이고 $n_3\ne n$ 인 경우) 이 $1$ 차 미분은 $\theta=\dfrac{2n_1+n_2}{2n}$ 에서 $0$ 의 값을 가진다.
+  $2$ 차 미분이</p>
+  $$\frac{d^2}{d\theta^2}\log L(\theta)=-\frac{2n_1+n_2}{\theta^2}-\frac{n_2+2n_3}{(1-\theta)^2}\lt0$$
+  <p>이므로, $\theta$ 의 최대가능도 추정량은 $n_1\ne n$ 이고 $n_3\ne n$ 일 때</p>
+  $$\hat\theta=\frac{2N_1+N_2}{2n}$$
+  <p>이 된다 (단, $n=N_1+N_2+N_3$).</p>
+</div>
+
+<!-- ================= 불변성 ================= -->
+<h2 class="sub">최대가능도 추정량의 불변성 <span class="en">invariance property</span></h2>
+<div class="note">
+  $\theta$ 를 추정하는 어떤 추정량이 $T(X)$ 일 때 $\theta^2$ 의 추정량이 $T(X)^2$ 이 되고, $\theta+c$($c$ 는 상수)의
+  추정량이 $T(X)+c$ 가 되는 등, $\theta$ 의 함수 $g(\theta)$ 의 추정량이 $g(T(X))$ 가 되는 성질을
+  <b>불변성 원리</b><span class="en">invariance property</span>라고 한다. 최대가능도 추정량은 이 원리가 성립하므로,
+  $\theta$ 의 추정량을 얻고 나면 다른 어떤 함수 $g(\theta)$ 에 대해서도 <b>다시 복잡한 계산을 거치지 않고</b> 쉽게
+  추정량을 구할 수 있다. 최대가능도 추정량을 얻기 위해서는 일반적으로 미분의 과정을 거쳐야 하므로,
+  <b>미분을 쉽게 만드는 모수</b>를 선택하여 추정량을 구한 다음, 다른 형태의 모수에 대한 추정량은 불변성
+  원리를 이용하여 구하면 된다. 예를 들어 정규분포에서 표준편차 $\sigma$ 의 MLE 를 구할 때, $\sigma^2$ 을 모수로
+  두는 것이 미분이 더 쉽다면 $\sigma^2$ 의 MLE 를 먼저 구하고 여기에 제곱근을 취하면 된다.
+</div>
+<div class="box thm">
+  <span class="tag">정리 4.1</span><span class="title">최대가능도 추정량의 불변성</span>
+  <p>$X_1,\dots,X_n$ 을 확률밀도함수 $f(x;\theta),\ \theta\in\Omega$($\Omega$ 는 모수공간)를 갖는 분포에서 얻은
+  랜덤표본이라고 하자. $\hat\theta_n$ 이 모수 $\theta$ 의 최대가능도 추정량이면, $\theta$ 의 함수인 $g(\theta)$ 에
+  대하여 <b>$g(\hat\theta_n)$ 이 $g(\theta)$ 의 최대가능도 추정량</b>이 된다.</p>
+</div>
+<div class="box prf">
+  <span class="tag">증명</span>
+  <p>$\eta=g(\theta)$ 라고 놓자. 불변성 원리는 일반적인 함수 $g$ 에 대해 성립하나, 여기에서는 증명의 편의를
+  위하여 $g$ 를 <b>일대일 함수</b>라고 가정하자. $\theta$ 를 모수로 하는 표본의 가능도함수를 $L(\theta)$ 라 하고,
+  $\eta$ 를 모수로 하는 표본의 가능도함수를 $L^*(\eta)$ 라고 하자. 그러면</p>
+  $$L^*(g(\theta))=L^*(\eta)=\prod_{i=1}^n f(x_i;g^{-1}(\eta))=L(g^{-1}(\eta))=L(\theta)$$
+  <p>이고 — <b>모수를 바꿔 써도 최대가 되는 점이 서로 대응된다</b> — 따라서</p>
+  $$\max_{\eta\in g(\Omega)}L^*(\eta)=\max_{\eta\in g(\Omega)}L(g^{-1}(\eta))=\max_{\theta\in\Omega}L(\theta)$$
+  <p>이므로</p>
+  $$L^*(\hat\eta)=\max_{\eta\in g(\Omega)}L^*(\eta)=\max_{\theta\in\Omega}L(\theta)=L(\hat\theta_n)=L^*(g(\hat\theta_n))$$
+  <p>이 되어, $\hat\eta=g(\hat\theta_n)$ 이다.</p>
+  <div class="qed">∎</div>
+</div>
+<div class="box ex">
+  <span class="tag">예 4.13</span><span class="title">표준편차 $\sigma$ 의 MLE</span>
+  <p>앞의 예 4.7에서 $\sigma^2$ 의 최대가능도 추정량으로 $\hat\sigma^2=\displaystyle\sum_{i=1}^n(X_i-\overline{X}_n)^2/n$ 을
+  구하였다. 이제 $g(\sigma^2)=\sigma$ 의 최대가능도 추정량은 불변성에 의하여 $g(\hat\sigma^2)=\hat\sigma$,
+  즉 $\hat\sigma=\sqrt{\hat\sigma^2}$ 가 된다.</p>
+</div>
+<div class="box ex">
+  <span class="tag">예 4.14</span><span class="title">지수분포에서 $P(X\ge1)$ 의 MLE</span>
+  <p>$X_1,\dots,X_n$ 을 $\text{EXP}(\lambda)$ 로부터 얻은 랜덤표본이라고 하자. 이때 로그가능도함수는</p>
+  $$\log L(\lambda\,;x_1,x_2,\dots,x_n)=-n\log\lambda-\sum_{i=1}^n x_i/\lambda$$
+  <p>가 되며, 따라서</p>
+  $$\frac{d}{d\lambda}\log L(\lambda\,;x_1,x_2,\dots,x_n)=-n/\lambda+\sum_{i=1}^n x_i/\lambda^2=0$$
+  <p>으로부터 최대가능도 추정량 $\hat\lambda=\overline{X}_n$ 를 얻게 된다. 만약 이 분포에서 나온 확률변수가
+  $1$ 보다 클 확률을 추정하는 데에 관심이 있다면, $g(\lambda)=P(X\ge1)=\exp(-1/\lambda)$ 에 대한 추정량이
+  필요하고, 이것의 최대가능도 추정량은 불변성에 의하여</p>
+  $$g(\hat\lambda)=\exp\!\big(-1/\overline{X}_n\big)$$
+  <p>이 된다.</p>
+</div>
+<div class="note">
+  최대가능도 추정량의 불변성은 모수가 $2$ 개 이상인 경우로도 확장 가능하다 —
+  $\hat\theta=(\hat\theta_1,\hat\theta_2,\dots,\hat\theta_k)$ 가 모수벡터 $\theta=(\theta_1,\theta_2,\dots,\theta_k)$ 의
+  최대가능도 추정량이면 $g(\hat\theta_1,\hat\theta_2,\dots,\hat\theta_k)$ 도
+  $g(\theta_1,\theta_2,\dots,\theta_k)$ 의 최대가능도 추정량이 된다.
+</div>
+
+<nav class="pager">
+  <a href="4-1_method-of-moments.html">← 이전<small>4.1 적률추정법</small></a>
+  <span class="spacer"></span>
+</nav>
+
+</body>
+</html>
