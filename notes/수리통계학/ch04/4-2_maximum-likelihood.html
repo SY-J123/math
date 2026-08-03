@@ -71,6 +71,16 @@
   $$L(\theta)=\theta\cdot(1-\theta)\cdot\theta=\theta^2(1-\theta).$$
   <p>이처럼 <b>이미 얻은 관측값을 확률밀도함수 식에 넣고 고정</b>하면, 모수 $\theta$ 의 값에 따라 관측 결과의
   '그럴듯함'이 달라지는 <b>가능도함수 $L(\theta)$</b> 가 탄생한다.</p>
+  <p><b>④ 로그를 씌우고 미분 — 최대가능도 추정값 찾기.</b> 이 '그럴듯함'을 최대로 만드는 $\theta$ 를 찾아보자.
+  로그를 취하면 곱이 합으로 풀어져</p>
+  $$\log L(\theta)=2\log\theta+\log(1-\theta)$$
+  <p>이고, $\theta$ 로 미분하여 $0$ 으로 놓으면</p>
+  $$\frac{d}{d\theta}\log L(\theta)=\frac2\theta-\frac{1}{1-\theta}=0
+  \ \Longrightarrow\ 2(1-\theta)=\theta\ \Longrightarrow\ \hat\theta=\frac23.$$
+  <p>($2$ 차 미분이 $-\dfrac{2}{\theta^2}-\dfrac{1}{(1-\theta)^2}\lt0$ 이므로 이 점에서 최대다.)</p>
+  <p><b>⑤ 해석.</b> $\hat\theta=\dfrac23$, 즉 약 $66\%$ — $3$ 번 중 앞면이 $2$ 번 나온 <b>표본비율과 정확히 일치</b>한다.
+  '앞면 $2$ 번, 뒷면 $1$ 번'이라는 관측 결과를 가장 그럴듯하게 만들어 주는 동전의 앞면 확률은 직관 그대로
+  $\dfrac23$ 이라는 것이 최대가능도 추정법의 답이다.</p>
 </div>
 
 <!-- ================= 최대가능도 추정량 ================= -->
