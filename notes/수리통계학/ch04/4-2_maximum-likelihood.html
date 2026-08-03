@@ -52,6 +52,26 @@
   <p>특히 $X_1,\dots,X_n$ 이 확률밀도함수 $f(x;\theta)$ 로부터의 <b>랜덤표본</b>이면 $f_i(x_i;\theta)=f(x_i;\theta)$ 이므로</p>
   $$L(\theta\,;x_1,x_2,\dots,x_n)=\prod_{i=1}^n f(x_i;\theta). \tag{4.3}$$
 </div>
+<div class="box ex">
+  <span class="tag">예</span><span class="title">가능도함수의 형성 과정 — 동전 던지기</span>
+  <p>어떤 동전을 던졌을 때 <b>앞면이 나올 확률을 $\theta$</b> 라고 하자.
+  동전을 $3$ 번 던져 <b>[앞면, 뒷면, 앞면]</b> 순서로 나온 상황을 생각해 본다.</p>
+  <p><b>① 결합 확률밀도함수 — 데이터와 모수 모두 미지수일 때.</b> 첫 번째 결과 $x_1$, 두 번째 $x_2$,
+  세 번째 $x_3$ 이 나올 확률을 식으로 쓰면</p>
+  $$f(x_1,x_2,x_3;\theta)=\theta^{x_1}(1-\theta)^{1-x_1}\cdot\theta^{x_2}(1-\theta)^{1-x_2}\cdot\theta^{x_3}(1-\theta)^{1-x_3}.$$
+  <p><b>② 실제 표본 데이터 대입 — 관측치 고정.</b> 이미 일어난 현실 데이터인 앞면($1$)·뒷면($0$)·앞면($1$)을
+  각각 $x_1,x_2,x_3$ 자리에 숫자로 대입한다:</p>
+  <ul class="props">
+    <li>$x_1=1\ \Rightarrow\ \theta^1(1-\theta)^0=\theta$</li>
+    <li>$x_2=0\ \Rightarrow\ \theta^0(1-\theta)^1=1-\theta$</li>
+    <li>$x_3=1\ \Rightarrow\ \theta^1(1-\theta)^0=\theta$</li>
+  </ul>
+  <p><b>③ 가능도함수 완성 — $\theta$ 만의 함수.</b> 숫자들을 대입하고 나면 $x$ 는 모두 사라지고
+  <b>오직 $\theta$ 만 남은 함수</b>가 된다:</p>
+  $$L(\theta)=\theta\cdot(1-\theta)\cdot\theta=\theta^2(1-\theta).$$
+  <p>이처럼 <b>이미 얻은 관측값을 확률밀도함수 식에 넣고 고정</b>하면, 모수 $\theta$ 의 값에 따라 관측 결과의
+  '그럴듯함'이 달라지는 <b>가능도함수 $L(\theta)$</b> 가 탄생한다.</p>
+</div>
 
 <!-- ================= 최대가능도 추정량 ================= -->
 <h2 class="sub">최대가능도 추정량 <span class="en">maximum likelihood estimator</span></h2>
