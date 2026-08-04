@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>4장 · 4.4 최소분산 비편향추정량</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">수리통계학 · 4장 추정</div>
+  <h1><span class="no">4.4</span>최소분산 비편향추정량 <span class="en">minimum variance unbiased estimator</span></h1>
+</header>
+
+<p>이제 비편향추정량들 중에서 평균제곱오차, 즉 이 경우에는 <b>분산을 최소화하는</b>
+<b>최소분산 비편향추정량</b><span class="en">Minimum Variance Unbiased Estimator, MVUE</span>에 대해 다루기로 한다.</p>
+
+<div class="box def">
+  <span class="tag">정의 4.5</span><span class="title">최소분산 비편향추정량 <span class="en">MVUE</span></span>
+  <p>확률변수 $X_1,X_2,\dots,X_n$ 의 결합 확률밀도함수가 $f(x_1,x_2,\dots,x_n;\theta)$ 라고 하자.
+  함수 $g(\theta)$ 의 추정량 $T^*(X)$ 가 다음의 두 조건을 만족시키면 이를 $g(\theta)$ 의
+  <b>최소분산 비편향추정량</b>(MVUE)이라고 한다:</p>
+  <ol class="props">
+    <li>$T^*(X)$ 는 $g(\theta)$ 의 비편향추정량이다 (즉 $E[T^*(X)]=g(\theta)$).</li>
+    <li>$g(\theta)$ 의 <b>임의의</b> 비편향추정량 $T(X)$ 에 대해서
+    $\operatorname{Var}(T^*(X))\le\operatorname{Var}(T(X))$.</li>
+  </ol>
+  <p>— 어떤 비편향추정량의 분산이 <b>다른 모든 비편향추정량의 분산보다 작거나 같은</b> 경우다.</p>
+</div>
+<div class="note">
+  $g(\theta)$ 의 최소분산 비편향추정량을 구하는 데는 다음의 <b>두 가지 방법</b>이 가능하다:
+  <ul class="props">
+    <li><b>크래머–라오 하한값</b><span class="en">Cramer–Rao lower bound</span>: 비편향추정량이 가질 수 있는 분산의
+    <b>하한</b>을 제공하는 정보부등식을 이용 — 어떤 비편향추정량이 이 하한값을 달성하는지 확인한다.</li>
+    <li><b>완비 충분통계량</b>을 활용하는 <b>라오–블랙웰</b><span class="en">Rao–Blackwell</span>·<b>레만–쉐페</b><span class="en">Lehmann–Scheffé</span> 정리.</li>
+  </ul>
+</div>
+
+<!-- ================= 크래머-라오 ================= -->
+<h2 class="sub">크래머–라오의 방법 <span class="en">Cramer–Rao lower bound</span></h2>
+<div class="box def">
+  <span class="tag">정의</span><span class="title">피셔의 정보 <span class="en">Fisher's information</span></span>
+  <p>$X$ 의 확률밀도함수가 $f(x;\theta)$ 일 때</p>
+  $$I(\theta)=E\!\left[\Big(\frac{\partial}{\partial\theta}\log f(X;\theta)\Big)^{\!2}\right] \tag{4.7}$$
+  <p>를 <b>피셔의 정보</b>라고 한다 — 모수가 변할 때 로그밀도가 얼마나 민감하게 변하는지, 그
+  <b>변화율 제곱의 기댓값</b>이다. 정보가 클수록 관측값이 모수에 대해 더 많은 정보를 담고 있다.</p>
+</div>
+<div class="box ex">
+  <span class="tag">예 4.21</span><span class="title">정규분포의 피셔 정보</span>
+  <p>$X\sim N(\mu,\sigma_0^2)$ ($\sigma_0^2$ 은 알려진 값)일 때
+  $f(x;\mu)=(\sqrt{2\pi}\,\sigma_0)^{-1}\exp[-(x-\mu)^2/2\sigma_0^2]$ 이므로</p>
+  $$I(\mu)=E\big[(\partial/\partial\mu)\log f(X;\mu)\big]^2
+  =E\!\left[\frac{X-\mu}{\sigma_0^2}\right]^{\!2}=\frac{1}{\sigma_0^2}.$$
+  <p><b>분산이 작을수록 정보는 커진다</b> — 분산이 작으면 관측값이 모평균 $\mu$ 에 가까이 있을 확률이 높아,
+  하나의 관측값 $X$ 가 $\mu$ 에 대하여 가지는 정보가 더 많기 때문이다.
+  $X\sim N(\mu,\sigma_1^2)$, $Y\sim N(\mu,\sigma_2^2)$ 이고 $\sigma_1^2\lt\sigma_2^2$ 이면 $\mu$ 를 추정할 때
+  $Y$ 보다 $X$ 를 쓰는 것이 좋다.</p>
+</div>
+<div class="box ex">
+  <span class="tag">예 4.22</span><span class="title">베르누이의 피셔 정보</span>
+  <p>$X$ 가 성공 확률 $p$ 인 베르누이 확률변수이면 $\log f_X(X;p)=X\log p+(1-X)\log(1-p)$ 이고</p>
+  $$\frac{\partial\log f_X(X;p)}{\partial p}=\frac Xp-\frac{1-X}{1-p}=\frac{X-p}{p(1-p)}$$
+  $$\Longrightarrow\quad I(p)=E\!\left[\frac{X-p}{p(1-p)}\right]^{\!2}=\frac{E(X-p)^2}{p^2(1-p)^2}=\frac{1}{p(1-p)}.$$
+  <p>$p$ 가 $1/2$ 일 때 피셔의 정보가 가장 작다 — 베르누이의 분산 $p(1-p)$ 의 <b>역수</b>로서, 정규분포와
+  마찬가지로 분산이 작은 베르누이 확률변수가 그 평균에 대한 정보를 더 많이 가지고 있다.</p>
+</div>
+<div class="box thm">
+  <span class="tag">정리 4.3</span><span class="title">정보부등식 — 크래머–라오 하한값 <span class="en">information inequality</span></span>
+  <p>확률밀도함수 $f(x;\theta)$ 와 통계량 $T(X)$ 에 대해 다음을 가정한다:</p>
+  <ol class="props">
+    <li>모수가 다르면 확률밀도함수가 다르다: $\theta\ne\theta'$ 이면 $f(x;\theta)\ne f(x;\theta')$.</li>
+    <li>집합 $A=\{x:\,f(x;\theta)\gt0\}$ 는 모수 $\theta$ 에 의존하지 않으며, 모든 $x\in A$, $\theta\in\Omega$ 에
+    대해 $\log f(x;\theta)$ 는 $\theta$ 에 대해 두 번 미분 가능하고 도함수는 연속이다.</li>
+    <li>$E(T(X))\lt\infty$ 이면 적분과 미분의 순서를 바꿀 수 있다.</li>
+  </ol>
+  <p>$X_1,\dots,X_n$ 이 $f(x;\theta)$ 인 분포로부터 얻은 랜덤표본이고, 모든 $\theta\in\Omega$ 에 대하여
+  $\operatorname{Var}(T(X))\lt\infty$, $E(T(X))=g(\theta)$, $0\lt I(\theta)\lt\infty$ 라고 하면
+  $g(\theta)$ 는 미분 가능하며</p>
+  $$\operatorname{Var}(T(X))\ \ge\ \frac{[g'(\theta)]^2}{n\,I(\theta)} \tag{4.8}$$
+  <p>이 성립한다. 특히 $g(\theta)=\theta$ 이면 $\operatorname{Var}(T(X))\ge\dfrac{1}{n\,I(\theta)}$.</p>
+</div>
+<div class="box prf">
+  <span class="tag">증명</span>
+  <p><b>① $g'(\theta)$ 를 기댓값으로.</b> $T(X)$ 가 $g(\theta)$ 의 비편향추정량이므로 미분-적분 교환에 의해</p>
+  $$g'(\theta)=\frac{\partial}{\partial\theta}\int\!\cdots\!\int T\prod_{i=1}^n f(x_i;\theta)\,dx_1\cdots dx_n
+  =\int\!\cdots\!\int T\,\Big[\frac{\partial}{\partial\theta}\log\prod_{i=1}^n f(x_i;\theta)\Big]\prod_{i=1}^n f\,dx_1\cdots dx_n$$
+  <p>이고, $\displaystyle\int\!\cdots\!\int\prod f=1$ 의 양변을 미분하면
+  $\displaystyle\int\!\cdots\!\int\Big[\frac{\partial}{\partial\theta}\log\prod f\Big]\prod f=0$ 이므로 $g(\theta)$ 배를 빼도 같다:</p>
+  $$g'(\theta)=E\!\left[\big(T(X)-g(\theta)\big)\Big(\frac{\partial}{\partial\theta}\log\prod_{i=1}^n f(X_i;\theta)\Big)\right].$$
+  <p><b>② 코시–슈바르츠.</b> <a href="../ch02/2-4_expectation.html">코시–슈바르츠 부등식</a>에 의하여</p>
+  $$[g'(\theta)]^2\le E\big[T(X)-g(\theta)\big]^2\cdot
+  E\!\left[\Big(\frac{\partial}{\partial\theta}\log\prod_{i=1}^n f(X_i;\theta)\Big)^{\!2}\right]
+  =\operatorname{Var}(T(X))\cdot E\!\left[\Big(\frac{\partial}{\partial\theta}\log\prod_{i=1}^n f(X_i;\theta)\Big)^{\!2}\right].$$
+  <p><b>③ 우변의 기댓값 $=nI(\theta)$.</b> $S_i=\dfrac{\partial}{\partial\theta}\log f(X_i;\theta)$ 로 두면
+  $\log\prod f=\sum\log f$ 이므로 전개하면</p>
+  $$E\!\left[\Big(\sum_{i=1}^n S_i\Big)^{\!2}\right]=\sum_{i=1}^n\sum_{j=1}^n E(S_iS_j).$$
+  <p>그런데 각 $S_i$ 의 기댓값은</p>
+  $$E(S_i)=\int_{-\infty}^{\infty}\Big[\frac{\partial}{\partial\theta}\log f(x;\theta)\Big]f(x;\theta)\,dx
+  =\int_{-\infty}^{\infty}\frac{\partial}{\partial\theta}f(x;\theta)\,dx
+  =\frac{\partial}{\partial\theta}(1)=0$$
+  <p>이고, $i\ne j$ 이면 $X_i$ 와 $X_j$ 가 독립이므로 $E(S_iS_j)=E(S_i)E(S_j)=0$ — 교차항이 모두 사라진다.
+  대각항만 남아</p>
+  $$E\!\left[\Big(\sum_{i=1}^n S_i\Big)^{\!2}\right]=n\,E\!\left[\Big(\frac{\partial}{\partial\theta}\log f(X;\theta)\Big)^{\!2}\right]=n\,I(\theta).$$
+  <p><b>④ 조합.</b> ②에 ③을 대입하고 정리하면 $\operatorname{Var}(T(X))\ge\dfrac{[g'(\theta)]^2}{n\,I(\theta)}$.</p>
+  <div class="qed">∎</div>
+</div>
+<div class="note">
+  그러므로 어떤 비편향추정량 $T(X)$ 가 $\operatorname{Var}(T(X))=1/nI(\theta)$ 을 만족한다면, 이 추정량은
+  비편향추정량 가운데 <b>가장 작은 분산</b>을 갖는 것이고, 이를 $\theta$ 의 최소분산 비편향추정량이라고
+  확정할 수 있다.
+</div>
+<div class="box ex">
+  <span class="tag">예 4.23</span><span class="title">포아송 표본평균은 $\lambda$ 의 MVUE</span>
+  <p>$X_1,\dots,X_n$ 을 포아송($\lambda$) 분포로부터 구한 랜덤표본이라고 하자. 피셔의 정보는</p>
+  $$I(\lambda)=E\!\left[\frac{\partial}{\partial\lambda}\log f(X;\lambda)\right]^2
+  =E\!\left[-1+\frac X\lambda\right]^2
+  =E\!\left[\frac{X-\lambda}{\lambda}\right]^2=\frac1{\lambda^2}\times\operatorname{Var}(X)=\frac1\lambda.$$
+  <p>그런데 $\operatorname{Var}(\overline{X}_n)=\lambda/n$ 이므로 식 (4.8)의 하한과 일치 — 표본평균
+  $\overline{X}_n$ 는 $\lambda$ 의 최소분산 비편향추정량이다.</p>
+</div>
+<div class="box ex">
+  <span class="tag">예 4.24</span><span class="title">정규 표본평균은 $\mu$ 의 MVUE</span>
+  <p>$X_1,\dots,X_n$ 을 $N(\mu,\sigma^2)$ 으로부터 얻은 랜덤표본이라고 하자. 예 4.21에서
+  $I(\mu)=1/\sigma^2$ 이고 $\operatorname{Var}(\overline{X}_n)=\sigma^2/n$ 이므로, 역시 식 (4.8)에 의해서
+  $\overline{X}_n$ 는 $\mu$ 의 최소분산 비편향추정량이다.</p>
+</div>
+<div class="note">
+  <b>크래머–라오 방법의 한계.</b> 정보부등식이 제공하는 분산의 하한값을 갖는 추정량이 <b>존재하지 않을 수도
+  있다</b> — 하한이 너무 작아서 그 값을 갖는 추정량이 없을 경우, 어떤 비편향추정량이 MVUE 인지 이 방법으로는
+  가려낼 수 없다. 이때는 하한값보다 더 작은 분산을 가질 수 없다는 사실만 알 뿐이다. 이런 경우를 다루는
+  것이 두 번째 방법 — <b>완비 충분통계량</b>이다.
+</div>
+
+<!-- ================= 충분통계량 ================= -->
+<h2 class="sub">충분통계량 <span class="en">sufficient statistic</span></h2>
+<div class="box def">
+  <span class="tag">정의 4.6</span><span class="title">충분통계량 <span class="en">(jointly) sufficient statistic</span></span>
+  <p>확률벡터 $X=(X_1,X_2,\dots,X_n)$ 의 결합 확률밀도함수가 $f(x_1,\dots,x_n;\theta_1,\dots,\theta_k)$ 일 때
+  $S(X)=(S_1(X),\dots,S_l(X))$ 를 $l$ 개 통계량의 벡터라고 하자. 이때 $S$ 가 결합 충분통계량이라 함은
+  <b>조건부 확률변수 $(X_1,X_2,\dots,X_n)\mid S(X)$ 의 분포가 모수 $\theta=(\theta_1,\dots,\theta_k)$ 에
+  의존하지 않는 것</b>이다. 이때 $S(X)$ 를 $\theta$ 의 <b>결합 충분통계량</b><span class="en">jointly sufficient statistic</span>
+  이라고 하며, 일변량의 경우($l=1$)에는 $S(X)$ 가 $\theta$ 의 <b>충분통계량</b>이라고 한다.</p>
+</div>
+<div class="note">
+  <b>의미 — 자료의 축소.</b> 일단 충분통계량 $S$ 의 값이 주어지면, 표본의 조건부 분포는 모수에 의존하지
+  않으므로 표본이 더 이상 모수에 대한 아무런 정보를 가지지 않는다 — 즉 <b>모수 $\theta$ 에 대한 모든 정보는
+  $S(X)$ 에 담겨 있다</b>. 표본 전체를 "$\theta$ 관련 정보($S$) $+$ $\theta$ 와 무관한 부분"으로 나눈 셈이며,
+  대규모 자료를 모두 저장할 필요 없이 충분통계량만 가지고도 모수 추정 효율을 갖는 추정값을 얻을 수 있다
+  — <b>자료의 축소</b><span class="en">data reduction</span>.
+</div>
+<div class="box ex">
+  <span class="tag">예 4.25</span><span class="title">베르누이 — 조건부 분포 직접 계산</span>
+  <p>$X_1,\dots,X_n$ 을 베르누이($p$)로부터 구한 랜덤표본이라고 하고 $S=\sum_{i=1}^n X_i$ 라 하자.
+  $S\sim B(n,p)$ 이므로 $f_S(s;p)=\binom ns p^s(1-p)^{n-s}$ 이고, $S=s$ 로 주어졌을 때 표본의 조건부
+  확률밀도함수는 ($\sum x_i=s$ 인 경우)</p>
+  $$f(x_1,\dots,x_n\mid s)=\frac{f(x_1,\dots,x_n;p)}{f_S(s;p)}
+  =\frac{p^s(1-p)^{n-s}}{\dbinom ns p^s(1-p)^{n-s}}=\frac{1}{\dbinom ns}$$
+  <p>이 되어 모수 $p$ 에 의존하지 않는다 — $S=\sum X_i$ 는 $p$ 의 충분통계량이다.</p>
+</div>
+<div class="box thm">
+  <span class="tag">정리 4.4</span><span class="title">인수분해 정리 <span class="en">factorization theorem</span></span>
+  <p>$X_1,\dots,X_n$ 의 결합 확률밀도함수가 $f(x_1,\dots,x_n;\theta)$ 일 때 $S(X)=(S_1(X),\dots,S_k(X))$ 가
+  결합 충분통계량일 <b>필요충분조건</b>은, 결합밀도가 $s$ 와 $\theta$ 만의 함수인 $g$ 와
+  $(x_1,\dots,x_n)$ 만의 함수인 $h$ 의 <b>곱</b>으로 나타내어지는 것이다:</p>
+  $$f(x_1,x_2,\dots,x_n;\theta)=g(s(x);\theta)\times h(x_1,x_2,\dots,x_n).$$
+</div>
+<div class="box prf">
+  <span class="tag">증명 <span class="en">이산형의 경우</span></span>
+  <p>($\Rightarrow$) $S$ 가 충분통계량이면, 충분성의 정의에 의해 조건부 밀도 $f_{X\mid s}$ 는 $\theta$ 에
+  의존하지 않으므로</p>
+  $$f(x_1,\dots,x_n;\theta)=f_S(s;\theta)\,f_{X\mid S}(x_1,\dots,x_n\mid s)
+  =g(s;\theta)\,h(x_1,\dots,x_n)$$
+  <p>— $g$ 는 $S$ 의 밀도, $h$ 는 조건부 밀도로 택하면 된다.</p>
+  <p>($\Leftarrow$) 역으로 $f=g(s;\theta)h(x)$ 라고 하면, $S$ 의 확률밀도함수는 ($\sum$ 은
+  $s(x_1,\dots,x_n)=s$ 를 만족하는 $(x_1,\dots,x_n)$ 에 대한 합)</p>
+  $$f_S(s;\theta)=P(S=s;\theta)=\sum f(x_1,\dots,x_n;\theta)=g(s;\theta)\sum h(x_1,\dots,x_n)$$
+  <p>이므로, $S=s$ 가 주어졌을 때의 조건부 확률밀도함수는</p>
+  $$f(x_1,\dots,x_n\mid s)=\frac{g(s;\theta)\,h(x_1,\dots,x_n)}{g(s;\theta)\sum h}
+  =\frac{h(x_1,\dots,x_n)}{\sum h}$$
+  <p>가 되어 $\theta$ 에 의존하지 않는다 — $S$ 는 충분통계량이다.</p>
+  <div class="qed">∎</div>
+</div>
+<div class="box ex">
+  <span class="tag">예 4.26</span><span class="title">베르누이 — 인수분해로 확인</span>
+  <p>결합밀도 $f(x_1,\dots,x_n;p)=p^{\sum x_i}(1-p)^{n-\sum x_i}\prod_{i=1}^n I_{\{0,1\}}(x_i)$ 에서</p>
+  $$g(s;p)=p^s(1-p)^{n-s}\ \ (\text{모수와 관련된 부분}),\qquad
+  h(x_1,\dots,x_n)=\prod_{i=1}^n I_{\{0,1\}}(x_i)\ \ (\text{표본만의 부분})$$
+  <p>를 택하면 $f=g(s;p)\,h(x_1,\dots,x_n)$ 꼴이므로 $\sum_{i=1}^n X_i$ 는 충분통계량이다.</p>
+</div>
+<div class="box ex">
+  <span class="tag">예 4.27·4.28</span><span class="title">균일분포 $U(\theta_1,\theta_2)$ — 최솟값·최댓값</span>
+  <p>$X_1,\dots,X_n$ 을 $U(\theta_1,\theta_2)$ 로부터 구한 랜덤표본이라 하면 결합밀도는</p>
+  $$f(x_1,\dots,x_n;\theta_1,\theta_2)=\prod_{i=1}^n\frac{1}{\theta_2-\theta_1}I_{(\theta_1,\theta_2)}(x_i)
+  =\frac{1}{(\theta_2-\theta_1)^n}\,I_{(\theta_1,\,x_{(n)}]}(x_{(1)})\,I_{[x_{(1)},\,\theta_2)}(x_{(n)})$$
+  <p>— 모든 $x_i$ 가 구간에 포함된다는 것은 표본최솟값이 $\theta_1$ 보다 크고 표본최댓값이 $\theta_2$ 보다
+  작다는 것과 동치이기 때문이다. 인수분해 정리($h\equiv1$)에 의해 $(X_{(1)},X_{(n)})$ 은
+  $(\theta_1,\theta_2)$ 의 결합 충분통계량이다.</p>
+</div>
+<div class="box ex">
+  <span class="tag">예 4.29</span><span class="title">정규분포 — $(\sum X_i,\ \sum X_i^2)$</span>
+  <p>$X_1,\dots,X_n$ 이 $N(\mu,\sigma^2)$ 으로부터의 랜덤표본이면 결합밀도는</p>
+  $$f(x_1,\dots,x_n;\mu,\sigma^2)=(\sqrt{2\pi}\,\sigma)^{-n}
+  \exp\!\left[-\frac{\displaystyle\sum_{i=1}^n x_i^2-2\mu\sum_{i=1}^n x_i+n\mu^2}{2\sigma^2}\right]$$
+  <p>로 표현되므로, 인수분해 정리에 의해 $S_1=\sum_{i=1}^n X_i$ 와 $S_2=\sum_{i=1}^n X_i^2$ 은 결합
+  충분통계량이다. 나아가 $S_1,S_2$ 와 <b>1:1 대응</b>인 $\overline{X}_n$ 과 $\sum_{i=1}^n(X_i-\overline{X}_n)^2$
+  도 역시 결합 충분통계량이다.</p>
+</div>
+<div class="note">
+  <b>충분통계량은 유일하지 않다.</b> 순서통계량 $(X_{(1)},\dots,X_{(n)})$ 은 항상 결합 충분통계량이고
+  (하나의 정렬값에 대응하는 표본이 $n!$ 개로 각각 조건부확률 $1/n!$ — $\theta$ 무관),
+  충분통계량의 <b>1:1 함수도 충분통계량</b>이다. 여러 충분통계량 가운데 자료를 가장 많이 축소시키면서
+  모수의 정보를 모두 담는 것을 <b>최소충분통계량</b><span class="en">minimal sufficient statistic</span>이라 한다.
+</div>
+
+<!-- ================= 라오-블랙웰 ================= -->
+<h2 class="sub">라오–블랙웰 정리 <span class="en">Rao–Blackwell theorem</span></h2>
+<div class="box thm">
+  <span class="tag">정리 4.5</span><span class="title">라오–블랙웰 정리</span>
+  <p>모수의 함수 $g(\theta)$ 에 대하여 $S$ 가 충분통계량이고, $T(X)$ 가 $g(\theta)$ 의 한
+  비편향추정량이라고 하자. 이때 $\delta(S)=E(T(X)\mid S)$ 라고 하면 $\delta(S)$ 도 $g(\theta)$ 의
+  비편향추정량이며, 모든 $\theta$ 에 대하여</p>
+  $$\operatorname{Var}(\delta(S))\ \le\ \operatorname{Var}(T(X))$$
+  <p>가 성립한다 — <b>비편향추정량을 충분통계량으로 조건부 기댓값을 취하면 더 좋은(분산이 작거나 같은)
+  추정량이 된다</b>.</p>
+</div>
+<div class="box prf">
+  <span class="tag">증명</span>
+  <p><b>① $\delta(S)$ 는 추정량이다.</b> $S$ 의 <b>충분성</b>에 의하여 조건부 분포가 모수 $\theta$ 에 의존하지
+  않으므로 $\delta(S)=E(T(X)\mid S)$ 는 미지의 모수를 포함하지 않는 통계량 — 그 자체로 추정량이 될 수 있다.</p>
+  <p><b>② 비편향성.</b> <a href="../ch02/2-4_expectation.html">이중기댓값 정리</a>에 의하여</p>
+  $$E(\delta(S))=E\big[E(T(X)\mid S)\big]=E(T(X))=g(\theta).$$
+  <p><b>③ 분산 비교.</b> 전분산 공식(정리 2.13)에서 $Y=T(X)$, $X=S$ 로 놓으면</p>
+  $$\operatorname{Var}(T(X))=E\big(\operatorname{Var}(T(X)\mid S)\big)+\operatorname{Var}\big(E(T(X)\mid S)\big)
+  \ \ge\ \operatorname{Var}(\delta(S))$$
+  <p>— 첫 항 $E(\operatorname{Var}(T\mid S))\ge0$ 이기 때문이다. 등호는 $\operatorname{Var}(T(X)\mid S)=0$,
+  즉 $T(X)=\delta(S)$ 인 경우에 성립한다.</p>
+  <div class="qed">∎</div>
+</div>
+<div class="box ex">
+  <span class="tag">예 4.30</span><span class="title">베르누이 — $X_1$ 을 라오–블랙웰화</span>
+  <p>$X_1,\dots,X_n$ 을 베르누이($p$)로부터 구한 랜덤표본이라 하자. $E(X_1)=p$ 이므로 $X_1$ 은 $p$ 에 대한
+  비편향추정량이다. 이제 충분통계량 $S=\sum_{i=1}^n X_i$ 로 조건부 기댓값을 취하면, 조건부확률 계산
+  ($S=s$ 일 때 $P(X_1=1\mid S=s)=\dfrac{p\binom{n-1}{s-1}p^{s-1}(1-p)^{n-s}}{\binom ns p^s(1-p)^{n-s}}=\dfrac sn$)에 의해</p>
+  $$E\Big(X_1\Big|\sum_{i=1}^n X_i=s\Big)=0\times\Big(1-\frac sn\Big)+1\times\frac sn=\frac sn.$$
+  <p>즉 $E(T(X)\mid S)=S/n=\overline{X}_n$ 는 $p$ 의 새로운 비편향추정량이 되고, 실제로
+  $\operatorname{Var}(X_1)=p(1-p)$ 에 비해 $\operatorname{Var}(\overline{X}_n)=p(1-p)/n$ 로 분산이 작아졌다.</p>
+</div>
+<div class="note">
+  라오–블랙웰 정리를 이용하면 어떤 비편향추정량이든 충분통계량의 함수로 <b>개선</b>할 수 있다. 그렇다면
+  그렇게 얻은 $\delta(S)$ 가 곧 MVUE 인가? 서로 다른 비편향추정량에서 출발하면 다른 $\delta$ 가 나올 수
+  있으므로, <b>유일성</b><span class="en">uniqueness</span>을 보장하는 도구가 필요하다 — 그것이 <b>완비성</b>이다.
+</div>
+
+<!-- ================= 완비성 ================= -->
+<h2 class="sub">완비성 <span class="en">completeness</span></h2>
+<div class="box def">
+  <span class="tag">정의 4.7</span><span class="title">완비통계량 <span class="en">complete statistic</span></span>
+  <p>랜덤표본 $X_1,\dots,X_n$ 으로부터 계산된 통계량 $S=S(X_1,\dots,X_n)$ 에 대하여,</p>
+  $$E\big(g(S)\big)=0\ \ \text{을 모든 }\theta\in\Omega\text{ 에 대해 만족하는 함수 }g\text{ 가 }g(\cdot)\equiv0\text{ 뿐}$$
+  <p>이라면 $S$ 를 <b>완비통계량</b><span class="en">complete statistic</span>이라고 한다. $S$ 가 충분통계량이면서
+  완비통계량이라면 이를 <b>완비 충분통계량</b>이라고 한다.</p>
+</div>
+<div class="box ex">
+  <span class="tag">예 4.31</span><span class="title">완비가 아닌 예 — $X_1-X_2$</span>
+  <p>베르누이($p$) 랜덤표본에서 $E(X_1-X_2)=0$ 이 모든 $p$ 에 대해 성립하지만 $X_1-X_2$ 는 항등적으로
+  $0$ 인 확률변수가 아니다 — 즉 $g(s)=s$ 라는 $0$ 아닌 함수가 $E(g(X_1-X_2))=0$ 을 만족하므로
+  $X_1-X_2$ 는 완비통계량이 <b>아니다</b>.</p>
+</div>
+<div class="box ex">
+  <span class="tag">예 4.32</span><span class="title">완비성 확인 — 이항·균일</span>
+  <p><b>① 이항.</b> $T=\sum_{i=1}^n X_i\sim B(n,p)$ 에 대하여</p>
+  $$E[g(T)]=\sum_{t=0}^n g(t)\binom nt p^t(1-p)^{n-t}
+  =(1-p)^n\sum_{t=0}^n g(t)\binom nt\Big(\frac{p}{1-p}\Big)^{\!t}=0,\qquad 0\lt p\lt1$$
+  <p>이 모든 $p$ 에 대해 성립한다는 것은 $\dfrac{p}{1-p}\ (\gt0)$ 에 대한 <b>다항식이 항등적으로 $0$</b>
+  이라는 뜻이므로 모든 계수가 $0$, 즉 $g(t)\equiv0$ 이어야 한다 — $T$ 는 완비통계량이다.</p>
+  <p><b>② 균일.</b> $U(0,\theta)$ 표본의 최댓값 $X_{(n)}$ 은 밀도 $f_{X_{(n)}}(y)=\dfrac{ny^{n-1}}{\theta^n}$ 을 가지므로</p>
+  $$E[g(X_{(n)})]=\frac{n}{\theta^n}\int_0^\theta g(y)\,y^{n-1}dy=0\ \ (\forall\theta\gt0)
+  \quad\Longleftrightarrow\quad\int_0^\theta g(y)\,y^{n-1}dy=0\ \ (\forall\theta\gt0)$$
+  <p>이고, 양변을 $\theta$ 에 대하여 미분하면 $g(\theta)\theta^{n-1}=0$, 곧 $g(\cdot)\equiv0$ 이다.
+  동시에 $X_{(n)}$ 은 충분통계량이기도 하므로(예 4.27의 인수분해) $\theta$ 에 대한 <b>완비 충분통계량</b>이다.</p>
+</div>
+
+<!-- ================= 레만-쉐페 ================= -->
+<h2 class="sub">레만–쉐페 정리 <span class="en">Lehmann–Scheffé theorem</span></h2>
+<div class="box thm">
+  <span class="tag">정리 4.6</span><span class="title">레만–쉐페 정리</span>
+  <p>모수 $\theta$ 에 대하여 $S$ 가 <b>완비 충분통계량</b>이고, $T(X)$ 가 $g(\theta)$ 의 비편향추정량이라고
+  하자. 이때</p>
+  $$\delta(S)=E\big(T(X)\mid S\big)$$
+  <p>는 $g(\theta)$ 의 <b>유일한 최소분산 비편향추정량</b>(MVUE)이다.</p>
+</div>
+<div class="box prf">
+  <span class="tag">증명</span>
+  <p>먼저, $\delta(S)$ 는 이중기댓값 정리에 의하여 $g(\theta)$ 의 비편향추정량이다.
+  이제 <b>$S$ 의 함수인</b> 임의의 비편향추정량 $\delta^*(S)$ 를 생각해 보자. 그러면 모든 $\theta$ 에 대해</p>
+  $$E\big[\delta(S)-\delta^*(S)\big]=g(\theta)-g(\theta)=0$$
+  <p>이고, $\delta(S)-\delta^*(S)$ 가 $S$ 의 함수이므로 <b>완비성</b>에 의해
+  $P[\delta(S)=\delta^*(S)]=1$ — 즉 $S$ 의 함수인 비편향추정량은 사실상 <b>하나뿐</b>이다.</p>
+  <p>다음으로, $S$ 의 함수가 아닐 수도 있는 임의의 비편향추정량 $\eta(X_1,\dots,X_n)$ 에 대하여
+  라오–블랙웰 정리에 의해 $E(\eta\mid S)$ 는 $\eta$ 보다 분산이 더 작거나 같은 비편향추정량이 되는데,
+  이것은 $S$ 의 함수이므로 위의 유일성에 의해 $\delta(S)$ 와 동일하다. 따라서 $\delta(S)$ 는 모든
+  비편향추정량 중에 가장 작은 분산을 가진다 — $g(\theta)$ 의 유일한 MVUE 이다.</p>
+  <div class="qed">∎</div>
+</div>
+<div class="note">
+  <b>MVUE 찾기 전략.</b> 정리 4.6은 "$S$ 가 완비 충분통계량이고 $E(S(X))=g(\theta)$ 이면 $S(X)$ 가
+  $g(\theta)$ 의 유일한 MVUE" 라는 뜻도 포함한다. 그러므로 모수 $\theta$ 에 대한 완비 충분통계량을 구한 뒤,
+  <ul class="props">
+    <li>(i) 완비 충분통계량의 함수 가운데 <b>비편향</b>인 것을 찾거나,</li>
+    <li>(ii) 다루기 쉬운 비편향추정량 하나를 골라 완비 충분통계량으로 <b>조건부 기댓값</b>을 취하면 된다.</li>
+  </ul>
+</div>
+<div class="box ex">
+  <span class="tag">예 4.33</span><span class="title">$U(0,\theta)$ 의 MVUE</span>
+  <p>$X_1,\dots,X_n$ 을 $U(0,\theta)$ 로부터 구한 랜덤표본이라고 하자. 표본최댓값 $X_{(n)}$ 은 완비
+  충분통계량임을 이미 보였다(참조: 예 4.27과 4.32). 그런데 예 4.18에서 $E[(n+1)X_{(n)}/n]=\theta$
+  이므로</p>
+  $$\frac{(n+1)\,X_{(n)}}{n}$$
+  <p>은 모수 $\theta$ 의 <b>유일한 최소분산 비편향추정량</b>이다.</p>
+</div>
+
+<!-- ================= 지수족 ================= -->
+<h2 class="sub">지수족 <span class="en">exponential family</span></h2>
+<div class="note">
+  완비 충분통계량의 존재는 점추정에 매우 유용한 역할을 하는 반면, 완비성(특히 완비성)에 대한 입증은
+  때로 복잡한 계산과정을 수반한다. 다음에 정의되는 <b>지수족</b>에 대해서는 완비 충분성이 보장되어,
+  자주 사용되는 많은 확률분포에서 이를 쉽게 활용할 수 있다.
+</div>
+<div class="box def">
+  <span class="tag">정의 4.8</span><span class="title">지수족 <span class="en">exponential family</span></span>
+  <p>확률밀도함수가 적절한 함수 $a,\ b,\ c_i,\ t_i\ (i=1,\dots,k)$ 에 대하여</p>
+  $$f(x;\theta)=a(\theta)\,b(x)\,\exp\!\left[\sum_{i=1}^k c_i(\theta)\,t_i(x)\right],\qquad -\infty\lt x\lt\infty$$
+  <p>($\theta=(\theta_1,\dots,\theta_k)$)로 표현되면 이를 $k$ 개의 모수 $\theta_1,\dots,\theta_k$ 를 가진
+  지수족이라고 한다. 여기에서 집합 $\{x:\,f(x;\theta)\gt0\}$ 은 모수 $\theta$ 에 의존하지 않는다
+  ($a(\theta)$ 는 모수만의, $b(x)$ 는 데이터만의 함수이고, 지수 안은 모수 함수 $c_i$ 와 데이터 함수 $t_i$
+  의 곱들의 합이다).</p>
+</div>
+<div class="box ex">
+  <span class="tag">예 4.34</span><span class="title">베르누이·포아송·정규는 지수족</span>
+  <p><b>① 베르누이.</b> $f(x;p)=p^x(1-p)^{1-x}=(1-p)\exp\!\Big[x\cdot\log\Big(\dfrac{p}{1-p}\Big)\Big]$ ($x=0,1$)
+  이므로 $a(p)=1-p$, $b(x)=1$, $c(p)=\log\dfrac{p}{1-p}$, $t(x)=x$ 인 지수족이다.</p>
+  <p><b>② 포아송.</b> $f(x;\lambda)=\dfrac{e^{-\lambda}\lambda^x}{x!}=e^{-\lambda}\,\dfrac1{x!}\exp(x\log\lambda)$
+  ($x=0,1,2,\dots$)이므로 $a(\lambda)=e^{-\lambda}$, $b(x)=\dfrac1{x!}$, $c(\lambda)=\log\lambda$, $t(x)=x$ 인 지수족이다.</p>
+  <p><b>③ 정규.</b></p>
+  $$f(x;\mu,\sigma^2)=\frac{1}{\sqrt{2\pi\sigma^2}}\exp\!\Big(-\frac{\mu^2}{2\sigma^2}\Big)
+  \exp\!\Big(-\frac{1}{2\sigma^2}x^2+\frac{\mu}{\sigma^2}x\Big)$$
+  <p>이므로 $a(\mu,\sigma^2)=\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\mu^2/2\sigma^2}$, $b(x)=1$,
+  $c_1=-\dfrac{1}{2\sigma^2},\ t_1(x)=x^2$, $c_2=\dfrac{\mu}{\sigma^2},\ t_2(x)=x$ 인 (모수 $2$ 개의) 지수족이다.</p>
+  <p>이외에도 지수분포·감마분포·베타분포·음이항분포 등이 지수족에 속한다. 그러나 $U(0,\theta)$ 분포나
+  이동지수<span class="en">shifted exponential</span> 분포($f(x;\theta)=\exp(-(x-\theta)),\ x\gt\theta$)와 같이
+  $f(x;\theta)\gt0$ 인 $x$ 의 영역이 모수 $\theta$ 에 의존하는 경우는 지수족에 속하지 <b>않는다</b>.</p>
+</div>
+<div class="box thm">
+  <span class="tag">정리 4.7</span><span class="title">지수족의 완비 충분통계량</span>
+  <p>지수족에 속하는 확률밀도함수 $f(x;\theta)=a(\theta)b(x)\exp\big[\sum_{i=1}^k c_i(\theta)t_i(x)\big]$
+  로부터 랜덤표본 $X_1,\dots,X_n$ 을 얻었다면, 통계량</p>
+  $$S_1=\sum_{i=1}^n t_1(X_i),\quad\dots,\quad S_k=\sum_{i=1}^n t_k(X_i)$$
+  <p>는 모수 $\theta_1,\dots,\theta_k$ 에 대한 <b>결합 완비 충분통계량</b>이다.
+  (증명은 매우 복잡하므로 생략한다.)</p>
+</div>
+<div class="note">
+  정리 4.7에 의하면 $(S_1,\dots,S_k)$ 의 함수로 만들어지는 $(\theta_1,\dots,\theta_k)$ 함수의
+  비편향추정량은 곧 <b>최소분산 비편향추정량</b>이 된다. 또한 완비 충분통계량의 <b>1:1 함수도 완비
+  충분통계량</b>이 된다.
+</div>
+<div class="box ex">
+  <span class="tag">예 4.35</span><span class="title">베르누이 — $p(1-p)$ 의 MVUE</span>
+  <p>예 4.34와 정리 4.7에 의하여 $S=\sum_{i=1}^n X_i$ 는 모수 $p$ 에 대한 완비 충분통계량이다.
+  분산 $g(p)=p(1-p)$ 의 MVUE 를 찾기 위해, 완비 충분통계량의 함수인 $\overline{X}_n(1-\overline{X}_n)$ 을 시도해 보면</p>
+  $$E\big[\overline{X}_n(1-\overline{X}_n)\big]=E(\overline{X}_n)-E(\overline{X}_n^2)
+  =p-\big[p^2+\operatorname{Var}(\overline{X}_n)\big]
+  =p-p^2-\frac{p(1-p)}{n}=p(1-p)\Big[1-\frac1n\Big]$$
+  <p>이 되므로, 보정한</p>
+  $$\frac{\overline{X}_n(1-\overline{X}_n)}{1-\dfrac1n}=\frac{n\,\overline{X}_n(1-\overline{X}_n)}{n-1}$$
+  <p>는 완비 충분통계량의 함수이면서 비편향 — $p(1-p)$ 의 최소분산 비편향추정량이다.</p>
+</div>
+<div class="box ex">
+  <span class="tag">예 4.36</span><span class="title">포아송 — $\lambda$ 의 MVUE</span>
+  <p>$X_1,\dots,X_n$ 을 POI($\lambda$) 분포로부터 구한 랜덤표본이라고 하면, 이들의 결합 확률밀도함수는</p>
+  $$\prod_{i=1}^n f(x_i;\lambda)=\frac{\exp(-n\lambda)\,\lambda^{\sum_{i=1}^n x_i}}{\prod_{i=1}^n x_i!}$$
+  <p>가 되고, 예 4.34와 정리 4.7에 의하여 $\sum_{i=1}^n X_i$ 은 완비 충분통계량이며 그의 1:1 함수인
+  표본평균 $\overline{X}_n$ 도 완비 충분통계량이다. 이제 모수 $\lambda$ 에 대한 추정량으로 $\overline{X}_n$ 를
+  사용한다면, $E(\overline{X}_n)=\lambda$ 이므로 이는 최소분산 비편향추정량이 된다 —
+  <b>완비 충분통계량 $T$ 의 함수 $g(T)$ 가 비편향이면 UMVUE</b>.</p>
+</div>
+<div class="box ex">
+  <span class="tag">예 4.37</span><span class="title">정규 — $(\mu,\sigma^2)$ 의 MVUE</span>
+  <p>$X_1,\dots,X_n$ 이 $N(\mu,\sigma^2)$ 으로부터 구한 랜덤표본이라고 할 때 이들의 결합 확률밀도함수는</p>
+  $$f(x_1,\dots,x_n;\mu,\sigma^2)=(2\pi\sigma^2)^{-n/2}
+  \exp\!\left[-\sum_{i=1}^n x_i^2/2\sigma^2+(\mu/\sigma^2)\sum_{i=1}^n x_i-n\mu^2/2\sigma^2\right]$$
+  <p>으로 나타낼 수 있다. 따라서 예 4.34와 정리 4.7로부터 $S_1=\sum_{i=1}^n X_i$ 와 $S_2=\sum_{i=1}^n X_i^2$
+  은 결합 완비 충분통계량이고, 그 1:1 함수인 $\big(\overline{X}_n,\ S_n^2\big)$ 도 결합 완비 충분통계량이다.
+  $E(\overline{X}_n)=\mu$, $E(S_n^2)=\sigma^2$ 이므로 표본평균과 표본분산은 각각 $\mu$ 와 $\sigma^2$ 의
+  최소분산 비편향추정량이다.</p>
+</div>
+
+<!-- ================= 보조통계량과 바수 정리 ================= -->
+<h2 class="sub">보조통계량과 바수 정리 <span class="en">ancillary statistic &amp; Basu's theorem</span></h2>
+<div class="box def">
+  <span class="tag">정의</span><span class="title">보조통계량 <span class="en">ancillary statistic</span></span>
+  <p>확률밀도함수가 $\theta$ 에 의존함에도, <b>분포가 모수 $\theta$ 에 의존하지 않는</b> 통계량 $T$ 를
+  $\theta$ 에 대한 <b>보조통계량</b>이라고 한다.</p>
+</div>
+<div class="box thm">
+  <span class="tag">정리 4.8</span><span class="title">바수 정리 <span class="en">Basu's theorem</span></span>
+  <p>통계량 $S=(S_1,\dots,S_k)$ 가 모수 $\theta=(\theta_1,\dots,\theta_k)$ 에 대한 결합 <b>완비 충분통계량</b>이라고
+  하자. 이때 어떤 통계량 $T$ 의 분포가 모수 $\theta$ 에 의존하지 않으면(즉 $T$ 가 보조통계량이면),
+  <b>$S$ 와 $T$ 는 서로 독립</b>이다.</p>
+</div>
+<div class="box prf">
+  <span class="tag">증명 <span class="en">이산형의 경우</span></span>
+  <p>$f_T(t)$, $f_S(s;\theta)$, 그리고 $f(t\mid s)$ 를 각각 $T$, $S$ 의 확률밀도함수와 $S=s$ 일 때 $T$ 의
+  조건부 확률밀도함수라고 하자. 전확률 공식 $f_T(t)=\sum_s f(t\mid s)f_S(s;\theta)$ 을 이용하면</p>
+  $$E_\theta\big[f_T(t)-f(t\mid S)\big]=f_T(t)-\sum_s f(t\mid s)\,f(s;\theta)=f_T(t)-f_T(t)=0$$
+  <p>이 모든 $\theta$ 에 대해 성립한다. 그런데 $f_T(t)-f(t\mid S)$ 는 $S$ 의 함수이고 — $T$ 의
+  <b>보조성</b>에 의해 $f_T(t)$ 는 $\theta$ 를 포함하지 않고, $S$ 의 <b>충분성</b>에 의해 $f(t\mid S)$ 도
+  $\theta$ 에 의존하지 않는다 — 따라서 $S$ 의 <b>완비성</b>에 의하여 모든 $s$ 에 대해
+  $f(t\mid s)=f_T(t)$ 가 성립한다. 즉 조건부 분포가 주변 분포와 같으므로 $S$ 와 $T$ 는 서로 독립이다.</p>
+  <div class="qed">∎</div>
+</div>
+<div class="box ex">
+  <span class="tag">예 4.38</span><span class="title">$\overline{X}_n\perp\hat\sigma^2$ — 정리 3.9의 또 다른 증명</span>
+  <p>$X_1,\dots,X_n$ 을 $N(\mu,\sigma^2)$ 로부터의 랜덤표본일 때,
+  $\hat\sigma^2=\sum_{i=1}^n(X_i-\overline{X}_n)^2/n$ 과 $\hat\mu=\overline{X}_n$ 를 생각해 보자.
+  <b>고정된 $\sigma^2$ 에 대하여</b> 표본평균 $\overline{X}_n$ 은 $\mu$ 에 대한 완비 충분통계량이고
+  (예 4.37), $\dfrac{n\hat\sigma^2}{\sigma^2}$ 은 $\chi^2(n-1)$ 분포를 따르며 이는 $\mu$ 에 의존하지
+  않는다 — 즉 $\hat\sigma^2$ 은 $\mu$ 에 대한 <b>보조통계량</b>이 된다. 따라서 바수의 정리 4.8에 따라
+  $\hat\mu=\overline{X}_n$ 와 $\hat\sigma^2=\sum_{i=1}^n(X_i-\overline{X}_n)^2/n$ 은 서로 <b>독립</b>이다 —
+  <a href="../ch03/3-3_sampling-from-normal.html">정리 3.9(1)</a>의 직교행렬 증명과는 다른 방법의 증명이다.</p>
+</div>
+
+<nav class="pager">
+  <a href="4-3_estimation-criteria.html">← 이전<small>4.3 추정의 기준</small></a>
+  <span class="spacer"></span>
+</nav>
+
+</body>
+</html>
