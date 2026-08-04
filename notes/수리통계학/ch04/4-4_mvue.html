@@ -54,6 +54,31 @@
   <p>를 <b>피셔의 정보</b>라고 한다 — 모수가 변할 때 로그밀도가 얼마나 민감하게 변하는지, 그
   <b>변화율 제곱의 기댓값</b>이다. 정보가 클수록 관측값이 모수에 대해 더 많은 정보를 담고 있다.</p>
 </div>
+<div class="box prf">
+  <span class="tag">성질</span><span class="title">피셔 정보 $=$ 스코어의 분산</span>
+  <p>$\dfrac{\partial}{\partial\theta}\log f(X;\theta)$ 를 <b>스코어</b><span class="en">score</span>라고 부르자.
+  피셔의 정보는 사실 스코어의 <b>분산</b>과 같다:</p>
+  $$I(\theta)=\operatorname{Var}\!\Big(\frac{\partial}{\partial\theta}\log f(X;\theta)\Big)
+  =E\!\left[\Big(\frac{\partial}{\partial\theta}\log f(X;\theta)\Big)^{\!2}\right]
+  -\left[E\!\Big(\frac{\partial}{\partial\theta}\log f(X;\theta)\Big)\right]^{2}.$$
+  <p>여기서 둘째 항(스코어의 기댓값)은 $0$ 이다 — $\dfrac{\partial}{\partial\theta}\log f=\dfrac{\partial f/\partial\theta}{f}$
+  이므로 분모가 밀도와 약분되고, 미분과 적분의 순서를 바꾸면</p>
+  $$E\!\Big(\frac{\partial}{\partial\theta}\log f(X;\theta)\Big)
+  =\int\frac{\frac{\partial}{\partial\theta}f(x;\theta)}{f(x;\theta)}\,f(x;\theta)\,dx
+  =\frac{\partial}{\partial\theta}\int f(x;\theta)\,dx
+  =\frac{\partial}{\partial\theta}(1)=0.$$
+  <p>따라서</p>
+  $$I(\theta)=\operatorname{Var}\!\Big(\frac{\partial}{\partial\theta}\log f(X;\theta)\Big)
+  =E\!\left[\Big(\frac{\partial}{\partial\theta}\log f(X;\theta)\Big)^{\!2}\right].$$
+  <div class="qed">∎</div>
+</div>
+<div class="note">
+  <b>직관 — 정보가 많은 가능도함수의 판별.</b> 피셔의 정보는 (가능도함수 자체의 분산이 아니라)
+  <b>로그가능도의 기울기, 즉 스코어의 분산</b>이다. 스코어의 분산이 크다는 것은 $\theta$ 가 조금만 변해도
+  가능도가 민감하게 요동친다는 뜻이고, 이는 <b>가능도가 참값 근처의 한 점에 뾰족하게 집중되어 있다</b>는
+  것이다 — 집중되어 있을수록 자료가 모수를 정밀하게 짚어 준다. 그래서 피셔의 정보는 어떤 자료(가능도함수)가
+  모수에 대해 많은 정보를 가지고 있는지 판별할 때 사용한다.
+</div>
 <div class="box ex">
   <span class="tag">예 4.21</span><span class="title">정규분포의 피셔 정보</span>
   <p>$X\sim N(\mu,\sigma_0^2)$ ($\sigma_0^2$ 은 알려진 값)일 때
