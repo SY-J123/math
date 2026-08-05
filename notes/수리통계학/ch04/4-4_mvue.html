@@ -50,7 +50,8 @@
 <div class="box def">
   <span class="tag">정의</span><span class="title">피셔의 정보 <span class="en">Fisher's information</span></span>
   <p>$X$ 의 확률밀도함수가 $f(x;\theta)$ 일 때</p>
-  $$I(\theta)=E\!\left[\Big(\frac{\partial}{\partial\theta}\log f(X;\theta)\Big)^{\!2}\right] \tag{4.7}$$
+  $$I(\theta)=\operatorname{Var}\!\Big(\frac{\partial}{\partial\theta}\log f(X;\theta)\Big)
+  =E\!\left[\Big(\frac{\partial}{\partial\theta}\log f(X;\theta)\Big)^{\!2}\right] \tag{4.7}$$
   <p>를 <b>피셔의 정보</b>라고 한다 — 모수가 변할 때 로그밀도가 얼마나 민감하게 변하는지, 그
   <b>변화율 제곱의 기댓값</b>이다. 정보가 클수록 관측값이 모수에 대해 더 많은 정보를 담고 있다.</p>
 </div>
