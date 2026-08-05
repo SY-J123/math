@@ -74,24 +74,23 @@
 </div>
 <div class="box prf">
   <span class="tag">성질</span><span class="title">$2$ 차 미분 형태 — $I(\theta)=-E\big[\frac{\partial^2}{\partial\theta^2}\log f\big]$</span>
-  <p>피셔의 정보는 로그밀도의 <b>$2$ 차 미분 기댓값에 마이너스를 붙인 것</b>과도 같다.
-  몫의 미분으로 $2$ 차 미분을 전개하면</p>
+  <p>몫의 미분법으로 전개하면</p>
   $$\frac{\partial^2}{\partial\theta^2}\log f(X;\theta)
   =\frac{\partial}{\partial\theta}\!\left(\frac{\frac{\partial}{\partial\theta}f}{f}\right)
-  =\frac{\frac{\partial^2}{\partial\theta^2}f}{f}
-  -\left(\frac{\frac{\partial}{\partial\theta}f}{f}\right)^{\!2}
-  =\frac{\frac{\partial^2}{\partial\theta^2}f}{f}
-  -\Big(\frac{\partial}{\partial\theta}\log f\Big)^{\!2}.$$
-  <p>양변에 기댓값을 취하면 첫 항은 미분·적분 교환에 의해 사라진다:</p>
-  $$E\!\left[\frac{\frac{\partial^2}{\partial\theta^2}f(X;\theta)}{f(X;\theta)}\right]
+  =\frac{\big(\frac{\partial^2}{\partial\theta^2}f\big)\,f-\big(\frac{\partial}{\partial\theta}f\big)\big(\frac{\partial}{\partial\theta}f\big)}{f^2}
+  =\frac{\frac{\partial^2}{\partial\theta^2}f}{f}-\Big(\frac{\partial}{\partial\theta}\log f\Big)^{\!2}.$$
+  <p>양변에 기댓값을 취하면</p>
+  $$E\!\left[\frac{\partial^2}{\partial\theta^2}\log f(X;\theta)\right]
+  =E\!\left[\frac{\frac{\partial^2}{\partial\theta^2}f}{f}\right]
+  -E\!\left[\Big(\frac{\partial}{\partial\theta}\log f\Big)^{\!2}\right]$$
+  <p>인데, 첫 항은</p>
+  $$E\!\left[\frac{\frac{\partial^2}{\partial\theta^2}f}{f}\right]
   =\int\frac{\partial^2}{\partial\theta^2}f(x;\theta)\,dx
   =\frac{\partial^2}{\partial\theta^2}\int f(x;\theta)\,dx
   =\frac{\partial^2}{\partial\theta^2}(1)=0.$$
-  <p>따라서 $E\Big[\dfrac{\partial^2}{\partial\theta^2}\log f\Big]=-E\Big[\Big(\dfrac{\partial}{\partial\theta}\log f\Big)^{\!2}\Big]$, 곧</p>
-  $$I(\theta)=-E\!\left[\frac{\partial^2}{\partial\theta^2}\log f(X;\theta)\right].$$
-  <p><b>직관 — 곡률.</b> $-E[2$ 차 미분$]$ 은 로그가능도의 평균적인 <b>곡률</b>(아래로 굽은 정도)이다.
-  봉우리가 뾰족할수록($2$ 차 미분이 큰 음수) 정보가 크고 — 스코어 분산 관점의 "가능도가 한 점에
-  집중"과 정확히 같은 이야기다. 실제 계산에서는 제곱 형태보다 $2$ 차 미분 형태가 편한 경우가 많다.</p>
+  <p>따라서</p>
+  $$I(\theta)=E\!\left[\Big(\frac{\partial}{\partial\theta}\log f\Big)^{\!2}\right]
+  =-E\!\left[\frac{\partial^2}{\partial\theta^2}\log f(X;\theta)\right].$$
   <div class="qed">∎</div>
 </div>
 <div class="note">
