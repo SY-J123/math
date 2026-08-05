@@ -137,27 +137,55 @@
 </div>
 <div class="box prf">
   <span class="tag">증명</span>
-  <p><b>① $g'(\theta)$ 를 기댓값으로.</b> $T(X)$ 가 $g(\theta)$ 의 비편향추정량이므로 미분-적분 교환에 의해</p>
-  $$g'(\theta)=\frac{\partial}{\partial\theta}\int\!\cdots\!\int T\prod_{i=1}^n f(x_i;\theta)\,dx_1\cdots dx_n
-  =\int\!\cdots\!\int T\,\Big[\frac{\partial}{\partial\theta}\log\prod_{i=1}^n f(x_i;\theta)\Big]\prod_{i=1}^n f\,dx_1\cdots dx_n$$
-  <p>이고, $\displaystyle\int\!\cdots\!\int\prod f=1$ 의 양변을 미분하면
-  $\displaystyle\int\!\cdots\!\int\Big[\frac{\partial}{\partial\theta}\log\prod f\Big]\prod f=0$ 이므로 $g(\theta)$ 배를 빼도 같다:</p>
-  $$g'(\theta)=E\!\left[\big(T(X)-g(\theta)\big)\Big(\frac{\partial}{\partial\theta}\log\prod_{i=1}^n f(X_i;\theta)\Big)\right].$$
-  <p><b>② 코시–슈바르츠.</b> <a href="../ch02/2-4_expectation.html">코시–슈바르츠 부등식</a>에 의하여</p>
-  $$[g'(\theta)]^2\le E\big[T(X)-g(\theta)\big]^2\cdot
+  <p><b>① 비편향성에서 출발 — $g'(\theta)$ 를 적분으로.</b> $T(X)=T(X_1,X_2,\dots,X_n)$ 은 $g(\theta)$ 의
+  비편향추정량이므로 $g(\theta)=E(T(X))$ 이고, 가정 (3)의 미분·적분 교환에 의해</p>
+  $$g'(\theta)=\frac{\partial}{\partial\theta}\,g(\theta)
+  =\frac{\partial}{\partial\theta}\int_{-\infty}^{\infty}\!\!\cdots\!\int_{-\infty}^{\infty}
+  T(x_1,\dots,x_n)\prod_{i=1}^n f(x_i;\theta)\,dx_1\cdots dx_n
+  =\int_{-\infty}^{\infty}\!\!\cdots\!\int_{-\infty}^{\infty}
+  T(x_1,\dots,x_n)\,\frac{\partial}{\partial\theta}\!\left[\prod_{i=1}^n f(x_i;\theta)\right]dx_1\cdots dx_n.$$
+  <p><b>② 로그 미분 트릭.</b> $\dfrac{\partial}{\partial\theta}\log\prod f=\dfrac{\partial\prod f/\partial\theta}{\prod f}$
+  에서 $\dfrac{\partial}{\partial\theta}\prod f=\Big[\dfrac{\partial}{\partial\theta}\log\prod f\Big]\prod f$ 이므로,
+  ①의 피적분함수를 "$\cdots\times\prod f$" 꼴로 되돌릴 수 있다:</p>
+  $$g'(\theta)=\int_{-\infty}^{\infty}\!\!\cdots\!\int_{-\infty}^{\infty}
+  T(x_1,\dots,x_n)\left[\frac{\partial}{\partial\theta}\log\prod_{i=1}^n f(x_i;\theta)\right]
+  \prod_{i=1}^n f(x_i;\theta)\,dx_1\cdots dx_n.$$
+  <p><b>③ $g(\theta)$ 배 빼기 — 편차 꼴 만들기.</b> 전체 적분이 $1$ 임을 미분하면</p>
+  $$\int_{-\infty}^{\infty}\!\!\cdots\!\int_{-\infty}^{\infty}\prod_{i=1}^n f(x_i;\theta)\,dx_1\cdots dx_n=1
+  \quad\xrightarrow{\ \partial/\partial\theta\ }\quad
+  \int_{-\infty}^{\infty}\!\!\cdots\!\int_{-\infty}^{\infty}
+  \left[\frac{\partial}{\partial\theta}\log\prod_{i=1}^n f(x_i;\theta)\right]\prod_{i=1}^n f\,dx_1\cdots dx_n=0$$
+  <p>이므로, 여기에 $g(\theta)$ 를 곱한 것($=0$)을 ②에서 빼도 값이 변하지 않는다:</p>
+  $$g'(\theta)=\int_{-\infty}^{\infty}\!\!\cdots\!\int_{-\infty}^{\infty}
+  \big[T(x_1,\dots,x_n)-g(\theta)\big]\left[\frac{\partial}{\partial\theta}\log\prod_{i=1}^n f(x_i;\theta)\right]
+  \prod_{i=1}^n f\,dx_1\cdots dx_n
+  =E\!\left[\big(T(X)-g(\theta)\big)\Big(\frac{\partial}{\partial\theta}\log\prod_{i=1}^n f(X_i;\theta)\Big)\right].$$
+  <p><b>④ 코시–슈바르츠.</b> <a href="../ch02/2-4_expectation.html">코시–슈바르츠 부등식</a>
+  $[E(UV)]^2\le E(U^2)E(V^2)$ 에 $U=T(X)-g(\theta)$, $V=\dfrac{\partial}{\partial\theta}\log\prod f$ 를 대입하면</p>
+  $$[g'(\theta)]^2\le E\big[\{T(X)-g(\theta)\}^2\big]\cdot
   E\!\left[\Big(\frac{\partial}{\partial\theta}\log\prod_{i=1}^n f(X_i;\theta)\Big)^{\!2}\right]
-  =\operatorname{Var}(T(X))\cdot E\!\left[\Big(\frac{\partial}{\partial\theta}\log\prod_{i=1}^n f(X_i;\theta)\Big)^{\!2}\right].$$
-  <p><b>③ 우변의 기댓값 $=nI(\theta)$.</b> $S_i=\dfrac{\partial}{\partial\theta}\log f(X_i;\theta)$ 로 두면
-  $\log\prod f=\sum\log f$ 이므로 전개하면</p>
-  $$E\!\left[\Big(\sum_{i=1}^n S_i\Big)^{\!2}\right]=\sum_{i=1}^n\sum_{j=1}^n E(S_iS_j).$$
-  <p>그런데 각 $S_i$ 의 기댓값은</p>
+  =\operatorname{Var}(T(X))\times
+  E\!\left[\Big(\frac{\partial}{\partial\theta}\log\prod_{i=1}^n f(X_i;\theta)\Big)^{\!2}\right]$$
+  <p>($T$ 가 비편향이라 $E[\{T-g(\theta)\}^2]$ 가 곧 분산이다).</p>
+  <p><b>⑤ 스코어의 기댓값은 $0$.</b> $S_i=\dfrac{\partial}{\partial\theta}\log f(X_i;\theta)$ 로 표기하면,
+  각 $S_i$ 에 대해 (①·③과 같은 미분·적분 교환으로)</p>
   $$E(S_i)=\int_{-\infty}^{\infty}\Big[\frac{\partial}{\partial\theta}\log f(x;\theta)\Big]f(x;\theta)\,dx
   =\int_{-\infty}^{\infty}\frac{\partial}{\partial\theta}f(x;\theta)\,dx
-  =\frac{\partial}{\partial\theta}(1)=0$$
-  <p>이고, $i\ne j$ 이면 $X_i$ 와 $X_j$ 가 독립이므로 $E(S_iS_j)=E(S_i)E(S_j)=0$ — 교차항이 모두 사라진다.
-  대각항만 남아</p>
-  $$E\!\left[\Big(\sum_{i=1}^n S_i\Big)^{\!2}\right]=n\,E\!\left[\Big(\frac{\partial}{\partial\theta}\log f(X;\theta)\Big)^{\!2}\right]=n\,I(\theta).$$
-  <p><b>④ 조합.</b> ②에 ③을 대입하고 정리하면 $\operatorname{Var}(T(X))\ge\dfrac{[g'(\theta)]^2}{n\,I(\theta)}$.</p>
+  =\frac{\partial}{\partial\theta}\int_{-\infty}^{\infty}f(x;\theta)\,dx
+  =\frac{\partial}{\partial\theta}(1)=0.$$
+  <p><b>⑥ 우변의 기댓값 $=n\,I(\theta)$.</b> 로그가 곱을 합으로 바꾸므로
+  $\dfrac{\partial}{\partial\theta}\log\prod_{i=1}^n f(X_i;\theta)=\sum_{i=1}^n S_i$ 이고, 합의 제곱을 이중합으로 전개하면</p>
+  $$E\!\left[\Big(\frac{\partial}{\partial\theta}\log\prod_{i=1}^n f(X_i;\theta)\Big)^{\!2}\right]
+  =E\!\left[\Big(\sum_{i=1}^n S_i\Big)^{\!2}\right]
+  =\sum_{i=1}^n\sum_{j=1}^n E(S_iS_j).$$
+  <p>$i\ne j$ 인 교차항은 $X_i$ 와 $X_j$ 가 서로 독립이므로 ⑤에 의해</p>
+  $$E(S_iS_j)=E(S_i)\,E(S_j)=0\times0=0$$
+  <p>— 모두 사라지고, $i=j$ 인 대각항 $n$ 개만 남는다:</p>
+  $$E\!\left[\Big(\sum_{i=1}^n S_i\Big)^{\!2}\right]
+  =n\,E\!\left[\Big(\frac{\partial}{\partial\theta}\log f(X;\theta)\Big)^{\!2}\right]=n\,I(\theta).$$
+  <p><b>⑦ 결론.</b> ⑥을 ④에 대입하면 $[g'(\theta)]^2\le\operatorname{Var}(T(X))\times n\,I(\theta)$ 이고,
+  $0\lt I(\theta)\lt\infty$ 이므로 양변을 $n\,I(\theta)$ 로 나누면</p>
+  $$\operatorname{Var}(T(X))\ \ge\ \frac{[g'(\theta)]^2}{n\,I(\theta)}.$$
   <div class="qed">∎</div>
 </div>
 <div class="note">
