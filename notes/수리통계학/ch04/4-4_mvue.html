@@ -59,9 +59,11 @@
   <span class="tag">성질</span><span class="title">피셔 정보 $=$ 스코어의 분산</span>
   <p>$\dfrac{\partial}{\partial\theta}\log f(X;\theta)$ 를 <b>스코어</b><span class="en">score</span>라고 부르자.
   피셔의 정보는 사실 스코어의 <b>분산</b>과 같다:</p>
-  $$I(\theta)=\operatorname{Var}\!\Big(\frac{\partial}{\partial\theta}\log f(X;\theta)\Big)
-  =E\!\left[\Big(\frac{\partial}{\partial\theta}\log f(X;\theta)\Big)^{\!2}\right]
-  -\left[E\!\Big(\frac{\partial}{\partial\theta}\log f(X;\theta)\Big)\right]^{2}.$$
+  $$\begin{aligned}
+  I(\theta)=\operatorname{Var}\!\Big(\frac{\partial}{\partial\theta}\log f(X;\theta)\Big)
+  &=E\!\left[\Big(\frac{\partial}{\partial\theta}\log f(X;\theta)\Big)^{\!2}\right]\\
+  &\qquad-\left[E\!\Big(\frac{\partial}{\partial\theta}\log f(X;\theta)\Big)\right]^{2}.
+  \end{aligned}$$
   <p>여기서 둘째 항(스코어의 기댓값)은 $0$ 이다 — $\dfrac{\partial}{\partial\theta}\log f=\dfrac{\partial f/\partial\theta}{f}$
   이므로 분모가 밀도와 약분되고, 미분과 적분의 순서를 바꾸면</p>
   $$E\!\Big(\frac{\partial}{\partial\theta}\log f(X;\theta)\Big)
@@ -138,41 +140,45 @@
 <div class="box prf">
   <span class="tag">증명</span>
   <p><b>① 비편향성에서 출발 — $g'(\theta)$ 를 적분으로.</b> $T(X)=T(X_1,X_2,\dots,X_n)$ 은 $g(\theta)$ 의
-  비편향추정량이므로 $g(\theta)=E(T(X))$ 이고, 가정 (3)의 미분·적분 교환에 의해</p>
-  $$g'(\theta)=\frac{\partial}{\partial\theta}\,g(\theta)
-  =\frac{\partial}{\partial\theta}\int_{-\infty}^{\infty}\!\!\cdots\!\int_{-\infty}^{\infty}
-  T(x_1,\dots,x_n)\prod_{i=1}^n f(x_i;\theta)\,dx_1\cdots dx_n
-  =\int_{-\infty}^{\infty}\!\!\cdots\!\int_{-\infty}^{\infty}
-  T(x_1,\dots,x_n)\,\frac{\partial}{\partial\theta}\!\left[\prod_{i=1}^n f(x_i;\theta)\right]dx_1\cdots dx_n.$$
+  비편향추정량이므로 $g(\theta)=E(T(X))$ 이고, 가정 (3)의 미분·적분 교환에 의해
+  (이하 적분은 모두 $-\infty$ 에서 $\infty$ 까지의 $n$ 중적분, $T=T(x_1,\dots,x_n)$)</p>
+  $$\begin{aligned}
+  g'(\theta)=\frac{\partial}{\partial\theta}\,g(\theta)
+  &=\frac{\partial}{\partial\theta}\int\!\cdots\!\int T\,\prod_{i=1}^n f(x_i;\theta)\,dx_1\cdots dx_n\\
+  &=\int\!\cdots\!\int T\,\frac{\partial}{\partial\theta}\!\left[\prod_{i=1}^n f(x_i;\theta)\right]dx_1\cdots dx_n.
+  \end{aligned}$$
   <p><b>② 로그 미분 트릭.</b> $\dfrac{\partial}{\partial\theta}\log\prod f=\dfrac{\partial\prod f/\partial\theta}{\prod f}$
   에서 $\dfrac{\partial}{\partial\theta}\prod f=\Big[\dfrac{\partial}{\partial\theta}\log\prod f\Big]\prod f$ 이므로,
   ①의 피적분함수를 "$\cdots\times\prod f$" 꼴로 되돌릴 수 있다:</p>
-  $$g'(\theta)=\int_{-\infty}^{\infty}\!\!\cdots\!\int_{-\infty}^{\infty}
-  T(x_1,\dots,x_n)\left[\frac{\partial}{\partial\theta}\log\prod_{i=1}^n f(x_i;\theta)\right]
-  \prod_{i=1}^n f(x_i;\theta)\,dx_1\cdots dx_n.$$
+  $$g'(\theta)=\int\!\cdots\!\int T\left[\frac{\partial}{\partial\theta}\log\prod_{i=1}^n f(x_i;\theta)\right]
+  \prod_{i=1}^n f\,dx_1\cdots dx_n.$$
   <p><b>③ $g(\theta)$ 배 빼기 — 편차 꼴 만들기.</b> 전체 적분이 $1$ 임을 미분하면</p>
-  $$\int_{-\infty}^{\infty}\!\!\cdots\!\int_{-\infty}^{\infty}\prod_{i=1}^n f(x_i;\theta)\,dx_1\cdots dx_n=1
-  \quad\xrightarrow{\ \partial/\partial\theta\ }\quad
-  \int_{-\infty}^{\infty}\!\!\cdots\!\int_{-\infty}^{\infty}
-  \left[\frac{\partial}{\partial\theta}\log\prod_{i=1}^n f(x_i;\theta)\right]\prod_{i=1}^n f\,dx_1\cdots dx_n=0$$
+  $$\int\!\cdots\!\int\prod_{i=1}^n f\,dx_1\cdots dx_n=1
+  \quad\Longrightarrow\quad
+  \int\!\cdots\!\int\left[\frac{\partial}{\partial\theta}\log\prod_{i=1}^n f\right]\prod_{i=1}^n f\,dx_1\cdots dx_n=0$$
   <p>이므로, 여기에 $g(\theta)$ 를 곱한 것($=0$)을 ②에서 빼도 값이 변하지 않는다:</p>
-  $$g'(\theta)=\int_{-\infty}^{\infty}\!\!\cdots\!\int_{-\infty}^{\infty}
-  \big[T(x_1,\dots,x_n)-g(\theta)\big]\left[\frac{\partial}{\partial\theta}\log\prod_{i=1}^n f(x_i;\theta)\right]
-  \prod_{i=1}^n f\,dx_1\cdots dx_n
-  =E\!\left[\big(T(X)-g(\theta)\big)\Big(\frac{\partial}{\partial\theta}\log\prod_{i=1}^n f(X_i;\theta)\Big)\right].$$
+  $$\begin{aligned}
+  g'(\theta)&=\int\!\cdots\!\int\big[T-g(\theta)\big]
+  \left[\frac{\partial}{\partial\theta}\log\prod_{i=1}^n f\right]\prod_{i=1}^n f\,dx_1\cdots dx_n\\
+  &=E\!\left[\big(T(X)-g(\theta)\big)\Big(\frac{\partial}{\partial\theta}\log\prod_{i=1}^n f(X_i;\theta)\Big)\right].
+  \end{aligned}$$
   <p><b>④ 코시–슈바르츠.</b> <a href="../ch02/2-4_expectation.html">코시–슈바르츠 부등식</a>
   $[E(UV)]^2\le E(U^2)E(V^2)$ 에 $U=T(X)-g(\theta)$, $V=\dfrac{\partial}{\partial\theta}\log\prod f$ 를 대입하면</p>
-  $$[g'(\theta)]^2\le E\big[\{T(X)-g(\theta)\}^2\big]\cdot
+  $$\begin{aligned}
+  [g'(\theta)]^2&\le E\big[\{T(X)-g(\theta)\}^2\big]\cdot
+  E\!\left[\Big(\frac{\partial}{\partial\theta}\log\prod_{i=1}^n f(X_i;\theta)\Big)^{\!2}\right]\\
+  &=\operatorname{Var}(T(X))\times
   E\!\left[\Big(\frac{\partial}{\partial\theta}\log\prod_{i=1}^n f(X_i;\theta)\Big)^{\!2}\right]
-  =\operatorname{Var}(T(X))\times
-  E\!\left[\Big(\frac{\partial}{\partial\theta}\log\prod_{i=1}^n f(X_i;\theta)\Big)^{\!2}\right]$$
+  \end{aligned}$$
   <p>($T$ 가 비편향이라 $E[\{T-g(\theta)\}^2]$ 가 곧 분산이다).</p>
   <p><b>⑤ 스코어의 기댓값은 $0$.</b> $S_i=\dfrac{\partial}{\partial\theta}\log f(X_i;\theta)$ 로 표기하면,
   각 $S_i$ 에 대해 (①·③과 같은 미분·적분 교환으로)</p>
-  $$E(S_i)=\int_{-\infty}^{\infty}\Big[\frac{\partial}{\partial\theta}\log f(x;\theta)\Big]f(x;\theta)\,dx
-  =\int_{-\infty}^{\infty}\frac{\partial}{\partial\theta}f(x;\theta)\,dx
-  =\frac{\partial}{\partial\theta}\int_{-\infty}^{\infty}f(x;\theta)\,dx
-  =\frac{\partial}{\partial\theta}(1)=0.$$
+  $$\begin{aligned}
+  E(S_i)&=\int_{-\infty}^{\infty}\Big[\frac{\partial}{\partial\theta}\log f(x;\theta)\Big]f(x;\theta)\,dx
+  =\int_{-\infty}^{\infty}\frac{\partial}{\partial\theta}f(x;\theta)\,dx\\
+  &=\frac{\partial}{\partial\theta}\int_{-\infty}^{\infty}f(x;\theta)\,dx
+  =\frac{\partial}{\partial\theta}(1)=0.
+  \end{aligned}$$
   <p><b>⑥ 우변의 기댓값 $=n\,I(\theta)$.</b> 로그가 곱을 합으로 바꾸므로
   $\dfrac{\partial}{\partial\theta}\log\prod_{i=1}^n f(X_i;\theta)=\sum_{i=1}^n S_i$ 이고, 합의 제곱을 이중합으로 전개하면</p>
   $$E\!\left[\Big(\frac{\partial}{\partial\theta}\log\prod_{i=1}^n f(X_i;\theta)\Big)^{\!2}\right]
@@ -451,9 +457,11 @@
   <span class="tag">예 4.35</span><span class="title">베르누이 — $p(1-p)$ 의 MVUE</span>
   <p>예 4.34와 정리 4.7에 의하여 $S=\sum_{i=1}^n X_i$ 는 모수 $p$ 에 대한 완비 충분통계량이다.
   분산 $g(p)=p(1-p)$ 의 MVUE 를 찾기 위해, 완비 충분통계량의 함수인 $\overline{X}_n(1-\overline{X}_n)$ 을 시도해 보면</p>
-  $$E\big[\overline{X}_n(1-\overline{X}_n)\big]=E(\overline{X}_n)-E(\overline{X}_n^2)
-  =p-\big[p^2+\operatorname{Var}(\overline{X}_n)\big]
-  =p-p^2-\frac{p(1-p)}{n}=p(1-p)\Big[1-\frac1n\Big]$$
+  $$\begin{aligned}
+  E\big[\overline{X}_n(1-\overline{X}_n)\big]&=E(\overline{X}_n)-E(\overline{X}_n^2)
+  =p-\big[p^2+\operatorname{Var}(\overline{X}_n)\big]\\
+  &=p-p^2-\frac{p(1-p)}{n}=p(1-p)\Big[1-\frac1n\Big]
+  \end{aligned}$$
   <p>이 되므로, 보정한</p>
   $$\frac{\overline{X}_n(1-\overline{X}_n)}{1-\dfrac1n}=\frac{n\,\overline{X}_n(1-\overline{X}_n)}{n-1}$$
   <p>는 완비 충분통계량의 함수이면서 비편향 — $p(1-p)$ 의 최소분산 비편향추정량이다.</p>
