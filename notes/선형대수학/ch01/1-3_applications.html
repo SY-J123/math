@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>선형대수학 · 1.3 일차연립방정식의 응용</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">선형대수학 · 1장 일차연립방정식</div>
+  <h1><span class="no">1.3</span>일차연립방정식의 응용 <span class="en">applications of systems of linear equations</span></h1>
+</header>
+
+<div class="note">
+  자연과학·수학·공학·사회과학 등에서 다루고 있는 많은 문제는 일차연립방정식과 관련되어 있다.
+  이에 관한 몇 가지 예제를 살펴보자. 네 예제는 각각 <b>균형</b>(저울), <b>보존</b>(원자수),
+  <b>항등식</b>(부분 분수), <b>흐름의 보존</b>(교통량)에서 연립방정식이 나오는 방식을 보여 준다.
+</div>
+
+<h2 class="sub">평형저울과 무게 <span class="en">balance scale</span></h2>
+<div class="box ex">
+  <span class="tag">예제 1.5</span><span class="title">평형저울에 올려 둔 공의 무게</span>
+  <p>크기가 같고 색과 무게가 다른 공 3개가 있다. 그중 파란 공의 무게는 $1\text{kg}$ 이다.
+  평형저울에 3개의 공을 올려놓고 균형을 잡아 보니 그림 1.3과 같았다. 붉은 공과 초록 공의 무게를 구하라.</p>
+  <p><b>풀이</b> &nbsp;$x$ 는 붉은 공의 무게, $y$ 는 초록 공의 무게라 하고 비례식(받침점에서의 거리 × 무게가
+  좌우에서 같다)을 적용하면, 다음과 같은 연립방정식을 얻을 수 있다.</p>
+  $$\begin{cases}
+    2x+\ \ 8y=10\\
+    3x-10y=\ \ 4
+  \end{cases}$$
+  <p>소거법을 적용하면 다음과 같다.</p>
+  $$\begin{aligned}
+    &\begin{cases}\ \ x+\ \ 4y=\ \ 5\\ 3x-10y=\ \ 4\end{cases}
+      &&\text{(첫 번째 방정식에 }\tfrac12\text{ 을 곱함)}\\[4pt]
+    &\begin{cases}-3x-12y=-15\\ \ \ 3x-10y=\ \ \ \ 4\end{cases}
+      &&\text{(첫 번째 방정식에 }-3\text{ 을 곱함)}\\[4pt]
+    &\begin{cases}-3x-12y=-15\\ \qquad-22y=-11\end{cases}
+      &&\text{(첫 번째 방정식을 두 번째 방정식에 더함)}
+  \end{aligned}$$
+  <p>$y=\tfrac12$ 이고 후진대입하면 $x=3$ 을 얻을 수 있다. 따라서 붉은 공은 $3\text{kg}$,
+  초록 공은 $0.5\text{kg}$ 이다.</p>
+</div>
+
+<figure class="fig">
+<svg viewBox="0 0 450 150" role="img" aria-label="평형저울에 올려 둔 세 공의 균형">
+  <g>
+    <!-- 왼쪽 저울: 파(1kg) 왼쪽 10, 붉 오른쪽 2, 초 오른쪽 8 -->
+    <line class="aux" x1="32" y1="52" x2="32" y2="92"/>
+    <line class="aux" x1="122" y1="42" x2="122" y2="92"/>
+    <line class="aux" x1="194" y1="52" x2="194" y2="92"/>
+    <line class="aux" x1="140" y1="72" x2="140" y2="92"/>
+    <line class="axis" x1="32" y1="52" x2="122" y2="52"/>
+    <line class="axis" x1="122" y1="52" x2="194" y2="52"/>
+    <line class="axis" x1="122" y1="72" x2="140" y2="72"/>
+    <text class="num" x="72" y="47">10</text>
+    <text class="num" x="153" y="47">8</text>
+    <text class="num" x="127" y="67">2</text>
+    <line x1="24" y1="97" x2="202" y2="97" stroke="#666" stroke-width="2.4"/>
+    <circle cx="32" cy="97" r="10" class="cellhi"/>
+    <circle cx="140" cy="97" r="10" fill="#fbeaea" stroke="#c0392b" stroke-width="1.4"/>
+    <circle cx="194" cy="97" r="10" class="cellhi2"/>
+    <text class="num" x="27" y="101">파</text>
+    <text class="num" x="135" y="101">붉</text>
+    <text class="num" x="189" y="101">초</text>
+    <path d="M122,99 L114,116 L130,116 z" fill="#fff" stroke="#666" stroke-width="1.6"/>
+    <text class="lbl" x="80" y="140">1×10 = 2x + 8y</text>
+  </g>
+  <g transform="translate(230,0)">
+    <!-- 오른쪽 저울: 붉 왼쪽 3, 파(1kg) 오른쪽 4, 초 오른쪽 10 -->
+    <line class="aux" x1="20" y1="52" x2="20" y2="92"/>
+    <line class="aux" x1="53" y1="42" x2="53" y2="92"/>
+    <line class="aux" x1="163" y1="52" x2="163" y2="92"/>
+    <line class="aux" x1="97" y1="72" x2="97" y2="92"/>
+    <line class="axis" x1="20" y1="52" x2="53" y2="52"/>
+    <line class="axis" x1="53" y1="52" x2="163" y2="52"/>
+    <line class="axis" x1="53" y1="72" x2="97" y2="72"/>
+    <text class="num" x="32" y="47">3</text>
+    <text class="num" x="103" y="47">10</text>
+    <text class="num" x="71" y="67">4</text>
+    <line x1="12" y1="97" x2="172" y2="97" stroke="#666" stroke-width="2.4"/>
+    <circle cx="20" cy="97" r="10" fill="#fbeaea" stroke="#c0392b" stroke-width="1.4"/>
+    <circle cx="97" cy="97" r="10" class="cellhi"/>
+    <circle cx="163" cy="97" r="10" class="cellhi2"/>
+    <text class="num" x="15" y="101">붉</text>
+    <text class="num" x="92" y="101">파</text>
+    <text class="num" x="158" y="101">초</text>
+    <path d="M53,99 L45,116 L61,116 z" fill="#fff" stroke="#666" stroke-width="1.6"/>
+    <text class="lbl" x="50" y="140">3x = 1×4 + 10y</text>
+  </g>
+</svg>
+<figcaption>그림 1.3 — 평형저울에 올려 둔 공의 무게 균형. 받침점(△)을 기준으로
+<b>(거리 × 무게)의 합이 좌우에서 같다</b>는 조건이 각각 하나의 일차방정식을 준다.</figcaption>
+</figure>
+
+<h2 class="sub">화학반응식의 균형 맞추기 <span class="en">balancing a chemical equation</span></h2>
+<div class="box ex">
+  <span class="tag">예제 1.6</span><span class="title">광합성 반응식의 계수</span>
+  <p>자연현상의 중요한 화학반응으로 식물에 의한 광합성 반응이 있다. 광합성 반응은 뿌리로부터 공급받는 물과
+  공기 중의 이산화탄소가 서로 반응하여 포도당($\mathrm{C_6H_{12}O_6}$)과 산소를 생성하는 화학반응이다.
+  광합성 반응의 화학반응식은 다음과 같다.</p>
+  $$k\,\mathrm{CO_2}+l\,\mathrm{H_2O}\ \longrightarrow\ m\,\mathrm{C_6H_{12}O_6}+n\,\mathrm{O_2}$$
+  <p>위의 화학반응식에서 반응 전과 반응 후의 원자수가 동일하다는 사실을 이용하여 미지수 $k,l,m,n$ 을 구하라.</p>
+  <p><b>풀이</b> &nbsp;먼저 탄소(C) 원자수로부터 $k=6m$ 을 얻을 수 있고, 마찬가지로 산소 원자, 수소 원자에
+  대해서도 각각 $2k+l=6m+2n$, $2l=12m$ 을 얻을 수 있다. 이 식들을 정리하면 다음과 같은
+  4원 일차연립방정식을 얻는다.</p>
+  $$\begin{cases}
+    \ \ k\qquad-\ \ 6m\qquad\ \ =0\\
+    2k+l-\ \ 6m-2n=0\\
+    \qquad\ 2l-12m\qquad\ \ =0
+  \end{cases}$$
+  <p>소거법을 적용하면 다음과 같은 연립방정식을 얻을 수 있다.</p>
+  $$\begin{cases}
+    k\ \ \ \ \ -6m\qquad\ \ \ =0\\
+    \ \ \ \ l+6m-2n=0\\
+    \qquad\ \ \ m-\tfrac16n=0
+  \end{cases}$$
+  <p>미지수는 4개이고 방정식은 3개이므로 무수히 많은 해를 갖는 부정연립방정식이다.
+  $n=6t$($t$ 는 자연수)로 두고 후진대입하면 $m=t$, $l=6t$, $k=6t$ 를 얻을 수 있다.
+  즉 해집합은 $\{(6t,6t,t,6t)\mid t\in\mathbb N\}$ 으로 무한집합이다.</p>
+  <p>예를 들어 $t=1$ 일 때 식물의 광합성 작용은 다음과 같다.</p>
+  $$6\,\mathrm{CO_2}+6\,\mathrm{H_2O}\ \longrightarrow\ \mathrm{C_6H_{12}O_6}+6\,\mathrm{O_2}$$
+  <p>즉 이산화탄소와 물 분자 6개가 빛을 에너지로 반응하면 포도당 분자 1개와 산소 분자 6개가 생성된다는 의미이다.</p>
+</div>
+
+<div class="note">
+  해가 무수히 많다는 것은 화학적으로 자연스러운 결과다. 반응식의 계수를 모두 같은 배수로 늘려도
+  같은 반응을 나타내기 때문이다. 실제 화학반응식으로 쓸 때는 <b>가장 작은 자연수 해</b>($t=1$)를 택한다.
+</div>
+
+<h2 class="sub">부분 분수 분해 <span class="en">partial fraction decomposition</span></h2>
+<div class="box ex">
+  <span class="tag">예제 1.7</span><span class="title">유리함수의 부분 분수 분해</span>
+  <p>유리함수란 다항식의 분수 형태로 표시되는 함수를 말한다. 다음은 유리함수이다.</p>
+  $$\frac{-x-5}{x^2-2x-3}$$
+  <p>유리함수는 다음과 같이 부분 분수로 나타내면 여러 가지로 편리하다. 상수 $a,b$ 를 구하라.</p>
+  $$\frac{-x-5}{x^2-2x-3}=\frac{a}{x+1}+\frac{b}{x-3}$$
+  <p><b>풀이</b> &nbsp;유리함수를 부분 분수로 나타내려면 문제에서 주어진 식처럼 분모를 인수분해하여 분리한 후
+  상수 $a,b$ 를 구하면 된다. 식의 우변을 통분하면 분모는 서로 같아지므로 양변의 분자가 서로 같아야 하는
+  항등식의 성질로부터 연립방정식을 만들어 구한다. 즉,</p>
+  $$\begin{aligned}
+    \frac{-x-5}{(x+1)(x-3)}&=\frac{a}{x+1}+\frac{b}{x-3}\\
+    &=\frac{a(x-3)+b(x+1)}{(x+1)(x-3)}\\
+    &=\frac{(a+b)x-3a+b}{(x+1)(x-3)}
+  \end{aligned}$$
+  <p>분자에서 $x$ 의 계수가 서로 같아야 하고 상수가 서로 같아야 하므로 $-1=(a+b)$, $-5=-3a+b$ 로부터
+  다음의 연립방정식을 얻을 수 있다.</p>
+  $$\begin{cases}
+    \ \ \ \ a+b=-1\\
+    -3a+b=-5
+  \end{cases}$$
+  <p>소거법을 이용하면 $-4a=-4$ 를 얻게 되어 $a=1$ 이 된다. $a=1$ 을 후진대입하면 $b=-2$ 를 얻게 된다.
+  따라서 원래의 유리함수는 다음과 같이 부분 분수로 나타낼 수 있다.</p>
+  $$\frac{-x-5}{x^2-2x-3}=\frac{1}{x+1}-\frac{2}{x-3}$$
+</div>
+
+<div class="note">
+  두 번째 방정식에서 첫 번째 방정식을 빼면 $(-3a+b)-(a+b)=-4a$ 이고 우변은 $-5-(-1)=-4$ 이므로
+  $-4a=-4$ 다. 미지수를 소거하는 도구가 <b>항등식의 계수 비교</b>와 결합해 쓰인 예다.
+</div>
+
+<h2 class="sub">교통량의 흐름 <span class="en">traffic flow</span></h2>
+<div class="box ex">
+  <span class="tag">예제 1.8</span><span class="title">회전교차로의 교통량</span>
+  <p>그림 1.4와 같이 회전교차로를 통과한 자동차의 흐름 데이터가 주어졌다고 가정하자.
+  도로 $x_1,x_2,x_3,x_4$ 를 통과한 자동차 수를 구하라.</p>
+  <p><b>풀이</b> &nbsp;A 지점으로 들어온 자동차 수는 $400+x_4$ 이고, A 지점을 통과해 나간 자동차 수는
+  $200+x_1$ 이다. 유입량과 유출량이 같아야 하므로 $400+x_4=200+x_1$ 이고 이를 정리하면 $x_1-x_4=200$ 이다.
+  같은 방법으로 B, C, D 지점의 유입량과 유출량을 계산하면 다음 연립방정식을 얻을 수 있다.</p>
+  $$\begin{cases}
+    x_1-x_2\qquad\ \ \ =\ \ 400\\
+    \qquad x_2-x_3\quad\ \ =-100\\
+    \qquad\quad\ \ x_3-x_4=-100\\
+    x_1\qquad\quad\ \ -x_4=\ \ 200
+  \end{cases}$$
+  <p>이 연립방정식은 겉으로 보기에는 방정식의 개수와 미지수의 개수가 같아 유일한 해를 가질 것 같지만
+  실제로는 부정방정식이다. $x_2=0$ 일 때 $x_1=400$, $x_3=100$, $x_4=200$ 인 특수해를 구할 수 있다.</p>
+  <p>교차로상의 도로가 모두 일방통행이므로 $x_2$ 는 음수일 수 없다. 따라서 $x_2=n\,(\ge0)$ 으로 두면</p>
+  $$x_1=400+n,\qquad x_3=100+n,\qquad x_4=200+n$$
+  <p>이 일반해이다. 즉 무수히 많은 해를 갖는다.</p>
+</div>
+
+<figure class="fig">
+<svg viewBox="0 0 300 240" role="img" aria-label="회전교차로 자동차 흐름도">
+  <defs>
+    <marker id="fl" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto">
+      <path d="M0,0 L6.5,3 L0,6 z" fill="#555"/></marker>
+    <marker id="cr" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto">
+      <path d="M0,0 L6.5,3 L0,6 z" fill="#1d6fb8"/></marker>
+  </defs>
+  <!-- 회전교차로: 중심 (150,110), 반지름 55.  A(111,71) D(189,71) C(189,149) B(111,149) -->
+  <path class="vec" d="M189,71 A55,55 0 0 0 111,71" marker-end="url(#cr)"/>
+  <path class="vec" d="M111,71 A55,55 0 0 0 111,149" marker-end="url(#cr)"/>
+  <path class="vec" d="M111,149 A55,55 0 0 0 189,149" marker-end="url(#cr)"/>
+  <path class="vec" d="M189,149 A55,55 0 0 0 189,71" marker-end="url(#cr)"/>
+  <!-- 교차로 내 도로 이름 -->
+  <text class="num" x="143" y="72">x₄</text>
+  <text class="num" x="104" y="114">x₁</text>
+  <text class="num" x="184" y="114">x₃</text>
+  <text class="num" x="143" y="156">x₂</text>
+  <!-- 지점 이름 -->
+  <text class="lbl" x="88" y="62">A</text>
+  <text class="lbl" x="204" y="62">D</text>
+  <text class="lbl" x="88" y="166">B</text>
+  <text class="lbl" x="204" y="166">C</text>
+  <!-- 외부 유입·유출 -->
+  <line x1="86" y1="30" x2="104" y2="60" stroke="#555" stroke-width="1.6" marker-end="url(#fl)"/>
+  <text class="num" x="60" y="28">400</text>
+  <line x1="100" y1="80" x2="56" y2="70" stroke="#555" stroke-width="1.6" marker-end="url(#fl)"/>
+  <text class="num" x="24" y="70">200</text>
+  <line x1="50" y1="104" x2="97" y2="130" stroke="#555" stroke-width="1.6" marker-end="url(#fl)"/>
+  <text class="num" x="16" y="104">100</text>
+  <line x1="112" y1="163" x2="104" y2="196" stroke="#555" stroke-width="1.6" marker-end="url(#fl)"/>
+  <text class="num" x="88" y="212">500</text>
+  <line x1="198" y1="196" x2="190" y2="163" stroke="#555" stroke-width="1.6" marker-end="url(#fl)"/>
+  <text class="num" x="182" y="212">300</text>
+  <line x1="200" y1="152" x2="246" y2="162" stroke="#555" stroke-width="1.6" marker-end="url(#fl)"/>
+  <text class="num" x="250" y="166">200</text>
+  <line x1="248" y1="86" x2="202" y2="76" stroke="#555" stroke-width="1.6" marker-end="url(#fl)"/>
+  <text class="num" x="252" y="82">200</text>
+  <line x1="196" y1="60" x2="214" y2="30" stroke="#555" stroke-width="1.6" marker-end="url(#fl)"/>
+  <text class="num" x="218" y="28">100</text>
+</svg>
+<figcaption>그림 1.4 — 회전교차로 자동차 흐름도. 각 지점 A, B, C, D 에서
+<b>유입량 = 유출량</b>이라는 조건이 하나씩의 일차방정식을 준다.
+파란 화살표는 교차로 내부의 일방통행 방향이다.</figcaption>
+</figure>
+
+<div class="note">
+  네 방정식을 모두 더하면 $0=0$ 이 된다(첫 세 식을 더하면 $x_1-x_4=200$ 으로 네 번째 식과 같다).
+  즉 방정식 하나가 나머지에 종속되어 있어, 방정식 개수와 미지수 개수가 같아도 유일한 해가 나오지 않는다.
+  실제로 독립인 방정식은 3개뿐이므로 미지수 하나($x_2=n$)가 자유롭게 남는다.
+</div>
+
+<div class="terms">
+  <div class="h">알아두기 — 응용 문제에서 붙는 제약</div>
+  <dl>
+    <dt>정수·자연수 조건</dt>
+    <dd>예제 1.6의 화학반응식 계수는 자연수여야 하므로 $t\in\mathbb N$ 이라는 제약이 붙는다.</dd>
+    <dt>비음수 조건 <span class="en">nonnegativity</span></dt>
+    <dd>예제 1.8의 통행량은 일방통행이므로 음수일 수 없어 $n\ge0$ 이라는 제약이 붙는다.
+      수학적 해집합은 무한하지만, 현실적으로 의미 있는 해는 이런 제약을 만족하는 부분집합이다.</dd>
+  </dl>
+</div>
+
+<nav class="pager">
+  <a href="1-2_elimination.html">← 이전<small>1.2 소거법</small></a>
+  <a class="next" href="../index.html">목차 →<small>선형대수학</small></a>
+</nav>
+
+</body>
+</html>

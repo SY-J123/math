@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>선형대수학 · 1.1 일차연립방정식</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">선형대수학 · 1장 일차연립방정식</div>
+  <h1><span class="no">1.1</span>일차연립방정식 <span class="en">system of linear equations</span></h1>
+</header>
+
+<div class="note">
+  선형대수학은 가장 단순한 방정식 $ax=b$ 에서 출발한다. 미지수 하나짜리 방정식의 해가 <b>유일한 해·불능·부정</b>
+  셋 중 하나라는 사실이, 미지수가 $n$ 개인 연립방정식에서도 그대로 반복된다. 이 절은 그 출발점과 용어를 정리한다.
+</div>
+
+<h2 class="sub">일차방정식 $ax=b$ <span class="en">linear equation</span></h2>
+<div class="box def">
+  <span class="tag">정의</span><span class="title">일차방정식과 그 해 <span class="en">linear equation, solution</span></span>
+  <p>가장 간단한 일차방정식은</p>
+  $$ax=b \qquad\cdots(1.1)$$
+  <p>이다. 여기서 각 문자의 이름은 다음과 같다.</p>
+  <ol class="props">
+    <li>$a$ — <b>계수</b>(coefficient)</li>
+    <li>$b$ — <b>상수</b>(constant)</li>
+    <li>$x$ — 구하고자 하는 <b>미지수</b>(unknown)</li>
+  </ol>
+  <p>어떤 수 $s$ 가 $as=b$ 를 만족할 때 $s$ 를 방정식 (1.1)의 <b>해</b>(solution) 또는 <b>근</b>(root)이라 하고,
+  해를 구하는 것을 ‘일차방정식을 푼다’ 고 한다.</p>
+</div>
+
+<p>방정식 (1.1)을 푸는 방법은 계수 $a$ 와 상수 $b$ 가 어떤 값인지에 따라 세 갈래로 갈린다.</p>
+
+<div class="box thm">
+  <span class="tag">정리</span><span class="title">일차방정식 $ax=b$ 의 해의 분류</span>
+  <ol class="props">
+    <li><b>$a=0,\ b=0$ 인 경우</b> — 방정식은 $0x=0$ 이 되어 <b>어떤 값이라도</b> 해가 된다.
+      즉 해가 무한개다. 이런 방정식을 <b>부정</b>(不定; indeterminate)이라 하고, 부정인 해를 갖는다고 한다.</li>
+    <li><b>$a=0,\ b\ne0$ 인 경우</b> — 방정식은 $0x=b\ (b\ne0)$ 가 되어 <b>어떤 $x$ 도</b> 해가 될 수 없다.
+      이런 방정식을 <b>불능</b>(不能; impossible)이라 하고, 불능인 해(no solution)를 갖는다고 한다.</li>
+    <li><b>$a\ne0$ 인 경우</b> — $a$ 의 곱셈에 관한 역원 $a^{-1}$ 이 존재하므로 양변에 곱해 주면
+      $a^{-1}ax=a^{-1}b$, 따라서 $x=a^{-1}b$ 다. 역원은 유일하므로 방정식 (1.1)은
+      <b>유일한 해</b>(unique solution)를 갖는다.</li>
+  </ol>
+</div>
+
+<p>이것을 기하학적으로 보면 방정식 (1.1)의 해는 두 그래프 $y=ax$ 와 $y=b$ 의 <b>교점의 $x$ 좌표</b>다.
+세 경우는 각각 두 그래프가 완전히 겹치는 경우, 평행해서 만나지 않는 경우, 한 점에서 만나는 경우에 해당한다.</p>
+
+<figure class="fig">
+<svg viewBox="0 0 660 175" role="img" aria-label="일차방정식 ax=b 의 해집합 세 가지 경우">
+  <g>
+    <!-- (가) a=0, b=0 : y=ax 와 y=b 가 모두 x축 → 완전히 겹침 -->
+    <line class="axis" x1="25" y1="105" x2="200" y2="105"/>
+    <line class="axis" x1="50" y1="25" x2="50" y2="145"/>
+    <line class="vec" x1="55" y1="105" x2="192" y2="105"/>
+    <line class="vec2" x1="55" y1="105" x2="192" y2="105" stroke-dasharray="6 5"/>
+    <text class="lbl b" x="122" y="98">y=ax</text>
+    <text class="lbl t" x="122" y="122">y=b</text>
+    <text class="lbl" x="40" y="20" fill="#5a5a5a">y</text>
+    <text class="lbl" x="196" y="122" fill="#5a5a5a">x</text>
+    <text class="lbl" x="38" y="120" fill="#5a5a5a">O</text>
+    <text class="lbl" x="52" y="167">(가) a=0, b=0 인 경우</text>
+  </g>
+  <g transform="translate(220,0)">
+    <!-- (나) a=0, b≠0 : y=ax 는 x축, y=b 는 평행선 → 교점 없음 -->
+    <line class="axis" x1="25" y1="105" x2="200" y2="105"/>
+    <line class="axis" x1="50" y1="25" x2="50" y2="145"/>
+    <line class="vec" x1="55" y1="105" x2="192" y2="105"/>
+    <line class="vec2" x1="55" y1="60" x2="192" y2="60"/>
+    <text class="lbl t" x="140" y="53">y=b</text>
+    <text class="lbl b" x="140" y="122">y=ax</text>
+    <text class="lbl" x="38" y="64" fill="#5a5a5a">b</text>
+    <text class="lbl" x="40" y="20" fill="#5a5a5a">y</text>
+    <text class="lbl" x="196" y="122" fill="#5a5a5a">x</text>
+    <text class="lbl" x="38" y="120" fill="#5a5a5a">O</text>
+    <text class="lbl" x="46" y="167">(나) a=0, b≠0 인 경우</text>
+  </g>
+  <g transform="translate(440,0)">
+    <!-- (다) a≠0 : 한 점에서 만남, 교점의 x좌표가 해 -->
+    <line class="axis" x1="25" y1="105" x2="200" y2="105"/>
+    <line class="axis" x1="50" y1="25" x2="50" y2="145"/>
+    <line class="vec" x1="28" y1="140" x2="185" y2="30"/>
+    <line class="vec2" x1="55" y1="60" x2="192" y2="60"/>
+    <line class="aux" x1="164" y1="60" x2="164" y2="105"/>
+    <circle cx="164" cy="60" r="3" fill="#7b3fa0"/>
+    <text class="lbl b" x="150" y="26">y=ax</text>
+    <text class="lbl t" x="130" y="53">y=b</text>
+    <text class="lbl" x="38" y="64" fill="#5a5a5a">b</text>
+    <text class="lbl p" x="140" y="122">x=a⁻¹b</text>
+    <text class="lbl" x="40" y="20" fill="#5a5a5a">y</text>
+    <text class="lbl" x="196" y="122" fill="#5a5a5a">x</text>
+    <text class="lbl" x="38" y="120" fill="#5a5a5a">O</text>
+    <text class="lbl" x="62" y="167">(다) a≠0 인 경우</text>
+  </g>
+</svg>
+<figcaption>그림 1.1 — 일차방정식 $ax=b$ 의 해집합. 해는 $y=ax$ 와 $y=b$ 의 교점의 $x$ 좌표이므로,
+두 그래프가 <b>겹치면 부정</b>, <b>평행하면 불능</b>, <b>한 점에서 만나면 유일한 해</b>가 된다.</figcaption>
+</figure>
+
+<div class="terms">
+  <div class="h">알아두기 — 부정과 불능</div>
+  <dl>
+    <dt>부정 <span class="en">indeterminate</span></dt>
+    <dd>‘정할 수 없다’ 는 뜻. 해가 없는 것이 아니라 <b>너무 많아서</b> 하나로 정해지지 않는 경우다. $0x=0$.</dd>
+    <dt>불능 <span class="en">impossible</span></dt>
+    <dd>‘할 수 없다’ 는 뜻. 조건을 만족하는 값이 <b>아예 존재하지 않는</b> 경우다. $0x=b\ (b\ne0)$.</dd>
+  </dl>
+</div>
+
+<h2 class="sub">$n$ 원 일차연립방정식 <span class="en">system of linear equations in $n$ unknowns</span></h2>
+<div class="box def">
+  <span class="tag">정의</span><span class="title">$n$ 원 일차연립방정식과 그 해</span>
+  <p>미지수가 $n$ 개인 일차방정식을 유한개 묶어 놓은 것을 <b>$n$ 원 일차연립방정식</b>이라 한다.</p>
+  $$\begin{cases}
+    a_{11}x_1+a_{12}x_2+\cdots+a_{1n}x_n=b_1\\
+    a_{21}x_1+a_{22}x_2+\cdots+a_{2n}x_n=b_2\\
+    \quad\vdots\\
+    a_{m1}x_1+a_{m2}x_2+\cdots+a_{mn}x_n=b_m
+  \end{cases}\qquad\cdots(1.2)$$
+  <p>여기서 $1\le i\le m,\ 1\le j\le n$ 인 $i,j$ 에 대해</p>
+  <ol class="props">
+    <li>$a_{ij}$ — $i$ 번째 방정식의 $j$ 번째 미지수의 <b>계수</b></li>
+    <li>$b_i$ — $i$ 번째 방정식의 <b>상수</b></li>
+    <li>$x_j$ — 각 방정식의 $j$ 번째 <b>미지수</b></li>
+  </ol>
+  <p>또한 연립방정식 (1.2)에 $x_1=s_1,\ x_2=s_2,\ \dots,\ x_n=s_n$ 을 대입하여 <b>모든 방정식을 동시에</b> 만족할 때,
+  순서열 $(s_1,s_2,\dots,s_n)$ 을 연립방정식 (1.2)의 <b>해</b>라고 한다.</p>
+</div>
+
+<p>연립방정식 (1.2)에서 각각의 방정식은 모두 미지수의 <b>차수</b>(degree)가 1차(first power)임에 유의해야 한다.
+따라서 다음 방정식들은 1차가 아닌 미지수를 포함하므로 일차방정식이 아니다.</p>
+$$2x^3-x^2+3x+y=4,\qquad x-y+3\sqrt{z}=7$$
+<div class="note">
+  일차방정식이 아닌 방정식을 <b>하나라도</b> 포함하는 연립방정식은 일차연립방정식이 아니다.
+  즉 미지수가 다른 미지수와 곱해지거나($xy$), 거듭제곱되거나($x^2$), 근호·분수·초월함수 안에 들어가면($\sqrt z,\ 1/x,\ \sin x$)
+  선형대수학의 대상에서 벗어난다.
+</div>
+
+<div class="box ex">
+  <span class="tag">예제 1.1</span><span class="title">2원 일차연립방정식의 해 판정</span>
+  <p>다음은 $x,y$ 가 미지수인 2원 일차연립방정식이다. 이 방정식의 해에 대하여 설명하라.</p>
+  $$\begin{cases}
+    x+2y=-1\\
+    2x-\ \ y=\ \ 3
+  \end{cases}\qquad\cdots(1.3)$$
+  <p><b>풀이</b> &nbsp;일반형 연립방정식 (1.2)와 연립방정식 (1.3)을 비교하면
+  $a_{11}=1,\ a_{12}=2,\ a_{21}=2,\ a_{22}=-1$ 은 계수이고, $b_1=-1,\ b_2=3$ 은 상수다.</p>
+  <p>이때 순서열 $(1,-1)$ 은 다음과 같이 연립방정식 (1.3)을 만족시키므로 이 연립방정식의 해다.</p>
+  $$\begin{aligned}
+    (1)+2(-1)&=-1\\
+    2(1)-(-1)&=\ \ 3
+  \end{aligned}$$
+  <p>한편 순서열 $(-1,1)$ 은 연립방정식 (1.3)의 해가 아니다. $(-1)+2(1)=1\ne-1$ 과 같이
+  <b>첫 번째 방정식조차</b> 만족시키지 못하기 때문이다.</p>
+  <p>순서열 $(3,-2)$ 의 경우 $(3)+2(-2)=-1$ 로 첫 번째 방정식은 만족시키지만
+  $2(3)-(-2)=8\ne3$ 이므로 두 번째 방정식은 만족시키지 못한다. 따라서 해가 아니다.</p>
+</div>
+
+<div class="note">
+  예제 1.1이 보여주듯 연립방정식의 해는 <b>모든 방정식을 동시에</b> 만족해야 한다.
+  방정식 하나만 만족하는 순서열은 해가 아니다 — 이 점이 방정식 한 개를 푸는 것과 연립방정식을 푸는 것의 차이이며,
+  다음 절의 <a href="1-2_elimination.html">소거법</a>이 필요한 이유다.
+</div>
+
+<nav class="pager">
+  <a href="../index.html">← 목차<small>선형대수학</small></a>
+  <a class="next" href="1-2_elimination.html">다음 →<small>1.2 소거법</small></a>
+</nav>
+
+</body>
+</html>

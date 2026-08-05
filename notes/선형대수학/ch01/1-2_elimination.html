@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>선형대수학 · 1.2 소거법</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">선형대수학 · 1장 일차연립방정식</div>
+  <h1><span class="no">1.2</span>소거법 <span class="en">elimination method</span></h1>
+</header>
+
+<div class="note">
+  연립방정식을 푸는 전략은 “미지수를 하나씩 없애서 $ax=b$ 로 되돌린다” 는 것이다.
+  <a href="1-1_linear-equations.html">1.1절</a>에서 $ax=b$ 의 해가 유일한 해·불능·부정 셋으로 갈렸듯,
+  연립방정식의 해도 소거를 끝까지 밀어 보면 같은 세 갈래로 갈린다.
+</div>
+
+<h2 class="sub">소거법과 후진대입 <span class="en">elimination method &amp; back substitution</span></h2>
+<div class="box def">
+  <span class="tag">정의</span><span class="title">소거법과 후진대입</span>
+  <p>일차연립방정식을 푸는 간단한 방법이 <b>소거법</b>(elimination method)이다. 연립방정식 내의 한 방정식에서
+  하나의 미지수를 없애기 위해 다른 방정식에 적당한 값을 곱한 다음 해당 방정식에 더해 준다.</p>
+  <p>이 과정을 필요한 만큼 반복하여 어떤 방정식이 하나의 미지수만 갖도록 하면 $ax=b$ 의 형태를 얻을 수 있다.
+  이 방정식에 대해 1.1절에서 설명한 것처럼 미지수 $x$ 를 구하고, 구한 $x$ 값을 다른 방정식에 대입하면
+  나머지 미지수의 값을 차례로 얻을 수 있다. 이러한 대입 과정을 <b>후진대입</b>(back substitution)이라고 한다.</p>
+</div>
+
+<p>미지수를 2개로 제한하여 세 가지 예제를 살펴보자. 세 예제는 각각 유일한 해·불능인 해·부정인 해에 대응한다.</p>
+
+<h2 class="sub">유일한 해가 존재하는 경우 <span class="en">unique solution</span></h2>
+<div class="box ex">
+  <span class="tag">예제 1.2</span><span class="title">유일한 해를 갖는 연립방정식</span>
+  <p>다음 2원 일차연립방정식을 소거법으로 풀어라.</p>
+  $$\begin{cases}
+    3x-2y=-1\\
+    \ \ x+\ \ y=\ \ 3
+  \end{cases}\qquad\cdots(1.4)$$
+  <p><b>풀이</b> &nbsp;먼저 다음과 같이 두 방정식의 순서를 바꾼다.</p>
+  $$\begin{cases}
+    \ \ x+\ \ y=\ \ 3\\
+    3x-2y=-1
+  \end{cases}\qquad\cdots(1.5)$$
+  <p>이제 첫 번째 방정식에 $2$ 를 곱하여 두 번째 방정식에 더한다. 첫 번째 방정식의 $2$ 배는 $2x+2y=6$ 이고,
+  이것을 $3x-2y=-1$ 에 더하면 $y$ 가 사라진다.</p>
+  $$\begin{cases}
+    x+y=3\\
+    5x\ \ \ \ \ =5
+  \end{cases}$$
+  <p>두 번째 방정식에서 $x$ 의 계수는 $5$ 로 $0$ 이 아니므로 $x=1$ 이다. 이 값을 첫 번째 방정식에 후진대입하면
+  $y=3-x=3-1=2$ 이다.</p>
+  <p>그런데 연립방정식 (1.4)와 (1.5)는 동일한 해집합을 가지므로 순서열 $(1,2)$ 는 연립방정식 (1.4)의 해가 된다.</p>
+</div>
+
+<div class="note">
+  소거의 순서는 자유롭다. 위에서는 $y$ 를 먼저 없앴지만, 첫 번째 방정식에 $-3$ 을 곱해 두 번째 방정식에 더하면
+  $-5y=-10$ 을 얻어 $y=2$ 를 먼저 구하고 $x=3-y=1$ 로 후진대입할 수도 있다. 어느 쪽이든 해는 같다.
+</div>
+
+<h2 class="sub">해가 없는 경우 <span class="en">no solution</span></h2>
+<div class="box ex">
+  <span class="tag">예제 1.3</span><span class="title">불능인 해를 갖는 연립방정식</span>
+  <p>다음 2원 일차연립방정식을 소거법으로 풀어라.</p>
+  $$\begin{cases}
+    3x+3y=\ \ 6\\
+    4x+4y=12
+  \end{cases}\qquad\cdots(1.6)$$
+  <p><b>풀이</b> &nbsp;먼저 첫 번째 방정식에 $\tfrac13$ 을 곱한다.</p>
+  $$\begin{cases}
+    \ \ x+\ \ y=\ \ 2\\
+    4x+4y=12
+  \end{cases}$$
+  <p>첫 번째 방정식에 $-4$ 를 곱하여 두 번째 방정식에 더한다.</p>
+  $$\begin{cases}
+    x+y=2\\
+    \ \ \ \ 0=4
+  \end{cases}\qquad\cdots(1.7)$$
+  <p>여기서 두 번째 방정식은 사실 $0x+0y=4$ 인 것이고 $0\ne4$ 이므로 이 식을 만족시키는 $x,y$ 는 없다.
+  따라서 연립방정식 (1.7)의 두 방정식을 동시에 만족시키는 $x,y$ 는 없다.</p>
+  <p>그러므로 같은 해집합을 갖는 연립방정식 (1.6)도 해가 없다. 즉 <b>불능인 해</b>를 갖는다.</p>
+</div>
+
+<h2 class="sub">해가 무수히 많은 경우 <span class="en">infinite solutions</span></h2>
+<div class="box ex">
+  <span class="tag">예제 1.4</span><span class="title">부정인 해를 갖는 연립방정식</span>
+  <p>다음 2원 일차연립방정식을 소거법으로 풀어라.</p>
+  $$\begin{cases}
+    3x+2y=\ \ 6\\
+    6x+4y=12
+  \end{cases}\qquad\cdots(1.8)$$
+  <p><b>풀이</b> &nbsp;첫 번째 방정식에 $\tfrac12$ 을 곱한다.</p>
+  $$\begin{cases}
+    \tfrac32x+\ \ y=\ \ 3\\
+    6x+4y=12
+  \end{cases}$$
+  <p>첫 번째 방정식에 $-4$ 를 곱한 다음 두 번째 방정식에 더한다.</p>
+  $$\begin{cases}
+    \tfrac32x+y=3\\
+    \ \ \ \ \ \ \ \ 0=0
+  \end{cases}$$
+  <p>여기서 두 번째 방정식은 사실 $0x+0y=0$ 이다. 따라서 이 식은 어떤 $x,y$ 에 대해서도 성립한다.
+  그러므로 연립방정식 (1.8)은 다음 일차방정식 (1.9) 하나인 셈이다.</p>
+  $$\tfrac32x+y=3\qquad\cdots(1.9)$$
+  <p>사실 식 (1.8)의 두 방정식은 식 (1.9)의 방정식에 일정한 수를 곱하여 얻을 수 있다.
+  따라서 연립방정식 (1.8)은 무수히 많은 해, 즉 <b>부정인 해</b>를 갖는다. 즉 $x=k$ 라고 하면
+  $y=3-\tfrac32k$ 가 되어 식 (1.8)의 해집합은</p>
+  $$\left\{\left(k,\ 3-\tfrac32k\right)\ \middle|\ k\text{는 임의의 수}\right\}$$
+  <p>가 된다. 예를 들어 $k=2$ 이면 $(2,0)$ 이, $k=4$ 이면 $(4,-3)$ 이 해가 된다.</p>
+</div>
+
+<div class="terms">
+  <div class="h">알아두기 — 매개변수</div>
+  <dl>
+    <dt>매개변수 <span class="en">parameter</span></dt>
+    <dd>예제 1.4의 $k$ 처럼, 무수히 많은 해를 <b>하나의 식으로 서술하기 위해 도입하는 변수</b>다.
+      미지수가 아니라 해를 훑어 나가는 눈금 역할을 한다. $k$ 에 수를 하나 넣을 때마다 해가 하나 나온다.</dd>
+  </dl>
+</div>
+
+<h2 class="sub">기본연산과 세 가지 해 <span class="en">elementary operations &amp; three types of solution</span></h2>
+<p>예제 1.2에서 예제 1.4까지의 내용을 통해 소거법의 기본적인 특성과 함께 연립방정식의 세 가지 가능한 해를
+살펴보았다. 이것을 정리하면 다음과 같다.</p>
+
+<div class="box thm">
+  <span class="tag">정리</span><span class="title">방정식에 관한 세 가지 기본연산 <span class="en">elementary operation</span></span>
+  <p>소거법은 다음과 같은 세 가지 연산을 이용하여 주어진 연립방정식을 변형시켜, <b>동일한 해집합을 가지면서도</b>
+  보다 풀기 쉬운 형태의 연립방정식으로 변환해 나가는 방법이다.</p>
+  <ol class="props">
+    <li>두 방정식을 <b>교환</b>한다.</li>
+    <li>한 방정식에 $0$ 이 아닌 상수를 <b>곱한다</b>.</li>
+    <li>한 방정식에 임의의 상수를 곱하여 다른 방정식을 <b>더한다</b>.</li>
+  </ol>
+  <p>이 세 가지 연산을 방정식에 관한 세 가지 <b>기본연산</b>(elementary operation)이라고 한다.</p>
+</div>
+
+<div class="note">
+  ②에서 곱하는 상수가 $0$ 이 아니어야 하는 이유는, $0$ 을 곱하면 그 방정식이 $0=0$ 으로 사라져
+  <b>해집합이 커져 버리기</b> 때문이다. 세 연산은 모두 되돌릴 수 있어(역연산이 다시 기본연산이다)
+  변형 전후의 연립방정식은 항상 같은 해집합을 갖는다.
+</div>
+
+<div class="box thm">
+  <span class="tag">정리</span><span class="title">일차연립방정식의 세 가지 해</span>
+  <p>연립방정식의 세 가지 가능한 해는 1.1절에서 설명한 $ax=b$ 의 해집합에 관한 내용과 동일하게
+  다음 세 가지 경우다.</p>
+  <ol class="props">
+    <li><b>유일한 해가 존재하는 경우</b>(unique solution) — 예제 1.2</li>
+    <li><b>해가 없는 경우</b>(불능인 해, no solution) — 예제 1.3</li>
+    <li><b>해가 무수히 많은 경우</b>(부정인 해, infinite solutions) — 예제 1.4</li>
+  </ol>
+</div>
+
+<p>2원 일차연립방정식의 각 방정식은 평면 위의 직선이므로, 세 경우는 두 직선의 위치 관계로 그대로 읽힌다.</p>
+
+<figure class="fig">
+<svg viewBox="0 0 660 190" role="img" aria-label="일차연립방정식의 해집합 세 가지 경우의 그래프">
+  <g>
+    <!-- (가) 예제 1.2 : 한 점 (1,2) 에서 만남.  O=(55,120), 1단위=20px -->
+    <line class="axis" x1="25" y1="120" x2="200" y2="120"/>
+    <line class="axis" x1="55" y1="28" x2="55" y2="152"/>
+    <line class="vec" x1="35" y1="140" x2="112" y2="25"/>
+    <line class="vec2" x1="42" y1="47" x2="131" y2="136"/>
+    <circle cx="75" cy="80" r="3.2" fill="#7b3fa0"/>
+    <text class="lbl b" x="84" y="22">3x−2y=−1</text>
+    <text class="lbl t" x="134" y="130">x+y=3</text>
+    <text class="lbl p" x="82" y="76">(1, 2)</text>
+    <text class="lbl" x="43" y="84" fill="#5a5a5a">2</text>
+    <text class="lbl" x="72" y="134" fill="#5a5a5a">1</text>
+    <text class="lbl" x="112" y="134" fill="#5a5a5a">3</text>
+    <text class="lbl" x="45" y="22" fill="#5a5a5a">y</text>
+    <text class="lbl" x="194" y="136" fill="#5a5a5a">x</text>
+    <text class="lbl" x="42" y="136" fill="#5a5a5a">O</text>
+    <text class="lbl" x="24" y="180">(가) 예제 1.2 — 유일한 해</text>
+  </g>
+  <g transform="translate(220,0)">
+    <!-- (나) 예제 1.3 : 두 직선이 평행 → 해 없음 -->
+    <line class="axis" x1="25" y1="120" x2="200" y2="120"/>
+    <line class="axis" x1="55" y1="28" x2="55" y2="152"/>
+    <line class="vec" x1="45" y1="70" x2="111" y2="136"/>
+    <line class="vec2" x1="45" y1="50" x2="131" y2="136"/>
+    <text class="lbl b" x="62" y="152">3x+3y=6</text>
+    <text class="lbl t" x="133" y="140">4x+4y=12</text>
+    <text class="lbl" x="43" y="64" fill="#5a5a5a">3</text>
+    <text class="lbl" x="92" y="134" fill="#5a5a5a">2</text>
+    <text class="lbl" x="45" y="22" fill="#5a5a5a">y</text>
+    <text class="lbl" x="194" y="136" fill="#5a5a5a">x</text>
+    <text class="lbl" x="42" y="136" fill="#5a5a5a">O</text>
+    <text class="lbl" x="24" y="180">(나) 예제 1.3 — 불능인 해</text>
+  </g>
+  <g transform="translate(440,0)">
+    <!-- (다) 예제 1.4 : 두 직선이 일치 → 해가 무수히 많음 -->
+    <line class="axis" x1="25" y1="120" x2="200" y2="120"/>
+    <line class="axis" x1="55" y1="28" x2="55" y2="152"/>
+    <line class="vec" x1="45" y1="45" x2="110" y2="142"/>
+    <line class="vec2" x1="45" y1="45" x2="110" y2="142" stroke-dasharray="6 5"/>
+    <text class="lbl b" x="114" y="108">3x+2y=6</text>
+    <text class="lbl t" x="114" y="130">6x+4y=12</text>
+    <text class="lbl" x="43" y="64" fill="#5a5a5a">3</text>
+    <text class="lbl" x="92" y="134" fill="#5a5a5a">2</text>
+    <text class="lbl" x="45" y="22" fill="#5a5a5a">y</text>
+    <text class="lbl" x="194" y="136" fill="#5a5a5a">x</text>
+    <text class="lbl" x="42" y="136" fill="#5a5a5a">O</text>
+    <text class="lbl" x="24" y="180">(다) 예제 1.4 — 부정인 해</text>
+  </g>
+</svg>
+<figcaption>그림 1.2 — 일차연립방정식의 해집합. 두 직선이 <b>한 점에서 만나면</b> 유일한 해,
+<b>평행하면</b> 불능, <b>완전히 겹치면</b> 부정이다. 소거 결과 각각 $5x=5$, $0=4$, $0=0$ 이 나온 것과 대응한다.</figcaption>
+</figure>
+
+<div class="note">
+  소거를 끝까지 진행했을 때 마지막 방정식의 모양이 곧 해의 종류를 알려 준다.
+  미지수 하나가 계수 $\ne0$ 으로 남으면 유일한 해, 미지수가 모두 사라지고 $0=(\text{0이 아닌 수})$ 가 되면 불능,
+  $0=0$ 이 되면 부정이다.
+</div>
+
+<nav class="pager">
+  <a href="1-1_linear-equations.html">← 이전<small>1.1 일차연립방정식</small></a>
+  <a class="next" href="1-3_applications.html">다음 →<small>1.3 일차연립방정식의 응용</small></a>
+</nav>
+
+</body>
+</html>
