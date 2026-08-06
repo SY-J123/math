@@ -287,22 +287,85 @@
   결합 충분통계량일 <b>필요충분조건</b>은, 결합밀도가 $s$ 와 $\theta$ 만의 함수인 $g$ 와
   $(x_1,\dots,x_n)$ 만의 함수인 $h$ 의 <b>곱</b>으로 나타내어지는 것이다:</p>
   $$f(x_1,x_2,\dots,x_n;\theta)=g(s(x);\theta)\times h(x_1,x_2,\dots,x_n).$$
+  <p>여기서 $g$ 는 $\theta$ 를 품고 있으나 자료는 오직 요약값 $s$ 를 통해서만 관여하는 부분이고,
+  $h$ 는 $\theta$ 가 전혀 들어 있지 않은 부분이다.</p>
+</div>
+<div class="note">
+  <b>핵심 한 줄.</b> $\theta$ 가 자료에 닿는 <b>통로가 오직 $S$ 하나뿐</b>이면 $S$ 는 충분통계량이다.
+  인수분해 정리는 그 "통로가 하나뿐"이라는 조건을 <b>곱셈 꼴</b>로 확인해 주는 도구다.
+</div>
+<div class="note">
+  <b>기호 정리 — 통계량은 표본의 함수.</b> 증명에 들어가기 전에 대문자 $S$ 와 소문자 $s$ 를 구분해 두어야 한다.
+  <ul class="props">
+    <li>$S=s(X_1,\dots,X_n)$ — 표본추출 <b>전</b>의 확률변수. 따라서 자기 분포 $f_S(s;\theta)$ 를 가진다.</li>
+    <li>$s=s(x_1,\dots,x_n)$ — 표본추출 <b>후</b> 실제로 관측된 값(숫자).</li>
+    <li>함수 규칙 $s(\cdot)$ 은 하나뿐이고, 그 안에 랜덤한 $X$ 를 넣으면 $S$, 관측값 $x$ 를 넣으면 $s$ 가 된다.</li>
+    <li>$s(\cdot)$ 의 정의에는 $\theta$ 가 <b>절대 들어가지 않는다</b> — 통계량은 자료만으로 계산되는 값이다.</li>
+  </ul>
+</div>
+<div class="note">
+  <b>출발 등식.</b> $x=(x_1,\dots,x_n)$ 이 정해지면 $s=s(x)$ 는 자동으로 딸려 나오는 값이므로, 사건
+  "$X=x$" 와 사건 "$X=x$ 이고 $S=s(x)$" 는 <b>같은 사건</b>이다. 따라서 $P(A\cap B)=P(B)P(A\mid B)$ 를 쓰면
+  $$f(x;\theta)=f_S(s;\theta)\cdot f_{X\mid S}(x\mid s)$$
+  가 성립한다. 아래 증명은 이 한 줄에서 출발한다.
 </div>
 <div class="box prf">
   <span class="tag">증명 <span class="en">이산형의 경우</span></span>
-  <p>($\Rightarrow$) $S$ 가 충분통계량이면, 충분성의 정의에 의해 조건부 밀도 $f_{X\mid s}$ 는 $\theta$ 에
-  의존하지 않으므로</p>
-  $$f(x_1,\dots,x_n;\theta)=f_S(s;\theta)\,f_{X\mid S}(x_1,\dots,x_n\mid s)
-  =g(s;\theta)\,h(x_1,\dots,x_n)$$
-  <p>— $g$ 는 $S$ 의 밀도, $h$ 는 조건부 밀도로 택하면 된다.</p>
-  <p>($\Leftarrow$) 역으로 $f=g(s;\theta)h(x)$ 라고 하면, $S$ 의 확률밀도함수는 ($\sum$ 은
-  $s(x_1,\dots,x_n)=s$ 를 만족하는 $(x_1,\dots,x_n)$ 에 대한 합)</p>
-  $$f_S(s;\theta)=P(S=s;\theta)=\sum f(x_1,\dots,x_n;\theta)=g(s;\theta)\sum h(x_1,\dots,x_n)$$
-  <p>이므로, $S=s$ 가 주어졌을 때의 조건부 확률밀도함수는</p>
-  $$f(x_1,\dots,x_n\mid s)=\frac{g(s;\theta)\,h(x_1,\dots,x_n)}{g(s;\theta)\sum h}
-  =\frac{h(x_1,\dots,x_n)}{\sum h}$$
-  <p>가 되어 $\theta$ 에 의존하지 않는다 — $S$ 는 충분통계량이다.</p>
+  <p>($\Rightarrow$) <b>충분통계량이면 곱으로 분해된다.</b> "$S$ 가 충분"의 정의가 곧 "조건부 밀도
+  $f_{X\mid S}(x\mid s)$ 가 $\theta$ 에 의존하지 않는다"이므로, 출발 등식에 그대로 대입하면</p>
+  $$f(x_1,\dots,x_n;\theta)=\underbrace{f_S(s;\theta)}_{\theta\ \text{있음}}\cdot
+  \underbrace{f_{X\mid S}(x_1,\dots,x_n\mid s)}_{\theta\ \text{없음}}$$
+  <p>가 된다. 여기서 앞의 것을 $g$, 뒤의 것을 $h$ 라 <b>이름만 바꾸어</b> 놓으면</p>
+  $$g(s;\theta):=f_S(s;\theta),\qquad h(x_1,\dots,x_n):=f_{X\mid S}(x_1,\dots,x_n\mid s(x))$$
+  <p>이고 $f=g(s;\theta)h(x)$ 꼴이 된다. (조건부 밀도는 $x$ 와 $s$ 둘에 의존하는 것처럼 보이지만
+  $s=s(x)$ 가 $x$ 로부터 결정되므로 결국 $x$ 만의 함수이며, 정의에 의해 $\theta$ 는 없다.)</p>
+  <p>($\Leftarrow$) <b>곱으로 분해되면 충분통계량이다.</b> 이제 $f(x;\theta)=g(s(x);\theta)h(x)$ 로 주어졌다고
+  놓고, 조건부분포가 $\theta$ 와 무관함을 보인다. 먼저 각 $s$ 마다 그 값을 주는 자료들의 모임(<b>역상</b>)</p>
+  $$A_s:=\{(x_1,\dots,x_n)\ :\ s(x_1,\dots,x_n)=s\}=s^{-1}(\{s\})$$
+  <p>을 두면, 사건 $\{S=s\}$ 는 곧 $\{X\in A_s\}$ 이고 이는 서로 배타적인 사건 $\{X=x\}\ (x\in A_s)$ 들의
+  합이다. 따라서 <b>$S$ 의 확률질량함수는 $A_s$ 위에서의 합</b>으로 얻어진다:</p>
+  $$f_S(s;\theta)=P(S=s;\theta)=\sum_{x\in A_s}f(x;\theta)=\sum_{x\in A_s}g(s(x);\theta)\,h(x).$$
+  <p><b>트릭 ①</b> — 합에 참여하는 $x$ 는 모두 $s(x)=s$ 를 만족하므로 $g(s(x);\theta)=g(s;\theta)$ 는
+  $x$ 에 무관한 <b>상수</b>이다. 그래서 합 밖으로 빠져나온다:</p>
+  $$f_S(s;\theta)=g(s;\theta)\sum_{x\in A_s}h(x)=g(s;\theta)\,c(s),
+  \qquad c(s):=\sum_{x\in A_s}h(x)$$
+  <p>— $c(s)$ 는 $h$ 만의 합이므로 $\theta$ 가 없고 $s$ 만의 함수이다. 이제 $x\in A_s$ 인 자료에 대해
+  조건부 확률질량함수를 계산하면 (이때 사건 $\{X=x,\,S=s\}$ 는 $\{X=x\}$ 와 같다)</p>
+  $$f(x_1,\dots,x_n\mid s)=\frac{f(x;\theta)}{f_S(s;\theta)}
+  =\frac{g(s;\theta)\,h(x)}{g(s;\theta)\,c(s)}=\frac{h(x)}{c(s)}$$
+  <p><b>트릭 ②</b> — $g(s;\theta)$ 가 분자·분모에서 약분되어 사라지고, 남은 $h$ 와 $c$ 에는 $\theta$ 가 없다.
+  ($x\notin A_s$ 이면 조건부확률은 $0$ 이므로 이 역시 $\theta$ 와 무관하다.) 즉 조건부분포가 $\theta$ 에
+  의존하지 않으므로 $S$ 는 충분통계량이다.</p>
   <div class="qed">∎</div>
+</div>
+<div class="note">
+  <b>$f$ 가 왜 $g$ 로 바뀌었는가.</b> $g$ 는 새로 등장한 정체불명의 함수가 아니다.
+  <ul class="props">
+    <li>정리의 주장은 "그런 $g,h$ 가 <b>존재한다</b>"는 것이므로, 증명에서는 후보를 하나 제시하면 끝난다.</li>
+    <li>($\Rightarrow$) 방향에서 제시한 후보가 바로 $g:=f_S$ (즉 $S$ 의 밀도), $h:=f_{X\mid S}$ (조건부 밀도)이다.</li>
+    <li>새로운 함수를 만든 것이 아니라, 이미 있던 두 함수에 <b>알파벳만 새로 붙인 것</b>이다.</li>
+    <li>정리를 <b>적용</b>할 때의 $g,h$ 는 굳이 $f_S$ 와 $f_{X\mid S}$ 일 필요도 없다 — 조건($g$ 는 $s,\theta$ 만, $h$ 는 $x$ 만)을 만족하는 어떤 분해든 좋다. 예컨대 상수 $2$ 를 $g$ 에서 $h$ 로 옮겨도 여전히 유효하므로 $g,h$ 는 <b>유일하지 않다</b>.</li>
+  </ul>
+</div>
+<div class="note">
+  <b>역상 $A_s$ 와 합의 의미 — 구체적으로.</b> 베르누이 $n=3$, $s=2$ 인 경우를 보자.
+  <ul class="props">
+    <li>$A_2=\{(1,1,0),\,(1,0,1),\,(0,1,1)\}$ — 합이 $2$ 가 되는 자료를 모두 모은 집합이며, 원소 개수는 $\binom32=3$ 이다.</li>
+    <li>$f_S(2;p)=P(S=2)$ 를 구하려면 이 세 자료의 확률을 <b>더하면</b> 된다 — 이것이 "$A_s$ 위에서의 합"이다.</li>
+    <li>세 자료 모두 $p^2(1-p)^1$ 로 확률이 같으므로($g$ 가 상수로 빠지는 것) $f_S(2;p)=3p^2(1-p)$ 이고, 이는 $\binom32p^2(1-p)$ 와 일치한다.</li>
+    <li>$h\equiv1$ 이므로 $c(2)=\sum_{x\in A_2}1=3=\binom32$ 이고, 따라서 $f(x\mid s=2)=1/3=1/\binom32$ — 예 4.25 의 결과와 같다.</li>
+  </ul>
+  <p>즉 <b>$A_s$ 는 "같은 요약값을 주는 자료들의 묶음"(수준집합)</b>이고, $f_S(s;\theta)$ 는 그 묶음 안의 확률을
+  모두 합친 것, $c(s)$ 는 묶음의 크기(가중치 합)에 해당한다.</p>
+</div>
+<div class="note">
+  <b>직관 — 수준집합으로 보는 충분성.</b> 통계량 $S$ 는 표본공간을 $s$ 값이 같은 자료끼리 묶어 놓는다
+  (수준집합<span class="en">level set</span> $A_s$ 들로의 분할).
+  <ul class="props">
+    <li>충분통계량이라는 것은 <b>"같은 묶음 안에서는 어느 자료가 나왔든 $\theta$ 에 대해 더 알아낼 것이 없다"</b>는 뜻이다.</li>
+    <li>실제로 묶음 안의 분포 $h(x)/c(s)$ 에는 $\theta$ 가 없다 — 묶음 내부의 자리 배치는 $\theta$ 와 무관한 순수 무작위이다.</li>
+    <li>그러므로 어느 자료인지는 잊고 <b>묶음 번호 $s$ 하나만 기억해도</b> 모수에 대한 정보 손실이 없다.</li>
+  </ul>
 </div>
 <div class="box ex">
   <span class="tag">예 4.26</span><span class="title">베르누이 — 인수분해로 확인</span>
