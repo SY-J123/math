@@ -24,11 +24,16 @@ $$\hat\mu=T_1(X)=\overline{X}_n=\frac1n\sum_{i=1}^n X_i,\qquad
 
 **Method 4.1.1 — moment estimator**
 
-Each population moment is a function of the parameters, $\mu_j'=\mu_j'(\theta_1,\dots,\theta_k)$. Equating the $k$ lowest-order moments to the corresponding sample moments,
+The two moments of the same order are quantities of different kinds:
 
-$$m_j'=\mu_j'(\theta_1,\theta_2,\dots,\theta_k),\qquad j=1,2,\dots,k$$
+- $\mu_r'=E(X^r)$ is computed from the distribution, hence an expression in the parameters: $\mu_r'=\mu_r'(\theta_1,\dots,\theta_k)$, unknown
+- $m_r'=\frac1n\sum_{i=1}^n X_i^{\,r}$ is computed from the data alone: a known number once $x_1,\dots,x_n$ are observed
 
-and solving gives the **moment estimator** $(\hat\theta_1,\dots,\hat\theta_k)$.
+Assume the two agree, for the $k$ lowest orders:
+
+$$\underbrace{m_j'}_{\text{number, from }x_1,\dots,x_n}=\underbrace{\mu_j'(\theta_1,\theta_2,\dots,\theta_k)}_{\text{expression in }\theta},\qquad j=1,2,\dots,k$$
+
+This is a system of $k$ equations whose only unknowns are $\theta_1,\dots,\theta_k$; its solution $(\hat\theta_1,\dots,\hat\theta_k)$ is the **moment estimator**.
 
 The justification is the law of large numbers: $m_r'\xrightarrow{\ p\ }\mu_r'$, so replacing population moments by sample moments and solving yields an estimate close to the true value. The method is comparatively simple, but the solution need not be unique.
 
