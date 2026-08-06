@@ -1,17 +1,12 @@
 # Chapter 4. Estimation
 
-Estimation and testing are the two branches of statistical inference. Only the parameter $\theta\in\Omega$ (the **parameter space**) of a density $f(x;\theta)$ is unknown, and a function $g(\theta)$ of it is estimated from a random sample $X=(X_1,\dots,X_n)$.
-
-- **point estimation**: estimate by a single value of a statistic $T(X)$
-- **interval estimation**: consider the probability that an interval $[T_1(X),T_2(X)]$ contains $g(\theta)$
-
 ## 4.1 Method of Moments
 
 **Definition 4.1.1 (Def 4.1) — statistic, estimator, estimate**
 
 - **statistic**: a function $T(X)=T(X_1,\dots,X_n)$ of the random sample containing no unknown parameter
-- **estimator**: a statistic $T(X)$ used to estimate $g(\theta)$ — a random variable
-- **estimate**: the value $T(x)=T(x_1,\dots,x_n)$ obtained by substituting the observations $X_i=x_i$ — a number
+- **estimator**: a statistic $T(X)$ (a random variable) used to estimate $g(\theta)$
+- **estimate**: the value $T(x)=T(x_1,\dots,x_n)$ (a number) obtained by substituting the observations $X_i=x_i$
 
 An estimator of $\theta$ is written $\hat\theta$ or $\hat\theta_n$, the subscript emphasizing that the sample size used is $n$.
 
