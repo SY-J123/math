@@ -24,7 +24,7 @@ $$\hat\mu=T_1(X)=\overline{X}_n=\frac1n\sum_{i=1}^n X_i,\qquad
 
 **Method 4.1.1 — moment estimator**
 
-The two moments of the same order are quantities of different kinds:
+For a given order $r$, the population moment and the sample moment are different kinds of object:
 
 - $\mu_r'=E(X^r)$ is computed from the distribution, hence an expression in the parameters: $\mu_r'=\mu_r'(\theta_1,\dots,\theta_k)$, unknown
 - $m_r'=\frac1n\sum_{i=1}^n X_i^{\,r}$ is computed from the data alone: a known number once $x_1,\dots,x_n$ are observed
