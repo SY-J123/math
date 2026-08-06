@@ -311,33 +311,6 @@
   <p>이고 $x\notin A_s$ 이면 $0$ 이다. $h$ 와 $c$ 에는 $\theta$ 가 없으므로 조건부분포는 $\theta$ 에 의존하지 않는다.</p>
   <div class="qed">∎</div>
 </div>
-<div class="note">
-  <b>$s=s(x)$ 로 읽기.</b> $f_{X\mid S}(x\mid s)$ 는 겉보기에 $x,s$ 두 변수의 함수지만, 조건에 들어가는 $s$ 는
-  외부에서 주어진 값이 아니라 $s(x)$ 이다. 즉 자유변수는 $x$ 하나뿐이고
-  $$h(x)=f_{X\mid S}\big(x\mid s(x)\big),\qquad
-  f_{X\mid S}\big(x\mid s(x)\big)=\frac{h(x)}{c(s(x))}$$
-  는 모두 $x$ 만의 함수이다. 사라지는 것은 $s$ 가 아니라 $\theta$ 이며, $s$ 는 $x$ 를 통해 식 안에 남아 있다.
-</div>
-<div class="note">
-  <b>$g,h$ 는 유일하지 않다.</b> 정리의 주장은 그런 분해가 <b>존재한다</b>는 것이고, ($\Rightarrow$) 에서 제시한
-  후보가 $g=f_S$, $h=f_{X\mid S}$ 일 뿐이다. 적용할 때는 조건($g$ 는 $s,\theta$ 만, $h$ 는 $x$ 만)을 만족하는
-  어떤 분해든 좋다 — 상수를 $g$ 에서 $h$ 로 옮겨도 여전히 유효하다.
-</div>
-<div class="note">
-  <b>$A_s$ 의 구체적 예.</b> 베르누이 $n=3$, $s=2$ 이면 $A_2=\{(1,1,0),(1,0,1),(0,1,1)\}$, $|A_2|=\binom32$ 이다.
-  세 자료의 확률이 모두 $p^2(1-p)$ 로 같으므로 $f_S(2;p)=\binom32p^2(1-p)$ 이고, $h\equiv1$ 에서
-  $c(2)=\binom32$, $f_{X\mid S}(x\mid 2)=1/\binom32$ — 예 4.25 와 일치한다.
-  즉 $A_s$ 는 같은 요약값을 주는 자료들의 수준집합이고, $c(s)$ 는 그 위에서의 $h$ 의 총합이다.
-</div>
-<div class="note">
-  <b>직관 — 수준집합으로 보는 충분성.</b> 통계량 $S$ 는 표본공간을 $s$ 값이 같은 자료끼리 묶어 놓는다
-  (수준집합<span class="en">level set</span> $A_s$ 들로의 분할).
-  <ul class="props">
-    <li>충분통계량이라는 것은 <b>"같은 묶음 안에서는 어느 자료가 나왔든 $\theta$ 에 대해 더 알아낼 것이 없다"</b>는 뜻이다.</li>
-    <li>실제로 묶음 안의 분포 $h(x)/c(s)$ 에는 $\theta$ 가 없다 — 묶음 내부의 자리 배치는 $\theta$ 와 무관한 순수 무작위이다.</li>
-    <li>그러므로 어느 자료인지는 잊고 <b>묶음 번호 $s$ 하나만 기억해도</b> 모수에 대한 정보 손실이 없다.</li>
-  </ul>
-</div>
 <div class="box ex">
   <span class="tag">예 4.26</span><span class="title">베르누이 — 인수분해로 확인</span>
   <p>결합밀도 $f(x_1,\dots,x_n;p)=p^{\sum x_i}(1-p)^{n-\sum x_i}\prod_{i=1}^n I_{\{0,1\}}(x_i)$ 에서</p>
