@@ -556,80 +556,51 @@ $$f(x_1,x_2,\dots,x_n;\theta)=g(s(x);\theta)\times h(x_1,x_2,\dots,x_n)$$
 
 In one line: if the **only channel** through which $\theta$ touches the data is $S$, then $S$ is sufficient — and the theorem tests that condition in multiplicative form.
 
-**Notation.** Distinguish the capital and lower-case letters:
+**Notation.** The rule $s(\cdot)$ is fixed once and for all, and $\theta$ never enters its definition.
 
-- $S=s(X_1,\dots,X_n)$ — a random variable, before sampling; it has its own distribution $f_S(s;\theta)$
-- $s=s(x_1,\dots,x_n)$ — the observed number, after sampling
-- the rule $s(\cdot)$ is one and the same; feeding it the random $X$ gives $S$, feeding it the observed $x$ gives $s$
-- $\theta$ never enters the definition of $s(\cdot)$ — a statistic is computed from data alone
+- $S=s(X_1,\dots,X_n)$ — a random variable, with its own distribution $f_S(s;\theta)$
+- $s=s(x_1,\dots,x_n)$ — the value attached to the observed data $x$; that is, $s$ is a **function of $x$**
 
-**Starting identity.** Once $x=(x_1,\dots,x_n)$ is fixed, $s=s(x)$ comes along automatically, so the event "$X=x$" and the event "$X=x$ and $S=s(x)$" are the **same** event. Hence, by $P(A\cap B)=P(B)P(A\mid B)$,
+Below, $x=(x_1,\dots,x_n)$ and $A_s:=s^{-1}(\{s\})=\{x:s(x)=s\}$.
 
-$$f(x;\theta)=f_S(s;\theta)\cdot f_{X\mid S}(x\mid s)$$
+Proof (discrete case). Since $s(x)$ is determined by $x$, the events $\{X=x\}$ and $\{X=x,\ S=s(x)\}$ coincide, so $P(A\cap B)=P(B)P(A\mid B)$ gives
 
-Proof (discrete case).
+$$f(x;\theta)=f_S\big(s(x);\theta\big)\cdot f_{X\mid S}\big(x\mid s(x)\big) \tag{$\ast$}$$
 
-**($\Rightarrow$) Sufficiency implies the factorization.** Sufficiency *is* the statement that $f_{X\mid S}(x\mid s)$ does not depend on $\theta$, so substituting into the starting identity,
+($\Rightarrow$) If $S$ is sufficient, then by definition $f_{X\mid S}$ contains no $\theta$. Putting
 
-$$f(x_1,\dots,x_n;\theta)=\underbrace{f_S(s;\theta)}_{\text{has }\theta}\cdot\underbrace{f_{X\mid S}(x_1,\dots,x_n\mid s)}_{\text{no }\theta}$$
+$$g(s;\theta):=f_S(s;\theta),\qquad h(x):=f_{X\mid S}\big(x\mid s(x)\big)$$
 
-Renaming the first factor $g$ and the second $h$,
+in $(\ast)$ gives $f(x;\theta)=g(s(x);\theta)h(x)$. Here $h$ is the composite $x\mapsto s(x)\mapsto f_{X\mid S}(x\mid s(x))$, and since $s$ is a function of $x$, $h$ is a function of $x$ alone; by sufficiency it contains no $\theta$.
 
-$$g(s;\theta):=f_S(s;\theta),\qquad h(x_1,\dots,x_n):=f_{X\mid S}\big(x_1,\dots,x_n\mid s(x_1,\dots,x_n)\big)$$
+($\Leftarrow$) Conversely let $f(x;\theta)=g(s(x);\theta)h(x)$. Since $\{S=s\}=\{X\in A_s\}$ and $g(s(x);\theta)=g(s;\theta)$ is constant on $A_s$,
 
-gives $f=g(s(x);\theta)h(x)$.
+$$f_S(s;\theta)=\sum_{x\in A_s}f(x;\theta)=g(s;\theta)\sum_{x\in A_s}h(x)=g(s;\theta)c(s),
+\qquad c(s):=\sum_{x\in A_s}h(x)$$
 
-*Why $h$ is a function of $x$ alone.* The conditional density $f_{X\mid S}(x\mid s)$ appears to take two inputs, but the second one here is not supplied from outside: it is $s=s(x_1,\dots,x_n)$, computed from $x$. Fixing $x$ fixes $s$ too, so there is no freedom in the second slot — the only free input is $x$:
+Hence for $x\in A_s$, where $\{X=x,S=s\}=\{X=x\}$,
 
-$$\underbrace{x}_{\text{free input}}\ \longmapsto\ \underbrace{s(x)}_{\text{determined by }x}\ \longmapsto\ f_{X\mid S}\big(x\mid s(x)\big)=h(x)$$
+$$f_{X\mid S}(x\mid s)=\frac{f(x;\theta)}{f_S(s;\theta)}=\frac{g(s;\theta)h(x)}{g(s;\theta)c(s)}=\frac{h(x)}{c(s)}$$
 
-So $h$ is the composite "given $x$, first compute $s(x)$, then evaluate the conditional density", a function of $x$ alone, and by sufficiency it contains no $\theta$. Likewise $g(s(x);\theta)$ is a function of $x$ once $\theta$ is fixed, so the whole right-hand side has the form ($\theta$-part) $\times$ ($x$-only part).
+and it is $0$ for $x\notin A_s$. Neither $h$ nor $c$ contains $\theta$, so the conditional distribution does not depend on $\theta$. $\blacksquare$
 
-**($\Leftarrow$) The factorization implies sufficiency.** Assume $f(x;\theta)=g(s(x);\theta)h(x)$. For each $s$ collect the data giving that value — the **preimage**, or level set,
+**Remark 4.4.6 — reading $s$ as $s(x)$**
 
-$$A_s:=\{(x_1,\dots,x_n):s(x_1,\dots,x_n)=s\}=s^{-1}(\{s\})$$
+$f_{X\mid S}(x\mid s)$ looks like a function of the two variables $x$ and $s$, but the $s$ in the condition is not supplied from outside — it is $s(x)$. The only free variable is $x$, and
 
-Then the event $\{S=s\}$ is $\{X\in A_s\}$, a disjoint union of the events $\{X=x\}$ for $x\in A_s$, so the pmf of $S$ is a **sum over $A_s$**:
+$$h(x)=f_{X\mid S}\big(x\mid s(x)\big),\qquad f_{X\mid S}\big(x\mid s(x)\big)=\frac{h(x)}{c(s(x))}$$
 
-$$f_S(s;\theta)=P(S=s;\theta)=\sum_{x\in A_s}f(x;\theta)=\sum_{x\in A_s}g(s(x);\theta)h(x)$$
+are both functions of $x$ alone. What disappears is not $s$ but $\theta$; $s$ survives inside the formula through $x$.
 
-*Step 1.* Every $x$ in the sum satisfies $s(x)=s$, so $g(s(x);\theta)=g(s;\theta)$ is **constant** over the sum and factors out:
+**Remark 4.4.7 — $g$ and $h$ are not unique**
 
-$$f_S(s;\theta)=g(s;\theta)\sum_{x\in A_s}h(x)=g(s;\theta)c(s),\qquad c(s):=\sum_{x\in A_s}h(x)$$
+The theorem asserts that such a factorization **exists**, and $g=f_S$, $h=f_{X\mid S}$ is merely the candidate exhibited in ($\Rightarrow$). In applications any factorization meeting the conditions ($g$ in $s,\theta$ only; $h$ in $x$ only) will do — moving a constant from $g$ into $h$ gives another one.
 
-where $c(s)$ is a sum of $h$'s, hence free of $\theta$ and a function of $s$ alone.
+**Remark 4.4.8 — the level set $A_s$ concretely**
 
-*Step 2.* For $x\in A_s$ the event $\{X=x,S=s\}$ is just $\{X=x\}$, so
+Bernoulli with $n=3$ and $s=2$: $A_2=\{(1,1,0),(1,0,1),(0,1,1)\}$ with $|A_2|=\binom32$. All three have the same probability $p^2(1-p)$, so $f_S(2;p)=\binom32p^2(1-p)$, and with $h\equiv1$, $c(2)=\binom32$ and $f_{X\mid S}(x\mid2)=1/\binom32$ — matching Example 4.4.5. So $A_s$ is the level set of data sharing one summary value, and $c(s)$ is the total of $h$ over it.
 
-$$f(x_1,\dots,x_n\mid s)=\frac{f(x;\theta)}{f_S(s;\theta)}=\frac{g(s;\theta)h(x)}{g(s;\theta)c(s)}=\frac{h(x)}{c(s)}$$
-
-$g(s;\theta)$ cancels, and neither $h$ nor $c$ contains $\theta$. (For $x\notin A_s$ the conditional probability is $0$, again free of $\theta$.) Restoring $s=s(x)$,
-
-$$f(x_1,\dots,x_n\mid s)=\frac{h(x)}{c(s(x))}=:H(x_1,\dots,x_n)$$
-
-a single function of $x$ alone — numerator a function of $x$, denominator a function of $x$ through $s(x)$, and a function of $x$ divided by a function of $x$ is again one. Since $H$ contains no $\theta$, the conditional distribution is free of $\theta$ and $S$ is sufficient. $\blacksquare$
-
-**Remark 4.4.6 — why $f$ became $g$**
-
-$g$ is not some new unidentified function.
-
-- the theorem asserts that such $g,h$ **exist**, so the proof need only exhibit one candidate
-- the candidate exhibited in ($\Rightarrow$) is $g:=f_S$ (the density of $S$) and $h:=f_{X\mid S}$ (the conditional density)
-- nothing new was constructed; two existing functions were given new letters
-- when *applying* the theorem, $g$ and $h$ need not be $f_S$ and $f_{X\mid S}$ at all — any factorization meeting the conditions will do, and moving a constant from $g$ into $h$ gives another, so $g,h$ are **not unique**
-
-**Remark 4.4.7 — the level set $A_s$ concretely**
-
-Bernoulli with $n=3$ and $s=2$:
-
-- $A_2=\{(1,1,0),(1,0,1),(0,1,1)\}$, all data summing to $2$, of size $\binom32=3$
-- $f_S(2;p)=P(S=2)$ is obtained by **adding** the probabilities of these three, which is what "a sum over $A_s$" means
-- all three have the same probability $p^2(1-p)$ ($g$ factoring out), so $f_S(2;p)=3p^2(1-p)=\binom32p^2(1-p)$
-- $h\equiv1$ gives $c(2)=\sum_{x\in A_2}1=3=\binom32$, hence $f(x\mid s=2)=1/3=1/\binom32$, matching Example 4.4.5
-
-So $A_s$ is the bundle of data sharing the same summary value, $f_S(s;\theta)$ is the total probability inside the bundle, and $c(s)$ is its (weighted) size.
-
-**Remark 4.4.8 — sufficiency seen through level sets**
+**Remark 4.4.9 — sufficiency seen through level sets**
 
 $S$ partitions the sample space into level sets $A_s$.
 
@@ -660,7 +631,7 @@ $$f(x_1,\dots,x_n;\mu,\sigma^2)=(\sqrt{2\pi}\sigma)^{-n}
 
 so $S_1=\sum_{i=1}^n X_i$ and $S_2=\sum_{i=1}^n X_i^2$ are jointly sufficient, and so are $\overline{X}_n$ and $\sum_{i=1}^n(X_i-\overline{X}_n)^2$, being in one-to-one correspondence with $(S_1,S_2)$.
 
-**Remark 4.4.9 — sufficient statistics are not unique**
+**Remark 4.4.10 — sufficient statistics are not unique**
 
 The order statistics $(X_{(1)},\dots,X_{(n)})$ are always jointly sufficient: $n!$ samples map to one ordered vector, each with conditional probability $1/n!$, free of $\theta$. Any **one-to-one function** of a sufficient statistic is again sufficient. Among all of them, one that reduces the data as far as possible while retaining all information about the parameter is called a **minimal sufficient statistic**.
 
@@ -748,7 +719,7 @@ and $\delta(S)-\delta^*(S)$ is a function of $S$, so **completeness** gives $P[\
 
 Now let $\eta(X_1,\dots,X_n)$ be an arbitrary unbiased estimator, not necessarily a function of $S$. By Rao–Blackwell, $E(\eta\mid S)$ is unbiased with variance no larger than that of $\eta$, and being a function of $S$ it coincides with $\delta(S)$ by the uniqueness just shown. Hence $\delta(S)$ has the smallest variance among all unbiased estimators. $\blacksquare$
 
-**Remark 4.4.10 — strategy for finding an MVUE**
+**Remark 4.4.11 — strategy for finding an MVUE**
 
 Theorem 4.4.6 also says: if $S$ is complete sufficient and $E(S(X))=g(\theta)$, then $S(X)$ is the unique MVUE of $g(\theta)$. So find a complete sufficient statistic for $\theta$, then either
 
