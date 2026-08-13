@@ -96,7 +96,7 @@
   <p>양변에 로그를 씌워 $L=\ln f$ 로 두면 $L(x)+L(y)=\ln h(x^2+y^2)$. 양변을 $x$, $y$ 로 각각 편미분해 비교하면</p>
   $$\frac{L'(x)}{2x}=\frac{L'(y)}{2y}\quad(\text{모든 }x,y).$$
   <p>좌변은 오직 $x$ 만으로, 우변은 오직 $y$ 만으로 이루어진 식이다. 서로 독립으로 움직이는 두 변수에 대해 이 값이 <b>항상 같으려면</b>, $x$ 나 $y$ 에 영향받지 않는 <b>어떤 일정한 상수</b>일 수밖에 없다. 그 상수를 $-k$ 라 두면 $L'(x)=-2kx$, 적분하면 $L(x)=-kx^2+c$, 곧 $f(x)=Ce^{-kx^2}$ 이다. 남은 두 상수 $C,k$ 는 <b>두 조건으로 연립</b>해서 정해진다.</p>
-  <p><b>① 전체 적분 $=1$.</b> <a href="../prerequisites/0-3_special-integrals.html">가우스 적분</a> $\int_{-\infty}^\infty e^{-kx^2}dx=\sqrt{\pi/k}$ 를 쓰면 $C$ 가 $k$ 에 묶인다:</p>
+  <p><b>① 전체 적분 $=1$.</b> <a href="../ch00/0-3_special-integrals.html">가우스 적분</a> $\int_{-\infty}^\infty e^{-kx^2}dx=\sqrt{\pi/k}$ 를 쓰면 $C$ 가 $k$ 에 묶인다:</p>
   $$C\int_{-\infty}^\infty e^{-kx^2}dx=C\sqrt{\tfrac{\pi}{k}}=1\ \Rightarrow\ C=\sqrt{\tfrac{k}{\pi}}.\tag{A}$$
   <p><b>② 분산 $=\sigma^2$.</b> (A)를 대입하고 $\int_{-\infty}^\infty x^2 e^{-kx^2}dx=\tfrac{1}{2k}\sqrt{\pi/k}$ 를 쓰면 $x$ 가 모두 정리되어</p>
   $$\sigma^2=\int_{-\infty}^\infty x^2\,Ce^{-kx^2}\,dx=\frac{1}{2k}\ \Rightarrow\ k=\frac{1}{2\sigma^2}.\tag{B}$$
@@ -132,7 +132,7 @@
   $$I^2=\Big(\int_{-\infty}^\infty e^{-x^2/2}dx\Big)\Big(\int_{-\infty}^\infty e^{-y^2/2}dy\Big)=\iint_{\mathbb R^2}e^{-(x^2+y^2)/2}\,dx\,dy.$$
   <p>극좌표 $x=r\cos\theta,\ y=r\sin\theta$ ($dx\,dy=r\,dr\,d\theta$)로 바꾸면 $r\,dr$ 의 $r$ 덕분에 안쪽 적분이 풀린다:</p>
   $$I^2=\int_0^{2\pi}\!\!\int_0^\infty e^{-r^2/2}\,r\,dr\,d\theta=\int_0^{2\pi}1\,d\theta=2\pi\ \Rightarrow\ I=\sqrt{2\pi}.$$
-  <p>따라서 $\displaystyle\int_{-\infty}^\infty\frac{1}{\sqrt{2\pi}}e^{-x^2/2}dx=1$ 이고, 일반 $N(\mu,\sigma^2)$ 도 $z=(x-\mu)/\sigma$ 치환으로 $\int f=1$. 이것이 정규화상수 속 $\sqrt{2\pi}$ 의 출처다 (같은 <a href="../prerequisites/0-3_special-integrals.html">가우스 적분</a>).</p>
+  <p>따라서 $\displaystyle\int_{-\infty}^\infty\frac{1}{\sqrt{2\pi}}e^{-x^2/2}dx=1$ 이고, 일반 $N(\mu,\sigma^2)$ 도 $z=(x-\mu)/\sigma$ 치환으로 $\int f=1$. 이것이 정규화상수 속 $\sqrt{2\pi}$ 의 출처다 (같은 <a href="../ch00/0-3_special-integrals.html">가우스 적분</a>).</p>
   <div class="qed">∎</div>
 </div>
 <div class="box def">
@@ -177,7 +177,7 @@
   <p>셋째 적분은 <b>부분적분</b>으로 얻는다 — $u=z$, $dv=z\,e^{-z^2/2}dz$ ($v=-e^{-z^2/2}$, $du=dz$)라 두면</p>
   $$\int_{-\infty}^{\infty} z^2\phi(z)\,dz=\frac{1}{\sqrt{2\pi}}\Big\{\underbrace{\big[-z\,e^{-z^2/2}\big]_{-\infty}^{\infty}}_{=\,0}+\int_{-\infty}^{\infty} e^{-z^2/2}\,dz\Big\}
     =\frac{1}{\sqrt{2\pi}}\big(0+\sqrt{2\pi}\big)=1,$$
-  <p>경계항은 $z\to\pm\infty$ 에서 $z\,e^{-z^2/2}\to0$ 이라 사라지고, 남은 적분은 <a href="../prerequisites/0-3_special-integrals.html">가우스 적분</a> $\int_{-\infty}^\infty e^{-z^2/2}dz=\sqrt{2\pi}$ (위 정규화 증명)이다.</p>
+  <p>경계항은 $z\to\pm\infty$ 에서 $z\,e^{-z^2/2}\to0$ 이라 사라지고, 남은 적분은 <a href="../ch00/0-3_special-integrals.html">가우스 적분</a> $\int_{-\infty}^\infty e^{-z^2/2}dz=\sqrt{2\pi}$ (위 정규화 증명)이다.</p>
   <p><b>① 평균.</b> 치환 $x=\mu+\sigma z$ 로 바꾸면</p>
   $$E(X)=\int_{-\infty}^{\infty} x\,f(x)\,dx=\int_{-\infty}^{\infty}(\mu+\sigma z)\,\phi(z)\,dz
     =\mu\underbrace{\int\phi\,dz}_{=1}+\sigma\underbrace{\int z\,\phi\,dz}_{=0}=\mu.$$
@@ -211,7 +211,7 @@
   &=\frac{1}{2\pi\sigma_X\sqrt{1-\rho^2}}\,e^{-u^2/2}\int_{-\infty}^{\infty}\exp\!\Big\{-\frac{(v-\rho u)^2}{2(1-\rho^2)}\Big\}\,dv.
   \end{aligned}
   $$
-  <p>남은 적분은 평균 $\rho u$, 분산 $1-\rho^2$ 인 정규형이라 <a href="../prerequisites/0-3_special-integrals.html">가우스 적분</a>으로 $\sqrt{2\pi(1-\rho^2)}=\sqrt{2\pi}\,\sqrt{1-\rho^2}$ 이고, $\sqrt{1-\rho^2}$ 가 약분되어</p>
+  <p>남은 적분은 평균 $\rho u$, 분산 $1-\rho^2$ 인 정규형이라 <a href="../ch00/0-3_special-integrals.html">가우스 적분</a>으로 $\sqrt{2\pi(1-\rho^2)}=\sqrt{2\pi}\,\sqrt{1-\rho^2}$ 이고, $\sqrt{1-\rho^2}$ 가 약분되어</p>
   $$f_X(x)=\frac{1}{\sqrt{2\pi}\,\sigma_X}\,e^{-u^2/2}=\frac{1}{\sqrt{2\pi}\,\sigma_X}\exp\!\Big\{-\frac{(x-\mu_X)^2}{2\sigma_X^2}\Big\}\ \sim\ N(\mu_X,\sigma_X^2).$$
   <p>대칭으로 $Y\sim N(\mu_Y,\sigma_Y^2)$. 즉 <b>이변량 정규의 주변분포는 (상관계수 $\rho$ 가 사라진) 일변량 정규</b>다.</p>
   <div class="qed">∎</div>
@@ -299,11 +299,11 @@
   <span class="tag">증명 (3)</span><span class="title">반정수값 $\Gamma(\tfrac12)=\sqrt\pi$</span>
   <p>$\Gamma(\tfrac12)=\displaystyle\int_0^\infty t^{-1/2}e^{-t}\,dt$ 에서 $t=\tfrac{u^2}{2}$ ($dt=u\,du$, $t^{-1/2}=\sqrt2/u$)로 치환하면</p>
   $$\Gamma(\tfrac12)=\int_0^\infty\frac{\sqrt2}{u}\,e^{-u^2/2}\,u\,du=\sqrt2\int_0^\infty e^{-u^2/2}\,du=\sqrt2\cdot\frac{\sqrt{2\pi}}{2}=\sqrt\pi,$$
-  <p>마지막은 <a href="../prerequisites/0-3_special-integrals.html">가우스 적분</a> $\displaystyle\int_0^\infty e^{-u^2/2}\,du=\tfrac12\sqrt{2\pi}$ (정규분포 정규화 증명에서 쓴 $\int_{-\infty}^\infty e^{-u^2/2}du=\sqrt{2\pi}$ 의 절반)이다.</p>
+  <p>마지막은 <a href="../ch00/0-3_special-integrals.html">가우스 적분</a> $\displaystyle\int_0^\infty e^{-u^2/2}\,du=\tfrac12\sqrt{2\pi}$ (정규분포 정규화 증명에서 쓴 $\int_{-\infty}^\infty e^{-u^2/2}du=\sqrt{2\pi}$ 의 절반)이다.</p>
   <div class="qed">∎</div>
 </div>
 <div class="note">
-  감마함수는 계승 $n!$ 을 실수로 확장한 것 — $\Gamma(n+1)=n!$. 감마분포 $\text{GAM}(k,\theta)$ 의 정규화 상수 $\theta^k\Gamma(k)$ 가 바로 이 함수다. (베타함수와의 관계 $B(a,b)=\Gamma(a)\Gamma(b)/\Gamma(a+b)$ 등 더 자세한 내용은 <a href="../prerequisites/0-3_special-integrals.html">0.3 감마·베타·가우스 적분</a>.)
+  감마함수는 계승 $n!$ 을 실수로 확장한 것 — $\Gamma(n+1)=n!$. 감마분포 $\text{GAM}(k,\theta)$ 의 정규화 상수 $\theta^k\Gamma(k)$ 가 바로 이 함수다. (베타함수와의 관계 $B(a,b)=\Gamma(a)\Gamma(b)/\Gamma(a+b)$ 등 더 자세한 내용은 <a href="../ch00/0-3_special-integrals.html">0.3 감마·베타·가우스 적분</a>.)
 </div>
 <div class="box def">
   <span class="tag">정의</span><span class="title">감마분포</span>
@@ -325,7 +325,7 @@
    =\frac{e^{-z/\theta}}{\theta^{k+1}\Gamma(k)}\cdot\frac{z^{k}}{k}.
   \end{aligned}
   $$
-  <p>지수끼리 $e^{-s/\theta}e^{-(z-s)/\theta}=e^{-z/\theta}$ 로 합쳐져 $s$ 와 무관하게 적분 밖으로 빠지는 것이 핵심이다. 끝으로 <a href="../prerequisites/0-3_special-integrals.html">$k\,\Gamma(k)=\Gamma(k+1)$</a> 을 쓰면</p>
+  <p>지수끼리 $e^{-s/\theta}e^{-(z-s)/\theta}=e^{-z/\theta}$ 로 합쳐져 $s$ 와 무관하게 적분 밖으로 빠지는 것이 핵심이다. 끝으로 <a href="../ch00/0-3_special-integrals.html">$k\,\Gamma(k)=\Gamma(k+1)$</a> 을 쓰면</p>
   $$f_{S_{k+1}}(z)=\frac{1}{\theta^{k+1}\,k\Gamma(k)}\,z^{k}e^{-z/\theta}
     =\frac{1}{\theta^{k+1}\Gamma(k+1)}\,z^{(k+1)-1}e^{-z/\theta},$$
   <p>이는 정확히 $\text{GAM}(k+1,\theta)$ 의 밀도다. 따라서 귀납적으로 $S_k\sim\text{GAM}(k,\theta)$.</p>
