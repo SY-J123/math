@@ -85,7 +85,7 @@
 </div>
 <div class="box prf">
   <span class="tag">증명</span>
-  <p>$Y=Z^2$ 의 적률생성함수를 구하면 (<a href="../ch00/0-3_special-integrals.html">가우스적분</a> 이용)</p>
+  <p>$Y=Z^2$ 의 적률생성함수를 구하면 (<a href="../prerequisites/0-3_special-integrals.html">가우스적분</a> 이용)</p>
   $$M_{Z^2}(t)=E\!\left(e^{tZ^2}\right)=\int_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}}\,e^{tz^2-z^2/2}\,dz
     =\int_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}}\,e^{-z^2(1-2t)/2}\,dz=(1-2t)^{-1/2},\quad t<\tfrac12.$$
   <p>이는 $\chi^2(1)$ 의 mgf 이므로 유일성에 의해 $Y\sim\chi^2(1)$.</p>
@@ -136,7 +136,7 @@
   x^{n/2-1}\,y^{(n+m)/2-1}\exp\!\left[-\frac y2\Big(1+\frac{nx}{m}\Big)\right].$$
   <p>($y$ 의 지수: $u^{n/2-1}$ 에서 $n/2-1$, $v^{m/2-1}$ 에서 $m/2-1$, 야코비안에서 $1$ — 합이 $(n+m)/2-1$.)</p>
   <p><b>③ 주변화 — 감마적분.</b> $a=\dfrac12\Big(1+\dfrac{nx}m\Big)$ 로 두면
-  <a href="../ch00/0-3_special-integrals.html">감마적분</a>
+  <a href="../prerequisites/0-3_special-integrals.html">감마적분</a>
   $\displaystyle\int_0^\infty y^{(n+m)/2-1}e^{-ay}\,dy=\frac{\Gamma[(n+m)/2]}{a^{(n+m)/2}}
   =\Gamma[(n+m)/2]\cdot\frac{2^{(n+m)/2}}{(1+nx/m)^{(n+m)/2}}$ 이므로, $y$ 를 적분해 소거하면 $2^{(n+m)/2}$ 이 약분되어</p>
   $$f_X(x)=\int_0^\infty f_{X,Y}(x,y)\,dy
@@ -178,7 +178,7 @@
   $X^2=\dfrac{m^2}{n^2}\cdot\dfrac{U^2}{V^2}$ 의 기대값을 독립성으로 분리해 계산한다.</p>
   <p><b>① $E(U^2)$.</b> 정리 3.2 에서 $E(U)=n$, $\operatorname{Var}(U)=2n$ 이므로</p>
   $$E(U^2)=\operatorname{Var}(U)+[E(U)]^2=2n+n^2=n(n+2).$$
-  <p><b>② $E(1/V^2)$.</b> $V\sim\chi^2(m)$ 의 밀도 (3.1)에 대해 <a href="../ch00/0-3_special-integrals.html">감마적분</a>을 쓰면</p>
+  <p><b>② $E(1/V^2)$.</b> $V\sim\chi^2(m)$ 의 밀도 (3.1)에 대해 <a href="../prerequisites/0-3_special-integrals.html">감마적분</a>을 쓰면</p>
   $$E\!\left(\frac{1}{V^2}\right)
   =\int_0^\infty \frac1{v^2}\cdot\frac{1}{\Gamma(m/2)\,2^{m/2}}\,v^{m/2-1}e^{-v/2}\,dv
   =\frac{\Gamma\!\left(\frac m2-2\right)2^{m/2-2}}{\Gamma\!\left(\frac m2\right)2^{m/2}},$$
@@ -237,7 +237,7 @@
   <p>(상수: $\dfrac{1}{\sqrt{2\pi}}\cdot\dfrac{1}{\Gamma(k/2)\,2^{k/2}}\cdot\dfrac{1}{\sqrt k}$ 에서
   $\sqrt{2\pi}\cdot2^{k/2}\cdot\sqrt k=2^{(k+1)/2}\sqrt{k\pi}$.)</p>
   <p><b>③ 주변화 — 감마적분.</b> $a=\dfrac12\Big(1+\dfrac{x^2}k\Big)$ 로 두면
-  <a href="../ch00/0-3_special-integrals.html">감마적분</a>
+  <a href="../prerequisites/0-3_special-integrals.html">감마적분</a>
   $\displaystyle\int_0^\infty w^{(k+1)/2-1}e^{-aw}\,dw=\frac{\Gamma[(k+1)/2]}{a^{(k+1)/2}}
   =\Gamma[(k+1)/2]\cdot\frac{2^{(k+1)/2}}{(1+x^2/k)^{(k+1)/2}}$ 이므로, $w$ 를 적분해 소거하면 $2^{(k+1)/2}$ 이 약분되어</p>
   $$f_X(x)=\int_0^\infty f_{X,W}(x,w)\,dw
@@ -285,7 +285,7 @@
   $$E\!\left(\frac1U\right)=\int_0^\infty\frac1u\cdot\frac{u^{n/2-1}e^{-u/2}}{\Gamma(n/2)\,2^{n/2}}\,du
   =\frac{1}{\Gamma(n/2)\,2^{n/2}}\int_0^\infty u^{(n/2-1)-1}e^{-u/2}\,du
   =\frac{\Gamma(n/2-1)\,2^{\,n/2-1}}{\Gamma(n/2)\,2^{n/2}}.$$
-  <p><a href="../ch00/0-3_special-integrals.html">감마적분</a> $\int_0^\infty u^{a-1}e^{-u/2}\,du=\Gamma(a)\,2^{a}$
+  <p><a href="../prerequisites/0-3_special-integrals.html">감마적분</a> $\int_0^\infty u^{a-1}e^{-u/2}\,du=\Gamma(a)\,2^{a}$
   에 $a=\tfrac n2-1$ 을 쓴 것이다. 이제 $\Gamma(n/2)=\left(\tfrac n2-1\right)\Gamma\!\left(\tfrac n2-1\right)$ 로 약분하면</p>
   $$E\!\left(\frac1U\right)=\frac{\Gamma(n/2-1)}{\Gamma(n/2)}\cdot\frac12=\frac{1}{2\left(\tfrac n2-1\right)}=\frac{1}{n-2}.$$
   <p><b>합치기.</b> 세 값을 대입하면</p>
