@@ -416,11 +416,29 @@
       위 등식이 성립하는 것은 오직 $g(0)=g(1)=\cdots=g(n)=0$ 일 때뿐이다.
       따라서 $g(\cdot)\equiv0$ 이므로 정의 4.7에 의하여 $T$ 는 완비통계량이다.</li>
   </ol>
-  <p><b>② 균일.</b> $U(0,\theta)$ 표본의 최댓값 $X_{(n)}$ 은 밀도 $f_{X_{(n)}}(y)=\dfrac{ny^{n-1}}{\theta^n}$ 을 가지므로</p>
-  $$E[g(X_{(n)})]=\frac{n}{\theta^n}\int_0^\theta g(y)\,y^{n-1}dy=0\ \ (\forall\theta\gt0)
-  \quad\Longleftrightarrow\quad\int_0^\theta g(y)\,y^{n-1}dy=0\ \ (\forall\theta\gt0)$$
-  <p>이고, 양변을 $\theta$ 에 대하여 미분하면 $g(\theta)\theta^{n-1}=0$, 곧 $g(\cdot)\equiv0$ 이다.
-  동시에 $X_{(n)}$ 은 충분통계량이기도 하므로(예 4.27의 인수분해) $\theta$ 에 대한 <b>완비 충분통계량</b>이다.</p>
+  <p><b>② 균일.</b> $U(0,\theta)$ 로부터의 랜덤표본에서 최댓값 $X_{(n)}$ 이 완비통계량임을 보인다.</p>
+  <ol class="fill">
+    <li><span class="step">완비성의 정의 적용.</span> 임의의 함수 $g$ 에 대하여
+      “모든 $\theta\gt0$ 에서 $E[g(X_{(n)})]=0$ 이면 $g(\cdot)\equiv0$” 임을 보이면 된다.</li>
+    <li><span class="step">기댓값의 전개와 식의 변형.</span> 최댓값 $X_{(n)}$ 의 확률밀도함수는
+      $f_{X_{(n)}}(y)=\dfrac{ny^{n-1}}{\theta^n}\ (0\lt y\lt\theta)$ 이므로 기댓값을 적분으로 전개하면
+      $$E[g(X_{(n)})]=\int_0^\theta g(y)\,\frac{ny^{n-1}}{\theta^n}\,dy
+      =\frac{n}{\theta^n}\int_0^\theta g(y)\,y^{n-1}dy=0$$
+      이다. 여기서 $\theta\gt0$ 이므로 앞에 곱해진 상수 $\dfrac{n}{\theta^n}$ 은 결코 $0$ 이 아니고,
+      따라서 적분 부분만 $0$ 이면 된다.
+      $$\int_0^\theta g(y)\,y^{n-1}dy=0\qquad(\text{모든 }\theta\gt0)$$</li>
+    <li><span class="step">모든 $\theta$ 에 대한 항등식으로 보기.</span> 이 등식은 특정한 $\theta$ 에서만 성립하는
+      방정식이 아니라 $\theta\gt0$ 전체에서 성립하는 <b>항등식</b>이다. 즉 좌변을 $\theta$ 의 함수로 보면
+      항등적으로 $0$ 인 함수이므로, 양변을 $\theta$ 에 대하여 미분해도 등식이 유지된다.
+      <a href="../ch00/0-2_integration.html">미적분의 기본정리</a>를 적용하면
+      $$\frac{d}{d\theta}\int_0^\theta g(y)\,y^{n-1}dy=g(\theta)\,\theta^{n-1}=0
+      \qquad(\text{모든 }\theta\gt0)$$</li>
+    <li><span class="step">결론 도출.</span> $\theta\gt0$ 이므로 $\theta^{n-1}$ 은 언제나 양수다.
+      즉 $g(\theta)$ 를 제외한 부분이 스스로 $0$ 이 될 수 없으므로, 위 등식이 성립하는 것은
+      모든 $\theta\gt0$ 에서 $g(\theta)=0$ 일 때뿐이다. 따라서 $g(\cdot)\equiv0$ 이므로
+      정의 4.7에 의하여 $X_{(n)}$ 은 완비통계량이다.</li>
+  </ol>
+  <p>동시에 $X_{(n)}$ 은 충분통계량이기도 하므로(예 4.27의 인수분해) $\theta$ 에 대한 <b>완비 충분통계량</b>이다.</p>
 </div>
 
 <!-- ================= 레만-쉐페 ================= -->
