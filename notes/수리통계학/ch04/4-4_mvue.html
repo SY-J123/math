@@ -319,7 +319,7 @@
   <p>를 택하면 $f=g(s;p)\,h(x_1,\dots,x_n)$ 꼴이므로 $\sum_{i=1}^n X_i$ 는 충분통계량이다.</p>
 </div>
 <div class="box ex">
-  <span class="tag">예 4.27·4.28</span><span class="title">균일분포 $U(\theta_1,\theta_2)$ — 최솟값·최댓값</span>
+  <span class="tag">예 4.27</span><span class="title">균일분포 $U(\theta_1,\theta_2)$ — 최솟값·최댓값</span>
   <p>$X_1,\dots,X_n$ 을 $U(\theta_1,\theta_2)$ 로부터 구한 랜덤표본이라 하면 결합밀도는</p>
   $$f(x_1,\dots,x_n;\theta_1,\theta_2)=\prod_{i=1}^n\frac{1}{\theta_2-\theta_1}I_{(\theta_1,\theta_2)}(x_i)
   =\frac{1}{(\theta_2-\theta_1)^n}\,I_{(\theta_1,\,x_{(n)}]}(x_{(1)})\,I_{[x_{(1)},\,\theta_2)}(x_{(n)})$$
@@ -328,7 +328,7 @@
   $(\theta_1,\theta_2)$ 의 결합 충분통계량이다.</p>
 </div>
 <div class="box ex">
-  <span class="tag">예 4.29</span><span class="title">정규분포 — $(\sum X_i,\ \sum X_i^2)$</span>
+  <span class="tag">예 4.28</span><span class="title">정규분포 — $(\sum X_i,\ \sum X_i^2)$</span>
   <p>$X_1,\dots,X_n$ 이 $N(\mu,\sigma^2)$ 으로부터의 랜덤표본이면 결합밀도는</p>
   $$f(x_1,\dots,x_n;\mu,\sigma^2)=(\sqrt{2\pi}\,\sigma)^{-n}
   \exp\!\left[-\frac{\displaystyle\sum_{i=1}^n x_i^2-2\mu\sum_{i=1}^n x_i+n\mu^2}{2\sigma^2}\right]$$
@@ -336,11 +336,13 @@
   충분통계량이다. 나아가 $S_1,S_2$ 와 <b>1:1 대응</b>인 $\overline{X}_n$ 과 $\sum_{i=1}^n(X_i-\overline{X}_n)^2$
   도 역시 결합 충분통계량이다.</p>
 </div>
-<div class="note">
-  <b>충분통계량은 유일하지 않다.</b> 순서통계량 $(X_{(1)},\dots,X_{(n)})$ 은 항상 결합 충분통계량이고
-  (하나의 정렬값에 대응하는 표본이 $n!$ 개로 각각 조건부확률 $1/n!$ — $\theta$ 무관),
-  충분통계량의 <b>1:1 함수도 충분통계량</b>이다. 여러 충분통계량 가운데 자료를 가장 많이 축소시키면서
-  모수의 정보를 모두 담는 것을 <b>최소충분통계량</b><span class="en">minimal sufficient statistic</span>이라 한다.
+<div class="box ex">
+  <span class="tag">예 4.29</span><span class="title">순서통계량 — 충분통계량의 비유일성</span>
+  <p><b>충분통계량은 유일하지 않다.</b> 순서통계량 $(X_{(1)},\dots,X_{(n)})$ 은 항상 결합 충분통계량이다
+  — 하나의 정렬값에 대응하는 표본이 $n!$ 개이고 각각의 조건부확률이 $1/n!$ 로 $\theta$ 와 무관하기 때문이다.
+  또한 충분통계량의 <b>1:1 함수도 충분통계량</b>이다.</p>
+  <p>여러 충분통계량 가운데 자료를 가장 많이 축소시키면서 모수의 정보를 모두 담는 것을
+  <b>최소충분통계량</b><span class="en">minimal sufficient statistic</span>이라 한다.</p>
 </div>
 
 <!-- ================= 라오-블랙웰 ================= -->
