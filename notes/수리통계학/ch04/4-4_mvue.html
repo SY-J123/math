@@ -400,14 +400,19 @@
       공통인수 $(1-p)^n$ 을 시그마 밖으로 묶어낸다.
       $$E[g(T)]=\sum_{t=0}^n g(t)\binom nt p^t(1-p)^{n-t}
       =(1-p)^n\sum_{t=0}^n g(t)\binom nt\Big(\frac{p}{1-p}\Big)^{\!t}=0$$</li>
-    <li><span class="step">다항식의 항등식 원리 적용.</span> $0\lt p\lt1$ 이므로 항상 $(1-p)^n\ne0$ 이고,
-      따라서 두 항의 곱이 $0$ 이 되려면 시그마로 묶인 부분이 $0$ 이어야 한다.
-      여기서 $x=\dfrac{p}{1-p}$ 로 치환하면 $p$ 가 $(0,1)$ 을 훑을 때 $x$ 는 <b>모든 양수</b>를 훑으므로
-      $$\sum_{t=0}^n\Big\{g(t)\binom nt\Big\}x^t=0\qquad(\text{모든 }x\gt0)$$
-      즉 $x$ 에 대한 $n$ 차 다항식이 <b>항등적으로 $0$</b> 이다.</li>
-    <li><span class="step">결론 도출.</span> 항등적으로 $0$ 인 다항식은 각 항의 계수가 모두 $0$ 이어야 하므로
-      $g(t)\binom nt=0\ (t=0,1,\dots,n)$ 이다. 그런데 $\binom nt\ge1$ 로 $0$ 이 아니므로 $g(t)=0$,
-      즉 $g(\cdot)\equiv0$ 이다. 따라서 정의 4.7에 의하여 $T$ 는 완비통계량이다.</li>
+    <li><span class="step">전개하여 항등식으로 보기.</span> $0\lt p\lt1$ 이므로 항상 $(1-p)^n\ne0$ 이고,
+      따라서 두 항의 곱이 $0$ 이 되려면 시그마로 묶인 부분이 $0$ 이어야 한다. 이를 전개하면
+      $$\begin{aligned}
+        &g(0)\binom n0+g(1)\binom n1\Big(\frac{p}{1-p}\Big)+g(2)\binom n2\Big(\frac{p}{1-p}\Big)^{\!2}\\
+        &\qquad\qquad+\cdots+g(n)\binom nn\Big(\frac{p}{1-p}\Big)^{\!n}=0
+      \end{aligned}$$
+      이고, 이 등식은 구간 $(0,1)$ 에 속하는 <b>모든 $p$</b> 에 대하여 성립해야 한다.
+      좌변은 $\dfrac{p}{1-p}$ 에 대한 $n$ 차 이하의 다항식인데 무수히 많은 값에서 $0$ 이 되므로,
+      이는 특정한 $p$ 에서만 성립하는 방정식이 아니라 <b>항등식</b>이다.</li>
+    <li><span class="step">계수비교와 결론.</span> 다항식이 항등적으로 $0$ 이려면 각 항의 계수가 모두 $0$ 이어야 하므로
+      $$g(0)\binom n0=g(1)\binom n1=\cdots=g(n)\binom nn=0$$
+      이다. 이때 $\binom nt\ge1$ 로 $0$ 이 아니므로 위 등식이 성립하려면 $g(0)=g(1)=\cdots=g(n)=0$,
+      즉 $g(\cdot)\equiv0$ 이어야만 한다. 따라서 정의 4.7에 의하여 $T$ 는 완비통계량이다.</li>
   </ol>
   <p><b>② 균일.</b> $U(0,\theta)$ 표본의 최댓값 $X_{(n)}$ 은 밀도 $f_{X_{(n)}}(y)=\dfrac{ny^{n-1}}{\theta^n}$ 을 가지므로</p>
   $$E[g(X_{(n)})]=\frac{n}{\theta^n}\int_0^\theta g(y)\,y^{n-1}dy=0\ \ (\forall\theta\gt0)
