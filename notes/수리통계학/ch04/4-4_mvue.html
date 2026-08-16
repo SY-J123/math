@@ -445,22 +445,44 @@
 <h2 class="sub">레만–쉐페 정리 <span class="en">Lehmann–Scheffé theorem</span></h2>
 <div class="box thm">
   <span class="tag">정리 4.6</span><span class="title">레만–쉐페 정리</span>
-  <p>모수 $\theta$ 에 대하여 $S$ 가 <b>완비 충분통계량</b>이고, $T(X)$ 가 $g(\theta)$ 의 비편향추정량이라고
-  하자. 이때</p>
+  <p>모수 $\theta$ 에 대하여 $S$ 가 <b>완비 충분통계량</b>이고, $T(X)$ 가 $g(\theta)$ 의
+  <b>임의의</b> 비편향추정량이라고 하자. 이때</p>
   $$\delta(S)=E\big(T(X)\mid S\big)$$
   <p>는 $g(\theta)$ 의 <b>유일한 최소분산 비편향추정량</b>(MVUE)이다.</p>
 </div>
 <div class="box prf">
   <span class="tag">증명</span>
-  <p>먼저, $\delta(S)$ 는 이중기댓값 정리에 의하여 $g(\theta)$ 의 비편향추정량이다.
-  이제 <b>$S$ 의 함수인</b> 임의의 비편향추정량 $\delta^*(S)$ 를 생각해 보자. 그러면 모든 $\theta$ 에 대해</p>
-  $$E\big[\delta(S)-\delta^*(S)\big]=g(\theta)-g(\theta)=0$$
-  <p>이고, $\delta(S)-\delta^*(S)$ 가 $S$ 의 함수이므로 <b>완비성</b>에 의해
-  $P[\delta(S)=\delta^*(S)]=1$ — 즉 $S$ 의 함수인 비편향추정량은 사실상 <b>하나뿐</b>이다.</p>
-  <p>다음으로, $S$ 의 함수가 아닐 수도 있는 임의의 비편향추정량 $\eta(X_1,\dots,X_n)$ 에 대하여
-  라오–블랙웰 정리에 의해 $E(\eta\mid S)$ 는 $\eta$ 보다 분산이 더 작거나 같은 비편향추정량이 되는데,
-  이것은 $S$ 의 함수이므로 위의 유일성에 의해 $\delta(S)$ 와 동일하다. 따라서 $\delta(S)$ 는 모든
-  비편향추정량 중에 가장 작은 분산을 가진다 — $g(\theta)$ 의 유일한 MVUE 이다.</p>
+  <ol>
+    <li><span class="step">$\delta(S)$ 의 비편향성 확인.</span>
+      <a href="../ch02/2-4_expectation.html">이중기댓값 정리</a>에 의하여 $\delta(S)$ 의 기댓값을 구하면
+      $$E[\delta(S)]=E\big[E(T(X)\mid S)\big]=E[T(X)]$$
+      이다. 가정에서 $T(X)$ 는 $g(\theta)$ 의 비편향추정량이므로 $E[T(X)]=g(\theta)$ 이고, 따라서
+      $$E[\delta(S)]=g(\theta)$$
+      이다. 즉 $\delta(S)$ 역시 $g(\theta)$ 의 비편향추정량이다.
+      ($S$ 의 <b>충분성</b> 덕분에 $\delta(S)$ 가 $\theta$ 를 포함하지 않는 통계량이라는 것은
+      정리 4.5의 증명 ①에서 확인하였다.)</li>
+    <li><span class="step">완비성을 이용한 유일성 도출.</span> $S$ 의 함수로 이루어진 또 다른 임의의
+      비편향추정량 $\delta^*(S)$ 가 존재한다고 가정하자. 두 추정량 모두 $g(\theta)$ 의 비편향추정량이므로
+      모든 $\theta$ 에 대하여 기댓값이 같고, 그 차의 기댓값은
+      $$E\big[\delta(S)-\delta^*(S)\big]=E[\delta(S)]-E[\delta^*(S)]=g(\theta)-g(\theta)=0$$
+      이다. 그런데 가정에서 $S$ 는 <b>완비통계량</b>이고 $\delta(S)-\delta^*(S)$ 는 $S$ 의 함수이므로,
+      완비성의 정의(정의 4.7)에 의하여 확률 $1$ 로
+      $$\delta(S)-\delta^*(S)=0,\qquad\text{즉}\quad\delta(S)=\delta^*(S)$$
+      이다. 즉 완비 충분통계량 $S$ 의 함수로 만들어진 비편향추정량은 사실상 <b>$\delta(S)$ 하나뿐</b>이다.</li>
+    <li><span class="step">라오–블랙웰 정리를 이용한 최소분산성 증명.</span> 이제 $S$ 의 함수일 필요가 없는
+      임의의 비편향추정량 $\eta(X_1,\dots,X_n)$ 을 생각하자. $\eta$ 에 <b>라오–블랙웰 정리</b>(정리 4.5)를
+      적용하면, $S$ 로 조건부 기댓값을 취해 만든 $E(\eta\mid S)$ 는 $\eta$ 보다 분산이 작거나 같은
+      비편향추정량이 된다.
+      $$\operatorname{Var}\big(E(\eta\mid S)\big)\ \le\ \operatorname{Var}(\eta)$$
+      그런데 $E(\eta\mid S)$ 는 기댓값이 $g(\theta)$ 이면서 온전히 <b>$S$ 로만 이루어진 함수</b>이다.
+      앞의 단계 2에서 “$S$ 의 함수인 비편향추정량은 오직 $\delta(S)$ 뿐” 임을 보였으므로 필연적으로
+      $$E(\eta\mid S)=\delta(S)$$
+      이고, 이를 위 부등식에 대입하면
+      $$\operatorname{Var}\big(\delta(S)\big)\ \le\ \operatorname{Var}(\eta)$$
+      를 얻는다.</li>
+  </ol>
+  <p>임의의 비편향추정량 $\eta$ 를 어떻게 택하더라도 $\delta(S)$ 의 분산이 그보다 작거나 같으므로,
+  $\delta(S)$ 는 $g(\theta)$ 의 유일한 최소분산 비편향추정량(MVUE)이다.</p>
   <div class="qed">∎</div>
 </div>
 <div class="note">
