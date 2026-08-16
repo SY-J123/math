@@ -647,13 +647,31 @@
 </div>
 <div class="box ex">
   <span class="tag">예 4.38</span><span class="title">$\overline{X}_n\perp\hat\sigma^2$ — 정리 3.9의 또 다른 증명</span>
-  <p>$X_1,\dots,X_n$ 을 $N(\mu,\sigma^2)$ 로부터의 랜덤표본일 때,
-  $\hat\sigma^2=\sum_{i=1}^n(X_i-\overline{X}_n)^2/n$ 과 $\hat\mu=\overline{X}_n$ 를 생각해 보자.
-  <b>고정된 $\sigma^2$ 에 대하여</b> 표본평균 $\overline{X}_n$ 은 $\mu$ 에 대한 완비 충분통계량이고
-  (예 4.37), $\dfrac{n\hat\sigma^2}{\sigma^2}$ 은 $\chi^2(n-1)$ 분포를 따르며 이는 $\mu$ 에 의존하지
-  않는다 — 즉 $\hat\sigma^2$ 은 $\mu$ 에 대한 <b>보조통계량</b>이 된다. 따라서 바수의 정리 4.8에 따라
-  $\hat\mu=\overline{X}_n$ 와 $\hat\sigma^2=\sum_{i=1}^n(X_i-\overline{X}_n)^2/n$ 은 서로 <b>독립</b>이다 —
-  <a href="../ch03/3-3_sampling-from-normal.html">정리 3.9(1)</a>의 직교행렬 증명과는 다른 방법의 증명이다.</p>
+  <p>$X_1,\dots,X_n$ 을 $N(\mu,\sigma^2)$ 으로부터의 랜덤표본이라 하자. 단, 모분산 $\sigma^2$ 은
+  <b>고정된 상수</b>로 두고 미지의 모수 $\mu$ 에만 관심이 있다고 가정한다. 이때 표본평균
+  $\overline{X}_n=\frac1n\sum_{i=1}^n X_i$ 과 표본분산 $\hat\sigma^2=\frac1n\sum_{i=1}^n(X_i-\overline{X}_n)^2$
+  이 서로 독립임을 바수 정리로 증명한다.</p>
+  <ol class="fill">
+    <li><span class="step">$\mu$ 에 대한 완비 충분통계량 식별.</span> 고정된 $\sigma^2$ 아래에서 $\mu$ 를 추정할 때,
+      정규분포가 지수족이라는 성질(예 4.34 ③)과 정리 4.7에 의하여 표본평균 $\overline{X}_n$ 은
+      $\mu$ 에 대한 <b>완비 충분통계량</b>이다(예 4.37).</li>
+    <li><span class="step">$\mu$ 에 대한 보조통계량 식별.</span> $\hat\sigma^2$ 으로 구성한 확률변수
+      $\dfrac{n\hat\sigma^2}{\sigma^2}$ 을 전개하면
+      $$\frac{n\hat\sigma^2}{\sigma^2}=\sum_{i=1}^n\Big(\frac{X_i-\overline{X}_n}{\sigma}\Big)^{\!2}
+      =\sum_{i=1}^n\Big(\frac{(X_i-\mu)-(\overline{X}_n-\mu)}{\sigma}\Big)^{\!2}$$
+      이다. 편차를 $\mu$ 가 아니라 $\overline{X}_n$ 을 기준으로 재면 각 항에서 미지의 모수 $\mu$ 가
+      <b>서로 빼져 완전히 상쇄</b>된다. 그 대신 $\sum_{i=1}^n(X_i-\overline{X}_n)=0$ 이라는 제약이 하나 생기므로
+      자유도가 하나 줄어
+      $$\frac{n\hat\sigma^2}{\sigma^2}\ \sim\ \chi^2(n-1)$$
+      을 따른다. 이 분포에는 $\mu$ 가 전혀 나타나지 않으므로, $\hat\sigma^2$ 은 $\mu$ 에 대한
+      <b>보조통계량</b>이다.</li>
+    <li><span class="step">바수 정리 적용.</span> 정리 4.8에 의하여 어떤 모수에 대한 완비 충분통계량과
+      보조통계량은 항상 서로 독립이다. $\mu$ 에 대하여 $\overline{X}_n$ 은 완비 충분통계량이고(단계 1)
+      $\hat\sigma^2$ 은 보조통계량이므로(단계 2), 두 통계량은 서로 <b>독립</b>이다.
+      $$\overline{X}_n\ \perp\ \hat\sigma^2$$</li>
+  </ol>
+  <p>즉 직교행렬을 동원한 <a href="../ch03/3-3_sampling-from-normal.html">정리 3.9(1)</a>의 증명을 거치지 않고도,
+  $\mu$ 가 상쇄되어 사라진다는 관찰과 바수 정리만으로 같은 결론에 도달한다.</p>
 </div>
 
 <nav class="pager">
