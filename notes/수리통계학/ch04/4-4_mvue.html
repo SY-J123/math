@@ -656,16 +656,11 @@
     <li><span class="step">$\mu$ 에 대한 완비 충분통계량 식별.</span> 고정된 $\sigma^2$ 아래에서 $\mu$ 를 추정할 때,
       정규분포가 지수족이라는 성질(예 4.34 ③)과 정리 4.7에 의하여 표본평균 $\overline{X}_n$ 은
       $\mu$ 에 대한 <b>완비 충분통계량</b>이다(예 4.37).</li>
-    <li><span class="step">$\mu$ 에 대한 보조통계량 식별.</span> $\hat\sigma^2$ 으로 구성한 확률변수
-      $\dfrac{n\hat\sigma^2}{\sigma^2}$ 을 전개하면
-      $$\frac{n\hat\sigma^2}{\sigma^2}=\sum_{i=1}^n\Big(\frac{X_i-\overline{X}_n}{\sigma}\Big)^{\!2}
-      =\sum_{i=1}^n\Big(\frac{(X_i-\mu)-(\overline{X}_n-\mu)}{\sigma}\Big)^{\!2}$$
-      이다. 편차를 $\mu$ 가 아니라 $\overline{X}_n$ 을 기준으로 재면 각 항에서 미지의 모수 $\mu$ 가
-      <b>서로 빼져 완전히 상쇄</b>된다. 그 대신 $\sum_{i=1}^n(X_i-\overline{X}_n)=0$ 이라는 제약이 하나 생기므로
-      자유도가 하나 줄어
-      $$\frac{n\hat\sigma^2}{\sigma^2}\ \sim\ \chi^2(n-1)$$
-      을 따른다. 이 분포에는 $\mu$ 가 전혀 나타나지 않으므로, $\hat\sigma^2$ 은 $\mu$ 에 대한
-      <b>보조통계량</b>이다.</li>
+    <li><span class="step">$\mu$ 에 대한 보조통계량 식별.</span> 편차를 $\mu$ 가 아니라 $\overline{X}_n$ 을
+      기준으로 재면 각 항에서 $\mu$ 가 서로 빼져 <b>상쇄</b>된다.
+      $$\frac{n\hat\sigma^2}{\sigma^2}=\sum_{i=1}^n\Big(\frac{(X_i-\mu)-(\overline{X}_n-\mu)}{\sigma}\Big)^{\!2}
+      \ \sim\ \chi^2(n-1)$$
+      이 분포에 $\mu$ 가 전혀 나타나지 않으므로 $\hat\sigma^2$ 은 $\mu$ 에 대한 <b>보조통계량</b>이다.</li>
     <li><span class="step">바수 정리 적용.</span> 정리 4.8에 의하여 어떤 모수에 대한 완비 충분통계량과
       보조통계량은 항상 서로 독립이다. $\mu$ 에 대하여 $\overline{X}_n$ 은 완비 충분통계량이고(단계 1)
       $\hat\sigma^2$ 은 보조통계량이므로(단계 2), 두 통계량은 서로 <b>독립</b>이다.
