@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1장 · 1.2 벡터의 노름</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">회귀분석 · 1장 기본 선형대수</div>
+  <h1><span class="no">1.2</span>벡터의 노름 <span class="en">norm of a vector</span></h1>
+</header>
+
+<div class="note">
+  <b>노름</b>은 벡터의 “크기”를 재는 자다. 회귀분석에서 최소제곱법이 최소화하는 잔차제곱합
+  $\sum_i(y_i-\hat y_i)^2$ 이 바로 잔차벡터의 $L_2$ 노름의 제곱이며, 아래에서 보일 <b>직교 불변성</b>이
+  그 값을 직교변환 아래에서 그대로 보존해 준다.
+</div>
+
+<h2 class="sub">노름의 정의 <span class="en">definition of a norm</span></h2>
+<div class="box def">
+  <span class="tag">정의</span><span class="title">$L_p$ 노름 <span class="en">$L_p$-norm</span></span>
+  <p>벡터 $x=(x_1,x_2,\dots,x_n)^{T}$ 에 대하여 $L_p$ 노름은 다음과 같이 정의된다.</p>
+  $$\|x\|_p:=\left(\sum_{i=1}^{n}|x_i|^{p}\right)^{1/p}$$
+  <p>이를 바탕으로 대표적인 노름들은 다음과 같다.</p>
+  <ol class="props">
+    <li><b>$L_1$ 노름</b> — $\displaystyle\|x\|_1=\sum_{i=1}^{n}|x_i|$</li>
+    <li><b>$L_2$ 노름</b>(유클리드 노름<span class="en">Euclidean norm</span>) —
+      $\displaystyle\|x\|_2=\left(\sum_{i=1}^{n}x_i^{2}\right)^{1/2}$</li>
+    <li><b>$L_\infty$ 노름</b>(맥시멈 노름<span class="en">maximum norm</span>) —
+      $\displaystyle\|x\|_\infty=\max_{1\le i\le n}|x_i|$</li>
+  </ol>
+</div>
+<div class="note">
+  $L_2$ 노름은 제곱의 합이라 내적으로 $\|x\|_2^{2}=x^{T}x$ 로 쓸 수 있다. 세 노름 가운데 내적과 직접
+  연결되는 것은 $L_2$ 뿐이고, 아래의 직교 불변성도 그 때문에 $L_2$ 에서만 성립한다.
+</div>
+
+<h2 class="sub">$L_2$ 노름의 직교 불변성 <span class="en">orthogonal invariance</span></h2>
+<div class="box thm">
+  <span class="tag">정리</span><span class="title">$L_2$ 노름의 직교 불변성</span>
+  <p>$n\times n$ <a href="../../행렬대수학/ch05/5-4_orthogonal.html">직교행렬</a> $Q$ 에 대하여
+  벡터 $x$ 의 $L_2$ 노름은 직교변환에 대해 <b>불변</b>이다. 즉</p>
+  $$\|Qx\|_2=\|x\|_2$$
+  <p>가 성립한다.</p>
+</div>
+<div class="box prf">
+  <span class="tag">증명</span>
+  <ol>
+    <li><span class="step">노름의 제곱을 내적으로 쓰기.</span> $L_2$ 노름의 제곱은 벡터와 자기 자신의
+      내적이므로 $\|x\|_2^{2}=x^{T}x$ 이다. 변환된 벡터 $Qx$ 에 같은 규칙을 적용하면
+      $$\|Qx\|_2^{2}=(Qx)^{T}(Qx)$$
+      이다.</li>
+    <li><span class="step">전치의 성질로 전개하기.</span> $(AB)^{T}=B^{T}A^{T}$ 에 의하여
+      $(Qx)^{T}=x^{T}Q^{T}$ 이므로, 이를 대입하고 곱셈의 결합법칙으로 가운데를 묶으면
+      $$\|Qx\|_2^{2}=\big(x^{T}Q^{T}\big)(Qx)=x^{T}\big(Q^{T}Q\big)x$$
+      를 얻는다.</li>
+    <li><span class="step">직교성 대입과 결론.</span> $Q$ 가 직교행렬이므로 정의에 의하여 $Q^{T}Q=I$ 이고,
+      $$\|Qx\|_2^{2}=x^{T}Ix=x^{T}x=\|x\|_2^{2}$$
+      이다. 노름은 정의상 음이 아니므로 양변에 제곱근을 취하면 $\|Qx\|_2=\|x\|_2$ 이다.</li>
+  </ol>
+  <div class="qed">∎</div>
+</div>
+<div class="note">
+  직교변환은 <b>회전과 반사</b>뿐이므로 벡터의 길이를 바꾸지 않는다는 기하학적 사실을 식으로 확인한 셈이다.
+  같은 이유로 두 벡터 사이의 거리 $\|Qx-Qy\|_2=\|x-y\|_2$ 와 내적 $(Qx)^{T}(Qy)=x^{T}y$ 도 보존되며,
+  따라서 각도 역시 보존된다.
+</div>
+
+<nav class="pager">
+  <a href="1-1_spectral-decomposition.html">← 이전<small>1.1 대칭행렬의 스펙트럼 분해</small></a>
+  <a class="next" href="../index.html">목차 →<small>회귀분석</small></a>
+</nav>
+
+</body>
+</html>
