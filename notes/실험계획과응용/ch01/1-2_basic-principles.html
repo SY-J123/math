@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1장 · 1.2 실험계획의 기본 원리</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">실험계획과 응용 · 1장 실험계획 개요</div>
+  <h1><span class="no">1.2</span>실험계획의 기본 원리 <span class="en">basic principles of experimental design</span></h1>
+</header>
+
+<h2 class="sub">관찰데이터와 실험데이터 <span class="en">observational vs. experimental data</span></h2>
+<p>통계자료는 <b>관찰데이터</b>와 <b>실험데이터</b>로 분류된다.</p>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">관찰데이터 <span class="en">observational data</span></span>
+  <p>어떤 현상이나 시스템에 대한 정보를 <b>조사</b>(survey) 등을 통하여 수집되고 기록된 자료.
+  뒤에서 다루겠지만, <b>랜덤화가 없이</b> 얻어진 자료가 관찰데이터이다.</p>
+  <p>조사는 어떤 현상을 있는 그대로 파악하는 것이 목적이고, 환경조건을 관리하는 일이 비교적 드물다.</p>
+</div>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">실험데이터 <span class="en">experimental data</span></span>
+  <p>통계적으로 <b>계획되고 관리된</b> 실험을 통하여 얻는 자료.</p>
+</div>
+
+<p>실험을 통하여 자료를 얻는 데는 비용이 발생하므로, 최소의 비용으로 최대의 정보를 얻는 데 중점을 둔다.
+다시 말해서 실험계획은 실험에 의한 <b>정보의 효율적 획득</b>에 초점을 맞추고 있다.</p>
+<p>또한 실험계획 방법에 따라서 얻어진 자료에 대한 통계적 분석 방법이 달라지므로, 실험계획과 통계적 분석은 서로 밀접한 관계를 갖고 있다.</p>
+
+<div class="box thm">
+  <span class="tag">원리</span><span class="title">실험계획의 다섯 가지 기본 원리</span>
+  <p>실험을 통한 정보의 효율적 획득과 적절한 통계분석을 가능하게 하는 기본 원리는 다음과 같다.</p>
+  <ol class="props">
+    <li><b>랜덤화</b>(randomization)</li>
+    <li><b>블록화</b>(blocking)</li>
+    <li><b>반복</b>(replication)</li>
+    <li><b>교락</b>(confounding)</li>
+    <li><b>직교화</b>(orthogonalization)</li>
+  </ol>
+  <p>아무리 복잡한 실험이라도, 계획된 실험이라면 이러한 원리의 반복 적용에 지나지 않는다.</p>
+</div>
+
+<h2 class="sub">1.2.1 랜덤화 <span class="en">randomization</span></h2>
+<div class="box def">
+  <span class="tag">정의</span><span class="title">랜덤화 <span class="en">randomization</span></span>
+  <p>실험단위의 배정이나 실험 순서를 임의로(랜덤하게) 결정하는 것.
+  선택된 요인 외에 <b>기타 원인들의 영향이 실험 결과에 편향적으로 누적되는 것을 막는</b> 기술이다.
+  랜덤화의 구현은 난수표 등을 사용하여 실험 대상이나 처리 조건을 무작위로 배정함으로써 이루어진다.</p>
+</div>
+
+<p>만약 실험을 랜덤하게 하지 않고 구조적으로 차례대로 행한다면, 예를 들어 실험이 수행되는 실험실의 기온 등과 같이
+실험에서 고려하지 않은 원인이 실험 결과에 영향을 끼칠 수 있게 되어, 어떤 것이 <b>참 원인</b>인지 알 수 없게 된다.
+반면에 실험을 랜덤한 순서로 행하면 선택된 요인 외에 기타 원인들의 영향을 어느 정도 상쇄시킬 수 있으므로 재현성을 유지할 수 있다.</p>
+
+<div class="note">
+  흔히 실험자료의 통계적 분석 방법은 실험 결과나 오차가 <b>서로 독립</b>이라는 가정에서 출발하는 경우가 많다.
+  랜덤화는 이러한 가정을 정당화하는 근거를 제공한다.
+</div>
+
+<h2 class="sub">1.2.2 블록화 <span class="en">blocking</span></h2>
+<div class="box def">
+  <span class="tag">정의</span><span class="title">블록화 <span class="en">blocking</span></span>
+  <p>실험단위를 유사한 특성을 가진 그룹으로 나누어(<b>블록 내에서는 동질적으로, 블록 간에는 이질적으로</b> 나눔)
+  이로 인한 변동성을 통제하고, 실험 결과의 정확성과 신뢰성을 향상시키는 기법.</p>
+</div>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">블록 <span class="en">block</span></span>
+  <p>유사한 특성을 가진 실험단위를 그룹화한 <b>동질집단</b>. 분야에 따라 다음과 같은 용어로도 불린다.</p>
+  <ol class="props">
+    <li>로트(lot)</li>
+    <li>배치(batch)</li>
+    <li>층(strata)</li>
+    <li>클러스터(cluster)</li>
+  </ol>
+</div>
+
+<p>블록화하는 요인은 결과변수에 별개로 영향을 미치지만 관심의 대상은 아닌 요인이다.
+예를 들어 <b>감자 수확량</b>이라는 결과변수에 대해 <b>품종</b>이라는 요인이 가지는 효과를 알고 싶을 때,
+땅을 비옥한 땅 · 보통 땅 · 척박한 땅으로 나누어 블록 처리를 함으로써 더 정밀한 결과해석이 가능해진다.</p>
+<p>전체 땅을 서로 이질적인 블록으로 나누지 않은 채로 랜덤화만 적용하면, 특정한 품종의 감자가
+특정한 땅(예를 들어 척박한 땅)에 더 많이 심어질 가능성이 있어 공평한 비교가 성립되지 않을 수 있다.
+또 블록효과가 실제로 존재하는데도 블록화를 하지 않는다면, 실험오차가 과장되어 요인효과를 검출하기 어려워진다.</p>
+
+<figure class="fig">
+<svg viewBox="0 0 340 150" role="img" aria-label="블록화 — 비옥한 땅·보통 땅·척박한 땅 세 블록 안에 품종 A, B, C를 각각 배치">
+  <g class="cell">
+    <rect x="15"  y="35" width="96" height="80"/>
+    <rect x="122" y="35" width="96" height="80"/>
+    <rect x="229" y="35" width="96" height="80"/>
+  </g>
+  <text class="lbl" x="63"  y="28" text-anchor="middle">비옥한 땅</text>
+  <text class="lbl" x="170" y="28" text-anchor="middle">보통 땅</text>
+  <text class="lbl" x="277" y="28" text-anchor="middle">척박한 땅</text>
+
+  <g class="cellhi">
+    <rect x="24"  y="47" width="24" height="56"/><rect x="51"  y="47" width="24" height="56"/><rect x="78"  y="47" width="24" height="56"/>
+    <rect x="131" y="47" width="24" height="56"/><rect x="158" y="47" width="24" height="56"/><rect x="185" y="47" width="24" height="56"/>
+    <rect x="238" y="47" width="24" height="56"/><rect x="265" y="47" width="24" height="56"/><rect x="292" y="47" width="24" height="56"/>
+  </g>
+  <g class="lbl b">
+    <text x="36"  y="80" text-anchor="middle">B</text><text x="63"  y="80" text-anchor="middle">A</text><text x="90"  y="80" text-anchor="middle">C</text>
+    <text x="143" y="80" text-anchor="middle">A</text><text x="170" y="80" text-anchor="middle">C</text><text x="197" y="80" text-anchor="middle">B</text>
+    <text x="250" y="80" text-anchor="middle">C</text><text x="277" y="80" text-anchor="middle">B</text><text x="304" y="80" text-anchor="middle">A</text>
+  </g>
+  <text class="lbl" x="170" y="138" text-anchor="middle">블록 내에서는 동질 · 블록 간에는 이질</text>
+</svg>
+<figcaption>블록화의 예 — 땅의 비옥도를 블록으로 잡고 각 블록마다 세 품종 A, B, C를 랜덤한 순서로 배치하면,
+품종의 비교가 땅의 차이에 오염되지 않는다.</figcaption>
+</figure>
+
+<div class="note">
+  블록화를 하면 블록 내에서는 동질성이 유지되고 블록 간에는 이질적으로 나뉜다.
+  결국 블록화는 <b>관심 있는 요인의 효과 차이를 더 뚜렷하게 밝혀내기 위한 것</b>으로,
+  블록 간 차이가 크면 클수록 오차분산을 줄일 수 있어서 통계분석의 효율이 증대된다.
+</div>
+
+<h2 class="sub">1.2.3 반복 <span class="en">replication</span></h2>
+<p>측정 결과에는 항상 통제 불가능한 오차가 수반된다. 그렇기에 동일한 조건에서 수행한 실험이라도 실험 결과가 반드시 동일하지는 않다.</p>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">반복 <span class="en">replication</span></span>
+  <p>동일한 조건하에서 실험을 <b>두 번 이상</b> 실시하는 것.</p>
+</div>
+
+<div class="box thm">
+  <span class="tag">성질</span><span class="title">반복의 효과</span>
+  <ol class="props">
+    <li><b>실험오차</b>(experimental error)를 추정할 수 있다. 실험오차의 추정값은 관측된 요인효과의 차이가
+    통계적으로 유의한 차이인지 판단하는 근거가 된다.</li>
+    <li>요인효과를 추정하는 데 <b>평균</b>을 사용할 수 있으므로 좀 더 정밀한 추정량을 얻는다.</li>
+  </ol>
+</div>
+
+<p>그러나 반복실험으로 실험 횟수가 증가하면 비용이 많이 소요되므로, 적절한 반복수를 결정하여야 한다.
+실험오차가 크다면 반복수를 상대적으로 크게 해야 하며, 실험이 잘 관리되어 동일한 조건에서 비슷한 결과가 나온다면(실험오차가 작다면)
+비교적 작은 반복수도 무난할 것이다. 이와 같이 반복수는 <b>실험오차 · 비용 · 요구되는 정밀도</b>(precision)를 고려하여 적절히 결정하여야 한다.</p>
+
+<h2 class="sub">1.2.4 교락 <span class="en">confounding</span></h2>
+<div class="box def">
+  <span class="tag">정의</span><span class="title">교락 <span class="en">confounding</span></span>
+  <p>$2$ 개 이상의 요인이 동시에 결과에 영향을 미쳐 <b>각 요인의 개별 효과를 분리하여 평가하기 어렵게</b> 만드는 상황.</p>
+</div>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">교락법</span>
+  <p>구할 필요가 없는 $2$ 인자 교호작용이나 고차의 교호작용을 <b>블록과 교락시키는</b> 방법.
+  차수가 높은 교호작용은 크게 의미가 없기에, 이들 높은 차수의 교호작용과 블록을 교락시킴으로써 실험의 효율을 높인다.</p>
+</div>
+
+<h2 class="sub">1.2.5 직교화 <span class="en">orthogonalization</span></h2>
+<div class="box def">
+  <span class="tag">정의</span><span class="title">직교성 <span class="en">orthogonality</span></span>
+  <p><b>상호 독립성</b>을 의미하며, 한 요인의 효과와 다른 요인의 효과를 독립적으로 추정할 수 있음을 뜻한다.</p>
+</div>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">직교화 <span class="en">orthogonalization</span></span>
+  <p>실험계획 시 요인을 배치할 때 <b>요인 간 직교성을 갖도록</b> 실험을 배치하는 것. 다음 두 이점이 있다.</p>
+  <ol class="props">
+    <li>실험횟수를 적게 하면서도 요인의 효과를 독립적으로 추정할 수 있다.</li>
+    <li>정도(precision)가 높은 추정을 할 수 있다.</li>
+  </ol>
+</div>
+
+<div class="note">
+  <b>직교배열표</b>는 요인 간에 직교성이 성립하도록 만든 표로, 일부실시법에서 유용하게 사용된다.
+</div>
+
+<h2 class="sub">기본 원리를 지키지 않은 실험의 예 <span class="en">what goes wrong without the principles</span></h2>
+<p>다음 예들을 통해, 올바른 평가를 위해서는 실험계획법 기본 원리의 준수가 절대적으로 필요하다는 것을 알 수 있다.</p>
+
+<div class="box ex">
+  <span class="tag">예 1.5</span><span class="title">비타민 C의 감기치료 효과</span>
+  <p>비타민 C가 감기치료에 효과가 있는지를 제대로 알아내기 위해, 감기환자들을 <b>랜덤하게</b> 두 그룹으로 나누어
+  한쪽 그룹에는 비타민 C를 먹이고 다른 그룹에는 <b>위약</b>(placebo)을 먹인다.
+  이때 <b>이중맹검</b>(9.3.4항 참조) 실험을 실시하여, 피험자는 물론 의사도 누가 진짜 약을 먹고 누가 가짜 약(위약)을 먹는지 모르게 진행해야 한다.</p>
+  <ol class="props">
+    <li><b>처리집단</b>(treatment group): 진짜 약을 먹는 집단</li>
+    <li><b>대조집단</b>(control group): 가짜 약을 먹는 집단</li>
+  </ol>
+</div>
+
+<div class="box ex">
+  <span class="tag">예 1.6</span><span class="title">결과와 가설검정</span>
+  <p>$240$ 명의 감기환자에 대한 이중 맹검 임상시험 결과가 &lt;표 1-1&gt;과 같다고 하자.</p>
+  <div class="scroll"><table class="data">
+    <tr><th></th><th>전체 인원수</th><th>완치자 수(비율)</th></tr>
+    <tr><th>처리(실험)집단</th><td>120명 중</td><td>42명 (35%)</td></tr>
+    <tr><th>대조집단</th><td>120명 중</td><td>24명 (20%)</td></tr>
+  </table></div>
+  <p>여기에서 처리집단은 비타민 C를 먹은 그룹이고, 대조집단은 가짜 약을 먹은 그룹이다.
+  실험 결과 두 집단의 완치율에 $15\%\,(=35\%-20\%)$ 포인트의 차이가 났다.
+  그런데 이것은 비타민 C가 효과가 없는데도(귀무가설이 맞는데도) 우연히 생길 수 있다.
+  이렇게 우연히 생길 수 있는 가능성, 즉 <b>유의확률</b>이 작으면 작을수록(통상 유의수준 $5\%$ 보다 작으면)
+  비타민 C는 효과가 있다(대립가설이 맞다)고 결론을 내린다.</p>
+</div>
+
+<div class="box ex">
+  <span class="tag">예 1.7</span><span class="title">전염병 치료제의 효과 파악</span>
+  <p>매년 동물(돼지나 닭 등)이 전염병에 걸려 결국 떼죽음을 당하고 있다. 새로운 약이 개발되었는데, 이 약의 효과를 어떻게 검증할 수 있을까?</p>
+  <ol class="props">
+    <li><b>첫 번째 방법</b>: 가장 간단한 방법으로, 올해 동물에 새로운 치료제를 투여하여 얻은 발병률을 작년 동물의 발병률과 비교하는 것이다.
+    하지만 이는 작년과 올해 동물의 환경이 같아야 한다는 조건이 필요하다. 환경이 같다고 할 수 없으므로 이 방법은 좋은 방법이 아니다.</li>
+    <li><b>두 번째 방법</b>: 올해의 동물들을 <b>랜덤하게</b> 두 그룹으로 나누어(랜덤화 적용) 이중맹검 실험을 실시한다.
+    따라서 동물 앞에서라도 누가 새로운 약을 먹는지 말하면 안 된다.</li>
+  </ol>
+</div>
+
+<div class="box ex">
+  <span class="tag">예 1.8</span><span class="title">두통약 선전</span>
+  <p>몇 년 전 미국 TV에서 장엄한 분위기를 연출하면서 'A약은 $10$ 명의 의사 중 $9$ 명의 의사가 선택하는 두통약'이라고 하며,
+  마치 법원 판결을 내리듯이 방망이를 세 번 두드리는 광고가 있었다. $3\sim4$ 초 동안의 짧은 광고였지만 감성에 크게 호소한 훌륭한 광고로 평가되고 있다.
+  하지만 이는 실험계획의 측면에서는 과학적 근거가 부족한 주장이다.</p>
+  <ol class="props">
+    <li>비교의 대상(<b>대조군</b>)이 없다.</li>
+    <li><b>무작위배정</b>(임상시험에서는 랜덤화를 무작위배정이라 함) 및 <b>이중 맹검</b>을 적용했는지 알 수 없다.</li>
+  </ol>
+  <p>이러한 광고를 볼 때, 실험계획의 기본 원리를 상기하고 감성에 호소하는 광고인지 분별하는 것이 중요하다.</p>
+</div>
+
+<div class="box ex">
+  <span class="tag">예 1.9</span><span class="title">새로운 수술 방법의 우월성 판단</span>
+  <p>누가 허리디스크에 걸려 좋은 병원을 찾는다고 하자. 소문에 의하면 모 병원이 새로 개발한 수술 방법이 허리디스크에 특효라고 한다.
+  이 병원에는 많은 허리디스크 환자가 몰려들 것이다. 하지만 그 병원에서 새로운 수술 방법으로 치료받는 사람은
+  허리디스크 말기환자보다 <b>조기환자</b>가 더 많을 가능성이 있다.</p>
+  <p>새로운 수술 방법이 기존의 수술 방법보다 실제로 더 좋을 수도 있지만,
+  말기환자보다 조기환자가 새로운 수술 방법으로 치료를 더 많이 받아서 해당 결과가 발생한 것일 수도 있다.
+  이런 현상은 무작위배정 및 대조군, 그리고 이중 맹검이 적용되지 않은 상황에서는 항상 발생한다.</p>
+  <p>그래서 미국의 일부 대학병원에서는 비슷한 증상의 환자가 병원에 올 때 여러 의사에게 환자를 <b>랜덤하게 할당</b>하여,
+  각 의사마다 수술 방법이 서로 얼마나 다른지 실험해보기도 한다.</p>
+</div>
+
+<div class="box ex">
+  <span class="tag">예 1.10</span><span class="title">심슨의 모순 <span class="en">Simpson's paradox</span></span>
+  <p>암환자에 대한 자사와 타사의 항암제 치료 결과가 &lt;표 1-2&gt;와 같다고 하자.</p>
+  <div class="scroll"><table class="data">
+    <tr><th>항암제</th><th>생존</th><th>사망</th><th>합계</th><th>생존율</th></tr>
+    <tr><th>자사</th><td>50명</td><td>50명</td><td>100명</td><td>50%</td></tr>
+    <tr><th>타사</th><td>30명</td><td>70명</td><td>100명</td><td>30%</td></tr>
+  </table></div>
+  <p>당신이 암에 걸렸다면 어느 회사로부터 항암제를 먹겠는가? 당연히 타사보다는 자사의 항암제를 먹을 것이다.
+  그런데 항암제 효과가 환자 성별에 따라 다르다고 한다면 남녀별 항암제의 효과를 살펴보아야 할 것이다. 그 결과가 &lt;표 1-3&gt;과 같다고 하자.</p>
+  <div class="scroll"><table class="data">
+    <tr><th></th><th>항암제</th><th>생존</th><th>사망</th><th>합계</th><th>생존율</th></tr>
+    <tr><th rowspan="3">남자</th><th>자사</th><td>48명</td><td>32명</td><td>80명</td><td>60%</td></tr>
+    <tr><th>타사</th><td>14명</td><td>6명</td><td>20명</td><td>70%</td></tr>
+    <tr><th>합계</th><td>62명</td><td>38명</td><td>100명</td><td></td></tr>
+    <tr><th rowspan="3">여자</th><th>자사</th><td>2명</td><td>18명</td><td>20명</td><td>10%</td></tr>
+    <tr><th>타사</th><td>16명</td><td>64명</td><td>80명</td><td>20%</td></tr>
+    <tr><th>합계</th><td>18명</td><td>82명</td><td>100명</td><td></td></tr>
+  </table></div>
+  <p>이제 당신은 어느 회사의 항암제를 먹겠는가? 남녀 불문하고 이 경우에는 자사의 항암제보다는 타사의 항암제를 먹을 것이다.</p>
+  <p>참고로 &lt;표 1-2&gt;와 &lt;표 1-3&gt; 사이에는 다음 관계가 성립한다. 전체 생존율은 남녀별 생존율을 성비로 가중평균한 값이다.</p>
+  $$\begin{aligned}
+  \text{자사항암제의 생존율} &= \tfrac{80}{100}\times 60\% + \tfrac{20}{100}\times 10\% = 50\%,\\[4pt]
+  \text{타사항암제의 생존율} &= \tfrac{20}{100}\times 70\% + \tfrac{80}{100}\times 20\% = 30\%.
+  \end{aligned}$$
+</div>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">심슨의 모순 <span class="en">Simpson's paradox</span></span>
+  <p>뭉그려서 낸 통계 결론과 세부적으로 낸 통계 결론이 <b>반대</b>인 현상.</p>
+</div>
+
+<div class="note">
+  예 1.10의 가상 데이터는 <b>무작위배정이 제대로 이루어지지 않은</b> 임상시험의 한 예로 볼 수 있다.
+  자사 항암제 그룹에는 남성이, 타사 항암제 그룹에는 여성이 주로 배정되어 있는데,
+  무작위배정이 올바르게 적용되었다면 이와 같은 극단적인 성비 불균형은 통계적으로 발생하기 어렵다.
+  통계적으로 통제되지 않은 실험에서는 이러한 심슨의 모순이 언제든지 나타날 수 있다.
+</div>
+
+<div class="box ex">
+  <span class="tag">예 1.11</span><span class="title">소크백신 접종 <span class="en">Salk vaccine</span></span>
+  <p>$1950$ 년대 초반, 소크백신(Salk vaccine)을 접종하면 소아마비균에 대항할 수 있는 항생제가 체내에서 생산되어
+  이 병이 예방된다는 것이 실험실에서 밝혀졌다. 그런데 실제 생활에서도 그런지 확인하기 위해 임상시험을 계획한다고 하자. 어떤 실험 방법이 있을까?</p>
+  <ol class="props">
+    <li><b>첫 번째 방법</b>: 초등학교에 입학한 전주(全州)의 학생이 예방접종을 받으려면 부모의 허가가 있어야 하므로,
+    '부모허가를 받은 집단'과 '부모허가를 받지 못한 집단' 두 그룹으로 나누어, 한쪽 집단에는 소크백신 접종을 하고
+    다른 집단에는 아예 접종을 하지 않는 방법이다. 그런데 이 방법이 적절한 것일까?
+    <br>실험 중 이들 두 집단 간에 차이가 있다는 것이 발견되었다.
+    즉 '부모허가를 받지 못한 집단'의 아이들이 어려서부터 적절한 보살핌을 받지 못해 잔병치레를 많이 했고,
+    이로 인해 몸 안의 내성에 대한 평균이 '부모허가를 받은 집단'의 아이보다 높았던 것이다.
+    그럼에도 소크백신 접종을 '부모허가를 받은 집단'에만 하는 것은 올바른 비교가 되지 못한다.</li>
+    <li><b>두 번째 방법</b>: 앞의 이유로 인해 '부모허가를 받은 집단'의 아이들을 두 그룹으로 <b>랜덤하게</b> 나누어
+    한쪽 집단에는 소크백신 접종을 하고, 다른 집단에는 접종을 하지 않는 것이다.
+    물론 '부모허가를 받지 못한 집단'의 아이에게는 당연히 예방접종을 하지 않았다.</li>
+  </ol>
+  <p>두 번째 방법으로 실험한 몇 년 뒤 &lt;표 1-4&gt;와 같은 수치가 나왔다.</p>
+  <div class="scroll"><table class="data">
+    <tr><th rowspan="2">집단</th><th rowspan="2">집단의 크기(명)</th><th colspan="2">병에 걸린 사람수(명)</th></tr>
+    <tr><th>총 사람수</th><th>100,000명당 사람수</th></tr>
+    <tr><th>부모허가를 받은 집단 — 처리집단</th><td>200,000</td><td>56</td><td>28.3</td></tr>
+    <tr><th>부모허가를 받은 집단 — 대조집단</th><td>200,000</td><td>142</td><td>71</td></tr>
+    <tr><th>부모허가를 받지 못한 집단</th><td>350,000</td><td>161</td><td>46</td></tr>
+  </table></div>
+  <p>처리집단의 발병수가 대조집단의 발병수보다 훨씬 작게 나왔다(유의확률은 거의 $0$ 에 가깝게 나왔음).
+  그리하여 소크백신 접종의 효과가 인정되어 소크백신 접종이 시행되었다.</p>
+</div>
+
+<nav class="pager">
+  <a href="1-1_what-is-doe.html">← 이전<small>1.1 실험계획의 개념</small></a>
+</nav>
+
+</body>
+</html>

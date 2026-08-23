@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1장 · 1.1 실험계획의 개념</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\(','\)']], displayMath: [['$$','$$'],['\[','\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">실험계획과 응용 · 1장 실험계획 개요</div>
+  <h1><span class="no">1.1</span>실험계획의 개념 <span class="en">what is experimental design?</span></h1>
+</header>
+
+<p>다양한 분야에서 어떤 특정한 프로세스 또는 시스템, 나아가 인과관계에 대한 해석을 얻기 위해서는 실험이 필수적이다.
+실험의 목적을 이루기 위해서는 실험의 면밀한 계획과 실행, 그리고 자료에 대한 정확한 분석이 필수적이다.</p>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">실험 <span class="en">experiment</span></span>
+  <p>관심 대상에 대하여 어떤 <b>처리</b>를 하여 나온 실험데이터를 분석하여 새로운 결론을 얻는 과정.</p>
+</div>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">실험계획 <span class="en">experimental design</span></span>
+  <p>시스템의 성격을 알기 위하여 실험을 수행할 때 다음을 다루는 방법론(실험설계라고도 한다).</p>
+  <ol class="props">
+    <li>어떤 식으로 실험을 수행해야 <b>효율적인 정보 획득</b>이 가능한지</li>
+    <li>또 어떻게 정보를 처리해야 얻은 정보에 대한 <b>분석 및 해석</b>이 적법한지</li>
+  </ol>
+</div>
+
+<h2 class="sub">실험의 목적에 따른 예 <span class="en">examples by purpose</span></h2>
+
+<div class="box ex">
+  <span class="tag">예 1.1</span><span class="title">중요 요인의 선별</span>
+  <p>어떤 화학 플랜트(plant)에서 중간 원료를 정화하는 데 $40$ 분 정도의 시간이 소요되는 것으로 알려져 있다.
+  다른 곳에서 이와 유사한 화학 플랜트를 세우고 동등한 결과를 얻으려 하였으나, 정화 시간이 약 $2$ 배 더 걸리는 심각한 문제가 발생하였다.
+  이를 해결하기 위하여 엔지니어들이 모여 토의한 결과 다음 $7$ 개의 잠재적 원인이 정화에 영향을 미치는 것으로 파악되었다.</p>
+  <p>정화수의 온도 · 정화수의 종류 · 원료의 종류 · 정화 온도 · 정화수 재활용 여부 · 소다의 비율 · 필터의 종류 · 침전시간</p>
+  <p>이 경우 잠재적 원인 중에서 정화 시간에 <b>유의한</b>(significant) 영향을 미치는 요인이 무엇인지를 선별하여야 한다.</p>
+</div>
+
+<div class="box ex">
+  <span class="tag">예 1.2</span><span class="title">입력변수와 출력변수의 관계 규명</span>
+  <p>어떤 염색공장에서 색상의 명암에 대한 고객의 요구를 충분히 만족시키지 못하여 주문이 줄고 있다.
+  색상의 명암은 염색온도에 민감하게 좌우되므로, 염색온도를 조정하여 주문에 따른 명암을 목표에 근접시키고 싶다.
+  이 경우 실험을 통하여 <b>명암</b>(출력변수)과 <b>염색온도</b>(입력변수)의 관계를 규명하여야 한다.</p>
+</div>
+
+<div class="box ex">
+  <span class="tag">예 1.3</span><span class="title">최적조건의 결정</span>
+  <p>비닐봉지를 제조하는 공정에서는 비닐봉지의 강도가 중요한 품질특성이다.
+  강도에 영향을 미치는 중요한 요인이 정화온도, 냉각온도, 첨가제의 양임을 알고 있는 상황에서,
+  실험을 통하여 비닐봉지의 강도를 높이는 요인들의 <b>최적 공정조건</b>을 찾아야 한다.</p>
+</div>
+
+<div class="box ex">
+  <span class="tag">예 1.4</span><span class="title">비교실험</span>
+  <p>새로운 진통제를 개발한 연구팀은 기존의 진통제 A, B, C와 새로 개발된 진통제 간의 진통효과를 비교하고자 한다.
+  이를 위하여 비슷한 여건의 환자를 대상으로 각각의 진통제를 복용하게 한 후 진통효과가 나타날 때까지 걸리는 시간을 측정하는 임상시험을 실시하였다.
+  이 경우 진통제 간에 과연 유의한 차이가 있는지 여부와, 차이가 있다면 어느 정도인지를 확인해야 한다.</p>
+</div>
+
+<h2 class="sub">프로세스의 모형화 <span class="en">modeling a process</span></h2>
+<p>앞의 여러 가지 예에서 연구 대상이 되는 프로세스를 그림으로 나타내면 [그림 1-1]과 같이 표현할 수 있다.
+입력이 프로세스를 거쳐 출력 $y$ 로 나오며, 프로세스에는 제어 가능한 요인 $x_1,x_2,\dots,x_p$ 와 제어할 수 없는 잡음 $z_1,z_2,\dots,z_p$ 가 작용한다.</p>
+
+<figure class="fig">
+<svg viewBox="0 0 330 215" role="img" aria-label="프로세스의 모형도 — 제어 가능한 요인, 잡음, 입력, 출력">
+  <defs>
+    <marker id="ar" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 z" fill="#1d6fb8"/>
+    </marker>
+    <marker id="arg" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 z" fill="#5a5a5a"/>
+    </marker>
+  </defs>
+
+  <text class="lbl" x="165" y="16" text-anchor="middle">제어 가능한 요인</text>
+  <g class="vec">
+    <line x1="85"  y1="42" x2="85"  y2="76" marker-end="url(#ar)"/>
+    <line x1="130" y1="42" x2="130" y2="76" marker-end="url(#ar)"/>
+    <line x1="240" y1="42" x2="240" y2="76" marker-end="url(#ar)"/>
+  </g>
+  <text class="lbl b" x="85"  y="36" text-anchor="middle">x₁</text>
+  <text class="lbl b" x="130" y="36" text-anchor="middle">x₂</text>
+  <text class="lbl"   x="185" y="36" text-anchor="middle">⋯</text>
+  <text class="lbl b" x="240" y="36" text-anchor="middle">xₚ</text>
+
+  <rect class="cell" x="65" y="80" width="210" height="54"/>
+  <text class="lbl" x="170" y="112" text-anchor="middle">프로세스</text>
+
+  <line class="aux" x1="12" y1="107" x2="58" y2="107" stroke-dasharray="0" marker-end="url(#arg)"/>
+  <text class="lbl" x="33" y="98" text-anchor="middle">입력</text>
+  <line class="aux" x1="278" y1="107" x2="322" y2="107" stroke-dasharray="0" marker-end="url(#arg)"/>
+  <text class="lbl" x="300" y="98" text-anchor="middle">출력</text>
+  <text class="lbl b" x="300" y="124" text-anchor="middle">y</text>
+
+  <g class="vec">
+    <line x1="85"  y1="172" x2="85"  y2="138" marker-end="url(#ar)"/>
+    <line x1="130" y1="172" x2="130" y2="138" marker-end="url(#ar)"/>
+    <line x1="240" y1="172" x2="240" y2="138" marker-end="url(#ar)"/>
+  </g>
+  <text class="lbl b" x="85"  y="186" text-anchor="middle">z₁</text>
+  <text class="lbl b" x="130" y="186" text-anchor="middle">z₂</text>
+  <text class="lbl"   x="185" y="186" text-anchor="middle">⋯</text>
+  <text class="lbl b" x="240" y="186" text-anchor="middle">zₚ</text>
+  <text class="lbl" x="165" y="205" text-anchor="middle">잡음(또는 오차)</text>
+</svg>
+<figcaption>[그림 1-1] 프로세스의 모형도 — 입력이 프로세스를 거쳐 출력 $y$ 로 나오고, 위에서는 제어 가능한 요인, 아래에서는 잡음이 작용한다.</figcaption>
+</figure>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">요인 <span class="en">factor</span></span>
+  <p>제어(control)가 용이하고, 재현성이 있으며, 기술적 의미를 갖는, 출력에 영향을 미치는 변수.
+  <b>인자</b>라고도 한다. 위 그림의 $x_1,\dots,x_p$ 가 요인이다.</p>
+</div>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">잡음 <span class="en">noise</span></span>
+  <p>출력에 영향을 미치는 요인이지만, 다음 중 하나에 해당하는 것.</p>
+  <ol class="props">
+    <li>제어할 수 없는 것</li>
+    <li>또는 측정할 수 없는 것</li>
+  </ol>
+  <p>위 그림의 $z_1,\dots,z_p$ 가 잡음이다.</p>
+</div>
+
+<div class="note">
+  이와 같이 프로세스가 주어진 경우, 계획된 실험이란 <b>제어 가능한 요인을 조절하였을 때 출력이 어떻게 변화하는지</b>를 조사하여
+  프로세스를 보다 잘 이해하려는 시도, 즉 <b>인과관계에 대한 추론</b>으로 볼 수 있다.
+</div>
+
+<nav class="pager">
+  <span class="spacer"></span>
+  <a class="next" href="1-2_basic-principles.html">다음 →<small>1.2 실험계획의 기본 원리</small></a>
+</nav>
+
+</body>
+</html>
