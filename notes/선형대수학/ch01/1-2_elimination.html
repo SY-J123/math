@@ -119,15 +119,6 @@
   <p>가 된다. 예를 들어 $k=2$ 이면 $(2,0)$ 이, $k=4$ 이면 $(4,-3)$ 이 해가 된다.</p>
 </div>
 
-<div class="terms">
-  <div class="h">알아두기 — 매개변수</div>
-  <dl>
-    <dt>매개변수 <span class="en">parameter</span></dt>
-    <dd>예제 1.4의 $k$ 처럼, 무수히 많은 해를 <b>하나의 식으로 서술하기 위해 도입하는 변수</b>다.
-      미지수가 아니라 해를 훑어 나가는 눈금 역할을 한다. $k$ 에 수를 하나 넣을 때마다 해가 하나 나온다.</dd>
-  </dl>
-</div>
-
 <h2 class="sub">기본연산과 세 가지 해 <span class="en">elementary operations &amp; three types of solution</span></h2>
 <p>예제 1.2에서 예제 1.4까지의 내용을 통해 소거법의 기본적인 특성과 함께 연립방정식의 세 가지 가능한 해를
 살펴보았다. 이것을 정리하면 다음과 같다.</p>
@@ -222,6 +213,100 @@
   소거를 끝까지 진행했을 때 마지막 방정식의 모양이 곧 해의 종류를 알려 준다.
   미지수 하나가 계수 $\ne0$ 으로 남으면 유일한 해, 미지수가 모두 사라지고 $0=(\text{0이 아닌 수})$ 가 되면 불능,
   $0=0$ 이 되면 부정이다.
+</div>
+
+<h2 class="sub">보충 — 매개변수를 이용한 해집합의 표현 <span class="en">parametric representation of the solution set</span></h2>
+<p>부정인 해는 개수가 무한하므로 하나하나 나열할 수 없다. 그래서 값을 자유롭게 고를 수 있는 미지수 하나를
+<b>매개변수</b>로 잡고 나머지 미지수를 그 매개변수의 식으로 나타낸다. 이렇게 하면 무수히 많은 해를
+<b>유한한 길이의 식 하나</b>로 서술할 수 있다 — 예제 1.4에서 $x=k$ 로 두고 $y=3-\tfrac32k$ 를 얻은 것이 그것이다.</p>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">자유변수와 매개변수 <span class="en">free variable, parameter</span></span>
+  <p>소거를 끝까지 진행하여 더 이상 줄일 수 없는 형태를 얻었을 때, 미지수는 두 종류로 나뉜다.</p>
+  <ol class="props">
+    <li><b>종속변수</b> — 다른 미지수의 값이 정해지면 따라서 값이 결정되는 미지수.</li>
+    <li><b>자유변수</b><span class="en">free variable</span> — 어떤 값이든 자유롭게 가질 수 있는 미지수.
+      이 자유변수에 배정하는 문자 $k,\,t,\,s$ 등을 <b>매개변수</b><span class="en">parameter</span>라 한다.</li>
+  </ol>
+  <p>자유변수의 개수는 다음과 같으며, 이것이 곧 필요한 매개변수의 개수다.</p>
+  $$(\text{자유변수의 개수})=(\text{미지수의 개수})-(\text{독립인 방정식의 개수})$$
+</div>
+
+<div class="box thm">
+  <span class="tag">성질</span><span class="title">매개변수 표현을 구하는 절차</span>
+  <ol class="props">
+    <li>소거법으로 각 방정식이 앞의 방정식보다 미지수를 하나씩 덜 갖는 <b>계단 형태</b>를 만든다.</li>
+    <li>각 방정식에서 <b>처음 나오는 미지수</b>를 종속변수로, 남은 미지수를 자유변수로 정한다.</li>
+    <li>자유변수마다 매개변수를 하나씩 배정한다.</li>
+    <li>맨 아래 방정식부터 <b>후진대입</b>하여 종속변수를 매개변수의 식으로 쓴다.</li>
+    <li>해를 순서열로 묶어 해집합 $\{(\ \cdots\ )\mid\text{매개변수의 범위}\}$ 형태로 정리한다.</li>
+  </ol>
+</div>
+
+<div class="box ex">
+  <span class="tag">예</span><span class="title">매개변수 $1$ 개 — 3원 2식</span>
+  <p>다음 연립방정식은 이미 계단 형태다.</p>
+  $$\begin{cases}
+    x_1+x_2+\ \ x_3=6\\
+    \qquad x_2+2x_3=5
+  \end{cases}$$
+  <p><b>풀이</b> &nbsp;미지수가 $3$ 개, 독립인 방정식이 $2$ 개이므로 자유변수는 $3-2=1$ 개다.
+  각 방정식에서 처음 나오는 $x_1,x_2$ 가 종속변수이고, 남은 $x_3$ 가 자유변수이므로 $x_3=t$ 로 둔다.</p>
+  <p>맨 아래 방정식에서 $x_2=5-2t$ 이고, 이를 위 방정식에 후진대입하면</p>
+  $$x_1=6-x_2-x_3=6-(5-2t)-t=1+t$$
+  <p>이다. 따라서 해집합은</p>
+  $$\big\{(1+t,\ 5-2t,\ t)\ \big|\ t\text{ 는 임의의 수}\big\}$$
+  <p>이다. 실제로 $t=0$ 이면 $(1,5,0)$, $t=1$ 이면 $(2,3,1)$ 이 해가 되며, 두 방정식에 대입하면
+  $t$ 가 서로 소거되어 항등적으로 성립함을 확인할 수 있다.</p>
+</div>
+
+<div class="box ex">
+  <span class="tag">예</span><span class="title">매개변수 $2$ 개 — 3원 1식</span>
+  <p>방정식이 하나뿐인 $x_1+x_2+x_3=6$ 에서는 미지수 $3$ 개에 독립인 방정식이 $1$ 개이므로
+  자유변수가 $3-1=2$ 개다. $x_2=s$, $x_3=t$ 로 두면 $x_1=6-s-t$ 이므로 해집합은</p>
+  $$\big\{(6-s-t,\ s,\ t)\ \big|\ s,t\text{ 는 임의의 수}\big\}$$
+  <p>이다. 자유변수가 늘어난 만큼 매개변수도 함께 늘어난다.</p>
+</div>
+
+<figure class="fig">
+<svg viewBox="0 0 240 200" role="img" aria-label="3x+2y=6 의 해집합을 매개변수 k 로 훑는 그림">
+  <!-- O=(70,90), 1단위=18px.  3x+2y=6  →  y=3-1.5x -->
+  <line class="axis" x1="20" y1="90" x2="205" y2="90"/>
+  <line class="axis" x1="70" y1="14" x2="70" y2="184"/>
+  <line class="vec" x1="61" y1="23" x2="156" y2="165"/>
+  <line class="aux" x1="70" y1="36" x2="106" y2="36"/>
+  <line class="aux" x1="106" y1="36" x2="106" y2="90"/>
+  <line class="aux" x1="106" y1="144" x2="142" y2="144"/>
+  <line class="aux" x1="142" y1="90" x2="142" y2="144"/>
+  <circle cx="70" cy="36" r="3.4" fill="#7b3fa0"/>
+  <circle cx="106" cy="90" r="3.4" fill="#7b3fa0"/>
+  <circle cx="142" cy="144" r="3.4" fill="#7b3fa0"/>
+  <text class="lbl p" x="12" y="32">k=0</text>
+  <text class="lbl p" x="98" y="80">k=2</text>
+  <text class="lbl p" x="148" y="148">k=4</text>
+  <text class="num" x="76" y="32">(0, 3)</text>
+  <text class="num" x="110" y="104">(2, 0)</text>
+  <text class="num" x="148" y="162">(4, −3)</text>
+  <text class="lbl b" x="158" y="176">3x+2y=6</text>
+  <text class="lbl" x="60" y="16" fill="#5a5a5a">y</text>
+  <text class="lbl" x="202" y="106" fill="#5a5a5a">x</text>
+  <text class="lbl" x="58" y="106" fill="#5a5a5a">O</text>
+</svg>
+<figcaption>매개변수 $k$ 에 수를 하나 넣을 때마다 직선 위의 점 하나가 정해진다.
+매개변수 $1$ 개는 <b>직선</b>을, $2$ 개는 <b>평면</b>을 훑는다 — 매개변수의 개수가 곧 해집합의 차원이다.</figcaption>
+</figure>
+
+<div class="note">
+  매개변수 표현은 <b>유일하지 않다</b>. 예제 1.4에서 $y$ 를 자유변수로 잡아 $y=k$ 로 두면
+  $x=2-\tfrac23k$ 가 되어 해집합이 $\{(2-\tfrac23k,\ k)\}$ 로 쓰이는데, 앞의
+  $\{(k,\ 3-\tfrac32k)\}$ 와 <b>모양은 달라도 같은 집합</b>이다. 어느 미지수를 자유변수로 고르느냐에 따라
+  표현이 달라질 뿐이다.
+</div>
+<div class="note">
+  응용 문제에서는 매개변수의 <b>범위에 제약</b>이 붙는다.
+  <a href="1-3_applications.html">1.3절</a>의 예제 1.6에서는 화학반응식의 계수가 자연수여야 하므로 $t\in\mathbb N$ 이고,
+  예제 1.8에서는 통행량이 음수일 수 없으므로 $n\ge0$ 이다. 수학적 해집합은 무한하지만,
+  현실적으로 의미 있는 해는 그 제약을 만족하는 부분집합이다.
 </div>
 
 <nav class="pager">
