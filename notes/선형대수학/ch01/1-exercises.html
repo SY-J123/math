@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1장 · 연습문제</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<style>
+  .ex{ margin:26px 0; line-height:1.75; }
+  .exn{ font-weight:800; color:var(--def); margin-right:8px; }
+  .mark{ color:#d64541; font-weight:800; margin:0 5px 0 2px; letter-spacing:2px; }
+  .ex ol{ margin:4px 0 0; padding-left:26px; }
+  .ex li{ margin:5px 0; }
+  .answersheet{ page-break-before:always; }
+  .ans{ margin:22px 0; line-height:1.75; }
+  .ans .exn{ color:var(--thm); }
+  .ans ol{ margin:4px 0 0; padding-left:26px; }
+  .ans li{ margin:8px 0; }
+  @media print{ .pager, .home{ display:none; } a{ color:inherit; text-decoration:none; } .mark{ color:#000; } }
+</style>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">선형대수학 · 1장 일차연립방정식</div>
+  <h1><span class="no">연습문제</span>1장 <span class="en">exercises</span></h1>
+</header>
+
+<p>1장(일차연립방정식) 교재 연습문제와 정답·해설. 정답 시트는 인쇄 시 다음 페이지부터 나온다.</p>
+
+<div class="note">
+  <b>대조 요망.</b> 원본 사진의 일부가 가려져 있었다. 특히 <b>01 (5)·(6)</b> 은 계수를 읽은 대로 풀면
+  답이 분수로 나오거나 불능이 되므로, 교재의 숫자와 한 번 대조해 보기를 권한다.
+</div>
+
+<h2 class="sub">교재 연습문제 <span class="en">textbook exercises</span></h2>
+
+<div class="ex"><span class="exn">01</span>다음 일차연립방정식 각각에 대해 소거법을 사용하여 해집합을 구하라.
+단, 해가 없는 경우는 그 이유를 설명하고 해가 무수히 많은 경우는 매개변수를 이용하여 해집합을 기술하라.
+  <ol>
+    <li>$\begin{cases}\ \ x-2y=3\\ 2x+\ \ y=1\end{cases}$</li>
+    <li>$\begin{cases}2x+2y=6\\ 4x+4y=8\end{cases}$</li>
+    <li>$\begin{cases}2x+\ \ y=4\\ 3x+2y=7\end{cases}$</li>
+    <li>$\begin{cases}2x+2y=4\\ 4x+4y=8\end{cases}$</li>
+    <li>$\begin{cases}\ \ x+3y-2z=\ \ 5\\ \ \ x\qquad+3z=\ \ 4\\ 3x+6y+5z=-3\end{cases}$</li>
+    <li>$\begin{cases}2x+3y+4z=\ \ 9\\ \ \ x-4y\qquad=-3\\ \ \ x\qquad+3z=\ \ 1\\ \qquad 5y-6z=-7\end{cases}$</li>
+  </ol>
+</div>
+
+<div class="ex"><span class="exn">02</span>다음 유리함수를 부분 분수로 나타내라(예제 1.7 참조).
+  <ol>
+    <li>$\dfrac{x^2-3x+6}{x(x+1)(x+2)}$</li>
+    <li>$\dfrac{x^2+3x-6}{(x-3)(x^2+2)}$</li>
+    <li>$\dfrac{2x^2+x+5}{x^3+2x^2-1}$</li>
+    <li>$\dfrac{x^3-3x^2-3x+1}{x^4-1}$</li>
+  </ol>
+</div>
+
+<div class="ex"><span class="exn">03</span>다음 완전한 화학 반응식에서 각 분자의 개수를 결정하라(즉, $a,b,c,d$ 값을 구하라).
+  <ol>
+    <li>$a\,\mathrm{N_2}+b\,\mathrm{H_2}\ \longrightarrow\ c\,\mathrm{NH_3}$</li>
+    <li>$a\,\mathrm{C_2H_6}+b\,\mathrm{O_2}\ \longrightarrow\ c\,\mathrm{CO_2}+d\,\mathrm{H_2O}$</li>
+  </ol>
+</div>
+
+<div class="ex"><span class="exn">04</span>다음 연립방정식에 관한 아래 물음에 답하라.
+  $$\begin{cases}2x+ay=7\\ \ \ x-3y=b\end{cases}$$
+  <ol>
+    <li>해를 갖지 못할(불능인 해) 조건을 구하라.</li>
+    <li>유일한 해를 갖기 위한 조건을 구하라.</li>
+    <li>무수히 많은 해(부정인 해)를 갖기 위한 조건을 구하라.</li>
+  </ol>
+</div>
+
+<div class="ex"><span class="exn">05</span>해집합이 $\{(a,2a,3a)\mid a\in\mathbb R\}$ 인 3원 일차연립방정식을 구하라.</div>
+
+<!-- ============================ 정답 시트 ============================ -->
+<div class="answersheet">
+<header class="doc">
+  <div class="ch">선형대수학 · 1장 일차연립방정식</div>
+  <h1><span class="no">정답·해설</span>1장 <span class="en">answers</span></h1>
+</header>
+
+<div class="ans"><span class="exn">01</span>소거법으로 해집합 구하기.
+  <ol>
+    <li><b>유일한 해 $(1,-1)$.</b> 첫 식에 $-2$ 를 곱해 둘째 식에 더하면 $5y=-5$ 이므로 $y=-1$,
+      후진대입하면 $x=3+2(-1)=1$.
+      $$\begin{cases}x-2y=3\\ 2x+y=1\end{cases}\ \longrightarrow\
+      \begin{cases}x-2y=\ \ 3\\ \ \ \ \ 5y=-5\end{cases}$$
+      검산: $1-2(-1)=3$, $2(1)+(-1)=1$.</li>
+
+    <li><b>해가 없다(불능).</b> 첫 식에 $-2$ 를 곱해 둘째 식에 더하면
+      $$(4x+4y)-2(2x+2y)=0,\qquad 8-2\cdot6=-4$$
+      이므로 $0x+0y=-4$ 가 되어 $0\ne-4$. 어떤 $x,y$ 도 이 식을 만족시킬 수 없다.
+      두 식을 정리하면 $x+y=3$ 과 $x+y=2$ 로, 같은 $x+y$ 가 서로 다른 두 값이 될 수 없다는 모순이다
+      (기하적으로는 두 직선이 평행).</li>
+
+    <li><b>유일한 해 $(1,2)$.</b> 첫 식에 $-2$ 를 곱해 둘째 식에 $\times1$ 로 더하는 대신,
+      첫 식의 $-\tfrac32$ 배를 둘째 식에 더하면 $\tfrac12y=1$ 이다. 정수로 하려면 둘째 식의 $2$ 배에서
+      첫 식의 $3$ 배를 빼면 $y=2$ 이고, 후진대입하여 $2x+2=4$, 곧 $x=1$.
+      검산: $2(1)+2=4$, $3(1)+2(2)=7$.</li>
+
+    <li><b>해가 무수히 많다(부정).</b> 둘째 식은 첫 식의 정확히 $2$ 배이므로 독립인 방정식은
+      $x+y=2$ 하나뿐이고, 소거하면 $0=0$ 이 남는다. $x=k$ 로 두면 $y=2-k$ 이므로
+      $$\{(k,\ 2-k)\mid k\text{ 는 임의의 수}\}.$$
+      예: $k=0$ 이면 $(0,2)$, $k=2$ 이면 $(2,0)$.</li>
+
+    <li><b>유일한 해 $\big(\tfrac{25}{2},\,-\tfrac{79}{18},\,-\tfrac{17}{6}\big)$.</b>
+      $E_1:x+3y-2z=5$, $E_2:x+3z=4$, $E_3:3x+6y+5z=-3$ 에서
+      $$E_2-E_1:\ -3y+5z=-1,\qquad E_3-3E_1:\ -3y+11z=-18$$
+      이고, 두 식을 빼면 $6z=-17$ 이므로 $z=-\tfrac{17}{6}$.
+      이를 $-3y+5z=-1$ 에 대입하면 $-3y=-1-5z=\tfrac{79}{6}$ 이므로 $y=-\tfrac{79}{18}$ 이고,
+      $E_2$ 에서 $x=4-3z=4+\tfrac{17}{2}=\tfrac{25}{2}$.
+      검산($E_1$): $\tfrac{75}{6}-\tfrac{79}{6}+\tfrac{34}{6}=5$.</li>
+
+    <li><b>해가 없다(불능).</b> 미지수는 $3$ 개인데 방정식이 $4$ 개인 <b>과대결정</b> 연립방정식이다.
+      아래 세 식만 쓰면 후보가 하나로 정해진다.
+      $$E_3-E_2:\ 4y+3z=4,\qquad E_4:\ 5y-6z=-7$$
+      앞 식의 $2$ 배를 뒤 식에 더하면 $13y=1$ 이므로 $y=\tfrac1{13}$, 따라서
+      $z=\tfrac{16}{13}$, $x=4y-3=-\tfrac{35}{13}$.
+      그런데 이 값을 남은 $E_1$ 에 넣으면
+      $$2\Big(-\tfrac{35}{13}\Big)+3\Big(\tfrac1{13}\Big)+4\Big(\tfrac{16}{13}\Big)
+      =\frac{-70+3+64}{13}=-\frac{3}{13}\ne9$$
+      이므로 네 식을 동시에 만족시키는 해는 없다.</li>
+  </ol>
+</div>
+
+<div class="ans"><span class="exn">02</span>부분 분수 분해. 통분 후 <b>분자의 계수를 비교</b>해 연립방정식을 만든다.
+  <ol>
+    <li>$\dfrac{A}{x}+\dfrac{B}{x+1}+\dfrac{C}{x+2}$ 로 두고 통분하면 분자가
+      $A(x+1)(x+2)+Bx(x+2)+Cx(x+1)=x^2-3x+6$ 이다.
+      $x=0,\,-1,\,-2$ 를 차례로 넣으면 $2A=6$, $-B=10$, $2C=16$ 이므로
+      $$\frac{x^2-3x+6}{x(x+1)(x+2)}=\frac{3}{x}-\frac{10}{x+1}+\frac{8}{x+2}.$$
+      ($x^2$ 의 계수로 검산: $A+B+C=3-10+8=1$.)</li>
+
+    <li>분모에 <b>인수분해되지 않는 2차식</b>이 있으므로 그 몫의 분자는 1차식으로 둔다.
+      $\dfrac{A}{x-3}+\dfrac{Bx+C}{x^2+2}$ 로 두면
+      $A(x^2+2)+(Bx+C)(x-3)=x^2+3x-6$ 이고, 계수를 비교하면
+      $$A+B=1,\qquad -3B+C=3,\qquad 2A-3C=-6.$$
+      $x=3$ 을 넣으면 $11A=12$ 이므로 $A=\tfrac{12}{11}$, 따라서 $B=-\tfrac1{11}$, $C=\tfrac{30}{11}$ 이다.
+      $$\frac{x^2+3x-6}{(x-3)(x^2+2)}=\frac{12}{11(x-3)}+\frac{-x+30}{11(x^2+2)}.$$</li>
+
+    <li>먼저 분모를 인수분해한다. $x=-1$ 이 근이므로 $x^3+2x^2-1=(x+1)(x^2+x-1)$ 이고,
+      $x^2+x-1$ 은 유리수 범위에서 더 쪼개지지 않는다.
+      $\dfrac{A}{x+1}+\dfrac{Bx+C}{x^2+x-1}$ 로 두면
+      $A(x^2+x-1)+(Bx+C)(x+1)=2x^2+x+5$ 이고, $x=-1$ 을 넣으면 $-A=6$ 이므로 $A=-6$.
+      계수 비교 $A+B=2$, $-A+C=5$ 에서 $B=8$, $C=-1$ 이다.
+      $$\frac{2x^2+x+5}{x^3+2x^2-1}=\frac{-6}{x+1}+\frac{8x-1}{x^2+x-1}.$$
+      ($x$ 의 계수로 검산: $A+B+C=-6+8-1=1$.)</li>
+
+    <li>분모는 $x^4-1=(x-1)(x+1)(x^2+1)$ 이다. 그런데 분자에 $x=-1$ 을 넣으면
+      $-1-3+3+1=0$ 이므로 분자도 $(x+1)$ 을 인수로 가진다.
+      $$x^3-3x^2-3x+1=(x+1)(x^2-4x+1)$$
+      이므로 $(x+1)$ 이 <b>약분</b>되어
+      $\dfrac{x^2-4x+1}{(x-1)(x^2+1)}=\dfrac{A}{x-1}+\dfrac{Cx+D}{x^2+1}$ 만 남는다.
+      $A(x^2+1)+(Cx+D)(x-1)=x^2-4x+1$ 에서 $x=1$ 을 넣으면 $2A=-2$ 이므로 $A=-1$,
+      계수 비교 $A+C=1$, $A-D=1$ 에서 $C=2$, $D=-2$ 다.
+      $$\frac{x^3-3x^2-3x+1}{x^4-1}=\frac{-1}{x-1}+\frac{2x-2}{x^2+1}
+      =-\frac{1}{x-1}+\frac{2(x-1)}{x^2+1}.$$</li>
+  </ol>
+</div>
+
+<div class="ans"><span class="exn">03</span>반응 전과 후의 <b>원자수가 같다</b>는 조건에서 연립방정식을 만든다.
+계수는 자연수여야 하므로 <b>가장 작은 자연수 해</b>를 택한다.
+  <ol>
+    <li>$a\,\mathrm{N_2}+b\,\mathrm{H_2}\to c\,\mathrm{NH_3}$ 에서
+      $$\text{N}:\ 2a=c,\qquad \text{H}:\ 2b=3c$$
+      이다. 미지수 $3$ 개에 방정식 $2$ 개이므로 부정연립방정식이고, $a=t$ 로 두면 $c=2t$,
+      $b=\tfrac{3c}{2}=3t$ 이다. 해집합은 $\{(t,3t,2t)\mid t\in\mathbb N\}$ 이며,
+      $t=1$ 일 때 $a=1,\ b=3,\ c=2$ 로
+      $$\mathrm{N_2}+3\,\mathrm{H_2}\ \longrightarrow\ 2\,\mathrm{NH_3}.$$</li>
+
+    <li>$a\,\mathrm{C_2H_6}+b\,\mathrm{O_2}\to c\,\mathrm{CO_2}+d\,\mathrm{H_2O}$ 에서
+      $$\text{C}:\ 2a=c,\qquad \text{H}:\ 6a=2d,\qquad \text{O}:\ 2b=2c+d$$
+      이다. $c=2a$, $d=3a$ 를 산소 식에 넣으면 $2b=4a+3a=7a$, 곧 $b=\tfrac72a$ 이므로
+      $b$ 가 자연수이려면 $a$ 가 짝수여야 한다. $a=2t$ 로 두면
+      해집합은 $\{(2t,7t,4t,6t)\mid t\in\mathbb N\}$ 이고, $t=1$ 일 때
+      $a=2,\ b=7,\ c=4,\ d=6$ 으로
+      $$2\,\mathrm{C_2H_6}+7\,\mathrm{O_2}\ \longrightarrow\ 4\,\mathrm{CO_2}+6\,\mathrm{H_2O}.$$</li>
+  </ol>
+</div>
+
+<div class="ans"><span class="exn">04</span>소거를 한 번만 해 두면 세 물음이 동시에 풀린다.
+첫 식에서 둘째 식의 $2$ 배를 빼면 $x$ 가 사라져
+  $$(2x+ay)-2(x-3y)=(a+6)y,\qquad 7-2b$$
+  이므로 연립방정식은 다음과 동등하다.
+  $$\begin{cases}x-3y=b\\ (a+6)\,y=7-2b\end{cases}$$
+  둘째 식이 $ky=m$ 꼴의 일차방정식이므로, 1.1절에서 본 $ax=b$ 의 세 경우가 그대로 적용된다.
+  <ol>
+    <li><b>불능:</b> $a+6=0$ 이면서 $7-2b\ne0$ 일 때. 즉
+      $$a=-6,\qquad b\ne\tfrac72.$$
+      이때 둘째 식이 $0\cdot y=(0\text{ 이 아닌 수})$ 가 되어 만족하는 $y$ 가 없다.</li>
+    <li><b>유일한 해:</b> $a+6\ne0$, 즉
+      $$a\ne-6\quad(b\text{ 는 임의}).$$
+      이때 $y=\dfrac{7-2b}{a+6}$ 로 정해지고 $x=b+3y$ 도 하나로 정해진다.</li>
+    <li><b>부정:</b> $a+6=0$ 이면서 $7-2b=0$ 일 때. 즉
+      $$a=-6,\qquad b=\tfrac72.$$
+      이때 둘째 식이 $0=0$ 이 되어 남는 식은 $x-3y=\tfrac72$ 하나뿐이고,
+      $y=k$ 로 두면 해집합은 $\{(\tfrac72+3k,\ k)\mid k\text{ 는 임의의 수}\}$ 다.</li>
+  </ol>
+</div>
+
+<div class="ans"><span class="exn">05</span><b>답(예시):</b>
+  $$\begin{cases}2x_1-x_2\qquad=0\\ 3x_1\qquad-x_3=0\end{cases}$$
+  <b>해설.</b> 구하려는 해집합 $\{(a,2a,3a)\mid a\in\mathbb R\}$ 은 매개변수가 $1$ 개인 표현이므로
+  원점을 지나는 <b>직선</b>이다. 미지수가 $3$ 개이고 자유변수가 $1$ 개이므로 필요한 독립인 방정식은
+  $3-1=2$ 개이고, $a=0$ 일 때 $(0,0,0)$ 이 해가 되어야 하므로 상수항은 모두 $0$ 인
+  <b>동차 연립방정식</b>이어야 한다.
+  <p>이제 $x_1=a,\ x_2=2a,\ x_3=3a$ 사이의 관계식을 $a$ 가 사라지도록 두 개 만들면 된다.</p>
+  $$x_2=2x_1\ \Rightarrow\ 2x_1-x_2=0,\qquad x_3=3x_1\ \Rightarrow\ 3x_1-x_3=0$$
+  <p>역으로 이 두 식을 풀면 $x_1=a$ 로 둘 때 $x_2=2a$, $x_3=3a$ 이므로 해집합이 정확히 일치한다.</p>
+  <p><b>답은 유일하지 않다.</b> 예컨대 세 식을 쓴</p>
+  $$\begin{cases}2x_1-\ \ x_2\qquad=0\\ 3x_1\qquad-\ \ x_3=0\\ \qquad 3x_2-2x_3=0\end{cases}$$
+  <p>도 답이 된다 — 셋째 식은 앞의 두 식에 <b>종속</b>이어서($3\times$첫째$-2\times$둘째의 결과)
+  해집합을 더 줄이지 않는다. 독립인 방정식이 $2$ 개라는 점만 지키면 어떤 형태로 써도 좋다.</p>
+</div>
+
+</div>
+
+<nav class="pager">
+  <a href="1-3_applications.html">← 이전<small>1.3 일차연립방정식의 응용</small></a>
+  <a class="next" href="../index.html">목차 →<small>선형대수학</small></a>
+</nav>
+
+</body>
+</html>
