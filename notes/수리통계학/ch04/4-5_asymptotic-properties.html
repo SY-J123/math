@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>4장 · 4.5 추정량의 점근적 성질</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">수리통계학 · 4장 추정</div>
+  <h1><span class="no">4.5</span>추정량의 점근적 성질 <span class="en">asymptotic properties of estimators</span></h1>
+</header>
+
+<div class="note">
+  앞에서 다루었던 추정량의 비편향성 또는 최소분산성 등은 <b>고정된 표본 크기 $n$</b> 에 대해 정의된
+  성질들이었다. 여기에서는 표본의 크기가 커짐에 따라 추정량이 가지는 <b>점근적</b><span class="en">asymptotic</span>
+  성질을 살펴본다. 즉 점점 더 많은 관측치를 갖는 표본을 뽑는다고 가정하고, 궁극에는 어떤 일이 일어날
+  것인지를 보는 것이다.
+</div>
+
+<!-- ================= 일치성 ================= -->
+<h2 class="sub">일치성 <span class="en">consistency</span></h2>
+<div class="box def">
+  <span class="tag">정의 4.9</span><span class="title">일치성 <span class="en">consistency</span></span>
+  <p>모수의 함수 $g(\theta)$ 의 추정량 $T_n(X)=T(X_1,X_2,\dots,X_n)$ 이 임의의 $\varepsilon\gt0$ 에 대하여</p>
+  $$\lim_{n\to\infty}P\big[\,|T_n(X)-g(\theta)|\le\varepsilon\,\big]=1$$
+  <p>을 만족하면, 추정량 $T_n(X)$ 는 <b>일치성</b>이 있다고 한다. 이때 $T_n(X)$ 를 $g(\theta)$ 의
+  <b>일치추정량</b>이라고 부른다.</p>
+</div>
+<div class="note">
+  정의 4.9는 표본의 크기가 커짐에 따라 $T_n(X)$ 가 $g(\theta)$ 에
+  <a href="../ch03/3-4_lln-clt.html">확률적으로 수렴</a>한다는 것(정의 3.5)과 같은 말이다.
+  즉 표본의 크기가 매우 큰 경우 $T_n(X)$ 로부터 계산된 추정값은 <b>높은 확률로 참모수값에 매우 가까이</b>
+  있다는 뜻이다.
+</div>
+
+<div class="box ex">
+  <span class="tag">예 4.39</span><span class="title">표본평균의 일치성</span>
+  <p>$X_1,\dots,X_n$ 을 평균이 $\mu$ 이고 분산이 $\sigma^2\lt\infty$ 인 확률분포로부터 얻은 랜덤표본이라 하자.
+  모평균 $\mu$ 의 추정량으로서 표본평균 $T_n(X)=\overline{X}_n$ 이 일치성이 있음은
+  <a href="../ch03/3-4_lln-clt.html">정리 3.12(대수의 법칙)</a>에서 이미 보여졌다.</p>
+</div>
+
+<div class="box ex">
+  <span class="tag">예 4.40</span><span class="title">$U(0,\theta)$ 의 표본최댓값</span>
+  <p>$X_1,\dots,X_n$ 을 $U(0,\theta)$ 로부터 얻은 랜덤표본이라 하자. 이때 $\theta$ 의
+  <a href="4-2_maximum-likelihood.html">최대가능도추정량</a>은 표본최댓값 $X_{(n)}$ 이다(예 4.9).
+  이 추정량의 일치성을 직접 확인해 보자.</p>
+  <ol class="fill">
+    <li><span class="step">확률을 적분으로 쓰기.</span> $X_{(n)}\le\theta$ 는 항상 성립하므로,
+      임의의 $\varepsilon\gt0$ 에 대하여 사건 $|X_{(n)}-\theta|\le\varepsilon$ 은
+      $\theta-\varepsilon\le X_{(n)}\le\theta$ 와 같다. 표본최댓값의 확률밀도함수가
+      $f_{X_{(n)}}(x)=\dfrac{nx^{n-1}}{\theta^n}$ 이므로
+      $$P\big[|X_{(n)}-\theta|\le\varepsilon\big]
+      =\int_{\theta-\varepsilon}^{\theta}\frac{n\,x^{n-1}}{\theta^n}\,dx$$
+      이다.</li>
+    <li><span class="step">적분 계산.</span> 피적분함수의 원시함수가 $\dfrac{x^n}{\theta^n}$ 이므로
+      $$\left[\frac{x^{n}}{\theta^{n}}\right]_{\theta-\varepsilon}^{\theta}
+      =1-\left(\frac{\theta-\varepsilon}{\theta}\right)^{\!n}$$
+      을 얻는다.</li>
+    <li><span class="step">$\varepsilon$ 의 크기로 나누어 극한 보기.</span>
+      <ol class="props">
+        <li>$0\lt\varepsilon\lt\theta$ 이면 $0\lt\dfrac{\theta-\varepsilon}{\theta}\lt1$ 이므로
+          $n\to\infty$ 일 때 $\Big(\dfrac{\theta-\varepsilon}{\theta}\Big)^{n}\to0$ 이고,
+          따라서 확률은 $1$ 로 수렴한다.</li>
+        <li>$\varepsilon\ge\theta$ 이면 $\theta-\varepsilon\le0$ 이므로 사건이 전체를 덮어
+          <b>모든 $n$ 에 대하여</b> 확률이 $1$ 이다.</li>
+      </ol></li>
+    <li><span class="step">결론.</span> 어느 경우든 $P[|X_{(n)}-\theta|\le\varepsilon]\to1$ 이므로,
+      표본최댓값 $X_{(n)}$ 은 $\theta$ 의 <b>일치추정량</b>이다.</li>
+  </ol>
+</div>
+
+<!-- ================= MSE 판정 ================= -->
+<h2 class="sub">평균제곱오차를 이용한 일치성 판정 <span class="en">consistency via mean squared error</span></h2>
+<p>다음 정리는 추정량이 일치성을 가질 조건을 평균제곱오차(MSE)를 이용하여 표현하고 있다.
+정의 4.9의 확률을 직접 계산하는 것보다 훨씬 쉬운 경우가 많다.</p>
+<div class="box thm">
+  <span class="tag">정리 4.9</span><span class="title">MSE 수렴에 의한 일치성</span>
+  <p>$T_n(X)$ 를 $g(\theta)$ 의 추정량이라고 할 때, 모든 $\theta\in\Omega$ 에 대하여</p>
+  $$\lim_{n\to\infty}E\big[T_n(X)-g(\theta)\big]^2=0$$
+  <p>이 성립하면, $T_n(X)$ 는 일치성이 있다.</p>
+</div>
+<div class="box prf">
+  <span class="tag">증명</span>
+  <ol>
+    <li><span class="step">확률부등식 적용.</span>
+      <a href="../ch02/2-4_expectation.html">식 (2.16)의 확률부등식</a>에서
+      $X=T_n(X)-g(\theta)$, $r=2$, $c=\varepsilon$ 으로 놓으면
+      $$P\big[\,|T_n(X)-g(\theta)|\le\varepsilon\,\big]
+      \ \ge\ 1-\frac{E\big[T_n(X)-g(\theta)\big]^2}{\varepsilon^2}$$
+      이 성립한다.</li>
+    <li><span class="step">극한을 취하기.</span> 가정에서 분자가 $0$ 으로 수렴하고 $\varepsilon$ 은 고정된
+      상수이므로 우변은 $1$ 로 수렴한다. 좌변의 확률은 $1$ 을 넘을 수 없으므로 $1$ 로 수렴하고,
+      따라서 일치성이 성립한다.</li>
+  </ol>
+  <div class="qed">∎</div>
+</div>
+<div class="note">
+  <b>실전에서 쓰는 형태.</b> <a href="4-3_estimation-criteria.html">정리 4.2</a>에 의하여
+  $$\mathrm{MSE}(T_n)=\operatorname{Var}(T_n)+\big[E(T_n)-g(\theta)\big]^2$$
+  이므로, $T_n$ 이 $g(\theta)$ 의 <b>비편향</b>추정량인 경우에는 둘째 항(편향$^2$)이 $0$ 이어서
+  $\mathrm{MSE}(T_n)=\operatorname{Var}(T_n)$ 이다. 따라서
+  $\lim_{n\to\infty}\operatorname{Var}(T_n)=0$ 만 보이면 정리 4.9로부터 일치성이 보장된다.
+</div>
+
+<div class="box ex">
+  <span class="tag">예 4.41</span><span class="title">$\mathrm{EXP}(\lambda)$ — 일치추정량과 비일치추정량</span>
+  <p>$X_1,X_2,\dots,X_n$ 을 $\mathrm{EXP}(\lambda)$ 로부터 얻은 랜덤표본이라 하자.
+  비편향추정량이라고 해서 반드시 일치성을 갖는 것은 아니라는 점을 두 추정량을 비교하며 확인한다.</p>
+  <ol class="fill">
+    <li><span class="step">표본평균은 일치추정량이다.</span> $\overline{X}_n$ 은 $\lambda$ 의 비편향추정량이고
+      $$\lim_{n\to\infty}\mathrm{MSE}(\overline{X}_n)=\lim_{n\to\infty}\operatorname{Var}(\overline{X}_n)
+      =\lim_{n\to\infty}\frac{\lambda^2}{n}=0$$
+      이므로, 위 <b>실전에서 쓰는 형태</b>에 의하여 $\overline{X}_n$ 은 일치성이 있다.</li>
+    <li><span class="step">$nX_{(1)}$ 도 비편향추정량이다.</span> 지수분포 표본최솟값의 성질
+      (<a href="../ch03/3-5_order-statistics.html">예 3.14</a>)에서 $nX_{(1)}\sim\mathrm{EXP}(\lambda)$ 이므로
+      $E(nX_{(1)})=\lambda$ 로 $nX_{(1)}$ 역시 $\lambda$ 의 비편향추정량이다.</li>
+    <li><span class="step">그러나 일치성은 없다.</span> $nX_{(1)}$ 의 분포가 $n$ 에 <b>전혀 의존하지 않으므로</b>
+      확률도 $n$ 과 무관하다. $0\lt\varepsilon\lt\lambda$ 인 $\varepsilon$ 에 대하여
+      $$P\big[\,|nX_{(1)}-\lambda|\le\varepsilon\,\big]
+      =e^{-(\lambda-\varepsilon)/\lambda}-e^{-(\lambda+\varepsilon)/\lambda}
+      =e^{-1}\big(e^{\varepsilon/\lambda}-e^{-\varepsilon/\lambda}\big)$$
+      이고, 이 값은 $n$ 이 커져도 그대로여서 $1$ 로 수렴하지 않는다. 따라서 $nX_{(1)}$ 은
+      일치추정량이 <b>아니다</b>.</li>
+  </ol>
+  <p>표본이 늘어나도 $nX_{(1)}$ 은 오직 최솟값 하나만 쓰기 때문에 정확도가 개선되지 않는다 —
+  비편향성은 고정된 $n$ 의 성질이고 일치성은 $n\to\infty$ 의 성질이라는 차이가 여기서 드러난다.</p>
+</div>
+
+<!-- ================= 일치성의 보존 ================= -->
+<h2 class="sub">일치성의 보존 <span class="en">preservation of consistency</span></h2>
+<div class="box thm">
+  <span class="tag">정리 4.10</span><span class="title">연속함수에 의한 일치성의 보존</span>
+  <p>$T_n$ 이 모수 $\theta$ 의 일치추정량이라고 하자. 만일 $g(x)$ 가 $\theta$ 에서 연속인 함수이면
+  $g(T_n)$ 은 $g(\theta)$ 의 일치추정량이다.</p>
+</div>
+<div class="box prf">
+  <span class="tag">증명</span>
+  <ol>
+    <li><span class="step">연속성을 $\varepsilon$–$\delta$ 로 쓰기.</span> $g(x)$ 가 $\theta$ 에서 연속이므로,
+      임의의 $\varepsilon\gt0$ 에 대하여
+      $$|x-\theta|\lt\delta\ \Longrightarrow\ |g(x)-g(\theta)|\le\varepsilon$$
+      을 만족하는 $\delta\gt0$ 이 존재한다.</li>
+    <li><span class="step">사건의 포함관계로 부등식 만들기.</span> 위 함의는
+      $\{|T_n-\theta|\lt\delta\}\subset\{|g(T_n)-g(\theta)|\le\varepsilon\}$ 을 뜻하므로,
+      큰 사건의 확률이 더 크다는 성질에서
+      $$\lim_{n\to\infty}P\big[\,|g(T_n)-g(\theta)|\le\varepsilon\,\big]
+      \ \ge\ \lim_{n\to\infty}P\big[\,|T_n-\theta|\lt\delta\,\big]=1$$
+      이다. 마지막 등호는 $T_n$ 의 일치성에서 나온다.</li>
+    <li><span class="step">결론.</span> 확률은 $1$ 을 넘지 못하므로 좌변의 극한은 정확히 $1$ 이고,
+      따라서 $g(T_n)$ 의 일치성이 구해진다.</li>
+  </ol>
+  <div class="qed">∎</div>
+</div>
+
+<div class="box thm">
+  <span class="tag">정리 4.11</span><span class="title">일치추정량의 연산</span>
+  <p>$T_n$ 이 모수 $\theta_1$ 의 일치추정량이고, $S_n$ 이 모수 $\theta_2$ 의 일치추정량이라고 하자.
+  그러면 $c_n\to c$ 이고 $d_n\to d$ 인 실수열 $c_n,d_n$ 에 대해</p>
+  $$c_nT_n+d_nS_n\ \xrightarrow{\ p\ }\ c\,\theta_1+d\,\theta_2$$
+  <p>이고, 또한 다음이 성립한다.</p>
+  $$T_nS_n\ \xrightarrow{\ p\ }\ \theta_1\theta_2,\qquad
+  \frac{T_n}{S_n}\ \xrightarrow{\ p\ }\ \frac{\theta_1}{\theta_2}\quad(\theta_2\ne0)$$
+  <p>(증명은 연습문제로 남긴다.)</p>
+</div>
+<div class="note">
+  정리 4.10과 4.11을 합치면, 일치추정량들을 <b>더하고 곱하고 나누고 연속함수에 넣어도</b> 일치성이
+  그대로 유지된다. 복잡한 추정량의 일치성을 정의 4.9로 직접 확인하는 대신, 이미 아는 일치추정량에서
+  조립해 보이는 것이 실전의 방법이다.
+</div>
+
+<div class="box ex">
+  <span class="tag">예 4.42</span><span class="title">모분산 $p(1-p)$ 의 일치추정량</span>
+  <p>3장에서 살펴본 예 3.7에서, 모분산 $g(p)=p(1-p)$ 는 모수 $p$ 의 연속함수이다.
+  그런데 표본비율 $\hat p_n$ 은 모비율 $p$ 로 확률적으로 수렴한다. 따라서 정리 4.10에 의하여</p>
+  $$g(\hat p_n)=\hat p_n(1-\hat p_n)$$
+  <p>도 역시 모분산 $g(p)=p(1-p)$ 의 일치추정량이다.</p>
+</div>
+
+<div class="box ex">
+  <span class="tag">예 4.43</span><span class="title">표본분산과 표본표준편차의 일치성</span>
+  <p>$X_1,X_2,\dots,X_n$ 이 분산이 유한인 분포에서 뽑힌 랜덤표본이라고 할 때,
+  표본분산 $S^2=\sum_{i=1}^n(X_i-\overline{X}_n)^2/(n-1)$ 이 모분산 $\sigma^2$ 의 일치추정량임을 보인다.</p>
+  <ol class="fill">
+    <li><span class="step">이미 아는 일치추정량들로 분해하기.</span> 정의식을 전개하면
+      $\sum(X_i-\overline{X}_n)^2=\sum X_i^2-n\overline{X}_n^2$ 이므로
+      $$S^2=\frac{n}{n-1}\times\frac1n\sum_{i=1}^n X_i^2-\frac{n}{n-1}\,\overline{X}_n^{\,2}$$
+      로 쓸 수 있다. 우변은 <b>계수열 $\tfrac{n}{n-1}$ 과 두 표본적률</b>로만 이루어져 있다.</li>
+    <li><span class="step">각 조각의 수렴 확인.</span> 대수의 법칙에 의해
+      $$\frac1n\sum_{i=1}^n X_i^2\ \xrightarrow{\ p\ }\ E(X^2),\qquad
+      \overline{X}_n\ \xrightarrow{\ p\ }\ E(X)$$
+      이고, 계수열은 $\dfrac{n}{n-1}\to1$ 이다.</li>
+    <li><span class="step">정리 4.11로 조립하기.</span> 곱과 합에 대한 정리 4.11을 적용하면
+      $\overline{X}_n^{\,2}\xrightarrow{\ p\ }(E(X))^2$ 이고, 따라서
+      $$S^2\ \xrightarrow{\ p\ }\ E(X^2)-\big(E(X)\big)^2=\sigma^2$$
+      이므로 $S^2$ 은 $\sigma^2$ 의 일치추정량이다.</li>
+    <li><span class="step">표본표준편차로 넘기기.</span> $g(x)=\sqrt x$ 가 연속함수이므로
+      정리 4.10에 의하여 $g(S^2)=\sqrt{S^2}=S$ 는 $g(\sigma^2)=\sqrt{\sigma^2}=\sigma$ 의
+      일치추정량이다.</li>
+  </ol>
+</div>
+
+<!-- ================= MLE 의 점근적 성질 ================= -->
+<h2 class="sub">최대가능도추정량의 점근적 성질 <span class="en">asymptotic properties of the maximum likelihood estimator</span></h2>
+<p>최대가능도추정량은 불변성 원리와 같이 다루기 편리한 성질도 가지고 있지만, 때로 복잡한 형태를 갖게 되어
+직접적으로 일치성을 입증하기 어려운 경우도 있고, 심지어 <b>폐쇄형</b><span class="en">closed-form</span>으로
+존재하지 않아 수치적으로만 구할 수 있는 경우도 있다. 이럴 때는 최대가능도추정량에 근거를 둔 구간추정이나
+검정을 하는 데 어려움이 발생하는데, 적절한 정칙조건이 만족되는 경우에는 <b>점근적 성질</b>을 이용하면
+편리하다. 적절한 조건하에서 최대가능도추정량은 일치성을 가질 뿐 아니라 <b>점근적으로 정규분포를 따르기</b>
+때문에, 실제 구간추정과 검정을 쉽게 할 수 있게 된다.</p>
+
+<div class="note">
+  <b>왜 일치성이 따라 나오는가.</b> 로그가능도함수의 $\theta$ 에 대한 1차 도함수는 최대가능도추정량
+  $\hat\theta_n$ 에서 $0$ 이 되므로
+  $$\sum_{i=1}^n\frac{d}{d\theta}\log f(X_i;\theta)\bigg|_{\theta=\hat\theta_n}=0$$
+  이다. 한편 대수의 법칙에 의해 이 식을 $n$ 으로 나눈 것은
+  $$\frac1n\sum_{i=1}^n\frac{d}{d\theta}\log f(X_i;\theta)
+  \ \xrightarrow{\ p\ }\ E\!\left(\frac{d}{d\theta}\log f(X;\theta)\right)\tag{4.9}$$
+  로 수렴하고, 적절한 조건에서 우변의 기댓값을 $0$ 으로 만드는 값이 바로 모수의 참값 $\theta_0$ 이다.
+  즉 <b>표본에서 세운 방정식의 해</b>($\hat\theta_n$)가 <b>모집단에서 세운 방정식의 해</b>($\theta_0$)로
+  수렴한다는 것이 일치성의 뼈대다.
+</div>
+
+<div class="box thm">
+  <span class="tag">정리 4.12</span><span class="title">최대가능도추정량의 일치성</span>
+  <p>$X_1,X_2,\dots,X_n$ 이 확률밀도함수 $f(x;\theta)$ 를 갖는 랜덤표본일 때, 적절한 조건하에서
+  최대가능도추정량 $\hat\theta_n$ 은 $\theta$ 의 일치추정량이다. 즉</p>
+  $$\hat\theta_n\ \xrightarrow{\ p\ }\ \theta$$
+  <p>이다. (엄밀한 증명은 생략한다.)</p>
+</div>
+
+<p>나아가, 최대가능도추정량이 가지는 <b>점근적 정규성</b>을 살펴보자.</p>
+<div class="box prf">
+  <span class="tag">유도 <span class="en">점근적 정규성</span></span>
+  <p>가능도함수를 $L(\theta)$, 로그가능도함수를 $l(\theta)=\log L(\theta)$ 라 하고,
+  $L(\theta)=\prod_{i=1}^n f(X_i;\theta)$ 로 두어 $L(\theta)$ 를 확률변수 $X_i$ 들의 함수, 즉 그 자체가
+  확률변수라고 생각하자. 그러면 $l(\theta)=\sum_{i=1}^n\log f(X_i;\theta)$ 는 서로 독립이고 분포가 같은
+  $n$ 개 확률변수의 합으로 표현된다. 모수의 참값을 $\theta_0$ 이라 하자.</p>
+  <ol>
+    <li><span class="step">$l'$ 을 $\theta_0$ 에서 테일러 전개.</span> 로그가능도함수를 미분한 $l'(\theta)$ 를
+      $\theta_0$ 에서 1차까지 전개하고 $\theta=\hat\theta_n$ 을 대입하면
+      $$l'(\hat\theta_n)\ \approx\ l'(\theta_0)+l''(\theta_0)(\hat\theta_n-\theta_0)$$
+      이다. $\hat\theta_n$ 이 $\theta_0$ 으로 확률적으로 매우 가까우므로(정리 4.12) 이 근사가 정당화된다.</li>
+    <li><span class="step">최대점 조건 $l'(\hat\theta_n)=0$ 을 대입.</span> $\hat\theta_n$ 은 로그가능도함수를
+      최대로 하므로 좌변이 $0$ 이다. 따라서
+      $$\hat\theta_n-\theta_0\ \approx\ -\frac{l'(\theta_0)}{l''(\theta_0)}$$
+      을 얻는다.</li>
+    <li><span class="step">$\sqrt n$ 을 곱해 표준화하기.</span> 분자와 분모를 각각 $\sqrt n$ 과 $n$ 으로
+      나누어 정리하면
+      $$\sqrt n\,(\hat\theta_n-\theta_0)\ \approx\
+      \frac{\dfrac{1}{\sqrt n}\,l'(\theta_0)}{-\dfrac1n\,l''(\theta_0)}$$
+      이 된다. 분자·분모를 이렇게 나눈 이유는 각각 <b>중심극한정리</b>와 <b>대수의 법칙</b>이 적용되는
+      꼴로 맞추기 위해서다.</li>
+    <li><span class="step">분모 — 대수의 법칙.</span> $l''$ 도 독립인 $n$ 개 항의 합이므로,
+      적절한 조건하에서
+      $$-\frac1n\,l''(\theta_0)=-\frac1n\sum_{i=1}^n\frac{d^2}{d\theta^2}\log f(X_i;\theta)\bigg|_{\theta=\theta_0}
+      \ \xrightarrow{\ p\ }\
+      -E\!\left(\frac{d^2}{d\theta^2}\log f(X;\theta)\bigg|_{\theta=\theta_0}\right)=I(\theta_0)$$
+      로 <a href="4-4_mvue.html">피셔의 정보</a>에 확률수렴한다.</li>
+    <li><span class="step">분자 — 중심극한정리.</span> 스코어 $\dfrac{d}{d\theta}\log f(X_i;\theta_0)$ 들은
+      평균이 $0$ 이고 분산이 $I(\theta_0)$ 인 독립·동일분포 확률변수이므로,
+      $$\frac{1}{\sqrt n}\,l'(\theta_0)\ \xrightarrow{\ d\ }\ N\big(0,\,I(\theta_0)\big)$$
+      이 성립한다.</li>
+    <li><span class="step">슬럿츠키 정리로 결합.</span>
+      <a href="../ch03/3-4_lln-clt.html">정리 3.15(슬럿츠키 정리)</a>에 의하여 분포수렴하는 분자를
+      상수로 수렴하는 분모로 나눌 수 있으므로
+      $$\sqrt n\,(\hat\theta_n-\theta_0)\ \xrightarrow{\ d\ }\
+      \frac{N\big(0,I(\theta_0)\big)}{I(\theta_0)}=N\!\left(0,\ \frac{1}{I(\theta_0)}\right)$$
+      을 얻는다. (분산은 $I(\theta_0)/I(\theta_0)^2=1/I(\theta_0)$ 이 된다.)</li>
+  </ol>
+  <div class="qed">∎</div>
+</div>
+
+<div class="box thm">
+  <span class="tag">정리 4.13</span><span class="title">최대가능도추정량의 점근적 정규성</span>
+  <p>$X_1,X_2,\dots,X_n$ 이 확률밀도함수 $f(x;\theta)$ 를 갖는 랜덤표본이고 모수의 참값이 $\theta_0$ 일 때,
+  적절한 조건하에서 최대가능도추정량 $\hat\theta_n$ 에 대하여</p>
+  $$\sqrt n\,(\hat\theta_n-\theta_0)\ \xrightarrow{\ d\ }\ N\!\left(0,\ \frac{1}{I(\theta_0)}\right)$$
+  <p>이 성립한다.</p>
+</div>
+<div class="note">
+  점근분산이 <b>크래머–라오 하한값</b> $1/I(\theta_0)$ 과 정확히 같다는 점에 주목할 만하다. 즉 최대가능도추정량은
+  표본이 커질 때 <a href="4-4_mvue.html">정보부등식(정리 4.3)</a>의 하한을 점근적으로 달성한다 —
+  이를 <b>점근적 효율성</b><span class="en">asymptotic efficiency</span>이라 한다.
+</div>
+
+<div class="box ex">
+  <span class="tag">예 4.44</span><span class="title">$\mathrm{EXP}(\theta)$ 의 점근적 정규성</span>
+  <p>$X_1,\dots,X_n$ 이 $\mathrm{EXP}(\theta)$ 에서 관측되는 랜덤표본이라고 하자.</p>
+  <ol class="fill">
+    <li><span class="step">최대가능도추정량 구하기.</span> 로그가능도함수와 그 도함수는
+      $$l(\theta;x_1,\dots,x_n)=-n\log\theta-\frac{\displaystyle\sum_{i=1}^n x_i}{\theta},\qquad
+      l'(\theta)=-\frac{n}{\theta}+\frac{\displaystyle\sum_{i=1}^n x_i}{\theta^{2}}$$
+      이므로 $l'(\theta)=0$ 에서 $\hat\theta_n=\overline{X}_n$ 이다.</li>
+    <li><span class="step">피셔의 정보 계산.</span> $\log f(x;\theta)=-\log\theta-\dfrac{x}{\theta}$ 를
+      두 번 미분하면
+      $$\frac{\partial^2}{\partial\theta^2}\log f(x;\theta)=\frac{1}{\theta^{2}}-\frac{2x}{\theta^{3}}$$
+      이므로, 부호를 바꿔 기댓값을 취하면 $E_\theta(X)=\theta$ 를 이용하여
+      $$I(\theta)=E_\theta\!\left(\frac{2X}{\theta^{3}}-\frac{1}{\theta^{2}}\right)
+      =\frac{2}{\theta^{2}}-\frac{1}{\theta^{2}}=\frac{1}{\theta^{2}}$$
+      이다.</li>
+    <li><span class="step">정리 4.13 적용.</span> 점근분산이 $1/I(\theta)=\theta^2$ 이므로
+      $$\sqrt n\,(\overline{X}_n-\theta)\ \xrightarrow{\ d\ }\ N(0,\theta^{2})$$
+      가 된다.</li>
+    <li><span class="step">중심극한정리와의 비교.</span> $\mathrm{EXP}(\theta)$ 의 분산이 $\theta^2$ 이므로
+      표본평균에 중심극한정리를 직접 적용해도 같은 결과를 얻는다. 즉 이것은
+      <a href="../ch03/3-4_lln-clt.html">중심극한정리</a>에서 얻는 결과와 동일하다.</li>
+  </ol>
+</div>
+
+<nav class="pager">
+  <a href="4-4_mvue.html">← 이전<small>4.4 최소분산 비편향추정량</small></a>
+  <span class="spacer"></span>
+</nav>
+
+</body>
+</html>
