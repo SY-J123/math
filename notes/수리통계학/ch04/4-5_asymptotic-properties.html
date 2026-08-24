@@ -265,16 +265,30 @@
 편리하다. 적절한 조건하에서 최대가능도추정량은 일치성을 가질 뿐 아니라 <b>점근적으로 정규분포를 따르기</b>
 때문에, 실제 구간추정과 검정을 쉽게 할 수 있게 된다.</p>
 
-<div class="note">
-  <b>왜 일치성이 따라 나오는가.</b> 로그가능도함수의 $\theta$ 에 대한 1차 도함수는 최대가능도추정량
-  $\hat\theta_n$ 에서 $0$ 이 되므로
-  $$\sum_{i=1}^n\frac{d}{d\theta}\log f(X_i;\theta)\bigg|_{\theta=\hat\theta_n}=0$$
-  이다. 한편 대수의 법칙에 의해 이 식을 $n$ 으로 나눈 것은
-  $$\frac1n\sum_{i=1}^n\frac{d}{d\theta}\log f(X_i;\theta)
-  \ \xrightarrow{\ p\ }\ E\!\left(\frac{d}{d\theta}\log f(X;\theta)\right)\tag{4.9}$$
-  로 수렴하고, 적절한 조건에서 우변의 기댓값을 $0$ 으로 만드는 값이 바로 모수의 참값 $\theta_0$ 이다.
-  즉 <b>표본에서 세운 방정식의 해</b>($\hat\theta_n$)가 <b>모집단에서 세운 방정식의 해</b>($\theta_0$)로
-  수렴한다는 것이 일치성의 뼈대다.
+<div class="box prf">
+  <span class="tag">유도 <span class="en">일치성의 직관</span></span>
+  <ol>
+    <li><span class="step">① 스코어 방정식과 MLE의 정의.</span> 로그가능도함수
+      $l(\theta)=\sum_{i=1}^n\log f(X_i;\theta)$ 의 1차 도함수(스코어 함수)를 $\theta=\hat\theta_n$ 에서
+      평가한 값은 <b>극대점의 조건</b>에 의해 $0$ 이 된다.
+      $$\sum_{i=1}^n\frac{d}{d\theta}\log f(X_i;\theta)\bigg|_{\theta=\hat\theta_n}=0$$</li>
+
+    <li><span class="step">② 대수의 법칙을 통한 극한의 적용.</span> 양변을 표본 크기 $n$ 으로 나누어
+      정규화하면
+      $$\frac1n\sum_{i=1}^n\frac{d}{d\theta}\log f(X_i;\theta)\bigg|_{\theta=\hat\theta_n}=0$$
+      이다. 표본의 크기 $n\to\infty$ 일 때, 대수의 법칙에 의하여 좌변의 <b>표본평균 형태</b>는 대응하는
+      모집단의 기댓값으로 확률수렴한다.
+      $$\frac1n\sum_{i=1}^n\frac{d}{d\theta}\log f(X_i;\theta)
+      \ \xrightarrow{\ p\ }\ E\!\left(\frac{d}{d\theta}\log f(X;\theta)\right)\tag{4.9}$$</li>
+
+    <li><span class="step">③ 참값 $\theta_0$ 과의 관계 및 결론.</span> 정칙조건하에서 모집단의 기댓값을
+      $0$ 으로 만드는 고유한 값이 바로 모수의 참값 $\theta_0$ 이다. 즉
+      $$E\!\left(\frac{d}{d\theta}\log f(X;\theta)\right)\bigg|_{\theta=\theta_0}=0$$
+      이다. 이를 종합하면 <b>표본에서 세운 방정식의 해</b>인 최대가능도추정량 $\hat\theta_n$ 이
+      <b>모집단에서 방정식을 만족하는 참값</b> $\theta_0$ 으로 수렴하게 되므로,
+      $\hat\theta_n\xrightarrow{\ p\ }\theta_0$ 인 <b>일치성</b>이 성립한다.</li>
+  </ol>
+  <div class="qed">∎</div>
 </div>
 
 <div class="box thm">
