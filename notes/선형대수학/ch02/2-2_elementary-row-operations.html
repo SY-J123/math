@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>선형대수학 · 2.2 기본행연산</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">선형대수학 · 2장 행렬과 가우스 소거법</div>
+  <h1><span class="no">2.2</span>기본행연산 <span class="en">elementary row operations</span></h1>
+</header>
+
+<p>일차연립방정식의 해를 소거법으로 구할 때는 <a href="../ch01/1-2_elimination.html">1.2절</a>에서 설명한
+방정식에 관한 세 가지 기본연산을 이용하며, 일차연립방정식은 확대행렬로 표현할 수 있음을 <a href="2-1_matrix-and-linear-systems.html">2.1절</a>에서 보았다.
+그렇다면 방정식에 관한 기본연산에 대응되는 <b>확대행렬에 관한 기본연산</b>이 존재할 것이다. 이것을 <b>기본행연산</b>이라고 한다.</p>
+
+<h2 class="sub">세 가지 기본행연산 <span class="en">the three elementary row operations</span></h2>
+<div class="box def">
+  <span class="tag">정의 2.1</span><span class="title">기본행연산 <span class="en">elementary row operation</span></span>
+  <p>$m\times n$ 행렬 $A$ 에 관한 세 가지 기본행연산은 다음과 같다(단, $1\le i,j\le m$ 이며 $i\ne j$).</p>
+  <ol class="props">
+    <li>$A$ 의 $i$번째 행과 $j$번째 행을 <b>교환</b>한다. 이 기본행연산은 $R_{i,j}$ 로 나타낸다.</li>
+    <li>$A$ 의 $i$번째 행에 $0$ 이 아닌 상수 $c$ 를 <b>곱</b>한다. 이 기본행연산은 $R_i(c)$ 로 나타낸다.</li>
+    <li>$A$ 의 $i$번째 행에 상수 $c$ 를 곱하여 $j$번째 행에 <b>더</b>한다. 이 기본행연산은 $R_{i,j}(c)$ 로 나타낸다.</li>
+  </ol>
+</div>
+
+<div class="note">
+  ③ 의 표기에서 <b>앞 첨자가 “주는 행”, 뒤 첨자가 “바뀌는 행”</b>이다. $R_{i,j}(c)$ 에서 값이 바뀌는 것은 $j$번째 행 하나뿐이고
+  $i$번째 행은 그대로 남는다. 또 ② 에서 $c\ne0$ 이라는 조건이 빠지면 한 행을 통째로 $0$ 으로 만들어 정보를 잃게 되므로,
+  이 조건은 “되돌릴 수 있음”을 보장하는 핵심이다.
+</div>
+
+<div class="box ex">
+  <span class="tag">예제 2.3</span><span class="title">적용된 기본행연산의 나열</span>
+  <p>[예제 2.2]의 풀이 과정에 적용된 기본행연산을 차례로 써라.</p>
+  <p><b>풀이</b> &nbsp;다음과 같은 기본행연산을 순차적으로 적용하였다.</p>
+  $$R_{1,3}\ \to\ R_{1,2}(-3)\ \to\ R_{1,3}(-2)\ \to\ R_3\!\left(-\tfrac12\right)\ \to\ R_{2,3}\ \to\ R_{2,3}(10)\ \to\ R_3\!\left(-\tfrac1{23}\right)$$
+</div>
+
+<div class="box ex">
+  <span class="tag">예제 2.4</span><span class="title">확대행렬에 기본행연산을 적용해 풀기</span>
+  <p>다음 일차연립방정식을 확대행렬로 나타내고, 그것에 기본행연산을 적용하여 풀어라.</p>
+  $$\begin{cases}\ \ x-2y+z=-3\\ 2x-3y-z=\ \ \ 4\\ 3x+2y-z=\ 11\end{cases}$$
+  <p><b>풀이</b> &nbsp;이 방정식의 확대행렬은 다음과 같다.</p>
+  $$\left(\begin{array}{ccc|c}1&-2&1&-3\\2&-3&-1&4\\3&2&-1&11\end{array}\right)$$
+  <p>여기에 적절한 기본행연산을 적용하여 다음과 같이 변환시킬 수 있다.</p>
+  $$\begin{aligned}
+  &\left(\begin{array}{ccc|c}1&-2&1&-3\\2&-3&-1&4\\3&2&-1&11\end{array}\right)
+  \xrightarrow{\ R_{1,2}(-2)\ }
+  \left(\begin{array}{ccc|c}1&-2&1&-3\\0&1&-3&10\\3&2&-1&11\end{array}\right)\\[8pt]
+  &\xrightarrow{\ R_{1,3}(-3)\ }
+  \left(\begin{array}{ccc|c}1&-2&1&-3\\0&1&-3&10\\0&8&-4&20\end{array}\right)
+  \xrightarrow{\ R_{2,3}(-8)\ }
+  \left(\begin{array}{ccc|c}1&-2&1&-3\\0&1&-3&10\\0&0&20&-60\end{array}\right)\\[8pt]
+  &\xrightarrow{\ R_{3}\left(\frac1{20}\right)\ }
+  \left(\begin{array}{ccc|c}1&-2&1&-3\\0&1&-3&10\\0&0&1&-3\end{array}\right)
+  \end{aligned}$$
+  <p>마지막으로 변환된 행렬은 다음 일차연립방정식에 대응한다.</p>
+  $$\begin{cases}x-2y+\ \ z=-3\\ \ \ \ \ \ \ y-3z=10\\ \ \ \ \ \ \ \ \ \ \ \ z=-3\end{cases}$$
+  <p>후진대입을 적용하면 이 방정식은 유일한 해 $z=-3$, $y=1$, $x=2$ 를 갖는다.</p>
+</div>
+
+<h2 class="sub">행상등 <span class="en">row-equivalence</span></h2>
+<p>[예제 2.4]에서 알 수 있듯이 일차연립방정식은 확대행렬로 유일하게 표현되고, 이 확대행렬에 적절한 일련의 기본행연산을 적용함으로써
+주어진 일차연립방정식의 해를 구할 수 있다. 이것은 <b>일련의 기본행연산을 수행하여 얻은 확대행렬에 대응하는 일차연립방정식이
+본래의 일차연립방정식과 동일한 해집합을 갖는다</b>는 사실에 근거한다.
+그러나 이 성질은 자명한 것이 아니므로 증명이 필요하다. 여기서는 자세한 증명은 생략하고 증명의 기본이 되는 개념만 설명한다.</p>
+
+<div class="box def">
+  <span class="tag">정의 2.2</span><span class="title">행상등 <span class="en">row-equivalent</span></span>
+  <p>행렬 $A$ 에 일련의 기본행연산을 적용하여 행렬 $B$ 를 얻을 수 있는 경우, $A$ 와 $B$ 는 <b>행상등</b>(row-equivalent)하다고 한다.</p>
+</div>
+
+<p>[예제 2.2]나 [예제 2.4]에서 최초의 확대행렬로부터 변환된 모든 행렬은 서로 행상등하다.
+또한 행렬 $A$ 에 일련의 기본행연산을 적용하여 행렬 $B$ 를 얻을 수 있다면, 거꾸로 $B$ 에 일련의 기본행연산을 적용하여 $A$ 를 얻을 수 있다.
+다음 [예제 2.5]는 [예제 2.4]의 과정을 그대로 거슬러 올라간 것이다.</p>
+
+<div class="box ex">
+  <span class="tag">예제 2.5</span><span class="title">거꾸로 되돌리기</span>
+  <p>행렬 $A$ 가 다음과 같을 때, 기본행연산을 적용하여 행렬 $B$ 로 변환하라.</p>
+  $$A=\begin{pmatrix}1&-2&1&-3\\0&1&-3&10\\0&0&1&-3\end{pmatrix},\qquad
+    B=\begin{pmatrix}1&-2&1&-3\\2&-3&-1&4\\3&2&-1&11\end{pmatrix}$$
+  <p><b>풀이</b> &nbsp;행렬 $A$ 에 다음과 같이 기본행연산을 적용한다.</p>
+  $$\begin{aligned}
+  &\begin{pmatrix}1&-2&1&-3\\0&1&-3&10\\0&0&1&-3\end{pmatrix}
+  \xrightarrow{\ R_3(20)\ }
+  \begin{pmatrix}1&-2&1&-3\\0&1&-3&10\\0&0&20&-60\end{pmatrix}\\[8pt]
+  &\xrightarrow{\ R_{2,3}(8)\ }
+  \begin{pmatrix}1&-2&1&-3\\0&1&-3&10\\0&8&-4&20\end{pmatrix}
+  \xrightarrow{\ R_{1,3}(3)\ }
+  \begin{pmatrix}1&-2&1&-3\\0&1&-3&10\\3&2&-1&11\end{pmatrix}\\[8pt]
+  &\xrightarrow{\ R_{1,2}(2)\ }
+  \begin{pmatrix}1&-2&1&-3\\2&-3&-1&4\\3&2&-1&11\end{pmatrix}=B
+  \end{aligned}$$
+</div>
+
+<h2 class="sub">역기본행연산 <span class="en">inverse elementary row operation</span></h2>
+<p>[예제 2.4]와 [예제 2.5]를 비교함으로써, 기본행연산 각각에 대응하는 <b>역기본행연산</b>(inverse elementary row operation)이
+존재하며 이를 이용하여 연립방정식을 원래 상태로 환원시킬 수 있음을 알게 된다.</p>
+
+<div class="box thm">
+  <span class="tag">표 2.1</span><span class="title">기본행연산과 역기본행연산</span>
+  <div class="scroll"><table class="data">
+    <tr><th>종류</th><th>기본행연산</th><th>역기본행연산</th></tr>
+    <tr><td>①</td><td>$R_{i,j}$</td><td>$R_{i,j}$</td></tr>
+    <tr><td>②</td><td>$R_i(c)$</td><td>$R_i\!\left(\dfrac1c\right)$</td></tr>
+    <tr><td>③</td><td>$R_{i,j}(c)$</td><td>$R_{i,j}(-c)$</td></tr>
+  </table></div>
+  <p>① 은 자기 자신이 역연산이고(두 번 교환하면 제자리), ② 는 $c\ne0$ 이므로 $\tfrac1c$ 가 존재하며, ③ 은 더한 것을 다시 빼면 된다.</p>
+</div>
+
+<div class="box ex">
+  <span class="tag">예제 2.6</span><span class="title">세 연산과 그 역연산의 확인</span>
+  <p>다음 행렬 $A$ 에 기본행연산을 적용한 다음, 그에 대응하는 역기본행연산을 적용하여 원래의 행렬이 되는 것을 확인하라.</p>
+  $$A=\begin{pmatrix}1&2&3\\4&5&6\end{pmatrix}$$
+  <p><b>풀이</b></p>
+  <p>① $R_{i,j}$ 형식의 예</p>
+  $$\begin{pmatrix}1&2&3\\4&5&6\end{pmatrix}\xrightarrow{\ R_{1,2}\ }\begin{pmatrix}4&5&6\\1&2&3\end{pmatrix}
+    \xrightarrow{\ R_{1,2}\ }\begin{pmatrix}1&2&3\\4&5&6\end{pmatrix}$$
+  <p>② $R_i(c)$ 형식의 예</p>
+  $$\begin{pmatrix}1&2&3\\4&5&6\end{pmatrix}\xrightarrow{\ R_1(4)\ }\begin{pmatrix}4&8&12\\4&5&6\end{pmatrix}
+    \xrightarrow{\ R_1\left(\frac14\right)\ }\begin{pmatrix}1&2&3\\4&5&6\end{pmatrix}$$
+  <p>③ $R_{i,j}(c)$ 형식의 예</p>
+  $$\begin{pmatrix}1&2&3\\4&5&6\end{pmatrix}\xrightarrow{\ R_{1,2}(-4)\ }\begin{pmatrix}1&2&3\\0&-3&-6\end{pmatrix}
+    \xrightarrow{\ R_{1,2}(4)\ }\begin{pmatrix}1&2&3\\4&5&6\end{pmatrix}$$
+</div>
+
+<p>[예제 2.6]의 행렬 $A$ 를 확대행렬로 보면 대응하는 연립방정식은 식 $(2.2)$ 와 같다(단, 미지수를 $x,y$ 라 가정한다).</p>
+$$\begin{cases}\ \ x+2y=3\\ 4x+5y=6\end{cases}\qquad\cdots(2.2)$$
+<p>또한 확대행렬 $A$ 에 [예제 2.6]에서 사용한 세 가지 기본행연산 $R_{1,2}$, $R_1(4)$, $R_{1,2}(-4)$ 를 각각 적용하여 얻는
+확대행렬에 대응하는 연립방정식은 식 $(2.3)\sim(2.5)$ 와 같다.</p>
+$$\begin{cases}4x+5y=6\\ \ \ x+2y=3\end{cases}\ \cdots(2.3)\qquad
+  \begin{cases}4x+8y=12\\ 4x+5y=\ \ 6\end{cases}\ \cdots(2.4)\qquad
+  \begin{cases}x+2y=\ \ 3\\ \ \ -3y=-6\end{cases}\ \cdots(2.5)$$
+<p>[예제 2.6]에서 역기본행연산을 적용하면 원래의 행렬 $A$ 로 환원되므로,
+식 $(2.3)$, $(2.4)$, $(2.5)$ 에 차례대로 방정식에 관한 기본연산을 적용하면 연립방정식 $(2.2)$ 로 되돌릴 수 있다.
+이것은 곧 이 연립방정식들이 <b>모두 동일한 해집합을 갖는다</b>는 것을 의미한다.</p>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">연립방정식의 상등 <span class="en">equivalent systems</span></span>
+  <p>일차연립방정식 $L_1$ 과 $L_2$ 가 서로 동일한 해집합을 가질 때 $L_1$ 과 $L_2$ 는 <b>상등</b>(equivalent)하다고 한다.</p>
+</div>
+
+<div class="note">
+  ‘상등’은 <b>같은 해집합을 갖는다</b>는 뜻에 대한 수학적 표현이지, 두 연립방정식이 <b>같은 방정식</b>이라는 뜻은 아니다.
+  식 $(2.2)$ 와 식 $(2.5)$ 는 생김새가 전혀 다르지만 해집합은 같다.
+</div>
+
+<div class="box thm">
+  <span class="tag">정리 2.1</span><span class="title">행상등한 확대행렬은 상등한 연립방정식을 준다</span>
+  <p>일차연립방정식 $L_1$ 과 $L_2$ 의 확대행렬을 각각 $C_1$ 과 $C_2$ 라 할 때,
+  $C_1$ 과 $C_2$ 가 행상등하면 $L_1$ 과 $L_2$ 는 상등하다. 즉 같은 해집합을 갖는다.</p>
+</div>
+
+<p>이 정리는 다음을 뜻한다 — 일차연립방정식 $L_1$ 이 주어졌을 때 이에 대한 확대행렬 $C_1$ 을 구한 다음
+일련의 기본행연산을 적용하여 <b>적절한 행렬 $C_2$ 로 변환</b>하고, $C_2$ 를 확대행렬로 갖는 일차연립방정식 $L_2$ 를 풀어도
+$L_1$ 과 동일한 해를 구할 수 있다. 그렇다면 어떤 모양의 $C_2$ 가 풀이에 적절한지 살펴보자.</p>
+
+<h2 class="sub">행제형과 소거행제형 <span class="en">row-echelon &amp; reduced row-echelon form</span></h2>
+<div class="box def">
+  <span class="tag">정의</span><span class="title">영행 <span class="en">zero row</span></span>
+  <p>원소가 모두 $0$ 인 행을 <b>영행</b>(zero row)이라고 한다.</p>
+</div>
+
+<div class="box def">
+  <span class="tag">정의 2.3</span><span class="title">행제형 <span class="en">row-echelon form</span></span>
+  <p>다음 세 가지 조건을 만족하는 행렬 $A$ 를 <b>행제형</b>(row-echelon form)이라고 한다.</p>
+  <ol class="props">
+    <li>영행이 있다면 그것은 영행이 아닌 행의 <b>아래</b>에 있다.</li>
+    <li>영행이 아닌 행의 첫 번째 $0$ 이 아닌 원소는 $1$ 이다. 이 원소를 그 행의 <b>선도원소</b>(leading entry)라 한다.</li>
+    <li>영행이 아닌 연속된 두 행을 $i$번째 행과 $i+1$번째 행이라 할 때,
+    $i$번째 행의 선도원소는 $i+1$번째 행의 선도원소보다 <b>왼쪽</b>에 있다$(i\ge1)$.</li>
+  </ol>
+</div>
+
+<div class="box def">
+  <span class="tag">정의 2.4</span><span class="title">소거행제형 <span class="en">reduced row-echelon form</span></span>
+  <p>행제형 행렬 $A$ 가 다음 조건을 추가로 만족할 때 $A$ 를 <b>소거행제형</b>(reduced row-echelon form)이라고 한다.</p>
+  <p>$i$번째 행의 선도원소가 $j$번째 열에 있다면, $j$번째 열의 <b>다른 모든 원소는 $0$</b> 이다.</p>
+</div>
+
+<figure class="fig">
+<svg viewBox="0 0 360 190" role="img" aria-label="행제형과 소거행제형의 모양 비교 — 선도원소가 계단처럼 오른쪽 아래로 내려가고, 소거행제형은 선도원소 위쪽도 0이다">
+  <text class="lbl" x="90"  y="20" text-anchor="middle">행제형 (row-echelon)</text>
+  <text class="lbl" x="270" y="20" text-anchor="middle">소거행제형 (reduced)</text>
+
+  <!-- panel 1 -->
+  <rect class="cell" x="20" y="30" width="140" height="96"/>
+  <g class="cellhi">
+    <rect x="20" y="30" width="28" height="24"/>
+    <rect x="76" y="54" width="28" height="24"/>
+    <rect x="104" y="78" width="28" height="24"/>
+  </g>
+  <path class="vec" fill="none" d="M20,54 H48 V78 H104 V102 H132 V126 H160"/>
+  <g class="lbl">
+    <text x="34"  y="47" text-anchor="middle">1</text><text x="62"  y="47" text-anchor="middle">∗</text><text x="90"  y="47" text-anchor="middle">∗</text><text x="118" y="47" text-anchor="middle">∗</text><text x="146" y="47" text-anchor="middle">∗</text>
+    <text x="34"  y="71" text-anchor="middle">0</text><text x="62"  y="71" text-anchor="middle">0</text><text x="90"  y="71" text-anchor="middle">1</text><text x="118" y="71" text-anchor="middle">∗</text><text x="146" y="71" text-anchor="middle">∗</text>
+    <text x="34"  y="95" text-anchor="middle">0</text><text x="62"  y="95" text-anchor="middle">0</text><text x="90"  y="95" text-anchor="middle">0</text><text x="118" y="95" text-anchor="middle">1</text><text x="146" y="95" text-anchor="middle">∗</text>
+    <text x="34"  y="119" text-anchor="middle">0</text><text x="62"  y="119" text-anchor="middle">0</text><text x="90"  y="119" text-anchor="middle">0</text><text x="118" y="119" text-anchor="middle">0</text><text x="146" y="119" text-anchor="middle">0</text>
+  </g>
+
+  <!-- panel 2 -->
+  <rect class="cell" x="200" y="30" width="140" height="96"/>
+  <g class="cellhi">
+    <rect x="200" y="30" width="28" height="24"/>
+    <rect x="256" y="54" width="28" height="24"/>
+    <rect x="284" y="78" width="28" height="24"/>
+  </g>
+  <g class="lbl">
+    <text x="214" y="47" text-anchor="middle">1</text><text x="242" y="47" text-anchor="middle">∗</text><text x="270" y="47" text-anchor="middle">0</text><text x="298" y="47" text-anchor="middle">0</text><text x="326" y="47" text-anchor="middle">∗</text>
+    <text x="214" y="71" text-anchor="middle">0</text><text x="242" y="71" text-anchor="middle">0</text><text x="270" y="71" text-anchor="middle">1</text><text x="298" y="71" text-anchor="middle">0</text><text x="326" y="71" text-anchor="middle">∗</text>
+    <text x="214" y="95" text-anchor="middle">0</text><text x="242" y="95" text-anchor="middle">0</text><text x="270" y="95" text-anchor="middle">0</text><text x="298" y="95" text-anchor="middle">1</text><text x="326" y="95" text-anchor="middle">∗</text>
+    <text x="214" y="119" text-anchor="middle">0</text><text x="242" y="119" text-anchor="middle">0</text><text x="270" y="119" text-anchor="middle">0</text><text x="298" y="119" text-anchor="middle">0</text><text x="326" y="119" text-anchor="middle">0</text>
+  </g>
+
+  <text class="lbl" x="90"  y="150" text-anchor="middle">선도원소 1 이 계단처럼 오른쪽 아래로</text>
+  <text class="lbl" x="90"  y="166" text-anchor="middle">영행은 맨 아래</text>
+  <text class="lbl" x="270" y="150" text-anchor="middle">선도원소가 있는 열은</text>
+  <text class="lbl" x="270" y="166" text-anchor="middle">위·아래가 모두 0</text>
+</svg>
+<figcaption>$\ast$ 는 아무 수나 올 수 있는 자리. 소거행제형은 행제형이면서, 선도원소가 놓인 열을 완전히 비운 것이다.</figcaption>
+</figure>
+
+<div class="box ex">
+  <span class="tag">예제 2.7</span><span class="title">$2\times2$, $3\times3$ 행제형·소거행제형의 예</span>
+  <p>$x,y,z$ 가 임의의 수라고 할 때, 크기가 $2\times2$, $3\times3$ 인 행제형 행렬 및 소거행제형 행렬의 예를 들어라.</p>
+  <p><b>풀이</b> &nbsp;크기가 $2\times2$ 인 행제형 행렬은 다음과 같다.</p>
+  $$\begin{pmatrix}0&0\\0&0\end{pmatrix},\quad\begin{pmatrix}0&1\\0&0\end{pmatrix},\quad
+    \begin{pmatrix}1&x\\0&0\end{pmatrix},\quad\begin{pmatrix}1&x\\0&1\end{pmatrix}$$
+  <p>크기가 $3\times3$ 인 행제형 행렬은 다음과 같다.</p>
+  $$\begin{pmatrix}0&0&0\\0&0&0\\0&0&0\end{pmatrix},\ \begin{pmatrix}0&0&1\\0&0&0\\0&0&0\end{pmatrix},\
+    \begin{pmatrix}0&1&x\\0&0&0\\0&0&0\end{pmatrix},\ \begin{pmatrix}0&1&x\\0&0&1\\0&0&0\end{pmatrix},$$
+  $$\begin{pmatrix}1&x&y\\0&0&0\\0&0&0\end{pmatrix},\ \begin{pmatrix}1&x&y\\0&0&1\\0&0&0\end{pmatrix},\
+    \begin{pmatrix}1&x&y\\0&1&z\\0&0&0\end{pmatrix},\ \begin{pmatrix}1&x&y\\0&1&z\\0&0&1\end{pmatrix}$$
+  <p>한편 위의 $2\times2$ 행렬과 $3\times3$ 행렬 가운데 소거행제형이 되는 경우는 다음과 같다.</p>
+  $$\begin{pmatrix}0&0\\0&0\end{pmatrix},\quad\begin{pmatrix}0&1\\0&0\end{pmatrix},\quad
+    \begin{pmatrix}1&x\\0&0\end{pmatrix},\quad\begin{pmatrix}1&0\\0&1\end{pmatrix}$$
+  $$\begin{pmatrix}0&0&0\\0&0&0\\0&0&0\end{pmatrix},\ \begin{pmatrix}0&0&1\\0&0&0\\0&0&0\end{pmatrix},\
+    \begin{pmatrix}0&1&x\\0&0&0\\0&0&0\end{pmatrix},\ \begin{pmatrix}0&1&0\\0&0&1\\0&0&0\end{pmatrix},$$
+  $$\begin{pmatrix}1&x&y\\0&0&0\\0&0&0\end{pmatrix},\ \begin{pmatrix}1&x&0\\0&0&1\\0&0&0\end{pmatrix},\
+    \begin{pmatrix}1&0&y\\0&1&z\\0&0&0\end{pmatrix},\ \begin{pmatrix}1&0&0\\0&1&0\\0&0&1\end{pmatrix}$$
+</div>
+
+<div class="box ex">
+  <span class="tag">예</span><span class="title">행제형이 아닌 행렬과, 행제형이지만 소거행제형이 아닌 행렬</span>
+  $$A=\begin{pmatrix}1&2&-1&0\\0&0&0&0\\0&0&0&1\end{pmatrix},\qquad
+    B=\begin{pmatrix}1&2&0&5\\0&2&0&4\\0&0&1&7\end{pmatrix},$$
+  $$C=\begin{pmatrix}1&3&4&7\\0&0&1&-1\\0&1&0&5\end{pmatrix},\qquad
+    D=\begin{pmatrix}1&0&2&-1\\0&1&3&5\\0&0&1&4\end{pmatrix}$$
+  <ol class="props">
+    <li>$A$ 는 [정의 2.3]의 조건 ① 을 만족시키지 못한다 — 영행이 영행이 아닌 행보다 위에 있다.</li>
+    <li>$B$ 는 조건 ② 를 만족시키지 못한다 — 둘째 행의 첫 $0$ 이 아닌 원소가 $2$ 이다.</li>
+    <li>$C$ 는 조건 ③ 을 만족시키지 못한다 — 셋째 행의 선도원소가 둘째 행의 선도원소보다 왼쪽에 있다.</li>
+    <li>$D$ 는 [정의 2.3]의 조건을 모두 만족시켜 행제형이지만, [정의 2.4]의 조건을 만족시키지 못한다 —
+    셋째 행 선도원소가 있는 $3$열의 위쪽 원소 $2,\,3$ 이 $0$ 이 아니다.</li>
+  </ol>
+</div>
+
+<nav class="pager">
+  <a href="2-1_matrix-and-linear-systems.html">← 이전<small>2.1 행렬과 일차연립방정식</small></a>
+  <a class="next" href="2-3_gauss-elimination.html">다음 →<small>2.3 가우스 소거법</small></a>
+</nav>
+
+</body>
+</html>

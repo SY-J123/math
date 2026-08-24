@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>선형대수학 · 2.4 가우스–조르단 소거법</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">선형대수학 · 2장 행렬과 가우스 소거법</div>
+  <h1><span class="no">2.4</span>가우스–조르단 소거법 <span class="en">Gauss–Jordan elimination</span></h1>
+</header>
+
+<p>가우스 소거법은 일차연립방정식의 해법에서 확대행렬을 행제형으로 변환한 후 <b>후진대입법</b>을 이용하여 해를 구한다.
+이 절에서 설명하는 <b>가우스–조르단 소거법</b>(Gauss–Jordan elimination)은 <b>후진대입을 사용하지 않는다</b>는 점에서 다르다.
+반면에 확대행렬을 <b>소거행제형</b>으로 변환해야 하는 부담이 있다.</p>
+
+<figure class="fig">
+<svg viewBox="0 0 360 190" role="img" aria-label="가우스 소거법과 가우스-조르단 소거법의 경로 비교">
+  <defs>
+    <marker id="fl2" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 z" fill="#5a5a5a"/>
+    </marker>
+  </defs>
+
+  <rect class="cell" x="14" y="76" width="76" height="34"/>
+  <text class="lbl" x="52" y="97" text-anchor="middle">확대행렬</text>
+
+  <line class="axis" x1="92" y1="70" x2="126" y2="44" marker-end="url(#fl2)"/>
+  <line class="axis" x1="92" y1="116" x2="126" y2="142" marker-end="url(#fl2)"/>
+
+  <rect class="cellhi" x="128" y="26" width="76" height="34"/>
+  <text class="lbl b" x="166" y="47" text-anchor="middle">행제형</text>
+  <line class="axis" x1="206" y1="43" x2="240" y2="43" marker-end="url(#fl2)"/>
+  <rect class="cell" x="242" y="26" width="76" height="34"/>
+  <text class="lbl" x="280" y="47" text-anchor="middle">후진대입</text>
+
+  <rect class="cellhi2" x="128" y="124" width="76" height="34"/>
+  <text class="lbl t" x="166" y="145" text-anchor="middle">소거행제형</text>
+  <line class="axis" x1="206" y1="141" x2="240" y2="141" marker-end="url(#fl2)"/>
+  <rect class="cell" x="242" y="124" width="76" height="34"/>
+  <text class="lbl" x="280" y="145" text-anchor="middle">바로 읽기</text>
+
+  <line class="axis" x1="320" y1="43" x2="344" y2="80" marker-end="url(#fl2)"/>
+  <line class="axis" x1="320" y1="141" x2="344" y2="106" marker-end="url(#fl2)"/>
+  <text class="lbl" x="348" y="97">해</text>
+
+  <text class="lbl" x="110" y="20" text-anchor="middle">가우스</text>
+  <text class="lbl" x="104" y="176" text-anchor="middle">가우스–조르단</text>
+</svg>
+<figcaption>두 방법의 차이는 “행렬을 어디까지 정리하고 어디부터 손으로 계산하느냐”의 분담 문제다.
+행제형까지만 만들고 나머지는 후진대입에 맡길지, 소거행제형까지 밀어붙여 답을 그대로 읽을지.</figcaption>
+</figure>
+
+<div class="box def">
+  <span class="tag">알고리즘 2.3</span><span class="title">가우스–조르단 소거법</span>
+  <p>일차연립방정식 $AX=B$ 를 푸는 절차는 다음과 같다.</p>
+  <ol class="props">
+    <li><b>단계 1.</b> 계수행렬 $A$ 와 상수행렬 $B$ 로부터 확대행렬 $C=(A\mid B)$ 를 구한다.</li>
+    <li><b>단계 2.</b> 기본행연산을 이용하여 $C$ 를 <b>소거행제형</b> 행렬 $D$ 로 변환한다.</li>
+    <li><b>단계 3.</b> 자유변수 각각을 임의의 매개변수로 둔다.</li>
+    <li><b>단계 4.</b> 행렬 $D$ 의 $0$ 이 아닌 각 행을 <b>선도변수</b>에 대해 푼다.</li>
+  </ol>
+</div>
+
+<div class="note">
+  가우스–조르단 소거법은 행렬을 <b>소거행제형으로 변환하는 과정이 핵심</b>이다.
+  이것은 행렬을 먼저 행제형으로 변환한 다음, 각 선도원소가 속한 열의 나머지 원소
+  (즉 <b>선도원소의 위쪽 원소들</b>)를 모두 $0$ 으로 만들면 된다.
+</div>
+
+<h2 class="sub">유일한 해를 갖는 경우 <span class="en">unique solution</span></h2>
+<div class="box ex">
+  <span class="tag">예제 2.11</span><span class="title">[예제 2.10]을 가우스–조르단으로 다시 풀기</span>
+  <p>다음 연립방정식을 가우스–조르단 소거법으로 풀어라.</p>
+  $$\begin{cases}2x-3y+2z=-3\\ \ \ x-2y\ \ \ \ \ \ \ =\ \ \ 4\\ \ \ \ \ \ \ \ \ y-\ \ z=\ \ \ 1\end{cases}$$
+  <p><b>풀이</b> &nbsp;확대행렬 $A$ 와 이를 행제형으로 변환한 행렬 $B$ 는 다음과 같다(변환 과정은 [예제 2.10]과 같다).</p>
+  $$A=\left(\begin{array}{ccc|c}2&-3&2&-3\\1&-2&0&4\\0&1&-1&1\end{array}\right),\qquad
+    B=\left(\begin{array}{ccc|c}1&-2&0&4\\0&1&2&-11\\0&0&1&-4\end{array}\right)$$
+  <p>이제 행렬 $B$ 에 기본행연산을 적용하여 소거행제형으로 변환해 보자.</p>
+  $$\begin{aligned}
+  &\left(\begin{array}{ccc|c}1&-2&0&4\\0&1&2&-11\\0&0&1&-4\end{array}\right)
+  \xrightarrow{\ R_{2,1}(2)\ }
+  \left(\begin{array}{ccc|c}1&0&4&-18\\0&1&2&-11\\0&0&1&-4\end{array}\right)\\[8pt]
+  &\xrightarrow{\ R_{3,1}(-4)\ }
+  \left(\begin{array}{ccc|c}1&0&0&-2\\0&1&2&-11\\0&0&1&-4\end{array}\right)
+  \xrightarrow{\ R_{3,2}(-2)\ }
+  \left(\begin{array}{ccc|c}1&0&0&-2\\0&1&0&-3\\0&0&1&-4\end{array}\right)
+  \end{aligned}$$
+  <p>마지막 소거행제형 행렬에 대응하는 방정식은 다음과 같다.</p>
+  $$\begin{cases}x\ \ \ \ \ \ \ \ \ \ \ =-2\\ \ \ \ \ y\ \ \ \ \ \ =-3\\ \ \ \ \ \ \ \ \ z=-4\end{cases}$$
+  <p>따라서 연립방정식의 해가 $x=-2$, $y=-3$, $z=-4$ 임을 바로 알 수 있고, 이 해는 [예제 2.10]에서 구한 해와 같다.</p>
+</div>
+
+<h2 class="sub">해가 무수히 많은 경우 <span class="en">infinitely many solutions</span></h2>
+<div class="box ex">
+  <span class="tag">예제 2.12</span><span class="title">자유변수가 둘인 연립방정식</span>
+  <p>다음 연립방정식을 가우스–조르단 소거법으로 풀어라.</p>
+  $$\begin{cases}
+    p+2q+3r-4s=5\\
+    p+3q+3r+3s=3\\
+    \ \ \ -q\ \ \ \ \ \ \ -7s=2
+  \end{cases}$$
+  <p><b>풀이</b> &nbsp;확대행렬을 구하면 다음 행렬 $A$ 와 같다.</p>
+  $$A=\left(\begin{array}{cccc|c}1&2&3&-4&5\\1&3&3&3&3\\0&-1&0&-7&2\end{array}\right)$$
+  <p>이제 행렬 $A$ 에 기본행연산을 적용하여 소거행제형으로 변환해 보자.</p>
+  $$\begin{aligned}
+  &\left(\begin{array}{cccc|c}1&2&3&-4&5\\1&3&3&3&3\\0&-1&0&-7&2\end{array}\right)
+  \xrightarrow{\ R_{1,2}(-1)\ }
+  \left(\begin{array}{cccc|c}1&2&3&-4&5\\0&1&0&7&-2\\0&-1&0&-7&2\end{array}\right)\\[8pt]
+  &\xrightarrow{\ R_{2,3}(1)\ }
+  \left(\begin{array}{cccc|c}1&2&3&-4&5\\0&1&0&7&-2\\0&0&0&0&0\end{array}\right)
+  \xrightarrow{\ R_{2,1}(-2)\ }
+  \left(\begin{array}{cccc|c}1&0&3&-18&9\\0&1&0&7&-2\\0&0&0&0&0\end{array}\right)
+  \end{aligned}$$
+  <p>마지막 행렬에서 선도원소는 $1$열과 $2$열에 있으므로 $p,q$ 가 선도변수이고 $r,s$ 는 자유변수이다.
+  자유변수 $r$ 과 $s$ 를 각각 $r=u$, $s=w$ 로 두고 두 행을 각각 선도변수에 대해 풀면 다음과 같다.</p>
+  $$\begin{cases}p\ \ \ \ \ +3r-18s=\ \ \ 9\\ \ \ \ \ q\ \ \ \ \ \ \ +7s=-2\end{cases}
+    \ \longrightarrow\
+    \begin{cases}p=-3u+18w+9\\ q=\ \ \ \ \ \ \ -7w-2\end{cases}$$
+  <p>따라서 해는 다음과 같이 무수히 많다.</p>
+  $$p=-3u+18w+9,\quad q=-7w-2,\quad r=u,\quad s=w$$
+  <p>예를 들어 $u=1$, $w=0$ 으로 두면 $p=6$, $q=-2$, $r=1$, $s=0$ 이 해가 되고,
+  $u=0$, $w=0$ 으로 두면 $p=9$, $q=-2$, $r=0$, $s=0$ 이 또 다른 해가 된다.</p>
+</div>
+
+<div class="note">
+  세 번째 행이 <b>영행</b>이 된 것에 주목하자. 원래 세 번째 방정식이 앞의 두 방정식으로부터 얻어지는 <b>중복된 정보</b>였다는 뜻이다.
+  방정식이 $3$ 개, 미지수가 $4$ 개였지만 실제로 쓸모 있는 방정식은 $2$ 개뿐이었고,
+  그래서 자유변수가 $4-2=2$ 개 생겨 매개변수 $u,w$ 두 개짜리 해집합이 나왔다.
+</div>
+
+<nav class="pager">
+  <a href="2-3_gauss-elimination.html">← 이전<small>2.3 가우스 소거법</small></a>
+</nav>
+
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>선형대수학 · 2.1 행렬과 일차연립방정식</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">선형대수학 · 2장 행렬과 가우스 소거법</div>
+  <h1><span class="no">2.1</span>행렬과 일차연립방정식 <span class="en">matrices and systems of linear equations</span></h1>
+</header>
+
+<div class="note">
+  <a href="../ch01/1-2_elimination.html">1.2절</a>의 소거법을 다시 보면, 매 단계에서 바뀌는 것은 <b>계수와 상수뿐</b>이고
+  미지수 $x,y,z$ 는 자리만 지킬 뿐 아무 역할도 하지 않는다. 그렇다면 미지수를 아예 지워 버리고 숫자만 남긴 표로
+  연립방정식을 다루면 된다 — 그 표가 <b>행렬</b>이다.
+</div>
+
+<h2 class="sub">행렬 <span class="en">matrix</span></h2>
+<div class="box def">
+  <span class="tag">정의</span><span class="title">행렬과 원소 <span class="en">matrix, entry</span></span>
+  <p>직사각형 형태로 수·기호·수식 등을 배열한 것을 <b>행렬</b>(matrix)이라 하고,
+  행렬을 구성하는 각 항목을 <b>원소</b> 또는 <b>성분</b>이라고 한다.</p>
+  <p>다음은 행렬의 예이다.</p>
+  $$\begin{pmatrix}1&2&3\\4&5&6\\7&8&9\end{pmatrix},\quad
+    \begin{pmatrix}0&1&2&3\\4&5&6&7\\8&9&0&1\end{pmatrix},\quad
+    \begin{pmatrix}1&2&3\\4&5&6\end{pmatrix},\quad
+    \begin{pmatrix}1&2\\4&5\\7&8\end{pmatrix},$$
+  $$\begin{pmatrix}a&b\\c&d\end{pmatrix},\quad
+    \begin{pmatrix}x\\y\end{pmatrix},\quad
+    \begin{pmatrix}ax+by\\cx+dy\end{pmatrix}.$$
+</div>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">행렬의 크기 <span class="en">size of a matrix</span></span>
+  <p>$mn$ 개의 항목을 $m$ 개의 <b>행</b>(row)과 $n$ 개의 <b>열</b>(column)에 배열한 행렬을
+  <b>$m\times n$ 행렬</b>, 또는 $m$행 $n$열 행렬, 또는 크기가 $m,\,n$ 인 행렬이라고 한다.</p>
+  <p>예를 들어 다음은 $2\times3$ 행렬, 또는 $2$행 $3$열 행렬, 또는 크기가 $2,\,3$ 인 행렬이다.</p>
+  $$\begin{pmatrix}0&1&0\\0&0&1\end{pmatrix}$$
+</div>
+
+<div class="note">
+  크기는 <b>두 수의 쌍</b>으로 말한다. 위 행렬을 두 수를 곱해 “크기 $6$ 인 행렬”이라고 하지는 않는다.
+  $2\times3$ 과 $3\times2$ 는 원소 개수가 같아도 서로 다른 모양의 행렬이기 때문이다.
+</div>
+
+<h2 class="sub">원소의 첨자 표기 <span class="en">indexing entries</span></h2>
+<p>$m\times n$ 행렬 $A$ 는 다음처럼 표현할 수 있다.</p>
+$$A=\begin{pmatrix}
+a_{11}&a_{12}&\cdots&a_{1n}\\
+a_{21}&a_{22}&\cdots&a_{2n}\\
+\vdots&\vdots&\ddots&\vdots\\
+a_{m1}&a_{m2}&\cdots&a_{mn}
+\end{pmatrix}$$
+<p>여기서 $a_{ij}\,(1\le i\le m,\ 1\le j\le n)$ 를 행렬 $A$ 의 <b>$i$행 $j$열 원소</b>, 간단히 <b>$ij$원소</b>라고 한다.
+또한 행렬 $A$ 를 $A=(a_{ij})$ 로 나타내기도 한다. 첫 번째 첨자가 행 번호, 두 번째 첨자가 열 번호다.</p>
+
+<figure class="fig">
+<svg viewBox="0 0 350 210" role="img" aria-label="m×n 행렬에서 i번째 행과 j번째 열이 만나는 자리가 ij원소임을 보이는 그림">
+  <rect class="cell" x="62" y="36" width="240" height="132"/>
+  <rect class="cellhi" x="62" y="88" width="240" height="30"/>
+  <rect class="cellhi2" x="182" y="36" width="60" height="132"/>
+  <rect x="182" y="88" width="60" height="30" fill="#fdf1e3" stroke="#c05621" stroke-width="1.6"/>
+
+  <text class="lbl" x="92"  y="60" text-anchor="middle">a<tspan font-size="8" dy="3">11</tspan></text>
+  <text class="lbl" x="152" y="60" text-anchor="middle">⋯</text>
+  <text class="lbl b" x="212" y="60" text-anchor="middle">a<tspan font-size="8" dy="3">1j</tspan></text>
+  <text class="lbl" x="272" y="60" text-anchor="middle">⋯</text>
+
+  <text class="lbl" x="92"  y="108" text-anchor="middle">a<tspan font-size="8" dy="3">i1</tspan></text>
+  <text class="lbl" x="152" y="108" text-anchor="middle">⋯</text>
+  <text class="lbl" x="212" y="108" text-anchor="middle" fill="#c05621">a<tspan font-size="8" dy="3">ij</tspan></text>
+  <text class="lbl" x="272" y="108" text-anchor="middle">a<tspan font-size="8" dy="3">in</tspan></text>
+
+  <text class="lbl" x="92"  y="152" text-anchor="middle">a<tspan font-size="8" dy="3">m1</tspan></text>
+  <text class="lbl" x="152" y="152" text-anchor="middle">⋯</text>
+  <text class="lbl b" x="212" y="152" text-anchor="middle">a<tspan font-size="8" dy="3">mj</tspan></text>
+  <text class="lbl" x="272" y="152" text-anchor="middle">a<tspan font-size="8" dy="3">mn</tspan></text>
+
+  <text class="lbl" x="30" y="108" text-anchor="middle">i 행</text>
+  <text class="lbl b" x="212" y="26" text-anchor="middle">j 열</text>
+  <text class="lbl" x="176" y="192" text-anchor="middle">i 행과 j 열이 만나는 자리의 원소가 ij원소</text>
+</svg>
+<figcaption>행 번호가 먼저, 열 번호가 나중 — $a_{ij}$ 는 $i$번째 행(가로줄)과 $j$번째 열(세로줄)의 교차점이다.</figcaption>
+</figure>
+
+<div class="box thm">
+  <span class="tag">성질</span><span class="title">행과 열도 행렬이다</span>
+  <ol class="props">
+    <li>모든 $i\,(1\le i\le m)$ 에 대하여 행렬 $A$ 의 $i$번째 행
+    $\begin{pmatrix}a_{i1}&a_{i2}&\cdots&a_{in}\end{pmatrix}$ 은 $1\times n$ 행렬이다.</li>
+    <li>모든 $j\,(1\le j\le n)$ 에 대하여 행렬 $A$ 의 $j$번째 열
+    $\begin{pmatrix}a_{1j}\\a_{2j}\\\vdots\\a_{mj}\end{pmatrix}$ 는 $m\times1$ 행렬이다.</li>
+  </ol>
+</div>
+
+<h2 class="sub">계수행렬 · 상수행렬 · 확대행렬 <span class="en">coefficient, constant, augmented matrices</span></h2>
+<p>일차연립방정식을 행렬로 나타내 보자. 일차연립방정식이 다음과 같이 주어졌다고 하자.</p>
+$$\begin{cases}
+a_{11}x_1+a_{12}x_2+\cdots+a_{1n}x_n=b_1\\
+a_{21}x_1+a_{22}x_2+\cdots+a_{2n}x_n=b_2\\
+\qquad\qquad\qquad\vdots\\
+a_{m1}x_1+a_{m2}x_2+\cdots+a_{mn}x_n=b_m
+\end{cases}\qquad\cdots(2.1)$$
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">계수행렬 · 상수행렬 · 확대행렬</span>
+  <p>연립방정식 $(2.1)$ 에 대하여 다음과 같이 정의한다.</p>
+  <ol class="props">
+    <li><b>계수행렬</b>(coefficient matrix) $A$ — 미지수의 계수만 모은 $m\times n$ 행렬</li>
+    <li><b>상수행렬</b>(matrix of constants) $B$ — 우변의 상수만 모은 $m\times1$ 행렬</li>
+    <li><b>확대행렬</b>(augmented matrix) $C=(A\mid B)$ — 계수행렬 오른쪽에 상수행렬을 덧붙인 $m\times(n+1)$ 행렬</li>
+  </ol>
+  $$A=\begin{pmatrix}a_{11}&\cdots&a_{1n}\\ \vdots&\ddots&\vdots\\ a_{m1}&\cdots&a_{mn}\end{pmatrix},\qquad
+    B=\begin{pmatrix}b_1\\ \vdots\\ b_m\end{pmatrix},$$
+  $$C=(A\mid B)=\left(\begin{array}{ccc|c}
+    a_{11}&\cdots&a_{1n}&b_1\\
+    \vdots&\ddots&\vdots&\vdots\\
+    a_{m1}&\cdots&a_{mn}&b_m
+  \end{array}\right)$$
+</div>
+
+<div class="box ex">
+  <span class="tag">예</span><span class="title">세 행렬의 실제 예</span>
+  <p>다음 연립방정식에 대한 계수행렬 · 상수행렬 · 확대행렬은 아래와 같다.</p>
+  $$\begin{cases}
+    2x+6y+4z=-6\\
+    3x+2y-3z=22\\
+    \ \ x+4y\ \ \ \ \ \ \ =\ \ 9
+  \end{cases}$$
+  $$A=\begin{pmatrix}2&6&4\\3&2&-3\\1&4&0\end{pmatrix},\quad
+    B=\begin{pmatrix}-6\\22\\9\end{pmatrix},\quad
+    C=\left(\begin{array}{ccc|c}2&6&4&-6\\3&2&-3&22\\1&4&0&9\end{array}\right)$$
+  <p>세 번째 방정식에는 $z$ 가 없으므로 계수는 $0$ 이다. 없는 항의 자리에 $0$ 을 반드시 채워야 열의 위치가 어긋나지 않는다.</p>
+</div>
+
+<h2 class="sub">소거법을 확대행렬로 옮기기 <span class="en">elimination in matrix form</span></h2>
+
+<div class="box ex">
+  <span class="tag">예제 2.1</span><span class="title">소거법으로 푼 $3$원 연립방정식</span>
+  <p>다음 일차연립방정식을 소거법으로 풀어라.</p>
+  $$\begin{cases}2x+6y+4z=-6\\ 3x+2y-3z=22\\ \ \ x+4y\ \ \ \ \ \ \ =\ \ 9\end{cases}$$
+  <p><b>풀이</b> &nbsp;세 번째 방정식과 첫 번째 방정식을 교환한다.</p>
+  $$\begin{cases}\ \ x+4y\ \ \ \ \ \ \ =\ \ 9\\ 3x+2y-3z=22\\ 2x+6y+4z=-6\end{cases}$$
+  <p>첫 번째 방정식에 $-3$ 을 곱하여 두 번째 방정식에 더하고, 이어서 첫 번째 방정식에 $-2$ 를 곱하여 세 번째 방정식에 더한다.</p>
+  $$\begin{cases}x+4y\ \ \ \ \ \ \ \ =\ \ \ \ 9\\ \ \ -10y-3z=\ \ -5\\ \ \ \ \ -2y+4z=-24\end{cases}$$
+  <p>세 번째 방정식에 $-\tfrac12$ 을 곱한 다음 두 번째 방정식과 세 번째 방정식을 교환한다.</p>
+  $$\begin{cases}x+4y\ \ \ \ \ \ \ \ =\ \ \ 9\\ \ \ \ \ \ \ y-2z=\ \ 12\\ -10y-3z=\ -5\end{cases}$$
+  <p>두 번째 방정식에 $10$ 을 곱하여 세 번째 방정식에 더한다.</p>
+  $$\begin{cases}x+4y\ \ \ \ \ \ =\ \ \ \ 9\\ \ \ \ \ \ y-2z=\ \ 12\\ \ \ \ \ -23z=115\end{cases}$$
+  <p>세 번째 방정식에 $-\tfrac1{23}$ 을 곱한다.</p>
+  $$\begin{cases}x+4y\ \ \ \ \ =\ \ 9\\ \ \ \ \ y-2z=12\\ \ \ \ \ \ \ \ \ \ z=-5\end{cases}$$
+  <p>$z=-5$ 를 두 번째 방정식에 대입하여 $y=2$ 를 구하고, $y=2$ 를 첫 번째 방정식에 대입하여 $x=1$ 을 구한다.
+  즉 주어진 일차연립방정식의 해는 $(1,2,-5)$ 이다.</p>
+</div>
+
+<div class="note">
+  [예제 2.1]을 자세히 보면 매 단계에서 <b>계수와 상수만 값이 바뀌고</b> 미지수 $x,y,z$ 는 위치도 이름도 변하지 않는다.
+  즉 방정식에 관한 세 가지 기본연산을 수행하면 계수와 상수만 바뀐다.
+  따라서 미지수는 생략하고 <b>단지 수(계수와 상수)만 가지고</b> 일차연립방정식을 기술할 수 있다.
+</div>
+
+<div class="box ex">
+  <span class="tag">예제 2.2</span><span class="title">소거 과정을 확대행렬로 표시</span>
+  <p>[예제 2.1]의 소거법 적용과정에 나타나는 연립방정식을 확대행렬로 표시하라.</p>
+  <p><b>풀이</b> &nbsp;각 단계의 연립방정식에 대응하는 확대행렬은 다음과 같다.</p>
+  $$\left(\begin{array}{ccc|c}2&6&4&-6\\3&2&-3&22\\1&4&0&9\end{array}\right)\longrightarrow
+    \left(\begin{array}{ccc|c}1&4&0&9\\3&2&-3&22\\2&6&4&-6\end{array}\right)\longrightarrow
+    \left(\begin{array}{ccc|c}1&4&0&9\\0&-10&-3&-5\\0&-2&4&-24\end{array}\right)$$
+  $$\longrightarrow\left(\begin{array}{ccc|c}1&4&0&9\\0&1&-2&12\\0&-10&-3&-5\end{array}\right)\longrightarrow
+    \left(\begin{array}{ccc|c}1&4&0&9\\0&1&-2&12\\0&0&-23&115\end{array}\right)\longrightarrow
+    \left(\begin{array}{ccc|c}1&4&0&9\\0&1&-2&12\\0&0&1&-5\end{array}\right)$$
+</div>
+
+<p>마지막 확대행렬의 마지막 행은 $z=-5$ 임을 나타낸다. 그러나 $y$ 와 $x$ 를 구하기 위해서는 여전히 약간의 계산(후진대입)을 해야 한다.
+만일 소거의 결과가 다음과 같다면 얼마나 좋을까?</p>
+$$\left(\begin{array}{ccc|c}1&0&0&1\\0&1&0&2\\0&0&1&-5\end{array}\right)$$
+<p>그렇다면 $x=1$, $y=2$, $z=-5$ 임을 단번에 읽어낼 수 있다. 다음 절에서 이 변형을 다루는 도구를 배운다.</p>
+
+<nav class="pager">
+  <span class="spacer"></span>
+  <a class="next" href="2-2_elementary-row-operations.html">다음 →<small>2.2 기본행연산</small></a>
+</nav>
+
+</body>
+</html>
