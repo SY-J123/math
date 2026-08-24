@@ -153,9 +153,12 @@
       임의의 $\varepsilon\gt0$ 에 대하여
       $$|x-\theta|\lt\delta\ \Longrightarrow\ |g(x)-g(\theta)|\le\varepsilon$$
       을 만족하는 $\delta\gt0$ 이 존재한다.</li>
-    <li><span class="step">사건의 포함관계로 부등식 만들기.</span> 위 함의는
-      $\{|T_n-\theta|\lt\delta\}\subset\{|g(T_n)-g(\theta)|\le\varepsilon\}$ 을 뜻하므로,
-      큰 사건의 확률이 더 크다는 성질에서
+    <li><span class="step">사건의 포함관계로 부등식 만들기.</span>
+      $A\Rightarrow B$ 는 $A$ 가 <b>충분조건</b>, $B$ 가 <b>필요조건</b>이라는 뜻이다. 필요조건 $B$ 는
+      $A$ 가 성립하는 경우를 하나도 빠뜨리지 않고 담아내야 하므로 집합으로 보면 $A\subset B$ 이고,
+      따라서 $P(A)\le P(B)$ 다. 위 함의에서 $A=\{|T_n-\theta|\lt\delta\}$,
+      $B=\{|g(T_n)-g(\theta)|\le\varepsilon\}$ 이므로
+      $\{|T_n-\theta|\lt\delta\}\subset\{|g(T_n)-g(\theta)|\le\varepsilon\}$ 이고,
       $$\lim_{n\to\infty}P\big[\,|g(T_n)-g(\theta)|\le\varepsilon\,\big]
       \ \ge\ \lim_{n\to\infty}P\big[\,|T_n-\theta|\lt\delta\,\big]=1$$
       이다. 마지막 등호는 $T_n$ 의 일치성에서 나온다.</li>
