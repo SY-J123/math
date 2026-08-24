@@ -302,41 +302,36 @@
 <p>나아가, 최대가능도추정량이 가지는 <b>점근적 정규성</b>을 살펴보자.</p>
 <div class="box prf">
   <span class="tag">유도 <span class="en">점근적 정규성</span></span>
-  <p>가능도함수를 $L(\theta)$, 로그가능도함수를 $l(\theta)=\log L(\theta)$ 라 하고,
-  $L(\theta)=\prod_{i=1}^n f(X_i;\theta)$ 로 두어 $L(\theta)$ 를 확률변수 $X_i$ 들의 함수, 즉 그 자체가
-  확률변수라고 생각하자. 그러면 $l(\theta)=\sum_{i=1}^n\log f(X_i;\theta)$ 는 서로 독립이고 분포가 같은
-  $n$ 개 확률변수의 합으로 표현된다. 모수의 참값을 $\theta_0$ 이라 하자.</p>
+  <p>가능도함수를 $L(\theta)=\prod_{i=1}^n f(X_i;\theta)$, 로그가능도함수를
+  $l(\theta)=\log L(\theta)=\sum_{i=1}^n\log f(X_i;\theta)$ 라 하면, $l(\theta)$ 는 서로 독립이고 분포가 같은
+  $n$ 개 확률변수의 합이다. 모수의 참값을 $\theta_0$ 이라 하자.</p>
   <ol>
-    <li><span class="step">$l'$ 을 $\theta_0$ 에서 테일러 전개.</span> 로그가능도함수를 미분한 $l'(\theta)$ 를
-      $\theta_0$ 에서 1차까지 전개하고 $\theta=\hat\theta_n$ 을 대입하면
+    <li><span class="step">① 테일러 전개와 최대점 조건.</span> 로그가능도함수의 도함수 $l'(\theta)$ 를
+      참값 $\theta_0$ 근처에서 1차 테일러 전개하고, MLE 인 $\theta=\hat\theta_n$ 을 대입한다.
       $$l'(\hat\theta_n)\ \approx\ l'(\theta_0)+l''(\theta_0)(\hat\theta_n-\theta_0)$$
-      이다. $\hat\theta_n$ 이 $\theta_0$ 으로 확률적으로 매우 가까우므로(정리 4.12) 이 근사가 정당화된다.</li>
-    <li><span class="step">최대점 조건 $l'(\hat\theta_n)=0$ 을 대입.</span> $\hat\theta_n$ 은 로그가능도함수를
-      최대로 하므로 좌변이 $0$ 이다. 따라서
-      $$\hat\theta_n-\theta_0\ \approx\ -\frac{l'(\theta_0)}{l''(\theta_0)}$$
-      을 얻는다.</li>
-    <li><span class="step">$\sqrt n$ 을 곱해 표준화하기.</span> 분자와 분모를 각각 $\sqrt n$ 과 $n$ 으로
-      나누어 정리하면
+      $\hat\theta_n$ 은 극대점이므로 좌변 $l'(\hat\theta_n)$ 은 $0$ 이다. 이를 정리하면 오차 형태의
+      근사식을 얻는다.
+      $$\hat\theta_n-\theta_0\ \approx\ -\frac{l'(\theta_0)}{l''(\theta_0)}$$</li>
+
+    <li><span class="step">② $\sqrt n$ 으로 표준화.</span> 양변에 $\sqrt n$ 을 곱하고 분자·분모를 각각
+      적절한 항($\sqrt n$ 과 $n$)으로 나누어 <b>중심극한정리</b>와 <b>대수의 법칙</b>이 적용될 꼴로 맞춘다.
       $$\sqrt n\,(\hat\theta_n-\theta_0)\ \approx\
-      \frac{\dfrac{1}{\sqrt n}\,l'(\theta_0)}{-\dfrac1n\,l''(\theta_0)}$$
-      이 된다. 분자·분모를 이렇게 나눈 이유는 각각 <b>중심극한정리</b>와 <b>대수의 법칙</b>이 적용되는
-      꼴로 맞추기 위해서다.</li>
-    <li><span class="step">분모 — 대수의 법칙.</span> $l''$ 도 독립인 $n$ 개 항의 합이므로,
-      적절한 조건하에서
-      $$-\frac1n\,l''(\theta_0)=-\frac1n\sum_{i=1}^n\frac{d^2}{d\theta^2}\log f(X_i;\theta)\bigg|_{\theta=\theta_0}
-      \ \xrightarrow{\ p\ }\
-      -E\!\left(\frac{d^2}{d\theta^2}\log f(X;\theta)\bigg|_{\theta=\theta_0}\right)=I(\theta_0)$$
-      로 <a href="4-4_mvue.html">피셔의 정보</a>에 확률수렴한다.</li>
-    <li><span class="step">분자 — 중심극한정리.</span> 스코어 $\dfrac{d}{d\theta}\log f(X_i;\theta_0)$ 들은
-      평균이 $0$ 이고 분산이 $I(\theta_0)$ 인 독립·동일분포 확률변수이므로,
-      $$\frac{1}{\sqrt n}\,l'(\theta_0)\ \xrightarrow{\ d\ }\ N\big(0,\,I(\theta_0)\big)$$
-      이 성립한다.</li>
-    <li><span class="step">슬럿츠키 정리로 결합.</span>
+      \frac{\dfrac{1}{\sqrt n}\,l'(\theta_0)}{-\dfrac1n\,l''(\theta_0)}$$</li>
+
+    <li><span class="step">③ 분모와 분자의 극한 적용.</span>
+      <ol class="props">
+        <li><b>분모(대수의 법칙)</b> — <a href="4-4_mvue.html">피셔 정보량</a> $I(\theta_0)$ 으로 확률수렴한다.
+          $$-\frac1n\,l''(\theta_0)\ \xrightarrow{\ p\ }\
+          -E\!\left(\frac{d^2}{d\theta^2}\log f(X;\theta)\bigg|_{\theta=\theta_0}\right)=I(\theta_0)$$</li>
+        <li><b>분자(중심극한정리)</b> — 스코어 함수의 합인 $\dfrac{1}{\sqrt n}l'(\theta_0)$ 은 평균이 $0$ 이고
+          분산이 $I(\theta_0)$ 인 정규분포로 분포수렴한다.
+          $$\frac{1}{\sqrt n}\,l'(\theta_0)\ \xrightarrow{\ d\ }\ N\big(0,\,I(\theta_0)\big)$$</li>
+      </ol></li>
+
+    <li><span class="step">④ 슬럿츠키 정리로 결합.</span>
       <a href="../ch03/3-4_lln-clt.html">정리 3.15(슬럿츠키 정리)</a>에 의하여 분포수렴하는 분자를
-      상수로 수렴하는 분모로 나눌 수 있으므로
-      $$\sqrt n\,(\hat\theta_n-\theta_0)\ \xrightarrow{\ d\ }\
-      \frac{N\big(0,I(\theta_0)\big)}{I(\theta_0)}=N\!\left(0,\ \frac{1}{I(\theta_0)}\right)$$
-      을 얻는다. (분산은 $I(\theta_0)/I(\theta_0)^2=1/I(\theta_0)$ 이 된다.)</li>
+      상수로 수렴하는 분모로 나누면, 최종적으로 다음 정규분포에 도달한다.
+      $$\sqrt n\,(\hat\theta_n-\theta_0)\ \xrightarrow{\ d\ }\ N\!\left(0,\ \frac{1}{I(\theta_0)}\right)$$</li>
   </ol>
   <div class="qed">∎</div>
 </div>
