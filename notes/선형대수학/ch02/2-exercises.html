@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2장 · 연습문제</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<style>
+  .ex{ margin:26px 0; line-height:1.75; }
+  .exn{ font-weight:800; color:var(--def); margin-right:8px; }
+  .ex ol{ margin:4px 0 0; padding-left:26px; }
+  .ex li{ margin:5px 0; }
+  .answersheet{ page-break-before:always; }
+  .ans{ margin:24px 0; line-height:1.75; }
+  .ans .exn{ color:var(--thm); }
+  .ans ol.fill{ margin:6px 0 0; padding-left:24px; }
+  .ans ol.fill li{ margin:9px 0; }
+  .ans ol.props{ padding-left:24px; }
+  .mgrid{ display:flex; flex-wrap:wrap; gap:10px 26px; margin:8px 0 0; }
+  @media print{ .pager, .home{ display:none; } a{ color:inherit; text-decoration:none; } }
+</style>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">선형대수학 · 2장 행렬과 가우스 소거법</div>
+  <h1><span class="no">연습문제</span>2장 <span class="en">exercises</span></h1>
+</header>
+
+<p>2장(행렬과 가우스 소거법) 교재 연습문제와 정답·해설. 정답 시트는 인쇄 시 다음 페이지부터 나온다.</p>
+
+<div class="note">
+  <b>대조 요망.</b> 원본 사진에서 <b>02</b> 의 행렬 이름(알파벳)이 일부 흐려, 읽은 순서대로 $A\sim J$ 를 붙였다.
+  또 <b>05 (2)·(4)</b> 는 읽은 숫자대로 풀면 해가 분수로 나오므로 교재의 숫자와 한 번 대조해 보기를 권한다
+  (분수 해도 세 방정식을 정확히 만족하므로 계산 자체는 맞다).
+</div>
+
+<h2 class="sub">교재 연습문제 <span class="en">textbook exercises</span></h2>
+
+<div class="ex"><span class="exn">01</span>다음 각 연립방정식에 대해 확대행렬을 구하라.
+  <ol>
+    <li>$\begin{cases}3x+7y=6\\ 2x+5y=4\end{cases}$</li>
+    <li>$\begin{cases}\ \ x+5y=7\\ 3x-4y=2\end{cases}$</li>
+    <li>$\begin{cases}\ \ x+2y-3z=-5\\ 2x-5y+7z=\ 25\\ 3x+2y+4z=\ 15\end{cases}$</li>
+    <li>$\begin{cases}\ \ x\ \ \ \ \ \ \ +4z=-1\\ 5x+3y\ \ \ \ \ \ \ =\ \ \ 1\\ \ \ \ \ \ \ 2y-3z=\ \ \ 4\end{cases}$</li>
+  </ol>
+</div>
+
+<div class="ex"><span class="exn">02</span>다음 중 행제형 행렬과 소거행제형 행렬을 골라라.
+  <div class="mgrid">
+    <span>$A=\begin{pmatrix}0&1&0\\0&0&1\end{pmatrix}$</span>
+    <span>$B=\begin{pmatrix}1&0&0\\0&1&2\end{pmatrix}$</span>
+    <span>$C=\begin{pmatrix}1&0&0\\0&0&2\end{pmatrix}$</span>
+    <span>$D=\begin{pmatrix}1&1&2\\0&0&1\end{pmatrix}$</span>
+    <span>$E=\begin{pmatrix}0&1&0\\0&0&0\\0&0&0\end{pmatrix}$</span>
+    <span>$F=\begin{pmatrix}1&3&5&7\\0&1&3&5\\0&0&0&1\end{pmatrix}$</span>
+    <span>$G=\begin{pmatrix}1&0&2&0&4\\0&0&0&1&0\\0&0&1&3&0\\0&0&0&0&0\end{pmatrix}$</span>
+    <span>$H=\begin{pmatrix}1&0&0&0\\0&1&0&0\\0&0&0&0\\0&0&0&1\end{pmatrix}$</span>
+    <span>$I=\begin{pmatrix}0&1&0&1&0\\0&0&1&0&0\\0&0&0&1&1\\0&0&0&0&1\end{pmatrix}$</span>
+    <span>$J=\begin{pmatrix}1&2&0&0&3&0\\0&0&1&0&0&2\\0&0&0&0&1&2\\0&0&0&0&0&1\end{pmatrix}$</span>
+  </div>
+</div>
+
+<div class="ex"><span class="exn">03</span>다음 행렬 $A$ 에 대해 물음에 답하라.
+  $$A=\begin{pmatrix}2&3&-1&4\\4&-2&6&8\\1&0&2&10\end{pmatrix}$$
+  <ol>
+    <li>행렬 $A$ 를 행제형 행렬로 변환하라.</li>
+    <li>행렬 $A$ 를 미지수 $x,y,z$ 인 일차연립방정식의 확대행렬이라고 가정할 때, 해를 구하라.</li>
+  </ol>
+</div>
+
+<div class="ex"><span class="exn">04</span>다음 행렬 $A$, $B$ 에 대해 행상등한 행렬을 각각 $3$ 개씩 구하라.
+  $$A=\begin{pmatrix}1&0&0\\0&1&0\\0&0&1\end{pmatrix},\qquad B=\begin{pmatrix}1&2&0\\1&0&3\\3&2&7\end{pmatrix}$$
+</div>
+
+<div class="ex"><span class="exn">05</span>다음 일차연립방정식을 가우스 소거법으로 풀어라.
+  <ol>
+    <li>$\begin{cases}2x-\ \ y+2z=3\\ \ \ x+2y-\ \ z=2\\ 3x+2y+\ \ z=6\end{cases}$</li>
+    <li>$\begin{cases}\ \ x+\ \ y-2z=5\\ \ \ x-\ \ y+\ \ z=0\\ 3x+2y+4z=7\end{cases}$</li>
+    <li>$\begin{cases}v+2w+3x\ \ \ \ \ \ +2z=-3\\ \ \ \ \ \ 2w\ \ \ \ \ \ +2y-4z=\ \ \ 6\\ \ \ \ \ \ \ \ \ \ \ \ \ x\ \ \ \ \ \ -\ \ z=\ \ \ 2\end{cases}$</li>
+    <li>$\begin{cases}\ \ \ \ \ \ 3y+6z=12\\ 3x+7y+5z=19\\ 2x-\ \ y+4z=\ \ 9\end{cases}$</li>
+  </ol>
+</div>
+
+<div class="ex"><span class="exn">06</span>문제 05의 각 일차연립방정식을 가우스–조르단 소거법으로 풀어라.</div>
+
+<div class="ex"><span class="exn">07</span>다음 일차연립방정식에 대해 물음에 답하라.
+  $$\begin{cases}x+\ \ y-3z=\ \ 5\\ \ \ \ \ \ 2y+6z=\ \ 2\\ \ \ \ \ \ \ \ \ \ \ \ 3z=-6\end{cases}$$
+  <ol>
+    <li>주어진 일차연립방정식의 확대행렬 $A$ 를 구하라.</li>
+    <li>$A$ 에 $R_2\!\left(\tfrac12\right)$ 과 $R_3\!\left(\tfrac13\right)$ 을 차례로 적용시켜 얻는 행렬 $B$ 를 구하라.</li>
+    <li>가우스–조르단 소거법을 이용하여 해를 구하기 위해 $B$ 에 적용해야 하는 기본행연산을 순서대로 나열하고,
+    결과를 이용하여 방정식의 해를 구하라.</li>
+  </ol>
+</div>
+
+<!-- ============================ 정답 시트 ============================ -->
+<div class="answersheet">
+<header class="doc">
+  <div class="ch">선형대수학 · 2장 행렬과 가우스 소거법</div>
+  <h1><span class="no">정답·해설</span>2장 <span class="en">answers</span></h1>
+</header>
+
+<h2 class="sub">01 확대행렬 구하기</h2>
+<p>계수행렬 오른쪽에 상수행렬을 붙이면 된다. 유일하게 조심할 것은 <b>없는 항의 자리에 $0$ 을 채우는 것</b> —
+$x,y,z$ 의 자리를 열 번호로 고정해야 하기 때문이다.</p>
+
+<div class="ans"><span class="exn">01 (1)</span>
+  $$\left(\begin{array}{cc|c}3&7&6\\2&5&4\end{array}\right)$$
+</div>
+
+<div class="ans"><span class="exn">01 (2)</span>
+  $$\left(\begin{array}{cc|c}1&5&7\\3&-4&2\end{array}\right)$$
+</div>
+
+<div class="ans"><span class="exn">01 (3)</span>
+  $$\left(\begin{array}{ccc|c}1&2&-3&-5\\2&-5&7&25\\3&2&4&15\end{array}\right)$$
+</div>
+
+<div class="ans"><span class="exn">01 (4)</span>첫 식에 $y$, 둘째 식에 $z$, 셋째 식에 $x$ 가 없으므로 그 자리에 $0$ 을 넣는다.
+  $$\left(\begin{array}{ccc|c}1&0&4&-1\\5&3&0&1\\0&2&-3&4\end{array}\right)$$
+</div>
+
+<h2 class="sub">02 행제형·소거행제형 고르기</h2>
+<p>판정은 기계적이다. 먼저 <b>[정의 2.3]</b> 의 세 조건을 순서대로 확인한다 —
+① 영행은 맨 아래에, ② 각 행의 첫 $0$ 아닌 원소(선도원소)가 $1$, ③ 선도원소가 아래로 갈수록 오른쪽.
+셋을 통과하면 행제형이고, 여기에 <b>[정의 2.4]</b> — 선도원소가 있는 열의 나머지가 모두 $0$ — 까지 통과하면 소거행제형이다.</p>
+
+<div class="ans"><span class="exn">02</span><b>행제형: $A,B,D,E,F,I,J$ / 그중 소거행제형: $A,B,E$.</b>
+  <ol class="fill">
+    <li><span class="step">$A=\begin{pmatrix}0&1&0\\0&0&1\end{pmatrix}$ — 소거행제형.</span>
+      선도원소는 $2$열과 $3$열에 있고 두 열 모두 나머지 원소가 $0$ 이다.</li>
+    <li><span class="step">$B=\begin{pmatrix}1&0&0\\0&1&2\end{pmatrix}$ — 소거행제형.</span>
+      선도원소는 $1$열·$2$열에 있고, $3$열에는 선도원소가 없으므로 그 열의 $2$ 는 조건과 무관하다.</li>
+    <li><span class="step">$C=\begin{pmatrix}1&0&0\\0&0&2\end{pmatrix}$ — 행제형이 아니다.</span>
+      둘째 행의 첫 $0$ 아닌 원소가 $2$ 라서 조건 ② 위반. $R_2\!\left(\tfrac12\right)$ 을 적용하면 $A$ 와 같은 꼴이 되어 소거행제형이 된다.</li>
+    <li><span class="step">$D=\begin{pmatrix}1&1&2\\0&0&1\end{pmatrix}$ — 행제형이지만 소거행제형은 아니다.</span>
+      둘째 행 선도원소가 $3$열에 있는데 그 위 원소가 $2\ne0$ 이다.</li>
+    <li><span class="step">$E=\begin{pmatrix}0&1&0\\0&0&0\\0&0&0\end{pmatrix}$ — 소거행제형.</span>
+      두 영행이 모두 아래에 있고, 유일한 선도원소가 있는 $2$열의 나머지는 $0$ 이다.</li>
+    <li><span class="step">$F=\begin{pmatrix}1&3&5&7\\0&1&3&5\\0&0&0&1\end{pmatrix}$ — 행제형이지만 소거행제형은 아니다.</span>
+      선도원소는 $1,2,4$열로 계단을 이루지만, $2$열 위쪽의 $3$ 과 $4$열 위쪽의 $7,5$ 가 $0$ 이 아니다.</li>
+    <li><span class="step">$G=\begin{pmatrix}1&0&2&0&4\\0&0&0&1&0\\0&0&1&3&0\\0&0&0&0&0\end{pmatrix}$ — 행제형이 아니다.</span>
+      둘째 행의 선도원소는 $4$열, 셋째 행의 선도원소는 $3$열이므로 아래 행의 선도원소가 더 <b>왼쪽</b>에 있다 — 조건 ③ 위반.</li>
+    <li><span class="step">$H=\begin{pmatrix}1&0&0&0\\0&1&0&0\\0&0&0&0\\0&0&0&1\end{pmatrix}$ — 행제형이 아니다.</span>
+      셋째 행이 영행인데 그 아래 넷째 행이 영행이 아니다 — 조건 ① 위반.</li>
+    <li><span class="step">$I=\begin{pmatrix}0&1&0&1&0\\0&0&1&0&0\\0&0&0&1&1\\0&0&0&0&1\end{pmatrix}$ — 행제형이지만 소거행제형은 아니다.</span>
+      선도원소는 $2,3,4,5$열로 계단을 이룬다. 그러나 $4$열의 첫째 행 원소 $1$ 과 $5$열의 셋째 행 원소 $1$ 이 $0$ 이 아니다.</li>
+    <li><span class="step">$J=\begin{pmatrix}1&2&0&0&3&0\\0&0&1&0&0&2\\0&0&0&0&1&2\\0&0&0&0&0&1\end{pmatrix}$ — 행제형이지만 소거행제형은 아니다.</span>
+      선도원소는 $1,3,5,6$열. 그러나 $6$열의 둘째·셋째 행 원소가 $2$ 로 $0$ 이 아니다.</li>
+  </ol>
+</div>
+
+<h2 class="sub">03 행제형으로 변환하고 해 구하기</h2>
+
+<div class="ans"><span class="exn">03 (1)</span><b>예를 들어 $\begin{pmatrix}1&0&2&10\\0&1&1&16\\0&0&1&8\end{pmatrix}$.</b>
+  <ol class="fill">
+    <li><span class="step">$1$ 을 왼쪽 위로.</span> 셋째 행의 첫 원소가 이미 $1$ 이므로 나눗셈 없이 시작할 수 있다. $R_{1,3}$ 으로 첫 행과 셋째 행을 바꾼다.
+      $$\begin{pmatrix}2&3&-1&4\\4&-2&6&8\\1&0&2&10\end{pmatrix}
+        \xrightarrow{\ R_{1,3}\ }\begin{pmatrix}1&0&2&10\\4&-2&6&8\\2&3&-1&4\end{pmatrix}$$</li>
+    <li><span class="step">첫 열 아래를 $0$ 으로.</span> $R_{1,2}(-4)$ 와 $R_{1,3}(-2)$ 를 적용한다.
+      $$\xrightarrow{\ R_{1,2}(-4)\ }\begin{pmatrix}1&0&2&10\\0&-2&-2&-32\\2&3&-1&4\end{pmatrix}
+        \xrightarrow{\ R_{1,3}(-2)\ }\begin{pmatrix}1&0&2&10\\0&-2&-2&-32\\0&3&-5&-16\end{pmatrix}$$</li>
+    <li><span class="step">둘째 선도원소를 $1$ 로 만들고 그 아래를 $0$ 으로.</span>
+      $$\xrightarrow{\ R_2\left(-\frac12\right)\ }\begin{pmatrix}1&0&2&10\\0&1&1&16\\0&3&-5&-16\end{pmatrix}
+        \xrightarrow{\ R_{2,3}(-3)\ }\begin{pmatrix}1&0&2&10\\0&1&1&16\\0&0&-8&-64\end{pmatrix}$$</li>
+    <li><span class="step">마지막 선도원소를 $1$ 로.</span>
+      $$\xrightarrow{\ R_3\left(-\frac18\right)\ }\begin{pmatrix}1&0&2&10\\0&1&1&16\\0&0&1&8\end{pmatrix}$$
+      선도원소가 $1,2,3$열에 계단으로 놓였으므로 행제형이다. 도중에 어떤 순서로 연산했느냐에 따라
+      행제형은 <b>여러 개</b>가 나올 수 있다(소거행제형은 유일하다).</li>
+  </ol>
+</div>
+
+<div class="ans"><span class="exn">03 (2)</span><b>$x=-6$, $y=8$, $z=8$.</b>
+  <ol class="fill">
+    <li><span class="step">행제형에 대응하는 연립방정식.</span> (1)의 결과를 방정식으로 되돌리면
+      $$\begin{cases}x\ \ \ \ \ \ +2z=10\\ \ \ \ \ y+\ \ z=16\\ \ \ \ \ \ \ \ \ \ \ z=\ \ 8\end{cases}$$
+      이다. 선도변수가 $x,y,z$ 셋 모두이므로 자유변수가 없고, 따라서 해는 유일하다.</li>
+    <li><span class="step">후진대입.</span> $z=8$ 을 둘째 식에 넣어 $y=16-8=8$,
+      이를 첫 식에 넣어 $x=10-2\cdot8=-6$ 을 얻는다.</li>
+    <li><span class="step">검산.</span> 원래 세 방정식은 $2x+3y-z=4$, $4x-2y+6z=8$, $x+2z=10$ 이었다.
+      $$2(-6)+3(8)-8=4,\quad 4(-6)-2(8)+6(8)=8,\quad -6+2(8)=10$$
+      으로 모두 성립한다.</li>
+  </ol>
+</div>
+
+<h2 class="sub">04 행상등한 행렬 만들기</h2>
+<p>행상등은 <b>기본행연산을 몇 번 적용해 도달할 수 있는가</b>의 문제이므로, 아무 기본행연산이나 하나씩 적용하면
+곧바로 행상등한 행렬이 하나씩 생긴다. 답은 무수히 많고 아래는 그중 하나의 예다.</p>
+
+<div class="ans"><span class="exn">04 $A$</span>세 가지 기본행연산을 하나씩 써 보면 된다.
+  $$A\xrightarrow{\ R_{1,2}\ }\begin{pmatrix}0&1&0\\1&0&0\\0&0&1\end{pmatrix},\qquad
+    A\xrightarrow{\ R_2(5)\ }\begin{pmatrix}1&0&0\\0&5&0\\0&0&1\end{pmatrix},\qquad
+    A\xrightarrow{\ R_{1,3}(2)\ }\begin{pmatrix}1&0&0\\0&1&0\\2&0&1\end{pmatrix}$$
+</div>
+
+<div class="ans"><span class="exn">04 $B$</span>이왕이면 <b>행제형으로 가는 길</b> 위의 행렬들을 답으로 삼는 것이 낫다. 한 번에 하나씩 적으면
+  $$B\xrightarrow{\ R_{1,2}(-1)\ }\begin{pmatrix}1&2&0\\0&-2&3\\3&2&7\end{pmatrix}
+    \xrightarrow{\ R_{1,3}(-3)\ }\begin{pmatrix}1&2&0\\0&-2&3\\0&-4&7\end{pmatrix}
+    \xrightarrow{\ R_{2,3}(-2)\ }\begin{pmatrix}1&2&0\\0&-2&3\\0&0&1\end{pmatrix}$$
+  이 세 행렬이 모두 $B$ 와 행상등하다.
+</div>
+
+<div class="note">
+  덤으로 알 수 있는 것 — 위 마지막 행렬에서 $R_2\!\left(-\tfrac12\right)$ 로 선도원소를 $1$ 로 만든 뒤
+  위쪽까지 소거하면 $B$ 의 소거행제형은 $\begin{pmatrix}1&0&0\\0&1&0\\0&0&1\end{pmatrix}=A$ 가 된다.
+  즉 <b>$A$ 와 $B$ 는 서로 행상등</b>하다. 실제로 $B$ 의 세 행은 서로 독립이다.
+</div>
+
+<h2 class="sub">05 가우스 소거법</h2>
+<p>절차는 [알고리즘 2.1] 그대로다 — 확대행렬을 만들고, 기본행연산으로 <b>행제형</b>까지만 만든 뒤, 후진대입으로 해를 읽는다.</p>
+
+<div class="ans"><span class="exn">05 (1)</span><b>유일한 해 $(x,y,z)=(1,1,1)$.</b>
+  <ol class="fill">
+    <li><span class="step">확대행렬과 첫 열 소거.</span> 둘째 행의 첫 원소가 $1$ 이므로 $R_{1,2}$ 로 위로 올려 놓고 시작한다.
+      $$\left(\begin{array}{ccc|c}2&-1&2&3\\1&2&-1&2\\3&2&1&6\end{array}\right)
+        \xrightarrow{\ R_{1,2}\ }\left(\begin{array}{ccc|c}1&2&-1&2\\2&-1&2&3\\3&2&1&6\end{array}\right)$$
+      $$\xrightarrow{\ R_{1,2}(-2)\ }\left(\begin{array}{ccc|c}1&2&-1&2\\0&-5&4&-1\\3&2&1&6\end{array}\right)
+        \xrightarrow{\ R_{1,3}(-3)\ }\left(\begin{array}{ccc|c}1&2&-1&2\\0&-5&4&-1\\0&-4&4&0\end{array}\right)$$</li>
+    <li><span class="step">둘째 열 정리.</span>
+      $$\xrightarrow{\ R_2\left(-\frac15\right)\ }\left(\begin{array}{ccc|c}1&2&-1&2\\0&1&-\frac45&\frac15\\0&-4&4&0\end{array}\right)
+        \xrightarrow{\ R_{2,3}(4)\ }\left(\begin{array}{ccc|c}1&2&-1&2\\0&1&-\frac45&\frac15\\0&0&\frac45&\frac45\end{array}\right)$$
+      $$\xrightarrow{\ R_3\left(\frac54\right)\ }\left(\begin{array}{ccc|c}1&2&-1&2\\0&1&-\frac45&\frac15\\0&0&1&1\end{array}\right)$$</li>
+    <li><span class="step">후진대입.</span> $z=1$, $y=\tfrac15+\tfrac45z=1$, $x=2-2y+z=2-2+1=1$.</li>
+    <li><span class="step">검산.</span> $2-1+2=3$, $1+2-1=2$, $3+2+1=6$ 으로 세 식 모두 성립한다.</li>
+  </ol>
+</div>
+
+<div class="ans"><span class="exn">05 (2)</span><b>유일한 해 $(x,y,z)=\left(\tfrac{37}{17},\ \tfrac{26}{17},\ -\tfrac{11}{17}\right)$.</b>
+  <ol class="fill">
+    <li><span class="step">첫 열 소거.</span> 첫 원소가 이미 $1$ 이라 바로 시작한다.
+      $$\left(\begin{array}{ccc|c}1&1&-2&5\\1&-1&1&0\\3&2&4&7\end{array}\right)
+        \xrightarrow{\ R_{1,2}(-1)\ }\left(\begin{array}{ccc|c}1&1&-2&5\\0&-2&3&-5\\3&2&4&7\end{array}\right)$$
+      $$\xrightarrow{\ R_{1,3}(-3)\ }\left(\begin{array}{ccc|c}1&1&-2&5\\0&-2&3&-5\\0&-1&10&-8\end{array}\right)$$</li>
+    <li><span class="step">둘째 열 정리.</span>
+      $$\xrightarrow{\ R_2\left(-\frac12\right)\ }\left(\begin{array}{ccc|c}1&1&-2&5\\0&1&-\frac32&\frac52\\0&-1&10&-8\end{array}\right)
+        \xrightarrow{\ R_{2,3}(1)\ }\left(\begin{array}{ccc|c}1&1&-2&5\\0&1&-\frac32&\frac52\\0&0&\frac{17}2&-\frac{11}2\end{array}\right)$$
+      $$\xrightarrow{\ R_3\left(\frac2{17}\right)\ }\left(\begin{array}{ccc|c}1&1&-2&5\\0&1&-\frac32&\frac52\\0&0&1&-\frac{11}{17}\end{array}\right)$$</li>
+    <li><span class="step">후진대입.</span>
+      $$z=-\tfrac{11}{17},\qquad y=\tfrac52+\tfrac32z=\tfrac52-\tfrac{33}{34}=\tfrac{26}{17},\qquad
+        x=5-y+2z=5-\tfrac{26}{17}-\tfrac{22}{17}=\tfrac{37}{17}$$</li>
+    <li><span class="step">검산.</span> $x+y-2z=\tfrac{37+26+22}{17}=\tfrac{85}{17}=5$,
+      $x-y+z=\tfrac{37-26-11}{17}=0$, $3x+2y+4z=\tfrac{111+52-44}{17}=\tfrac{119}{17}=7$ 로 모두 성립한다.</li>
+    <li><span class="step">읽은 숫자 확인.</span> 답이 분수라서 셋째 식을 $3x+2y+z=7$ 로 읽으면 해가
+      $(2,1,-1)$ 로 깔끔해진다. 교재의 계수가 $4z$ 인지 $z$ 인지 대조해 볼 것.</li>
+  </ol>
+</div>
+
+<div class="ans"><span class="exn">05 (3)</span><b>자유변수 $y=s$, $z=t$ 에 대해
+  $v=2s-9t-15$, $w=-s+2t+3$, $x=t+2$ 인 무수히 많은 해.</b>
+  <ol class="fill">
+    <li><span class="step">확대행렬.</span> 미지수 순서를 $v,w,x,y,z$ 로 고정하고 없는 항에 $0$ 을 채운다.
+      $$\left(\begin{array}{ccccc|c}1&2&3&0&2&-3\\0&2&0&2&-4&6\\0&0&1&0&-1&2\end{array}\right)$$</li>
+    <li><span class="step">이미 계단 모양이다.</span> 선도원소 후보가 $1,2,3$열에 차례로 놓여 있으므로
+      둘째 행의 $2$ 만 $1$ 로 만들면 곧바로 행제형이 된다.
+      $$\xrightarrow{\ R_2\left(\frac12\right)\ }\left(\begin{array}{ccccc|c}1&2&3&0&2&-3\\0&1&0&1&-2&3\\0&0&1&0&-1&2\end{array}\right)$$
+      선도변수는 $v,w,x$ 이고 <b>자유변수는 $y,z$</b> 이다.</li>
+    <li><span class="step">후진대입 — 자유변수부터 고정.</span> $y=s$, $z=t$ 로 둔다. 아래 행부터 올라가면
+      $$x=2+z=t+2,$$
+      $$w=3-y+2z=3-s+2t,$$
+      $$v=-3-2w-3x-2z=-3-2(3-s+2t)-3(t+2)-2t=2s-9t-15.$$</li>
+    <li><span class="step">검산.</span> 첫 식에 대입하면
+      $$(2s-9t-15)+2(3-s+2t)+3(t+2)+2t=(2s-2s)+(-9t+4t+3t+2t)+(-15+6+6)=-3$$
+      으로 $s,t$ 가 모두 소거되어 항상 성립한다. 나머지 두 식도 같은 방식으로 확인된다.</li>
+    <li><span class="step">해의 개수.</span> 미지수 $5$ 개에 선도변수가 $3$ 개이므로 자유변수는 $5-3=2$ 개,
+      즉 매개변수 두 개짜리 해집합이다.</li>
+  </ol>
+</div>
+
+<div class="ans"><span class="exn">05 (4)</span><b>유일한 해 $(x,y,z)=\left(\tfrac74,\ \tfrac56,\ \tfrac{19}{12}\right)$.</b>
+  <ol class="fill">
+    <li><span class="step">첫 행의 선도원소 확보.</span> 첫 행의 $x$ 계수가 $0$ 이므로 행을 바꾼다.
+      $$\left(\begin{array}{ccc|c}0&3&6&12\\3&7&5&19\\2&-1&4&9\end{array}\right)
+        \xrightarrow{\ R_{1,2}\ }\left(\begin{array}{ccc|c}3&7&5&19\\0&3&6&12\\2&-1&4&9\end{array}\right)
+        \xrightarrow{\ R_1\left(\frac13\right)\ }\left(\begin{array}{ccc|c}1&\frac73&\frac53&\frac{19}3\\0&3&6&12\\2&-1&4&9\end{array}\right)$$</li>
+    <li><span class="step">첫 열 아래를 $0$ 으로, 둘째 행을 정리.</span>
+      $$\xrightarrow{\ R_{1,3}(-2)\ }\left(\begin{array}{ccc|c}1&\frac73&\frac53&\frac{19}3\\0&3&6&12\\0&-\frac{17}3&\frac23&-\frac{11}3\end{array}\right)
+        \xrightarrow{\ R_2\left(\frac13\right)\ }\left(\begin{array}{ccc|c}1&\frac73&\frac53&\frac{19}3\\0&1&2&4\\0&-\frac{17}3&\frac23&-\frac{11}3\end{array}\right)$$</li>
+    <li><span class="step">셋째 행 마무리.</span>
+      $$\xrightarrow{\ R_{2,3}\left(\frac{17}3\right)\ }\left(\begin{array}{ccc|c}1&\frac73&\frac53&\frac{19}3\\0&1&2&4\\0&0&12&19\end{array}\right)
+        \xrightarrow{\ R_3\left(\frac1{12}\right)\ }\left(\begin{array}{ccc|c}1&\frac73&\frac53&\frac{19}3\\0&1&2&4\\0&0&1&\frac{19}{12}\end{array}\right)$$</li>
+    <li><span class="step">후진대입.</span>
+      $$z=\tfrac{19}{12},\qquad y=4-2z=4-\tfrac{19}6=\tfrac56,\qquad
+        x=\tfrac{19}3-\tfrac73y-\tfrac53z=\tfrac{19}3-\tfrac{35}{18}-\tfrac{95}{36}=\tfrac74$$</li>
+    <li><span class="step">검산.</span> $3y+6z=\tfrac52+\tfrac{19}2=12$,
+      $3x+7y+5z=\tfrac{63+70+95}{12}=\tfrac{228}{12}=19$,
+      $2x-y+4z=\tfrac{21-5+38}{6}=\tfrac{54}6=9$ 로 세 식이 모두 성립한다.</li>
+    <li><span class="step">읽은 숫자 확인.</span> 앞의 두 식만으로 $y=4-2z$, $x=3z-3$ 이 정해지고,
+      이를 셋째 식 좌변에 넣으면 $12z-10$ 이 된다. 우변이 $2$ 나 $14$ 였다면 각각 $z=1$, $z=2$ 로 정수해가 나온다
+      (예를 들어 우변이 $2$ 이면 해는 $(0,2,1)$). 교재의 셋째 식을 대조해 볼 것.</li>
+  </ol>
+</div>
+
+<h2 class="sub">06 가우스–조르단 소거법</h2>
+<p>05 에서 얻은 <b>행제형에서 한 걸음 더</b> 나아가, 각 선도원소가 있는 열의 <b>위쪽</b>까지 $0$ 으로 만들면 소거행제형이 된다.
+해는 05 와 당연히 같다 — 달라지는 것은 후진대입을 손으로 하느냐, 행연산으로 대신하느냐뿐이다.</p>
+
+<div class="ans"><span class="exn">06 (1)</span>05 (1)의 행제형에서 시작한다.
+  $$\left(\begin{array}{ccc|c}1&2&-1&2\\0&1&-\frac45&\frac15\\0&0&1&1\end{array}\right)
+    \xrightarrow{\ R_{2,1}(-2)\ }\left(\begin{array}{ccc|c}1&0&\frac35&\frac85\\0&1&-\frac45&\frac15\\0&0&1&1\end{array}\right)$$
+  $$\xrightarrow{\ R_{3,1}\left(-\frac35\right)\ }\left(\begin{array}{ccc|c}1&0&0&1\\0&1&-\frac45&\frac15\\0&0&1&1\end{array}\right)
+    \xrightarrow{\ R_{3,2}\left(\frac45\right)\ }\left(\begin{array}{ccc|c}1&0&0&1\\0&1&0&1\\0&0&1&1\end{array}\right)$$
+  <p>따라서 $x=1$, $y=1$, $z=1$ 을 바로 읽는다.</p>
+</div>
+
+<div class="ans"><span class="exn">06 (2)</span>같은 방식으로 05 (2)의 행제형을 소거행제형까지 밀면
+  $$\left(\begin{array}{ccc|c}1&0&0&\frac{37}{17}\\0&1&0&\frac{26}{17}\\0&0&1&-\frac{11}{17}\end{array}\right)$$
+  이 되어 $x=\tfrac{37}{17}$, $y=\tfrac{26}{17}$, $z=-\tfrac{11}{17}$ 을 얻는다.
+</div>
+
+<div class="ans"><span class="exn">06 (3)</span>자유변수가 있는 경우다. 05 (3)의 행제형에서 위쪽을 소거한다.
+  $$\left(\begin{array}{ccccc|c}1&2&3&0&2&-3\\0&1&0&1&-2&3\\0&0&1&0&-1&2\end{array}\right)
+    \xrightarrow{\ R_{2,1}(-2)\ }\left(\begin{array}{ccccc|c}1&0&3&-2&6&-9\\0&1&0&1&-2&3\\0&0&1&0&-1&2\end{array}\right)$$
+  $$\xrightarrow{\ R_{3,1}(-3)\ }\left(\begin{array}{ccccc|c}1&0&0&-2&9&-15\\0&1&0&1&-2&3\\0&0&1&0&-1&2\end{array}\right)$$
+  <p>$y=s$, $z=t$ 로 두고 각 행을 선도변수에 대해 풀면 후진대입 없이 곧바로</p>
+  $$v=2s-9t-15,\qquad w=-s+2t+3,\qquad x=t+2$$
+  <p>를 얻어 05 (3)과 같다.</p>
+</div>
+
+<div class="ans"><span class="exn">06 (4)</span>05 (4)의 행제형을 소거행제형까지 밀면
+  $$\left(\begin{array}{ccc|c}1&0&0&\frac74\\0&1&0&\frac56\\0&0&1&\frac{19}{12}\end{array}\right)$$
+  이 되어 $x=\tfrac74$, $y=\tfrac56$, $z=\tfrac{19}{12}$ 를 얻는다.
+</div>
+
+<h2 class="sub">07 단계별 가우스–조르단</h2>
+
+<div class="ans"><span class="exn">07 (1)</span>둘째 식에 $x$ 가, 셋째 식에 $x,y$ 가 없으므로 그 자리에 $0$ 을 채운다.
+  $$A=\left(\begin{array}{ccc|c}1&1&-3&5\\0&2&6&2\\0&0&3&-6\end{array}\right)$$
+</div>
+
+<div class="ans"><span class="exn">07 (2)</span>두 연산은 각각 둘째·셋째 행의 선도원소를 $1$ 로 만드는 역할을 한다.
+  $$A\xrightarrow{\ R_2\left(\frac12\right)\ }\left(\begin{array}{ccc|c}1&1&-3&5\\0&1&3&1\\0&0&3&-6\end{array}\right)
+    \xrightarrow{\ R_3\left(\frac13\right)\ }
+    B=\left(\begin{array}{ccc|c}1&1&-3&5\\0&1&3&1\\0&0&1&-2\end{array}\right)$$
+  <p>이 시점에서 $B$ 는 이미 <b>행제형</b>이다.</p>
+</div>
+
+<div class="ans"><span class="exn">07 (3)</span><b>$R_{2,1}(-1)\ \to\ R_{3,1}(6)\ \to\ R_{3,2}(-3)$, 해는 $x=-8$, $y=7$, $z=-2$.</b>
+  <ol class="fill">
+    <li><span class="step">$2$열 위쪽 지우기.</span> 첫 행의 $2$열 원소가 $1$ 이므로 둘째 행의 $-1$ 배를 더한다.
+      $$B\xrightarrow{\ R_{2,1}(-1)\ }\left(\begin{array}{ccc|c}1&0&-6&4\\0&1&3&1\\0&0&1&-2\end{array}\right)$$</li>
+    <li><span class="step">$3$열 위쪽 지우기.</span> 첫 행의 $3$열 원소가 $-6$ 이므로 셋째 행의 $6$ 배를 더하고,
+      둘째 행의 $3$열 원소가 $3$ 이므로 셋째 행의 $-3$ 배를 더한다.
+      $$\xrightarrow{\ R_{3,1}(6)\ }\left(\begin{array}{ccc|c}1&0&0&-8\\0&1&3&1\\0&0&1&-2\end{array}\right)
+        \xrightarrow{\ R_{3,2}(-3)\ }\left(\begin{array}{ccc|c}1&0&0&-8\\0&1&0&7\\0&0&1&-2\end{array}\right)$$</li>
+    <li><span class="step">해 읽기와 검산.</span> 소거행제형이 되었으므로 $x=-8$, $y=7$, $z=-2$ 를 그대로 읽는다.
+      원래 식에 넣으면 $3z=-6$, $2y+6z=14-12=2$, $x+y-3z=-8+7+6=5$ 로 모두 성립한다.</li>
+  </ol>
+</div>
+
+<div class="note">
+  07 은 두 방법의 분업을 그대로 보여 준다 — (2) 까지가 <b>가우스 소거법</b>이 하는 일(행제형까지),
+  (3) 이 <b>가우스–조르단</b>이 추가로 하는 일(선도원소 위쪽까지 소거)이다.
+  (2) 에서 멈추고 후진대입해도 같은 해가 나온다.
+</div>
+
+</div>
+
+<nav class="pager">
+  <a href="2-4_gauss-jordan.html">← 이전<small>2.4 가우스–조르단 소거법</small></a>
+  <a class="next" href="../index.html">목차 →<small>선형대수학</small></a>
+</nav>
+
+</body>
+</html>
