@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>선형대수학 · 3.3 행렬의 스칼라곱</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">선형대수학 · 3장 행렬연산</div>
+  <h1><span class="no">3.3</span>행렬의 스칼라곱 <span class="en">scalar multiplication</span></h1>
+</header>
+
+<p>하나의 행렬에 하나의 <b>수</b>를 곱하는 연산을 행렬의 <b>스칼라곱</b>이라고 한다.
+두 행렬을 곱하는 것이 아니라는 점과, 연산의 결과가 다시 행렬임에 주의해야 한다.</p>
+
+<div class="box def">
+  <span class="tag">정의 3.5</span><span class="title">스칼라곱 <span class="en">scalar multiple</span></span>
+  <p>$A=(a_{ij})$ 가 $m\times n$ 행렬이고 $c$ 를 임의의 수라고 하면, 행렬 $A$ 와 수 $c$ 의 <b>스칼라곱</b> $cA$ 는
+  $m\times n$ 행렬이고 다음과 같이 정의한다.</p>
+  $$cA=(ca_{ij})\qquad(1\le i\le m,\ 1\le j\le n)$$
+  <p>즉 스칼라곱하여 얻어지는 행렬의 크기는 $m\times n$ 이고 $(i,j)$ 원소는 $ca_{ij}$ 이다.</p>
+</div>
+
+<div class="box ex">
+  <span class="tag">예제 3.6</span><span class="title">$2A$ 와 $-B$ 의 계산</span>
+  <p>행렬 $A$, $B$ 가 다음과 같을 때 $2A$ 와 $-B$ 를 구하라.</p>
+  $$A=\begin{pmatrix}1&2&3\\3&2&1\end{pmatrix},\qquad B=\begin{pmatrix}3&1&2\\1&2&1\end{pmatrix}$$
+  <p><b>풀이</b></p>
+  <p>(1)</p>
+  $$2A=\begin{pmatrix}2\times1&2\times2&2\times3\\2\times3&2\times2&2\times1\end{pmatrix}
+    =\begin{pmatrix}2&4&6\\6&4&2\end{pmatrix}$$
+  <p>(2)</p>
+  $$(-1)B=\begin{pmatrix}-1\times3&-1\times1&-1\times2\\-1\times1&-1\times2&-1\times1\end{pmatrix}
+    =\begin{pmatrix}-3&-1&-2\\-1&-2&-1\end{pmatrix}=-B$$
+  <p>(3)</p>
+  $$(-2)B=\begin{pmatrix}-2\times3&-2\times1&-2\times2\\-2\times1&-2\times2&-2\times1\end{pmatrix}
+    =\begin{pmatrix}-6&-2&-4\\-2&-4&-2\end{pmatrix}$$
+  <p>(4)</p>
+  $$\begin{aligned}
+    2A-2B&=2A+(-2B)=2A+(-2)B\\[4pt]
+    &=\begin{pmatrix}2+(-6)&4+(-2)&6+(-4)\\6+(-2)&4+(-4)&2+(-2)\end{pmatrix}
+     =\begin{pmatrix}-4&2&2\\4&0&0\end{pmatrix}
+  \end{aligned}$$
+</div>
+
+<div class="note">
+  $(2)$ 는 행렬 $B$ 의 <b>음행렬</b> $-B$ 가 $B$ 와 $-1$ 의 스칼라곱인 $(-1)B$ 와 같음을 의미한다.
+  즉 임의의 행렬 $A$ 에 대해 $-A=(-1)A$ 이다. 또한 $-cA=(-c)A$ 도 쉽게 증명할 수 있다.
+  <a href="3-2_matrix-addition.html">3.2절</a>에서 <b>존재성</b>으로만 주어졌던 음행렬이,
+  여기서는 <b>계산식</b>으로 주어지는 셈이다.
+</div>
+
+<h2 class="sub">스칼라곱의 성질 <span class="en">properties of scalar multiplication</span></h2>
+<div class="box thm">
+  <span class="tag">정리 3.2</span><span class="title">스칼라곱의 네 가지 성질</span>
+  <p>$M_{mn}$ 이 $m\times n$ 행렬 전체의 집합이고 $A,B$ 가 $M_{mn}$ 의 임의의 원소이며 $c,d$ 는 임의의 수라 하면 다음이 성립한다.</p>
+  <ol class="props">
+    <li>$(c+d)A=cA+dA$ &nbsp;— 수의 합에 대한 분배</li>
+    <li>$c(A+B)=cA+cB$ &nbsp;— 행렬의 합에 대한 분배</li>
+    <li>$c(dA)=(cd)A$ &nbsp;— 결합법칙</li>
+    <li>$1A=A$ &nbsp;— $1$ 이 항등원</li>
+  </ol>
+</div>
+
+<div class="box prf">
+  <span class="tag">증명</span>
+  <p>간략히 증명하기 위해 중요한 이유만 서술한다. 모두 $(i,j)$ 원소에 대한 수의 계산이다.</p>
+  <ol class="props">
+    <li>$(c+d)A$ 의 $(i,j)$ 원소는 $(c+d)a_{ij}=ca_{ij}+da_{ij}$ 이므로 성립한다.</li>
+    <li>$c(a_{ij}+b_{ij})=ca_{ij}+cb_{ij}$ 이므로 성립한다.</li>
+    <li>$c(da_{ij})=(cd)a_{ij}$ 이므로 성립한다.</li>
+    <li>$1\cdot a_{ij}=a_{ij}$ 이므로 성립한다.</li>
+  </ol>
+  <div class="qed">∎</div>
+</div>
+
+<div class="box ex">
+  <span class="tag">예제 3.7</span><span class="title">정리 3.2의 확인</span>
+  <p>다음 예를 살펴보고 [정리 3.2]의 내용을 이해하라.</p>
+
+  <p><b>(1) $(c+d)A=cA+dA$</b> &nbsp;$3=1+2$ 로 쪼개어 본다.</p>
+  $$\begin{aligned}
+    3\begin{pmatrix}-5&2\\0&1\end{pmatrix}
+    &=(1+2)\begin{pmatrix}-5&2\\0&1\end{pmatrix}
+     =\begin{pmatrix}(1+2)\times(-5)&(1+2)\times2\\(1+2)\times0&(1+2)\times1\end{pmatrix}\\[4pt]
+    &=\begin{pmatrix}-5+(-10)&2+4\\0+0&1+2\end{pmatrix}
+     =\begin{pmatrix}-5&2\\0&1\end{pmatrix}+\begin{pmatrix}-10&4\\0&2\end{pmatrix}\\[4pt]
+    &=\begin{pmatrix}-5&2\\0&1\end{pmatrix}+2\begin{pmatrix}-5&2\\0&1\end{pmatrix}
+  \end{aligned}$$
+
+  <p><b>(2) $c(A+B)=cA+cB$</b> &nbsp;$A=\begin{pmatrix}1&2\\-3&0\end{pmatrix}$,
+  $B=\begin{pmatrix}2&1\\0&-1\end{pmatrix}$ 이라 할 때
+  $A+B=\begin{pmatrix}1+2&2+1\\-3+0&0+(-1)\end{pmatrix}$ 이므로</p>
+  $$\begin{aligned}
+    5(A+B)&=\begin{pmatrix}5\times(1+2)&5\times(2+1)\\5\times(-3+0)&5\times(0-1)\end{pmatrix}\\[4pt]
+    &=\begin{pmatrix}5&10\\-15&0\end{pmatrix}+\begin{pmatrix}10&5\\0&-5\end{pmatrix}=5A+5B
+  \end{aligned}$$
+
+  <p><b>(3) $c(dA)=(cd)A$</b> &nbsp;$A=\begin{pmatrix}1&4\\0&1\end{pmatrix}$ 이면
+  $3A=\begin{pmatrix}3&12\\0&3\end{pmatrix}$ 이므로</p>
+  $$2(3A)=2\begin{pmatrix}3&12\\0&3\end{pmatrix}=\begin{pmatrix}6&24\\0&6\end{pmatrix}
+    =6\begin{pmatrix}1&4\\0&1\end{pmatrix}=(2\times3)A$$
+</div>
+
+<nav class="pager">
+  <a href="3-2_matrix-addition.html">← 이전<small>3.2 행렬의 합</small></a>
+  <a class="next" href="3-4_matrix-product.html">다음 →<small>3.4 행렬의 곱</small></a>
+</nav>
+
+</body>
+</html>

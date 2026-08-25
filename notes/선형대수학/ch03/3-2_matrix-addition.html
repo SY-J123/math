@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>선형대수학 · 3.2 행렬의 합</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">선형대수학 · 3장 행렬연산</div>
+  <h1><span class="no">3.2</span>행렬의 합 <span class="en">sum of matrices</span></h1>
+</header>
+
+<p>두 수를 더하면 결과가 수가 되는 것과 마찬가지로, 두 행렬을 더한 결과 역시 행렬이 되는 것이 자연스럽다.
+그렇다면 우리가 정해야 할 것은 두 가지다 — 결과로 얻어지는 <b>행렬의 크기는 무엇인가</b>, 그리고 <b>각 원소는 무엇인가</b>.</p>
+<p>행렬이 수를 배열한 것이므로, 더하려는 두 행렬의 배열구조 즉 <b>크기가 일치한다면</b> 손쉽게 합을 정의할 수 있다.
+그러므로 두 행렬의 합은 우선 크기가 서로 같은 경우를 전제로 한다.
+다음으로 결과 행렬의 $(i,j)$ 원소는 더해지는 두 행렬의 $(i,j)$ 원소 $2$ 개를 더한 값으로 계산하고, 크기는 원래 행렬의 크기와 같다.</p>
+
+<div class="box def">
+  <span class="tag">정의 3.4</span><span class="title">행렬의 합 <span class="en">sum</span></span>
+  <p>$A=(a_{ij})$ 와 $B=(b_{ij})$ 를 $m\times n$ 행렬이라 하면 두 행렬 $A$, $B$ 의 <b>합</b>(sum)은
+  $m\times n$ 행렬 $C=(c_{ij})$ 로 다음과 같이 정의하고, $A+B=C$ 로 나타낸다.</p>
+  $$c_{ij}=a_{ij}+b_{ij}\qquad(1\le i\le m,\ 1\le j\le n)$$
+</div>
+
+<div class="box ex">
+  <span class="tag">예제 3.4</span><span class="title">합 연산의 계산</span>
+  <p>다음 예를 살펴보고 행렬의 합 연산을 이해하라.</p>
+  <p>(1) $A=\begin{pmatrix}2&3\\4&3\end{pmatrix}$, $B=\begin{pmatrix}-3&-1\\1&2\end{pmatrix}$ 일 때</p>
+  $$A+B=\begin{pmatrix}2+(-3)&3+(-1)\\4+1&3+2\end{pmatrix}=\begin{pmatrix}-1&2\\5&5\end{pmatrix}$$
+  <p>(2)</p>
+  $$\begin{pmatrix}3&-2&0\\2&1&-4\end{pmatrix}+\begin{pmatrix}-2&3&1\\-1&0&5\end{pmatrix}
+    =\begin{pmatrix}1&1&1\\1&1&1\end{pmatrix}$$
+  <p>(3) 영행렬을 더하면 그대로다.</p>
+  $$\begin{pmatrix}1&4\\2&5\\3&6\end{pmatrix}+\begin{pmatrix}0&0\\0&0\\0&0\end{pmatrix}
+    =\begin{pmatrix}1&4\\2&5\\3&6\end{pmatrix}$$
+  <p>(4) 부호를 뒤집은 행렬을 더하면 영행렬이 된다.</p>
+  $$\begin{pmatrix}1&3&5\\2&4&6\end{pmatrix}+\begin{pmatrix}-1&-3&-5\\-2&-4&-6\end{pmatrix}
+    =\begin{pmatrix}0&0&0\\0&0&0\end{pmatrix}$$
+</div>
+
+<div class="note">
+  [정의 3.4]에서 정의한 합 연산이 우리가 알고 있는 대수적 성질을 유지하는지의 여부는 수학적으로 매우 중요하다.
+  이전에 알려진 성질들이 유지되어야 새롭게 정의한 연산이 수학적인 <b>보편성</b>을 갖게 되기 때문이다.
+</div>
+
+<h2 class="sub">합의 성질 <span class="en">properties of matrix addition</span></h2>
+<div class="box thm">
+  <span class="tag">정리 3.1</span><span class="title">행렬의 합의 네 가지 성질</span>
+  <p>$M_{mn}$ 이 $m\times n$ 행렬 전체의 집합이고 $A,B,C$ 가 $M_{mn}$ 의 임의의 원소라고 하면 다음이 성립한다.</p>
+  <ol class="props">
+    <li>$A+B=B+A$</li>
+    <li>$A+(B+C)=(A+B)+C$</li>
+    <li>$A+O=A$ 를 만족하는 <b>유일한</b> 행렬 $O$ 가 $M_{mn}$ 에 존재한다.
+    행렬 $O$ 를 $m\times n$ 크기의 <b>영행렬</b>(zero matrix)이라고 한다.</li>
+    <li>$A+D=O$ 을 만족하는 행렬 $D$ 가 $A$ 에 대해 <b>유일하게</b> $M_{mn}$ 에 존재한다.
+    이러한 $D$ 를 $-A$ 라고 표기하며 $A$ 의 <b>음행렬</b>(negative matrix)이라고 한다.
+    따라서 $A+(-A)=O$ 이 된다.</li>
+  </ol>
+</div>
+
+<div class="box prf">
+  <span class="tag">증명</span>
+  <p>개괄적으로 증명하면 다음과 같다. 행렬의 상등은 원소끼리의 상등이므로, 모든 증명이 <b>$(i,j)$ 원소 하나에 대한 수의 계산</b>으로 환원된다.</p>
+  <p><span class="step">(1) 교환법칙.</span> $A+B$ 의 $(i,j)$ 원소는 $a_{ij}+b_{ij}$ 이고 $B+A$ 의 $(i,j)$ 원소는 $b_{ij}+a_{ij}$ 이다.
+  수의 덧셈에서 $a_{ij}+b_{ij}=b_{ij}+a_{ij}$ 이므로 $A+B=B+A$ 이다.</p>
+  <p><span class="step">(2) 결합법칙.</span> $a_{ij}+(b_{ij}+c_{ij})=(a_{ij}+b_{ij})+c_{ij}$ 이므로
+  $A+(B+C)=(A+B)+C$ 이다.</p>
+  <p><span class="step">(3) 항등원의 존재와 유일성.</span> $m\times n$ 행렬 $E=(e_{ij})$ 에 대해 $A+E=A$ 이기 위한 필요충분조건은
+  $a_{ij}+e_{ij}=a_{ij}$ 이고, 따라서 $e_{ij}=0$ 이다.
+  이것은 행렬 $E$ 가 모든 행렬원소 값을 $0$ 으로 갖는 것을 의미한다. 이러한 행렬은 유일하며 $O$ 으로 표기한다.</p>
+  <p><span class="step">(4) 역원의 존재와 유일성.</span> $m\times n$ 행렬 $D=(d_{ij})$ 에 대해 $A+D=O$ 이기 위한 필요충분조건은
+  $a_{ij}+d_{ij}=0$ 이고 따라서 $d_{ij}=-a_{ij}$ 이다.
+  이것은 행렬 $A$ 가 정해지면 행렬 $D$ 는 행렬원소를 $A$ 의 원소 $a_{ij}$ 의 음수인 $-a_{ij}$ 로 가지며,
+  따라서 유일하게 정해지는 것을 의미한다. 이러한 $D$ 를 $-A$ 로 표기한다.</p>
+  <div class="qed">∎</div>
+</div>
+
+<p>[정리 3.1]의 내용은 정수나 실수 같은 일반적인 수에서의 더하기 연산이 갖는 성질과 행렬의 합이 유사함을 보여 준다.
+$(1)$ 번과 $(2)$ 번은 각각 행렬의 합이 <b>교환법칙</b>과 <b>결합법칙</b>이 성립함을 보여 주며,
+$(3)$ 번과 $(4)$ 번은 각각 합에 관한 <b>항등원</b>과 <b>역원</b>(음행렬)이 존재함을 보여 준다.</p>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">행렬의 차 <span class="en">difference</span></span>
+  <p>음행렬을 이용하면 합의 역연산인 <b>차</b>(difference), 즉 뺄셈도 정의할 수 있다.
+  일반적인 수에서 $a-b=a+(-b)$ 로 정의한 것과 마찬가지로 행렬에서도 다음과 같이 정의한다.</p>
+  $$A-B=A+(-B)$$
+</div>
+
+<div class="box ex">
+  <span class="tag">예제 3.5</span><span class="title">정리 3.1의 확인</span>
+  <p>다음 예를 살펴보고 [정리 3.1]의 내용을 이해하라.</p>
+
+  <p><b>(1) 교환법칙</b></p>
+  $$\begin{pmatrix}2&5\\3&7\end{pmatrix}+\begin{pmatrix}3&0\\0&1\end{pmatrix}=\begin{pmatrix}5&5\\3&8\end{pmatrix},\qquad
+    \begin{pmatrix}3&0\\0&1\end{pmatrix}+\begin{pmatrix}2&5\\3&7\end{pmatrix}=\begin{pmatrix}5&5\\3&8\end{pmatrix}$$
+
+  <p><b>(2) 결합법칙</b> &nbsp;$A=\begin{pmatrix}1&4\\2&5\\3&6\end{pmatrix}$,
+  $B=\begin{pmatrix}1&0\\0&1\\1&0\end{pmatrix}$, $C=\begin{pmatrix}0&1\\1&2\\1&3\end{pmatrix}$ 이라고 하자.</p>
+  $$(A+B)+C=\begin{pmatrix}2&4\\2&6\\4&6\end{pmatrix}+\begin{pmatrix}0&1\\1&2\\1&3\end{pmatrix}
+    =\begin{pmatrix}2&5\\3&8\\5&9\end{pmatrix}$$
+  $$A+(B+C)=\begin{pmatrix}1&4\\2&5\\3&6\end{pmatrix}+\begin{pmatrix}1&1\\1&3\\2&3\end{pmatrix}
+    =\begin{pmatrix}2&5\\3&8\\5&9\end{pmatrix}$$
+
+  <p><b>(3) 항등원</b> &nbsp;$3\times2$ 영행렬 $O$ 은 모든 행렬원소가 $0$ 인 $3\times2$ 행렬이다.
+  임의의 $3\times2$ 행렬 $A$ 가 다음과 같다고 하자.</p>
+  $$O=\begin{pmatrix}0&0\\0&0\\0&0\end{pmatrix},\qquad A=\begin{pmatrix}a&x\\b&y\\c&z\end{pmatrix}$$
+  <p>그러면</p>
+  $$A+O=\begin{pmatrix}a+0&x+0\\b+0&y+0\\c+0&z+0\end{pmatrix}=\begin{pmatrix}a&x\\b&y\\c&z\end{pmatrix}=A$$
+  <p>이다. 사실 $O$ 이 합에 관한 항등원임을 보이려면 $A+O=A$ 임과 $O+A=A$ 임을 <b>동시에</b> 보여야 하지만,
+  [정리 3.1]의 $(1)$ 에서 교환법칙이 성립하므로 하나만 증명해도 된다.</p>
+
+  <p><b>(4) 음행렬</b> &nbsp;다음 행렬 $A$, $B$ 를 살펴보자.</p>
+  $$A=\begin{pmatrix}3&0&5\\-2&0&-7\end{pmatrix},\qquad B=\begin{pmatrix}-3&0&-5\\2&0&7\end{pmatrix}$$
+  $$A+B=\begin{pmatrix}3+(-3)&0+0&5+(-5)\\-2+2&0+0&-7+7\end{pmatrix}
+    =\begin{pmatrix}0&0&0\\0&0&0\end{pmatrix}=O$$
+  <p>즉 $B=-A$ 인 것이다.</p>
+
+  <p><b>(5) 행렬의 차</b> &nbsp;$A=\begin{pmatrix}3&-1\\1&2\end{pmatrix}$,
+  $B=\begin{pmatrix}2&2\\1&4\end{pmatrix}$ 인 경우를 살펴보자.</p>
+  $$\begin{aligned}
+    A-B&=A+(-B)=\begin{pmatrix}3&-1\\1&2\end{pmatrix}+\begin{pmatrix}-2&-2\\-1&-4\end{pmatrix}\\[4pt]
+       &=\begin{pmatrix}3+(-2)&-1+(-2)\\1+(-1)&2+(-4)\end{pmatrix}=\begin{pmatrix}1&-3\\0&-2\end{pmatrix}
+  \end{aligned}$$
+</div>
+
+<nav class="pager">
+  <a href="3-1_matrix-types.html">← 이전<small>3.1 행렬의 정의와 종류</small></a>
+  <a class="next" href="3-3_scalar-multiple.html">다음 →<small>3.3 행렬의 스칼라곱</small></a>
+</nav>
+
+</body>
+</html>

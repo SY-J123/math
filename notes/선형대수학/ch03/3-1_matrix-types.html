@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>선형대수학 · 3.1 행렬의 정의와 종류</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">선형대수학 · 3장 행렬연산</div>
+  <h1><span class="no">3.1</span>행렬의 정의와 종류 <span class="en">definition and types of matrices</span></h1>
+</header>
+
+<p><a href="../ch02/2-1_matrix-and-linear-systems.html">2.1절</a>에서 행렬을 연립방정식의 <b>표기 도구</b>로 썼다면,
+이 장부터는 행렬 자체를 <b>연산의 대상</b>으로 다룬다. 먼저 원소를 부르는 이름과 행렬의 종류를 정리한다.</p>
+
+<h2 class="sub">정방행렬과 주대각원소 <span class="en">square matrix &amp; main diagonal</span></h2>
+<div class="box def">
+  <span class="tag">정의 3.1</span><span class="title">$(i,j)$ 원소 · 정방행렬 · 주대각원소</span>
+  <p>$A$ 를 $m\times n$ 행렬이라고 할 때, $A$ 의 $i$번째 행의 $j$번째 원소를 $A$ 의 <b>$(i,j)$ 원소</b>라 하며
+  $A=(a_{ij})$ 로 표시한다 $(1\le i\le m,\ 1\le j\le n)$.</p>
+  <ol class="props">
+    <li>$m=n$ 이면 $A$ 를 <b>차수가 $n$ 인 정방행렬</b> 또는 <b>$n$차 정방행렬</b>(square matrix of order $n$)이라고 한다.</li>
+    <li>이때 $A$ 의 모든 $(i,i)$ 원소를 $A$ 의 <b>주대각</b>(main diagonal)원소라고 한다.</li>
+  </ol>
+</div>
+
+<div class="box ex">
+  <span class="tag">예제 3.1</span><span class="title">크기와 주대각원소</span>
+  <p>다음 행렬에 대해서 그 크기와, 정방행렬인 경우 주대각원소에 대해서 설명하라.</p>
+  $$A=\begin{pmatrix}3&2&5\\-2&6&7\end{pmatrix},\quad
+    B=\begin{pmatrix}1&2\\-2&1\end{pmatrix},\quad
+    C=\begin{pmatrix}3&1&0&4\\0&2&1&3\\7&5&3&6\end{pmatrix},$$
+  $$D=\begin{pmatrix}3&0&3\\0&3&0\\0&0&3\end{pmatrix},\quad
+    E=\begin{pmatrix}1&2&3&4\end{pmatrix},\quad
+    F=\begin{pmatrix}3\\1\\5\end{pmatrix},\quad G=\begin{pmatrix}3\end{pmatrix}$$
+  <p><b>풀이</b></p>
+  <ol class="props">
+    <li>$A$ 는 $2\times3$ 행렬로 행이 $2$ 개, 열이 $3$ 개이며 $A=(a_{ij})$ 로 표시할 수 있다.
+    각 원소는 $a_{11}=3$, $a_{12}=2$, $a_{21}=-2$, $a_{23}=7$ 등으로 나타낸다.</li>
+    <li>$B$ 는 $2\times2$ 행렬로 $b_{11}=1$, $b_{22}=1$ 등이다.</li>
+    <li>$C$ 는 $3\times4$ 행렬이고 $c_{11}=3$, $c_{22}=2$, $c_{32}=5$ 이다.</li>
+    <li>$D$ 는 $3\times3$ 행렬이고 $d_{11}=d_{13}=d_{22}=d_{33}=3$,
+    $d_{12}=d_{21}=d_{23}=d_{31}=d_{32}=0$ 이다.</li>
+    <li>$E$ 는 $1\times4$ 행렬로서 $e_{11}=1$, $e_{14}=4$ 이며, $F$ 는 $3\times1$ 행렬로
+    $f_{11}=3$, $f_{21}=1$, $f_{31}=5$ 이다.</li>
+    <li>$G$ 는 $1\times1$ 행렬로 $g_{11}=3$ 이다.</li>
+  </ol>
+  <p>행렬 $B$ 와 $D$ 는 각각 행의 수와 열의 수가 같다. 즉 $B$ 는 $2$차 정방행렬, $D$ 는 $3$차 정방행렬이다.
+  $B$ 의 주대각원소는 $b_{11}=b_{22}=1$ 이고, $D$ 의 주대각원소는 $d_{11}=d_{22}=d_{33}=3$ 이다.</p>
+</div>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">행벡터와 열벡터 <span class="en">row vector, column vector</span></span>
+  <ol class="props">
+    <li>위의 $E$ 와 같이 <b>행의 수가 하나</b>인 행렬을 <b>행벡터</b>(row vector)라 한다.</li>
+    <li>위의 $F$ 와 같이 <b>열의 수가 하나</b>인 행렬을 <b>열벡터</b>(column vector)라 한다.</li>
+  </ol>
+  <p>마지막으로 $G$ 와 같은 $1\times1$ 행렬은 사실 통상적인 수와 다를 바가 없다.</p>
+</div>
+
+<div class="note">
+  우리가 보통 수라고 지칭하는 자연수·정수·실수 등은 행렬의 특수한 경우($1\times1$ 행렬)라 볼 수 있다.
+  다만 연산이 다르게 정의된다. 같은 수의 집합에 다른 연산이 정의될 수 있음을 이해하는 것은 중요하지만 여기서는 다루지 않는다.
+</div>
+
+<h2 class="sub">대각행렬 · 삼각행렬 · 스칼라행렬 · 단위행렬 <span class="en">diagonal, triangular, scalar, identity</span></h2>
+<div class="box def">
+  <span class="tag">정의 3.2</span><span class="title">정방행렬의 여러 종류</span>
+  <p>$A=(a_{ij})$ 를 $n$차 정방행렬이라고 하자.</p>
+  <ol class="props">
+    <li><b>대각행렬</b>(diagonal matrix): $i\ne j$ 를 만족하는 모든 $i,j$ 에 대해 $a_{ij}=0$ 인 경우.</li>
+    <li><b>하삼각행렬</b>(lower triangular matrix): $i\lt j$ 를 만족하는 모든 $i,j$ 에 대해 $a_{ij}=0$ 인 경우
+    — 주대각원소 <b>위쪽</b>이 모두 $0$.</li>
+    <li><b>상삼각행렬</b>(upper triangular matrix): $i\gt j$ 를 만족하는 모든 $i,j$ 에 대해 $a_{ij}=0$ 인 경우
+    — 주대각원소 <b>아래쪽</b>이 모두 $0$.</li>
+    <li><b>삼각행렬</b>(triangular matrix): 위 두 종류를 묶어서 부르는 이름.</li>
+    <li><b>스칼라행렬</b>(scalar matrix): 주대각원소의 값이 <b>동일한</b> 대각행렬.</li>
+    <li><b>단위행렬</b>(identity matrix): 주대각원소가 <b>모두 $1$</b> 인 대각행렬. $I$ 로 쓴다.</li>
+  </ol>
+</div>
+
+<figure class="fig">
+<svg viewBox="0 0 400 250" role="img" aria-label="정방행렬 안에서 하삼각행렬과 상삼각행렬이 겹치는 부분이 대각행렬이고, 그 안에 스칼라행렬과 단위행렬이 차례로 들어 있는 포함관계">
+  <rect class="cell" x="10" y="16" width="380" height="222" rx="12"/>
+  <text class="lbl" x="200" y="34" text-anchor="middle">정방행렬 (square)</text>
+
+  <ellipse cx="158" cy="140" rx="128" ry="80" fill="#eef5fb" fill-opacity="0.75" stroke="#1d6fb8" stroke-width="1.4"/>
+  <ellipse cx="242" cy="140" rx="128" ry="80" fill="#e9f6f4" fill-opacity="0.6" stroke="#0f8a7d" stroke-width="1.4"/>
+
+  <text class="lbl b" x="66"  y="144" text-anchor="middle">하삼각</text>
+  <text class="lbl b" x="66"  y="160" text-anchor="middle">(i&lt;j 이면 0)</text>
+  <text class="lbl t" x="334" y="144" text-anchor="middle">상삼각</text>
+  <text class="lbl t" x="334" y="160" text-anchor="middle">(i&gt;j 이면 0)</text>
+
+  <text class="lbl" x="200" y="82" text-anchor="middle">대각행렬 = 하삼각 ∩ 상삼각</text>
+
+  <ellipse cx="200" cy="152" rx="66" ry="48" fill="#fdf1e3" fill-opacity="0.9" stroke="#c05621" stroke-width="1.4"/>
+  <text class="lbl" x="200" y="122" text-anchor="middle" fill="#c05621">스칼라행렬</text>
+  <ellipse cx="200" cy="164" rx="42" ry="26" fill="#fff" stroke="#7b3fa0" stroke-width="1.4"/>
+  <text class="lbl p" x="200" y="162" text-anchor="middle">단위행렬</text>
+  <text class="lbl p" x="200" y="176" text-anchor="middle">I</text>
+</svg>
+<figcaption>포함관계 — 단위행렬 $\subset$ 스칼라행렬 $\subset$ 대각행렬 $=$ 하삼각 $\cap$ 상삼각 $\subset$ 정방행렬.
+영행렬 $O$ 도 주대각원소가 모두 같은($0$) 대각행렬이므로 스칼라행렬이다.</figcaption>
+</figure>
+
+<div class="box ex">
+  <span class="tag">예제 3.2</span><span class="title">정방행렬의 분류</span>
+  <p>[정의 3.2]에서 배운 용어를 이용하여 다음 정방행렬을 분석하라.</p>
+  $$A=\begin{pmatrix}a&0\\0&b\end{pmatrix},\qquad
+    B=\begin{pmatrix}a&0&0\\0&0&0\\0&0&c\end{pmatrix},$$
+  $$C=\begin{pmatrix}1&0&0&0\\2&3&0&0\\4&5&6&0\\7&8&9&0\end{pmatrix},\qquad
+    D=\begin{pmatrix}1&2&3&4\\0&5&6&7\\0&0&8&9\\0&0&0&0\end{pmatrix},$$
+  $$E=\begin{pmatrix}5&0&0\\0&5&0\\0&0&5\end{pmatrix},\qquad
+    I=\begin{pmatrix}1&0&0\\0&1&0\\0&0&1\end{pmatrix},\qquad
+    O=\begin{pmatrix}0&0&0\\0&0&0\\0&0&0\end{pmatrix}$$
+  <p><b>풀이</b></p>
+  <ol class="props">
+    <li>$A$ 는 $a_{12}=a_{21}=0$ 이고, $B$ 는 $b_{12}=b_{13}=b_{21}=b_{23}=b_{31}=b_{32}=0$ 이므로
+    $A$ 와 $B$ 는 <b>대각행렬</b>이다.</li>
+    <li>$C$ 는 주대각원소 위쪽 원소($i\lt j$ 인 $a_{ij}$)가 모두 $0$ 이므로 <b>하삼각행렬</b>이다.</li>
+    <li>$D$ 는 주대각원소 아래쪽 원소($i\gt j$ 인 $a_{ij}$)가 모두 $0$ 이므로 <b>상삼각행렬</b>이다.</li>
+    <li>$E$ 는 대각행렬이면서 주대각원소가 모두 $5$ 로 동일한 <b>스칼라행렬</b>이다.</li>
+    <li>$I$ 는 주대각원소가 모두 $1$ 인 스칼라행렬로서 <b>단위행렬</b>이다.</li>
+    <li>$O$ 도 스칼라행렬이며, 이를 <b>영행렬</b>(zero matrix)이라고 한다.</li>
+  </ol>
+</div>
+
+<div class="note">
+  놓치기 쉬운 두 가지.
+  <ol class="props">
+    <li>대각행렬의 정의에 <b>$a_{ii}\ne0$ 이라는 조건이 없으므로</b>, 위의 $B$ 처럼 $b_{22}=0$ 인 경우도 대각행렬이다.
+    같은 이유로 스칼라행렬의 정의에도 주대각원소가 $0$ 이 아니라는 조건이 없어 영행렬 $O$ 가 스칼라행렬이 된다.</li>
+    <li>자세히 살펴보면 <b>대각행렬이란 하삼각행렬이면서 동시에 상삼각행렬인 경우</b>임을 알 수 있다.</li>
+  </ol>
+</div>
+
+<h2 class="sub">두 행렬이 같다는 것 <span class="en">equality of matrices</span></h2>
+<div class="box def">
+  <span class="tag">정의 3.3</span><span class="title">행렬의 상등 <span class="en">equal matrices</span></span>
+  <p>$A=(a_{ij})$ 와 $B=(b_{ij})$ 를 $m\times n$ 행렬이라고 할 때, 모든 $i,j\,(1\le i\le m,\ 1\le j\le n)$ 에 대해
+  $a_{ij}=b_{ij}$ 인 경우 두 행렬 $A$ 와 $B$ 는 <b>서로 같다</b> 또는 <b>상등</b>하다고 한다.</p>
+</div>
+
+<p>[정의 3.3]을 바꿔 말하면 두 행렬 $A$ 와 $B$ 가 서로 같으려면</p>
+<ol class="props">
+  <li>두 행렬의 <b>크기</b>가 서로 같아야 하고,</li>
+  <li>대응되는 <b>위치의 행렬원소</b>가 서로 같아야 한다.</li>
+</ol>
+
+<div class="box ex">
+  <span class="tag">예제 3.3</span><span class="title">상등 조건으로 미지수 구하기</span>
+  <p>다음 두 행렬이 서로 같기 위한 $x,y,z$ 를 구하라.</p>
+  $$A=\begin{pmatrix}1&0&x\\0&1&y\\0&z&1\end{pmatrix},\qquad
+    B=\begin{pmatrix}1&0&3\\0&1&x+3\\0&y-x&1\end{pmatrix}$$
+  <p><b>풀이</b> &nbsp;두 행렬 모두 $3\times3$ 행렬로 크기가 같으므로 첫 번째 조건을 만족한다.
+  다음으로 대응되는 위치의 원소끼리 모두 같아야 하므로 다음 식이 성립해야 한다.</p>
+  $$\begin{aligned}
+    x&=3,\\
+    y&=x+3=3+3=6,\\
+    z&=y-x=6-3=3.
+  \end{aligned}$$
+  <p>따라서 $x=3$, $y=6$, $z=3$ 이다.</p>
+</div>
+
+<nav class="pager">
+  <span class="spacer"></span>
+  <a class="next" href="3-2_matrix-addition.html">다음 →<small>3.2 행렬의 합</small></a>
+</nav>
+
+</body>
+</html>

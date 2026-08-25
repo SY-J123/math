@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>선형대수학 · 3.4 행렬의 곱</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">선형대수학 · 3장 행렬연산</div>
+  <h1><span class="no">3.4</span>행렬의 곱 <span class="en">product of matrices</span></h1>
+</header>
+
+<p><a href="3-3_scalar-multiple.html">3.3절</a>의 스칼라곱이 <b>행렬과 수</b>의 곱인 반면,
+이 절에서 정의하는 행렬의 <b>곱</b>(product)은 <b>두 행렬</b>의 곱이다.</p>
+
+<div class="box def">
+  <span class="tag">정의 3.6</span><span class="title">행렬의 곱 <span class="en">product</span></span>
+  <p>$A=(a_{ij})$ 가 $m\times p$ 행렬이고 $B=(b_{ij})$ 가 $p\times n$ 행렬이면,
+  $A$, $B$ 의 <b>곱</b> $AB$ 는 $m\times n$ 행렬 $C=(c_{ij})$ 로 다음과 같이 정의하고 $AB=C$ 로 나타낸다.</p>
+  $$c_{ij}=\sum_{k=1}^{p}a_{ik}b_{kj}\qquad(1\le i\le m,\ 1\le j\le n)$$
+</div>
+
+<p>먼저 <b>행렬의 합과 다른 점</b>을 구분해야 한다. 즉 행렬의 곱 연산은 크기가 같은 두 행렬에 대해
+대응되는 성분끼리 곱하는 것이 <b>아니다</b>. [정의 3.6]을 자세히 살펴보면 다음을 알 수 있다.</p>
+<ol class="props">
+  <li>두 행렬의 곱 $AB$ 를 정의하려면 <b>$A$ 의 열의 개수와 $B$ 의 행의 개수가 같아야</b> 한다(정의에서는 $p$).</li>
+  <li>두 행렬을 곱하여 얻어지는 행렬은 크기가 $m\times n$ 인 행렬 $C$ 이다.
+  여기서 $m$ 은 $A$ 의 행의 수, $n$ 은 $B$ 의 열의 수이다.</li>
+  <li>행렬 $C$ 의 $(i,j)$ 원소인 $c_{ij}$ 는 <b>$A$ 의 $i$번째 행의 원소와 $B$ 의 $j$번째 열의 원소를
+  순서대로 곱하여 그 전체를 더한 것</b>이다.</li>
+</ol>
+
+<p>크기만 보면 다음과 같이 <b>안쪽 두 수가 맞아떨어져야</b> 곱이 정의되고, 바깥 두 수가 결과의 크기가 된다.</p>
+$$(m\times \underbrace{p)\,(p}_{\text{같아야 함}}\times n)\ \longrightarrow\ m\times n$$
+
+<figure class="fig">
+<svg viewBox="0 0 410 180" role="img" aria-label="행렬의 곱 — A의 i번째 행과 B의 j번째 열을 순서대로 곱해 더한 값이 C의 (i,j) 원소가 된다">
+  <text class="lbl" x="75"  y="28" text-anchor="middle">m × p 행렬  A</text>
+  <text class="lbl" x="205" y="28" text-anchor="middle">p × n 행렬  B</text>
+  <text class="lbl" x="340" y="28" text-anchor="middle">m × n 행렬  C</text>
+
+  <rect class="cell" x="20" y="38" width="110" height="86"/>
+  <rect class="cellhi" x="20" y="70" width="110" height="22"/>
+  <text class="lbl b" x="75" y="85" text-anchor="middle">a<tspan font-size="8" dy="3">i1</tspan><tspan font-size="12" dy="-3"> a</tspan><tspan font-size="8" dy="3">i2</tspan><tspan font-size="12" dy="-3"> ⋯ a</tspan><tspan font-size="8" dy="3">ip</tspan></text>
+  <text class="lbl" x="12" y="85" text-anchor="middle">i</text>
+
+  <rect class="cell" x="150" y="38" width="110" height="86"/>
+  <rect class="cellhi2" x="192" y="38" width="26" height="86"/>
+  <text class="lbl t" x="205" y="58" text-anchor="middle">b<tspan font-size="8" dy="3">1j</tspan></text>
+  <text class="lbl t" x="205" y="80" text-anchor="middle">b<tspan font-size="8" dy="3">2j</tspan></text>
+  <text class="lbl t" x="205" y="98" text-anchor="middle">⋮</text>
+  <text class="lbl t" x="205" y="116" text-anchor="middle">b<tspan font-size="8" dy="3">pj</tspan></text>
+  <text class="lbl" x="205" y="34" text-anchor="middle">j</text>
+
+  <text class="lbl" x="276" y="86" text-anchor="middle">=</text>
+
+  <rect class="cell" x="290" y="38" width="110" height="86"/>
+  <rect x="332" y="70" width="26" height="22" fill="#fdf1e3" stroke="#c05621" stroke-width="1.6"/>
+  <text class="lbl" x="345" y="85" text-anchor="middle" fill="#c05621">c<tspan font-size="8" dy="3">ij</tspan></text>
+
+  <text class="lbl" x="205" y="152" text-anchor="middle">A 의 i 행(가로) × B 의 j 열(세로) 를 순서대로 곱해 모두 더한 값</text>
+  <text class="lbl" x="205" y="168" text-anchor="middle">→ C 의 (i, j) 원소</text>
+</svg>
+<figcaption>[그림 3.1] 행렬의 곱 — 곱해지는 두 줄의 길이가 모두 $p$ 라서 짝이 맞는다.</figcaption>
+</figure>
+
+$$c_{ij}=\sum_{k=1}^{p}a_{ik}b_{kj}=a_{i1}b_{1j}+a_{i2}b_{2j}+\cdots+a_{ip}b_{pj}$$
+
+<div class="box ex">
+  <span class="tag">예제 3.8</span><span class="title">곱의 계산</span>
+  <p>다음 예를 살펴보고 [정의 3.6]의 내용을 이해하라.</p>
+
+  <p>(1) 행벡터 $\times$ 열벡터 — 결과는 $1\times1$ 행렬(사실상 수)이다.</p>
+  $$\begin{pmatrix}1&2&3\end{pmatrix}_{1\times3}\begin{pmatrix}4\\5\\6\end{pmatrix}_{3\times1}
+    =\begin{pmatrix}1\times4+2\times5+3\times6\end{pmatrix}=\begin{pmatrix}32\end{pmatrix}_{1\times1}$$
+
+  <p>(2) 열벡터 $\times$ 행벡터 — 순서를 바꾸면 크기가 완전히 달라진다.</p>
+  $$\begin{pmatrix}3\\-1\\0\end{pmatrix}_{3\times1}\begin{pmatrix}1&2&3&4\end{pmatrix}_{1\times4}
+    =\begin{pmatrix}3\times1&3\times2&3\times3&3\times4\\
+      -1\times1&-1\times2&-1\times3&-1\times4\\
+      0\times1&0\times2&0\times3&0\times4\end{pmatrix}
+    =\begin{pmatrix}3&6&9&12\\-1&-2&-3&-4\\0&0&0&0\end{pmatrix}_{3\times4}$$
+
+  <p>(3)</p>
+  $$\begin{aligned}
+    &\begin{pmatrix}1&1&0\\-3&2&1\end{pmatrix}_{2\times3}\begin{pmatrix}2&-3\\1&2\\0&-1\end{pmatrix}_{3\times2}\\[4pt]
+    &=\begin{pmatrix}
+      1\times2+1\times1+0\times0 & 1\times(-3)+1\times2+0\times(-1)\\
+      (-3)\times2+2\times1+1\times0 & (-3)\times(-3)+2\times2+1\times(-1)\end{pmatrix}
+    =\begin{pmatrix}3&-1\\-4&12\end{pmatrix}_{2\times2}
+  \end{aligned}$$
+
+  <p>(4)</p>
+  $$\begin{aligned}
+    &\begin{pmatrix}1&-2\\3&2\end{pmatrix}_{2\times2}\begin{pmatrix}2&0\\-1&-2\end{pmatrix}_{2\times2}\\[4pt]
+    &=\begin{pmatrix}
+      1\times2+(-2)\times(-1) & 1\times0+(-2)\times(-2)\\
+      3\times2+2\times(-1) & 3\times0+2\times(-2)\end{pmatrix}
+    =\begin{pmatrix}4&4\\4&-4\end{pmatrix}_{2\times2}
+  \end{aligned}$$
+</div>
+
+<h2 class="sub">곱은 교환법칙이 성립하지 않는다 <span class="en">non-commutativity</span></h2>
+<p>행렬의 합은 일반적인 수에서의 대수적 성질과 유사하여 혼돈되지 않겠으나, <b>행렬의 곱은 그렇지 않다</b>는 점을 반드시 알아야 한다.
+즉 $A+B=B+A$ 는 성립하지만 $AB=BA$ 는 언제나 성립하는 것은 아니다.</p>
+
+<div class="box thm">
+  <span class="tag">분류</span><span class="title">$AB$ 는 되는데 $BA$ 는? — 네 가지 경우</span>
+  <p>$m\times p$ 행렬 $A$ 와 $p\times n$ 행렬 $B$ 에 대해 곱 $AB$ 를 계산할 수 있으며 결과는 $m\times n$ 행렬이 되지만,
+  곱하는 순서를 바꾼 $BA$ 에 대해서는 다음 네 가지 경우가 있을 수 있다.</p>
+  <ol class="props">
+    <li>$BA$ 가 <b>정의되지 않는</b> 경우 ($n\ne m$ 인 경우)</li>
+    <li>$BA$ 가 정의되지만 $AB$ 와 <b>크기가 같지 않은</b> 경우
+    ($n=m$, $p\ne n$ 인 경우 — 즉 $AB$ 는 $n\times n$ 행렬, $BA$ 는 $p\times p$ 행렬)</li>
+    <li>$BA$ 가 정의되고 $AB$ 와 크기도 같지만 <b>$AB\ne BA$</b> 인 경우</li>
+    <li>$BA$ 가 정의되고 $AB$ 와 크기도 같으며 <b>$AB=BA$</b> 인 경우</li>
+  </ol>
+</div>
+
+<div class="box ex">
+  <span class="tag">예제 3.9</span><span class="title">네 가지 경우의 실례</span>
+  <p>다음 예를 살펴보고 행렬의 곱 $AB$ 와 $BA$ 를 비교해 보라.</p>
+
+  <p><b>(1) $BA$ 가 정의되지 않는 경우</b> &nbsp;$A=\begin{pmatrix}1&2&3\\4&5&6\end{pmatrix}$,
+  $B=\begin{pmatrix}1\\2\\3\end{pmatrix}$ 이면</p>
+  $$AB=\begin{pmatrix}1\times1+2\times2+3\times3\\4\times1+5\times2+6\times3\end{pmatrix}
+    =\begin{pmatrix}14\\32\end{pmatrix}$$
+  <p>인 반면에, $B$ 의 열의 개수와 $A$ 의 행의 개수가 각각 $1$ 과 $2$ 로 서로 같지 않으므로 $BA$ 는 존재하지 않는다.</p>
+
+  <p><b>(2) 크기가 달라지는 경우</b> &nbsp;$A=\begin{pmatrix}0&1&0\\1&0&1\end{pmatrix}$,
+  $B=\begin{pmatrix}1&2\\3&4\\5&6\end{pmatrix}$ 이면</p>
+  $$AB=\begin{pmatrix}3&4\\6&8\end{pmatrix},\qquad
+    BA=\begin{pmatrix}2&1&2\\4&3&4\\6&5&6\end{pmatrix}$$
+  <p>에서 크기가 다른 두 행렬($2\times2$ 와 $3\times3$)이 얻어지므로 결과적으로 같을 수 없다.</p>
+
+  <p><b>(3) 크기는 같지만 $AB\ne BA$ 인 경우</b> &nbsp;$A=\begin{pmatrix}1&2\\1&0\end{pmatrix}$,
+  $B=\begin{pmatrix}3&0\\1&2\end{pmatrix}$ 이면</p>
+  $$AB=\begin{pmatrix}5&4\\3&0\end{pmatrix},\qquad BA=\begin{pmatrix}3&6\\3&2\end{pmatrix}$$
+  <p>이므로 두 행렬의 크기는 같지만 대응되는 원소가 같지 않으므로 $AB\ne BA$ 이다.</p>
+
+  <p><b>(4) $AB=BA$ 인 경우</b> &nbsp;$A=\begin{pmatrix}1&-2\\0&-1\end{pmatrix}$,
+  $B=\begin{pmatrix}1&2\\0&3\end{pmatrix}$ 이면</p>
+  $$AB=\begin{pmatrix}1&-4\\0&-3\end{pmatrix},\qquad
+    BA=\begin{pmatrix}1&-4\\0&-3\end{pmatrix}=AB$$
+</div>
+
+<h2 class="sub">수와 달라지는 또 다른 점들 <span class="en">other surprises</span></h2>
+<p>행렬의 곱은 교환법칙이 성립하지 않는 것 외에도 또 다른 특이함이 있다.
+실수의 곱은 $a\ne0$, $b\ne0$ 인 임의의 두 수를 곱하면 $ab\ne0$ 인 성질이 있다.
+하지만 행렬의 곱은 <b>영행렬이 아닌 두 행렬의 곱이 영행렬이 되는 경우</b>가 있다.
+또한 행렬 $A,B,C$ 가 있을 때 $B\ne C$ 임에도 $AB=AC$ 가 되기도 한다.</p>
+
+<div class="box ex">
+  <span class="tag">예제 3.10</span><span class="title">$A\ne O$, $B\ne O$ 인데 $AB=O$</span>
+  <p><b>풀이</b> &nbsp;$A=\begin{pmatrix}1&2\\1&2\end{pmatrix}$,
+  $B=\begin{pmatrix}4&-2\\-2&1\end{pmatrix}$ 이면 $A\ne O$, $B\ne O$ 임에도</p>
+  $$AB=\begin{pmatrix}1&2\\1&2\end{pmatrix}\begin{pmatrix}4&-2\\-2&1\end{pmatrix}
+    =\begin{pmatrix}0&0\\0&0\end{pmatrix}=O$$
+  <p>이다. 한편 순서를 바꾸면</p>
+  $$BA=\begin{pmatrix}4&-2\\-2&1\end{pmatrix}\begin{pmatrix}1&2\\1&2\end{pmatrix}
+    =\begin{pmatrix}2&4\\-1&-2\end{pmatrix}\ne O$$
+  <p>임에 유의하라.</p>
+</div>
+
+<div class="box ex">
+  <span class="tag">예제 3.11</span><span class="title">$B\ne C$ 인데 $AB=AC$</span>
+  <p><b>풀이</b> &nbsp;$A=\begin{pmatrix}2&1\\4&2\end{pmatrix}$,
+  $B=\begin{pmatrix}2&3\\-1&-2\end{pmatrix}$, $C=\begin{pmatrix}1&-1\\1&6\end{pmatrix}$ 이면</p>
+  $$AB=\begin{pmatrix}2&1\\4&2\end{pmatrix}\begin{pmatrix}2&3\\-1&-2\end{pmatrix}
+    =\begin{pmatrix}3&4\\6&8\end{pmatrix}$$
+  <p>이고,</p>
+  $$AC=\begin{pmatrix}2&1\\4&2\end{pmatrix}\begin{pmatrix}1&-1\\1&6\end{pmatrix}
+    =\begin{pmatrix}3&4\\6&8\end{pmatrix}=AB$$
+  <p>이다.</p>
+</div>
+
+<div class="note">
+  [예제 3.11]은 실수와는 다르게 $AB=AC$ 일 때 양변의 $A$ 를 지워
+  $AB=AC\ \Rightarrow\ B=C$ 라고 <b>할 수 없음</b>을 보여 준다.
+  즉 행렬에서는 <b>소거법칙</b>이 일반적으로 성립하지 않는다.
+</div>
+
+<h2 class="sub">곱의 성질 <span class="en">properties of the product</span></h2>
+<p>행렬의 곱이 다른 대수적인 성질을 <b>모두</b> 위배하는 것은 아니다. 이제 행렬의 곱에 관한 몇 가지 성질을 살펴보자.</p>
+
+<div class="box thm">
+  <span class="tag">정리 3.3</span><span class="title">분배법칙 · 결합법칙 · 스칼라와의 호환</span>
+  <p>행렬 $A,B,C$ 와 임의의 수 $c$ 에 대해 행렬의 곱이 정의되는 경우 다음이 성립한다.</p>
+  <ol class="props">
+    <li>$A(B+C)=AB+AC$</li>
+    <li>$(A+B)C=AC+BC$</li>
+    <li>$A(BC)=(AB)C$</li>
+    <li>$A(cB)=c(AB)=(cA)B$</li>
+  </ol>
+</div>
+
+<div class="box prf">
+  <span class="tag">증명</span>
+  <p>간략히 증명하기 위해 중요한 이유만 서술한다.</p>
+
+  <p><span class="step">(1) 왼쪽 분배법칙.</span> $A=(a_{ij})$ 는 $m\times p$ 행렬, $B=(b_{ij})$ 와 $C=(c_{ij})$ 를 $p\times n$ 행렬이라 하고,
+  $A(B+C)=(d_{ij})$, $AB=(e_{ij})$, $AC=(f_{ij})$ 로 두면</p>
+  $$e_{ij}=\sum_{k=1}^{p}a_{ik}b_{kj},\qquad f_{ij}=\sum_{k=1}^{p}a_{ik}c_{kj}$$
+  <p>이고 따라서</p>
+  $$d_{ij}=\sum_{k=1}^{p}a_{ik}(b_{kj}+c_{kj})
+    =\sum_{k=1}^{p}a_{ik}b_{kj}+\sum_{k=1}^{p}a_{ik}c_{kj}=e_{ij}+f_{ij}$$
+  <p>이다.</p>
+
+  <p><span class="step">(2) 오른쪽 분배법칙.</span> $A=(a_{ij})$ 와 $B=(b_{ij})$ 를 $m\times p$ 행렬,
+  $C=(c_{ij})$ 를 $p\times n$ 행렬이라 하고, $(A+B)C=(d_{ij})$, $AC=(e_{ij})$, $BC=(f_{ij})$ 로 두면</p>
+  $$e_{ij}=\sum_{k=1}^{p}a_{ik}c_{kj},\qquad f_{ij}=\sum_{k=1}^{p}b_{ik}c_{kj}$$
+  <p>이고, 따라서</p>
+  $$d_{ij}=\sum_{k=1}^{p}(a_{ik}+b_{ik})c_{kj}
+    =\sum_{k=1}^{p}a_{ik}c_{kj}+\sum_{k=1}^{p}b_{ik}c_{kj}=e_{ij}+f_{ij}$$
+  <p>이다.</p>
+
+  <p><span class="step">(3) 결합법칙.</span> $A=(a_{ij})$ 를 $m\times p$ 행렬, $B=(b_{ij})$ 를 $p\times n$ 행렬,
+  $C=(c_{ij})$ 를 $n\times q$ 행렬이라 하고, $AB=(d_{ij})$, $BC=(e_{ij})$, $(AB)C=(f_{ij})$, $A(BC)=(g_{ij})$ 로 두면</p>
+  $$d_{ik}=\sum_{l=1}^{p}a_{il}b_{lk}\ \ (1\le i\le m,\ 1\le k\le n),\qquad
+    e_{lj}=\sum_{k=1}^{n}b_{lk}c_{kj}\ \ (1\le l\le p,\ 1\le j\le q)$$
+  <p>이고, 따라서</p>
+  $$f_{ij}=\sum_{k=1}^{n}d_{ik}c_{kj}=\sum_{k=1}^{n}\left(\sum_{l=1}^{p}a_{il}b_{lk}\right)c_{kj}$$
+  $$\begin{aligned}
+    g_{ij}&=\sum_{l=1}^{p}a_{il}e_{lj}=\sum_{l=1}^{p}a_{il}\left(\sum_{k=1}^{n}b_{lk}c_{kj}\right)
+     =\sum_{k=1}^{n}\sum_{l=1}^{p}a_{il}(b_{lk}c_{kj})\\[4pt]
+    &=\sum_{k=1}^{n}\sum_{l=1}^{p}(a_{il}b_{lk})c_{kj}
+     =\sum_{k=1}^{n}\left(\sum_{l=1}^{p}a_{il}b_{lk}\right)c_{kj}=f_{ij}
+  \end{aligned}$$
+  <p>이다. 핵심은 <b>합의 순서를 바꾸고</b>($\sum_l\sum_k=\sum_k\sum_l$) <b>수의 결합법칙</b>을 쓰는 두 걸음뿐이다.</p>
+
+  <p><span class="step">(4) 스칼라와의 호환.</span> $A=(a_{ij})$ 를 $m\times p$ 행렬, $B=(b_{ij})$ 를 $p\times n$ 행렬로 하고
+  $A(cB)=(d_{ij})$, $c(AB)=(e_{ij})$, $(cA)B=(f_{ij})$ 로 두면</p>
+  $$d_{ij}=\sum_{k=1}^{p}a_{ik}(cb_{kj})=\sum_{k=1}^{p}ca_{ik}b_{kj}$$
+  <p>이고, 따라서</p>
+  $$d_{ij}=c\sum_{k=1}^{p}a_{ik}b_{kj}=e_{ij},\qquad
+    d_{ij}=\sum_{k=1}^{p}(ca_{ik})b_{kj}=f_{ij}$$
+  <p>이다.</p>
+  <div class="qed">∎</div>
+</div>
+
+<div class="box ex">
+  <span class="tag">예제 3.12</span><span class="title">정리 3.3의 확인</span>
+  <p>다음 예를 살펴보고 [정리 3.3]의 내용을 이해하라.</p>
+
+  <p><b>(1) $A(B+C)=AB+AC$</b> &nbsp;$A=\begin{pmatrix}1&2\\2&3\end{pmatrix}$,
+  $B=\begin{pmatrix}3&0\\2&1\end{pmatrix}$, $C=\begin{pmatrix}-1&1\\0&-1\end{pmatrix}$ 일 때</p>
+  $$AB=\begin{pmatrix}7&2\\12&3\end{pmatrix},\quad
+    AC=\begin{pmatrix}-1&-1\\-2&-1\end{pmatrix},\quad
+    B+C=\begin{pmatrix}2&1\\2&0\end{pmatrix}$$
+  <p>이고,</p>
+  $$AB+AC=\begin{pmatrix}6&1\\10&2\end{pmatrix},\qquad
+    A(B+C)=\begin{pmatrix}1&2\\2&3\end{pmatrix}\begin{pmatrix}2&1\\2&0\end{pmatrix}
+    =\begin{pmatrix}6&1\\10&2\end{pmatrix}$$
+  <p>이므로 $A(B+C)=AB+AC$ 이다.</p>
+
+  <p><b>(2) $(A+B)C=AC+BC$</b> &nbsp;$A=\begin{pmatrix}1&3\\-2&1\end{pmatrix}$,
+  $B=\begin{pmatrix}1&0\\1&2\end{pmatrix}$, $C=\begin{pmatrix}2&0&1\\1&3&2\end{pmatrix}$ 일 때</p>
+  $$A+B=\begin{pmatrix}2&3\\-1&3\end{pmatrix},\qquad
+    (A+B)C=\begin{pmatrix}2&3\\-1&3\end{pmatrix}\begin{pmatrix}2&0&1\\1&3&2\end{pmatrix}
+    =\begin{pmatrix}7&9&8\\1&9&5\end{pmatrix}$$
+  $$AC=\begin{pmatrix}1&3\\-2&1\end{pmatrix}\begin{pmatrix}2&0&1\\1&3&2\end{pmatrix}
+    =\begin{pmatrix}5&9&7\\-3&3&0\end{pmatrix},\qquad
+    BC=\begin{pmatrix}1&0\\1&2\end{pmatrix}\begin{pmatrix}2&0&1\\1&3&2\end{pmatrix}
+    =\begin{pmatrix}2&0&1\\4&6&5\end{pmatrix}$$
+  $$AC+BC=\begin{pmatrix}7&9&8\\1&9&5\end{pmatrix}=(A+B)C$$
+  <p>이므로 $(A+B)C=AC+BC$ 이다.</p>
+
+  <p><b>(3) $A(BC)=(AB)C$</b> &nbsp;$A=\begin{pmatrix}1&2\\1&0\end{pmatrix}$,
+  $B=\begin{pmatrix}1&1&0\\3&0&2\end{pmatrix}$, $C=\begin{pmatrix}1&0\\3&1\\2&1\end{pmatrix}$ 일 때</p>
+  $$AB=\begin{pmatrix}7&1&4\\1&1&0\end{pmatrix},\qquad BC=\begin{pmatrix}4&1\\7&2\end{pmatrix}$$
+  $$(AB)C=\begin{pmatrix}7&1&4\\1&1&0\end{pmatrix}\begin{pmatrix}1&0\\3&1\\2&1\end{pmatrix}
+    =\begin{pmatrix}18&5\\4&1\end{pmatrix}$$
+  $$A(BC)=\begin{pmatrix}1&2\\1&0\end{pmatrix}\begin{pmatrix}4&1\\7&2\end{pmatrix}
+    =\begin{pmatrix}18&5\\4&1\end{pmatrix}=(AB)C$$
+  <p>이므로 $A(BC)=(AB)C$ 이다.</p>
+
+  <p><b>(4) $A(cB)=c(AB)=(cA)B$</b> &nbsp;$A=\begin{pmatrix}1&2\\3&0\end{pmatrix}$,
+  $B=\begin{pmatrix}3&2&1\\2&0&1\end{pmatrix}$ 일 때</p>
+  $$2A=\begin{pmatrix}2&4\\6&0\end{pmatrix},\qquad 2B=\begin{pmatrix}6&4&2\\4&0&2\end{pmatrix}$$
+  $$AB=\begin{pmatrix}1&2\\3&0\end{pmatrix}\begin{pmatrix}3&2&1\\2&0&1\end{pmatrix}
+    =\begin{pmatrix}7&2&3\\9&6&3\end{pmatrix},\qquad
+    2(AB)=\begin{pmatrix}14&4&6\\18&12&6\end{pmatrix}$$
+  $$A(2B)=\begin{pmatrix}1&2\\3&0\end{pmatrix}\begin{pmatrix}6&4&2\\4&0&2\end{pmatrix}
+    =\begin{pmatrix}14&4&6\\18&12&6\end{pmatrix}$$
+  $$(2A)B=\begin{pmatrix}2&4\\6&0\end{pmatrix}\begin{pmatrix}3&2&1\\2&0&1\end{pmatrix}
+    =\begin{pmatrix}14&4&6\\18&12&6\end{pmatrix}$$
+  <p>이므로 $A(cB)=c(AB)=(cA)B$ 이다.</p>
+</div>
+
+<div class="note">
+  실수는 임의의 수 $a$ 에 대해 $1a=a1=a$ 를 만족하는 곱셈에 대한 항등원 $1$ 을 가지고 있다.
+  이제 행렬도 이러한 곱셈에 대한 항등원 행렬이 있는지, 있다면 무엇인지 알아볼 차례다 — 다음 절의 <b>단위행렬</b>이 그것이다.
+</div>
+
+<nav class="pager">
+  <a href="3-3_scalar-multiple.html">← 이전<small>3.3 행렬의 스칼라곱</small></a>
+</nav>
+
+</body>
+</html>
