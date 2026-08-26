@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>0장 · 0.8 란다우 점근 표기법</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">수리통계학 · 0장 기초 지식</div>
+  <h1><span class="no">0.8</span>란다우 점근 표기법 <span class="en">Landau asymptotic notation</span></h1>
+</header>
+
+<div class="note">
+  수학적 해석학과 통계학에서 <b>란다우 표기법</b>은 표본 크기 $n\to\infty$ 일 때 통계량의
+  <b>수렴 속도</b><span class="en">rate of convergence</span>와
+  <a href="0-4_series.html">테일러 전개</a> 등에서의 <b>오차항</b><span class="en">remainder term</span>을
+  엄밀하게 다루기 위해 정의한다. 이 노트의 표기는 중심극한정리의 증명, 델타 방법, 최대가능도추정량의 점근적
+  정규성 등에서 반복적으로 쓰인다.
+</div>
+
+<!-- ================= 결정론적 ================= -->
+<h2 class="sub">결정론적 란다우 표기법 <span class="en">deterministic Landau notation</span></h2>
+<p>실함수 $f(x)$ 와 $g(x)$ 에 대해 $x\to x_0$ ($x_0$ 는 실수 또는 $\pm\infty$)일 때 다음과 같이 정의한다.</p>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">빅 오 — 유계성 <span class="en">big-O, boundedness</span></span>
+  $$f(x)=O\big(g(x)\big)\iff\limsup_{x\to x_0}\left|\frac{f(x)}{g(x)}\right|\lt\infty$$
+  <p>즉 $x_0$ 의 근방에서 $|f(x)|\le M\,|g(x)|$ 를 만족하는 양의 상수 $M$ 이 존재한다는 뜻이다.
+  “$f$ 는 $g$ 보다 커지지 않는다(같은 크기 이하다)”를 나타낸다.</p>
+</div>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">리틀 오 — 무시 가능한 크기 <span class="en">little-o, negligibility</span></span>
+  $$f(x)=o\big(g(x)\big)\iff\lim_{x\to x_0}\frac{f(x)}{g(x)}=0$$
+  <p>“$f$ 는 $g$ 에 비해 무시할 수 있을 만큼 작다”를 나타낸다. $O$ 가 <b>같은 크기 이하</b>라면
+  $o$ 는 <b>진짜로 더 작다</b>는 강한 조건이다.</p>
+</div>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">점근적 동치 <span class="en">asymptotic equivalence</span></span>
+  $$f(x)\sim g(x)\iff\lim_{x\to x_0}\frac{f(x)}{g(x)}=1
+  \iff f(x)=g(x)+o\big(g(x)\big)$$
+  <p>두 함수의 <b>주항</b>이 같다는 뜻이다. 마지막 동치는 “$f$ 를 $g$ 로 바꿔 써도 상대오차가 $0$ 으로
+  간다”는 표현이다.</p>
+</div>
+
+<div class="box thm">
+  <span class="tag">성질</span><span class="title">란다우 표기의 기본 연산</span>
+  <ol class="props">
+    <li>$o\big(g(x)\big)\subset O\big(g(x)\big)$ — 무시 가능하면 유계이기도 하다(역은 성립하지 않는다).</li>
+    <li>$O(g)+O(g)=O(g)$, $o(g)+o(g)=o(g)$ — 같은 차수끼리의 합은 차수를 올리지 않는다.</li>
+    <li>$O(g_1)\cdot O(g_2)=O(g_1g_2)$, $O(g_1)\cdot o(g_2)=o(g_1g_2)$.</li>
+    <li>상수는 흡수된다: $c\,O(g)=O(g)$ ($c\ne0$).</li>
+    <li>$x\to0$ 일 때 $x^2=o(x)$ 이고, $x\to\infty$ 일 때 $x=o(x^2)$ — 어느 극한점을 보는지에 따라
+      대소가 뒤집히므로 <b>$x_0$ 를 반드시 명시</b>해야 한다.</li>
+  </ol>
+</div>
+<div class="note">
+  등호 $f=O(g)$ 는 대칭적인 등식이 아니라 <b>“$f$ 는 $O(g)$ 라는 집합에 속한다”</b>는 뜻의 관용적 표기다.
+  그래서 $O(g)=f$ 라고 쓰지 않으며, 좌우를 바꿔 옮길 수도 없다.
+</div>
+
+<!-- ================= 확률적 ================= -->
+<h2 class="sub">확률적 점근 표기법 <span class="en">stochastic Landau notation</span></h2>
+<p>수리통계학에서는 확률변수열 $X_n$ 과 양의 수열 $a_n$ (주로 $a_n=n^{-1/2}$ 또는 $a_n=n^{-1}$)에 대하여
+<b>확률적 유계성</b><span class="en">tightness</span>과
+<a href="../ch03/3-4_lln-clt.html">확률수렴</a><span class="en">convergence in probability</span>을 다루는
+$O_P$ 와 $o_P$ 를 사용한다.</p>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">$O_P$ — 확률적 유계 <span class="en">bounded in probability, uniformly tight</span></span>
+  <p>확률변수열 $X_n$ 이 $a_n$ 의 비율로 확률적 유계임을 뜻한다.</p>
+  $$\begin{aligned}
+    X_n=O_P(a_n)\iff\ &\forall\varepsilon\gt0,\ \exists M_\varepsilon\lt\infty,\ \exists N_\varepsilon
+    \ \text{s.t.}\\
+    &P\!\left(\left|\frac{X_n}{a_n}\right|\gt M_\varepsilon\right)\lt\varepsilon
+    \qquad(\forall n\ge N_\varepsilon)
+  \end{aligned}$$
+  <p>즉 확률 $1-\varepsilon$ 이상으로 $|X_n/a_n|$ 을 <b>하나의 상수 $M_\varepsilon$ 안에 가둘 수 있다</b>는 뜻이다.
+  결정론적 $O$ 에서 “항상 유계”였던 것이 “높은 확률로 유계”로 완화되었다.</p>
+</div>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">$o_P$ — $0$ 으로의 확률수렴 <span class="en">convergence in probability to zero</span></span>
+  <p>$X_n/a_n$ 이 $0$ 으로 확률수렴함을 뜻한다.</p>
+  $$X_n=o_P(a_n)\iff\forall\varepsilon\gt0,\
+  \lim_{n\to\infty}P\!\left(\left|\frac{X_n}{a_n}\right|\gt\varepsilon\right)=0
+  \iff\frac{X_n}{a_n}\ \xrightarrow{\ p\ }\ 0$$
+  <p>$O_P$ 의 상수 $M_\varepsilon$ 자리에 <b>임의로 작은 $\varepsilon$</b> 을 넣어도 확률이 $0$ 으로 간다는
+  강한 조건이다.</p>
+</div>
+
+<div class="note">
+  결정론적 표기와 나란히 읽으면 대응이 분명해진다 — $O$ 는 <b>유계</b>, $o$ 는 <b>$0$ 으로 수렴</b>이고,
+  $O_P$ 는 <b>확률적으로 유계</b>, $o_P$ 는 <b>확률적으로 $0$ 으로 수렴</b>이다.
+  특히 $X_n=o_P(1)$ 은 $X_n\xrightarrow{p}0$ 과 같은 말이고, $X_n=O_P(1)$ 은 “$X_n$ 이 발산하지 않는다”는 뜻이다.
+  분포수렴하는 열은 항상 $O_P(1)$ 이다.
+</div>
+
+<!-- ================= 활용 ================= -->
+<h2 class="sub">통계학에서의 대표적 활용 <span class="en">typical uses in statistics</span></h2>
+
+<div class="box ex">
+  <span class="tag">예</span><span class="title">델타 방법의 잔차항 통제</span>
+  <p>함수 $g$ 의 1차 테일러 전개에서 고차 잔차항을 $o_P$ 로 통제한다.</p>
+  $$g(X_n)=g(\theta)+g'(\theta)(X_n-\theta)+o_P\big(|X_n-\theta|\big)$$
+  <p>여기서 $\sqrt n\,(X_n-\theta)=O_P(1)$ 이면 $X_n-\theta=O_P(n^{-1/2})$ 이므로 잔차항은
+  $o_P(n^{-1/2})$ 가 된다. 따라서 양변에 $\sqrt n$ 을 곱해도 잔차항은 $o_P(1)$ 로 남아
+  <a href="../ch03/3-4_lln-clt.html">슬럿츠키 정리</a>에 의해 극한분포에 영향을 주지 않는다 —
+  이것이 <a href="../ch03/3-4_lln-clt.html">델타 방법(정리 3.16)</a>의 뼈대다.</p>
+</div>
+
+<div class="box ex">
+  <span class="tag">예</span><span class="title">일치성과 수렴 속도의 표기</span>
+  <p><a href="../ch04/4-5_asymptotic-properties.html">추정량의 점근적 성질</a>은 다음과 같이 한 줄로 적힌다.</p>
+  <ol class="props">
+    <li><b>일치추정량</b><span class="en">consistency</span> — $\hat\theta_n-\theta=o_P(1)$</li>
+    <li><b>$\sqrt n$-일치추정량</b><span class="en">$\sqrt n$-consistency</span> —
+      $\hat\theta_n-\theta=O_P(n^{-1/2})$</li>
+  </ol>
+  <p>일치성은 “오차가 $0$ 으로 간다”만 말하는 데 비해, $\sqrt n$-일치성은 “오차가 $n^{-1/2}$ <b>속도로</b>
+  줄어든다”는 <b>수렴 속도</b>까지 말해 준다. 최대가능도추정량의 점근적 정규성
+  $\sqrt n(\hat\theta_n-\theta_0)\xrightarrow{d}N\big(0,1/I(\theta_0)\big)$ 은
+  $\sqrt n$-일치성을 함의한다(분포수렴하면 $O_P(1)$ 이므로).</p>
+</div>
+
+<div class="terms">
+  <div class="h">알아두기 — 한 줄 요약</div>
+  <dl>
+    <dt>$O$ / $o$</dt>
+    <dd>$f=O(g)$: $|f/g|$ 가 유계 / $f=o(g)$: $f/g\to0$. $f\sim g$: $f/g\to1$.</dd>
+    <dt>$O_P$ / $o_P$</dt>
+    <dd>$X_n=O_P(a_n)$: $X_n/a_n$ 이 확률적으로 유계 / $X_n=o_P(a_n)$: $X_n/a_n\xrightarrow{p}0$.</dd>
+    <dt>자주 쓰는 형태</dt>
+    <dd>$o_P(1)\Leftrightarrow$ 확률수렴 $0$ · $O_P(1)\Leftrightarrow$ 발산하지 않음 ·
+      $O_P(n^{-1/2})\Leftrightarrow\sqrt n$-일치성.</dd>
+  </dl>
+</div>
+
+<nav class="pager">
+  <a href="0-7_discriminant.html">← 이전<small>0.7 이차식과 판별식</small></a>
+  <span class="spacer"></span>
+</nav>
+
+</body>
+</html>
