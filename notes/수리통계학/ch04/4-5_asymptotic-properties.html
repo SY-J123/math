@@ -323,7 +323,10 @@
       <ol class="props">
         <li><b>분모(대수의 법칙)</b> — <a href="4-4_mvue.html">피셔 정보량</a> $I(\theta_0)$ 으로 확률수렴한다.
           $$-\frac1n\,l''(\theta_0)\ \xrightarrow{\ p\ }\
-          -E\!\left(\frac{d^2}{d\theta^2}\log f(X;\theta)\bigg|_{\theta=\theta_0}\right)=I(\theta_0)$$</li>
+          -E\!\left(\frac{d^2}{d\theta^2}\log f(X;\theta)\bigg|_{\theta=\theta_0}\right)=I(\theta_0)$$
+          우변은 로그가능도의 2차 도함수 — 모수가 여럿이면
+          <a href="../ch00/0-5_multivariable.html">헤시안</a> — 의 기댓값에 음을 붙인 것으로,
+          가능도가 최대점 부근에서 얼마나 뾰족한지(곡률)를 재는 양이다.</li>
         <li><b>분자(중심극한정리)</b> — 스코어 함수의 합인 $\dfrac{1}{\sqrt n}l'(\theta_0)$ 은 평균이 $0$ 이고
           분산이 $I(\theta_0)$ 인 정규분포로 분포수렴한다.
           $$\frac{1}{\sqrt n}\,l'(\theta_0)\ \xrightarrow{\ d\ }\ N\big(0,\,I(\theta_0)\big)$$</li>

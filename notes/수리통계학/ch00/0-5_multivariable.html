@@ -57,13 +57,114 @@
   <b>최적화 연결:</b> 극대·극소에서는 모든 방향으로 변화율이 $0$ 이라 $\nabla f=\mathbf 0$ (임계점). 가능도함수의 $\nabla=\mathbf0$ 을 푸는 것이 곧 MLE다.
 </div>
 
-<h2 class="sub">헤시안과 연쇄법칙 <span class="en">Hessian &amp; chain rule</span></h2>
+<h2 class="sub">헤시안과 2차 판정 <span class="en">Hessian &amp; second derivative test</span></h2>
 <div class="box def">
-  <span class="tag">헤시안 <span class="en">Hessian</span></span>
-  <p>2차 편도함수 행렬 $H=\Big[\dfrac{\partial^2 f}{\partial x_i\,\partial x_j}\Big]$. 임계점에서 $H$ 가 양의정부호면 극소, 음의정부호면 극대(2차 판정).</p>
+  <span class="tag">정의</span><span class="title">헤시안 행렬 <span class="en">Hessian matrix</span></span>
+  <p>$f:\mathbb R^n\to\mathbb R$ 의 <b>2차 편도함수</b>를 모아 놓은 $n\times n$ 행렬이다.</p>
+  $$H_f(\mathbf x)=\left[\frac{\partial^2 f}{\partial x_i\,\partial x_j}\right]_{n\times n}
+  =\begin{bmatrix}
+    \dfrac{\partial^2 f}{\partial x_1^2}&\cdots&\dfrac{\partial^2 f}{\partial x_1\partial x_n}\\
+    \vdots&\ddots&\vdots\\
+    \dfrac{\partial^2 f}{\partial x_n\partial x_1}&\cdots&\dfrac{\partial^2 f}{\partial x_n^2}
+  \end{bmatrix}$$
+  <p>그라디언트 $\nabla f$ 가 <b>1차</b> 도함수를 벡터로 모은 것이라면, 헤시안은 <b>2차</b> 도함수를 행렬로
+  모은 것이다. 즉 $H_f=\nabla(\nabla f)$ 로, 벡터함수 $\nabla f$ 의 야코비 행렬이기도 하다.</p>
 </div>
+
 <div class="box thm">
-  <span class="tag">다변수 연쇄법칙 <span class="en">chain rule</span></span>
+  <span class="tag">성질</span><span class="title">헤시안의 대칭성</span>
+  <p>2차 편도함수가 연속이면 미분의 순서를 바꿀 수 있으므로(<b>혼합편도함수의 대칭성</b>)</p>
+  $$\frac{\partial^2 f}{\partial x_i\,\partial x_j}=\frac{\partial^2 f}{\partial x_j\,\partial x_i}
+  \quad\Longrightarrow\quad H_f=H_f^{T}$$
+  <p>가 성립한다. 즉 헤시안은 <b>실대칭행렬</b>이고, 따라서 고유값이 모두 실수이며 직교행렬로 대각화된다.
+  이 대칭성 덕분에 아래의 정부호 판정을 고유값의 부호로 읽을 수 있다.</p>
+</div>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">정부호성 <span class="en">definiteness</span></span>
+  <p>대칭행렬 $A$ 와 임의의 $\mathbf h\ne\mathbf 0$ 에 대하여 이차형식 $\mathbf h^{T}A\mathbf h$ 의 부호로
+  다음과 같이 분류한다.</p>
+  <ol class="props">
+    <li><b>양의정부호</b><span class="en">positive definite</span> — 항상 $\mathbf h^{T}A\mathbf h\gt0$
+      (모든 고유값이 양수)</li>
+    <li><b>음의정부호</b><span class="en">negative definite</span> — 항상 $\mathbf h^{T}A\mathbf h\lt0$
+      (모든 고유값이 음수)</li>
+    <li><b>부정부호</b><span class="en">indefinite</span> — 양수도 되고 음수도 됨
+      (양·음 고유값이 섞여 있음)</li>
+  </ol>
+</div>
+
+<div class="box thm">
+  <span class="tag">정리</span><span class="title">2차 판정 <span class="en">second derivative test</span></span>
+  <p>$\nabla f(\mathbf x_0)=\mathbf 0$ 인 <b>임계점</b> $\mathbf x_0$ 에서 헤시안 $H=H_f(\mathbf x_0)$ 가</p>
+  <ol class="props">
+    <li><b>양의정부호</b>면 $\mathbf x_0$ 는 <b>극소</b>점이다.</li>
+    <li><b>음의정부호</b>면 $\mathbf x_0$ 는 <b>극대</b>점이다.</li>
+    <li><b>부정부호</b>면 $\mathbf x_0$ 는 <b>안장점</b><span class="en">saddle point</span>이다.</li>
+    <li>고유값에 $0$ 이 섞여 있으면(준정부호) 이 판정만으로는 <b>결정할 수 없다</b>.</li>
+  </ol>
+</div>
+<div class="box prf">
+  <span class="tag">유도 <span class="en">왜 헤시안의 부호가 극값을 결정하는가</span></span>
+  <ol>
+    <li><span class="step">2차까지 테일러 전개.</span>
+      <a href="0-4_series.html">테일러 전개</a>를 벡터 변수로 쓰면
+      $$f(\mathbf x_0+\mathbf h)=f(\mathbf x_0)+\nabla f(\mathbf x_0)^{T}\mathbf h
+      +\tfrac12\,\mathbf h^{T}H\,\mathbf h+o\big(\|\mathbf h\|^2\big)$$
+      이다(<a href="0-8_landau-notation.html">란다우 표기</a>).</li>
+    <li><span class="step">임계점에서 1차항이 사라진다.</span> $\nabla f(\mathbf x_0)=\mathbf 0$ 이므로
+      $$f(\mathbf x_0+\mathbf h)-f(\mathbf x_0)=\tfrac12\,\mathbf h^{T}H\,\mathbf h+o\big(\|\mathbf h\|^2\big)$$
+      가 되어, 증분의 부호는 <b>이차형식 $\mathbf h^{T}H\mathbf h$ 하나가</b> 결정한다.
+      잔차항은 $\|\mathbf h\|^2$ 보다 작으므로 $\mathbf h$ 가 충분히 작으면 부호를 뒤집지 못한다.</li>
+    <li><span class="step">부호를 읽기.</span> 따라서 모든 방향 $\mathbf h$ 에서 이차형식이 양수면
+      $\mathbf x_0$ 근방에서 $f$ 가 항상 커지므로 극소, 음수면 극대이고, 방향에 따라 부호가 갈리면
+      어떤 방향으로는 올라가고 다른 방향으로는 내려가므로 안장점이다.</li>
+  </ol>
+  <div class="qed">∎</div>
+</div>
+
+<div class="box ex">
+  <span class="tag">예</span><span class="title">2변수의 판정과 판별식</span>
+  <p>$n=2$ 이면 $H=\begin{bmatrix}f_{xx}&f_{xy}\\f_{xy}&f_{yy}\end{bmatrix}$,
+  $\det H=f_{xx}f_{yy}-f_{xy}^2$ 이고 판정은 다음과 같이 간단해진다.</p>
+  <ol class="props">
+    <li>$\det H\gt0$ 이고 $f_{xx}\gt0$ → 극소</li>
+    <li>$\det H\gt0$ 이고 $f_{xx}\lt0$ → 극대</li>
+    <li>$\det H\lt0$ → 안장점</li>
+    <li>$\det H=0$ → 판정 불가</li>
+  </ol>
+  <p>이 규칙은 <a href="0-7_discriminant.html">0.7 판별식</a>의 논법 그대로다. 이차형식을
+  $h_2$ 를 고정한 $h_1$ 의 이차식으로 보면</p>
+  $$q(h_1,h_2)=f_{xx}h_1^2+2f_{xy}h_1h_2+f_{yy}h_2^2$$
+  <p>이고 그 판별식은 $4h_2^2\big(f_{xy}^2-f_{xx}f_{yy}\big)=-4h_2^2\det H$ 다. $\det H\gt0$ 이면 판별식이
+  음수여서 실근이 없으므로 $q$ 는 부호를 바꾸지 않고, 그 부호는 최고차항의 계수 $f_{xx}$ 의 부호와 같다.</p>
+</div>
+
+<div class="terms">
+  <div class="h">알아두기 — 통계에서 헤시안이 나오는 자리</div>
+  <dl>
+    <dt>최대가능도추정</dt>
+    <dd>로그가능도 $l(\boldsymbol\theta)$ 의 임계점 $\nabla l=\mathbf 0$ 을 푼 뒤, 헤시안이
+      <b>음의정부호</b>임을 확인해야 그 점이 실제로 최대점이다
+      (<a href="../ch04/4-2_maximum-likelihood.html">4.2절</a>). 모수가 하나면 $l''(\hat\theta)\lt0$ 이다.</dd>
+    <dt>피셔 정보행렬</dt>
+    <dd>로그가능도 헤시안의 기댓값에 음을 붙인 것이 <b>정보행렬</b>이다:
+      $I(\boldsymbol\theta)=-E\big[H_l(\boldsymbol\theta)\big]$. 모수가 하나면
+      $I(\theta)=-E\big[l''(\theta)\big]$ (<a href="../ch04/4-4_mvue.html">4.4절</a>).
+      가능도가 최대점 부근에서 <b>얼마나 뾰족한가</b>를 재는 것이 헤시안이므로, 정보량이 곧 곡률이다.</dd>
+    <dt>점근적 정규성</dt>
+    <dd>$-\tfrac1n l''(\theta_0)\xrightarrow{\ p\ }I(\theta_0)$ 가 최대가능도추정량의 점근분산
+      $1/I(\theta_0)$ 을 만들어 낸다 (<a href="../ch04/4-5_asymptotic-properties.html">4.5절</a>).</dd>
+    <dt>최소제곱법</dt>
+    <dd>잔차제곱합 $Q(\boldsymbol\beta)=\|\mathbf y-X\boldsymbol\beta\|^2$ 의 헤시안은 $2X^{T}X$ 로
+      $\boldsymbol\beta$ 와 무관한 상수행렬이다. $X$ 의 열이 선형독립이면 $X^{T}X$ 가 양의정부호이므로
+      정규방정식의 해가 <b>유일한 최소점</b>이 된다.</dd>
+  </dl>
+</div>
+
+<h2 class="sub">다변수 연쇄법칙 <span class="en">chain rule</span></h2>
+<div class="box thm">
+  <span class="tag">정리</span><span class="title">다변수 연쇄법칙 <span class="en">chain rule</span></span>
   <p>$x=x(t),\,y=y(t)$ 일 때 $\dfrac{d}{dt}f(x(t),y(t))=\dfrac{\partial f}{\partial x}x'(t)+\dfrac{\partial f}{\partial y}y'(t)=\nabla f\cdot(x',y')$.</p>
 </div>
 
