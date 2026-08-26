@@ -48,45 +48,48 @@
   <b>변화율 제곱의 기댓값</b>이다. 정보가 클수록 관측값이 모수에 대해 더 많은 정보를 담고 있다.</p>
 </div>
 <div class="box prf">
-  <span class="tag">성질</span><span class="title">피셔 정보 $=$ 스코어의 분산</span>
+  <span class="tag">성질</span><span class="title">바틀릿 항등식 <span class="en">Bartlett identity</span></span>
   <p>$\dfrac{\partial}{\partial\theta}\log f(X;\theta)$ 를 <b>스코어</b><span class="en">score</span>라고 부르자.
-  피셔의 정보는 사실 스코어의 <b>분산</b>과 같다:</p>
-  $$\begin{aligned}
-  I(\theta)=\operatorname{Var}\!\Big(\frac{\partial}{\partial\theta}\log f(X;\theta)\Big)
-  &=E\!\left[\Big(\frac{\partial}{\partial\theta}\log f(X;\theta)\Big)^{\!2}\right]\\
-  &\qquad-\left[E\!\Big(\frac{\partial}{\partial\theta}\log f(X;\theta)\Big)\right]^{2}.
-  \end{aligned}$$
-  <p>여기서 둘째 항(스코어의 기댓값)은 $0$ 이다 — $\dfrac{\partial}{\partial\theta}\log f=\dfrac{\partial f/\partial\theta}{f}$
-  이므로 분모가 밀도와 약분되고, 미분과 적분의 순서를 바꾸면</p>
-  $$E\!\Big(\frac{\partial}{\partial\theta}\log f(X;\theta)\Big)
-  =\int\frac{\frac{\partial}{\partial\theta}f(x;\theta)}{f(x;\theta)}\,f(x;\theta)\,dx
-  =\frac{\partial}{\partial\theta}\int f(x;\theta)\,dx
-  =\frac{\partial}{\partial\theta}(1)=0.$$
-  <p>따라서</p>
-  $$I(\theta)=\operatorname{Var}\!\Big(\frac{\partial}{\partial\theta}\log f(X;\theta)\Big)
-  =E\!\left[\Big(\frac{\partial}{\partial\theta}\log f(X;\theta)\Big)^{\!2}\right].$$
+  밀도함수의 전체 적분이 $1$ 이라는 <b>한 줄의 항등식을 $\theta$ 로 미분</b>하기만 하면 피셔 정보의 세 가지
+  표현이 모두 나온다. 미분과 적분의 순서를 바꿀 수 있다고 가정하고, 로그미분
+  $\dfrac{\partial f}{\partial\theta}=\dfrac{\partial\log f}{\partial\theta}\cdot f$ 를 반복해 쓴다.</p>
+  <ol>
+    <li><span class="step">한 번 미분 — 스코어의 기댓값은 $0$.</span>
+      $\displaystyle\int f(x;\theta)\,dx=1$ 의 양변을 $\theta$ 로 미분하면
+      $$0=\int\frac{\partial f}{\partial\theta}\,dx
+      =\int\frac{\partial f/\partial\theta}{f}\,f\,dx
+      =\int\frac{\partial\log f}{\partial\theta}\,f\,dx
+      =E\!\left[\frac{\partial\log f}{\partial\theta}\right]$$
+      이다. 따라서 스코어의 분산에서 $\big[E(\text{스코어})\big]^2$ 항이 사라져
+      $$I(\theta)=\operatorname{Var}\!\left(\frac{\partial\log f}{\partial\theta}\right)
+      =E\!\left[\left(\frac{\partial\log f}{\partial\theta}\right)^{\!2}\right]$$
+      가 된다.</li>
+
+    <li><span class="step">한 번 더 미분 — 두 기댓값의 합이 $0$.</span> 단계 ①의 마지막 등식
+      $0=\displaystyle\int\frac{\partial\log f}{\partial\theta}\,f\,dx$ 를 다시 $\theta$ 로 미분하면
+      곱의 미분법에 의해
+      $$0=\int\frac{\partial^2\log f}{\partial\theta^2}\,f\,dx
+      +\int\frac{\partial\log f}{\partial\theta}\cdot\frac{\partial f}{\partial\theta}\,dx$$
+      이고, 둘째 항의 $\dfrac{\partial f}{\partial\theta}$ 에 다시 로그미분을 넣으면
+      $$0=\int\frac{\partial^2\log f}{\partial\theta^2}\,f\,dx
+      +\int\left(\frac{\partial\log f}{\partial\theta}\right)^{\!2}f\,dx$$
+      즉 다음 <b>바틀릿 항등식</b>을 얻는다.
+      $$E\!\left[\frac{\partial^2\log f}{\partial\theta^2}\right]
+      +E\!\left[\left(\frac{\partial\log f}{\partial\theta}\right)^{\!2}\right]=0$$</li>
+
+    <li><span class="step">세 표현을 한 줄로.</span> 단계 ①과 ②를 합치면 피셔 정보는 다음 세 가지가
+      모두 같은 값이다.
+      $$I(\theta)=\operatorname{Var}\!\left(\frac{\partial\log f}{\partial\theta}\right)
+      =E\!\left[\left(\frac{\partial\log f}{\partial\theta}\right)^{\!2}\right]
+      =-E\!\left[\frac{\partial^2\log f}{\partial\theta^2}\right]$$</li>
+  </ol>
   <div class="qed">∎</div>
 </div>
-<div class="box prf">
-  <span class="tag">성질</span><span class="title">$2$ 차 미분 형태 — $I(\theta)=-E\big[\frac{\partial^2}{\partial\theta^2}\log f\big]$</span>
-  <p>몫의 미분법으로 전개하면</p>
-  $$\frac{\partial^2}{\partial\theta^2}\log f(X;\theta)
-  =\frac{\partial}{\partial\theta}\!\left(\frac{\frac{\partial}{\partial\theta}f}{f}\right)
-  =\frac{\big(\frac{\partial^2}{\partial\theta^2}f\big)\,f-\big(\frac{\partial}{\partial\theta}f\big)\big(\frac{\partial}{\partial\theta}f\big)}{f^2}
-  =\frac{\frac{\partial^2}{\partial\theta^2}f}{f}-\Big(\frac{\partial}{\partial\theta}\log f\Big)^{\!2}.$$
-  <p>양변에 기댓값을 취하면</p>
-  $$E\!\left[\frac{\partial^2}{\partial\theta^2}\log f(X;\theta)\right]
-  =E\!\left[\frac{\frac{\partial^2}{\partial\theta^2}f}{f}\right]
-  -E\!\left[\Big(\frac{\partial}{\partial\theta}\log f\Big)^{\!2}\right]$$
-  <p>인데, 첫 항은</p>
-  $$E\!\left[\frac{\frac{\partial^2}{\partial\theta^2}f}{f}\right]
-  =\int\frac{\partial^2}{\partial\theta^2}f(x;\theta)\,dx
-  =\frac{\partial^2}{\partial\theta^2}\int f(x;\theta)\,dx
-  =\frac{\partial^2}{\partial\theta^2}(1)=0.$$
-  <p>따라서</p>
-  $$I(\theta)=E\!\left[\Big(\frac{\partial}{\partial\theta}\log f\Big)^{\!2}\right]
-  =-E\!\left[\frac{\partial^2}{\partial\theta^2}\log f(X;\theta)\right].$$
-  <div class="qed">∎</div>
+<div class="note">
+  세 표현이 각각 쓰이는 자리가 다르다 — <b>분산 형태</b>는 스코어에
+  <a href="../ch03/3-4_lln-clt.html">중심극한정리</a>를 적용할 때(<a href="4-5_asymptotic-properties.html">4.5절</a>),
+  <b>제곱의 기댓값</b>은 정보량을 직접 계산할 때, <b>$2$ 차 미분 형태</b>는 로그가능도의
+  <a href="../ch00/0-5_multivariable.html">헤시안</a>으로 곡률을 볼 때 편하다.
 </div>
 <div class="note">
   <b>직관 — 정보가 많은 가능도함수의 판별.</b> 피셔의 정보는 (가능도함수 자체의 분산이 아니라)
