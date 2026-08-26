@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>표본조사론 · 1.6 기본 개념</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">표본조사론 · 1장 서론</div>
+  <h1><span class="no">1.6</span>기본 개념 <span class="en">basic concepts</span></h1>
+</header>
+
+<p>표본의 정보를 이용하여 모집단의 특성을 추측하고자 하는 것이 표본조사의 주된 목표인데,
+이는 일반적인 <b>통계적 추측</b>의 목표이기도 하다.
+따라서 표본조사 이론을 이해하기 위해서는 먼저 통계적 추측의 기본 개념을 아는 것이 필요하다.</p>
+
+<h2 class="sub">1. 모집단의 분포 <span class="en">the population distribution</span></h2>
+<p>통계학에서는 먼저 모집단을 이해하기 위해 <b>모집단의 분포</b>를 생각한다.
+모집단의 분포는 가상적으로만 생각할 수 있을 뿐 실제로는 알 수 없는 것이 보통이다.
+그러므로 표본의 정보를 이용하여 모집단에 관한 추측을 하는 것이다.
+이때 <b>어떤 추출방법에 따라 추출되는지</b>에 따라 추측의 결과가 달라진다.
+확률추출법을 사용한다면 각 표본의 추출확률을 알 수 있으므로 <b>표본분포</b>를 생각할 수 있게 되고,
+따라서 추정을 확률적으로 표현할 수 있게 된다.</p>
+
+<div class="box ex">
+  <span class="tag">예</span><span class="title">구슬상자 — 이 절 전체를 관통하는 예</span>
+  <p>상자 속에 크기가 같은 구슬이 무수히 들어 있다고 가정하자.
+  그 구슬들의 표면에는 각각 $0$ 에서 $9$ 까지의 숫자가 새겨져 있고, 숫자별 구슬의 개수는 모두 같다고 한다.
+  그런데 실제로는 이 상자 속의 상황을 전혀 알지 못한다고 하면, 상자 속의 상황을 어떻게 추측할 수 있을까?</p>
+  <ol class="props">
+    <li>상자 속의 구슬에 새겨진 숫자의 <b>평균</b>은 얼마인가?</li>
+    <li>개개의 숫자들이 이 평균과 <b>얼마나 차이</b>가 나는가?</li>
+  </ol>
+  <p>이런 문제가 바로 통계학에서 다루는 전형적인 문제이다. 이 예에서 <b>모집단</b>은 상자 속에 들어 있는 구슬들의 모임이다.</p>
+</div>
+
+<figure class="fig">
+<svg viewBox="0 0 340 175" role="img" aria-label="모집단 분포의 히스토그램 — 0에서 9까지 각 숫자의 상대도수가 모두 0.1">
+  <line class="axis" x1="40" y1="130" x2="330" y2="130"/>
+  <line class="axis" x1="40" y1="130" x2="40" y2="26"/>
+  <line class="axis" x1="36" y1="80" x2="40" y2="80"/>
+  <line class="axis" x1="36" y1="30" x2="40" y2="30"/>
+  <g class="lbl">
+    <text x="32" y="134" text-anchor="end">0</text>
+    <text x="32" y="84" text-anchor="end">0.1</text>
+    <text x="32" y="34" text-anchor="end">0.2</text>
+  </g>
+  <g fill="#dfe4ef" stroke="#7a86a3">
+    <rect x="46"  y="80" width="22" height="50"/><rect x="74"  y="80" width="22" height="50"/>
+    <rect x="102" y="80" width="22" height="50"/><rect x="130" y="80" width="22" height="50"/>
+    <rect x="158" y="80" width="22" height="50"/><rect x="186" y="80" width="22" height="50"/>
+    <rect x="214" y="80" width="22" height="50"/><rect x="242" y="80" width="22" height="50"/>
+    <rect x="270" y="80" width="22" height="50"/><rect x="298" y="80" width="22" height="50"/>
+  </g>
+  <g class="lbl">
+    <text x="57"  y="144" text-anchor="middle">0</text><text x="85"  y="144" text-anchor="middle">1</text>
+    <text x="113" y="144" text-anchor="middle">2</text><text x="141" y="144" text-anchor="middle">3</text>
+    <text x="169" y="144" text-anchor="middle">4</text><text x="197" y="144" text-anchor="middle">5</text>
+    <text x="225" y="144" text-anchor="middle">6</text><text x="253" y="144" text-anchor="middle">7</text>
+    <text x="281" y="144" text-anchor="middle">8</text><text x="309" y="144" text-anchor="middle">9</text>
+  </g>
+  <text class="lbl" x="185" y="166" text-anchor="middle">구슬에 새겨진 숫자</text>
+</svg>
+<figcaption>[그림 1-4] 모집단 분포의 히스토그램 — 열 개의 값이 모두 상대도수 $0.1$ 로 고르다.</figcaption>
+</figure>
+
+<p>이러한 상대도수는 <b>확률</b>이라는 용어로도 설명될 수 있다.
+상자를 흔들어 잘 섞은 다음 랜덤하게 구슬 $1$ 개를 꺼낼 때 그 구슬에 새겨진 숫자를 $y$ 라고 하자.
+그러면 $y$ 가 가질 수 있는 값은 $0$ 에서 $9$ 사이의 정수가 되고,
+각각의 정숫값을 가질 확률은 $\tfrac1{10}$ 이 된다. 이를 $P(y)$ 로 표기하면</p>
+$$P(y=0)=P(y=1)=P(y=2)=\cdots=P(y=9)=\frac{1}{10}$$
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">기댓값 <span class="en">expected value</span></span>
+  <p>모집단의 대표값을 나타내기 위한 척도로 흔히 사용되는 것이 기댓값이다. $y$ 의 기댓값은 다음과 같이 정의된다.</p>
+  $$E(y)=\sum_y y\cdot p(y)\tag{1-1}$$
+  <p>여기에서 $\sum_y$ 는 $y$ 가 취할 수 있는 <b>모든 값에 대한 합</b>을 의미한다.</p>
+</div>
+
+<p>앞의 구슬의 예에서 $y$ 의 기댓값을 식 $(1\text{-}1)$ 에 따라 계산해 보면 다음과 같다.</p>
+$$\begin{aligned}
+E(y)&=\sum_y y\cdot p(y)\\
+&=0\cdot p(0)+1\cdot p(1)+\cdots+9\cdot p(9)\\
+&=4.5
+\end{aligned}$$
+
+<p>기댓값이 뜻하는 바를 살펴보면 이것은 <b>모집단 내에서 일어날 수 있는 가능한 측정값들의 평균</b>(mean)이라는 것을 알 수 있다.
+이를 통계학에서는 <b>모평균</b>이라 하고 $\mu$ 로 나타낸다. 즉 $\mu=E(y)$ 이다.</p>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">모분산과 모표준편차 <span class="en">variance, standard deviation</span></span>
+  <p>구슬들의 값이 얼마나 다르고 다양한지를 나타내는 것이 <b>모분산</b>(variance)이며,
+  각각의 $y$ 값과 모평균 $\mu$ 의 차이의 제곱에 대한 기댓값으로 정의한다.</p>
+  $$V(y)=E(y-\mu)^2\tag{1-2}$$
+  $$V(y)=\sum_y (y-\mu)^2 p(y)=\sum_y y^2 p(y)-\mu^2$$
+  <p>분산을 $\sigma^2$ 으로 나타내며, 분산에 제곱근을 씌운 것을 <b>표준편차</b>(standard deviation)라 한다.
+  즉 $\sigma=\sqrt{\sigma^2}$ 이다.</p>
+</div>
+
+<p>앞의 구슬상자 예에서 모집단의 분산과 표준편차를 정의에 따라 구해 보면 다음과 같다.</p>
+$$\sigma^2=\sum_y y^2 p(y)-\mu^2=\frac{1}{10}\left(0^2+1^2+2^2+\cdots+9^2\right)-4.5^2=8.25$$
+$$\sigma=\sqrt{\sigma^2}=2.87$$
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">유한모집단의 모평균과 모분산</span>
+  <p>앞의 구슬상자는 구슬이 무수히 들어 있다고 했으므로 <b>무한모집단</b>을 가정한 셈이다.
+  그러나 표본조사 이론의 대상이 되는 모집단은 거의 <b>유한모집단</b>이므로 상황을 바꾸어 보자.</p>
+  <p>상자 속에 들어 있는 구슬의 개수가 $10{,}000$ 개, 즉 모집단의 크기 $N=10{,}000$ 이고,
+  $0$ 에서 $9$ 까지의 숫자가 새겨진 구슬이 각각 $1{,}000$ 개씩 동일하게 들어 있다고 하자.
+  이런 유한모집단에서의 모평균 $\mu$ 와 모분산 $\sigma^2$ 은 각각 다음과 같이 정의된다.</p>
+  $$\mu=\frac{1}{N}\sum_{i=1}^{N}y_i\tag{1-3}$$
+  $$\sigma^2=\frac{1}{N}\sum_{i=1}^{N}(y_i-\mu)^2\tag{1-4}$$
+</div>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">통계적 추론 <span class="en">statistical inference</span></span>
+  <p>상자 속 구슬에 새겨진 숫자들의 분포에 대해 전혀 알 수 없다고 가정하자.
+  이런 경우 상자 속에서 몇 개의 구슬을 <b>랜덤하게 뽑아낸 후, 그 구슬의 값을 보고 상자 속 전체 숫자에 대해 추측</b>을 하게 된다.
+  이런 과정을 통계적 추론이라고 한다.</p>
+</div>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">표본평균과 표본분산 <span class="en">sample mean, sample variance</span></span>
+  <p>$n$ 개의 구슬을 랜덤하게 뽑았을 때 각각에 새겨진 숫자를 $y_1,y_2,\dots,y_n$ 이라 하자.
+  이 관찰값들로부터 모평균 $\mu$ 와 모분산 $\sigma^2$ 을 추정하고자 할 때 가장 널리 쓰이는 추정량은 다음과 같다.</p>
+  $$\bar y=\frac{1}{n}\sum_{i=1}^{n}y_i\tag{1-5}$$
+  $$s^2=\frac{1}{n-1}\sum_{i=1}^{n}(y_i-\bar y)^2\tag{1-6}$$
+</div>
+
+<div class="box ex">
+  <span class="tag">예제 1-1</span><span class="title">표본평균과 표본분산의 계산</span>
+  <p>위와 같은 구슬상자 속에서 $6$ 개의 구슬을 랜덤하게 추출하였는데 각 구슬에 새겨진 숫자는 다음과 같았다.</p>
+  $$3\quad 0\quad 9\quad 8\quad 5\quad 2$$
+  <p>이를 이용하여 표본평균과 표본분산의 값을 각각 계산하라.</p>
+  <p><b>풀이</b> &nbsp;먼저 표본평균은 식 $(1\text{-}5)$ 를 이용하여 다음과 같이 계산할 수 있다.</p>
+  $$\bar y=\frac1n\sum_{i=1}^{n}y_i=\frac16(3+0+9+8+5+2)=4.5$$
+  <p>마찬가지로 표본분산을 계산한 결과는 다음과 같다.</p>
+  $$s^2=\frac{1}{n-1}\sum_{i=1}^{n}(y_i-\bar y)^2
+    =\frac{1}{6-1}\left\{(3-4.5)^2+(0-4.5)^2+\cdots+(2-4.5)^2\right\}=12.3$$
+</div>
+
+<h2 class="sub">2. 표본분포 <span class="en">sampling distribution</span></h2>
+<p>모평균 $\mu$ 를 알고자 할 경우 모집단으로부터 $n$ 개의 표본을 취하고 그 관찰값으로부터 $\bar y$ 라는 추정값을 얻는다.
+그런데 동일한 모집단에서 <b>같은 크기의 표본을 새로이 추출하여 다시 $\bar y$ 를 구한다면 앞에서 구한 값과는 다른 값</b>이 얻어질 것이다.
+그렇다면 특정한 표본으로부터 계산한 $\bar y$ 값을 가지고 모평균을 추정하는 것은 과연 의미가 있는 일인가?</p>
+
+<div class="box ex">
+  <span class="tag">예</span><span class="title">구슬 50개에서 10개씩 뽑아 보기</span>
+  <p>이번에는 $0$ 에서 $9$ 까지의 숫자가 새겨진 구슬이 각각 $5$ 개씩 총 $50$ 개 들어 있는 상자를 생각하자.
+  상자를 충분히 흔들어 잘 섞은 후 그중 $10$ 개의 구슬을 추출하였더니 다음과 같았다.</p>
+  $$6\quad 9\quad 3\quad 8\quad 1\quad 7\quad 8\quad 8\quad 4\quad 0$$
+  <p>이 표본으로부터 $\bar y$ 와 $s^2$ 을 구하면 각각 $5.4$ 와 $10.3$ 이 된다.</p>
+  <p>이 구슬들을 다시 상자에 집어넣고 새로이 $10$ 개를 추출한다면 이번에는 다른 $10$ 개의 구슬이 나올 것이다.
+  이와 같은 시행을 반복할 때마다 서로 다른 표본들이 선택된다.</p>
+</div>
+
+<div class="box def">
+  <span class="tag">절차</span><span class="title">엑셀 시뮬레이션 — 표본평균 50개 만들기</span>
+  <ol class="props">
+    <li>워크시트에 구슬값 $0\sim9$ 와 각 값의 추출확률 $0.1$ 을 입력한 후,
+    [통계 데이터 분석] 창을 열어 <b>‘난수 생성’</b> 을 선택하고 [확인]을 클릭한다([그림 1-5]).</li>
+    <li>[난수 생성] 대화상자에서 <b>변수의 개수 $10$</b>, <b>난수의 개수 $50$</b>(반복 시행 횟수)을 입력하고,
+    분포에서는 <b>‘이산 분포’</b> 를 선택한다. 모수에는 구슬값과 추출확률이 입력된 범위를 지정한 뒤 [확인]을 클릭한다([그림 1-6]).</li>
+    <li>[그림 1-7]과 같이 각 행에 $10$ 개씩의 난수가 생성된 행 $50$ 개가 만들어진다.
+    각 행의 $10$ 개 값으로 표본평균 $50$ 개를 계산하여 히스토그램으로 나타낸 결과가 [그림 1-8]이다.</li>
+  </ol>
+</div>
+
+<figure class="fig">
+<svg viewBox="0 0 360 185" role="img" aria-label="표본평균 50개의 히스토그램 — 4.19와 4.73 계급의 빈도가 가장 높고 양끝으로 갈수록 낮아진다">
+  <line class="axis" x1="42" y1="140" x2="348" y2="140"/>
+  <line class="axis" x1="42" y1="140" x2="42" y2="26"/>
+  <g class="axis">
+    <line x1="38" y1="140" x2="42" y2="140"/><line x1="38" y1="103" x2="42" y2="103"/>
+    <line x1="38" y1="67" x2="42" y2="67"/><line x1="38" y1="30" x2="42" y2="30"/>
+  </g>
+  <g class="lbl">
+    <text x="34" y="144" text-anchor="end">0</text><text x="34" y="107" text-anchor="end">4</text>
+    <text x="34" y="71" text-anchor="end">8</text><text x="34" y="34" text-anchor="end">12</text>
+  </g>
+
+  <g fill="#7d8fa8" stroke="#4d5c73">
+    <rect x="48"  y="131" width="30" height="9"/>
+    <rect x="84"  y="122" width="30" height="18"/>
+    <rect x="120" y="39"  width="30" height="101"/>
+    <rect x="156" y="39"  width="30" height="101"/>
+    <rect x="192" y="58"  width="30" height="82"/>
+    <rect x="228" y="58"  width="30" height="82"/>
+    <rect x="264" y="94"  width="30" height="46"/>
+    <rect x="300" y="122" width="30" height="18"/>
+  </g>
+  <g class="lbl">
+    <text x="63"  y="154" text-anchor="middle">3.10</text><text x="99"  y="154" text-anchor="middle">3.64</text>
+    <text x="135" y="154" text-anchor="middle">4.19</text><text x="171" y="154" text-anchor="middle">4.73</text>
+    <text x="207" y="154" text-anchor="middle">5.27</text><text x="243" y="154" text-anchor="middle">5.81</text>
+    <text x="279" y="154" text-anchor="middle">6.36</text><text x="315" y="154" text-anchor="middle">기타</text>
+  </g>
+  <text class="lbl" x="195" y="176" text-anchor="middle">표본평균의 계급 (빈도수 1, 2, 11, 11, 9, 9, 5, 2)</text>
+</svg>
+<figcaption>[그림 1-8] 표본평균의 분포($50$ 회 반복시행) — 가운데가 높고 양끝으로 갈수록 낮은 모양이다.</figcaption>
+</figure>
+
+<p>[그림 1-8]을 보면 표본평균이 <b>$4.0$ 에서 $5.0$ 사이</b>의 값일 때 가장 도수가 높은 반면,
+이 값에서 멀어질수록 도수가 낮아지는 분포 모양을 나타내고 있다.
+이를 통해 <b>매번 표본에 따라 달라지는 값이지만 $\bar y$ 의 값이 $4.5\sim5.0$ 부근을 크게 벗어나지는 않는다</b>는
+사실을 알 수 있다.</p>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">표본분포 <span class="en">sampling distribution</span></span>
+  <p>크기가 $N$ 인 모집단으로부터 크기 $n$ 인 표본을 랜덤하게 추출할 경우 가능한 표본의 개수는 $_N C_n$ 이 되고,
+  각각의 표본은 그 나름의 $\bar y$ 값을 가진다. 이러한 <b>$\bar y$ 값들의 분포</b>를 표본분포(표집분포, 표본추출분포)라고 한다.</p>
+</div>
+
+<div class="box thm">
+  <span class="tag">정리</span><span class="title">표본평균의 표본분포는 정규분포에 가깝다</span>
+  <ol class="props">
+    <li><b>무한모집단</b>의 경우: 표본의 크기 $n$ 이 큰 확률표본에서 $\bar y$ 의 표본분포는
+    평균이 $\mu$, 표준편차가 $\dfrac{\sigma}{\sqrt n}$ 인 <b>정규분포</b>를 따르게 된다.
+    이 사실은 <b>중심극한정리</b>로 기초통계학에 소개되어 있다.</li>
+    <li><b>유한모집단</b>의 경우: 표본의 크기 $n$ 이 상당히 크고 동시에 모집단의 크기 $N$ 의 <b>$20\%$ 이내</b>일 때,
+    $\bar y$ 의 분포는 근사적으로 정규분포를 따른다는 사실이 알려져 있다.</li>
+  </ol>
+</div>
+
+<figure class="fig">
+<svg viewBox="0 0 340 150" role="img" aria-label="무한모집단에서 표본평균의 분포 — 모평균을 중심으로 좌우 대칭인 종 모양 곡선">
+  <line class="axis" x1="24" y1="118" x2="322" y2="118"/>
+  <path class="vec" fill="none" d="M30,116 C90,114 128,110 150,60 C160,34 176,34 186,60 C208,110 250,114 314,116"/>
+  <line class="aux" x1="168" y1="118" x2="168" y2="44"/>
+  <text class="lbl b" x="168" y="136" text-anchor="middle">μ</text>
+  <text class="lbl" x="262" y="66" text-anchor="middle">표준편차 = σ / √n</text>
+</svg>
+<figcaption>[그림 1-9] 무한모집단에서 표본평균의 분포. 표본이 커질수록 폭 $\sigma/\sqrt n$ 이 좁아진다.</figcaption>
+</figure>
+
+<div class="note">
+  $\bar y$ 의 표본분포를 알게 되면 그것을 이용하여 <b>모평균 추정량의 통계적 성질</b>을 알 수 있고,
+  <b>모평균에 대한 신뢰구간</b>도 구할 수 있다.
+</div>
+
+<h2 class="sub">3. 추정 <span class="en">estimation</span></h2>
+<p>표본조사의 궁극적인 목적은 모집단을 대표하는 표본을 뽑아서 조사하고,
+그 자료로부터 <b>모집단의 특성을 추론</b>하는 데 있다.</p>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">모수 · 추정 · 추정량 · 추정값</span>
+  <ol class="props">
+    <li><b>모수</b>(parameter): 표본조사에서 관심의 대상이 되는 <b>모집단의 특성값</b>.
+    대표적인 관심 모수로는 모평균·모총계·모비율 등이 있다.</li>
+    <li><b>추정</b>(estimation): 조사 데이터를 이용하여 이 모수를 추측하는 것.</li>
+    <li><b>추정량</b>(estimator): 관측을 통해 얻을 수 있는 값들로 구성된 <b>함수</b>로, 모수를 추정하기 위해 사용된다.
+    가령 표본평균 $\bar y$ 는 모평균 $\mu$ 에 대한 대표적인 추정량이다.</li>
+    <li><b>추정값</b>(estimate): 추정량에 실제 구체적인 조사 데이터를 대입하여 얻어진 <b>값</b>.</li>
+  </ol>
+  <p>추정량은 추출되는 표본에 따라 값이 달라지는데, 확률추출법을 사용한다면 추정량의 확률분포인 <b>표본분포</b>를 알 수 있다.
+  이 표본분포를 이용하여 추정량의 특성을 평가하게 된다.</p>
+</div>
+
+<p>표본조사에서는 먼저 모수에 대한 추정량을 구하고,
+아울러 <b>추정량의 분산을 계산하여 추정의 정도</b>(精度, precision)를 알아낸다.
+추정량 $\hat\theta$ 을 이용하여 모수 $\theta$ 를 단지 <b>하나의 값</b>으로 표현하므로 이를 <b>점추정</b>(point estimation)이라고 한다.</p>
+
+<div class="box thm">
+  <span class="tag">정리</span><span class="title">좋은 추정량의 두 가지 성질 — 비편향성과 효율성</span>
+  <p>$\hat\theta$, $\hat\theta_1$, $\hat\theta_2$ 을 각각 모수 $\theta$ 에 대한 서로 다른 추정량이라 하고,
+  다음 두 조건을 생각하자.</p>
+  <ol class="props">
+    <li>$E(\hat\theta)=\theta$</li>
+    <li>$V(\hat\theta_1)\le V(\hat\theta_2)$</li>
+  </ol>
+  <p>(i)을 만족할 경우 $\hat\theta$ 을 $\theta$ 의 <b>비편향추정량</b>(unbiased estimator)이라 하며,
+  이 성질을 <b>비편향성</b>(比偏向性, unbiasedness, 불편성이라고도 함)이라 한다.
+  일반적으로 통계학에서 비편향성은 좋은 추정량이 되기 위한 매우 기본적인 요구사항이다.</p>
+  <p>(ii)와 같이 $\hat\theta_1$ 의 분산이 $\hat\theta_2$ 의 분산보다 더 작은 경우
+  $\hat\theta_1$ 은 $\hat\theta_2$ 보다 더 <b>효율적인</b>(efficiency) 추정량이라고 한다.</p>
+</div>
+
+<div class="note">
+  왜 ‘효율성’ 이라 부르는가 — $\hat\theta_1$ 의 분산이 더 작으면 각각의 신뢰구간을 구할 때
+  <b>같은 신뢰도에서 $\hat\theta_1$ 의 신뢰구간 폭이 더 좁아진다</b>.
+  즉 동일한 자료를 사용하고도 같은 신뢰도에서 더 정밀한 추정을 제시할 수 있다는 의미이다.
+</div>
+
+<h2 class="sub">오차의 한계와 신뢰구간 <span class="en">bound of errors &amp; confidence interval</span></h2>
+<p>만일 어떤 조사의 결과로 <b>점추정값만</b> 제시된다면 이것이 정확한지의 여부를 어떻게 알 수 있을까?
+예를 들어 어느 정책에 대한 지지율을 알아보기 위해 단 $2$ 명만을 대상으로 조사했는데 그중 $1$ 명이 지지하였다고 하자.
+그러면 지지율의 점추정값은 $0.5$ 이다. 반면 $2{,}000$ 명을 조사한 결과 그중 $1{,}000$ 명이 지지하였다고 해도
+점추정값은 똑같이 $0.5$ 이다. 이 두 경우의 점추정값이 같다고 해서 <b>두 추정값의 정확성이 같다고 하겠는가?</b></p>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">추정 오차 <span class="en">error of estimation</span></span>
+  <p>실제 모수 $\theta$ 와 이 모수에 대한 추정량 $\hat\theta$ 의 차이를 추정 오차라 하며 $|\hat\theta-\theta|$ 로 정의한다.</p>
+</div>
+
+<p>추정량 $\hat\theta$ 이 정해지고 이 추정량의 표본분포를 안다면
+추정에서 발생하는 오차의 크기를 <b>확률을 이용하여</b> 설명할 수 있다.
+즉 정해진 확률 $1-\alpha$(흔히 이 값을 <b>신뢰도</b>라고 함)가 주어진 상황에서 다음 조건을 만족하도록 $B$ 값을 정할 수 있다.</p>
+$$P\left(|\hat\theta-\theta|\le B\right)=1-\alpha$$
+
+<p>만약 $\hat\theta$ 이 정규분포를 따른다면</p>
+$$B=z_{\alpha/2}\sqrt{V(\hat\theta)}$$
+<p>가 되는데, 여기에서 $z_{\alpha/2}$ 는 표준정규분포에서 <b>우측 꼬리부분의 확률이 $\alpha/2$ 가 되게 하는 값</b>을 나타낸다.</p>
+
+<div class="note">
+  일반적으로 표본의 크기 $n$ 과 모집단의 크기 $N$ 에 따라 추정량 $\hat\theta$ 의 분포는 달라지는데,
+  이 교재에서는 대부분의 표본조사에서 $N$ 과 $n$ 이 모두 충분히 크기 때문에
+  <b>추정량의 분포를 정규분포로 가정</b>한다.
+</div>
+
+<p>위의 확률 식을 달리 표현하면 다음과 같다.</p>
+$$P\left(\hat\theta-B\le\theta\le\hat\theta+B\right)=1-\alpha$$
+
+<figure class="fig">
+<svg viewBox="0 0 360 175" role="img" aria-label="추정량의 표본분포와 오차의 한계 B, 그리고 신뢰구간">
+  <line class="axis" x1="24" y1="120" x2="336" y2="120"/>
+  <path class="vec" fill="none" d="M30,118 C96,116 134,112 158,54 C168,30 192,30 202,54 C226,112 264,116 330,118"/>
+  <line class="aux" x1="180" y1="120" x2="180" y2="36"/>
+  <line class="aux" x1="118" y1="120" x2="118" y2="98"/>
+  <line class="aux" x1="242" y1="120" x2="242" y2="98"/>
+
+  <line class="vec" x1="118" y1="132" x2="242" y2="132"/>
+  <line class="vec" x1="118" y1="128" x2="118" y2="136"/>
+  <line class="vec" x1="242" y1="128" x2="242" y2="136"/>
+  <line class="vec" x1="180" y1="128" x2="180" y2="136"/>
+
+  <text class="lbl b" x="180" y="150" text-anchor="middle">θ̂</text>
+  <text class="lbl b" x="118" y="150" text-anchor="middle">θ̂ − B</text>
+  <text class="lbl b" x="242" y="150" text-anchor="middle">θ̂ + B</text>
+  <text class="lbl" x="180" y="86" text-anchor="middle">확률 1 − α</text>
+  <text class="lbl" x="180" y="168" text-anchor="middle">신뢰구간 — 폭의 절반 B 가 오차의 한계</text>
+</svg>
+<figcaption>오차의 한계 $B$ 가 작을수록 구간이 좁아지고, 점추정값이 그만큼 정확하다는 뜻이 된다.</figcaption>
+</figure>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">신뢰구간 · 오차의 한계 · 표준오차</span>
+  <ol class="props">
+    <li><b>신뢰구간</b>(confidence interval): 구간
+    $\hat\theta\pm B=\hat\theta\pm z_{\alpha/2}\sqrt{V(\hat\theta)}$ 를
+    $\theta$ 의 $100(1-\alpha)\%$ 신뢰구간이라고 한다.</li>
+    <li><b>오차의 한계</b>(bound of errors): $B=z_{\alpha/2}\sqrt{V(\hat\theta)}$.</li>
+    <li><b>표준오차</b>(standard error): $\sqrt{V(\hat\theta)}$ — 추정량 $\hat\theta$ 의 표준편차.</li>
+  </ol>
+</div>
+
+<p>일반적으로 표본조사에서는 모수에 대한 <b>점추정뿐만 아니라 구간추정도 함께 제시</b>하여 추정의 정확도를 알 수 있게 한다.
+오차의 한계가 작을수록 그 점추정값은 정확한 추정값이라고 볼 수 있다.
+오차의 한계 식 안에는 추정량의 분산이 들어 있으므로,
+표본으로부터 모수를 추정할 때에는 <b>추정값을 구하는 것과 아울러 그 추정량의 분산을 구하는 것</b>이 중요한 문제가 된다.</p>
+
+<div class="box ex">
+  <span class="tag">사례 1-7</span><span class="title">신뢰구간의 개념 이해</span>
+  <p><b>2명 중 1명이 지지한 경우</b> — $95\%$ 신뢰구간을 구해 보면 $0\%$ 에서 $100\%$ 사이가 된다.
+  실제로 $2$ 명만을 표본으로 뽑아 조사하는 시행을 반복한다면, 모집단의 지지율이 $50\%$ 라 해도
+  표본에 따라 지지율이 $0\%$ 가 되기도 하고 $100\%$ 가 되기도 할 것이다.
+  즉 이 추정값은 어떤 표본이 뽑히느냐에 따라 전혀 다른 결과를 가져올 수 있으므로
+  <b>정확성이 떨어져 정보로서 별 가치가 없다</b>는 것을 신뢰구간이 시사해 주는 것이다.</p>
+  <p><b>2,000명 중 1,000명이 지지한 경우</b> — $95\%$ 신뢰구간은 대략 $48\%$ 에서 $52\%$ 사이가 된다.
+  새로운 $2{,}000$ 명의 표본을 반복적으로 뽑아 조사한다고 해도 그 결과는 $50\%$ 로부터 $\pm2\%$ 내외의 추정값을 얻게 될 것임을 시사한다.
+  따라서 이 경우 $50\%$ 라는 추정값은 <b>보다 정확한 추정값이므로 정보로서의 가치가 크다</b>.</p>
+</div>
+
+<h2 class="sub">상대표준오차 <span class="en">relative standard error</span></h2>
+<p>만일 표본의 크기를 모집단의 크기와 같게 한다면 이는 전수조사가 되는데,
+이 경우 추출되는 모든 표본에 대해서 추정값이 같게 되어 표준오차 $\sqrt{V(\hat\theta)}$ 는 $0$ 이 된다.
+즉 <b>표본의 크기가 커질수록 표본추출 시에 생기는 우연적 오차인 표준오차는 점점 작아진다</b>.
+그래서 표준오차는 추정량의 통계적 정확도를 평가하는 데 이용된다.</p>
+<p>그런데 추정량의 표준오차는 <b>추정하고자 하는 모수가 무엇이냐에 따라 그 크기가 상대적으로 달라져서</b>
+크고 작음을 판단하는 데 어려움이 있다. 이러한 이유로 추정량의 정도를 나타내기 위한 상대적인 기준으로서
+<b>상대표준오차</b>(Relative Standard Error; RSE)를 많이 사용한다.</p>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">상대표준오차 <span class="en">RSE</span></span>
+  <p>추정량의 표준오차를 추정 대상인 모수로 나눈 값.</p>
+  $$RSE(\hat\theta)=\frac{\sqrt{V(\hat\theta)}}{\theta}\times100\ (\%)\tag{1-7}$$
+</div>
+
+<div class="box thm">
+  <span class="tag">기준</span><span class="title">상대표준오차의 해석</span>
+  <p>추정량의 표준오차가 작을수록 상대표준오차는 작아지고, 상대표준오차가 작을수록 추정량의 정도가 높다.
+  일반적으로 다음과 같이 판단한다.</p>
+  <ol class="props">
+    <li>$5\%$ 이하 — 상당히 <b>믿을 만하다</b>.</li>
+    <li>$10\%$ 이하 — <b>그런대로 믿을 만하다</b>.</li>
+    <li>$15\%$ 이하 — 사용에 <b>주의</b>를 해야 한다.</li>
+  </ol>
+</div>
+
+<div class="box ex">
+  <span class="tag">예제 1-2</span><span class="title">추정량의 상대표준오차 계산</span>
+  <p>어느 도시 가구들의 월평균 소득액을 알기 위해 $500$ 가구를 랜덤하게 조사하였다.
+  그 결과 평균소득이 $150$ 만 원으로 추정되었고, 추정값의 표준오차는 $10$ 만 원인 것으로 계산되었다.
+  이 경우 추정량의 상대표준오차는 얼마인가?</p>
+  <p><b>풀이</b> &nbsp;앞서 제시한 상대표준오차 계산 공식을 사용하면</p>
+  $$RSE(\hat\theta)=\frac{\sqrt{\hat V(\hat\theta)}}{\hat\theta}\times100=\frac{10}{150}\times100=6.67\ (\%)$$
+  <p>가 된다. $5\%$ 와 $10\%$ 사이이므로 ‘그런대로 믿을 만한’ 추정값이다.</p>
+</div>
+
+<h2 class="sub">목표정도와 달성정도 <span class="en">target &amp; attained precision</span></h2>
+<p>표본조사를 통해 모수를 추정하고자 할 때는 사전에 미리 조사를 통해 얻어질 <b>추정량의 정도</b>를 정해 준다.
+정도는 표본의 크기와 밀접한 관련을 가진다 — 정도를 높이려면 표본의 크기를 크게 해야 하는데
+그러면 비용이 많이 들게 되어 무작정 정도를 높일 수만은 없다.
+이러한 까닭에 어떤 통계조사를 기획할 때에는 <b>미리 주어진 예산의 범위 내에서 조사의 정도를 어느 수준으로 정해야</b> 한다.</p>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">목표정도와 달성정도</span>
+  <ol class="props">
+    <li><b>목표정도</b>(目標精度, target precision): 조사를 기획할 때 <b>미리 정해 주는</b> 정도.</li>
+    <li><b>달성정도</b>(達成精度, attained precision): 표본조사의 결과 <b>얻어진 자료들로부터 계산되는</b> 정도.</li>
+  </ol>
+</div>
+
+<nav class="pager">
+  <a href="1-5_sampling-methods.html">← 이전<small>1.5 표본추출법</small></a>
+  <a class="next" href="1-exercises.html">다음 →<small>연습문제</small></a>
+</nav>
+
+</body>
+</html>
