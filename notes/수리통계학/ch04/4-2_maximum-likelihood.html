@@ -311,16 +311,32 @@
 </div>
 <div class="box prf">
   <span class="tag">증명</span>
-  <p>$\eta=g(\theta)$ 라고 놓자. 불변성 원리는 일반적인 함수 $g$ 에 대해 성립하나, 여기에서는 증명의 편의를
-  위하여 $g$ 를 <b>일대일 함수</b>라고 가정하자. $\theta$ 를 모수로 하는 표본의 가능도함수를 $L(\theta)$ 라 하고,
-  $\eta$ 를 모수로 하는 표본의 가능도함수를 $L^*(\eta)$ 라고 하자. 그러면</p>
-  $$L^*(g(\theta))=L^*(\eta)=\prod_{i=1}^n f(x_i;g^{-1}(\eta))=L(g^{-1}(\eta))=L(\theta)$$
-  <p>이고 — <b>모수를 바꿔 써도 최대가 되는 점이 서로 대응된다</b> — 따라서</p>
-  $$\max_{\eta\in g(\Omega)}L^*(\eta)=\max_{\eta\in g(\Omega)}L(g^{-1}(\eta))=\max_{\theta\in\Omega}L(\theta)$$
-  <p>이므로</p>
-  $$L^*(\hat\eta)=\max_{\eta\in g(\Omega)}L^*(\eta)=\max_{\theta\in\Omega}L(\theta)=L(\hat\theta_n)=L^*(g(\hat\theta_n))$$
-  <p>이 되어, $\hat\eta=g(\hat\theta_n)$ 이다.</p>
+  <p>불변성 원리는 일반적인 함수 $g$ 에 대해 성립하나, 여기에서는 증명의 편의를 위하여 $g$ 를
+  <b>일대일 함수</b>라고 가정하자. 아이디어는 <b>모수를 $\eta=g(\theta)$ 로 갈아 끼우는 것</b>뿐이다.</p>
+  <ol>
+    <li><span class="step">모수를 치환하기.</span> $\eta=g(\theta)$ 로 두면 $g$ 가 일대일이므로
+      $\theta=g^{-1}(\eta)$ 이고, $\theta$ 가 모수공간 $\Omega$ 를 훑는 것과 $\eta$ 가 $g(\Omega)$ 를 훑는 것이
+      <b>일대일로 대응</b>된다. 가능도함수를 $\eta$ 의 함수로 다시 쓰면
+      $L(\theta)=L\big(g^{-1}(\eta)\big)$ 이다.</li>
+
+    <li><span class="step">최댓값은 같다.</span> 같은 함수의 정의역에 이름만 바꿔 붙인 것이므로
+      최댓값 자체는 변하지 않는다.
+      $$\max_{\theta\in\Omega}L(\theta)=\max_{\eta\in g(\Omega)}L\big(g^{-1}(\eta)\big)$$</li>
+
+    <li><span class="step">최대점이 서로 대응된다.</span> 좌변을 최대로 하는 값이 $\hat\theta_n$ 이고
+      우변을 최대로 하는 값을 $\hat\eta$ 라 하면, 두 최댓값이 같으므로 $\hat\eta$ 가 지시하는 $\theta$ 값이
+      곧 $\hat\theta_n$ 이어야 한다. 즉
+      $$g^{-1}(\hat\eta)=\hat\theta_n\quad\Longrightarrow\quad\hat\eta=g(\hat\theta_n)$$
+      이므로 $g(\hat\theta_n)$ 이 $\eta=g(\theta)$ 의 최대가능도 추정량이다.</li>
+  </ol>
   <div class="qed">∎</div>
+</div>
+<div class="note">
+  <b>왜 당연한가.</b> 가능도함수라는 <b>산</b>은 그대로 두고 가로축에 붙인 <b>눈금의 이름만</b>
+  $\theta$ 에서 $\eta=g(\theta)$ 로 바꿔 쓴 것이다. 산의 모양이 바뀌지 않으니 <b>정상의 높이</b>도 그대로이고,
+  정상의 위치도 그대로인데 그 위치를 읽는 <b>이름만</b> $\hat\theta_n$ 에서 $g(\hat\theta_n)$ 으로 바뀐다.
+  최대가능도추정법이 “가능도를 최대로 하는 점” 하나만 보기 때문에 이런 성질이 따라 나오는 것이며,
+  비편향성처럼 기댓값을 보는 성질은 이렇게 옮겨 가지 않는다($E[g(\hat\theta)]\ne g(E[\hat\theta])$).
 </div>
 <div class="box ex">
   <span class="tag">예 4.13</span><span class="title">표준편차 $\sigma$ 의 MLE</span>
