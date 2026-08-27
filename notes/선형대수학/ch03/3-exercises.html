@@ -217,7 +217,9 @@ $A\ne O$ 이고 $B\ne O$ 임에도 $AB=O$ 인 경우가 있음을 확인하라.
       이고, 실제로 $x_{1}=1,\ x_{2}=1,\ x_{3}=3,\ x_{4}=5,\ x_{5}=11$ 로 계산과 일치한다. 따라서
       $$H^{n}=\begin{pmatrix}(-1)^{n}&\dfrac{2^{n}-(-1)^{n}}{3}\\[6pt]0&2^{n}\end{pmatrix}$$</li>
     <li><span class="step">참고.</span> 주대각원소가 $(-1)^{n}$, $2^{n}$ 인 것은 맞다.
-      <b>상삼각행렬의 거듭제곱에서 주대각은 각 원소의 거듭제곱</b>이 되지만, 그 위쪽 원소는 그렇게 단순하지 않다.</li>
+      <a href="3-4_matrix-product.html">3.4절</a>의 <b>삼각행렬끼리의 곱</b>에서 보았듯
+      상삼각행렬의 거듭제곱은 주대각이 각 원소의 거듭제곱이 되기 때문이다.
+      그러나 <b>주대각 위쪽 원소까지 그렇게 단순하지는 않다</b>.</li>
   </ol>
 </div>
 
@@ -370,6 +372,8 @@ $(1)$ 은 ①(정의 안 됨), $(2)$ 는 ②(크기가 다름), $(3)$ 은 ③(�
   $$AB=\begin{pmatrix}2&-2\\1&4\end{pmatrix}\begin{pmatrix}1&-2\\1&3\end{pmatrix}=\begin{pmatrix}0&-10\\5&10\end{pmatrix}$$
   $$BA=\begin{pmatrix}1&-2\\1&3\end{pmatrix}\begin{pmatrix}2&-2\\1&4\end{pmatrix}=\begin{pmatrix}0&-10\\5&10\end{pmatrix}=AB$$
   <p>교환법칙이 <b>성립하지 않는다</b>는 말은 “항상 성립하지는 않는다”는 뜻이지, 결코 성립하지 않는다는 뜻이 아니다.</p>
+  <p>우연이 아니다 — 여기서는 $A-I=\begin{pmatrix}2-1&-2\\1&4-1\end{pmatrix}=\begin{pmatrix}1&-2\\1&3\end{pmatrix}=B$ 로
+  <b>$B=A-I$</b> 인 짝이다. <a href="3-4_matrix-product.html">3.4절</a>에서 보았듯 이런 짝은 언제나 $AB=BA$ 를 만족한다.</p>
 </div>
 
 <h2 class="sub">08 영행렬이 아닌 두 행렬의 곱이 영행렬</h2>

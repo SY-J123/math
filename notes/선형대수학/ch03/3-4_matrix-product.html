@@ -155,6 +155,24 @@ $$c_{ij}=\sum_{k=1}^{p}a_{ik}b_{kj}=a_{i1}b_{1j}+a_{i2}b_{2j}+\cdots+a_{ip}b_{pj
     BA=\begin{pmatrix}1&-4\\0&-3\end{pmatrix}=AB$$
 </div>
 
+<div class="box thm">
+  <span class="tag">성질</span><span class="title">교환되는 짝을 만드는 법 — $B=A-I$</span>
+  <p>$A$ 가 $n$차 정방행렬일 때 $B=A-I$ 로 두면 $A$ 가 무엇이든 <b>항상 $AB=BA$</b> 이다.</p>
+  $$AB=A(A-I)=A^{2}-AI=A^{2}-A$$
+  $$BA=(A-I)A=A^{2}-IA=A^{2}-A$$
+  <p>두 결과가 같으므로 $AB=BA$ 이다. 분배법칙([정리 3.3])과 $AI=IA=A$ 만 쓰면 끝난다.</p>
+</div>
+
+<div class="note">
+  위의 네 가지 경우 중 ④ 는 “어쩌다 걸리는” 특수한 상황처럼 보이지만, 사실 <b>얼마든지 만들어 낼 수 있다</b>.
+  더 밀어 보면 $A$ 의 <b>다항식</b>은 무엇이든 $A$ 와 교환된다 —
+  $B=c_{0}I+c_{1}A+c_{2}A^{2}+\cdots$ 꼴이면 $AB$ 와 $BA$ 를 전개했을 때 항이 하나하나 같아지기 때문이다.
+  $B=A-I$ 는 그중 가장 간단한 경우($c_{0}=-1$, $c_{1}=1$)다.
+  <a href="3-exercises.html">연습문제</a> 07 $(4)$ 의
+  $A=\begin{pmatrix}2&-2\\1&4\end{pmatrix}$, $B=\begin{pmatrix}1&-2\\1&3\end{pmatrix}$ 도
+  실은 $B=A-I$ 인 짝이라서 $AB=BA$ 가 나온 것이다.
+</div>
+
 <h2 class="sub">수와 달라지는 또 다른 점들 <span class="en">other surprises</span></h2>
 <p>행렬의 곱은 교환법칙이 성립하지 않는 것 외에도 또 다른 특이함이 있다.
 실수의 곱은 $a\ne0$, $b\ne0$ 인 임의의 두 수를 곱하면 $ab\ne0$ 인 성질이 있다.
@@ -296,6 +314,47 @@ $$c_{ij}=\sum_{k=1}^{p}a_{ik}b_{kj}=a_{i1}b_{1j}+a_{i2}b_{2j}+\cdots+a_{ip}b_{pj
   $$(2A)B=\begin{pmatrix}2&4\\6&0\end{pmatrix}\begin{pmatrix}3&2&1\\2&0&1\end{pmatrix}
     =\begin{pmatrix}14&4&6\\18&12&6\end{pmatrix}$$
   <p>이므로 $A(cB)=c(AB)=(cA)B$ 이다.</p>
+</div>
+
+<h2 class="sub">삼각행렬끼리의 곱 <span class="en">product of triangular matrices</span></h2>
+
+<div class="box thm">
+  <span class="tag">성질</span><span class="title">상삼각행렬의 곱은 상삼각행렬</span>
+  <p>$A=(a_{ij})$, $B=(b_{ij})$ 가 모두 $n$차 <b>상삼각행렬</b>이면 곱 $C=AB$ 도 상삼각행렬이고,
+  주대각원소는 <b>각 자리끼리의 곱</b>이 된다.</p>
+  $$c_{11}=a_{11}b_{11},\quad c_{22}=a_{22}b_{22},\quad\dots,\quad c_{nn}=a_{nn}b_{nn}$$
+</div>
+
+<div class="box prf">
+  <span class="tag">증명</span>
+  <p><span class="step">살아남는 항 추리기.</span> $c_{ij}=\sum_{k=1}^{n}a_{ik}b_{kj}$ 에서 각 항 $a_{ik}b_{kj}$ 를 보면</p>
+  <ol class="props">
+    <li>$A$ 가 상삼각이므로 $i\gt k$ 이면 $a_{ik}=0$ — 즉 <b>$i\le k$</b> 라야 살아남는다.</li>
+    <li>$B$ 가 상삼각이므로 $k\gt j$ 이면 $b_{kj}=0$ — 즉 <b>$k\le j$</b> 라야 살아남는다.</li>
+  </ol>
+  <p>따라서 $0$ 이 아닐 수 있는 항은 $i\le k\le j$ 를 만족하는 $k$ 뿐이다.</p>
+  <p><span class="step">주대각 아래는 모두 $0$.</span> $i\gt j$ 이면 $i\le k\le j$ 를 만족하는 $k$ 가 <b>하나도 없으므로</b>
+  모든 항이 $0$ 이고 $c_{ij}=0$ 이다. 즉 $C$ 는 상삼각행렬이다.</p>
+  <p><span class="step">주대각.</span> $i=j$ 이면 조건이 $i\le k\le i$ 가 되어 $k=i$ 하나만 남으므로</p>
+  $$c_{ii}=a_{ii}b_{ii}$$
+  <p>이다.</p>
+  <div class="qed">∎</div>
+</div>
+
+<div class="note">
+  <b>하삼각행렬도 똑같다.</b> 부등호를 뒤집으면 살아남는 조건이 $i\ge k\ge j$ 가 되어,
+  하삼각행렬 둘의 곱은 하삼각행렬이고 주대각원소는 역시 $a_{ii}b_{ii}$ 다.
+  대각행렬은 상삼각이면서 하삼각이므로(<a href="3-1_matrix-types.html">3.1절</a>),
+  <b>대각행렬끼리의 곱은 대각행렬</b>이고 주대각원소끼리 곱하기만 하면 된다.
+</div>
+
+<div class="note">
+  <b>거듭제곱에 바로 쓰인다.</b> $A$ 가 상삼각행렬이면 $A^{n}$ 도 상삼각행렬이고
+  주대각원소는 $a_{11}^{n},a_{22}^{n},\dots,a_{nn}^{n}$ 이다.
+  예를 들어 $H=\begin{pmatrix}-1&1\\0&2\end{pmatrix}$ 의 거듭제곱은 주대각이 $(-1)^{n}$, $2^{n}$ 이 된다
+  (<a href="3-exercises.html">연습문제</a> 01 $(8)$).
+  다만 <b>주대각 위쪽 원소까지 그렇게 단순하지는 않다</b> —
+  거기서는 살아남는 항이 $k=i$ 하나가 아니라 여러 개이기 때문이다.
 </div>
 
 <div class="note">
