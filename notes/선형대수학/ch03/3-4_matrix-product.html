@@ -357,6 +357,59 @@ $$c_{ij}=\sum_{k=1}^{p}a_{ik}b_{kj}=a_{i1}b_{1j}+a_{i2}b_{2j}+\cdots+a_{ip}b_{pj
   거기서는 살아남는 항이 $k=i$ 하나가 아니라 여러 개이기 때문이다.
 </div>
 
+<h2 class="sub">$2$차 정방행렬이 만족하는 이차식 <span class="en">Cayley–Hamilton, 2×2 case</span></h2>
+
+<div class="box thm">
+  <span class="tag">정리</span><span class="title">케일리–해밀턴 정리 — $2$차의 경우</span>
+  <p>임의의 $2$차 정방행렬 $A=\begin{pmatrix}a&b\\c&d\end{pmatrix}$ 에 대하여 다음이 성립한다.</p>
+  $$A^{2}-(a+d)A+(ad-bc)I=O$$
+</div>
+
+<div class="box prf">
+  <span class="tag">증명</span>
+  <p><span class="step">세 항을 각각 계산한다.</span></p>
+  $$A^{2}=\begin{pmatrix}a&b\\c&d\end{pmatrix}\begin{pmatrix}a&b\\c&d\end{pmatrix}
+    =\begin{pmatrix}a^{2}+bc&ab+bd\\ac+cd&bc+d^{2}\end{pmatrix}$$
+  $$(a+d)A=\begin{pmatrix}a^{2}+ad&ab+bd\\ac+cd&ad+d^{2}\end{pmatrix},\qquad
+    (ad-bc)I=\begin{pmatrix}ad-bc&0\\0&ad-bc\end{pmatrix}$$
+  <p><span class="step">자리별로 더한다.</span> 행렬의 합과 차는 같은 자리끼리 계산하므로, 네 자리를 하나씩 확인하면 된다.</p>
+  <ol class="props">
+    <li>$(1,1)$: $\left(a^{2}+bc\right)-\left(a^{2}+ad\right)+\left(ad-bc\right)=0$</li>
+    <li>$(1,2)$: $\left(ab+bd\right)-\left(ab+bd\right)+0=0$</li>
+    <li>$(2,1)$: $\left(ac+cd\right)-\left(ac+cd\right)+0=0$</li>
+    <li>$(2,2)$: $\left(bc+d^{2}\right)-\left(ad+d^{2}\right)+\left(ad-bc\right)=0$</li>
+  </ol>
+  <p>네 원소가 모두 $0$ 이므로 $A^{2}-(a+d)A+(ad-bc)I=O$ 이다.
+  대각선 위의 두 자리는 그냥 상쇄되고, 주대각의 두 자리에서 $bc$ 와 $ad$ 가 서로 지워지는 것이 요점이다.</p>
+  <div class="qed">∎</div>
+</div>
+
+<div class="note">
+  <b>두 계수의 이름.</b> $a+d$ 는 주대각원소의 합으로 <b>대각합</b>(trace),
+  $ad-bc$ 는 <b>행렬식</b>(determinant)이라 부르는 값이다. 즉 이 정리는
+  “$2$차 정방행렬은 <b>자기 자신의 대각합과 행렬식으로 만든 이차식</b>의 근이 된다”는 말이다.
+  일반 $n$차에서도 같은 꼴의 정리가 성립하며, 이를 <b>케일리–해밀턴 정리</b>라고 한다.
+</div>
+
+<div class="box thm">
+  <span class="tag">활용</span><span class="title">차수를 낮춰 거듭제곱 구하기</span>
+  <p>정리를 $A^{2}$ 에 대해 풀면</p>
+  $$A^{2}=(a+d)A-(ad-bc)I$$
+  <p>가 되어, <b>$A^{2}$ 이상의 거듭제곱을 언제나 $A$ 와 $I$ 의 일차결합으로 끌어내릴 수 있다</b>.
+  <a href="3-exercises.html">연습문제</a>의 여러 행렬로 확인해 보자.</p>
+  <div class="scroll"><table class="data">
+    <tr><th>행렬</th><th>$a+d$</th><th>$ad-bc$</th><th>따라서 $A^{2}$ 은</th></tr>
+    <tr><td>$G=\begin{pmatrix}-3&-2\\4&3\end{pmatrix}$</td><td>$0$</td><td>$-1$</td>
+      <td>$G^{2}=0\cdot G+I=I$</td></tr>
+    <tr><td>$H=\begin{pmatrix}-1&1\\0&2\end{pmatrix}$</td><td>$1$</td><td>$-2$</td>
+      <td>$H^{2}=H+2I=\begin{pmatrix}1&1\\0&4\end{pmatrix}$</td></tr>
+    <tr><td>$A=\begin{pmatrix}1&0\\a&1\end{pmatrix}$</td><td>$2$</td><td>$1$</td>
+      <td>$A^{2}=2A-I=\begin{pmatrix}1&0\\2a&1\end{pmatrix}$</td></tr>
+  </table></div>
+  <p>특히 연습문제 01 $(7)$ 에서 $G^{2}=I$ 가 나온 것은 우연이 아니라
+  <b>$G$ 의 대각합이 $0$ 이고 행렬식이 $-1$ 이기 때문</b>이다.</p>
+</div>
+
 <div class="note">
   실수는 임의의 수 $a$ 에 대해 $1a=a1=a$ 를 만족하는 곱셈에 대한 항등원 $1$ 을 가지고 있다.
   행렬에서 그 역할을 맡는 것이 <a href="3-1_matrix-types.html">3.1절</a>에서 정의한 <b>단위행렬</b> $I$ 로,
