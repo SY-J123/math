@@ -146,6 +146,23 @@
   </ol>
 </div>
 
+<div class="terms">
+  <div class="h">알아두기 — 원소 공식으로 정의되는 이름 붙은 행렬</div>
+  <p style="margin:6px 0 0;font-size:0.88rem;">위의 대각·삼각·스칼라·단위행렬이 <b>$0$ 이 놓인 자리의 모양</b>으로 이름이 붙었다면,
+  다음 둘은 <b>$(i,j)$ 원소를 주는 공식</b>으로 정의되는 행렬이다. 둘 다 $a_{ij}=a_{ji}$ 이므로 대칭행렬이기도 하다.</p>
+  <dl>
+    <dt>부호행렬 <span class="en">sign matrix</span></dt>
+    <dd>$a_{ij}=(-1)^{i+j}$ 인 $n$차 정방행렬. $a_{11}=(-1)^{2}=1$ 에서 시작해 이웃한 자리끼리 부호가 번갈아 나타나는
+      <b>체스판 무늬</b>가 된다. 주대각은 $i+j=2i$ 로 늘 짝수이므로 전부 $1$ 이다.
+      $$\begin{pmatrix}1&-1&1\\-1&1&-1\\1&-1&1\end{pmatrix}$$</dd>
+    <dt>힐버트 행렬 <span class="en">Hilbert matrix</span></dt>
+    <dd>$a_{ij}=\dfrac{1}{i+j-1}$ 인 $n$차 정방행렬. 첫 행이 $1,\tfrac12,\tfrac13,\dots$ 이고
+      오른쪽·아래로 한 칸 갈 때마다 분모가 $1$ 씩 커지므로, <b>반대각선 위에서는 값이 일정</b>하다.
+      $$\begin{pmatrix}1&\tfrac12&\tfrac13\\[3pt] \tfrac12&\tfrac13&\tfrac14\\[3pt] \tfrac13&\tfrac14&\tfrac15\end{pmatrix}$$
+      수치해석에서 <b>계산 오차에 극도로 민감한 행렬</b>의 대표적인 예로 자주 등장한다.</dd>
+  </dl>
+</div>
+
 <h2 class="sub">두 행렬이 같다는 것 <span class="en">equality of matrices</span></h2>
 <div class="box def">
   <span class="tag">정의 3.3</span><span class="title">행렬의 상등 <span class="en">equal matrices</span></span>
