@@ -21,7 +21,7 @@
   <h1><span class="no">6.2</span>고른 수렴 <span class="en">uniform convergence of a sequence of functions</span></h1>
 </header>
 
-<p>수리통계학에서 <b>글리벤코–칸텔리 정리</b>와 <b>콜모고로프–스미르노프 검정</b>이 서 있는 자리다.
+<p>수리통계학에서 <b>글리벤코–칸텔리 정리</b><span class="en">Glivenko–Cantelli theorem</span>와 <b>콜모고로프–스미르노프 검정</b><span class="en">Kolmogorov–Smirnov test</span>이 서 있는 자리다.
 $\sup_x|F_n(x)-F(x)|\to0$ 이라는 진술이 곧 “$F_n$ 이 $F$ 로 <b>고르게</b> 수렴한다” 이며,
 $8.1$ 절의 신뢰띠가 <b>모든 $x$ 에서 동시에</b> 성립한다는 말의 뜻도 이것이다.
 정의를 백지에서 쓰고, <b>점별 수렴과 다른 반례를 하나는 손에 쥐고 있어야</b> 한다.</p>
@@ -30,7 +30,7 @@ $8.1$ 절의 신뢰띠가 <b>모든 $x$ 에서 동시에</b> 성립한다는 말
 
 <div class="box def">
   <span class="tag">정의 6.2.1</span><span class="title">점별 수렴 <span class="en">pointwise convergence</span></span>
-  <p>$f_n\to f$ 가 $A$ 에서 <b>점별</b>로 성립한다는 것은, 각 $x\in A$ 를 <b>고정할 때마다</b>
+  <p>$f_n\to f$ 가 $A$ 에서 <b>점별</b><span class="en">pointwise</span>로 성립한다는 것은, 각 $x\in A$ 를 <b>고정할 때마다</b>
   수열 $\left(f_n(x)\right)$ 이 $f(x)$ 로 수렴한다는 뜻이다.</p>
   $$\forall x\in A,\ \forall\varepsilon\gt0,\ \exists N=N(\varepsilon,\boxed{x}),\ \forall n\ge N:\ |f_n(x)-f(x)|\lt\varepsilon$$
 </div>
@@ -98,7 +98,7 @@ $8.1$ 절의 신뢰띠가 <b>모든 $x$ 에서 동시에</b> 성립한다는 말
 <h2 class="sub">고른 수렴이 지켜 주는 것</h2>
 
 <div class="box thm">
-  <span class="tag">정리 6.2.5</span><span class="title">고른 수렴은 연속성을 보존한다</span>
+  <span class="tag">정리 6.2.5</span><span class="title">고른 수렴은 연속성을 보존한다 <span class="en">uniform convergence preserves continuity</span></span>
   <p>각 $f_n$ 이 $A$ 에서 연속이고 $f_n\to f$ 가 <b>고르게</b> 성립하면 $f$ 도 $A$ 에서 연속이다.</p>
 </div>
 
@@ -106,7 +106,7 @@ $8.1$ 절의 신뢰띠가 <b>모든 $x$ 에서 동시에</b> 성립한다는 말
   <span class="tag">증명</span><span class="title">$\varepsilon/3$ 논법</span>
   <p>$c\in A$ 와 $\varepsilon\gt0$ 이 주어졌다고 하자.</p>
   <ol class="props">
-    <li><b>고른 수렴</b>으로, 모든 $x\in A$ 에서 $|f_N(x)-f(x)|\lt\dfrac{\varepsilon}{3}$ 인 $N$ 을 <b>하나</b> 고른다.</li>
+    <li><b>고른 수렴</b><span class="en">uniform convergence</span>으로, 모든 $x\in A$ 에서 $|f_N(x)-f(x)|\lt\dfrac{\varepsilon}{3}$ 인 $N$ 을 <b>하나</b> 고른다.</li>
     <li><b>$f_N$ 의 연속성</b>으로, $|x-c|\lt\delta$ 이면 $|f_N(x)-f_N(c)|\lt\dfrac{\varepsilon}{3}$ 인 $\delta$ 를 얻는다.</li>
   </ol>
   <p>그러면 $|x-c|\lt\delta$ 일 때</p>
@@ -123,7 +123,7 @@ $8.1$ 절의 신뢰띠가 <b>모든 $x$ 에서 동시에</b> 성립한다는 말
 </div>
 
 <div class="box thm">
-  <span class="tag">정리 6.2.6</span><span class="title">고른 코시 판정법</span>
+  <span class="tag">정리 6.2.6</span><span class="title">고른 코시 판정법 <span class="en">Cauchy criterion for uniform convergence</span></span>
   <p>$f_n\to f$ 가 $A$ 에서 고르게 수렴할 필요충분조건은 다음이다.</p>
   $$\forall\varepsilon\gt0,\ \exists N,\ \forall m,n\ge N,\ \forall x\in A:\ |f_n(x)-f_m(x)|\lt\varepsilon$$
   <p><a href="2-6_cauchy.html">2.6절 코시 판정법</a>의 함수열판이며, <b>극한함수를 모른 채</b> 고른 수렴을 판정할 수 있게 해 준다.</p>
@@ -134,7 +134,7 @@ $8.1$ 절의 신뢰띠가 <b>모든 $x$ 에서 동시에</b> 성립한다는 말
 <div class="box thm">
   <span class="tag">연결</span><span class="title">$\sup_x|F_n(x)-F(x)|\to0$ 의 뜻</span>
   <p><a href="../수리통계학/ch08/8-1_nonparametric-estimation.html">수리통계 8.1</a>의
-  <b>경험적 분포함수</b>는 다음이었다.</p>
+  <b>경험적 분포함수</b><span class="en">empirical distribution function</span>는 다음이었다.</p>
   $$F_n(x)=\frac1n\sum_{i=1}^{n}\mathbf{1}\{X_i\le x\}$$
   <p>각 $x$ 를 고정하면 $\mathbf{1}\{X_i\le x\}$ 는 성공확률 $F(x)$ 인 베르누이 확률변수이므로,
   대수의 법칙에 의해 $F_n(x)\xrightarrow{\text{a.s.}}F(x)$ 다. 이것은 <b>점별</b> 수렴이다.</p>
@@ -154,7 +154,7 @@ $8.1$ 절의 신뢰띠가 <b>모든 $x$ 에서 동시에</b> 성립한다는 말
       <b>모든 $x$ 에서 한꺼번에</b> 성립하는 띠는 만들 수 없다.
       $\sup$ 의 분포를 알아야 비로소
       $$P\!\left(\forall x:\ F_n(x)-c\le F(x)\le F_n(x)+c\right)=1-\alpha$$
-      꼴의 <b>동시 신뢰띠</b>를 얻는다. “고르게” 가 곧 “동시에” 다.</li>
+      꼴의 <b>동시 신뢰띠</b><span class="en">simultaneous confidence band</span>를 얻는다. “고르게” 가 곧 “동시에” 다.</li>
   </ol>
 </div>
 

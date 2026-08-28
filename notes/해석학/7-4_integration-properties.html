@@ -29,13 +29,13 @@ mgf 를 미분해 적률을 뽑는 조작과 크래머–라오의 정규조건�
 <h2 class="sub">기본 성질</h2>
 
 <div class="box thm">
-  <span class="tag">정리 7.4.1</span><span class="title">적분의 기본 성질</span>
+  <span class="tag">정리 7.4.1</span><span class="title">적분의 기본 성질 <span class="en">basic properties of the integral</span></span>
   <p>$f,g$ 가 $[a,b]$ 에서 적분가능하면 다음이 성립한다.</p>
   <ol class="props">
-    <li><b>선형성</b>: $\displaystyle\int_a^b(\alpha f+\beta g)=\alpha\int_a^b f+\beta\int_a^b g$</li>
-    <li><b>가법성</b>: $a\lt c\lt b$ 에 대해 $\displaystyle\int_a^b f=\int_a^c f+\int_c^b f$</li>
-    <li><b>단조성</b>: $f\le g$ 이면 $\displaystyle\int_a^b f\le\int_a^b g$</li>
-    <li><b>삼각부등식</b>: $\left|\displaystyle\int_a^b f\right|\le\int_a^b|f|$</li>
+    <li><b>선형성</b><span class="en">linearity</span>: $\displaystyle\int_a^b(\alpha f+\beta g)=\alpha\int_a^b f+\beta\int_a^b g$</li>
+    <li><b>가법성</b><span class="en">additivity</span>: $a\lt c\lt b$ 에 대해 $\displaystyle\int_a^b f=\int_a^c f+\int_c^b f$</li>
+    <li><b>단조성</b><span class="en">monotonicity</span>: $f\le g$ 이면 $\displaystyle\int_a^b f\le\int_a^b g$</li>
+    <li><b>삼각부등식</b><span class="en">triangle inequality</span>: $\left|\displaystyle\int_a^b f\right|\le\int_a^b|f|$</li>
   </ol>
 </div>
 
@@ -59,7 +59,7 @@ mgf 를 미분해 적률을 뽑는 조작과 크래머–라오의 정규조건�
     n^{2}x, & 0\le x\le\dfrac1n\\[4pt]
     n^{2}\!\left(\dfrac2n-x\right), & \dfrac1n\lt x\le\dfrac2n\\[4pt]
     0,&\text{그 외}\end{cases}$$
-  <p>각 $x\gt0$ 에 대해 $n$ 이 커지면 봉우리가 왼쪽으로 빠져나가므로 $f_n(x)\to0$, 즉 $f_n\to0$ 이 <b>점별</b>로 성립한다.
+  <p>각 $x\gt0$ 에 대해 $n$ 이 커지면 봉우리가 왼쪽으로 빠져나가므로 $f_n(x)\to0$, 즉 $f_n\to0$ 이 <b>점별</b><span class="en">pointwise</span>로 성립한다.
   그런데 봉우리의 넓이는 밑변 $\dfrac2n$, 높이 $n$ 인 삼각형이므로</p>
   $$\int_0^1 f_n=\frac12\cdot\frac2n\cdot n=1\qquad\text{(모든 } n \text{ 에 대해)}$$
   <p>따라서 $\displaystyle\lim_n\int_0^1 f_n=1$ 이지만 $\displaystyle\int_0^1\lim_n f_n=\int_0^1 0=0$ 이다.
@@ -93,7 +93,7 @@ mgf 를 미분해 적률을 뽑는 조작과 크래머–라오의 정규조건�
 </div>
 
 <div class="box thm">
-  <span class="tag">따름정리 7.4.4</span><span class="title">항별 적분</span>
+  <span class="tag">따름정리 7.4.4</span><span class="title">항별 적분 <span class="en">termwise integration</span></span>
   <p>$\sum g_k$ 가 $[a,b]$ 에서 고르게 수렴하면</p>
   $$\int_a^b\sum_{k=1}^{\infty}g_k=\sum_{k=1}^{\infty}\int_a^b g_k$$
   <p>부분합에 정리 7.4.3을 적용한 것이다. <a href="6-5_power-series.html">멱급수</a>를 항별로 적분해도 되는 근거다.</p>
@@ -137,7 +137,7 @@ mgf 를 미분해 적률을 뽑는 조작과 크래머–라오의 정규조건�
 </div>
 
 <div class="note">
-  더 강력한 도구가 필요하면 측도론의 <b>지배수렴정리</b>가 답이지만
+  더 강력한 도구가 필요하면 측도론의 <b>지배수렴정리</b><span class="en">dominated convergence theorem</span>가 답이지만
   ($|f_n|\le g$ 이고 $\int g\lt\infty$ 이면 교환 가능),
   학부 수리통계학에서는 이름만 알아 두면 충분하다.
   고른 수렴은 그보다 강한 조건이어서 확인하기 쉬운 대신 적용 범위가 좁다.

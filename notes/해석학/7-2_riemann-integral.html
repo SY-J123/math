@@ -29,12 +29,12 @@
 
 <div class="box def">
   <span class="tag">정의 7.2.1</span><span class="title">분할 <span class="en">partition</span></span>
-  <p>$[a,b]$ 의 <b>분할</b>이란 유한개의 점</p>
+  <p>$[a,b]$ 의 <b>분할</b><span class="en">partition</span>이란 유한개의 점</p>
   $$P=\{a=x_0\lt x_1\lt\cdots\lt x_n=b\}$$
   <p>이다. 각 소구간 $[x_{k-1},x_k]$ 에서 $f$ 의 상·하한을</p>
   $$M_k=\sup_{x\in[x_{k-1},x_k]}f(x),\qquad m_k=\inf_{x\in[x_{k-1},x_k]}f(x)$$
   <p>라 두면(유계인 $f$ 에 대해 <a href="1-3_completeness.html">완비성 공리</a>가 존재를 보장한다),
-  <b>상합</b>과 <b>하합</b>은 다음과 같다.</p>
+  <b>상합</b><span class="en">upper sum</span>과 <b>하합</b><span class="en">lower sum</span>은 다음과 같다.</p>
   $$U(f,P)=\sum_{k=1}^{n}M_k\,\Delta x_k,\qquad L(f,P)=\sum_{k=1}^{n}m_k\,\Delta x_k
     \qquad(\Delta x_k=x_k-x_{k-1})$$
 </div>
@@ -70,7 +70,7 @@
   <span class="tag">정의 7.2.2</span><span class="title">리만 적분가능 <span class="en">Riemann integrable</span></span>
   <p>유계함수 $f:[a,b]\to\mathbb{R}$ 에 대해</p>
   $$\overline{\int_a^b}f=\inf_{P}U(f,P),\qquad \underline{\int_a^b}f=\sup_{P}L(f,P)$$
-  <p>를 각각 <b>상적분</b>·<b>하적분</b>이라 한다. 이 둘이 같으면 $f$ 는 <b>리만 적분가능</b>하다고 하고,
+  <p>를 각각 <b>상적분</b><span class="en">upper integral</span>·<b>하적분</b><span class="en">lower integral</span>이라 한다. 이 둘이 같으면 $f$ 는 <b>리만 적분가능</b><span class="en">Riemann integrable</span>하다고 하고,
   그 공통값을 $\displaystyle\int_a^b f$ 로 쓴다.</p>
 </div>
 
@@ -83,13 +83,13 @@
 <h2 class="sub">어떤 함수가 적분가능한가</h2>
 
 <div class="box thm">
-  <span class="tag">정리 7.2.4</span><span class="title">연속이면 적분가능</span>
+  <span class="tag">정리 7.2.4</span><span class="title">연속이면 적분가능 <span class="en">continuity implies integrability</span></span>
   <p>$f$ 가 <b>닫힌구간 $[a,b]$ 에서 연속</b>이면 리만 적분가능하다.</p>
 </div>
 
 <div class="box prf">
   <span class="tag">증명의 급소</span>
-  <p>$[a,b]$ 는 콤팩트이므로 <a href="4-4_compact-continuity.html">정리 4.4.6</a>에 의해 $f$ 는 <b>균등연속</b>이다.
+  <p>$[a,b]$ 는 콤팩트이므로 <a href="4-4_compact-continuity.html">정리 4.4.6</a>에 의해 $f$ 는 <b>균등연속</b><span class="en">uniformly continuous</span>이다.
   따라서 $\varepsilon\gt0$ 에 대해</p>
   $$|x-y|\lt\delta\ \Longrightarrow\ |f(x)-f(y)|\lt\frac{\varepsilon}{b-a}$$
   <p>인 $\delta$ 를 <b>구간 전체에 통하도록 하나</b> 잡을 수 있다.
@@ -106,7 +106,7 @@
 </div>
 
 <div class="box thm">
-  <span class="tag">정리 7.2.5</span><span class="title">단조이면 적분가능</span>
+  <span class="tag">정리 7.2.5</span><span class="title">단조이면 적분가능 <span class="en">monotonicity implies integrability</span></span>
   <p>$f$ 가 $[a,b]$ 에서 단조이면(연속이 아니어도) 리만 적분가능하다.</p>
   <p><b>통계적으로 중요하다</b> — cdf 는 언제나 단조이므로, 불연속점이 있어도 적분할 수 있다.</p>
 </div>
@@ -118,7 +118,7 @@
   <p>연속형 확률변수의 기댓값
   (<a href="../수리통계학/ch02/2-4_expectation.html">수리통계 2.4</a>)</p>
   $$E(X)=\int_{-\infty}^{\infty}x\,f(x)\,dx$$
-  <p>은 이 절의 적분을 <b>이상적분</b>으로 확장한 것이다. 따라서 두 가지를 확인해야 한다.</p>
+  <p>은 이 절의 적분을 <b>이상적분</b><span class="en">improper integral</span>으로 확장한 것이다. 따라서 두 가지를 확인해야 한다.</p>
   <ol class="props">
     <li><b>유한구간에서 적분가능한가</b> — $xf(x)$ 가 연속이거나 단조이면 정리 7.2.4·7.2.5로 해결된다.</li>
     <li><b>무한구간으로 넓힐 때 수렴하는가</b> — $\int|x|f(x)\,dx\lt\infty$ 여야 한다.

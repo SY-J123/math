@@ -22,16 +22,16 @@
 </header>
 
 <p><a href="2-2_sequence-limit.html">2.2절</a>에서 “수렴 $\Rightarrow$ 유계” 는 보았지만 역은 거짓이었다.
-여기에 <b>단조성</b>을 더하면 역이 살아난다. 이 정리의 값어치는 <b>극한값을 몰라도 수렴을 말할 수 있다</b>는 데 있다.</p>
+여기에 <b>단조성</b><span class="en">monotonicity</span>을 더하면 역이 살아난다. 이 정리의 값어치는 <b>극한값을 몰라도 수렴을 말할 수 있다</b>는 데 있다.</p>
 
 <h2 class="sub">정의와 정리</h2>
 
 <div class="box def">
   <span class="tag">정의 2.4.1</span><span class="title">단조수열 <span class="en">monotone sequence</span></span>
   <ol class="props">
-    <li>모든 $n$ 에서 $a_n\le a_{n+1}$ 이면 $(a_n)$ 은 <b>증가</b>수열이다.</li>
-    <li>모든 $n$ 에서 $a_n\ge a_{n+1}$ 이면 <b>감소</b>수열이다.</li>
-    <li>둘 중 하나이면 <b>단조</b>수열이라 한다.</li>
+    <li>모든 $n$ 에서 $a_n\le a_{n+1}$ 이면 $(a_n)$ 은 <b>증가</b><span class="en">increasing</span>수열이다.</li>
+    <li>모든 $n$ 에서 $a_n\ge a_{n+1}$ 이면 <b>감소</b><span class="en">decreasing</span>수열이다.</li>
+    <li>둘 중 하나이면 <b>단조</b><span class="en">monotone</span>수열이라 한다.</li>
   </ol>
 </div>
 
@@ -100,7 +100,7 @@
 
 <div class="box thm">
   <span class="tag">따름정리 2.4.4</span><span class="title">무한급수에의 적용</span>
-  <p>모든 항이 $b_k\ge0$ 인 급수 $\sum_{k=1}^{\infty}b_k$ 의 부분합 $s_n=\sum_{k=1}^{n}b_k$ 는 <b>증가수열</b>이다.
+  <p>모든 항이 $b_k\ge0$ 인 급수 $\sum_{k=1}^{\infty}b_k$ 의 부분합 $s_n=\sum_{k=1}^{n}b_k$ 는 <b>증가수열</b><span class="en">increasing sequence</span>이다.
   따라서 이 급수는 <b>부분합이 위로 유계일 때, 그리고 그때만 수렴</b>한다.</p>
 </div>
 
@@ -113,7 +113,7 @@
     <li><b>분포함수.</b> cdf $F$ 는 단조증가이고 $0\le F\le1$ 로 유계이므로
       $F(x^-)$, $F(x^+)$ 같은 <b>한쪽 극한이 항상 존재</b>한다
       (<a href="4-2_functional-limits.html">4.2절</a>). 분포수렴을 다룰 때 쓰는 사실이다.</li>
-    <li><b>이름이 같은 다른 정리.</b> 측도론의 <b>단조수렴정리</b>
+    <li><b>이름이 같은 다른 정리.</b> 측도론의 <b>단조수렴정리</b><span class="en">monotone convergence theorem</span>
       ($0\le f_n\uparrow f$ 이면 $\int f_n\to\int f$)는 <b>적분과 극한의 교환</b>에 관한 것으로 이 정리와 다르다.
       학부 수리통계에서 그 이름을 만나면 <a href="7-4_integration-properties.html">7.4절</a> 쪽 이야기다.</li>
   </ol>

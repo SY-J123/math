@@ -23,14 +23,14 @@
 
 <p>연속함수는 <b>정의역이 닫히고 유계일 때</b> 갑자기 좋은 성질을 얻는다.
 이 절에서 얻는 두 결과가 통계에서 값을 한다 —
-<b>최대최소 정리</b>는 MLE 가 <b>존재한다</b>는 보장이고,
-<b>균등연속</b>은 <a href="7-2_riemann-integral.html">리만적분 가능성</a>으로 이어진다.</p>
+<b>최대최소 정리</b><span class="en">extreme value theorem</span>는 MLE 가 <b>존재한다</b>는 보장이고,
+<b>균등연속</b><span class="en">uniformly continuous</span>은 <a href="7-2_riemann-integral.html">리만적분 가능성</a>으로 이어진다.</p>
 
 <h2 class="sub">콤팩트 집합</h2>
 
 <div class="box def">
   <span class="tag">정의 4.4.1</span><span class="title">콤팩트 <span class="en">compact</span></span>
-  <p>$K\subseteq\mathbb{R}$ 가 <b>콤팩트</b>라는 것은,
+  <p>$K\subseteq\mathbb{R}$ 가 <b>콤팩트</b><span class="en">compact</span>라는 것은,
   $K$ 안의 모든 수열이 <b>$K$ 안의 점으로 수렴하는 부분수열</b>을 가진다는 뜻이다.</p>
 </div>
 
@@ -54,7 +54,7 @@
 <div class="note">
   두 조건이 각각 무엇을 막는지 보면 외우기 쉽다.
   <ul>
-    <li><b>유계</b>가 없으면 — $K=[0,\infty)$, $a_n=n$. 부분수열이 아예 수렴하지 않는다.</li>
+    <li><b>유계</b><span class="en">bounded</span>가 없으면 — $K=[0,\infty)$, $a_n=n$. 부분수열이 아예 수렴하지 않는다.</li>
     <li><b>닫힘</b>이 없으면 — $K=(0,1]$, $a_n=\dfrac1n$. 수렴은 하지만 극한 $0$ 이 $K$ 밖으로 새어 나간다.</li>
   </ul>
 </div>
@@ -79,7 +79,7 @@
   각 $n$ 에 대해 $f(a_n)\gt s-\dfrac1n$ 인 $a_n\in K$ 을 고를 수 있다.
   콤팩트성으로 $a_{n_k}\to x_0\in K$ 를 뽑으면 연속성에 의해</p>
   $$f(x_0)=\lim_k f(a_{n_k})=s$$
-  <p>따라서 $s$ 는 상한일 뿐 아니라 <b>최댓값</b>이며 $x_0$ 에서 취해진다.</p>
+  <p>따라서 $s$ 는 상한일 뿐 아니라 <b>최댓값</b><span class="en">maximum</span>이며 $x_0$ 에서 취해진다.</p>
   <div class="qed">∎</div>
 </div>
 
@@ -96,7 +96,7 @@
   <p><a href="../수리통계학/ch04/4-2_maximum-likelihood.html">수리통계 4.2</a>에서 MLE 는
   가능도함수 $L(\theta)$ 를 <b>최대로 만드는</b> $\hat\theta$ 로 정의된다.
   그런데 “최대로 만드는 값이 있는가” 는 그냥 되는 일이 아니다.</p>
-  <p>모수공간 $\Theta$ 가 <b>닫히고 유계</b>이고 $L(\theta)$ 가 $\theta$ 에 대해 <b>연속</b>이면,
+  <p>모수공간 $\Theta$ 가 <b>닫히고 유계</b>이고 $L(\theta)$ 가 $\theta$ 에 대해 <b>연속</b><span class="en">continuous</span>이면,
   정리 4.4.3이 최댓값의 존재를 보장한다. 이것이 MLE 존재성의 표준 논거다.</p>
   <p>가정이 깨지면 실제로 MLE 가 없을 수 있다. 예컨대 $\Theta=(0,\infty)$ 처럼 열린 구간에서는
   가능도가 경계로 밀려가 <b>상한은 있으나 최대가 없는</b> 상황이 생긴다 —
@@ -130,7 +130,7 @@
 </div>
 
 <div class="box thm">
-  <span class="tag">정리 4.4.6</span><span class="title">콤팩트 위의 연속은 균등연속</span>
+  <span class="tag">정리 4.4.6</span><span class="title">콤팩트 위의 연속은 균등연속 <span class="en">continuity on a compact set is uniform</span></span>
   <p>$f$ 가 콤팩트집합 $K$ 에서 연속이면 $K$ 에서 <b>균등연속</b>이다.</p>
 </div>
 

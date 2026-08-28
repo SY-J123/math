@@ -107,34 +107,22 @@
   </details>
 </div>
 
-<h2 class="sub">$\sqrt2$ 의 존재</h2>
+<h2 class="sub">수리통계학과의 연결</h2>
+
 <div class="box thm">
-  <span class="tag">정리 1.4.5</span>
-  <p>$\alpha^2=2$ 인 실수 $\alpha$ 가 존재한다.</p>
-</div>
-<div class="box prf">
-  <span class="tag">증명 (개요)</span>
-  <p>$T=\{t\in\mathbb{R}:t^2\lt 2\}$ 로 두고 완비성으로 $\alpha=\sup T$ 를 잡는다. $\alpha^2\lt 2$ 와 $\alpha^2>2$ 를 모두 모순으로 몰아 $\alpha^2=2$ 를 얻는다.</p>
-
-  <p><span class="step">경우 1. $\alpha^2\lt 2$ 라 가정.</span> 그러면 $\alpha$ 보다 조금 큰 $\alpha+\tfrac1n$ 도 여전히 $T$ 에 들어감을 보여 “$\alpha$ 가 상계”라는 사실과 충돌시킨다.</p>
-  <ol>
-    <li><span class="step">전개 + 거친 묶음.</span> $\big(\alpha+\tfrac1n\big)^2=\alpha^2+\tfrac{2\alpha}{n}+\tfrac1{n^2}$ 인데, $n\ge1$ 이라 $\tfrac1{n^2}\le\tfrac1n$. 뒤 두 항을 $\tfrac1n$ 으로 묶어 위로 늘리면
-    $$\Big(\alpha+\tfrac1n\Big)^2\le\alpha^2+\frac{2\alpha+1}{n}.$$
-    오른쪽 끝의 $\tfrac{2\alpha+1}{n}$ 이 우리가 작게 눌러야 할 “찌꺼기”다.</li>
-
-    <li><span class="step">찌꺼기를 $2-\alpha^2$ 밑으로.</span> 가정에서 $2-\alpha^2>0$ 이므로 $\dfrac{2-\alpha^2}{2\alpha+1}>0$. 아르키메데스 성질(정리 1.4.2(2))로 이 양수보다 작은 $\tfrac1{n_0}$ 을 잡을 수 있다:
-    $$\frac1{n_0}\lt\frac{2-\alpha^2}{2\alpha+1}\quad\Longleftrightarrow\quad \frac{2\alpha+1}{n_0}\lt 2-\alpha^2.$$</li>
-
-    <li><span class="step">두 식을 잇기.</span> 1단계 부등식의 $n$ 자리에 $n_0$ 을 넣고 2단계를 끼우면
-    $$\Big(\alpha+\tfrac1{n_0}\Big)^2\le\alpha^2+\frac{2\alpha+1}{n_0}\lt \alpha^2+(2-\alpha^2)=2.$$
-    즉 $\big(\alpha+\tfrac1{n_0}\big)^2\lt2$ 라 $\alpha+\tfrac1{n_0}\in T$. 그런데 이는 $\alpha$ 보다 큰 $T$ 의 원소 — $\alpha=\sup T$ 가 상계라는 데 모순.</li>
-  </ol>
-
-  <p><span class="step">경우 2. $\alpha^2>2$.</span> 이번엔 $\alpha-\tfrac1n$ 으로 같은 계산을 대칭적으로 해, $\alpha$ 보다 작은 상계를 만들어 “$\alpha$ 가 <b>최소</b> 상계”라는 데 모순시킨다(연습 1.4.7). 두 경우가 모두 막히므로 $\alpha^2=2$.</p>
-  <div class="qed">∎</div>
-</div>
-<div class="note">
-  이로써 1.1절의 $\sqrt2$ 가 실수로서 <b>존재함</b>이 완비성 공리로부터 증명됐다. 같은 방식으로 모든 $x>0$ 의 $\sqrt[m]{x}$ 존재도 보일 수 있다.
+  <span class="tag">연결</span><span class="title">세 결과가 각각 어디서 쓰이는가</span>
+  <ul>
+    <li><b>아르키메데스 성질</b><span class="en">Archimedean property</span> — “임의의 $\varepsilon\gt0$ 에 대해 $\tfrac1n\lt\varepsilon$ 인 $n$ 이 있다”.
+      이후 모든 $\varepsilon$ 논법에서 $N$ 을 실제로 <b>집어낼 수 있게</b> 해 주는 근거다.
+      <a href="2-2_sequence-limit.html">2.2절</a>의 모든 예제가 이 성질을 쓴다.</li>
+    <li><b>$\mathbb{Q}$ 의 조밀성</b> — 임의의 두 실수 사이에 유리수가 있다.
+      연속형 확률변수에서 $P(X=x)=0$ 인데도 구간확률은 양수일 수 있다는 감각의 바탕이며,
+      cdf 의 값을 유리수 점들에서만 알아도 전체가 결정된다는 사실의 근거이기도 하다.</li>
+    <li><b>축소구간성질</b><span class="en">nested interval property</span> — 이 노트에서는
+      <a href="2-5_bolzano-weierstrass.html">볼차노–바이어슈트라스</a>의 이분법 증명에 쓰인다.
+      그 정리가 다시 <a href="4-4_compact-continuity.html">최대최소 정리</a>로,
+      최대최소 정리가 <b>MLE 의 존재성</b>으로 이어진다.</li>
+  </ul>
 </div>
 
 <nav class="pager">

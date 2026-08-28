@@ -23,13 +23,13 @@
 </header>
 
 <p>“유계이면 수렴” 을 살리는 두 번째 방법이다. <a href="2-4_monotone.html">2.4절</a>은 단조성을 <b>더했고</b>,
-여기서는 결론을 <b>부분수열</b>로 약화한다. 유계이기만 하면 언제나 수렴하는 부분수열이 있다.</p>
+여기서는 결론을 <b>부분수열</b><span class="en">subsequence</span>로 약화한다. 유계이기만 하면 언제나 수렴하는 부분수열이 있다.</p>
 
 <h2 class="sub">부분수열</h2>
 
 <div class="box def">
   <span class="tag">정의 2.5.1</span><span class="title">부분수열 <span class="en">subsequence</span></span>
-  <p>수열 $(a_n)$ 과 <b>순증가</b>하는 자연수열 $n_1\lt n_2\lt n_3\lt\cdots$ 이 주어졌을 때,</p>
+  <p>수열 $(a_n)$ 과 <b>순증가</b><span class="en">strictly increasing</span>하는 자연수열 $n_1\lt n_2\lt n_3\lt\cdots$ 이 주어졌을 때,</p>
   $$(a_{n_k})_{k=1}^{\infty}=a_{n_1},\,a_{n_2},\,a_{n_3},\dots$$
   <p>를 $(a_n)$ 의 <b>부분수열</b>이라 한다. 항의 <b>순서를 바꾸지 않고</b> 골라 뽑는 것이 핵심이다.</p>
 </div>
@@ -40,7 +40,7 @@
 </div>
 
 <div class="box thm">
-  <span class="tag">정리 2.5.2</span><span class="title">수렴하는 수열의 부분수열</span>
+  <span class="tag">정리 2.5.2</span><span class="title">수렴하는 수열의 부분수열 <span class="en">subsequences of a convergent sequence</span></span>
   <p>$a_n\to a$ 이면 <b>모든</b> 부분수열도 같은 $a$ 로 수렴한다.</p>
 </div>
 
@@ -108,7 +108,7 @@
 </figure>
 
 <div class="note">
-  이 증명이 쓰는 것은 결국 <b>완비성</b>이다(중첩구간 정리 형태로).
+  이 증명이 쓰는 것은 결국 <b>완비성</b><span class="en">completeness</span>이다(중첩구간 정리 형태로).
   유리수 안에서는 정리가 거짓이다 — $\sqrt2$ 로 수렴하는 유리수열은 유계지만
   유리수 안에서 수렴하는 부분수열을 갖지 못한다.
 </div>

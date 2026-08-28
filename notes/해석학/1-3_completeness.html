@@ -21,147 +21,19 @@
   <h1><span class="no">1.3</span>완비성 공리 <span class="en">the axiom of completeness</span></h1>
 </header>
 
-<p>$\mathbb{R}$ 은 $\mathbb{Q}$ 를 포함하는 <b>순서체</b><span class="en">ordered field</span>다 — 사칙연산과 대소 비교가 우리가 아는 대로 성립한다.
-그러나 $\mathbb{Q}$ 도 순서체다. $\mathbb{R}$ 을 $\mathbb{Q}$ 와 결정적으로 구별하는, 단 하나의 추가 가정이 <b>완비성 공리</b>다.</p>
-
-<h2 class="sub">순서체의 공리</h2>
-<p>완비성으로 들어가기 전에, $\mathbb{R}$ 이 <b>이미 갖추었다고 전제하는</b> 성질을 정리해 둔다.
-앞으로 하게 될 모든 부등식 조작 — 양변에 더하기, 음수를 곱해 부등호 뒤집기, 역수 취하기 — 은 전부 여기서 나온다.</p>
-
-<div class="box def">
-  <span class="tag">정의 1.3.0</span><span class="title">체 <span class="en">field</span></span>
-  <p>집합 $F$ 위에 두 연산 $+,\ \cdot$ 이 있고 다음을 모두 만족하면 $F$ 를 <b>체</b>라 한다. ($a,b,c\in F$ 는 임의)</p>
-  <ol class="props">
-    <li>(A1) 덧셈의 결합법칙 &nbsp;$(a+b)+c=a+(b+c)$</li>
-    <li>(A2) 덧셈의 교환법칙 &nbsp;$a+b=b+a$</li>
-    <li>(A3) 덧셈의 항등원 &nbsp;$a+0=a$ 인 $0\in F$ 가 존재</li>
-    <li>(A4) 덧셈의 역원 &nbsp;각 $a$ 마다 $a+(-a)=0$ 인 $-a\in F$ 가 존재</li>
-    <li>(M1) 곱셈의 결합법칙 &nbsp;$(ab)c=a(bc)$</li>
-    <li>(M2) 곱셈의 교환법칙 &nbsp;$ab=ba$</li>
-    <li>(M3) 곱셈의 항등원 &nbsp;$a\cdot 1=a$ 인 $1\neq 0$ 이 존재</li>
-    <li>(M4) 곱셈의 역원 &nbsp;$a\neq 0$ 이면 $a\,a^{-1}=1$ 인 $a^{-1}\in F$ 가 존재</li>
-    <li>(D) 분배법칙 &nbsp;$a(b+c)=ab+ac$</li>
-  </ol>
-</div>
-
-<div class="box def">
-  <span class="tag">정의 1.3.0′</span><span class="title">순서체 <span class="en">ordered field</span></span>
-  <p>체 $F$ 의 부분집합 $P$ (<b>양수</b>의 집합)가 다음을 만족하면 $F$ 를 <b>순서체</b>라 한다.</p>
-  <ol class="props">
-    <li>(O1) <b>삼분법</b><span class="en">trichotomy</span> &nbsp;임의의 $a\in F$ 에 대해 $a\in P$, $a=0$, $-a\in P$ 중 <b>정확히 하나</b>가 성립</li>
-    <li>(O2) <b>덧셈에 닫힘</b> &nbsp;$a,b\in P\ \Rightarrow\ a+b\in P$</li>
-    <li>(O3) <b>곱셈에 닫힘</b> &nbsp;$a,b\in P\ \Rightarrow\ ab\in P$</li>
-  </ol>
-  <p>대소 관계는 &nbsp;$a\lt b\ :\Longleftrightarrow\ b-a\in P$&nbsp; 로 정의한다 ($a\le b$ 는 $a\lt b$ 또는 $a=b$).
-  이때 $a\gt 0$ 은 $a\in P$ 와 같은 말이므로, ‘양수’ 와 ‘$P$ 의 원소’ 는 동의어다.</p>
-</div>
-<div class="note">
-  순서 공리는 ‘양수의 집합 $P$’ 로 주는 방식이 가장 간결하지만, 다음 세 조건으로 주어도 <b>동치</b>다 —
-  ① 삼분법($a\lt b,\ a=b,\ a\gt b$ 중 정확히 하나), ② 이행성($a\lt b,\ b\lt c\Rightarrow a\lt c$),
-  ③ 덧셈·양수배 보존($a\lt b\Rightarrow a+c\lt b+c$, &nbsp;$c\gt0$ 이면 $ac\lt bc$).
-  아래 정리 1.3.0″ 의 (1)(2)(3)이 두 방식을 잇는 다리다.
-</div>
-
-<h2 class="sub">순서체에서 따라 나오는 기본 정리</h2>
-<div class="box thm">
-  <span class="tag">정리 1.3.0″</span><span class="title">순서체의 기본 성질</span>
-  <p>순서체 $F$ 의 임의의 원소 $a,b,c$ 에 대하여 다음이 성립한다.</p>
-  <ol class="props">
-    <li>(1) <b>이행성</b> &nbsp;$a\lt b$ 이고 $b\lt c$ 이면 $a\lt c$</li>
-    <li>(2) <b>덧셈 보존</b> &nbsp;$a\lt b\ \Longleftrightarrow\ a+c\lt b+c$</li>
-    <li>(3) <b>양수배 보존</b> &nbsp;$a\lt b$ 이고 $c\gt 0$ 이면 $ac\lt bc$</li>
-    <li>(4) <b>음수배는 부등호를 뒤집는다</b> &nbsp;$a\lt b$ 이고 $c\lt 0$ 이면 $ac\gt bc$</li>
-    <li>(5) <b>제곱의 양성</b> &nbsp;$a\neq 0$ 이면 $a^2\gt 0$. 특히 $1=1^2\gt 0$ 이고 $-1\lt 0$</li>
-    <li>(6) <b>역수의 부호와 순서</b> &nbsp;$a\gt 0$ 이면 $a^{-1}\gt 0$ 이고, $0\lt a\lt b$ 이면 $0\lt b^{-1}\lt a^{-1}$</li>
-    <li>(7) <b>곱의 부호</b> &nbsp;$ab\gt 0$ 일 필요충분조건은 $a,b$ 의 부호가 같은 것</li>
-    <li>(8) <b>중점</b> &nbsp;$a\lt b$ 이면 $a\lt \dfrac{a+b}{2}\lt b$ — 두 원소 사이에는 항상 또 다른 원소가 있다</li>
-    <li>(9) <b>$\epsilon$-판정법</b> &nbsp;모든 $\epsilon\gt 0$ 에 대해 $a\le b+\epsilon$ 이면 $a\le b$</li>
-  </ol>
-</div>
-<div class="box prf">
-  <span class="tag">증명</span>
-  <p><b>(1)</b> $b-a\in P$, $c-b\in P$ 이므로 (O2)에 의해 $(c-b)+(b-a)=c-a\in P$, 곧 $a\lt c$.</p>
-  <p><b>(2)</b> $(b+c)-(a+c)=b-a$ 이므로 두 부등식이 판정하는 대상이 <b>같은 원소</b>다. 한쪽이 $P$ 에 있으면 다른 쪽도 있다.</p>
-  <p><b>(3)</b> $b-a\in P$ 이고 $c\in P$ 이므로 (O3)에 의해 $(b-a)c=bc-ac\in P$, 곧 $ac\lt bc$.</p>
-  <p><b>(4)</b> $c\lt 0$ 이면 (O1)에 의해 $-c\in P$. (3)을 $-c$ 에 적용하면 $a(-c)\lt b(-c)$, 즉 $-ac\lt -bc$.
-  여기에 (2)로 양변에 $ac+bc$ 를 더하면 $bc\lt ac$.</p>
-  <p><b>(5)</b> $a\neq 0$ 이면 (O1)에 의해 $a\in P$ 이거나 $-a\in P$. 앞이면 (O3)으로 $a^2\in P$,
-  뒤이면 $(-a)(-a)=a^2\in P$. 어느 쪽이든 $a^2\gt 0$. (M3)에서 $1\neq 0$ 이므로 $1=1^2\gt 0$ 이고, (2)로 $-1\lt 0$.</p>
-  <p><b>(6)</b> $a\gt 0$ 인데 $a^{-1}\lt 0$ 이라면 (4)에 의해 $a\,a^{-1}=1\lt 0$ 이라 (5)에 모순이고,
-  $a^{-1}=0$ 이면 $1=a\cdot 0=0$ 이라 역시 모순. 따라서 $a^{-1}\gt 0$.
-  이제 $0\lt a\lt b$ 이면 $a^{-1}b^{-1}\gt 0$ 이므로 (3)으로 $a\lt b$ 의 양변에 곱해
-  $a\,a^{-1}b^{-1}\lt b\,a^{-1}b^{-1}$, 곧 $b^{-1}\lt a^{-1}$.</p>
-  <p><b>(7)</b> ($\Leftarrow$) 둘 다 양수면 (O3)이고, 둘 다 음수면 $ab=(-a)(-b)\in P$.
-  ($\Rightarrow$) 부호가 다르면 (4)에 의해 $ab\lt 0$, 한쪽이 $0$ 이면 $ab=0$ 이라 (O1)의 배타성에 걸린다.</p>
-  <p><b>(8)</b> $a\lt b$ 의 양변에 (2)로 $a$ 를 더하면 $2a\lt a+b$, $b$ 를 더하면 $a+b\lt 2b$.
-  $2=1+1\gt 0$ 이므로 (6)에서 $2^{-1}\gt 0$ 이고, (3)으로 양변에 $2^{-1}$ 을 곱하면 $a\lt\frac{a+b}{2}\lt b$.</p>
-  <p><b>(9)</b> 대우를 보인다. $a\gt b$ 라 하고 $\epsilon_0=\frac{a-b}{2}$ 로 두면 $\epsilon_0\gt 0$ 이고,
-  (8)에 의해 $b+\epsilon_0=\frac{a+b}{2}\lt a$. 즉 이 $\epsilon_0$ 에서 $a\le b+\epsilon$ 이 깨진다.</p>
-  <div class="qed">∎</div>
-</div>
-<div class="note">
-  실전에서 가장 자주 쓰이는 것은 <b>(9) $\epsilon$-판정법</b>이다. ‘두 수의 차이가 임의로 작다 ⟹ 두 수는 같다’ 라는 형태로,
-  극한의 유일성·수열의 비교·적분의 상등 증명이 거의 전부 이 한 줄로 마무리된다. 뒤에서 계속 재사용하니 지금 익혀 두면 좋다.
-</div>
-
-<h2 class="sub">절댓값과 삼각부등식</h2>
-<div class="box def">
-  <span class="tag">정의 1.3.0‴</span><span class="title">절댓값 <span class="en">absolute value</span></span>
-  <p>$|a|=\begin{cases} a,&a\ge 0\\ -a,&a\lt 0\end{cases}$ &nbsp;— (O1)의 삼분법 덕분에 이 정의는 모든 $a$ 에 대해 애매함 없이 결정된다.</p>
-</div>
-<div class="box thm">
-  <span class="tag">정리 1.3.0⁗</span><span class="title">절댓값의 성질</span>
-  <ol class="props">
-    <li>(1) $|a|\ge 0$ 이고, $|a|=0$ 일 필요충분조건은 $a=0$</li>
-    <li>(2) $-|a|\le a\le |a|$</li>
-    <li>(3) $|ab|=|a|\,|b|$</li>
-    <li>(4) $b\ge 0$ 일 때 &nbsp;$|a|\le b\iff -b\le a\le b$</li>
-    <li>(5) <b>삼각부등식</b><span class="en">triangle inequality</span> &nbsp;$|a+b|\le |a|+|b|$</li>
-    <li>(6) <b>역삼각부등식</b> &nbsp;$\big|\,|a|-|b|\,\big|\le |a-b|$</li>
-    <li>(7) <b>거리 형태</b> &nbsp;$|a-b|\le |a-c|+|c-b|$</li>
-  </ol>
-</div>
-<figure class="fig">
-<svg viewBox="0 0 340 100" role="img" aria-label="부호가 다른 a와 b를 이어 붙이면 a+b가 두 길이의 합보다 짧다">
-  <defs><marker id="ta" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#555"/></marker></defs>
-  <line class="axis" x1="16" y1="48" x2="324" y2="48"/>
-  <circle cx="56" cy="48" r="3" fill="#111"/><text class="lbl" x="56" y="40" text-anchor="middle">0</text>
-  <path d="M56,28 L212,28" fill="none" stroke="#555" marker-end="url(#ta)"/>
-  <text class="lbl t" x="134" y="20" text-anchor="middle">a &gt; 0 (길이 |a|)</text>
-  <path d="M216,66 L120,66" fill="none" stroke="#555" marker-end="url(#ta)"/>
-  <text class="lbl t" x="168" y="80" text-anchor="middle">b &lt; 0 (길이 |b|)</text>
-  <circle cx="116" cy="48" r="3.5" fill="#111"/><text class="lbl b" x="116" y="40" text-anchor="middle">a+b</text>
-  <text class="lbl" x="170" y="96" text-anchor="middle">|a+b| = 0에서 끝점까지 ≤ |a|+|b|</text>
-</svg>
-<figcaption>부호가 다르면 두 화살표가 서로를 상쇄해 $|a+b|$ 가 짧아진다. 같은 방향일 때만 등호가 성립한다. 그림 1.3′.</figcaption>
-</figure>
-<div class="box prf">
-  <span class="tag">증명 — (5) 삼각부등식</span>
-  <p>(2)에 의해 $-|a|\le a\le |a|$ 이고 $-|b|\le b\le |b|$. 두 부등식을 변끼리 더하면(정리 1.3.0″ (2))</p>
-  <p>$$-\big(|a|+|b|\big)\ \le\ a+b\ \le\ |a|+|b|.$$</p>
-  <p>$|a|+|b|\ge 0$ 이므로 (4)를 적용하면 곧 $|a+b|\le |a|+|b|$.</p>
-  <p><b>(6)</b> 은 (5)의 따름이다. $|a|=|(a-b)+b|\le |a-b|+|b|$ 에서 $|a|-|b|\le |a-b|$ 이고,
-  $a,b$ 의 역할을 바꾸면 $|b|-|a|\le |a-b|$. 둘을 (4)로 합치면 $\big|\,|a|-|b|\,\big|\le |a-b|$.</p>
-  <p><b>(7)</b> 은 $a-b=(a-c)+(c-b)$ 에 (5)를 적용한 것이다.</p>
-  <div class="qed">∎</div>
-</div>
-<div class="note">
-  (7)을 <b>$|a-b|$ = 두 점 사이의 거리</b>로 읽으면 “$a$ 에서 $b$ 로 곧장 가는 길이 $c$ 를 경유하는 길보다 멀지 않다” 가 된다.
-  어떤 양을 직접 재기 어려울 때 중간 지점 $c$ 를 끼워 넣어 두 조각으로 나눠 재는 기법 — 해석학 전체를 지탱하는 <b>$\epsilon/2$ 논법</b> — 이
-  전부 이 부등식 위에 서 있다.
-</div>
-<div class="note">
-  <b>여기까지로는 부족하다.</b> 위의 공리와 정리는 $\mathbb{Q}$ 에서도 <b>하나도 빠짐없이</b> 성립한다.
-  즉 순서체의 공리만으로는 $\mathbb{Q}$ 와 $\mathbb{R}$ 을 구별할 수 없고, $\sqrt2$ 같은 수의 존재도 끌어낼 수 없다(정리 1.1.1).
-  그 간극을 메우는 단 하나의 추가 가정이 이 절의 주인공인 완비성 공리다.
-</div>
+<p>$A$ 가 위로 뻗어 나가지 못하게 막아 주는 수를 <b>상계</b><span class="en">upper bound</span>라 하고, 그 상계들 중 가장 작은 것을 <b>상한</b><span class="en">supremum</span>이라 한다. “위로 유계인 집합에는 상한이 반드시 있다” 는 것이 <b>완비성 공리</b><span class="en">axiom of completeness</span>이고, 이것이 $\mathbb{R}$ 를 $\mathbb{Q}$ 와 구별하는 단 하나의 가정이다.</p>
 
 <h2 class="sub">상계와 상한</h2>
 
 <div class="box def">
   <span class="tag">정의 1.3.1</span><span class="title">상계와 하계 <span class="en">upper / lower bound</span></span>
-  <p>$A\subseteq\mathbb{R}$ 에 대해, 모든 $a\in A$ 에 대하여 $a\le b$ 인 $b$ 가 있으면 $A$ 는 <b>위로 유계</b>이고 그 $b$ 를 <b>상계</b>라 한다.
-  마찬가지로 모든 $a\in A$ 에 $l\le a$ 인 $l$ 이 있으면 <b>아래로 유계</b>, $l$ 을 <b>하계</b>라 한다.</p>
+  <p>$A\subseteq\mathbb{R}$ 에 대하여 다음과 같이 정의한다.</p>
+  <ul>
+    <li><b>상계</b> — 모든 $a\in A$ 에 대해 $a\le b$ 인 $b$. 이런 $b$ 가 하나라도 있으면 $A$ 는 <b>위로 유계</b><span class="en">bounded above</span>다.</li>
+    <li><b>하계</b><span class="en">lower bound</span> — 모든 $a\in A$ 에 대해 $l\le a$ 인 $l$. 이런 $l$ 이 하나라도 있으면 $A$ 는 <b>아래로 유계</b><span class="en">bounded below</span>다.</li>
+    <li><b>유계</b><span class="en">bounded</span> — 위로도 아래로도 유계인 경우.</li>
+  </ul>
+  <p>상계·하계는 <b>하나로 정해지지 않는다</b> — 상계보다 큰 수는 모두 다시 상계다.</p>
 </div>
 
 <figure class="fig">
@@ -189,17 +61,21 @@
 
 <div class="box def">
   <span class="tag">정의 1.3.2</span><span class="title">상한 <span class="en">supremum / least upper bound</span></span>
-  <p>실수 $s$ 가 (1) $A$ 의 상계이고, (2) $A$ 의 임의의 상계 $b$ 에 대해 $s\le b$ 이면, $s$ 를 $A$ 의 <b>최소상계</b> 또는
-  <b>상한</b>이라 하고 $s=\sup A$ 로 쓴다. 대칭으로 <b>최대하계 = 하한</b> $\inf A$ 를 정의한다.</p>
+  <p>실수 $s$ 가 다음 두 조건을 모두 만족하면 $s$ 를 $A$ 의 <b>최소상계</b><span class="en">least upper bound</span> 또는 <b>상한</b>이라 하고 $s=\sup A$ 로 쓴다.</p>
+  <ul>
+    <li>$s$ 는 $A$ 의 <b>상계</b>다.</li>
+    <li>$A$ 의 <b>임의의 상계</b> $b$ 에 대해 $s\le b$ 다 — 즉 상계 중 가장 작다.</li>
+  </ul>
+  <p>대칭으로 <b>최대하계 = 하한</b><span class="en">infimum / greatest lower bound</span> $\inf A$ 를 정의한다.</p>
 </div>
-<p>상한은 유일하다. 두 상한 $s_1,s_2$ 가 있으면 (2)에 의해 $s_1\le s_2$ 이고 $s_2\le s_1$ 이라 $s_1=s_2$.</p>
+<p>상한은 유일하다. 두 상한 $s_1,s_2$ 가 있으면 정의의 둘째 조건에 의해 $s_1\le s_2$ 이고 $s_2\le s_1$ 이라 $s_1=s_2$.</p>
 
 <div class="box ex">
   <span class="tag">예제 1.3.3</span>
   <p>$A=\{1/n:n\in\mathbb{N}\}=\{1,\tfrac12,\tfrac13,\dots\}$ 는 $\sup A=1$, $\inf A=0$.
   $1$ 은 $A$ 에 속하지만($\max$), $0$ 은 $A$ 에 <b>속하지 않는다</b>. 상한·하한이 그 집합의 원소일 수도, 아닐 수도 있음을 보여 준다.</p>
 </div>
-<p>이것이 <b>최댓값/최솟값</b>(정의 1.3.4)과 상한/하한의 차이다. 예컨대 열린 구간 $(0,2)$ 는 상한 $2$ 를 갖지만
+<p>이것이 <b>최댓값<span class="en">maximum</span>·최솟값<span class="en">minimum</span></b>과 상한/하한의 차이다. 예컨대 열린 구간 $(0,2)$ 는 상한 $2$ 를 갖지만
 $2\notin(0,2)$ 라 최댓값은 없다. 닫힌 구간 $[0,2]$ 는 $\max=2$ 가 있다.</p>
 <div class="note">
   상한·하한을 <b>‘목적지’</b> 로 생각하면 좋다. $\sup A$ 는 집합이 위로 바짝 다가가는 끝점(경계)이고, $\inf A$ 는 아래로 다가가는 끝점이다.
@@ -215,17 +91,10 @@ $2\notin(0,2)$ 라 최댓값은 없다. 닫힌 구간 $[0,2]$ 는 $\max=2$ 가 �
 <div class="box ex">
   <span class="tag">예제 1.3.6</span><span class="title">유리수는 완비가 아니다</span>
   <p>$S=\{r\in\mathbb{Q}:r^2\lt 2\}$ 는 위로 유계다($2,\tfrac32,1.5,1.42,\dots$ 가 상계). 실수에서는 완비성 공리로
-  $\alpha=\sup S$ 가 존재하고, 1.4절에서 $\alpha^2=2$ 즉 $\alpha=\sqrt2$ 임을 보인다. 그런데 $\sqrt2\notin\mathbb{Q}$(정리 1.1.1).
+  $\alpha=\sup S$ 가 존재하고, 1.4절에서 $\alpha^2=2$ 즉 $\alpha=\sqrt2$ 임을 보인다. 그런데 $\sqrt2\notin\mathbb{Q}$ 다.
   그래서 세계를 $\mathbb{Q}$ 로 제한하면 $S$ 의 상한이 <b>없다</b> — 어떤 유리수 상계를 잡아도 더 작은 유리수 상계가 끝없이 나온다.
   완비성 공리는 바로 이 ‘구멍’ 을 메우는 가정이다.</p>
 </div>
-<div class="note">
-  <b>직관 — 완비성이 메우는 ‘구멍’.</b> 다음은 모두 <b>같은 구멍</b>을 다르게 말한 것이다.
-  ① 유계인데 상한이 (그 체계 안에) 없다, &nbsp;② $\mathbb{Q}$ 를 두 조각 $A,B$ 로 갈랐을 때 경계에 놓일 점이 없다(절단성 실패, 연습 1.3.10),
-  &nbsp;③ $\sqrt2$ 같은 값이 빠져 있다. $\mathbb{Q}$ 는 이런 구멍이 있어 불완비, $\mathbb{R}$ 은 완비성 공리로 이런 구멍이 하나도 없다.
-  데데킨트<span class="en">Dedekind</span>는 거꾸로 ‘$\mathbb{Q}$ 의 모든 절단 = 실수 하나’ 로 정의해 그 구멍들을 메워 $\mathbb{R}$ 을 구성했다.
-</div>
-
 <div class="box ex">
   <span class="tag">예제 1.3.7 — 상한 증명의 표준 패턴</span>
   <p>공집합 아니고 위로 유계인 $A$ 와 $c\in\mathbb{R}$ 에 대해 $c+A=\{c+a:a\in A\}$ 라 하면 $\sup(c+A)=c+\sup A$.
@@ -268,29 +137,6 @@ $2\notin(0,2)$ 라 최댓값은 없다. 닫힌 구간 $[0,2]$ 는 $\max=2$ 가 �
 
 <h2 class="sub">개념형 연습문제</h2>
 <div class="box exr">
-  <span class="tag">연습 1.3.1 (개념) — 체 공리만으로 얻는 계산 규칙</span>
-  <p>정의 1.3.0 의 공리만 써서 다음을 증명하라. 학교에서 규칙으로 외웠던 것들이 사실은 <b>정리</b>임을 확인하는 연습이다.</p>
-  <ol class="props">
-    <li>(1) $0\cdot a=0$</li>
-    <li>(2) $(-a)b=-(ab)$, &nbsp;$(-a)(-b)=ab$. 특히 $(-1)(-1)=1$</li>
-    <li>(3) $ab=0$ 이면 $a=0$ 또는 $b=0$ (체에는 영인자가 없다)</li>
-  </ol>
-  <details class="hint"><summary>힌트 보기</summary>
-  <p>(1) $0\cdot a=(0+0)a=0\cdot a+0\cdot a$ 에 (A4)로 $-(0\cdot a)$ 를 더한다.</p>
-  <p>(2) $ab+(-a)b=(a+(-a))b=0\cdot b=0$ 이므로 $(-a)b$ 가 $ab$ 의 덧셈 역원이다.</p>
-  <p>(3) $a\neq 0$ 이라 하고 양변에 $a^{-1}$ 을 곱한다.</p>
-  </details>
-</div>
-<div class="box exr">
-  <span class="tag">연습 1.3.2 (개념) — 순서체가 아닌 체</span>
-  <p>복소수체 $\mathbb{C}$ 에는 (O1)~(O3)을 만족하는 양수 집합 $P$ 를 <b>어떤 방식으로도</b> 줄 수 없음을 보여라.
-  즉 $\mathbb{C}$ 는 체이지만 순서체가 될 수 없다.</p>
-  <details class="hint"><summary>힌트 보기</summary>
-  <p>정리 1.3.0″ (5)에 의해 순서체에서는 $0$ 이 아닌 모든 원소의 제곱이 양수다. $i\neq 0$ 인데 $i^2=-1$ 이고,
-  같은 정리에서 $-1\lt 0$ 이라 삼분법 (O1)에 모순이 된다.</p>
-  </details>
-</div>
-<div class="box exr">
   <span class="tag">연습 1.3.3 (개념) — 하한판 완비성</span>
   <p>공집합 아니고 아래로 유계인 $A$ 의 하계 전체를 $B$ 라 하자. $\sup B=\inf A$ 임을 보이고, 이로써 ‘아래로 유계인 집합은 하한을 가진다’ 가
   <b>별도 공리 없이</b> 완비성 공리에서 따라 나옴을 설명하라.</p>
@@ -310,15 +156,30 @@ $2\notin(0,2)$ 라 최댓값은 없다. 닫힌 구간 $[0,2]$ 는 $\max=2$ 가 �
   <span class="tag">연습 1.3.10 (개념) — 실수의 절단성</span>
   <p><b>절단성</b><span class="en">cut property</span>: 공집합 아닌 서로소 $A,B$ 가 $A\cup B=\mathbb{R}$ 이고 모든 $a\in A,\ b\in B$ 에 대해 $a\lt b$ 이면,
   모든 $x\in A$ 에 $x\le c$ 이고 모든 $x\in B$ 에 $x\ge c$ 인 $c\in\mathbb{R}$ 가 존재한다 — 이를 완비성 공리로 증명하라.
-  (역으로 절단성에서 완비성 공리도 따라 나와, 둘은 <b>동치</b>다.)</p>
+  (역으로 절단성에서 완비성 공리도 따라 나와, 둘은 <b>동치</b><span class="en">equivalent</span>다.)</p>
   <details class="hint"><summary>힌트 보기</summary>
   <p>$c=\sup A$ 로 두면 된다. 모든 $b\in B$ 가 $A$ 의 상계라 $\sup A$ 가 존재하고, $c$ 는 상계이니 $x\le c\,(x\in A)$,
   최소상계이니 $c\le b\,(b\in B)$. 이 $c$ 가 두 집합을 가르는 경계 — 데데킨트 절단<span class="en">Dedekind cut</span>의 핵심이다.</p>
   </details>
 </div>
-<div class="note">
-  예제 1.3.7 과 같은 패턴으로 $\sup(cA)=c\sup A\,(c\ge0)$ (연습 1.3.5) 같은 성질들도 모두 같은 도구(정의 1.3.2 + 보조정리 1.3.8)로 증명한다.
-  절단성(연습 1.3.10)이 완비성과 동치라는 사실은, $\mathbb{Q}$ 의 ‘틈’ 을 절단으로 메워 $\mathbb{R}$ 을 구성하는 데데킨트의 방법으로 이어진다.
+<h2 class="sub">수리통계학과의 연결</h2>
+
+<div class="box thm">
+  <span class="tag">연결</span><span class="title">$\sup$ 과 $\inf$ 는 통계에서 <b>정의의 언어</b>다</span>
+  <ul>
+    <li><b>K–S 통계량</b><span class="en">Kolmogorov–Smirnov statistic</span> — $D_n=\displaystyle\sup_{x}|F_n(x)-F(x)|$
+      (<a href="../수리통계학/ch08/8-1_nonparametric-estimation.html">수리통계 8.1</a>).
+      최댓값이 아니라 <b>상한</b>으로 정의해야 한다 — $F_n$ 은 계단함수라 도약점에서 최댓값이 취해지지 않을 수 있다.
+      완비성 공리가 이 $\sup$ 의 존재를 보장한다.</li>
+    <li><b>크래머–라오 하한</b><span class="en">Cramér–Rao lower bound</span> — 비편향추정량의 분산이 넘을 수 없는 <b>하한</b><span class="en">infimum</span>
+      (<a href="../수리통계학/ch04/4-4_mvue.html">수리통계 4.4</a>).
+      그 하한을 실제로 달성하는 추정량이 있으면 MVUE 이고, 없으면 하한은 $\inf$ 로만 남는다.</li>
+    <li><b>MLE</b> — 가능도를 <b>최대</b>로 만드는 값
+      (<a href="../수리통계학/ch04/4-2_maximum-likelihood.html">수리통계 4.2</a>).
+      상한이 있다고 최대가 있는 것은 아니므로, 존재성은 따로 증명해야 한다
+      (<a href="4-4_compact-continuity.html">4.4절 최대최소 정리</a>).</li>
+  </ul>
+  <p>세 경우 모두 <b>“상한·하한은 집합 밖에 있을 수 있다”</b> 는 한 가지 사실이 통계적으로 값을 한다.</p>
 </div>
 
 <nav class="pager">

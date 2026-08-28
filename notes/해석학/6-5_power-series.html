@@ -41,12 +41,12 @@
     <li><b>$0\lt R\lt\infty$</b>: $|x|\lt R$ 에서 절대수렴, $|x|\gt R$ 에서 발산한다. $|x|=R$ 은 따로 확인해야 한다.</li>
     <li><b>$R=\infty$</b>: 모든 실수에서 수렴한다.</li>
   </ul>
-  <p>이 $R$ 을 <b>수렴반경</b>이라 하며, 비율판정법이 쓸 수 있을 때는 다음으로 구한다.</p>
+  <p>이 $R$ 을 <b>수렴반경</b><span class="en">radius of convergence</span>이라 하며, 비율판정법이 쓸 수 있을 때는 다음으로 구한다.</p>
   $$R=\lim_{n\to\infty}\left|\frac{a_n}{a_{n+1}}\right|$$
 </div>
 
 <div class="box thm">
-  <span class="tag">정리 6.5.3</span><span class="title">수렴반경 안에서의 고른 수렴</span>
+  <span class="tag">정리 6.5.3</span><span class="title">수렴반경 안에서의 고른 수렴 <span class="en">uniform convergence inside the radius</span></span>
   <p>수렴반경이 $R$ 인 멱급수는 임의의 $0\lt r\lt R$ 에 대해 $[-r,r]$ 에서 <b>고르게</b> 수렴한다.</p>
   <p>주의 — <b>$(-R,R)$ 전체에서 고르게</b> 수렴한다고는 말할 수 없다.
   안쪽으로 한 칸 물러선 닫힌구간에서만 보장된다.</p>
@@ -56,8 +56,8 @@
   이 정리 덕분에 <a href="6-2_uniform-convergence.html">6.2절</a>·<a href="6-3_uniform-and-derivatives.html">6.3절</a>·
   <a href="7-4_integration-properties.html">7.4절</a>의 결론이 멱급수에 <b>전부</b> 적용된다.
   <ul>
-    <li>합 함수는 $(-R,R)$ 에서 <b>연속</b>이다.</li>
-    <li><b>항별 미분·항별 적분</b>이 자유롭고, 그 결과의 수렴반경도 $R$ 로 같다.</li>
+    <li>합 함수는 $(-R,R)$ 에서 <b>연속</b><span class="en">continuous</span>이다.</li>
+    <li><b>항별 미분·항별 적분</b><span class="en">termwise differentiation and integration</span>이 자유롭고, 그 결과의 수렴반경도 $R$ 로 같다.</li>
     <li>따라서 합 함수는 $(-R,R)$ 에서 <b>무한번 미분가능</b>하다.</li>
   </ul>
 </div>
@@ -101,7 +101,7 @@
   <p>이산형 확률변수의 확률생성함수
   (<a href="../수리통계학/ch02/2-9_pgf.html">수리통계 2.9</a>)는</p>
   $$G(s)=E\!\left[s^{X}\right]=\sum_{k=0}^{\infty}P(X=k)\,s^{k}$$
-  <p>로, 계수가 그대로 <b>확률질량함수</b>다. 정리 6.5.4(계수의 유일성)에 의해</p>
+  <p>로, 계수가 그대로 <b>확률질량함수</b><span class="en">probability mass function</span>다. 정리 6.5.4(계수의 유일성)에 의해</p>
   $$P(X=k)=\frac{G^{(k)}(0)}{k!}$$
   <p>이며, $|s|\le1$ 에서 $\sum P(X=k)=1$ 이므로 수렴반경은 항상 $R\ge1$ 이다.
   pgf 가 mgf 보다 다루기 편한 이유가 이 자동 보장에 있다.</p>
