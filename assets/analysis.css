@@ -1,19 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap');
+
 /* ============================================================
-   해석학 노트 전용 스타일 — 워드 문서 느낌 (흑백·명조·박스 없음)
+   해석학 노트 전용 스타일 — 워드 문서 느낌 (흑백·박스 없음)
    - note.css 와 클래스 이름은 동일하므로, 링크만 바꿔 끼우면 된다.
      <link rel="stylesheet" href="../../assets/analysis.css">
    - 색으로 구분하던 것을 전부 라벨 글자와 가는 괘선으로 구분한다.
+
+   ▣ 글꼴 바꾸는 법 — 아래 --font-body 세 줄 중 하나만 살리고 나머지는 주석 처리
+     A. 명조 (기본)   : 본명조 + 라틴은 Cambria. 교재·논문 느낌, 수식과 가장 잘 붙는다
+     B. 고딕          : 화면 가독성 우선. 요즘 워드 문서 느낌
+     C. 한컴 문서체   : 한글(HWP) 문서 그대로. 한컴오피스가 깔려 있어야 제맛
    ============================================================ */
 
 :root{
   --ink:#111; --muted:#555; --line:#bbb; --rule:#333;
+
+  /* A. 명조 (기본) */
+  --font-body: Cambria, "Noto Serif KR", "본명조", "Source Han Serif K", "함초롬바탕", "HCR Batang", Batang, serif;
+  /* B. 고딕 */
+  /* --font-body: "Segoe UI", "Noto Sans KR", "Pretendard", "Malgun Gothic", "맑은 고딕", sans-serif; */
+  /* C. 한컴 문서체 */
+  /* --font-body: "함초롬바탕", "HCR Batang", "HY신명조", Batang, "Noto Serif KR", serif; */
 }
 *{ box-sizing:border-box; }
-html{ font-size:16px; }
+html{ font-size:16.5px; }
 body{
-  font-family:"Noto Serif KR","Batang","바탕","Times New Roman",serif;
-  color:var(--ink); line-height:1.8; max-width:760px; margin:0 auto; padding:44px 30px 60px;
+  font-family:var(--font-body);
+  font-variant-numeric:lining-nums tabular-nums;
+  color:var(--ink); line-height:1.85; max-width:760px; margin:0 auto; padding:44px 30px 60px;
   background:#fff; text-align:justify; word-break:keep-all;
+  letter-spacing:-0.002em;
+  -webkit-font-smoothing:antialiased;
 }
 
 /* ---- 머리말 ---- */
@@ -126,7 +143,9 @@ figure.fig figcaption{ font-size:0.86rem; color:#333; margin-top:8px; text-align
 .fig .vec2{ stroke:#555; stroke-width:1.8; fill:none; stroke-dasharray:5 3; }
 .fig .vec3{ stroke:#777; stroke-width:1.8; fill:none; stroke-dasharray:2 3; }
 .fig .aux{ stroke:#999; stroke-width:1; stroke-dasharray:4 3; fill:none; }
-.fig .lbl{ font-size:12px; fill:#111; font-family:inherit; }
+/* 그림 안의 작은 글자는 산세리프가 또렷하다 (워드에서도 그림 캡션·라벨은 고딕을 쓴다) */
+.fig .lbl{ font-size:12px; fill:#111;
+           font-family:"Segoe UI","Noto Sans KR","Malgun Gothic","맑은 고딕",sans-serif; }
 .fig .lbl.b, .fig .lbl.t, .fig .lbl.p{ fill:#111; }
 .fig .cell{ fill:#fff; stroke:#555; stroke-width:1; }
 .fig .cellhi{ fill:#ececec; stroke:#333; stroke-width:1.2; }
