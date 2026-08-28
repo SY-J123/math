@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2장 · 2.5 부분수열과 볼차노–바이어슈트라스 정리</title>
+<link rel="stylesheet" href="../../assets/analysis.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../index.html">⌂ 홈</a>
+  <div class="ch">해석학 · 2장 수열과 급수</div>
+  <h1><span class="no">2.5</span>부분수열과 볼차노–바이어슈트라스 정리
+  <span class="en">subsequences and the Bolzano–Weierstrass theorem</span></h1>
+</header>
+
+<p>“유계이면 수렴” 을 살리는 두 번째 방법이다. <a href="2-4_monotone.html">2.4절</a>은 단조성을 <b>더했고</b>,
+여기서는 결론을 <b>부분수열</b>로 약화한다. 유계이기만 하면 언제나 수렴하는 부분수열이 있다.</p>
+
+<h2 class="sub">부분수열</h2>
+
+<div class="box def">
+  <span class="tag">정의 2.5.1</span><span class="title">부분수열 <span class="en">subsequence</span></span>
+  <p>수열 $(a_n)$ 과 <b>순증가</b>하는 자연수열 $n_1\lt n_2\lt n_3\lt\cdots$ 이 주어졌을 때,</p>
+  $$(a_{n_k})_{k=1}^{\infty}=a_{n_1},\,a_{n_2},\,a_{n_3},\dots$$
+  <p>를 $(a_n)$ 의 <b>부분수열</b>이라 한다. 항의 <b>순서를 바꾸지 않고</b> 골라 뽑는 것이 핵심이다.</p>
+</div>
+
+<div class="note">
+  $n_k\ge k$ 임에 유의한다 — 순증가하는 자연수열은 적어도 $1,2,3,\dots$ 만큼은 빨리 커지기 때문이다.
+  증명에서 자주 쓰인다.
+</div>
+
+<div class="box thm">
+  <span class="tag">정리 2.5.2</span><span class="title">수렴하는 수열의 부분수열</span>
+  <p>$a_n\to a$ 이면 <b>모든</b> 부분수열도 같은 $a$ 로 수렴한다.</p>
+</div>
+
+<div class="box prf">
+  <span class="tag">증명</span>
+  <p>$\varepsilon\gt0$ 이 주어지면 $n\ge N$ 일 때 $|a_n-a|\lt\varepsilon$ 인 $N$ 이 있다.
+  $k\ge N$ 이면 $n_k\ge k\ge N$ 이므로 $|a_{n_k}-a|\lt\varepsilon$ 이다.</p>
+  <div class="qed">∎</div>
+</div>
+
+<div class="box ex">
+  <span class="tag">예 2.5.3</span><span class="title">발산을 보이는 데 쓰기</span>
+  <p>정리 2.5.2의 대우를 쓰면 발산 증명이 아주 짧아진다.
+  $a_n=(-1)^n$ 에서 부분수열 $a_{2k}=1\to1$ 과 $a_{2k+1}=-1\to-1$ 이 <b>서로 다른 값</b>으로 수렴하므로,
+  원래 수열은 수렴할 수 없다.</p>
+  <p><a href="2-2_sequence-limit.html">2.2절</a>에서 정의의 부정으로 했던 일을 한 줄로 끝낸 셈이다.</p>
+</div>
+
+<h2 class="sub">볼차노–바이어슈트라스 정리</h2>
+
+<div class="box thm">
+  <span class="tag">정리 2.5.4</span><span class="title">볼차노–바이어슈트라스 <span class="en">Bolzano–Weierstrass</span></span>
+  <p><b>유계인 수열은 수렴하는 부분수열을 가진다.</b></p>
+</div>
+
+<div class="box prf">
+  <span class="tag">증명</span><span class="title">이분법 <span class="en">bisection</span></span>
+  <p><span class="step">틀 잡기.</span> $(a_n)$ 이 유계이므로 모든 항이 어떤 닫힌구간 $I_0=[-M,M]$ 안에 있다.</p>
+  <p><span class="step">반으로 자르기.</span> $I_0$ 을 반으로 자르면 두 조각 중 <b>적어도 하나</b>는
+  수열의 항을 무한개 포함한다(둘 다 유한개면 전체가 유한개가 되어 모순). 그 조각을 $I_1$ 이라 하자.
+  같은 방식을 반복해 닫힌구간의 열</p>
+  $$I_0\supseteq I_1\supseteq I_2\supseteq\cdots,\qquad |I_k|=\frac{2M}{2^{k}}$$
+  <p>을 얻는다. 각 $I_k$ 는 $(a_n)$ 의 항을 무한개 포함한다.</p>
+  <p><span class="step">부분수열 뽑기.</span> $I_1$ 에서 항 하나를 골라 $a_{n_1}$ 이라 하고,
+  $I_2$ 안에서 <b>첨자가 $n_1$ 보다 큰</b> 항을 골라 $a_{n_2}$ 라 한다.
+  각 $I_k$ 가 무한개의 항을 담고 있으므로 이 고르기는 언제나 가능하며, $n_1\lt n_2\lt\cdots$ 인 부분수열이 만들어진다.</p>
+  <p><span class="step">수렴.</span> <a href="1-4_consequences.html">중첩구간 정리</a>에 의해
+  모든 $I_k$ 에 공통으로 속하는 점 $x$ 가 존재한다. $a_{n_k}$ 와 $x$ 가 모두 $I_k$ 안에 있으므로</p>
+  $$|a_{n_k}-x|\le|I_k|=\frac{2M}{2^{k}}\longrightarrow0$$
+  <p>따라서 $a_{n_k}\to x$ 이다.</p>
+  <div class="qed">∎</div>
+</div>
+
+<figure class="fig">
+<svg viewBox="0 0 360 150" role="img" aria-label="이분법 — 구간을 반씩 잘라 항이 무한개 남는 쪽을 계속 택해 나가면 한 점으로 조여든다">
+  <g class="lbl">
+    <text x="16" y="28">I₀</text><text x="16" y="56">I₁</text>
+    <text x="16" y="84">I₂</text><text x="16" y="112">I₃</text>
+  </g>
+  <line class="axis" x1="44" y1="24" x2="340" y2="24"/>
+  <line class="vec" x1="44" y1="24" x2="340" y2="24" stroke-width="4"/>
+  <line class="vec" x1="192" y1="52" x2="340" y2="52" stroke-width="4"/>
+  <line class="vec" x1="192" y1="80" x2="266" y2="80" stroke-width="4"/>
+  <line class="vec" x1="229" y1="108" x2="266" y2="108" stroke-width="4"/>
+  <g class="aux">
+    <line x1="192" y1="18" x2="192" y2="126"/><line x1="266" y1="46" x2="266" y2="126"/>
+    <line x1="229" y1="74" x2="229" y2="132"/>
+  </g>
+  <circle cx="247" cy="132" r="3" fill="#111"/>
+  <text class="lbl" x="247" y="146" text-anchor="middle">x</text>
+  <text class="lbl" x="110" y="118" text-anchor="middle">버린 쪽</text>
+</svg>
+<figcaption>매 단계 <b>항이 무한개 남는 쪽</b>을 택한다. 길이가 반씩 줄므로 구간들이 한 점 $x$ 로 조여들고,
+그 안에서 뽑은 부분수열이 $x$ 로 수렴한다.</figcaption>
+</figure>
+
+<div class="note">
+  이 증명이 쓰는 것은 결국 <b>완비성</b>이다(중첩구간 정리 형태로).
+  유리수 안에서는 정리가 거짓이다 — $\sqrt2$ 로 수렴하는 유리수열은 유계지만
+  유리수 안에서 수렴하는 부분수열을 갖지 못한다.
+</div>
+
+<h2 class="sub">쓰임과 수리통계학과의 연결</h2>
+
+<div class="box thm">
+  <span class="tag">쓰임</span><span class="title">어디에 부품으로 들어가는가</span>
+  <ol class="props">
+    <li><a href="4-4_compact-continuity.html">4.4절 최대최소 정리</a> — 닫힌 유계 구간에서 연속함수가
+      최댓값을 <b>가진다</b>는 증명의 핵심 부품이 이 정리다.
+      이것이 MLE 의 <b>존재성</b>으로 이어진다.</li>
+    <li><a href="2-6_cauchy.html">2.6절 코시 판정법</a> — “코시열은 수렴한다”의 증명에서
+      먼저 유계임을 보이고 이 정리로 수렴하는 부분수열을 뽑는다.</li>
+  </ol>
+</div>
+
+<div class="note">
+  <b>솔직한 위치.</b> 학부 수리통계학에서 볼차노–바이어슈트라스가 <b>이름으로 인용되는 일은 거의 없다</b>.
+  값어치는 위의 두 정리를 떠받치는 데 있고, 그 두 정리는 통계에서 실제로 쓰인다.
+  더 멀리 보면 분포수렴에서 <b>조밀성(tightness)</b> 을 가정하고 부분열을 뽑는 논법이
+  이 정리의 확률판이지만, 학부 과정에서는 만나지 않는다.
+</div>
+
+<div class="box exr">
+  <span class="tag">연습</span>
+  <p>유계수열 $(a_n)$ 의 모든 수렴하는 부분수열이 같은 값 $a$ 로 수렴하면 $a_n\to a$ 임을 보여라.</p>
+  <details class="hint"><summary>막히면</summary>
+    <p>귀류법. $a_n\not\to a$ 이면 어떤 $\varepsilon_0$ 에 대해 $|a_{n_k}-a|\ge\varepsilon_0$ 인
+    부분수열이 있다. 이 부분수열도 유계이므로 B–W 로 다시 수렴하는 부분수열을 뽑으면 극한이 $a$ 가 아니게 되어 모순.</p>
+  </details>
+</div>
+
+<nav class="pager">
+  <a href="2-4_monotone.html">← 이전<small>2.4 단조수렴정리</small></a>
+  <a class="next" href="2-6_cauchy.html">다음 →<small>2.6 코시 수렴 판정법</small></a>
+</nav>
+
+</body>
+</html>

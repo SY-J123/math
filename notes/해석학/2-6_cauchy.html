@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2장 · 2.6 코시 수렴 판정법</title>
+<link rel="stylesheet" href="../../assets/analysis.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../index.html">⌂ 홈</a>
+  <div class="ch">해석학 · 2장 수열과 급수</div>
+  <h1><span class="no">2.6</span>코시 수렴 판정법 <span class="en">the Cauchy criterion</span></h1>
+</header>
+
+<p>지금까지의 수렴 정의는 모두 <b>극한값 $a$ 를 미리 알아야</b> 쓸 수 있었다.
+코시 판정법은 그 $a$ 를 언급하지 않고 <b>수열 자기 항들끼리의 거리만으로</b> 수렴을 판정한다.
+극한값을 모르는 채 존재를 얻는다는 점에서 <a href="2-4_monotone.html">단조수렴정리</a>와 목적이 같다.</p>
+
+<h2 class="sub">코시열</h2>
+
+<div class="box def">
+  <span class="tag">정의 2.6.1</span><span class="title">코시열 <span class="en">Cauchy sequence</span></span>
+  <p>수열 $(a_n)$ 이 <b>코시열</b>이라는 것은 다음을 뜻한다.</p>
+  $$\forall\varepsilon\gt0,\ \exists N\in\mathbb{N},\ \forall m,n\ge N:\ |a_n-a_m|\lt\varepsilon$$
+</div>
+
+<div class="note">
+  수렴의 정의와 나란히 놓으면 차이가 분명하다.
+  <ul>
+    <li>수렴: $|a_n-\boxed{a}|\lt\varepsilon$ — <b>바깥의 점 $a$</b> 와의 거리</li>
+    <li>코시: $|a_n-\boxed{a_m}|\lt\varepsilon$ — <b>자기 항들끼리</b>의 거리</li>
+  </ul>
+  코시 조건은 “뒤로 갈수록 항들이 서로 <b>뭉친다</b>” 는 말이고, 어디로 뭉치는지는 말하지 않는다.
+</div>
+
+<h2 class="sub">코시 판정법</h2>
+
+<div class="box thm">
+  <span class="tag">정리 2.6.2</span><span class="title">코시 수렴 판정법 <span class="en">Cauchy criterion</span></span>
+  <p>실수열이 <b>수렴할 필요충분조건은 코시열인 것</b>이다.</p>
+</div>
+
+<div class="box prf">
+  <span class="tag">증명</span>
+  <p><span class="step">($\Rightarrow$) 수렴하면 코시.</span> $a_n\to a$ 라 하자.
+  $\varepsilon\gt0$ 이 주어지면 $n\ge N$ 일 때 $|a_n-a|\lt\dfrac{\varepsilon}{2}$ 인 $N$ 이 있다.
+  $m,n\ge N$ 이면 삼각부등식으로</p>
+  $$|a_n-a_m|\le|a_n-a|+|a-a_m|\lt\frac{\varepsilon}{2}+\frac{\varepsilon}{2}=\varepsilon$$
+
+  <p><span class="step">($\Leftarrow$) 코시이면 수렴.</span> 세 걸음이다.</p>
+  <ol class="props">
+    <li><b>유계임을 보인다.</b> $\varepsilon=1$ 로 두면 $m,n\ge N$ 에서 $|a_n-a_m|\lt1$ 이다.
+      특히 $m=N$ 으로 고정하면 $n\ge N$ 일 때 $|a_n|\lt|a_N|+1$ 이고,
+      앞의 유한개와 합쳐 $M=\max\{|a_1|,\dots,|a_{N-1}|,\,|a_N|+1\}$ 을 잡으면 $(a_n)$ 은 유계다.</li>
+    <li><b>수렴하는 부분수열을 뽑는다.</b> 유계이므로
+      <a href="2-5_bolzano-weierstrass.html">볼차노–바이어슈트라스</a>에 의해
+      $a_{n_k}\to a$ 인 부분수열이 존재한다.</li>
+    <li><b>전체가 그 극한으로 간다.</b> $\varepsilon\gt0$ 이 주어졌다고 하자.
+      코시 조건으로 $m,n\ge N_1$ 에서 $|a_n-a_m|\lt\dfrac{\varepsilon}{2}$ 이고,
+      부분수열의 수렴으로 $k\ge N_2$ 에서 $|a_{n_k}-a|\lt\dfrac{\varepsilon}{2}$ 이다.
+      $K=\max\{N_1,N_2\}$ 를 잡고 $n_K\ge K\ge N_1$ 임을 이용하면, $n\ge N_1$ 일 때
+      $$|a_n-a|\le|a_n-a_{n_K}|+|a_{n_K}-a|\lt\frac{\varepsilon}{2}+\frac{\varepsilon}{2}=\varepsilon$$</li>
+  </ol>
+  <div class="qed">∎</div>
+</div>
+
+<div class="note">
+  ③의 요령이 이 증명의 전부다 — <b>부분수열의 한 항 $a_{n_K}$ 를 징검다리로 삼는다</b>.
+  코시 조건이 $a_n$ 을 그 징검다리 가까이 붙들어 두고, 부분수열의 수렴이 징검다리를 $a$ 가까이 데려간다.
+</div>
+
+<div class="box thm">
+  <span class="tag">따름정리 2.6.3</span><span class="title">급수의 코시 판정법</span>
+  <p>급수 $\sum_{k=1}^{\infty}b_k$ 가 수렴할 필요충분조건은 다음이다.</p>
+  $$\forall\varepsilon\gt0,\ \exists N,\ \forall n\gt m\ge N:\ \left|\sum_{k=m+1}^{n}b_k\right|\lt\varepsilon$$
+  <p>부분합 수열 $(s_n)$ 에 정리 2.6.2를 적용한 것이며, $s_n-s_m=\sum_{k=m+1}^{n}b_k$ 이다.</p>
+</div>
+
+<h2 class="sub">완비성이라는 말</h2>
+
+<div class="box def">
+  <span class="tag">용어</span><span class="title">완비 <span class="en">complete</span></span>
+  <p>“모든 코시열이 그 공간 안의 점으로 수렴한다”는 성질을 <b>완비</b>라고 한다.
+  정리 2.6.2는 곧 <b>$\mathbb{R}$ 는 완비이다</b>라는 말이다.</p>
+  <p>$\mathbb{Q}$ 는 완비가 아니다 — $\sqrt2$ 의 소수 전개로 만든 유리수열은 코시열이지만
+  유리수 안에는 극한이 없다. 유리수 직선에 뚫려 있는 “구멍” 이 여기서 다시 드러나는 셈이다.</p>
+</div>
+
+<div class="note">
+  <a href="1-3_completeness.html">1.3절 완비성 공리</a>($\sup$ 의 존재)와 이 절의 완비성(코시열의 수렴)은
+  <b>서로 동치</b>다. 같은 사실을 상한의 언어로 말하느냐 수열의 언어로 말하느냐의 차이일 뿐이며,
+  이 노트의 흐름 완비성 공리 → 단조수렴 → B–W → 코시 는 그 동치성을 한 바퀴 돈 것이다.
+</div>
+
+<h2 class="sub">수리통계학과의 연결</h2>
+
+<div class="note">
+  <ol class="props">
+    <li><b>$L^2$ 수렴.</b> $E\!\left[(X_n-X)^2\right]\to0$ 을 다룰 때 “$L^2$ 공간은 완비” 라는 말이 나오는데,
+      그 완비성이 정확히 이 절의 뜻이다 — <b>코시열이면 극한이 그 공간 안에 있다</b>.
+      학부 수준에서는 진술을 읽을 수 있으면 충분하다.</li>
+    <li><b>극한값을 모를 때.</b> 추정량의 극한분포를 <b>먼저 존재시키고</b> 나중에 특정하는 논법이
+      이 절의 발상과 같다. 다만 학부 수리통계에서는 대개 극한을 직접 계산하므로
+      코시 판정법을 이름으로 인용하는 일은 드물다.</li>
+  </ol>
+  <b>솔직한 위치:</b> 볼차노–바이어슈트라스와 마찬가지로, 이 절의 값어치는
+  <b>증명 논법</b>(징검다리·$\varepsilon/2$·유계성 확보)을 몸에 익히는 데 있다.
+</div>
+
+<div class="box exr">
+  <span class="tag">연습</span>
+  <ol class="props">
+    <li>$|a_{n+1}-a_n|\le\dfrac{1}{2^n}$ 이면 $(a_n)$ 이 코시열임을 보여라.</li>
+    <li>$|a_{n+1}-a_n|\to0$ 이지만 발산하는 수열의 예를 들어라.</li>
+  </ol>
+  <details class="hint"><summary>막히면</summary>
+    <p>(1) $n\gt m$ 에서 $|a_n-a_m|\le\sum_{k=m}^{n-1}2^{-k}\lt2^{-m+1}$.
+    (2) $a_n=\sqrt n$ 또는 부분합 $a_n=\sum_{k=1}^{n}\frac1k$. 이웃 항의 차가 $0$ 으로 가는 것만으로는
+    코시 조건이 되지 않는다 — 코시는 <b>멀리 떨어진 두 항</b>까지 요구한다.</p>
+  </details>
+</div>
+
+<nav class="pager">
+  <a href="2-5_bolzano-weierstrass.html">← 이전<small>2.5 볼차노–바이어슈트라스</small></a>
+  <a class="next" href="4-2_functional-limits.html">다음 →<small>4.2 함수의 극한</small></a>
+</nav>
+
+</body>
+</html>

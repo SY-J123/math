@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>6장 · 6.2 고른 수렴</title>
+<link rel="stylesheet" href="../../assets/analysis.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../index.html">⌂ 홈</a>
+  <div class="ch">해석학 · 6장 함수열과 함수급수</div>
+  <h1><span class="no">6.2</span>고른 수렴 <span class="en">uniform convergence of a sequence of functions</span></h1>
+</header>
+
+<p>수리통계학에서 <b>글리벤코–칸텔리 정리</b>와 <b>콜모고로프–스미르노프 검정</b>이 서 있는 자리다.
+$\sup_x|F_n(x)-F(x)|\to0$ 이라는 진술이 곧 “$F_n$ 이 $F$ 로 <b>고르게</b> 수렴한다” 이며,
+$8.1$ 절의 신뢰띠가 <b>모든 $x$ 에서 동시에</b> 성립한다는 말의 뜻도 이것이다.
+정의를 백지에서 쓰고, <b>점별 수렴과 다른 반례를 하나는 손에 쥐고 있어야</b> 한다.</p>
+
+<h2 class="sub">두 가지 수렴</h2>
+
+<div class="box def">
+  <span class="tag">정의 6.2.1</span><span class="title">점별 수렴 <span class="en">pointwise convergence</span></span>
+  <p>$f_n\to f$ 가 $A$ 에서 <b>점별</b>로 성립한다는 것은, 각 $x\in A$ 를 <b>고정할 때마다</b>
+  수열 $\left(f_n(x)\right)$ 이 $f(x)$ 로 수렴한다는 뜻이다.</p>
+  $$\forall x\in A,\ \forall\varepsilon\gt0,\ \exists N=N(\varepsilon,\boxed{x}),\ \forall n\ge N:\ |f_n(x)-f(x)|\lt\varepsilon$$
+</div>
+
+<div class="box def">
+  <span class="tag">정의 6.2.2</span><span class="title">고른 수렴 <span class="en">uniform convergence</span></span>
+  <p>$f_n\to f$ 가 $A$ 에서 <b>고르게</b> 성립한다는 것은 다음을 뜻한다.</p>
+  $$\forall\varepsilon\gt0,\ \exists N=N(\varepsilon),\ \forall n\ge N,\ \forall x\in A:\ |f_n(x)-f(x)|\lt\varepsilon$$
+</div>
+
+<div class="note">
+  <b>차이는 한 군데뿐이다 — $\forall x$ 의 위치.</b>
+  <ul>
+    <li>점별: $\forall x$ 가 <b>맨 앞</b>에 있다 → $N$ 이 $x$ 를 보고 정해져도 된다.</li>
+    <li>고른: $\forall x$ 가 <b>$\exists N$ 뒤로</b> 밀려났다 → <b>하나의 $N$ 이 모든 $x$ 에 통해야</b> 한다.</li>
+  </ul>
+  <a href="4-4_compact-continuity.html">4.4절의 균등연속</a>과 완전히 같은 구조다.
+  거기서는 $\delta$ 가 $x$ 를 보면 안 되고, 여기서는 $N$ 이 $x$ 를 보면 안 된다.
+</div>
+
+<div class="box thm">
+  <span class="tag">정리 6.2.3</span><span class="title">$\sup$ 으로 바꿔 쓰기</span>
+  <p>고른 수렴은 다음과 동치다.</p>
+  $$\|f_n-f\|_{\infty}:=\sup_{x\in A}\left|f_n(x)-f(x)\right|\longrightarrow0$$
+  <p>즉 <b>가장 나쁜 점에서의 오차가 $0$ 으로 간다</b>는 것이다.
+  이 형태가 통계에서 직접 쓰이는 모양이다.</p>
+</div>
+
+<h2 class="sub">반례 — 점별이지만 고르지 않은</h2>
+
+<div class="box ex">
+  <span class="tag">예 6.2.4</span><span class="title">$f_n(x)=x^{n}$ on $[0,1]$ &nbsp;— 반드시 기억할 반례</span>
+  <p><span class="step">점별 극한.</span> $0\le x\lt1$ 이면 $x^n\to0$ 이고, $x=1$ 이면 $1^n\to1$ 이므로</p>
+  $$f(x)=\begin{cases}0,&0\le x\lt1\\ 1,&x=1\end{cases}$$
+  <p><span class="step">고르지 않다.</span> $\varepsilon=\dfrac12$ 로 두자. 어떤 $n$ 을 잡더라도
+  $x=\left(\dfrac12\right)^{1/n}$ 을 택하면 $x\in[0,1)$ 이고 $f_n(x)=\dfrac12$ 이므로</p>
+  $$|f_n(x)-f(x)|=\frac12\not\lt\frac12$$
+  <p>즉 $\sup_{x\in[0,1]}|f_n(x)-f(x)|=1$ 로 $n$ 과 무관하게 $0$ 으로 가지 않는다.</p>
+  <p><span class="step">무엇이 무너졌나.</span> 각 $f_n$ 은 연속인데 <b>극한 $f$ 는 $x=1$ 에서 불연속</b>이다.
+  점별 수렴만으로는 연속성이 보존되지 않는다는 것을 이 하나가 보여 준다.</p>
+</div>
+
+<figure class="fig">
+<svg viewBox="0 0 350 180" role="img" aria-label="f_n(x)=x^n 의 그래프들이 n이 커질수록 오른쪽 끝으로 몰리면서 극한이 x=1에서 튀어오르는 모양">
+  <line class="axis" x1="40" y1="150" x2="320" y2="150"/>
+  <line class="axis" x1="40" y1="150" x2="40" y2="26"/>
+  <path class="vec3" fill="none" d="M40,150 L280,40"/>
+  <path class="vec2" fill="none" d="M40,150 C160,146 230,120 280,40"/>
+  <path class="vec" fill="none" d="M40,150 C210,149 262,140 280,40"/>
+  <line class="aux" x1="280" y1="150" x2="280" y2="34"/>
+  <g class="lbl">
+    <text x="34" y="44" text-anchor="end">1</text>
+    <text x="280" y="166" text-anchor="middle">1</text>
+    <text x="150" y="60" text-anchor="middle">n = 1</text>
+    <text x="196" y="104" text-anchor="middle">n = 3</text>
+    <text x="216" y="140" text-anchor="middle">n = 10</text>
+  </g>
+  <circle cx="280" cy="40" r="3.4" fill="#111"/>
+  <text class="lbl" x="300" y="34" text-anchor="middle">극한은 여기만 1</text>
+</svg>
+<figcaption>$n$ 이 커질수록 그래프가 바닥에 눌리지만 <b>오른쪽 끝은 언제나 $1$</b> 이다.
+그 “버티는 지점”이 $x=1$ 쪽으로 계속 도망다니므로 하나의 $N$ 으로 전체를 덮을 수 없다.</figcaption>
+</figure>
+
+<h2 class="sub">고른 수렴이 지켜 주는 것</h2>
+
+<div class="box thm">
+  <span class="tag">정리 6.2.5</span><span class="title">고른 수렴은 연속성을 보존한다</span>
+  <p>각 $f_n$ 이 $A$ 에서 연속이고 $f_n\to f$ 가 <b>고르게</b> 성립하면 $f$ 도 $A$ 에서 연속이다.</p>
+</div>
+
+<div class="box prf">
+  <span class="tag">증명</span><span class="title">$\varepsilon/3$ 논법</span>
+  <p>$c\in A$ 와 $\varepsilon\gt0$ 이 주어졌다고 하자.</p>
+  <ol class="props">
+    <li><b>고른 수렴</b>으로, 모든 $x\in A$ 에서 $|f_N(x)-f(x)|\lt\dfrac{\varepsilon}{3}$ 인 $N$ 을 <b>하나</b> 고른다.</li>
+    <li><b>$f_N$ 의 연속성</b>으로, $|x-c|\lt\delta$ 이면 $|f_N(x)-f_N(c)|\lt\dfrac{\varepsilon}{3}$ 인 $\delta$ 를 얻는다.</li>
+  </ol>
+  <p>그러면 $|x-c|\lt\delta$ 일 때</p>
+  $$|f(x)-f(c)|\le\underbrace{|f(x)-f_N(x)|}_{\lt\varepsilon/3}
+    +\underbrace{|f_N(x)-f_N(c)|}_{\lt\varepsilon/3}
+    +\underbrace{|f_N(c)-f(c)|}_{\lt\varepsilon/3}\lt\varepsilon$$
+  <div class="qed">∎</div>
+</div>
+
+<div class="note">
+  <b>왜 점별로는 안 되는가</b>가 증명 안에 그대로 보인다.
+  ①에서 <b>$x$ 와 $c$ 양쪽</b>에 동시에 통하는 $N$ 을 하나 골라야 하는데,
+  점별 수렴이면 $N$ 이 점마다 달라 이 걸음이 막힌다.
+</div>
+
+<div class="box thm">
+  <span class="tag">정리 6.2.6</span><span class="title">고른 코시 판정법</span>
+  <p>$f_n\to f$ 가 $A$ 에서 고르게 수렴할 필요충분조건은 다음이다.</p>
+  $$\forall\varepsilon\gt0,\ \exists N,\ \forall m,n\ge N,\ \forall x\in A:\ |f_n(x)-f_m(x)|\lt\varepsilon$$
+  <p><a href="2-6_cauchy.html">2.6절 코시 판정법</a>의 함수열판이며, <b>극한함수를 모른 채</b> 고른 수렴을 판정할 수 있게 해 준다.</p>
+</div>
+
+<h2 class="sub">수리통계학과의 연결 — 글리벤코–칸텔리</h2>
+
+<div class="box thm">
+  <span class="tag">연결</span><span class="title">$\sup_x|F_n(x)-F(x)|\to0$ 의 뜻</span>
+  <p><a href="../수리통계학/ch08/8-1_nonparametric-estimation.html">수리통계 8.1</a>의
+  <b>경험적 분포함수</b>는 다음이었다.</p>
+  $$F_n(x)=\frac1n\sum_{i=1}^{n}\mathbf{1}\{X_i\le x\}$$
+  <p>각 $x$ 를 고정하면 $\mathbf{1}\{X_i\le x\}$ 는 성공확률 $F(x)$ 인 베르누이 확률변수이므로,
+  대수의 법칙에 의해 $F_n(x)\xrightarrow{\text{a.s.}}F(x)$ 다. 이것은 <b>점별</b> 수렴이다.</p>
+  <p><b>글리벤코–칸텔리 정리</b>는 여기서 한 걸음 더 나아간다.</p>
+  $$\sup_{x\in\mathbb{R}}\left|F_n(x)-F(x)\right|\xrightarrow{\text{a.s.}}0$$
+  <p>정리 6.2.3에 의해 이것이 바로 <b>고른 수렴</b>이다.
+  점별에서 고른으로 올라가는 이 한 걸음이 통계적으로 결정적이다.</p>
+</div>
+
+<div class="box thm">
+  <span class="tag">왜 결정적인가</span><span class="title">K–S 검정과 신뢰띠</span>
+  <ol class="props">
+    <li><b>K–S 통계량이 정의된다.</b> $D_n=\sup_x|F_n(x)-F(x)|$ 는
+      <a href="1-3_completeness.html">완비성 공리</a>가 보장하는 $\sup$ 을 취한 값이고,
+      글리벤코–칸텔리가 이것이 $0$ 으로 감을 보장하므로 검정통계량으로 쓸 수 있다.</li>
+    <li><b>신뢰띠가 “동시에” 성립한다.</b> 점별 수렴만으로는 각 $x$ 마다 따로 신뢰구간을 줄 뿐이고,
+      <b>모든 $x$ 에서 한꺼번에</b> 성립하는 띠는 만들 수 없다.
+      $\sup$ 의 분포를 알아야 비로소
+      $$P\!\left(\forall x:\ F_n(x)-c\le F(x)\le F_n(x)+c\right)=1-\alpha$$
+      꼴의 <b>동시 신뢰띠</b>를 얻는다. “고르게” 가 곧 “동시에” 다.</li>
+  </ol>
+</div>
+
+<div class="note">
+  예 6.2.4가 왜 중요한지도 여기서 분명해진다.
+  $F_n$ 은 계단함수이고 $F$ 는 (연속형이면) 연속인데, <b>점별 수렴만으로는 이런 차이가 남을 수 있다</b>.
+  글리벤코–칸텔리는 그 차이가 <b>가장 나쁜 점에서조차</b> 사라진다고 말하는 정리다.
+</div>
+
+<div class="box exr">
+  <span class="tag">연습</span>
+  <ol class="props">
+    <li>$f_n(x)=\dfrac{x}{n}$ 이 $\mathbb{R}$ 에서는 고르게 수렴하지 않지만
+      $[0,1]$ 에서는 고르게 수렴함을 $\sup$ 으로 보여라.</li>
+    <li>$f_n(x)=\dfrac{1}{1+nx^{2}}$ 의 점별 극한을 구하고, $[0,1]$ 에서 고른 수렴인지 판정하라.</li>
+    <li>예 6.2.4의 $x^n$ 이 $[0,a]$ ($0\lt a\lt1$) 에서는 <b>고르게</b> 수렴함을 보여라.
+      정의역을 줄이면 왜 되는가?</li>
+  </ol>
+  <details class="hint"><summary>막히면</summary>
+    <p>(1) $\sup_{\mathbb{R}}|x/n|=\infty$, $\sup_{[0,1]}|x/n|=1/n\to0$.
+    (3) $\sup_{[0,a]}x^n=a^n\to0$ — 도망다니던 지점 $x=1$ 을 정의역에서 잘라 냈기 때문이다.</p>
+  </details>
+</div>
+
+<nav class="pager">
+  <a href="5-3_mean-value-theorem.html">← 이전<small>5.3 평균값 정리</small></a>
+  <a class="next" href="6-3_uniform-and-derivatives.html">다음 →<small>6.3 고른 수렴과 미분</small></a>
+</nav>
+
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>6장 · 6.5 멱급수</title>
+<link rel="stylesheet" href="../../assets/analysis.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../index.html">⌂ 홈</a>
+  <div class="ch">해석학 · 6장 함수열과 함수급수</div>
+  <h1><span class="no">6.5</span>멱급수 <span class="en">power series</span></h1>
+</header>
+
+<p>로드맵에서 <b>훑기</b> 등급을 준 절이다.
+적률생성함수와 확률생성함수가 <b>계수가 적률·확률인 멱급수</b>이기 때문에,
+“mgf 가 $0$ 의 근방에서 존재하면” 이라는 단서를 읽을 수 있을 정도만 챙기면 된다.</p>
+
+<h2 class="sub">정의와 수렴반경</h2>
+
+<div class="box def">
+  <span class="tag">정의 6.5.1</span><span class="title">멱급수 <span class="en">power series</span></span>
+  <p>$c$ 를 중심으로 하는 멱급수란 다음 꼴의 함수급수다.</p>
+  $$\sum_{n=0}^{\infty}a_n(x-c)^{n}=a_0+a_1(x-c)+a_2(x-c)^{2}+\cdots$$
+</div>
+
+<div class="box thm">
+  <span class="tag">정리 6.5.2</span><span class="title">수렴반경 <span class="en">radius of convergence</span></span>
+  <p>멱급수 $\sum a_nx^{n}$ 에 대해 다음 셋 중 하나가 반드시 성립한다.</p>
+  <ul>
+    <li><b>$R=0$</b>: $x=0$ 에서만 수렴한다.</li>
+    <li><b>$0\lt R\lt\infty$</b>: $|x|\lt R$ 에서 절대수렴, $|x|\gt R$ 에서 발산한다. $|x|=R$ 은 따로 확인해야 한다.</li>
+    <li><b>$R=\infty$</b>: 모든 실수에서 수렴한다.</li>
+  </ul>
+  <p>이 $R$ 을 <b>수렴반경</b>이라 하며, 비율판정법이 쓸 수 있을 때는 다음으로 구한다.</p>
+  $$R=\lim_{n\to\infty}\left|\frac{a_n}{a_{n+1}}\right|$$
+</div>
+
+<div class="box thm">
+  <span class="tag">정리 6.5.3</span><span class="title">수렴반경 안에서의 고른 수렴</span>
+  <p>수렴반경이 $R$ 인 멱급수는 임의의 $0\lt r\lt R$ 에 대해 $[-r,r]$ 에서 <b>고르게</b> 수렴한다.</p>
+  <p>주의 — <b>$(-R,R)$ 전체에서 고르게</b> 수렴한다고는 말할 수 없다.
+  안쪽으로 한 칸 물러선 닫힌구간에서만 보장된다.</p>
+</div>
+
+<div class="note">
+  이 정리 덕분에 <a href="6-2_uniform-convergence.html">6.2절</a>·<a href="6-3_uniform-and-derivatives.html">6.3절</a>·
+  <a href="7-4_integration-properties.html">7.4절</a>의 결론이 멱급수에 <b>전부</b> 적용된다.
+  <ul>
+    <li>합 함수는 $(-R,R)$ 에서 <b>연속</b>이다.</li>
+    <li><b>항별 미분·항별 적분</b>이 자유롭고, 그 결과의 수렴반경도 $R$ 로 같다.</li>
+    <li>따라서 합 함수는 $(-R,R)$ 에서 <b>무한번 미분가능</b>하다.</li>
+  </ul>
+</div>
+
+<div class="box thm">
+  <span class="tag">정리 6.5.4</span><span class="title">계수는 유일하게 결정된다</span>
+  <p>$f(x)=\sum a_n(x-c)^{n}$ 이 $c$ 의 근방에서 성립하면</p>
+  $$a_n=\frac{f^{(n)}(c)}{n!}$$
+  <p>이다. 즉 <b>같은 함수를 나타내는 멱급수는 하나뿐</b>이며, 계수를 비교해 값을 읽어 낼 수 있다.</p>
+</div>
+
+<h2 class="sub">수리통계학과의 연결</h2>
+
+<div class="box thm">
+  <span class="tag">연결 1</span><span class="title">mgf 의 계수가 적률이다</span>
+  <p>$e^{tx}=\sum_{n=0}^{\infty}\dfrac{(tx)^{n}}{n!}$ 을 대입하고 항별로 기댓값을 취하면
+  (<a href="7-4_integration-properties.html">7.4절</a>의 항별 적분)</p>
+  $$M(t)=E\!\left[e^{tX}\right]=\sum_{n=0}^{\infty}\frac{E(X^{n})}{n!}\,t^{n}$$
+  <p>즉 <b>mgf 는 $t$ 에 대한 멱급수이고, 그 $n$ 차 계수가 $\dfrac{E(X^{n})}{n!}$</b> 이다.
+  정리 6.5.4에 의해 $M^{(n)}(0)=E(X^{n})$ 이 나오는 것도 같은 이야기다
+  (<a href="../수리통계학/ch02/2-8_mgf.html">수리통계 2.8</a>).</p>
+</div>
+
+<div class="box thm">
+  <span class="tag">연결 2</span><span class="title">“$0$ 의 근방에서 존재하면” 의 뜻</span>
+  <p>mgf 정리에는 늘 <b>“어떤 $h\gt0$ 에 대해 $|t|\lt h$ 에서 $M(t)$ 가 존재하면”</b> 이라는 단서가 붙는다.
+  이것이 곧 <b>수렴반경이 양수</b>라는 말이다. 왜 필요한가.</p>
+  <ul>
+    <li><b>항별 조작을 허락하기 위해</b> — 정리 6.5.3의 고른 수렴이 있어야 미분·적분을 항별로 할 수 있다.</li>
+    <li><b>적률이 모두 유한함을 보장하기 위해</b> — 수렴반경이 $0$ 이면 고차 적률이 발산한다.</li>
+    <li><b>분포를 유일하게 결정하기 위해</b> — mgf 가 $0$ 의 근방에서 일치하면 두 분포가 같다는 정리
+      (적률생성함수의 유일성)가 이 조건 아래에서만 성립한다.</li>
+  </ul>
+  <p><b>반례.</b> 로그정규분포는 모든 적률이 유한한데도 mgf 가 $t\gt0$ 에서 존재하지 않는다.
+  적률이 다 있다고 분포가 결정되는 것은 아니라는 유명한 예이며,
+  “$0$ 의 근방” 조건이 장식이 아님을 보여 준다.</p>
+</div>
+
+<div class="box thm">
+  <span class="tag">연결 3</span><span class="title">pgf 는 계수가 확률인 멱급수</span>
+  <p>이산형 확률변수의 확률생성함수
+  (<a href="../수리통계학/ch02/2-9_pgf.html">수리통계 2.9</a>)는</p>
+  $$G(s)=E\!\left[s^{X}\right]=\sum_{k=0}^{\infty}P(X=k)\,s^{k}$$
+  <p>로, 계수가 그대로 <b>확률질량함수</b>다. 정리 6.5.4(계수의 유일성)에 의해</p>
+  $$P(X=k)=\frac{G^{(k)}(0)}{k!}$$
+  <p>이며, $|s|\le1$ 에서 $\sum P(X=k)=1$ 이므로 수렴반경은 항상 $R\ge1$ 이다.
+  pgf 가 mgf 보다 다루기 편한 이유가 이 자동 보장에 있다.</p>
+</div>
+
+<div class="box exr">
+  <span class="tag">연습</span>
+  <ol class="props">
+    <li>포아송 $\mathrm{POI}(\lambda)$ 의 pgf 가 $G(s)=e^{\lambda(s-1)}$ 임을 보이고,
+      계수를 전개해 pmf 를 되찾아라.</li>
+    <li>$\sum\dfrac{x^{n}}{n}$ 의 수렴반경을 구하고 $x=\pm1$ 에서의 수렴 여부를 각각 판정하라.</li>
+  </ol>
+  <details class="hint"><summary>2번 힌트</summary>
+    <p>$R=1$. $x=1$ 은 조화급수로 발산, $x=-1$ 은 교대급수로 수렴 —
+    <b>경계는 정리가 말해 주지 않으므로 반드시 따로 확인</b>해야 한다.</p>
+  </details>
+</div>
+
+<nav class="pager">
+  <a href="7-4_integration-properties.html">← 이전<small>7.4 적분의 성질</small></a>
+  <a class="next" href="6-6_taylor-series.html">다음 →<small>6.6 테일러 급수</small></a>
+</nav>
+
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2장 · 2.4 단조수렴정리</title>
+<link rel="stylesheet" href="../../assets/analysis.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../index.html">⌂ 홈</a>
+  <div class="ch">해석학 · 2장 수열과 급수</div>
+  <h1><span class="no">2.4</span>단조수렴정리 <span class="en">the monotone convergence theorem</span></h1>
+</header>
+
+<p><a href="2-2_sequence-limit.html">2.2절</a>에서 “수렴 $\Rightarrow$ 유계” 는 보았지만 역은 거짓이었다.
+여기에 <b>단조성</b>을 더하면 역이 살아난다. 이 정리의 값어치는 <b>극한값을 몰라도 수렴을 말할 수 있다</b>는 데 있다.</p>
+
+<h2 class="sub">정의와 정리</h2>
+
+<div class="box def">
+  <span class="tag">정의 2.4.1</span><span class="title">단조수열 <span class="en">monotone sequence</span></span>
+  <ol class="props">
+    <li>모든 $n$ 에서 $a_n\le a_{n+1}$ 이면 $(a_n)$ 은 <b>증가</b>수열이다.</li>
+    <li>모든 $n$ 에서 $a_n\ge a_{n+1}$ 이면 <b>감소</b>수열이다.</li>
+    <li>둘 중 하나이면 <b>단조</b>수열이라 한다.</li>
+  </ol>
+</div>
+
+<div class="box thm">
+  <span class="tag">정리 2.4.2</span><span class="title">단조수렴정리 <span class="en">monotone convergence theorem</span></span>
+  <p><b>단조이고 유계인</b> 수열은 수렴한다. 특히 증가수열이 위로 유계이면</p>
+  $$\lim_{n\to\infty}a_n=\sup\{a_n:n\in\mathbb{N}\}$$
+</div>
+
+<div class="box prf">
+  <span class="tag">증명</span>
+  <p>$(a_n)$ 이 증가이고 위로 유계라 하자. 집합 $A=\{a_n:n\in\mathbb{N}\}$ 은 공집합이 아니고 위로 유계이므로,
+  <a href="1-3_completeness.html">완비성 공리</a>에 의해 $s=\sup A$ 가 존재한다. 이 $s$ 가 극한임을 보인다.</p>
+  <p>$\varepsilon\gt0$ 이 주어졌다고 하자.</p>
+  <ol class="props">
+    <li>$s-\varepsilon$ 은 $s$ 보다 작으므로 <b>$A$ 의 상계가 아니다</b>.
+      따라서 $a_N\gt s-\varepsilon$ 인 어떤 $N$ 이 존재한다.</li>
+    <li>$(a_n)$ 이 증가하므로 $n\ge N$ 이면 $a_n\ge a_N\gt s-\varepsilon$ 이다.</li>
+    <li>$s$ 는 상계이므로 모든 $n$ 에서 $a_n\le s\lt s+\varepsilon$ 이다.</li>
+  </ol>
+  <p>따라서 $n\ge N$ 이면 $s-\varepsilon\lt a_n\lt s+\varepsilon$, 즉 $|a_n-s|\lt\varepsilon$ 이다.</p>
+  <div class="qed">∎</div>
+</div>
+
+<div class="note">
+  증명의 급소는 ①이다 — <b>“$\sup$ 보다 조금이라도 작은 수는 상계가 아니다”</b>.
+  이것은 상한의 정의(최소인 상계)를 그대로 뒤집은 것으로,
+  <a href="1-3_completeness.html">1.3절</a>에서 “$\sup$ 의 특징짓기” 로 정리해 둔 성질이다.
+  단조수렴정리는 결국 <b>완비성 공리를 수열의 언어로 번역한 것</b>이다.
+</div>
+
+<figure class="fig">
+<svg viewBox="0 0 360 160" role="img" aria-label="증가하면서 위로 유계인 수열이 상한 s로 수렴하는 그림">
+  <line class="axis" x1="30" y1="132" x2="346" y2="132"/>
+  <line class="aux" x1="30" y1="46" x2="346" y2="46"/>
+  <text class="lbl" x="352" y="42" text-anchor="end">s = sup A</text>
+  <line class="aux" x1="30" y1="62" x2="346" y2="62" stroke-dasharray="2 3"/>
+  <text class="lbl" x="352" y="76" text-anchor="end">s − ε</text>
+  <g fill="#111">
+    <circle cx="52"  cy="118" r="2.6"/><circle cx="80"  cy="100" r="2.6"/>
+    <circle cx="108" cy="88"  r="2.6"/><circle cx="136" cy="79"  r="2.6"/>
+    <circle cx="164" cy="72"  r="2.6"/><circle cx="192" cy="66"  r="2.6"/>
+    <circle cx="220" cy="60"  r="2.6"/><circle cx="248" cy="56"  r="2.6"/>
+    <circle cx="276" cy="53"  r="2.6"/><circle cx="304" cy="51"  r="2.6"/>
+    <circle cx="332" cy="49"  r="2.6"/>
+  </g>
+  <line class="aux" x1="206" y1="36" x2="206" y2="140" stroke-dasharray="3 3"/>
+  <text class="lbl" x="206" y="152" text-anchor="middle">N</text>
+  <text class="lbl" x="100" y="152" text-anchor="middle">한 번 띠에 들어오면</text>
+  <text class="lbl" x="280" y="152" text-anchor="middle">증가하므로 다시 못 나간다</text>
+</svg>
+<figcaption>증가수열에서는 $a_N$ 이 한 번 $s-\varepsilon$ 을 넘으면 <b>그 뒤 항은 전부</b> 넘는다.
+단조성이 “한 번 들어오면 나가지 못한다”를 보장한다.</figcaption>
+</figure>
+
+<h2 class="sub">쓰임 — 극한을 모른 채 존재를 얻는다</h2>
+
+<div class="box ex">
+  <span class="tag">예 2.4.3</span><span class="title">$a_1=2$, $a_{n+1}=\dfrac{a_n}{2}+1$</span>
+  <p>귀납법으로 $(a_n)$ 이 감소하고 아래로 $1$ 에 의해 유계임을 보이면, 단조수렴정리로 <b>극한의 존재</b>가 나온다.
+  존재를 얻은 뒤에야 극한값을 구할 수 있다 — $a_n\to L$ 이라 두면 점화식의 양변에 극한을 취해</p>
+  $$L=\frac{L}{2}+1\quad\Longrightarrow\quad L=2$$
+  <p><b>순서가 중요하다.</b> 수렴한다는 것을 먼저 보이지 않고 점화식에 극한부터 대입하면,
+  발산하는 수열에 대해서도 값이 나와 버려 잘못된 결론에 이른다.</p>
+</div>
+
+<div class="box thm">
+  <span class="tag">따름정리 2.4.4</span><span class="title">무한급수에의 적용</span>
+  <p>모든 항이 $b_k\ge0$ 인 급수 $\sum_{k=1}^{\infty}b_k$ 의 부분합 $s_n=\sum_{k=1}^{n}b_k$ 는 <b>증가수열</b>이다.
+  따라서 이 급수는 <b>부분합이 위로 유계일 때, 그리고 그때만 수렴</b>한다.</p>
+</div>
+
+<h2 class="sub">수리통계학과의 연결</h2>
+
+<div class="note">
+  <ol class="props">
+    <li><b>꼬리확률.</b> $P(X\gt n)$ 은 $n$ 에 대해 감소하고 $0$ 이상이므로 극한이 <b>반드시 존재</b>한다.
+      값이 무엇인지 모른 채로도 “수렴한다”를 쓸 수 있는 것이 이 정리 덕분이다.</li>
+    <li><b>분포함수.</b> cdf $F$ 는 단조증가이고 $0\le F\le1$ 로 유계이므로
+      $F(x^-)$, $F(x^+)$ 같은 <b>한쪽 극한이 항상 존재</b>한다
+      (<a href="4-2_functional-limits.html">4.2절</a>). 분포수렴을 다룰 때 쓰는 사실이다.</li>
+    <li><b>이름이 같은 다른 정리.</b> 측도론의 <b>단조수렴정리</b>
+      ($0\le f_n\uparrow f$ 이면 $\int f_n\to\int f$)는 <b>적분과 극한의 교환</b>에 관한 것으로 이 정리와 다르다.
+      학부 수리통계에서 그 이름을 만나면 <a href="7-4_integration-properties.html">7.4절</a> 쪽 이야기다.</li>
+  </ol>
+</div>
+
+<div class="box exr">
+  <span class="tag">연습</span>
+  <p>$a_1=\sqrt2$, $a_{n+1}=\sqrt{2+a_n}$ 로 정의된 수열이 수렴함을 보이고 극한값을 구하라.</p>
+  <details class="hint"><summary>막히면</summary>
+    <p>귀납법으로 $a_n\lt2$ 와 $a_n\lt a_{n+1}$ 을 각각 보인 뒤 단조수렴정리를 쓴다. 극한은 $L=\sqrt{2+L}$ 에서 $L=2$.</p>
+  </details>
+</div>
+
+<nav class="pager">
+  <a href="2-3_limit-theorems.html">← 이전<small>2.3 극한에 대한 정리</small></a>
+  <a class="next" href="2-5_bolzano-weierstrass.html">다음 →<small>2.5 부분수열과 볼차노–바이어슈트라스</small></a>
+</nav>
+
+</body>
+</html>

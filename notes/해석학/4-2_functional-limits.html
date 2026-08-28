@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>4장 · 4.2 함수의 극한</title>
+<link rel="stylesheet" href="../../assets/analysis.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../index.html">⌂ 홈</a>
+  <div class="ch">해석학 · 4장 함수의 극한과 연속</div>
+  <h1><span class="no">4.2</span>함수의 극한 <span class="en">functional limits</span></h1>
+</header>
+
+<p><a href="2-2_sequence-limit.html">2.2절</a>의 $\varepsilon$–$N$ 을 함수판으로 옮긴 것이다.
+바뀌는 것은 <b>“$n$ 이 충분히 크면”</b> 이 <b>“$x$ 가 $c$ 에 충분히 가까우면”</b> 으로 바뀌는 것뿐이고,
+$N$ 자리에 $\delta$ 가 들어선다.</p>
+
+<h2 class="sub">$\varepsilon$–$\delta$ 정의</h2>
+
+<div class="box def">
+  <span class="tag">정의 4.2.1</span><span class="title">함수의 극한 <span class="en">functional limit</span></span>
+  <p>$f:A\to\mathbb{R}$ 이고 $c$ 가 $A$ 의 극한점이라 하자.
+  $\displaystyle\lim_{x\to c}f(x)=L$ 이라는 것은 다음을 뜻한다.</p>
+  $$\forall\varepsilon\gt0,\ \exists\delta\gt0,\ \forall x\in A:\ 0\lt|x-c|\lt\delta\ \Longrightarrow\ |f(x)-L|\lt\varepsilon$$
+</div>
+
+<div class="note">
+  <b>$0\lt|x-c|$ 에 주목한다.</b> $x=c$ 는 <b>제외</b>된다. 즉 극한은 $f(c)$ 가 무엇인지,
+  심지어 $f$ 가 $c$ 에서 정의되었는지와도 무관하다.
+  극한값과 함숫값이 <b>같기를 요구</b>하는 것이 <a href="4-3_continuous-functions.html">4.3절의 연속</a>이다.
+</div>
+
+<figure class="fig">
+<svg viewBox="0 0 360 200" role="img" aria-label="ε–δ 정의 — 세로로 폭 2ε인 띠를 주면 가로로 폭 2δ인 띠를 잡아 그래프가 상자 안에 들어가게 할 수 있다">
+  <line class="axis" x1="40" y1="164" x2="340" y2="164"/>
+  <line class="axis" x1="40" y1="164" x2="40" y2="22"/>
+  <rect x="146" y="70" width="72" height="52" fill="#ececec" stroke="#333" stroke-width="1"/>
+  <line class="aux" x1="40" y1="70" x2="340" y2="70"/>
+  <line class="aux" x1="40" y1="122" x2="340" y2="122"/>
+  <line class="aux" x1="146" y1="164" x2="146" y2="40"/>
+  <line class="aux" x1="218" y1="164" x2="218" y2="40"/>
+  <path class="vec" fill="none" d="M52,150 C110,140 130,120 182,96 C232,72 280,54 330,40"/>
+  <g class="lbl">
+    <text x="30" y="74" text-anchor="end">L+ε</text>
+    <text x="30" y="126" text-anchor="end">L−ε</text>
+    <text x="146" y="178" text-anchor="middle">c−δ</text>
+    <text x="182" y="178" text-anchor="middle">c</text>
+    <text x="218" y="178" text-anchor="middle">c+δ</text>
+    <text x="286" y="112" text-anchor="middle">f</text>
+  </g>
+  <text class="lbl" x="190" y="196" text-anchor="middle">ε 을 먼저 주면 → 그에 맞는 δ 를 찾는다</text>
+</svg>
+<figcaption>세로 폭 $2\varepsilon$ 짜리 띠가 <b>먼저</b> 주어지고, 가로 폭 $2\delta$ 를 <b>나중에</b> 좁혀
+그래프 조각이 상자를 벗어나지 않게 만든다. $\delta$ 는 $\varepsilon$ 에 의존해도 된다.</figcaption>
+</figure>
+
+<div class="box ex">
+  <span class="tag">예 4.2.2</span><span class="title">$\lim_{x\to2}(3x+1)=7$</span>
+  <p><span class="step">초안.</span> $|(3x+1)-7|=3|x-2|$ 이므로 $|x-2|\lt\dfrac{\varepsilon}{3}$ 이면 충분하다.</p>
+  <p><span class="step">정서.</span> $\varepsilon\gt0$ 이 주어졌다고 하자. $\delta=\dfrac{\varepsilon}{3}$ 으로 두면
+  $0\lt|x-2|\lt\delta$ 일 때 $|(3x+1)-7|=3|x-2|\lt3\delta=\varepsilon$ 이다.</p>
+</div>
+
+<h2 class="sub">순차적 판정법 — 수열로 갈아타기</h2>
+
+<div class="box thm">
+  <span class="tag">정리 4.2.3</span><span class="title">순차적 판정법 <span class="en">sequential criterion</span></span>
+  <p>$\displaystyle\lim_{x\to c}f(x)=L$ 일 필요충분조건은
+  <b>$c$ 로 수렴하는 모든 수열 $(x_n)$ ($x_n\ne c$)에 대해 $f(x_n)\to L$</b> 인 것이다.</p>
+</div>
+
+<div class="note">
+  이 정리 덕분에 <a href="2-3_limit-theorems.html">2.3절의 대수적 극한정리</a>가
+  함수의 극한에도 <b>그대로</b> 옮겨진다 — 합·곱·몫의 극한 공식을 다시 증명할 필요가 없다.
+  또 <b>극한이 없음을 보이는 데</b> 특히 편하다.
+</div>
+
+<div class="box ex">
+  <span class="tag">예 4.2.4</span><span class="title">극한이 없음 보이기</span>
+  <p>$f(x)=\operatorname{sgn}(x)$ 에서 $x_n=\dfrac1n\to0$ 이면 $f(x_n)=1\to1$ 이고,
+  $y_n=-\dfrac1n\to0$ 이면 $f(y_n)=-1\to-1$ 이다.
+  두 값이 다르므로 $\lim_{x\to0}f(x)$ 는 존재하지 않는다.</p>
+</div>
+
+<h2 class="sub">한쪽 극한과 분포함수</h2>
+
+<div class="box def">
+  <span class="tag">정의 4.2.5</span><span class="title">좌극한과 우극한</span>
+  <ol class="props">
+    <li><b>우극한</b> $f(c^{+})=\lim_{x\to c^{+}}f(x)$ — 정의에서 $0\lt x-c\lt\delta$ 로 제한</li>
+    <li><b>좌극한</b> $f(c^{-})=\lim_{x\to c^{-}}f(x)$ — 정의에서 $0\lt c-x\lt\delta$ 로 제한</li>
+  </ol>
+  <p>$\lim_{x\to c}f(x)$ 가 존재할 필요충분조건은 두 한쪽 극한이 존재하고 <b>서로 같은</b> 것이다.</p>
+</div>
+
+<div class="box thm">
+  <span class="tag">정리 4.2.6</span><span class="title">단조함수는 한쪽 극한을 항상 가진다</span>
+  <p>$f$ 가 단조이고 유계이면 모든 점에서 $f(c^{-})$ 와 $f(c^{+})$ 가 <b>존재한다</b>.
+  따라서 단조함수의 불연续점은 모두 <b>도약 불연속</b>뿐이다.</p>
+  <p>증명은 <a href="2-4_monotone.html">단조수렴정리</a>를 $\sup$·$\inf$ 로 옮긴 것이다 —
+  예컨대 $f(c^{-})=\sup\{f(x):x\lt c\}$ 다.</p>
+</div>
+
+<h2 class="sub">수리통계학과의 연결 — 왜 “연속점에서만” 인가</h2>
+
+<div class="box thm">
+  <span class="tag">연결</span><span class="title">분포수렴의 정의에 붙는 단서</span>
+  <p><a href="../수리통계학/ch03/3-4_lln-clt.html">수리통계 3.4</a>에서 분포수렴은 이렇게 정의되었다.</p>
+  $$X_n\xrightarrow{d}X \iff F_n(x)\to F(x)\quad\text{(단, } F \text{ 의 \textbf{연속점} } x \text{ 에서만)}$$
+  <p>왜 단서가 붙는가. cdf 는 단조증가이고 $0\le F\le1$ 이므로 정리 4.2.6에 의해
+  <b>불연속점은 도약뿐</b>이고 그 개수는 많아야 가산개다.
+  그런데 도약점에서는 $F_n$ 이 도약의 <b>어느 쪽</b>으로 붙느냐가 임의로 갈릴 수 있다.</p>
+  <p><b>구체적인 예.</b> $X_n\equiv\dfrac1n$ 인 (상수) 확률변수를 생각하자. $X_n\to0$ 이 자연스럽지만</p>
+  $$F_n(0)=P\!\left(\tfrac1n\le0\right)=0,\qquad F(0)=P(0\le0)=1$$
+  <p>이므로 $x=0$ 에서는 $F_n(0)\to F(0)$ 이 <b>성립하지 않는다</b>.
+  $0$ 은 $F$ 의 유일한 불연속점이고, 그 점만 빼면 모든 곳에서 수렴한다.
+  단서가 없으면 이런 당연한 수렴조차 배제되어 버린다.</p>
+</div>
+
+<div class="note">
+  cdf 의 우연속성 $F(x^{+})=F(x)$ 도 이 절의 언어다.
+  “$F(x)=P(X\le x)$ 로 정의하면 우연속” 이라는 <a href="../수리통계학/ch02/2-2_distributions.html">수리통계 2.2</a>의 성질은,
+  부등호를 $\le$ 로 잡았기 때문에 오른쪽에서 다가갈 때 값이 이어진다는 뜻이다.
+</div>
+
+<div class="box exr">
+  <span class="tag">연습</span>
+  <ol class="props">
+    <li>$\lim_{x\to3}x^{2}=9$ 를 $\varepsilon$–$\delta$ 로 보여라.
+      (요령: $\delta\le1$ 을 먼저 걸어 $|x+3|\lt7$ 을 확보한다.)</li>
+    <li>$f(x)=\sin\dfrac1x$ 에서 $\lim_{x\to0}f(x)$ 가 존재하지 않음을 순차적 판정법으로 보여라.</li>
+  </ol>
+</div>
+
+<nav class="pager">
+  <a href="2-6_cauchy.html">← 이전<small>2.6 코시 수렴 판정법</small></a>
+  <a class="next" href="4-3_continuous-functions.html">다음 →<small>4.3 연속함수</small></a>
+</nav>
+
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>4장 · 4.3 연속함수</title>
+<link rel="stylesheet" href="../../assets/analysis.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../index.html">⌂ 홈</a>
+  <div class="ch">해석학 · 4장 함수의 극한과 연속</div>
+  <h1><span class="no">4.3</span>연속함수 <span class="en">continuous functions</span></h1>
+</header>
+
+<p>수리통계학에서 <b>연속사상정리</b>(continuous mapping theorem)라는 이름으로 계속 쓰이는 절이다.
+$\hat\theta_n\xrightarrow{p}\theta$ 일 때 $g(\hat\theta_n)\xrightarrow{p}g(\theta)$ 라고 말할 수 있는 근거가
+전부 여기서 나오며, 델타 방법도 이 절에서 출발한다.</p>
+
+<h2 class="sub">연속의 정의 — 세 가지 같은 말</h2>
+
+<div class="box def">
+  <span class="tag">정의 4.3.1</span><span class="title">점에서의 연속 <span class="en">continuity at a point</span></span>
+  <p>$f:A\to\mathbb{R}$ 이 $c\in A$ 에서 <b>연속</b>이라는 것은 다음을 뜻한다.</p>
+  $$\forall\varepsilon\gt0,\ \exists\delta\gt0,\ \forall x\in A:\ |x-c|\lt\delta\ \Longrightarrow\ |f(x)-f(c)|\lt\varepsilon$$
+  <p>$A$ 의 모든 점에서 연속이면 $f$ 는 <b>$A$ 위에서 연속</b>이라고 한다.</p>
+</div>
+
+<div class="box thm">
+  <span class="tag">정리 4.3.2</span><span class="title">동치인 세 진술</span>
+  <p>$c\in A$ 에 대해 다음은 서로 동치이다.</p>
+  <ol class="props">
+    <li>$f$ 가 $c$ 에서 연속이다($\varepsilon$–$\delta$).</li>
+    <li>$c$ 가 $A$ 의 극한점이면 $\displaystyle\lim_{x\to c}f(x)=f(c)$ 이다.</li>
+    <li><b>순차적 판정</b>: $x_n\to c$ 인 $A$ 안의 모든 수열에 대해 $f(x_n)\to f(c)$ 이다.</li>
+  </ol>
+</div>
+
+<div class="note">
+  <a href="4-2_functional-limits.html">4.2절의 극한</a>과 딱 두 군데가 다르다 —
+  ① 극한값 자리에 <b>함숫값 $f(c)$</b> 가 들어가고,
+  ② $0\lt|x-c|$ 의 제한이 <b>사라진다</b>($x=c$ 를 허용해도 부등식이 자동으로 성립하므로).
+  즉 <b>연속 = 극한값과 함숫값이 일치</b>다.
+</div>
+
+<div class="note">
+  실제로 쓸 때는 $(3)$ 순차적 판정이 압도적으로 편하다.
+  “수열을 넣으면 수열이 따라간다” 는 형태라서 <b>확률변수를 넣는 순간 그대로 통계의 진술이 된다</b>.
+</div>
+
+<h2 class="sub">연속함수의 대수</h2>
+
+<div class="box thm">
+  <span class="tag">정리 4.3.3</span><span class="title">대수적 연속정리 <span class="en">algebraic continuity theorem</span></span>
+  <p>$f,g$ 가 $c$ 에서 연속이면 다음도 $c$ 에서 연속이다.</p>
+  <ol class="props">
+    <li>$kf$ &nbsp;($k\in\mathbb{R}$)</li>
+    <li>$f+g$</li>
+    <li>$fg$</li>
+    <li>$g(c)\ne0$ 이면 $\dfrac{f}{g}$</li>
+  </ol>
+  <p><b>증명</b>: 순차적 판정 $(3)$ 으로 옮기면 <a href="2-3_limit-theorems.html">정리 2.3.1</a>이 그대로 적용된다.</p>
+</div>
+
+<div class="box thm">
+  <span class="tag">정리 4.3.4</span><span class="title">합성함수의 연속</span>
+  <p>$f:A\to\mathbb{R}$ 가 $c$ 에서 연속이고, $g:B\to\mathbb{R}$ 가 $f(c)$ 에서 연속이며 $f(A)\subseteq B$ 이면,
+  합성 $g\circ f$ 는 $c$ 에서 연속이다.</p>
+</div>
+
+<div class="box prf">
+  <span class="tag">증명</span>
+  <p>$\varepsilon\gt0$ 이 주어졌다고 하자.</p>
+  <ol class="props">
+    <li>$g$ 가 $f(c)$ 에서 연속이므로, $|y-f(c)|\lt\gamma$ 이면 $|g(y)-g(f(c))|\lt\varepsilon$ 인 $\gamma\gt0$ 이 있다.</li>
+    <li>$f$ 가 $c$ 에서 연속이므로, 이 <b>$\gamma$ 를 $\varepsilon$ 자리에 넣어</b>
+      $|x-c|\lt\delta$ 이면 $|f(x)-f(c)|\lt\gamma$ 인 $\delta\gt0$ 을 얻는다.</li>
+  </ol>
+  <p>이 $\delta$ 에 대해 $|x-c|\lt\delta$ 이면 $y=f(x)$ 가 ①의 조건을 만족하므로
+  $|g(f(x))-g(f(c))|\lt\varepsilon$ 이다.</p>
+  <div class="qed">∎</div>
+</div>
+
+<div class="note">
+  <b>바깥쪽 함수부터 거슬러 올라간다</b>는 것이 요령이다.
+  $g$ 가 요구하는 허용오차 $\gamma$ 를 먼저 받아 내고, 그것을 $f$ 에게 목표오차로 넘긴다.
+</div>
+
+<h2 class="sub">중간값 정리</h2>
+
+<div class="box thm">
+  <span class="tag">정리 4.3.5</span><span class="title">중간값 정리 <span class="en">intermediate value theorem</span></span>
+  <p>$f$ 가 닫힌구간 $[a,b]$ 에서 연속이고 $L$ 이 $f(a)$ 와 $f(b)$ 사이의 값이면,
+  $f(c)=L$ 인 $c\in(a,b)$ 가 존재한다.</p>
+</div>
+
+<div class="note">
+  <b>통계에서의 쓰임.</b> 가능도방정식 $\dfrac{\partial}{\partial\theta}\log L(\theta)=0$ 의
+  <b>해가 존재함</b>을 보일 때 쓰인다 — 스코어함수가 연속이고 양 끝에서 부호가 다르면
+  그 사이에 근이 있다. <a href="../수리통계학/ch04/4-2_maximum-likelihood.html">수리통계 4.2</a>에서
+  MLE 를 미분으로 찾는 절차의 밑바탕이다.
+</div>
+
+<h2 class="sub">수리통계학과의 연결 — 연속사상정리</h2>
+
+<div class="box thm">
+  <span class="tag">연결</span><span class="title">연속함수에 의한 일치성의 보존</span>
+  <p><a href="../수리통계학/ch04/4-5_asymptotic-properties.html">수리통계 4.5</a>의 정리는 다음이었다.</p>
+  $$\hat\theta_n\xrightarrow{p}\theta,\quad g \text{ 가 } \theta \text{ 에서 연속}
+    \quad\Longrightarrow\quad g(\hat\theta_n)\xrightarrow{p}g(\theta)$$
+  <p><b>증명이 이 절의 $\varepsilon$–$\delta$ 정의 한 줄이다.</b> $\varepsilon\gt0$ 이 주어지면,
+  연속성에 의해</p>
+  $$|t-\theta|\lt\delta\ \Longrightarrow\ |g(t)-g(\theta)|\lt\varepsilon$$
+  <p>인 $\delta\gt0$ 이 있다. 이 함의의 <b>대우</b>를 확률변수 $\hat\theta_n$ 에 적용하면</p>
+  $$\left\{\,|g(\hat\theta_n)-g(\theta)|\ge\varepsilon\,\right\}\subseteq\left\{\,|\hat\theta_n-\theta|\ge\delta\,\right\}$$
+  <p>이고, 확률의 단조성으로</p>
+  $$P\!\left(|g(\hat\theta_n)-g(\theta)|\ge\varepsilon\right)\le P\!\left(|\hat\theta_n-\theta|\ge\delta\right)\longrightarrow0$$
+  <p>가 되어 결론을 얻는다. <b>사건의 포함관계로 옮기는 그 한 걸음</b>이 전부이며,
+  그 포함관계를 정당화하는 것이 바로 연속의 정의다.</p>
+</div>
+
+<div class="note">
+  같은 논법이 여러 곳에 재활용된다.
+  <ol class="props">
+    <li>$S_n^{2}\xrightarrow{p}\sigma^{2}$ 이면 $S_n\xrightarrow{p}\sigma$ — $g(t)=\sqrt t$ 가 연속이므로.</li>
+    <li>$\hat p\xrightarrow{p}p$ 이면 $\hat p(1-\hat p)\xrightarrow{p}p(1-p)$ — 다항식은 연속이므로.</li>
+    <li><b>델타 방법</b>도 출발점이 같다. 다만 거기서는 연속을 넘어 <b>미분가능성</b>이 필요하고,
+      그것이 <a href="5-3_mean-value-theorem.html">5.3절</a>과 <a href="6-6_taylor-series.html">6.6절</a>로 이어진다.</li>
+  </ol>
+</div>
+
+<div class="box exr">
+  <span class="tag">연습</span>
+  <ol class="props">
+    <li>$f(x)=x^{2}$ 이 임의의 점 $c$ 에서 연속임을 $\varepsilon$–$\delta$ 로 보여라.</li>
+    <li>디리클레 함수 $f(x)=\begin{cases}1,&x\in\mathbb{Q}\\0,&x\notin\mathbb{Q}\end{cases}$ 가
+      <b>모든 점에서</b> 불연속임을 순차적 판정으로 보여라.
+      (<a href="1-4_consequences.html">1.4절</a>의 조밀성을 쓴다.)</li>
+  </ol>
+</div>
+
+<nav class="pager">
+  <a href="4-2_functional-limits.html">← 이전<small>4.2 함수의 극한</small></a>
+  <a class="next" href="4-4_compact-continuity.html">다음 →<small>4.4 콤팩트 집합 위의 연속함수</small></a>
+</nav>
+
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2장 · 2.3 극한에 대한 정리</title>
+<link rel="stylesheet" href="../../assets/analysis.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../index.html">⌂ 홈</a>
+  <div class="ch">해석학 · 2장 수열과 급수</div>
+  <h1><span class="no">2.3</span>극한에 대한 정리 <span class="en">the algebraic and order limit theorems</span></h1>
+</header>
+
+<p>이 절은 <b>도구함</b>이다. 매번 $\varepsilon$–$N$ 으로 돌아가지 않고 극한을 계산할 수 있게 해 주는 규칙들이며,
+수리통계학의 <b>슬럿츠키 정리</b>가 바로 이 정리들을 확률수렴·분포수렴판으로 옮겨 놓은 것이다.
+진술과 가정만 정확히 알면 충분하다.</p>
+
+<h2 class="sub">대수적 극한정리</h2>
+
+<div class="box thm">
+  <span class="tag">정리 2.3.1</span><span class="title">대수적 극한정리 <span class="en">algebraic limit theorem</span></span>
+  <p>$a_n\to a$, $b_n\to b$ 라 하자. 그러면 다음이 성립한다.</p>
+  <ol class="props">
+    <li>$ca_n\to ca$ &nbsp;(모든 $c\in\mathbb{R}$ 에 대해)</li>
+    <li>$a_n+b_n\to a+b$</li>
+    <li>$a_nb_n\to ab$</li>
+    <li>$b\ne0$ 이면 $\dfrac{a_n}{b_n}\to\dfrac{a}{b}$</li>
+  </ol>
+</div>
+
+<div class="box prf">
+  <span class="tag">증명</span>
+  <p>대표로 곱 $(3)$ 만 본다. 나머지도 같은 요령이다.</p>
+  <p><span class="step">착상.</span> $a_nb_n-ab$ 를 <b>한 번에</b> 다루기는 어려우므로
+  $a_nb$ 를 더하고 빼서 두 조각으로 나눈다.</p>
+  $$|a_nb_n-ab|=|a_nb_n-a_nb+a_nb-ab|\le|a_n||b_n-b|+|b||a_n-a|$$
+  <p><span class="step">유계성 확보.</span> $(a_n)$ 은 수렴하므로 <a href="2-2_sequence-limit.html">정리 2.2.7</a>에 의해 유계다.
+  즉 모든 $n$ 에 대해 $|a_n|\le M$ 인 $M\gt0$ 이 있다.</p>
+  <p><span class="step">$\varepsilon$ 을 쪼갠다.</span> $\varepsilon\gt0$ 이 주어졌다고 하자.</p>
+  <ol class="props">
+    <li>$b_n\to b$ 이므로 $n\ge N_1$ 이면 $|b_n-b|\lt\dfrac{\varepsilon}{2M}$</li>
+    <li>$a_n\to a$ 이므로 $n\ge N_2$ 이면 $|a_n-a|\lt\dfrac{\varepsilon}{2(|b|+1)}$</li>
+  </ol>
+  <p>$N=\max\{N_1,N_2\}$ 로 두면 $n\ge N$ 일 때</p>
+  $$|a_nb_n-ab|\le M\cdot\frac{\varepsilon}{2M}+|b|\cdot\frac{\varepsilon}{2(|b|+1)}\lt\frac{\varepsilon}{2}+\frac{\varepsilon}{2}=\varepsilon$$
+  <div class="qed">∎</div>
+</div>
+
+<div class="note">
+  <b>$\varepsilon/2$ 수법.</b> 오차가 두 조각이면 각 조각을 $\varepsilon/2$ 이하로 만든다.
+  세 조각이면 $\varepsilon/3$. 분모에 $|b|+1$ 을 쓴 것은 $b=0$ 일 때 $0$ 으로 나누는 것을 피하기 위한 흔한 요령이다.
+</div>
+
+<h2 class="sub">순서극한정리</h2>
+
+<div class="box thm">
+  <span class="tag">정리 2.3.2</span><span class="title">순서극한정리 <span class="en">order limit theorem</span></span>
+  <p>$a_n\to a$, $b_n\to b$ 라 하자.</p>
+  <ol class="props">
+    <li>모든 $n$ 에 대해 $a_n\ge0$ 이면 $a\ge0$ 이다.</li>
+    <li>모든 $n$ 에 대해 $a_n\le b_n$ 이면 $a\le b$ 이다.</li>
+    <li>어떤 $c\in\mathbb{R}$ 에 대해 모든 $n$ 에서 $a_n\le c$ 이면 $a\le c$ 이다.</li>
+  </ol>
+</div>
+
+<div class="note">
+  <b>부등호는 극한에서 느슨해진다.</b> 모든 $n$ 에서 $a_n\gt0$ 이더라도 $a\gt0$ 은 보장되지 않는다 —
+  $a_n=\dfrac1n$ 이 반례다. 극한을 취하면 <b>강부등호가 약부등호로 무너진다</b>는 것을 기억해야 한다.
+  통계에서 “$\sigma_n^2\gt0$ 인데 극한 분산이 $0$ 일 수 있다”는 상황이 정확히 이것이다.
+</div>
+
+<h2 class="sub">조임정리</h2>
+
+<div class="box thm">
+  <span class="tag">정리 2.3.3</span><span class="title">조임정리 <span class="en">squeeze theorem</span></span>
+  <p>모든 $n$ 에 대해 $a_n\le b_n\le c_n$ 이고 $a_n\to L$, $c_n\to L$ 이면 $b_n\to L$ 이다.</p>
+</div>
+
+<div class="box ex">
+  <span class="tag">예 2.3.4</span>
+  <p>$0\le\dfrac{|\sin n|}{n}\le\dfrac1n$ 이고 양끝이 모두 $0$ 으로 가므로 $\dfrac{\sin n}{n}\to0$ 이다.
+  $\varepsilon$–$N$ 으로 직접 하는 것보다 훨씬 빠르다.</p>
+</div>
+
+<h2 class="sub">수리통계학과의 연결 — 슬럿츠키 정리</h2>
+
+<div class="box thm">
+  <span class="tag">연결</span><span class="title">대수적 극한정리의 확률판</span>
+  <p><a href="../수리통계학/ch03/3-4_lln-clt.html">수리통계 3.4</a>의 <b>슬럿츠키 정리</b>는 다음과 같았다.
+  $X_n\xrightarrow{d}X$ 이고 $Y_n\xrightarrow{p}c$ (상수)이면</p>
+  $$X_n+Y_n\xrightarrow{d}X+c,\qquad X_nY_n\xrightarrow{d}cX,\qquad \frac{X_n}{Y_n}\xrightarrow{d}\frac{X}{c}\ (c\ne0)$$
+  <p>정리 2.3.1과 <b>모양이 같다</b>. 실제로 이 절의 증명에서 쓴 두 재료 —
+  <b>수렴하는 것은 유계</b>, <b>$\varepsilon$ 을 쪼개서 $\max\{N_1,N_2\}$</b> — 가
+  슬럿츠키 증명에서도 그대로 등장한다.</p>
+  <p>가장 자주 쓰이는 자리는 <b>스튜던트화</b>다. $\dfrac{\sqrt n(\bar X-\mu)}{\sigma}\xrightarrow{d}N(0,1)$ 이고
+  $\dfrac{S_n}{\sigma}\xrightarrow{p}1$ 이면, 몫에 대한 규칙으로</p>
+  $$\frac{\sqrt n(\bar X-\mu)}{S_n}\xrightarrow{d}N(0,1)$$
+  <p>을 얻는다. $\sigma$ 를 $S_n$ 으로 갈아 끼워도 되는 근거가 이것이다.</p>
+</div>
+
+<div class="note">
+  <b>주의할 점 하나.</b> 슬럿츠키에서 $Y_n$ 의 극한은 <b>반드시 상수</b>여야 한다.
+  실수열에서는 $a_n\to a$, $b_n\to b$ 이면 늘 $a_nb_n\to ab$ 였지만,
+  분포수렴 두 개를 곱하는 것은 <b>일반적으로 성립하지 않는다</b>.
+  실수판 정리를 확률판으로 옮길 때 가정이 어디서 강해지는지가 이 지점이다.
+</div>
+
+<div class="box exr">
+  <span class="tag">연습</span>
+  <p>$a_n\to a$ 이고 $a\gt0$ 이면, 어떤 $N$ 이 있어 $n\ge N$ 인 모든 $n$ 에서 $a_n\gt\dfrac{a}{2}$ 임을 보여라.
+  (이것이 정리 2.3.1의 $(4)$ 에서 분모가 $0$ 이 되지 않음을 보장하는 부분이다.)</p>
+  <details class="hint"><summary>막히면</summary>
+    <p>$\varepsilon=\dfrac a2$ 로 두고 정의를 그대로 쓴다.</p>
+  </details>
+</div>
+
+<nav class="pager">
+  <a href="2-2_sequence-limit.html">← 이전<small>2.2 수열의 극한</small></a>
+  <a class="next" href="2-4_monotone.html">다음 →<small>2.4 단조수렴정리</small></a>
+</nav>
+
+</body>
+</html>

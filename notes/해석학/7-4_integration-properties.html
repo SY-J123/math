@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>7장 · 7.4 적분의 성질 — 극한과의 교환</title>
+<link rel="stylesheet" href="../../assets/analysis.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../index.html">⌂ 홈</a>
+  <div class="ch">해석학 · 7장 리만 적분</div>
+  <h1><span class="no">7.4</span>적분의 성질 — 극한과의 교환
+  <span class="en">properties of the integral</span></h1>
+</header>
+
+<p>로드맵에 <b>“이거 하나 보러 감”</b> 이라고 적어 둔 절이다.
+목적은 하나 — <b>고른 수렴이면 적분과 극한을 바꿔도 된다</b>는 정리다.
+mgf 를 미분해 적률을 뽑는 조작과 크래머–라오의 정규조건이 모두 여기에 걸려 있다.</p>
+
+<h2 class="sub">기본 성질</h2>
+
+<div class="box thm">
+  <span class="tag">정리 7.4.1</span><span class="title">적분의 기본 성질</span>
+  <p>$f,g$ 가 $[a,b]$ 에서 적분가능하면 다음이 성립한다.</p>
+  <ol class="props">
+    <li><b>선형성</b>: $\displaystyle\int_a^b(\alpha f+\beta g)=\alpha\int_a^b f+\beta\int_a^b g$</li>
+    <li><b>가법성</b>: $a\lt c\lt b$ 에 대해 $\displaystyle\int_a^b f=\int_a^c f+\int_c^b f$</li>
+    <li><b>단조성</b>: $f\le g$ 이면 $\displaystyle\int_a^b f\le\int_a^b g$</li>
+    <li><b>삼각부등식</b>: $\left|\displaystyle\int_a^b f\right|\le\int_a^b|f|$</li>
+  </ol>
+</div>
+
+<div class="note">
+  $(3)$ 과 $(4)$ 는 통계에서 계속 쓰인다 —
+  $|E(X)|\le E|X|$, 그리고 마르코프·체비쇼프 부등식의 유도가 모두 단조성이다
+  (<a href="../수리통계학/ch02/2-4_expectation.html">수리통계 2.4</a>).
+</div>
+
+<h2 class="sub">이 절의 목표 — 고른 수렴과 적분의 교환</h2>
+
+<div class="box def">
+  <span class="tag">문제</span><span class="title">교환 가능성</span>
+  $$\int_a^b\left(\lim_{n\to\infty}f_n\right)\ \overset{?}{=}\ \lim_{n\to\infty}\int_a^b f_n$$
+</div>
+
+<div class="box ex">
+  <span class="tag">예 7.4.2</span><span class="title">점별 수렴만으로는 안 된다 — 솟구치는 봉우리</span>
+  <p>$[0,1]$ 에서 다음과 같은 삼각형 봉우리를 생각하자.</p>
+  $$f_n(x)=\begin{cases}
+    n^{2}x, & 0\le x\le\dfrac1n\\[4pt]
+    n^{2}\!\left(\dfrac2n-x\right), & \dfrac1n\lt x\le\dfrac2n\\[4pt]
+    0,&\text{그 외}\end{cases}$$
+  <p>각 $x\gt0$ 에 대해 $n$ 이 커지면 봉우리가 왼쪽으로 빠져나가므로 $f_n(x)\to0$, 즉 $f_n\to0$ 이 <b>점별</b>로 성립한다.
+  그런데 봉우리의 넓이는 밑변 $\dfrac2n$, 높이 $n$ 인 삼각형이므로</p>
+  $$\int_0^1 f_n=\frac12\cdot\frac2n\cdot n=1\qquad\text{(모든 } n \text{ 에 대해)}$$
+  <p>따라서 $\displaystyle\lim_n\int_0^1 f_n=1$ 이지만 $\displaystyle\int_0^1\lim_n f_n=\int_0^1 0=0$ 이다.
+  <b>교환이 깨진다.</b></p>
+  <p>이 예에서 $\sup_x|f_n(x)-0|=n\to\infty$ 이므로 고른 수렴이 아니다 — 정확히 가정이 빠진 자리다.</p>
+</div>
+
+<div class="box thm">
+  <span class="tag">정리 7.4.3</span><span class="title">고른 수렴이면 적분과 극한을 바꿀 수 있다</span>
+  <p>각 $f_n$ 이 $[a,b]$ 에서 적분가능하고 $f_n\to f$ 가 <b>고르게</b> 성립하면,
+  $f$ 도 $[a,b]$ 에서 적분가능하고</p>
+  $$\lim_{n\to\infty}\int_a^b f_n=\int_a^b f=\int_a^b\left(\lim_{n\to\infty}f_n\right)$$
+</div>
+
+<div class="box prf">
+  <span class="tag">증명</span><span class="title">교환 부분만</span>
+  <p>$\varepsilon\gt0$ 이 주어졌다고 하자. 고른 수렴에 의해 $n\ge N$ 이면
+  <b>모든 $x\in[a,b]$ 에서 동시에</b></p>
+  $$|f_n(x)-f(x)|\lt\frac{\varepsilon}{b-a}$$
+  <p>인 $N$ 이 있다. 그러면 정리 7.4.1의 $(4)$ 와 $(3)$ 에 의해 $n\ge N$ 일 때</p>
+  $$\left|\int_a^b f_n-\int_a^b f\right|=\left|\int_a^b(f_n-f)\right|
+    \le\int_a^b|f_n-f|\lt\int_a^b\frac{\varepsilon}{b-a}\,dx=\varepsilon$$
+  <div class="qed">∎</div>
+</div>
+
+<div class="note">
+  <b>왜 고른 수렴이 필요한지가 계산에 그대로 드러난다.</b>
+  $\displaystyle\int_a^b|f_n-f|$ 를 $\dfrac{\varepsilon}{b-a}\times(b-a)$ 로 눌러야 하는데,
+  그러려면 <b>구간 전체에서 같은 상한</b>이 있어야 한다. 점별 수렴은 그 상한을 주지 못한다.
+  예 7.4.2의 봉우리는 상한이 $n$ 으로 커지면서 폭이 $\dfrac2n$ 으로 줄어 넓이가 그대로 남는 경우다.
+</div>
+
+<div class="box thm">
+  <span class="tag">따름정리 7.4.4</span><span class="title">항별 적분</span>
+  <p>$\sum g_k$ 가 $[a,b]$ 에서 고르게 수렴하면</p>
+  $$\int_a^b\sum_{k=1}^{\infty}g_k=\sum_{k=1}^{\infty}\int_a^b g_k$$
+  <p>부분합에 정리 7.4.3을 적용한 것이다. <a href="6-5_power-series.html">멱급수</a>를 항별로 적분해도 되는 근거다.</p>
+</div>
+
+<h2 class="sub">수리통계학과의 연결</h2>
+
+<div class="box thm">
+  <span class="tag">연결 1</span><span class="title">mgf 를 미분해 적률을 뽑기</span>
+  <p><a href="../수리통계학/ch02/2-8_mgf.html">수리통계 2.8</a>에서 적률생성함수는</p>
+  $$M(t)=E\!\left[e^{tX}\right]=\int e^{tx}f(x)\,dx$$
+  <p>이고, $M'(0)=E(X)$, $M''(0)=E(X^{2})$ 를 얻는 계산의 정체는 다음이다.</p>
+  $$M'(t)=\frac{d}{dt}\int e^{tx}f(x)\,dx
+    \ \overset{(\ast)}{=}\ \int\frac{\partial}{\partial t}e^{tx}f(x)\,dx
+    =\int x\,e^{tx}f(x)\,dx$$
+  <p>$(\ast)$ 가 <b>미분과 적분의 교환</b>이고, 이 절과 <a href="6-3_uniform-and-derivatives.html">6.3절</a>이
+  그 허가증을 발급한다. 미분은 차분몫의 극한이므로 결국 <b>극한과 적분의 교환</b> 문제로 환원된다.</p>
+  <p>“<b>mgf 가 $0$ 의 어떤 근방 $|t|\lt h$ 에서 존재하면</b>” 이라는 단서가 늘 붙는 이유가 이것이다 —
+  그 근방에서 피적분함수를 <b>고르게</b> 통제할 수 있어야 교환이 정당해진다.</p>
+</div>
+
+<div class="box thm">
+  <span class="tag">연결 2</span><span class="title">크래머–라오의 정규조건</span>
+  <p><a href="../수리통계학/ch04/4-4_mvue.html">수리통계 4.4</a>에서 정보부등식을 유도할 때 쓰는</p>
+  $$\frac{d}{d\theta}\int f(x;\theta)\,dx=\int\frac{\partial}{\partial\theta}f(x;\theta)\,dx$$
+  <p>가 바로 같은 교환이다. <b>정규조건(regularity condition)</b> 이라는 말은
+  결국 이 교환을 허락하는 가정들의 묶음이며, 대표적으로 다음 둘이다.</p>
+  <ol class="props">
+    <li>지지집합 $\{x:f(x;\theta)\gt0\}$ 이 <b>$\theta$ 에 의존하지 않을 것</b></li>
+    <li>$\dfrac{\partial f}{\partial\theta}$ 가 $\theta$ 근방에서 <b>고르게 통제될 것</b></li>
+  </ol>
+  <p>①이 깨지는 대표 예가 $U(0,\theta)$ 이며, 그래서 그 모형에는 크래머–라오 하한을 적용할 수 없다
+  (<a href="6-3_uniform-and-derivatives.html">6.3절</a> 반례 참조).</p>
+</div>
+
+<div class="note">
+  <b>학부 수준의 결론.</b> 실전에서는 매번 고른 수렴을 확인하지 않는다.
+  대신 “정규조건을 만족하는 분포족(지수족 등)에서는 교환이 성립한다” 는 사실을 쓰고 넘어간다.
+  다만 <b>언제 그 면허가 무효가 되는지</b> — 지지집합이 모수에 의존할 때 — 는 반드시 알아야 하며,
+  그것이 이 절을 보는 이유의 전부다.
+</div>
+
+<div class="note">
+  더 강력한 도구가 필요하면 측도론의 <b>지배수렴정리</b>가 답이지만
+  ($|f_n|\le g$ 이고 $\int g\lt\infty$ 이면 교환 가능),
+  학부 수리통계학에서는 이름만 알아 두면 충분하다.
+  고른 수렴은 그보다 강한 조건이어서 확인하기 쉬운 대신 적용 범위가 좁다.
+</div>
+
+<div class="box exr">
+  <span class="tag">연습</span>
+  <ol class="props">
+    <li>$f_n(x)=nx^{n}$ on $[0,1]$ 에 대해 $\displaystyle\lim_n\int_0^1 f_n$ 과
+      $\displaystyle\int_0^1\lim_n f_n$ 을 각각 구하고 왜 다른지 설명하라.</li>
+    <li>$X\sim\mathrm{EXP}(\lambda)$ 의 mgf 를 구하고, 두 번 미분해 $E(X^{2})$ 를 얻어라.
+      mgf 가 존재하는 $t$ 의 범위는?</li>
+  </ol>
+  <details class="hint"><summary>힌트</summary>
+    <p>(1) $\int_0^1 nx^n=\dfrac{n}{n+1}\to1$ 이지만 점별 극한은 $x\lt1$ 에서 $0$.
+    (2) $M(t)=\dfrac{\lambda}{\lambda-t}$ 이며 $t\lt\lambda$ 에서만 존재한다 —
+    바로 그 “$0$ 의 근방” 이 교환을 허락하는 구간이다.</p>
+  </details>
+</div>
+
+<nav class="pager">
+  <a href="7-2_riemann-integral.html">← 이전<small>7.2 리만 적분</small></a>
+  <a class="next" href="6-5_power-series.html">다음 →<small>6.5 멱급수</small></a>
+</nav>
+
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>6장 · 6.3 고른 수렴과 미분</title>
+<link rel="stylesheet" href="../../assets/analysis.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../index.html">⌂ 홈</a>
+  <div class="ch">해석학 · 6장 함수열과 함수급수</div>
+  <h1><span class="no">6.3</span>고른 수렴과 미분 <span class="en">uniform convergence and differentiation</span></h1>
+</header>
+
+<p>“극한과 미분의 순서를 바꿔도 되는가” 를 다루는 절이다.
+수리통계학에서 <b>정규조건(regularity condition)</b> 이라고 뭉뚱그려 부르는 것의 정체가 여기 있고,
+<a href="../수리통계학/ch04/4-4_mvue.html">바틀릿 항등식</a>과 크래머–라오 하한이 그 위에 서 있다.</p>
+
+<h2 class="sub">순서를 바꿀 수 있는가</h2>
+
+<div class="box def">
+  <span class="tag">문제</span><span class="title">교환 가능성</span>
+  <p>$f_n\to f$ 일 때 다음이 성립하는가?</p>
+  $$\frac{d}{dx}\left(\lim_{n\to\infty}f_n(x)\right)
+    \ \overset{?}{=}\ \lim_{n\to\infty}\frac{d}{dx}f_n(x)$$
+  <p>즉 <b>극한을 먼저 취하고 미분</b>하는 것과 <b>미분을 먼저 하고 극한</b>을 취하는 것이 같은가.</p>
+</div>
+
+<div class="box ex">
+  <span class="tag">예 6.3.1</span><span class="title">$f_n$ 이 고르게 수렴해도 도함수는 따라가지 않는다</span>
+  <p>$f_n(x)=\dfrac{\sin(nx)}{\sqrt n}$ 을 보자.</p>
+  <ol class="props">
+    <li>$\displaystyle\sup_{x}|f_n(x)|\le\frac{1}{\sqrt n}\to0$ 이므로 $f_n\to f\equiv0$ 이 <b>고르게</b> 성립한다.</li>
+    <li>그런데 $f_n'(x)=\sqrt n\cos(nx)$ 이고, $x=0$ 에서 $f_n'(0)=\sqrt n\to\infty$ 다.</li>
+  </ol>
+  <p>극한함수의 도함수는 $f'\equiv0$ 인데 도함수의 극한은 존재조차 하지 않는다.
+  <b>$f_n$ 의 고른 수렴만으로는 부족하다</b>는 것이 이 예의 교훈이다.</p>
+</div>
+
+<div class="note">
+  이유는 그림으로 보면 분명하다 — $f_n$ 의 <b>높이</b>는 $1/\sqrt n$ 로 눌리지만
+  <b>진동이 $n$ 배로 빨라져</b> 기울기는 오히려 커진다.
+  값이 가까운 것과 기울기가 가까운 것은 별개의 일이다.
+</div>
+
+<h2 class="sub">올바른 정리 — 무엇이 고르게 수렴해야 하는가</h2>
+
+<div class="box thm">
+  <span class="tag">정리 6.3.2</span><span class="title">미분과 극한의 교환</span>
+  <p>$f_n$ 이 구간 $[a,b]$ 에서 미분가능하고 다음 두 조건을 만족한다고 하자.</p>
+  <ol class="props">
+    <li><b>도함수열 $(f_n')$ 이 $[a,b]$ 에서 어떤 함수 $g$ 로 고르게 수렴한다.</b></li>
+    <li>어떤 한 점 $x_0\in[a,b]$ 에서 수열 $\left(f_n(x_0)\right)$ 이 수렴한다.</li>
+  </ol>
+  <p>그러면 $f_n$ 은 $[a,b]$ 에서 어떤 $f$ 로 <b>고르게</b> 수렴하고, $f$ 는 미분가능하며</p>
+  $$f'=g,\qquad\text{즉}\qquad \left(\lim_{n\to\infty}f_n\right)'=\lim_{n\to\infty}f_n'$$
+</div>
+
+<div class="note">
+  <b>가정을 정확히 읽어야 한다.</b>
+  <ul>
+    <li>고르게 수렴해야 하는 것은 <b>$f_n$ 이 아니라 $f_n'$</b> 이다. 예 6.3.1이 정확히 이 조건을 깬 예다.</li>
+    <li>$f_n$ 자체에 대해서는 <b>한 점에서의 수렴</b>만 요구한다 —
+      도함수가 함수 전체의 모양을 결정하고, 한 점의 값이 상수만큼의 자유도를 묶어 준다.</li>
+  </ul>
+</div>
+
+<div class="box prf">
+  <span class="tag">증명의 얼개</span>
+  <p>완전한 증명은 길지만 뼈대는 세 걸음이다.</p>
+  <ol class="props">
+    <li><b>$f_n$ 이 고른 코시열임을 본다.</b>
+      <a href="5-3_mean-value-theorem.html">평균값 정리</a>를 $f_n-f_m$ 에 적용하면
+      $$\left|(f_n-f_m)(x)-(f_n-f_m)(x_0)\right|=\left|f_n'(\xi)-f_m'(\xi)\right|\cdot|x-x_0|$$
+      이고, $(f_n')$ 이 고른 코시열이므로 우변이 $x$ 에 무관하게 작아진다.
+      여기에 ②(한 점에서의 수렴)를 더하면 $(f_n)$ 이
+      <a href="6-2_uniform-convergence.html">고른 코시열</a>이 되어 $f$ 로 고르게 수렴한다.</li>
+    <li><b>$f$ 의 미분가능성.</b> 차분몫에 대해 같은 MVT 논법을 반복한다.</li>
+    <li><b>$\varepsilon/3$ 논법</b>으로 $f'(c)=g(c)$ 를 얻는다.</li>
+  </ol>
+  <p>핵심 도구는 <b>평균값 정리</b>다 — 함수의 차이를 도함수의 차이로 바꿔치기해 주기 때문에
+  $f_n'$ 에 대한 가정이 $f_n$ 에 대한 결론으로 옮겨 간다.</p>
+</div>
+
+<h2 class="sub">항별 미분</h2>
+
+<div class="box thm">
+  <span class="tag">따름정리 6.3.3</span><span class="title">급수의 항별 미분</span>
+  <p>$\sum g_k$ 가 한 점에서 수렴하고 $\sum g_k'$ 이 $[a,b]$ 에서 고르게 수렴하면</p>
+  $$\left(\sum_{k=1}^{\infty}g_k\right)'=\sum_{k=1}^{\infty}g_k'$$
+  <p>부분합에 정리 6.3.2를 적용한 것이다.
+  <a href="6-5_power-series.html">6.5절 멱급수</a>에서 항별 미분이 자유로운 이유가 여기에 있다.</p>
+</div>
+
+<h2 class="sub">수리통계학과의 연결 — 정규조건의 정체</h2>
+
+<div class="box thm">
+  <span class="tag">연결</span><span class="title">바틀릿 항등식과 미분·적분의 교환</span>
+  <p><a href="../수리통계학/ch04/4-4_mvue.html">수리통계 4.4</a>의 <b>바틀릿 항등식</b>은</p>
+  $$E\!\left[\frac{\partial}{\partial\theta}\log f(X;\theta)\right]=0$$
+  <p>이었고, 유도의 첫 줄은 언제나 이것이다.</p>
+  $$0=\frac{\partial}{\partial\theta}(1)
+    =\frac{\partial}{\partial\theta}\int f(x;\theta)\,dx
+    \ \overset{(\ast)}{=}\ \int\frac{\partial}{\partial\theta}f(x;\theta)\,dx$$
+  <p><b>$(\ast)$ 가 공짜가 아니다.</b> 미분과 적분의 순서를 바꾼 이 한 걸음이
+  “정규조건 아래에서” 라는 단서가 가리키는 바로 그 자리이며,
+  그 허가증을 발급하는 것이 이 절과 <a href="7-4_integration-properties.html">7.4절</a>의 정리들이다.</p>
+  <p>실제로 교환이 정당화되는 전형적인 조건은 다음과 같다.</p>
+  <ol class="props">
+    <li>적분의 <b>범위(지지집합)가 $\theta$ 에 의존하지 않을 것</b></li>
+    <li>$\dfrac{\partial f}{\partial\theta}$ 가 존재하고, $\theta$ 근방에서 <b>고르게</b> 다룰 수 있을 것
+      (지배함수 또는 고른 수렴)</li>
+  </ol>
+</div>
+
+<div class="box ex">
+  <span class="tag">반례</span><span class="title">$U(0,\theta)$ — 조건이 깨지는 경우</span>
+  <p>$f(x;\theta)=\dfrac1\theta\mathbf{1}\{0\lt x\lt\theta\}$ 에서는 지지집합이 $\theta$ 에 의존한다.
+  이 경우 $(\ast)$ 가 성립하지 않고, 실제로 <b>크래머–라오 하한도 적용할 수 없다</b>.
+  $U(0,\theta)$ 에서 $X_{(n)}$ 기반 추정량이 “하한보다 좋아 보이는” 현상이 일어나는 이유가 이것이다
+  (<a href="../수리통계학/ch04/4-4_mvue.html">수리통계 4.4</a>).</p>
+  <p><b>정규조건을 확인하지 않고 크래머–라오를 쓰면 틀린 결론에 이른다</b>는 것이
+  이 절을 ‘손으로’ 봐야 하는 이유다.</p>
+</div>
+
+<div class="box exr">
+  <span class="tag">연습</span>
+  <ol class="props">
+    <li>$f_n(x)=\dfrac{x}{1+nx^{2}}$ 에서 $f_n\to0$ 이 고르게 성립함을 보이고,
+      $f_n'(0)$ 의 극한과 $\left(\lim f_n\right)'(0)$ 을 비교하라.</li>
+    <li>정규분포 $N(\theta,1)$ 에서 $(\ast)$ 를 직접 계산해 확인하고,
+      바틀릿 항등식이 성립함을 보여라.</li>
+  </ol>
+  <details class="hint"><summary>2번 힌트</summary>
+    <p>$\dfrac{\partial}{\partial\theta}\log f=(x-\theta)$ 이므로 $E[X-\theta]=0$.
+    지지집합이 $\mathbb{R}$ 로 $\theta$ 와 무관하다는 점을 확인할 것.</p>
+  </details>
+</div>
+
+<nav class="pager">
+  <a href="6-2_uniform-convergence.html">← 이전<small>6.2 고른 수렴</small></a>
+  <a class="next" href="7-2_riemann-integral.html">다음 →<small>7.2 리만 적분</small></a>
+</nav>
+
+</body>
+</html>
