@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>대학수학의 이해 · 1 집합</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">대학수학의 이해 · 1장 집합과 수의 체계</div>
+  <h1><span class="no">1</span>집합 <span class="en">sets</span></h1>
+</header>
+
+<h2 class="sub">1.1 집합의 정의 <span class="en">definition of a set</span></h2>
+
+<p>우리는 여러 대상을 공통된 특징에 따라 하나의 덩어리로 생각하기도 한다.
+예를 들어 ‘일, 월, 화, 수, 목, 금, 토’와 같이 일상에서 쉽게 구별할 수 있는 것들을
+‘일주일을 구성하는 요일’이라는 하나의 모임으로 묶어 생각할 수 있다.</p>
+
+<div class="box def">
+  <span class="tag">정의 1.1</span><span class="title">집합 <span class="en">set</span></span>
+  <p>집합이란 <b>서로 명확하게 구별되는 구성 요소인 원소들의 모임</b>이다.</p>
+</div>
+
+<p>어떤 대상이 그 모임에 속하거나 속하지 않는 것이 분명하게 정해져 있고, 구성원을 서로 구별할 수 있는 경우에
+그 전체를 집합이라고 한다. 반대로 ‘맛있는 음식의 모임’이나 ‘보기 좋은 풍경의 모임’처럼
+개인의 느낌이나 판단에 따라 달라지는 경우에는 <b>포함 여부가 명확하지 않다</b>.
+이러한 모임은 구성 원소가 분명하지 않으므로 집합이라고 할 수 없다.</p>
+
+<p>집합의 예로는 ‘모든 자연수의 모임’, ‘어떤 한 수에서 다른 수까지의 자연수의 모임’,
+‘키가 $190\,\mathrm{cm}$ 이상인 사람의 모임’ 등이 있다.
+과일이라는 집합을 이루는 ‘사과’, ‘배’와 같은 각각의 개체를 그 집합의 <b>원소</b>(element)라고 한다.</p>
+
+<div class="note">
+  이러한 집합의 개념은 $1885$ 년에 독일의 수학자 <b>칸토어</b>(G. Cantor)가 정립했으며,
+  집합 이론은 현대 수학의 모든 분야의 기초가 되고 있다.
+</div>
+
+<div class="box ex">
+  <span class="tag">예제 1.1</span><span class="title">집합이 되는 것 고르기</span>
+  <p>다음 중 집합이 되는 것은?</p>
+  <ol class="props">
+    <li>부자들의 모임</li>
+    <li>키 큰 학생의 모임</li>
+    <li>맛있는 과일의 모임</li>
+    <li>$12$ 의 약수의 모임</li>
+    <li>건강한 사람의 모임</li>
+  </ol>
+  <p><b>풀이</b> &nbsp;집합은 구성 요소가 <b>객관적 기준에 따라 명확히 정의된 것</b>으로서 $(4)$ 만 해당한다.</p>
+  <p>‘부자’, ‘키 큰’, ‘맛있는’, ‘건강한’은 모두 사람마다 기준이 달라져 포함 여부를 판정할 수 없다.
+  반면 $12$ 의 약수는 $1,2,3,4,6,12$ 로 누가 보아도 같게 정해진다.</p>
+</div>
+
+<h2 class="sub">1.2 집합의 표현 <span class="en">representing a set</span></h2>
+
+<div class="box def">
+  <span class="tag">기호</span><span class="title">원소의 소속 표기</span>
+  <p>집합은 로마문자의 <b>대문자</b> $A,B,C,\dots$ 로, 원소는 <b>소문자</b> $a,b,c,\dots,x,y,\dots$ 로 나타낸다.</p>
+  <ol class="props">
+    <li>$a$ 가 집합 $A$ 의 원소일 때 — $a\in A$ (또는 $A\ni a$), “$a$ 는 $A$ 에 <b>속한다</b>”</li>
+    <li>$a$ 가 집합 $A$ 의 원소가 아닐 때 — $a\notin A$ (또는 $A\not\ni a$), “$a$ 는 $A$ 에 <b>속하지 않는다</b>”</li>
+  </ol>
+  <p>예를 들어 $A=\{1,2,3,4,5,6,7,8,9,10\}$ 이면 $1\in A$, $2\in A$, $\dots$, $10\in A$ 이지만 $30\notin A$ 이다.</p>
+</div>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">유한집합과 무한집합</span>
+  <ol class="props">
+    <li><b>유한집합</b>: ‘$1$ 에서 $10$ 까지의 자연수의 집합’과 같이 원소의 수가 유한한 집합</li>
+    <li><b>무한집합</b>: ‘모든 자연수의 집합’과 같이 무수히 많은 원소를 가지는 집합</li>
+  </ol>
+</div>
+
+<h3 class="sub">(1) 원소나열법</h3>
+<p>집합에 속하는 <b>모든 원소를 나열</b>하여 집합을 표시하는 방법이다.
+집합 $A$ 가 ‘$1$ 에서 $10$ 까지의 자연수의 집합’일 때 $A=\{1,2,3,4,5,6,7,8,9,10\}$ 으로 나타낸다.</p>
+<div class="note">
+  집합은 그 안에 포함되는 <b>원소에 의해서만</b> 정해지므로
+  <ol class="props">
+    <li>쓰는 <b>순서는 무관</b>하다 — $\{1,2,3\}=\{2,1,3\}=\{3,1,2\}$</li>
+    <li><b>중복해 쓰지 않는</b> 것을 원칙으로 한다 — $\{1,1\}$ 이 아니라 간단히 $\{1\}$ 로 쓴다</li>
+  </ol>
+</div>
+
+<h3 class="sub">(2) 조건제시법</h3>
+<p>원소의 개수가 무한하거나 그 수가 너무 많아 일일이 나열하기 어려운 경우에는,
+각 원소의 <b>공통된 성질이나 관계식</b>을 기술하여 집합을 나타낼 수 있다.</p>
+$$\{x \mid \text{대표 원소 } x \text{ 가 만족시켜야 하는 조건}\}$$
+<p>‘$\mid$’ 기호는 <b>‘뒤의 조건을 만족하는’</b> 이라는 뜻이다.
+‘모든 자연수의 집합’ $B$ 를 조건제시법으로 쓰면 $B=\{x\mid x \text{ 는 자연수}\}$ 가 된다.</p>
+
+<div class="box ex">
+  <span class="tag">예제 1.2</span><span class="title">조건제시법으로 나타내기</span>
+  <p>다음 집합을 조건제시법으로 나타내시오.</p>
+  <ol class="props">
+    <li>$A=\{2,4,6,8,10,\dots\}$</li>
+    <li>$B=\{2,3,5,7,11,13\}$</li>
+  </ol>
+  <p><b>풀이</b></p>
+  <ol class="props">
+    <li>$A=\{x\mid x \text{ 는 짝수}\}$ 또는 $A=\{x\mid x=2n,\ n \text{ 은 자연수}\}$</li>
+    <li>$B=\{x\mid 2\le x\le 13,\ x \text{ 는 소수(素數)}\}$</li>
+  </ol>
+</div>
+
+<div class="box ex">
+  <span class="tag">예제 1.3</span><span class="title">원소나열법으로 나타내기 어려운 것</span>
+  <p>다음 집합 중 원소나열법으로 나타내기 어려운 것을 고르시오.</p>
+  <ol class="props">
+    <li>$A=\{x\mid -1\lt x\lt 4,\ x \text{ 는 정수}\}$</li>
+    <li>$B=\{x\mid x \text{ 는 } 2 \text{ 의 배수인 자연수}\}$</li>
+    <li>$C=\{x\mid -1\le x\le 4,\ x \text{ 는 실수}\}$</li>
+    <li>$D=\{x\mid x \text{ 는 } 12 \text{ 의 약수}\}$</li>
+  </ol>
+  <p><b>풀이</b> &nbsp;$(3)$ 은 원소나열법으로 나타내기 어려우므로 조건제시법으로 나타내는 것이 적절하다.
+  나머지는 다음과 같이 나열할 수 있다.</p>
+  <ol class="props">
+    <li>$A=\{0,1,2,3\}$</li>
+    <li>$B=\{2,4,6,\dots\}$</li>
+    <li>— (나열 불가)</li>
+    <li>$D=\{1,2,3,4,6,12\}$</li>
+  </ol>
+  <p>$(1)$ 은 원소가 유한하고, $(2)$ 는 무한하지만 <b>규칙이 있어 $\dots$ 로 이어 쓸 수 있다</b>.
+  그러나 $(3)$ 의 실수는 이어 쓸 수 있는 ‘다음 원소’가 없어 나열 자체가 불가능하다.</p>
+</div>
+
+<h2 class="sub">1.3 부분집합 <span class="en">subset</span></h2>
+
+<div class="box def">
+  <span class="tag">정의 1.2</span><span class="title">부분집합 <span class="en">subset</span></span>
+  <p>집합 $A$, $B$ 가 주어졌을 때 <b>“$x\in B$ 이면 $x\in A$ 이다”</b> 가 성립하는 경우,
+  집합 $B$ 는 집합 $A$ 의 <b>부분집합</b>이라고 한다. 기호로는 다음과 같이 쓴다.</p>
+  $$B\subset A \quad \text{또는} \quad A\supset B$$
+  <p>이것은 “집합 $B$ 는 집합 $A$ 에 포함된다” 또는 “집합 $A$ 는 집합 $B$ 를 포함한다”라고도 표현한다.</p>
+</div>
+
+<div class="note">
+  집합 $B$ 를 자연수 전체의 집합, 집합 $A$ 를 정수 전체의 집합이라 하자.
+  정수는 양의 정수·음의 정수·$0$ 으로 구성되는데 자연수는 양의 정수와 일치하므로 $B\subset A$ 이다.
+  또한 ‘$x\in A$ 이면 $x\in A$’ 라는 명제는 항상 참이므로 $A\subset A$ — 즉
+  <b>모든 집합은 자기 자신을 부분집합으로 가진다</b>.
+</div>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">두 집합이 같다는 것</span>
+  <p>두 집합 $A$, $B$ 에 대해 $A\subset B$ 인 동시에 $B\subset A$ 일 때 “$A$ 와 $B$ 는 같다”라 하고 $A=B$ 로 쓴다.
+  같지 않을 때에는 $A\ne B$ 로 나타낸다.</p>
+</div>
+
+<div class="box def">
+  <span class="tag">정의 1.3</span><span class="title">진부분집합 <span class="en">proper subset</span></span>
+  <p>$B\subset A$ 는 다음 두 경우를 모두 포함한다.</p>
+  <ol class="props">
+    <li>$B\subset A$ 이면서 $B=A$</li>
+    <li>$B\subset A$ 이면서 $B\ne A$</li>
+  </ol>
+  <p>이 중 ② 의 경우, 즉 $x\in B$ 이면 $x\in A$ 이고 <b>$A\ne B$</b> 인 경우를 특별히
+  “$B$ 는 $A$ 의 <b>진부분집합</b>”이라고 한다.</p>
+</div>
+
+<div class="note">
+  <b>부분집합이 아님을 보이는 법.</b> 정의의 부정을 취하면 된다 —
+  $B$ 에 속한 원소 중에서 $A$ 에 속하지 않는 것이 <b>하나라도</b> 있음을 보이면 된다.
+  즉 어떤 $x\in B$ 에 대하여 $x\notin A$ 이면 $B\not\subset A$ 이다.
+</div>
+
+<div class="box ex">
+  <span class="tag">예제 1.4</span><span class="title">포함 관계의 참·거짓</span>
+  <p>다음 집합 $A,B,C$ 의 포함 관계에 대한 참과 거짓을 밝히시오.</p>
+  <ol class="props">
+    <li>$A=\{n\mid n \text{ 은 자연수}\}$, $B=\{m\mid m \text{ 은 정수}\}$ 일 때, $A\supset B$</li>
+    <li>$A=\{x\mid x\gt1\}$, $B=\{x\mid x^{2}\gt1\}$ 일 때, $A$ 는 $B$ 의 진부분집합이다.</li>
+    <li>$A\subset B$, $B\subset C$, $C\subset A$ 이면 $A=B=C$ 이다.</li>
+    <li>$A\subset B$, $B\subset C$ 이면 $A\subset C$ 이다.</li>
+  </ol>
+  <p><b>풀이</b></p>
+  <ol class="props">
+    <li><b>거짓.</b> 자연수의 집합이 정수의 집합을 포함할 수는 없다. 방향이 반대로,
+    실제로는 $A\subset B$ 이다($-1\in B$ 이지만 $-1\notin A$).</li>
+    <li><b>참.</b> $B=\{x\mid x^{2}\gt1\}=\{x\mid x\gt1 \text{ 또는 } x\lt-1\}$ 이므로 $A\subset B$ 이고,
+    $-2\in B$ 이지만 $-2\notin A$ 이므로 $A\ne B$ 다. 즉 $A$ 는 $B$ 의 진부분집합이다.</li>
+    <li><b>참.</b> $A\subset B$ 와 $B\subset C\subset A$ 에서 $B\subset A$ 도 얻어지므로 $A=B$ 이고, 같은 방식으로 $B=C$ 다.</li>
+    <li><b>참.</b> $x\in A\Rightarrow x\in B\Rightarrow x\in C$ 로 이어진다(포함 관계의 <b>추이성</b>).</li>
+  </ol>
+</div>
+
+<div class="box ex">
+  <span class="tag">예제 1.5</span><span class="title">부분집합 모두 구하기</span>
+  <p>집합 $A=\{1,2\}$ 의 부분집합을 모두 구하시오.</p>
+  <p><b>풀이</b> &nbsp;다음 $4$ 개이다.</p>
+  $$\phi,\quad \{1\},\quad \{2\},\quad \{1,2\}$$
+  <p>$\phi$ 는 원소가 하나도 없는 <b>공집합</b>을 의미한다(바로 아래에서 설명한다).
+  원소가 $2$ 개이면 각 원소를 넣거나 빼는 두 가지 선택이 있으므로 부분집합은 $2^{2}=4$ 개다.</p>
+</div>
+
+<h2 class="sub">1.4 전체집합과 공집합 <span class="en">universal set &amp; empty set</span></h2>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">전체집합 <span class="en">universal set</span></span>
+  <p>집합론에서는 논의의 대상이 되는 모든 원소를 포함하는 <b>가장 큰 집합</b>을 미리 정의하여 사용하는데,
+  이를 전체집합이라 하고 주로 $U$ 로 나타낸다.</p>
+  <p>예를 들어 어떤 실험에서 발생 가능한 모든 결과의 모임은 전체집합이 되며,
+  해당 실험 내에서 발생 가능한 모든 사건은 $U$ 의 부분집합이 된다.</p>
+</div>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">공집합 <span class="en">empty set</span></span>
+  <p>원소가 하나도 없는 집합을 <b>공집합</b>이라 하고 기호로 $\phi$ 와 같이 나타낸다.</p>
+</div>
+
+<div class="box thm">
+  <span class="tag">성질</span><span class="title">공집합은 모든 집합의 부분집합</span>
+  <p>부분집합 $B\subset A$ 의 정의 “$x\in B$ 이면 $x\in A$” 의 대우는 “$x\notin A$ 이면 $x\notin B$” 이다.
+  공집합 $\phi$ 에는 원소가 하나도 없으므로 어떤 $x$ 에 대해서도 $x\notin\phi$ 가 성립한다.
+  따라서 <b>$\phi$ 는 모든 집합의 부분집합</b>이다.</p>
+</div>
+
+<div class="box ex">
+  <span class="tag">예제 1.6</span><span class="title">공집합인 것 고르기</span>
+  <p>집합 $U=\{x\mid x \text{ 는 정수}\}$ 를 전체집합이라고 할 때, 다음 중 공집합인 것을 모두 고르시오.</p>
+  <ol class="props">
+    <li>$A=\{x\mid x=-x\}$</li>
+    <li>$B=\{x\mid x=-|x|\}$</li>
+    <li>$C=\{x\mid x^{2}\lt0\}$</li>
+    <li>$D=\left\{x\ \middle|\ \dfrac32x-4=0\right\}$</li>
+  </ol>
+  <p><b>풀이</b> &nbsp;답은 $(3)$ 과 $(4)$ 이다.</p>
+  <ol class="props">
+    <li>$x=-x$ 는 $2x=0$, 즉 $x=0$ 뿐이므로 $A=\{0\}$ — 공집합이 아니다.</li>
+    <li>$x=-|x|$ 는 $x\le0$ 을 뜻하므로 $B=\{x\mid x \text{ 는 } 0 \text{ 이거나 음의 정수}\}$ — 공집합이 아니다.</li>
+    <li>실수의 제곱은 음이 될 수 없으므로 $C=\phi$ 이다.</li>
+    <li>$\tfrac32x=4$ 에서 $x=\tfrac83$ 인데 이는 <b>정수가 아니므로</b> 전체집합 $U$ 안에 해가 없다. 따라서 $D=\phi$ 이다.</li>
+  </ol>
+  <div class="note" style="margin-top:10px;">
+    $(4)$ 는 전체집합을 무엇으로 잡느냐가 답을 바꾸는 예다.
+    $U$ 를 실수 전체로 두었다면 $D=\left\{\tfrac83\right\}$ 이 되어 공집합이 아니다.
+  </div>
+</div>
+
+<h2 class="sub">1.5 벤다이어그램 <span class="en">Venn diagram</span></h2>
+<p>집합의 포함 관계를 그림으로 나타내면 이해하기 쉽다.
+이러한 집합 사이의 관계를 그림으로 나타낸 것이 <b>벤다이어그램</b>(Venn diagram)이다.
+전체집합 $U$ 를 하나의 직사각형 내부로 나타내고, 그 부분집합 $A$ 는 일반적으로 원이나 타원 등의 내부로 나타낸다.</p>
+
+<figure class="fig">
+<svg viewBox="0 0 340 170" role="img" aria-label="전체집합 U를 직사각형으로, 부분집합 A를 그 안의 원으로 나타낸 벤다이어그램과, 자연수·정수·유리수·실수의 포함관계">
+  <rect class="cell" x="14" y="24" width="130" height="110" rx="6"/>
+  <text class="lbl" x="24" y="40">U</text>
+  <ellipse cx="80" cy="82" rx="44" ry="34" fill="#eef5fb" stroke="#1d6fb8" stroke-width="1.4"/>
+  <text class="lbl b" x="80" y="87" text-anchor="middle">A</text>
+  <text class="lbl" x="79" y="152" text-anchor="middle">[그림 1-1] 집합의 표현</text>
+
+  <rect class="cell" x="180" y="24" width="146" height="110" rx="6"/>
+  <text class="lbl" x="190" y="40">U (실수)</text>
+  <ellipse cx="253" cy="86" rx="64" ry="40" fill="#f3f7fb" stroke="#7a86a3" stroke-width="1.2"/>
+  <text class="lbl" x="253" y="58" text-anchor="middle">Q</text>
+  <ellipse cx="253" cy="92" rx="44" ry="28" fill="#e6eef7" stroke="#5a7fa6" stroke-width="1.2"/>
+  <text class="lbl" x="253" y="78" text-anchor="middle">Z</text>
+  <ellipse cx="253" cy="99" rx="26" ry="16" fill="#cfe0f0" stroke="#1d6fb8" stroke-width="1.3"/>
+  <text class="lbl b" x="253" y="104" text-anchor="middle">N</text>
+  <text class="lbl" x="253" y="152" text-anchor="middle">예제 1.7 — N ⊂ Z ⊂ Q</text>
+</svg>
+<figcaption>왼쪽이 기본 형태, 오른쪽이 예제 1.7 — 전체집합 $U=\{x\mid x \text{ 는 실수}\}$ 안에서
+$N\subset Z\subset Q$ 인 포함 관계를 겹친 타원으로 나타냈다.</figcaption>
+</figure>
+
+<div class="box ex">
+  <span class="tag">예제 1.7</span><span class="title">포함 관계를 벤다이어그램으로</span>
+  <p>전체집합 $U=\{x\mid x \text{ 는 실수}\}$ 일 때,
+  $N=\{x\mid x \text{ 는 자연수}\}$, $Z=\{x\mid x \text{ 는 정수}\}$, $Q=\{x\mid x \text{ 는 유리수}\}$ 의
+  포함 관계를 벤다이어그램으로 나타내시오.</p>
+  <p><b>풀이</b> &nbsp;$N\subset Z\subset Q$ 이므로 위 그림의 오른쪽과 같이 나타낼 수 있다.
+  $U$ 에서 $Q$ 를 뺀 나머지 부분이 무리수에 해당한다.</p>
+</div>
+
+<nav class="pager">
+  <span class="spacer"></span>
+  <a class="next" href="1-2_set-operations.html">다음 →<small>2 집합의 연산</small></a>
+</nav>
+
+</body>
+</html>

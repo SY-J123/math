@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>대학수학의 이해 · 4 집합의 원소 개수와 고전적 확률</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">대학수학의 이해 · 1장 집합과 수의 체계</div>
+  <h1><span class="no">4</span>집합의 원소 개수와 고전적 확률 <span class="en">counting &amp; classical probability</span></h1>
+</header>
+
+<h2 class="sub">4.1 유한집합의 원소 개수 <span class="en">cardinality of a finite set</span></h2>
+
+<p>원소의 개수가 한정된 유한집합은 그 크기를 산출할 수 있다.
+유한집합 $A$ 의 원소 개수는 일반적으로 기호 $n(A)$ 로 나타낸다.</p>
+
+<div class="box thm">
+  <span class="tag">공식</span><span class="title">합집합의 원소 개수 — 포함배제</span>
+  <p>두 유한집합 $A$, $B$ 에 대하여 다음이 성립한다.</p>
+  $$n(A\cup B)=n(A)+n(B)-n(A\cap B)$$
+  <p>만약 두 유한집합 $A$, $B$ 가 <b>서로소</b>(disjoint), 즉 $A\cap B=\phi$ 이면 $n(A\cap B)=0$ 이므로</p>
+  $$n(A\cup B)=n(A)+n(B)$$
+</div>
+
+<div class="note">
+  $n(A)+n(B)$ 로 세면 <b>겹치는 부분을 두 번 센 것</b>이 되므로 한 번 빼 주어야 한다.
+  이것이 $-\,n(A\cap B)$ 의 의미다.
+</div>
+
+<div class="box ex">
+  <span class="tag">예제 1.15</span><span class="title">2 또는 3의 배수 세기</span>
+  <p>$20$ 보다 작거나 같은 자연수의 집합에서 $2$ 또는 $3$ 의 배수의 개수를 구하시오.</p>
+  <p><b>풀이</b> &nbsp;$A$ 를 $2$ 의 배수의 집합, $B$ 를 $3$ 의 배수의 집합이라고 하면</p>
+  $$A=\{2,4,6,8,10,12,14,16,18,20\},\qquad B=\{3,6,9,12,15,18\}$$
+  <p>이고 ‘$2$ 또는 $3$ 의 배수’ 의 집합은 $A\cup B$ 로 나타낼 수 있다.
+  두 집합에 모두 속하는 것은 $6$ 의 배수이므로 $A\cap B=\{6,12,18\}$ 이다. 따라서</p>
+  $$n(A\cup B)=n(A)+n(B)-n(A\cap B)=10+6-3=13$$
+  <p>즉 $2$ 또는 $3$ 의 배수는 $13$ 개이다.</p>
+</div>
+
+<h2 class="sub">곱집합 <span class="en">cartesian product</span></h2>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">순서쌍 <span class="en">ordered pair</span></span>
+  <p>임의의 두 실수 $a$, $b$ 를 <b>순서에 따라</b> 짝지어 나타낸 것을 순서쌍이라 한다.
+  순서쌍에서는 성분의 배열 순서가 중요하므로, 일반적으로 $a\ne b$ 이면
+  $(a,b)$ 와 $(b,a)$ 는 <b>서로 다른 것</b>으로 간주한다.</p>
+  <p>평면 위의 점을 좌표로 나타낼 때 $(1,2)$ 와 $(2,1)$ 이 서로 다른 위치를 의미하는 것과 같다.</p>
+</div>
+
+<div class="box def">
+  <span class="tag">정의 1.8</span><span class="title">곱집합 <span class="en">cartesian product</span></span>
+  <p>집합 $A$, $B$ 가 주어졌을 때, $A$ 의 원소를 제1성분으로 하고 $B$ 의 원소를 제2성분으로 하는
+  모든 순서쌍 전체를 원소로 갖는 집합을 $A$ 와 $B$ 의 <b>곱집합</b>이라 하고 $A\times B$ 로 나타낸다.</p>
+  $$A\times B=\{(a,b)\mid a\in A,\ b\in B\}$$
+</div>
+
+<div class="box thm">
+  <span class="tag">성질</span><span class="title">곱집합의 성질</span>
+  <ol class="props">
+    <li>$A=B$ 인 경우 $A\times B=A\times A$ 를 $A^{2}$ 으로 나타내기도 한다.</li>
+    <li>일반적으로 <b>$A\times B$ 와 $B\times A$ 는 같지 않다</b>.</li>
+    <li>$A$, $B$ 가 유한집합일 때 원소 개수는 다음과 같다.
+      $$n(A\times B)=n(A)\cdot n(B)$$</li>
+  </ol>
+</div>
+
+<div class="box ex">
+  <span class="tag">예제 1.16</span><span class="title">곱집합의 원소 개수</span>
+  <p>$n(A)=p$, $n(B)=q$ 라고 할 때, 다음 집합은 각각 몇 개의 원소로 이루어지는지 밝히시오.</p>
+  <ol class="props">
+    <li>$A\times B$</li>
+    <li>$\{(x,y)\mid x\in A,\ y\in A,\ x\ne y\}$</li>
+  </ol>
+  <p><b>풀이</b></p>
+  <ol class="props">
+    <li>$n(A\times B)=pq$</li>
+    <li>$A\times A$ 의 순서쌍 중 $(x,x)$ 와 같이 <b>두 성분이 같은 원소만 제하면</b> 된다.
+      $A\times A$ 의 원소 개수는 $p\cdot p=p^{2}$ 이고 $(x,x)$ 형태의 원소는 $p$ 개이므로,
+      구하는 원소 개수는
+      $$p^{2}-p=p(p-1)$$</li>
+  </ol>
+</div>
+
+<h2 class="sub">4.2 고전적 의미의 확률 <span class="en">classical probability</span></h2>
+
+<p>확률은 특정한 사건이 발생할 가능성을 나타내는 <b>수치적 척도</b>를 의미한다.
+고전적 의미의 확률은 <b>표본공간에서 사건에 해당하는 원소가 차지하는 비율</b>이다.</p>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">표본공간과 사건 <span class="en">sample space, event</span></span>
+  <ol class="props">
+    <li><b>표본공간</b>(sample space): 실험이나 관측을 통해 나타날 수 있는 <b>모든 결과의 전체집합</b></li>
+    <li><b>사건</b>(event): 이 표본공간의 <b>부분집합</b>, 또는 특정 조건을 만족하는 부분집합</li>
+  </ol>
+</div>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">고전적 의미의 확률</span>
+  <p>표본공간 내의 각 원소가 나타날 확률이 <b>모두 동일하다면</b>, 사건 $A$ 가 발생할 확률은 다음과 같이 정의된다.</p>
+  $$P(A)=\frac{\text{사건 } A \text{ 에 속하는 원소의 개수}}{\text{표본공간의 전체 원소의 개수}}$$
+</div>
+
+<div class="note">
+  이 정의는 <b>“각 원소가 나타날 가능성이 모두 같다”</b> 는 전제 위에서만 성립한다.
+  찌그러진 주사위처럼 각 눈이 나올 가능성이 다르면 개수를 세는 것만으로는 확률을 구할 수 없다.
+</div>
+
+<div class="box ex">
+  <span class="tag">예제 1.17</span><span class="title">주사위와 동전</span>
+  <p>다음 물음에 답하시오.</p>
+  <ol class="props">
+    <li>주사위를 한 번 던져서 짝수가 나타날 확률을 구하시오.</li>
+    <li>동전을 두 번 던져서 앞면과 뒷면이 각각 한 번씩 나타날 확률을 구하시오.</li>
+  </ol>
+
+  <p><b>풀이</b></p>
+  <p>$(1)$ 주사위를 한 번 던지는 실험에서 나타날 수 있는 모든 결과는 $1$ 부터 $6$ 까지이므로
+  표본공간은 $\{1,2,3,4,5,6\}$ 이며, 각각의 숫자가 나타날 확률은 모두 $\tfrac16$ 로 동일하다.
+  짝수가 나타나는 사건 $A$ 의 집합은 $\{2,4,6\}$ 이므로</p>
+  $$P(A)=\frac{3}{6}=\frac12$$
+
+  <p>$(2)$ 동전을 두 번 던지는 실험의 표본공간은 앞면($H$)과 뒷면($T$)의 <b>곱집합</b>으로 나타낼 수 있다.</p>
+  $$\{(H,H),\ (H,T),\ (T,H),\ (T,T)\}$$
+  <p>여기서 앞면과 뒷면이 각각 한 번씩 나오는 사건 $B$ 의 집합은 $\{(H,T),(T,H)\}$ 이므로</p>
+  $$P(B)=\frac{2}{4}=\frac12$$
+  <p>순서쌍으로 세는 것이 핵심이다 — $(H,T)$ 와 $(T,H)$ 를 <b>하나로 묶어 세면</b> 답이 $\tfrac13$ 으로 잘못 나온다.</p>
+</div>
+
+<nav class="pager">
+  <a href="1-3_set-theorems.html">← 이전<small>3 집합 연산의 기본 정리</small></a>
+  <a class="next" href="1-5_number-system.html">다음 →<small>5.1~5.2 수의 체계와 실수의 성질</small></a>
+</nav>
+
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>대학수학의 이해 · 5.5 수학적 논리 전개의 원리</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">대학수학의 이해 · 1장 집합과 수의 체계</div>
+  <h1><span class="no">5.5</span>수학적 논리 전개의 원리 <span class="en">principles of mathematical reasoning</span></h1>
+</header>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">정리와 정의의 차이</span>
+  <p><b>정리</b>(theorem)는 일정한 논리 아래에서 이미 참임이 <b>증명된</b> 중요한 명제를 의미한다.
+  이는 약속하여 사용하는 <b>정의</b>와 구별된다 —
+  정의는 약속이지만, 정리는 그 정의와 공리로부터 <b>논리적 추론을 거쳐 증명되는</b> 결과다.</p>
+</div>
+
+<h2 class="sub">명제와 조건 <span class="en">propositions, conditions</span></h2>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">명제 <span class="en">proposition</span></span>
+  <p>“어떤 가정이 성립하면 결론이 따른다” 라는 형태, 즉 <b>“$P$ 이면 $Q$ 이다”</b> 의 형식으로 표현되는 것을
+  명제라 하고 기호로 $P\to Q$ 와 같이 나타낸다.
+  여기서 $P$ 를 <b>가정</b>, $Q$ 를 <b>결론</b>이라 한다.</p>
+</div>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">대우명제 <span class="en">contrapositive</span></span>
+  <p>명제 “$P$ 이면 $Q$ 이다” 에 대하여 <b>“$Q$ 가 아니면 $P$ 가 아니다”</b> 를 그 <b>대우명제</b>라 한다.
+  대우명제는 원래의 명제와 <b>논리적으로 동치</b>이다.</p>
+  <p>그러므로 “$P$ 이면 $Q$ 이다” 를 직접 증명하기 어려운 경우, 이를 대우명제로 바꾸어 증명하기도 한다.</p>
+</div>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">필요조건 · 충분조건 · 필요충분조건</span>
+  <ol class="props">
+    <li>명제 $P\to Q$ 가 참일 때 이를 $P\Rightarrow Q$ 로 쓰며, 이 경우
+      $P$ 는 $Q$ 이기 위한 <b>충분조건</b>, $Q$ 는 $P$ 이기 위한 <b>필요조건</b>이라 한다.</li>
+    <li>$P\Rightarrow Q$ 이고 동시에 $Q\Rightarrow P$ 가 성립하면 $P\Leftrightarrow Q$ 로 나타내고,
+      이때 $P$ 와 $Q$ 는 서로 <b>필요충분조건</b>의 관계에 있다고 하며, $P$ 와 $Q$ 는 <b>동치</b>라고 한다.</li>
+  </ol>
+</div>
+
+<figure class="fig">
+<svg viewBox="0 0 350 170" role="img" aria-label="세 가지 증명 방법 — 직접증명, 대우법, 귀류법의 흐름 비교">
+  <defs>
+    <marker id="arp" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 z" fill="#5a5a5a"/>
+    </marker>
+  </defs>
+
+  <text class="lbl" x="60" y="22" text-anchor="middle">직접증명</text>
+  <rect class="cell" x="20" y="32" width="36" height="24"/><text class="lbl" x="38" y="48" text-anchor="middle">P</text>
+  <line class="axis" x1="58" y1="44" x2="80" y2="44" marker-end="url(#arp)"/>
+  <rect class="cellhi" x="82" y="32" width="36" height="24"/><text class="lbl b" x="100" y="48" text-anchor="middle">Q</text>
+  <text class="lbl" x="69" y="74" text-anchor="middle">가정에서 결론으로</text>
+
+  <text class="lbl" x="230" y="22" text-anchor="middle">대우법 (간접증명)</text>
+  <rect class="cell" x="176" y="32" width="46" height="24"/><text class="lbl" x="199" y="48" text-anchor="middle">~Q</text>
+  <line class="axis" x1="224" y1="44" x2="246" y2="44" marker-end="url(#arp)"/>
+  <rect class="cellhi" x="248" y="32" width="46" height="24"/><text class="lbl b" x="271" y="48" text-anchor="middle">~P</text>
+  <text class="lbl" x="235" y="74" text-anchor="middle">P→Q 와 동치</text>
+
+  <text class="lbl" x="128" y="106" text-anchor="middle">귀류법</text>
+  <rect class="cell" x="26" y="116" width="86" height="24"/><text class="lbl" x="69" y="132" text-anchor="middle">결론이 거짓이라 가정</text>
+  <line class="axis" x1="114" y1="128" x2="136" y2="128" marker-end="url(#arp)"/>
+  <rect class="cell" x="138" y="116" width="70" height="24"/><text class="lbl" x="173" y="132" text-anchor="middle">추론</text>
+  <line class="axis" x1="210" y1="128" x2="232" y2="128" marker-end="url(#arp)"/>
+  <rect x="234" y="116" width="90" height="24" fill="#fdf1e3" stroke="#c05621" stroke-width="1.4"/>
+  <text class="lbl" x="279" y="132" text-anchor="middle" fill="#c05621">모순 → 원래 명제 참</text>
+</svg>
+<figcaption>같은 명제를 증명하는 세 갈래. 직접증명이 막히면 대우를 잡거나, 결론을 부정해 모순을 끌어낸다.</figcaption>
+</figure>
+
+<h2 class="sub">직접증명 <span class="en">direct proof</span></h2>
+
+<p><b>연역법</b>은 이미 참이라고 알려진 명제들을 바탕으로 새로운 명제가 참임을 논리적으로 이끌어 내는 방법으로,
+수학에서 가장 기본적으로 사용되는 <b>직접증명</b>이다.</p>
+
+<div class="box ex">
+  <span class="tag">예제 1.20</span><span class="title">직접증명 — 짝수의 제곱</span>
+  <p>“정수 $n$ 이 짝수이면 $n^{2}$ 은 짝수이다” 가 성립하는지 보이시오.</p>
+  <p><b>풀이</b> &nbsp;$n$ 이 짝수이므로 $n=2k$ ($k$ 는 정수)로 표현된다. 따라서</p>
+  $$n^{2}=(2k)^{2}=4k^{2}=2\cdot(2k^{2})$$
+  <p>$2k^{2}$ 이 정수이므로 $n^{2}$ 은 짝수이다.</p>
+  <p>같은 방식으로 이 명제의 <b>역</b>(“$n^{2}$ 이 짝수이면 $n$ 이 짝수”)도 성립하는데,
+  그것은 직접증명이 어려워 뒤의 귀류법이나 대우법을 쓰는 것이 편하다
+  (<a href="1-exercises.html">연습문제</a> 08 참조).</p>
+</div>
+
+<h2 class="sub">귀류법 <span class="en">proof by contradiction</span></h2>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">귀류법</span>
+  <p>어떤 명제가 참임을 직접 도출하기 어려울 때, <b>그 명제가 거짓이라고 가정</b>하고 추론하여
+  <b>모순이 생김</b>을 보여 원래 명제가 참임을 증명하는 방법이다. 대표적인 <b>간접증명</b>이다.</p>
+</div>
+
+<div class="box ex">
+  <span class="tag">예제 1.21</span><span class="title">$\sqrt2$ 는 무리수</span>
+  <p>$\sqrt2$ 는 무리수임을 증명하시오.</p>
+  <p><b>풀이</b></p>
+  <ol class="props">
+    <li><span class="step">부정을 가정.</span> $\sqrt2$ 가 <b>유리수라고 가정</b>하자.
+      그러면 $\sqrt2=\dfrac{a}{b}$ 로 표현된다. 여기서 $a$, $b$ 는 <b>서로소</b>인 정수이며 $b\ne0$ 이다.</li>
+    <li><span class="step">양변을 제곱.</span> $2=\dfrac{a^{2}}{b^{2}}$ 이 되며 따라서
+      $$2b^{2}=a^{2}$$</li>
+    <li><span class="step">$a$ 가 짝수.</span> $a^{2}$ 이 짝수이므로 $a$ 도 짝수이고, $a=2k$ 로 표현할 수 있다.</li>
+    <li><span class="step">$b$ 도 짝수.</span> 이를 대입하면 $2b^{2}=4k^{2}$, 즉 $b^{2}=2k^{2}$ 이므로 $b$ 도 짝수이다.</li>
+    <li><span class="step">모순.</span> $a$ 와 $b$ 가 모두 짝수이므로 <b>$a$, $b$ 가 서로소라는 가정에 모순</b>된다.
+      따라서 $\sqrt2$ 는 유리수가 아닌 <b>무리수</b>이다.</li>
+  </ol>
+  <div class="qed">∎</div>
+</div>
+
+<div class="note">
+  $(3)$ 단계에서 “$a^{2}$ 이 짝수이면 $a$ 도 짝수”를 썼다.
+  이것이 바로 예제 1.20의 <b>역</b>에 해당하는 명제로, 연습문제 08에서 귀류법으로 증명한다.
+  즉 이 증명은 앞의 명제를 <b>부품으로 쓰고 있다</b>.
+</div>
+
+<h2 class="sub">수학적 귀납법 <span class="en">mathematical induction</span></h2>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">수학적 귀납법</span>
+  <p>자연수 $n$ 에 대한 명제가 있을 경우 다음 두 단계를 보여
+  <b>모든 자연수</b>에 대해 명제가 성립함을 증명하는 방법이다.</p>
+  <ol class="props">
+    <li><b>기초 단계</b>: $n=1$ 일 때 명제가 성립함을 보인다.</li>
+    <li><b>귀납 단계</b>: $n=k$ 일 때 명제가 성립한다고 가정하면 $n=k+1$ 일 때도 성립함을 보인다.</li>
+  </ol>
+  <p>수학적 귀납법은 새로운 사실을 주장하거나 발견하는 방법이라기보다는,
+  <b>이미 알려진 사실을 엄격한 논리에 의하여 증명하는</b> 방법이라 할 수 있다.</p>
+</div>
+
+<div class="box ex">
+  <span class="tag">예제 1.22</span><span class="title">$1+2+\cdots+n=\dfrac{n(n+1)}{2}$</span>
+  <p>자연수 $n$ 에 대하여 $1+2+3+\cdots+n=\dfrac{n(n+1)}{2}$ 이 성립함을 수학적 귀납법으로 증명하시오.</p>
+  <p><b>풀이</b></p>
+  <p><span class="step">기초 단계.</span> $n=1$ 일 때</p>
+  $$1=\frac{1\cdot(1+1)}{2}=\frac{2}{2}=1$$
+  <p>로 성립한다.</p>
+  <p><span class="step">귀납 단계.</span> $n=k$ 일 때 성립한다고 가정하자.</p>
+  $$1+2+\cdots+k=\frac{k(k+1)}{2}$$
+  <p>양쪽에 $k+1$ 을 더하면</p>
+  $$1+\cdots+k+(k+1)=\frac{k(k+1)}{2}+(k+1)=\frac{k(k+1)+2(k+1)}{2}=\frac{(k+1)(k+2)}{2}$$
+  <p>가 된다. 이는 $n=k+1$ 일 때의 식 $\dfrac{(k+1)\{(k+1)+1\}}{2}$ 와 같다.</p>
+  <p>즉 $n=k$ 일 때 성립한다고 가정하면 $n=k+1$ 에서도 성립하므로,
+  모든 자연수에 대하여 위 등식이 성립한다.</p>
+  <div class="qed">∎</div>
+</div>
+
+<nav class="pager">
+  <a href="1-6_intervals-bounds.html">← 이전<small>5.3~5.4 구간과 상한·하한</small></a>
+  <a class="next" href="1-exercises.html">다음 →<small>연습문제</small></a>
+</nav>
+
+</body>
+</html>

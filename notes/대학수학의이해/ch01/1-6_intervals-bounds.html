@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>대학수학의 이해 · 5.3~5.4 구간·유계·상한과 하한</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">대학수학의 이해 · 1장 집합과 수의 체계</div>
+  <h1><span class="no">5.3~5.4</span>구간과 상한·하한 <span class="en">intervals, supremum &amp; infimum</span></h1>
+</header>
+
+<h2 class="sub">5.3 구간 <span class="en">interval</span></h2>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">구간 <span class="en">interval</span></span>
+  <p>두 실수 사이의 모든 실수의 모임을 <b>구간</b>이라고 한다.
+  구간의 양 끝점을 포함하는지에 따라 <b>닫힌구간</b>(closed interval) 또는 <b>열린구간</b>(open interval)으로 구분된다.
+  물론 양 끝 중 한쪽만 포함하는 경우도 있다.</p>
+</div>
+
+<div class="box thm">
+  <span class="tag">표기</span><span class="title">여덟 가지 구간 표기 &nbsp;($a$, $b$ 는 실수, $a\lt b$)</span>
+  <div class="scroll"><table class="data">
+    <tr><th>조건제시법</th><th>구간 표기</th><th>조건제시법</th><th>구간 표기</th></tr>
+    <tr><td>$\{x\mid a\lt x\lt b\}$</td><td>$(a,b)$</td><td>$\{x\mid a\le x\le b\}$</td><td>$[a,b]$</td></tr>
+    <tr><td>$\{x\mid a\le x\lt b\}$</td><td>$[a,b)$</td><td>$\{x\mid a\lt x\le b\}$</td><td>$(a,b]$</td></tr>
+    <tr><td>$\{x\mid a\lt x\}$</td><td>$(a,\infty)$</td><td>$\{x\mid a\le x\}$</td><td>$[a,\infty)$</td></tr>
+    <tr><td>$\{x\mid x\lt b\}$</td><td>$(-\infty,b)$</td><td>$\{x\mid x\le b\}$</td><td>$(-\infty,b]$</td></tr>
+  </table></div>
+</div>
+
+<figure class="fig">
+<svg viewBox="0 0 350 210" role="img" aria-label="네 가지 유한구간과 두 가지 무한구간을 수직선 위에 나타낸 그림 — 속이 빈 점은 끝점을 포함하지 않음, 찬 점은 포함함">
+  <defs>
+    <marker id="ari" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 z" fill="#5a5a5a"/>
+    </marker>
+  </defs>
+  <g class="lbl">
+    <text x="34" y="28" text-anchor="middle">(a, b)</text>
+    <text x="34" y="62" text-anchor="middle">[a, b]</text>
+    <text x="34" y="96" text-anchor="middle">[a, b)</text>
+    <text x="34" y="130" text-anchor="middle">(a, b]</text>
+    <text x="34" y="164" text-anchor="middle">[a, ∞)</text>
+    <text x="34" y="196" text-anchor="middle">(−∞, b]</text>
+  </g>
+
+  <!-- (a,b) -->
+  <line class="axis" x1="70" y1="24" x2="320" y2="24"/>
+  <line class="vec" x1="130" y1="24" x2="230" y2="24"/>
+  <circle cx="130" cy="24" r="4" fill="#fff" stroke="#1d6fb8" stroke-width="1.6"/>
+  <circle cx="230" cy="24" r="4" fill="#fff" stroke="#1d6fb8" stroke-width="1.6"/>
+  <!-- [a,b] -->
+  <line class="axis" x1="70" y1="58" x2="320" y2="58"/>
+  <line class="vec" x1="130" y1="58" x2="230" y2="58"/>
+  <circle cx="130" cy="58" r="4" fill="#1d6fb8"/>
+  <circle cx="230" cy="58" r="4" fill="#1d6fb8"/>
+  <!-- [a,b) -->
+  <line class="axis" x1="70" y1="92" x2="320" y2="92"/>
+  <line class="vec" x1="130" y1="92" x2="230" y2="92"/>
+  <circle cx="130" cy="92" r="4" fill="#1d6fb8"/>
+  <circle cx="230" cy="92" r="4" fill="#fff" stroke="#1d6fb8" stroke-width="1.6"/>
+  <!-- (a,b] -->
+  <line class="axis" x1="70" y1="126" x2="320" y2="126"/>
+  <line class="vec" x1="130" y1="126" x2="230" y2="126"/>
+  <circle cx="130" cy="126" r="4" fill="#fff" stroke="#1d6fb8" stroke-width="1.6"/>
+  <circle cx="230" cy="126" r="4" fill="#1d6fb8"/>
+  <!-- [a,∞) -->
+  <line class="axis" x1="70" y1="160" x2="320" y2="160"/>
+  <line class="vec" x1="130" y1="160" x2="316" y2="160" marker-end="url(#ari)"/>
+  <circle cx="130" cy="160" r="4" fill="#1d6fb8"/>
+  <!-- (-∞,b] -->
+  <line class="axis" x1="70" y1="192" x2="320" y2="192"/>
+  <line class="vec" x1="230" y1="192" x2="74" y2="192" marker-end="url(#ari)"/>
+  <circle cx="230" cy="192" r="4" fill="#1d6fb8"/>
+
+  <text class="lbl" x="130" y="14" text-anchor="middle">a</text>
+  <text class="lbl" x="230" y="14" text-anchor="middle">b</text>
+</svg>
+<figcaption>속이 <b>빈</b> 점은 끝점을 포함하지 않음(열림), 속이 <b>찬</b> 점은 포함함(닫힘)을 나타낸다.
+무한 쪽은 끝점이 없으므로 항상 열린 표기를 쓴다.</figcaption>
+</figure>
+
+<div class="box def">
+  <span class="tag">용어</span><span class="title">구간의 이름</span>
+  <ol class="props">
+    <li>$(a,b)$ — 양 끝점을 <b>포함하지 않는</b> 열린구간</li>
+    <li>$[a,b]$ — 양 끝점을 <b>모두 포함하는</b> 닫힌구간</li>
+    <li>$[a,b)$, $(a,b]$ — 한쪽 끝점만 포함하는 <b>반열린구간</b>(또는 반닫힌구간)</li>
+    <li>$a$ 또는 $b$ 가 무한대로 확장되는 경우 <b>무한구간</b>이 된다.</li>
+  </ol>
+</div>
+
+<div class="note">
+  $\infty$ 와 $-\infty$ 는 <b>특정한 실수가 아니라</b> 값이 한없이 커지거나 작아지는 것을 나타내는 기호다.
+  따라서 무한대는 구간의 원소가 아니므로 $(a,\infty]$ 처럼 <b>끝점을 포함하는 표기는 사용하지 않는다</b>.
+  모든 실수의 집합, 즉 실수 직선 $\mathbb{R}$ 은 $(-\infty,\infty)$ 로 나타내며,
+  이는 양 끝이 열린 무한구간의 형태로 표현된다.
+</div>
+
+<h2 class="sub">5.4 유계, 상한과 하한 <span class="en">bounded, supremum &amp; infimum</span></h2>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">유계 <span class="en">bounded</span></span>
+  <p>어떤 실수 구간 $I$ 가 주어져 있을 때, 구간에 속한 모든 실수의 값들이
+  <b>일정한 범위 안에 제한되는</b> 성질을 유계라고 한다.</p>
+  <ol class="props">
+    <li>구간 $I$ 에 속한 모든 실수 $x$ 보다 크거나 같은 실수 $M$ 이 존재하면 $I$ 는 <b>위로 유계</b>(bounded above)다.</li>
+    <li>구간 $I$ 에 속한 모든 실수 $x$ 보다 작거나 같은 실수 $m$ 이 존재하면 $I$ 는 <b>아래로 유계</b>(bounded below)다.</li>
+  </ol>
+</div>
+
+<p>상계나 하계는 <b>일반적으로 하나로 정해지지 않는다</b>.
+예를 들어 어떤 수가 상계이면 그보다 큰 모든 실수 역시 상계가 된다.
+따라서 상계 가운데 가장 작은 값과 하계 가운데 가장 큰 값을 따로 정의할 필요가 있다.</p>
+
+<div class="box def">
+  <span class="tag">정의 1.9</span><span class="title">상계·상한 / 하계·하한</span>
+  <p>실수의 부분집합인 구간 $I$ 에 대하여 다음과 같이 정의한다.</p>
+  <ol class="props">
+    <li>모든 $x\in I$ 에 대하여 $x\le M$ 을 만족하는 실수 $M$ 을 구간 $I$ 의 <b>상계</b>(upper bound)라 하고,
+      상계 가운데 <b>가장 작은 값</b>을 $I$ 의 <b>상한</b>(supremum) 또는 <b>최소상계</b>(least upper bound)라 하며
+      $\sup I$ 로 나타낸다.</li>
+    <li>모든 $x\in I$ 에 대하여 $x\ge m$ 을 만족하는 실수 $m$ 을 구간 $I$ 의 <b>하계</b>(lower bound)라 하고,
+      하계 가운데 <b>가장 큰 값</b>을 $I$ 의 <b>하한</b>(infimum) 또는 <b>최대하계</b>(greatest lower bound)라 하며
+      $\inf I$ 로 나타낸다.</li>
+  </ol>
+  <p>최소상계와 최대하계가 존재하면 그것은 <b>유일하게</b> 결정된다.</p>
+</div>
+
+<figure class="fig">
+<svg viewBox="0 0 350 130" role="img" aria-label="구간 (0,2]에서 하계와 상계의 집합, 하한 0과 상한 2의 위치">
+  <defs>
+    <marker id="ar2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 z" fill="#5a5a5a"/>
+    </marker>
+  </defs>
+  <line class="axis" x1="16" y1="70" x2="336" y2="70" marker-end="url(#ar2)"/>
+  <rect x="16" y="60" width="124" height="20" fill="#e9f6f4" stroke="none"/>
+  <rect x="230" y="60" width="106" height="20" fill="#fdf1e3" stroke="none"/>
+  <line class="vec" x1="140" y1="70" x2="230" y2="70" stroke-width="3"/>
+  <circle cx="140" cy="70" r="4.5" fill="#fff" stroke="#1d6fb8" stroke-width="1.8"/>
+  <circle cx="230" cy="70" r="4.5" fill="#1d6fb8"/>
+
+  <text class="lbl t" x="72" y="52" text-anchor="middle">하계의 집합</text>
+  <text class="lbl" x="72" y="100" text-anchor="middle">(0 이하 모든 실수)</text>
+  <text class="lbl" x="285" y="52" text-anchor="middle" fill="#c05621">상계의 집합</text>
+  <text class="lbl" x="285" y="100" text-anchor="middle">(2 이상 모든 실수)</text>
+
+  <text class="lbl b" x="140" y="36" text-anchor="middle">0 = inf I</text>
+  <text class="lbl b" x="230" y="36" text-anchor="middle">2 = sup I = 최댓값</text>
+  <text class="lbl" x="185" y="120" text-anchor="middle">I = (0, 2] — 하한은 구간에 없어 최솟값이 없고, 상한은 구간에 있어 최댓값이 된다</text>
+</svg>
+<figcaption>상계·하계는 무수히 많지만, 그중 <b>가장 작은 상계</b>와 <b>가장 큰 하계</b>는 각각 하나뿐이다.</figcaption>
+</figure>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">최댓값과 최솟값</span>
+  <p>구간 $I$ 에 속한 실수 가운데 그 구간의 모든 실수보다 크거나 같은 값이 <b>실제로 그 구간 안에 존재하면</b>
+  그 값을 <b>최댓값</b>이라 한다. 마찬가지로 모든 실수보다 작거나 같은 값이 구간 안에 존재하면 <b>최솟값</b>이라 한다.</p>
+</div>
+
+<div class="box thm">
+  <span class="tag">성질</span><span class="title">상한·하한과 최댓값·최솟값의 관계</span>
+  <ol class="props">
+    <li>최댓값이 존재하는 경우 <b>상한과 최댓값이 서로 같다</b>.</li>
+    <li>최솟값이 존재하는 경우 <b>하한과 최솟값이 일치한다</b>.</li>
+    <li>양 끝점을 모두 포함하는 <b>닫힌구간</b>에서는 상한 = 최댓값, 하한 = 최솟값이 성립한다.</li>
+    <li>끝점을 포함하지 않는 <b>열린구간</b>에서는 상한·하한이 구간에 포함되지 않으므로
+      최댓값이나 최솟값이 <b>존재하지 않을 수 있다</b>.</li>
+  </ol>
+</div>
+
+<div class="note">
+  <b>상한과 최댓값의 차이</b>가 이 절의 핵심이다.
+  상한은 구간 밖에 있어도 되지만 최댓값은 <b>반드시 구간 안에 있어야</b> 한다.
+  예컨대 $(0,2)$ 의 상한은 $2$ 지만 $2\notin(0,2)$ 이므로 최댓값은 없다.
+</div>
+
+<div class="box ex">
+  <span class="tag">예제 1.19</span><span class="title">상계·하계·상한·하한·최댓값·최솟값 구하기</span>
+  <p>다음 구간의 상계, 하계, 상한, 하한, 최댓값, 최솟값을 구하시오.</p>
+  <p>$(1)\ I_{1}=[5,\infty)$ &nbsp;&nbsp; $(2)\ I_{2}=[-1,1]$ &nbsp;&nbsp; $(3)\ I_{3}=(0,2]$</p>
+
+  <p><b>풀이</b></p>
+  <p>$(1)$ $I_{1}$ 의 하계는 $5$ 보다 작거나 같은 모든 실수이므로 최대하계인 <b>하한은 $5$</b> 이다.
+  아래로 닫힌구간이므로 <b>최솟값도 $5$</b> 로 하한과 같다.
+  그러나 위로 유계가 아니므로 <b>상계·상한·최댓값은 존재하지 않는다</b>.</p>
+
+  <p>$(2)$ $I_{2}$ 의 하계는 $-1$ 이하의 모든 실수이므로 하한은 $-1$ 이고,
+  상계는 $1$ 이상의 모든 실수이므로 상한은 $1$ 이다.
+  닫힌구간이므로 <b>최솟값 $-1$, 최댓값 $1$</b> 로 각각 하한·상한과 같다.</p>
+
+  <p>$(3)$ $I_{3}$ 의 하계는 $0$ 이하의 모든 실수이며 하한은 $0$,
+  상계는 $2$ 이상의 모든 실수이며 상한은 $2$ 이다.
+  위로 닫히고 아래로 열린 구간이므로 <b>최댓값은 상한과 같은 $2$</b> 이지만
+  <b>최솟값은 존재하지 않는다</b>($0\notin I_{3}$).</p>
+
+  <div class="scroll" style="margin-top:10px;"><table class="data">
+    <tr><th>구간</th><th>하한 inf</th><th>최솟값</th><th>상한 sup</th><th>최댓값</th></tr>
+    <tr><td>$[5,\infty)$</td><td>$5$</td><td>$5$</td><td>없음</td><td>없음</td></tr>
+    <tr><td>$[-1,1]$</td><td>$-1$</td><td>$-1$</td><td>$1$</td><td>$1$</td></tr>
+    <tr><td>$(0,2]$</td><td>$0$</td><td>없음</td><td>$2$</td><td>$2$</td></tr>
+  </table></div>
+</div>
+
+<nav class="pager">
+  <a href="1-5_number-system.html">← 이전<small>5.1~5.2 수의 체계와 실수의 성질</small></a>
+  <a class="next" href="1-7_logic.html">다음 →<small>5.5 수학적 논리 전개의 원리</small></a>
+</nav>
+
+</body>
+</html>

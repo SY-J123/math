@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>대학수학의 이해 · 5.1~5.2 수의 체계와 실수의 성질</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">대학수학의 이해 · 1장 집합과 수의 체계</div>
+  <h1><span class="no">5.1~5.2</span>수의 체계와 실수의 성질 <span class="en">the real number system</span></h1>
+</header>
+
+<p>수학의 대부분의 이론은 <b>실수체계</b>(real number system)를 기초로 전개된다.
+특히 대학 수준의 수학에서는 실수의 성질을 보다 엄밀하게 이해하는 것이 중요하다.</p>
+
+<h2 class="sub">5.1 수의 체계 <span class="en">the number system</span></h2>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">자연수 · 정수 · 유리수 · 무리수 · 실수</span>
+  <ol class="props">
+    <li><b>자연수</b>(natural number): $1$ 을 거듭 더하여 만들어진 양의 정수.
+      $$1,2,3,4,5,\dots$$</li>
+    <li><b>정수</b>(integer): 자연수에 $0$ 과 음의 자연수를 포함한 것.
+      $$\dots,-4,-3,-2,-1,0,1,2,3,\dots$$</li>
+    <li><b>유리수</b>(rational number): 두 정수 $m$, $n$ 을 이용해 분수 $\dfrac{m}{n}$ 으로 표현할 수 있는 수.
+      $0$ 으로 나누는 것은 의미가 없으므로 $n\ne0$ 이라고 가정한다.</li>
+    <li><b>무리수</b>(irrational number): 순환하지 않는 무한소수와 같이 <b>유리수 꼴로 표현할 수 없는</b> 수.</li>
+    <li><b>실수</b>(real number): 유리수와 무리수를 통틀어 부르는 이름.</li>
+  </ol>
+</div>
+
+<div class="note">
+  유리수는 <b>유한소수 또는 순환하는 무한소수(순환소수)</b>로 표현할 수 있다 — 예: $0.56$, $0.1666666\dots$
+  <br>무리수의 예로는 $\sqrt2$, $\sqrt3$, $\pi$, $e$ 등이 있다.
+</div>
+
+<figure class="fig">
+<svg viewBox="0 0 340 190" role="img" aria-label="실수체계의 포함관계 — 자연수 ⊂ 정수 ⊂ 유리수 ⊂ 실수, 실수는 유리수와 무리수로 이루어짐">
+  <rect class="cell" x="14" y="20" width="312" height="140" rx="10"/>
+  <text class="lbl" x="26" y="38">실수</text>
+
+  <ellipse cx="240" cy="90" rx="72" ry="56" fill="#f4e8dc" stroke="#c08a55" stroke-width="1.3"/>
+  <text class="lbl" x="288" y="46" text-anchor="middle">무리수</text>
+
+  <ellipse cx="140" cy="90" rx="106" ry="58" fill="#efe2d4" stroke="#b3854f" stroke-width="1.3"/>
+  <text class="lbl" x="60" y="52" text-anchor="middle">유리수</text>
+  <ellipse cx="150" cy="94" rx="76" ry="42" fill="#e5d3bf" stroke="#a06d38" stroke-width="1.2"/>
+  <text class="lbl" x="98" y="72" text-anchor="middle">정수</text>
+  <ellipse cx="160" cy="98" rx="48" ry="26" fill="#d8bfa2" stroke="#8a5a26" stroke-width="1.2"/>
+  <text class="lbl" x="160" y="102" text-anchor="middle">자연수</text>
+
+  <text class="lbl" x="170" y="178" text-anchor="middle">[그림 1-6] 실수체계 — N ⊂ Z ⊂ Q, 그리고 Q 와 무리수를 합쳐 실수</text>
+</svg>
+<figcaption>양의 정수인 자연수는 정수의 부분집합, 정수는 유리수의 부분집합이며,
+유리수와 무리수를 포함한 전체가 실수를 이룬다 — 실수체계가 <b>단계적으로 확장되어</b> 구성되는 구조다.</figcaption>
+</figure>
+
+<h2 class="sub">5.2 실수의 성질 <span class="en">properties of real numbers</span></h2>
+
+<p>실수는 서로 더하거나 곱해도 항상 새로운 실수가 된다. 이와 같은 성질을 <b>닫혀 있다</b>고 말한다.</p>
+
+<div class="box thm">
+  <span class="tag">성질</span><span class="title">실수의 기본 성질 — 체</span>
+  <p>임의의 실수 $a$, $b$, $c$ 에 대하여 다음이 성립한다.</p>
+  <ol class="props">
+    <li><b>교환법칙</b>: $a+b=b+a$, &nbsp; $ab=ba$</li>
+    <li><b>결합법칙</b>: $(a+b)+c=a+(b+c)$, &nbsp; $(ab)c=a(bc)$</li>
+    <li><b>분배법칙</b>: $a(b+c)=ab+ac$, &nbsp; $(a+b)c=ac+bc$</li>
+    <li><b>항등원</b>: $a+0=a$, &nbsp; $a\cdot1=a$</li>
+    <li><b>역원</b>: $a+(-a)=0$, &nbsp; $a\cdot a^{-1}=1$</li>
+  </ol>
+  <p>여기서 $-a$ 는 $a$ 의 덧셈에 대한 역원이며, $a^{-1}$ 은 $a$ 의 곱셈에 대한 역원이다.
+  성질 $(1)\sim(5)$ 를 만족하는 집합을 <b>체</b>(field)라고 한다.</p>
+</div>
+
+<div class="note">
+  뺄셈과 나눗셈은 <b>따로 정의되는 연산이 아니라</b> 역원의 합·곱으로 표현된다.
+  $$a-b=a+(-b),\qquad a\div b=a\cdot b^{-1}$$
+</div>
+
+<div class="box thm">
+  <span class="tag">성질</span><span class="title">실수의 조밀성 <span class="en">density</span></span>
+  <p>실수는 <b>조밀</b>(dense)하다 — 서로 다른 두 실수 사이에는 다른 실수가 반드시 존재한다.</p>
+  <p>서로 다른 두 실수 $a$, $b$ 가 있으면 두 실수의 평균 $\dfrac{a+b}{2}$ 는 $a$, $b$ 사이에 있다.
+  마찬가지로 $a$ 와 $\dfrac{a+b}{2}$ 사이에도 또 다른 실수가 존재한다.
+  이 과정을 끝없이 반복할 수 있으므로 <b>서로 다른 두 실수 사이에는 무수히 많은 실수가 존재</b>한다.</p>
+  <p>유리수와 무리수도 각각 조밀하다. 즉 두 실수 사이에는 무수히 많은 유리수와 무수히 많은 무리수가 존재하고,
+  임의의 무리수에 가장 가까운 유리수가 항상 존재하므로 <b>무리수를 유리수로 근사</b>시킬 수 있다.</p>
+</div>
+
+<figure class="fig">
+<svg viewBox="0 0 360 90" role="img" aria-label="실수 직선 — -2부터 3까지의 눈금과 √2, π의 위치">
+  <defs>
+    <marker id="arL" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 z" fill="#5a5a5a"/>
+    </marker>
+    <marker id="arR" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 z" fill="#5a5a5a"/>
+    </marker>
+  </defs>
+  <line class="axis" x1="18" y1="44" x2="344" y2="44" marker-start="url(#arL)" marker-end="url(#arR)"/>
+  <g class="axis">
+    <line x1="46"  y1="38" x2="46"  y2="50"/><line x1="98"  y1="38" x2="98"  y2="50"/>
+    <line x1="150" y1="38" x2="150" y2="50"/><line x1="202" y1="38" x2="202" y2="50"/>
+    <line x1="254" y1="38" x2="254" y2="50"/><line x1="306" y1="38" x2="306" y2="50"/>
+  </g>
+  <g class="lbl">
+    <text x="46"  y="66" text-anchor="middle">−2</text><text x="98"  y="66" text-anchor="middle">−1</text>
+    <text x="150" y="66" text-anchor="middle">0</text><text x="202" y="66" text-anchor="middle">1</text>
+    <text x="254" y="66" text-anchor="middle">2</text><text x="306" y="66" text-anchor="middle">3</text>
+  </g>
+  <circle cx="223.6" cy="44" r="3" fill="#1d6fb8"/>
+  <text class="lbl b" x="223.6" y="30" text-anchor="middle">√2</text>
+  <circle cx="313.4" cy="44" r="3" fill="#1d6fb8"/>
+  <text class="lbl b" x="313.4" y="30" text-anchor="middle">π</text>
+  <text class="lbl" x="150" y="84" text-anchor="middle">[그림 1-7] 실수 직선 — 0 이 원점</text>
+</svg>
+<figcaption>실수는 직선으로 표현되며, 이는 <b>실수 직선</b>(real line)의 모든 점에 실수가 일대일로 대응함을 의미한다.</figcaption>
+</figure>
+
+<div class="box thm">
+  <span class="tag">성질</span><span class="title">실수의 삼분성과 대소</span>
+  <p>임의의 실수 $a$ 는 반드시 다음 세 조건 중 <b>하나</b>를 만족한다.</p>
+  $$a\gt0,\qquad a=0,\qquad a\lt0$$
+  <p>여기서 $a\gt0$ 은 실수 직선에서 $a$ 가 $0$ 의 <b>오른쪽</b>에 있음을 의미한다.
+  실수 $a$, $b$ 의 차 $a-b$ 도 실수이므로 $a-b\gt0$, $a-b=0$, $a-b\lt0$ 중 하나를 만족하고,
+  따라서 서로 다른 두 실수 $a$, $b$ 는 다음 중 하나를 만족한다.</p>
+  $$a\gt b,\qquad a=b,\qquad a\lt b$$
+  <p>기하학적으로 $a\lt b$ 는 실수 직선에서 $a$ 가 $b$ 의 <b>왼쪽</b>에 있음을 의미한다.</p>
+</div>
+
+<div class="box thm">
+  <span class="tag">성질</span><span class="title">실수의 대소에 관한 성질</span>
+  <ol class="props">
+    <li>$a\gt b$, $b\gt c$ $\Rightarrow$ $a\gt c$</li>
+    <li>$a\gt b$ $\Rightarrow$ $a+c\gt b+c$, &nbsp; $a-c\gt b-c$</li>
+    <li>$a\gt b$, $c\gt0$ $\Rightarrow$ $ac\gt bc$, &nbsp; $\dfrac{a}{c}\gt\dfrac{b}{c}$</li>
+    <li>$a\gt b$, $c\lt0$ $\Rightarrow$ $ac\lt bc$, &nbsp; $\dfrac{a}{c}\lt\dfrac{b}{c}$</li>
+  </ol>
+  <p>$(4)$ 가 핵심이다 — <b>음수를 곱하거나 나누면 부등호의 방향이 뒤집힌다</b>.</p>
+</div>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">절댓값 <span class="en">absolute value</span></span>
+  <p>실수 직선 위에서 어떤 실수 $a$ 에 대응하는 점과 <b>원점 사이의 거리</b>를 $a$ 의 절댓값이라 하고 $|a|$ 로 쓴다.</p>
+</div>
+
+<div class="box thm">
+  <span class="tag">성질</span><span class="title">실수 절댓값의 성질</span>
+  <ol class="props">
+    <li>$|a|=\begin{cases}a, & a\ge0\\ -a, & a\lt0\end{cases}$</li>
+    <li>$|a|\ge0$</li>
+    <li>$|a|=|-a|$</li>
+    <li>$|ab|=|a|\,|b|$</li>
+    <li>$\left|\dfrac{a}{b}\right|=\dfrac{|a|}{|b|}$ &nbsp;(단, $b\ne0$)</li>
+  </ol>
+</div>
+
+<div class="box ex">
+  <span class="tag">예제 1.18</span><span class="title">절댓값 식을 범위에 따라 정리</span>
+  <p>$|a+1|+|a-2|$ 를 $a$ 의 범위에 따라 간단히 하시오.</p>
+  <p><b>풀이</b> &nbsp;두 절댓값이 각각 부호를 바꾸는 지점은 $a=-1$ 과 $a=2$ 다.
+  이 두 점으로 실수 전체를 세 구간으로 나눈다.</p>
+  <p>$(1)$ $a\ge2$ 인 경우 — $a+1\ge0$, $a-2\ge0$ 이므로</p>
+  $$|a+1|+|a-2|=(a+1)+(a-2)=2a-1$$
+  <p>$(2)$ $-1\le a\lt2$ 인 경우 — $a+1\ge0$, $a-2\lt0$ 이므로</p>
+  $$|a+1|+|a-2|=(a+1)-(a-2)=a+1-a+2=3$$
+  <p>$(3)$ $a\lt-1$ 인 경우 — $a+1\lt0$, $a-2\lt0$ 이므로</p>
+  $$|a+1|+|a-2|=-(a+1)-(a-2)=-a-1-a+2=-2a+1$$
+  <div class="note" style="margin-top:10px;">
+    가운데 구간에서 답이 <b>$a$ 와 무관한 상수 $3$</b> 이 되는 것에 주목하자.
+    $|a+1|$ 은 $-1$ 로부터의 거리, $|a-2|$ 는 $2$ 로부터의 거리이므로,
+    $a$ 가 두 점 사이에 있으면 두 거리의 합이 항상 두 점 사이의 거리 $3$ 과 같다.
+  </div>
+</div>
+
+<nav class="pager">
+  <a href="1-4_counting.html">← 이전<small>4 집합의 원소 개수와 고전적 확률</small></a>
+  <a class="next" href="1-6_intervals-bounds.html">다음 →<small>5.3~5.4 구간·유계·상한과 하한</small></a>
+</nav>
+
+</body>
+</html>
