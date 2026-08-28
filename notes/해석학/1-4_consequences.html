@@ -51,13 +51,14 @@
   $a_m\le x\le b_m$, 즉 $x\in I_m$. 그러므로 $x\in\bigcap_n I_n$.</p>
   <div class="qed">∎</div>
 </div>
-<div class="box exr">
-  <span class="tag">연습 1.4.3 (개념) — ‘닫힘’ 이 왜 필요한가</span>
-  <p>$\displaystyle\bigcap_{n=1}^{\infty}\Big(0,\tfrac1n\Big)=\varnothing$ 임을 보여라. 열린 구간에서는 교집합이 빌 수 있다 —
-  축소구간성질에서 ‘닫힌 구간’ 가정이 필수임을 보여 준다.</p>
-  <details class="hint"><summary>힌트 보기</summary>
-  <p>어떤 $x>0$ 을 잡아도 아르키메데스 성질로 $1/n\lt x$ 인 $n$ 이 있어 $x\notin(0,1/n)$.</p>
-  </details>
+<div class="box ex">
+  <span class="tag">예 1.4.1′</span><span class="title">‘닫힘’ 가정은 뺄 수 없다</span>
+  <p>열린 구간 $J_n=\Big(0,\tfrac1n\Big)$ 도 $J_1\supseteq J_2\supseteq\cdots$ 로 포개지지만</p>
+  $$\bigcap_{n=1}^{\infty}\Big(0,\tfrac1n\Big)=\varnothing$$
+  <p>이다. 실제로 $x\le0$ 이면 애초에 어느 $J_n$ 에도 없고, $x\gt0$ 이면 아르키메데스 성질(정리 1.4.2)로
+  $\tfrac1{n_0}\lt x$ 인 $n_0$ 이 있어 $x\notin J_{n_0}$ 다. 어느 쪽이든 모든 구간에 동시에 드는 점은 없다.</p>
+  <p>정리 1.4.1의 증명에서 $x=\sup\{a_n\}$ 이 <b>$I_m$ 안에</b> 들어간 것은 $a_m\le x\le b_m$ 이 곧 $x\in[a_m,b_m]$ 을 뜻했기 때문이다.
+  구간이 열려 있으면 등호가 허용되지 않아 이 마지막 한 걸음이 무너진다. <b>닫힘이 경계점을 붙잡아 두는 역할</b>을 한다.</p>
 </div>
 
 <h2 class="sub">아르키메데스 성질 <span class="en">Archimedean property</span></h2>
@@ -98,13 +99,21 @@
   $m-1\le na\lt m$ 이라 $a\lt \tfrac mn$. 또 $m\le na+1\lt n(b-\tfrac1n)+1=nb$ 라 $\tfrac mn\lt b$. 따라서 $a\lt \tfrac mn\lt b$.</p>
   <div class="qed">∎</div>
 </div>
-<div class="box exr">
-  <span class="tag">연습 1.4.5 (개념) — 무리수도 조밀</span>
-  <p><b>따름정리 1.4.4</b> 를 증명하라: $a\lt b$ 이면 $a\lt t\lt b$ 인 무리수 $t$ 가 존재한다.</p>
-  <details class="hint"><summary>힌트 보기</summary>
-  <p>$a-\sqrt2\lt b-\sqrt2$ 에 정리 1.4.3 을 적용해 유리수 $r$ 을 끼우고 $t=r+\sqrt2$ 로 두면 무리수.
-  (유리수 + 무리수 = 무리수: 연습 1.4.1)</p>
-  </details>
+<div class="box thm">
+  <span class="tag">따름정리 1.4.4</span><span class="title">무리수의 조밀성 <span class="en">density of the irrationals</span></span>
+  <p>$a\lt b$ 인 두 실수 사이에는 무리수도 있다: $a\lt t\lt b$ 인 무리수 $t$ 가 존재한다.</p>
+</div>
+<div class="box prf">
+  <span class="tag">증명</span>
+  <p>$a-\sqrt2\lt b-\sqrt2$ 에 정리 1.4.3 을 적용해 &nbsp;$a-\sqrt2\lt r\lt b-\sqrt2$&nbsp; 인 유리수 $r$ 을 잡는다.
+  양변에 $\sqrt2$ 를 더하면 $t=r+\sqrt2$ 가 $a\lt t\lt b$ 를 만족한다.</p>
+  <p>$t$ 가 무리수임은 <b>유리수 + 무리수 = 무리수</b> 이기 때문이다.
+  만약 $t$ 가 유리수라면 $\sqrt2=t-r$ 이 유리수 두 개의 차라 유리수가 되어 모순이다.</p>
+  <div class="qed">∎</div>
+</div>
+<div class="note">
+  $\mathbb{Q}$ 도 무리수 집합도 각각 수직선 어디에나 빽빽하다. 그래서 “빽빽하다” 는 것만으로는
+  두 집합의 <b>크기</b>를 구별하지 못한다 — 조밀성은 위치에 대한 성질이지 개수에 대한 성질이 아니다.
 </div>
 
 <h2 class="sub">수리통계학과의 연결</h2>
