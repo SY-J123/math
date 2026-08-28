@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>해석학 · 수리통계학을 위한 해석학 로드맵</title>
+<link rel="stylesheet" href="../../assets/analysis.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<style>
+  table.plan td, table.plan th{ text-align:left; vertical-align:top; }
+  table.plan td.c{ text-align:center; white-space:nowrap; }
+  .lv1{ font-weight:700; font-size:0.86rem; border-bottom:2px solid #111; }
+  .lv2{ font-weight:700; font-size:0.86rem; border-bottom:1px solid #555; }
+  .lv3{ font-weight:400; font-size:0.86rem; color:#555; }
+</style>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../index.html">⌂ 홈</a>
+  <div class="ch">해석학 · 학습 안내</div>
+  <h1>수리통계학을 위한 해석학 로드맵 <span class="en">an analysis roadmap for mathematical statistics</span></h1>
+</header>
+
+<p>학부 수리통계학을 공부하다 막히는 자리는 대개 <b>통계가 아니라 해석학</b>이다.
+“$\to$”, “$\sup$”, “테일러 전개해서”, “미분과 적분의 순서를 바꾸면” 같은 말이 나올 때
+그 근거를 모르면 계산은 따라가도 왜 그래도 되는지를 알 수 없다.
+이 문서는 <b>학부 수리통계학에 실제로 값을 하는 해석학만</b> 골라, 어디까지 엄밀하게 알아야 하는지를 정리한 것이다.</p>
+
+<div class="note">
+  기준은 하나다 — <a href="../수리통계학/index.html">수리통계학 노트</a>에서
+  <b>그 도구가 실제로 인용되는 자리가 있는가</b>. 없으면 뺐다.
+</div>
+
+<h2 class="sub">강도의 세 등급 <span class="en">three levels of effort</span></h2>
+
+<div class="box def">
+  <span class="tag">기준</span><span class="title">‘손으로’ · ‘답지 없이’ · ‘훑기’ 의 뜻</span>
+  <ol class="props">
+    <li><span class="lv1">답지 없이</span> — 정의를 백지에서 쓰고, <b>연습문제까지 답을 보지 않고</b> 푼다.
+      $\varepsilon$–$N$ 논법에 손이 익어야 하므로 <b>2.2 하나에만</b> 이 강도를 둔다.</li>
+    <li><span class="lv2">손으로</span> — 정의와 정리의 진술을 백지에서 재현하고, <b>증명의 얼개를 손으로 따라 쓴다</b>.
+      문제 풀이는 답지를 봐도 된다.</li>
+    <li><span class="lv3">훑기</span> — <b>진술과 가정만</b> 정확히 확인하고 증명은 읽고 넘어간다.
+      나중에 인용할 때 조건을 빠뜨리지 않을 정도면 충분하다.</li>
+  </ol>
+</div>
+
+<h2 class="sub">학습 계획 — 18개 절 <span class="en">the plan</span></h2>
+
+<div class="scroll"><table class="data plan">
+  <tr>
+    <th style="width:3em;">#</th><th style="width:12em;">절</th><th style="width:9em;">강도</th>
+    <th>수리통계학에서 값을 하는 자리</th>
+  </tr>
+
+  <tr><td class="c">1</td><td>1.3 완비성 공리</td><td class="c"><span class="lv2">손으로</span></td>
+    <td>$\sup$·$\inf$ 가 <b>정의의 언어</b>로 쓰인다 —
+      K–S 통계량 $D_n=\sup_x|F_n(x)-F(x)|$ (<a href="../수리통계학/ch08/8-1_nonparametric-estimation.html">8.1</a>),
+      크래머–라오 <b>하한</b>(<a href="../수리통계학/ch04/4-4_mvue.html">4.4</a>),
+      MLE 의 <b>최대</b>(<a href="../수리통계학/ch04/4-2_maximum-likelihood.html">4.2</a>).
+      <a href="ch01/1-3_completeness.html">노트 있음</a></td></tr>
+
+  <tr><td class="c">2</td><td>1.4 완비성의 따름정리</td><td class="c"><span class="lv3">훑기</span><br>(아르키메데스·조밀성만)</td>
+    <td>“임의의 $\varepsilon\gt0$ 에 대해 $\tfrac1n\lt\varepsilon$ 인 $n$ 이 있다” —
+      이후 모든 $\varepsilon$ 논법이 딛고 서는 바닥. 중첩구간·기수는 통계에 안 나온다.
+      <a href="ch01/1-4_consequences.html">노트 있음</a></td></tr>
+
+  <tr><td class="c">3</td><td>2.2 수열의 극한</td><td class="c"><span class="lv1">답지 없이</span><br>여기만</td>
+    <td><b>이 로드맵의 중심.</b> 확률수렴 $P(|X_n-\theta|\ge\varepsilon)\to0$ 에서
+      <b>바깥의 $\to0$ 이 정확히 이 $\varepsilon$–$N$</b> 이다
+      (<a href="../수리통계학/ch03/3-4_lln-clt.html">3.4</a>).
+      일치성, $\mathrm{MSE}\to0$, 점근분산 전부 여기서 나온다
+      (<a href="../수리통계학/ch04/4-5_asymptotic-properties.html">4.5</a>).</td></tr>
+
+  <tr><td class="c">4</td><td>2.3 극한에 대한 정리</td><td class="c"><span class="lv3">훑기</span><br>(도구함)</td>
+    <td>$a_n\to a$, $b_n\to b$ $\Rightarrow$ $a_nb_n\to ab$ 류. <b>슬럿츠키 정리의 실수판</b>으로,
+      $\sqrt n(\bar X-\mu)/S_n$ 같은 스튜던트화 통계량을 다룰 때의 계산 규칙이 된다.</td></tr>
+
+  <tr><td class="c">5</td><td>2.4 단조수렴정리</td><td class="c"><span class="lv3">훑기</span></td>
+    <td>“단조 + 유계 $\Rightarrow$ 수렴”. 꼬리확률 $P(X\gt n)$ 처럼 <b>단조인 양의 극한</b>을
+      존재만 확인하고 넘어갈 때 쓴다. 측도론의 단조수렴정리와 이름이 같지만 다른 것임에 유의.</td></tr>
+
+  <tr><td class="c">6</td><td>2.5 볼차노–바이어슈트라스</td><td class="c"><span class="lv2">손으로</span></td>
+    <td>유계수열에서 <b>수렴하는 부분수열을 뽑는</b> 논법. 통계에서 직접 인용되는 일은 드물지만,
+      #10 최대최소 정리의 부품이고 분포수렴의 조밀성(tightness) 논법의 원형이다.</td></tr>
+
+  <tr><td class="c">7</td><td>2.6 코시 수렴 판정법</td><td class="c"><span class="lv2">손으로</span></td>
+    <td><b>극한값을 모른 채 수렴을 말하는</b> 유일한 도구.
+      $L^2$ 수렴·완비성이라는 말이 나올 때의 뼈대이며, 실수의 완비성이 결국 이 형태로 쓰인다.</td></tr>
+
+  <tr><td class="c">8</td><td>4.2 함수의 극한</td><td class="c"><span class="lv3">훑기</span><br>(2.2의 함수판)</td>
+    <td>cdf 의 좌·우극한 $F(x^{-})$, $F(x^{+})$ 와 <b>연속점</b>.
+      분포수렴이 왜 “$F$ 의 연속점에서만” $F_n(x)\to F(x)$ 를 요구하는지가 여기서 풀린다.</td></tr>
+
+  <tr><td class="c">9</td><td>4.3 연속함수</td><td class="c"><span class="lv2">손으로</span></td>
+    <td><b>연속사상정리</b>의 기반. 4.5의 “<b>연속함수에 의한 일치성의 보존</b>”
+      ($\hat\theta\xrightarrow{p}\theta$ 이고 $g$ 연속이면 $g(\hat\theta)\xrightarrow{p}g(\theta)$)이
+      그대로 이 절이며, 델타 방법도 여기서 출발한다.</td></tr>
+
+  <tr><td class="c">10</td><td>4.4 콤팩트 위의 연속함수</td><td class="c"><span class="lv2">손으로</span><br>(균등연속·최대최소)</td>
+    <td><b>최대최소 정리</b> → 가능도함수가 최댓값을 <b>가진다</b>는 보장(MLE 존재성, 4.2).
+      <b>균등연속</b> → 닫힌구간 위 연속함수의 리만적분 가능성(#15로 이어짐).</td></tr>
+
+  <tr><td class="c">11</td><td>5.2 도함수</td><td class="c"><span class="lv3">앞부분만</span><br>다르부 정리는 스킵</td>
+    <td>스코어함수 $\dfrac{\partial}{\partial\theta}\log L(\theta)$ 를 다루는 데 필요한 최소한.
+      다르부 정리는 학부 수리통계에 등장하지 않는다.</td></tr>
+
+  <tr><td class="c">12</td><td>5.3 평균값 정리</td><td class="c"><span class="lv2">손으로</span><br>진술은 백지 재현</td>
+    <td><b>델타 방법과 MLE 점근정규성의 전개가 전부 MVT·테일러</b>다.
+      4.5의 “최대가능도추정량의 점근적 정규성” 증명에서 스코어함수를 $\hat\theta$ 와 $\theta_0$ 사이에서
+      전개할 때 쓰는 그 정리.</td></tr>
+
+  <tr><td class="c">13</td><td>6.2 고른 수렴</td><td class="c"><span class="lv2">손으로</span><br>정의 + 반례 하나</td>
+    <td><b>글리벤코–칸텔리</b> $\sup_x|F_n(x)-F(x)|\to0$ 이 곧 “$F_n$ 이 $F$ 로 <b>고르게</b> 수렴”이다.
+      K–S 검정이 성립하는 이유이고, 8.1의 신뢰띠(confidence band)가 <b>모든 $x$ 에서 동시에</b>
+      성립한다는 말의 뜻이다. <b>점별 수렴과 다른 반례를 하나는 손에 쥐고 있어야</b> 한다.</td></tr>
+
+  <tr><td class="c">14</td><td>6.3 고른 수렴과 미분</td><td class="c"><span class="lv2">손으로</span></td>
+    <td>극한과 미분의 <b>교환 조건</b>. 4.4의 <b>바틀릿 항등식</b>
+      $E\!\left[\partial_\theta\log f\right]=0$ 을 얻을 때 쓰는
+      “정규조건(regularity condition)”이 실은 이 교환의 허가증이다.</td></tr>
+
+  <tr><td class="c">15</td><td>7.2 리만 적분</td><td class="c"><span class="lv3">훑기</span><br>(정의만)</td>
+    <td>연속형 기댓값 $E(X)=\int x f(x)\,dx$ 가 <b>무엇으로 정의된 대상인지</b> 알아 두는 정도.
+      상합·하합의 구성을 외울 필요는 없다.</td></tr>
+
+  <tr><td class="c">16</td><td>7.4 적분의 성질</td><td class="c"><span class="lv2">손으로</span><br>교환 정리 하나</td>
+    <td><b>이 절은 정리 하나 보러 간다</b> — 고른 수렴 ↔ 적분의 교환.
+      mgf 를 미분해 적률을 뽑는 조작(<a href="../수리통계학/ch02/2-8_mgf.html">2.8</a>)과
+      $\dfrac{d}{d\theta}\int f\,dx=\int\dfrac{\partial f}{\partial\theta}\,dx$
+      (4.4 크래머–라오의 정규조건)가 여기에 걸려 있다.</td></tr>
+
+  <tr><td class="c">17</td><td>6.5 멱급수</td><td class="c"><span class="lv3">훑기</span></td>
+    <td>mgf·pgf 는 <b>계수가 적률·확률인 멱급수</b>다
+      (<a href="../수리통계학/ch02/2-9_pgf.html">2.9</a>).
+      “mgf 가 $0$ 의 근방에서 존재하면” 이라는 단서가 곧 <b>수렴반경</b> 이야기다.</td></tr>
+
+  <tr><td class="c">18</td><td>6.6 테일러 급수</td><td class="c"><span class="lv2">손으로</span><br>라그랑주 나머지항</td>
+    <td>3.4에 <b>“1차 나머지항의 라그랑주 표현”</b> 이라는 이름으로 <b>그대로</b> 등장한다.
+      델타 방법, 정규근사, MLE 점근정규성이 모두 이 한 줄에서 갈라져 나온다.</td></tr>
+</table></div>
+
+<h2 class="sub">배우는 순서 <span class="en">the dependency spine</span></h2>
+
+<figure class="fig">
+<svg viewBox="0 0 360 290" role="img" aria-label="세 갈래 학습 순서 — 수렴의 언어, 연속과 미분, 극한 교환. 각 갈래가 수리통계학의 어떤 결과로 이어지는지 표시">
+  <defs>
+    <marker id="rd" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 z" fill="#5a5a5a"/>
+    </marker>
+  </defs>
+
+  <rect class="cellhi" x="112" y="10" width="136" height="24"/>
+  <text class="lbl b" x="180" y="26" text-anchor="middle">1.3 완비성 · 1.4 아르키메데스</text>
+  <line class="axis" x1="180" y1="34" x2="180" y2="46" marker-end="url(#rd)"/>
+  <rect x="112" y="48" width="136" height="26" fill="#e4e4e4" stroke="#333" stroke-width="1.6"/>
+  <text class="lbl" x="180" y="65" text-anchor="middle" fill="#111">2.2 수열의 극한 (ε–N)</text>
+
+  <path class="axis" d="M180,74 V86 H62 V98" fill="none" marker-end="url(#rd)"/>
+  <path class="axis" d="M180,74 V86 H180 V98" fill="none" marker-end="url(#rd)"/>
+  <path class="axis" d="M180,74 V86 H300 V98" fill="none" marker-end="url(#rd)"/>
+
+  <!-- 기둥 1 -->
+  <rect class="cell" x="12" y="100" width="100" height="22"/>
+  <text class="lbl" x="62" y="115" text-anchor="middle">2.3 극한 정리</text>
+  <rect class="cell" x="12" y="126" width="100" height="22"/>
+  <text class="lbl" x="62" y="141" text-anchor="middle">2.4 단조수렴</text>
+  <rect class="cell" x="12" y="152" width="100" height="22"/>
+  <text class="lbl" x="62" y="167" text-anchor="middle">2.5 B–W</text>
+  <rect class="cell" x="12" y="178" width="100" height="22"/>
+  <text class="lbl" x="62" y="193" text-anchor="middle">2.6 코시</text>
+
+  <!-- 기둥 2 -->
+  <rect class="cell" x="130" y="100" width="100" height="22"/>
+  <text class="lbl" x="180" y="115" text-anchor="middle">4.2 함수의 극한</text>
+  <rect class="cell" x="130" y="126" width="100" height="22"/>
+  <text class="lbl" x="180" y="141" text-anchor="middle">4.3 연속함수</text>
+  <rect class="cell" x="130" y="152" width="100" height="22"/>
+  <text class="lbl" x="180" y="167" text-anchor="middle">4.4 콤팩트 위 연속</text>
+  <rect class="cell" x="130" y="178" width="100" height="22"/>
+  <text class="lbl" x="180" y="193" text-anchor="middle">5.2 도함수 → 5.3 MVT</text>
+  <rect x="130" y="204" width="100" height="22" fill="#e4e4e4" stroke="#333" stroke-width="1.4"/>
+  <text class="lbl" x="180" y="219" text-anchor="middle" fill="#111">6.6 테일러</text>
+
+  <!-- 기둥 3 -->
+  <rect x="248" y="100" width="100" height="22" fill="#e4e4e4" stroke="#333" stroke-width="1.4"/>
+  <text class="lbl" x="298" y="115" text-anchor="middle" fill="#111">6.2 고른 수렴</text>
+  <rect class="cell" x="248" y="126" width="100" height="22"/>
+  <text class="lbl" x="298" y="141" text-anchor="middle">6.3 ↔ 미분</text>
+  <rect class="cell" x="248" y="152" width="100" height="22"/>
+  <text class="lbl" x="298" y="167" text-anchor="middle">7.2 리만 적분</text>
+  <rect x="248" y="178" width="100" height="22" fill="#e4e4e4" stroke="#333" stroke-width="1.4"/>
+  <text class="lbl" x="298" y="193" text-anchor="middle" fill="#111">7.4 ↔ 적분</text>
+  <rect class="cell" x="248" y="204" width="100" height="22"/>
+  <text class="lbl" x="298" y="219" text-anchor="middle">6.5 멱급수</text>
+
+  <!-- 도착지 -->
+  <line class="axis" x1="62"  y1="200" x2="62"  y2="240" marker-end="url(#rd)"/>
+  <line class="axis" x1="180" y1="226" x2="180" y2="240" marker-end="url(#rd)"/>
+  <line class="axis" x1="298" y1="226" x2="298" y2="240" marker-end="url(#rd)"/>
+
+  <g class="lbl b">
+    <text x="62"  y="256" text-anchor="middle">확률수렴 · 일치성</text>
+    <text x="62"  y="270" text-anchor="middle">LLN (3.4 · 4.5)</text>
+    <text x="180" y="256" text-anchor="middle">델타 방법 · CLT</text>
+    <text x="180" y="270" text-anchor="middle">MLE 점근정규성</text>
+    <text x="298" y="256" text-anchor="middle">글리벤코–칸텔리 · K–S</text>
+    <text x="298" y="270" text-anchor="middle">mgf 미분 · 크래머–라오</text>
+  </g>
+  <text class="lbl" x="180" y="286" text-anchor="middle">주황 = 반드시 손으로 붙잡아야 하는 네 곳</text>
+</svg>
+<figcaption><b>2.2 를 지나야 나머지 셋이 열린다.</b>
+왼쪽 기둥은 “수렴한다”는 말의 문법, 가운데는 연속·미분(근사의 도구), 오른쪽은 극한과 적분·미분의 교환이다.</figcaption>
+</figure>
+
+<h2 class="sub">엄밀함의 세 층 <span class="en">how rigorous, exactly</span></h2>
+
+<p>“엄밀하게 안다”는 말은 항목마다 뜻이 다르다. 실제로 필요한 수준은 다음 세 층으로 갈린다.</p>
+
+<div class="box thm">
+  <span class="tag">층 1</span><span class="title">백지에서 정의를 쓸 수 있어야 하는 것</span>
+  <p>기호 하나만 어긋나도 통계의 진술이 달라지는 것들이다. 정의 자체가 <b>인용의 단위</b>가 된다.</p>
+  <ol class="props">
+    <li>수열의 극한 $\varepsilon$–$N$ &nbsp;— $\forall\varepsilon\gt0,\ \exists N,\ n\ge N\Rightarrow|a_n-a|\lt\varepsilon$</li>
+    <li>함수의 극한·연속 $\varepsilon$–$\delta$</li>
+    <li><b>고른 수렴</b> — $N$ 이 $x$ 에 <b>의존하지 않는다</b>는 그 한 가지가 전부다</li>
+    <li>$\sup$ 과 $\inf$ — “최소인 상계”, “최대인 하계”</li>
+  </ol>
+</div>
+
+<div class="box thm">
+  <span class="tag">층 2</span><span class="title">진술과 <b>가정</b>을 정확히 알아야 하는 것</span>
+  <p>증명을 재현할 필요는 없지만, <b>인용할 때 조건을 빠뜨리면 틀리는</b> 것들이다.
+  통계 논문·교재에서 “정규조건 아래에서”라고 뭉뚱그리는 대목이 대부분 여기 걸려 있다.</p>
+  <ol class="props">
+    <li>평균값 정리 — 닫힌구간에서 연속, 열린구간에서 미분가능</li>
+    <li>테일러 정리와 <b>라그랑주 나머지항</b> — $\xi$ 가 두 점 <b>사이</b>의 어딘가라는 것</li>
+    <li>최대최소 정리 — <b>닫히고 유계인</b> 구간, 연속</li>
+    <li>고른 수렴 ↔ 적분·미분의 교환 — 무엇이 고르게 수렴해야 하는지($f_n$ 인지 $f_n'$ 인지)</li>
+    <li>단조수렴정리 — 단조 <b>그리고</b> 유계</li>
+  </ol>
+</div>
+
+<div class="box thm">
+  <span class="tag">층 3</span><span class="title">이름과 쓰임만 알면 되는 것</span>
+  <ol class="props">
+    <li>볼차노–바이어슈트라스, 코시 수렴 판정법 — 계획에서는 <span class="lv2">손으로</span> 로 잡았지만,
+      수리통계학에서 <b>직접 인용되는 일은 드물다</b>. 증명 논법을 몸에 익히는 훈련용으로 보면 된다.</li>
+    <li>리만적분의 상합·하합 구성 — 결과(연속이면 적분가능)만 쓰면 된다.</li>
+    <li>아르키메데스 성질 — 쓰고 있다는 자각만 있으면 된다.</li>
+    <li>멱급수의 수렴반경 — mgf 가 “$0$ 의 근방에서 존재”한다는 단서를 읽는 정도.</li>
+  </ol>
+</div>
+
+<h2 class="sub">빼도 되는 것 <span class="en">safe to skip</span></h2>
+
+<div class="note">
+  아래는 해석학 교재에는 있지만 <b>학부 수리통계학에서 마주칠 일이 없는</b> 것들이다.
+  시간을 아끼려면 여기부터 덜어낸다.
+  <ol class="props">
+    <li><b>다르부 정리</b>(도함수의 중간값 성질) — 계획에서도 스킵으로 표시했다. 옳은 판단이다.</li>
+    <li><b>기수·칸토어 정리·연속체가설</b>(<a href="ch01/1-5_cardinality.html">1.5</a>–<a href="ch01/1-6_cantor.html">1.7</a>) —
+      “가산개의 사건” 이라는 말을 읽을 정도면 충분하다.</li>
+    <li><b>중첩구간 정리</b>, 실수의 구성(데데킨트 절단·코시열 완비화)</li>
+    <li>급수 판정법 카탈로그(비율·근·교대급수) — 필요한 만큼은 이미
+      <a href="../수리통계학/ch00/0-4_series.html">수리통계 0.4</a>에 정리되어 있다.</li>
+    <li>위상 일반론(열린집합·컴팩트성의 추상적 정의) — 실수 구간에서의 최대최소·균등연속으로 충분하다.</li>
+  </ol>
+</div>
+
+<div class="note">
+  <b>측도론은 필요 없다.</b> ‘거의 확실히(almost surely)’ 라는 말이 나오면 그것은 측도론 용어지만,
+  학부 수준에서는 <b>“확률 $1$ 로”</b> 정도로 읽고 넘어가면 된다.
+  다변수 미적분(야코비안, 이중적분의 순서 교환)은 해석학 2권 영역이며,
+  필요한 만큼은 이미 <a href="../수리통계학/ch00/0-5_multivariable.html">수리통계 0.5</a>와
+  <a href="../수리통계학/ch02/2-7_functions-of-rv.html">2.7</a>에 정리되어 있다.
+</div>
+
+<h2 class="sub">역방향 색인 — 막혔을 때 <span class="en">reverse index</span></h2>
+
+<p>수리통계학을 보다 막혔을 때 어디로 돌아가면 되는지의 표다.</p>
+
+<div class="scroll"><table class="data plan">
+  <tr><th style="width:16em;">막히는 자리</th><th style="width:11em;">돌아갈 곳</th><th>한 줄 요약</th></tr>
+
+  <tr><td>3.4 확률수렴의 정의가 안 읽힘</td><td class="c">2.2</td>
+    <td>$P(\,\cdot\,)$ 는 그냥 수열이다. $\varepsilon$–$N$ 을 수열 $p_n=P(|X_n-\theta|\ge\varepsilon)$ 에 그대로 적용한 것</td></tr>
+
+  <tr><td>3.4 “1차 나머지항의 라그랑주 표현”</td><td class="c">6.6 · 5.3</td>
+    <td>테일러 정리의 나머지항. $\xi$ 가 두 점 사이 어딘가라는 것이 핵심</td></tr>
+
+  <tr><td>3.4 슬럿츠키 정리</td><td class="c">2.3</td>
+    <td>실수 수열의 극한 사칙연산을 확률수렴·분포수렴판으로 옮긴 것</td></tr>
+
+  <tr><td>4.5 연속함수에 의한 일치성 보존</td><td class="c">4.3</td>
+    <td>연속의 $\varepsilon$–$\delta$ 정의를 그대로 확률에 대입하면 나온다</td></tr>
+
+  <tr><td>4.5 MLE 의 점근적 정규성</td><td class="c">5.3 · 6.6</td>
+    <td>스코어함수를 $\hat\theta$ 와 $\theta_0$ 사이에서 테일러 전개 — MVT 가 뼈대</td></tr>
+
+  <tr><td>4.4 바틀릿 항등식·정규조건</td><td class="c">6.3 · 7.4</td>
+    <td>$\dfrac{d}{d\theta}\int=\int\dfrac{\partial}{\partial\theta}$ 를 허락하는 조건이 ‘정규조건’ 의 정체</td></tr>
+
+  <tr><td>4.2 MLE 가 존재하는가</td><td class="c">4.4(콤팩트)</td>
+    <td>최대최소 정리 — 닫히고 유계인 모수공간에서 연속인 가능도는 최댓값을 <b>가진다</b></td></tr>
+
+  <tr><td>2.8 mgf 를 미분해 적률 뽑기</td><td class="c">7.4 · 6.5</td>
+    <td>미분과 적분의 교환 + 멱급수 계수 비교</td></tr>
+
+  <tr><td>8.1 $D_n=\sup_x|F_n-F|$ 와 신뢰띠</td><td class="c">1.3 · 6.2</td>
+    <td>$\sup$ 의 정의 + 고른 수렴. “모든 $x$ 에서 동시에” 가 곧 고른 수렴</td></tr>
+
+  <tr><td>분포수렴이 왜 연속점에서만인가</td><td class="c">4.2</td>
+    <td>cdf 의 좌·우극한과 불연속점. 점프가 있는 곳에서는 $F_n(x)\to F(x)$ 를 요구할 수 없다</td></tr>
+</table></div>
+
+<div class="note">
+  <b>한 문장으로.</b> 학부 수리통계학이 해석학에 지고 있는 빚은 결국 세 가지다 —
+  <b>“수렴한다”는 말의 정의($\varepsilon$–$N$)</b>,
+  <b>“근사한다”는 말의 근거(테일러 + 라그랑주 나머지항)</b>,
+  <b>“순서를 바꿔도 된다”는 말의 허가증(고른 수렴)</b>.
+  이 셋만 손에 쥐면 나머지는 필요할 때 찾아 쓰면 된다.
+</div>
+
+<nav class="pager">
+  <span class="spacer"></span>
+  <a class="next" href="index.html">목차 →<small>해석학</small></a>
+</nav>
+
+</body>
+</html>

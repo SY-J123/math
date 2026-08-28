@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>1장 · 1.3 완비성 공리</title>
-<link rel="stylesheet" href="../../../assets/note.css">
+<link rel="stylesheet" href="../../../assets/analysis.css">
 <script>
   MathJax = {
     tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
@@ -35,11 +35,11 @@
   <defs><marker id="ca" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#555"/></marker></defs>
   <line class="axis" x1="20" y1="62" x2="362" y2="62"/>
   <!-- set A region -->
-  <g fill="#0f8a7d">
+  <g fill="#555">
     <circle cx="168" cy="62" r="2.5"/><circle cx="182" cy="62" r="2.5"/><circle cx="200" cy="62" r="2.5"/>
     <circle cx="214" cy="62" r="2.5"/><circle cx="232" cy="62" r="2.5"/><circle cx="248" cy="62" r="2.5"/>
   </g>
-  <circle cx="160" cy="62" r="3.5" fill="#7b3fa0"/><circle cx="252" cy="62" r="3.5" fill="#1d6fb8"/>
+  <circle cx="160" cy="62" r="3.5" fill="#666"/><circle cx="252" cy="62" r="3.5" fill="#111"/>
   <text class="lbl p" x="160" y="50" text-anchor="middle">inf A</text>
   <text class="lbl b" x="252" y="50" text-anchor="middle">sup A</text>
   <text class="lbl t" x="206" y="84" text-anchor="middle">A</text>
@@ -115,10 +115,10 @@ $2\notin(0,2)$ 라 최댓값은 없다. 닫힌 구간 $[0,2]$ 는 $\max=2$ 가 �
 <figure class="fig">
 <svg viewBox="0 0 320 92" role="img" aria-label="s-ε보다 큰 A의 원소가 항상 존재">
   <line class="axis" x1="20" y1="50" x2="300" y2="50"/>
-  <circle cx="250" cy="50" r="3.5" fill="#1d6fb8"/><text class="lbl b" x="250" y="40" text-anchor="middle">s = sup A</text>
+  <circle cx="250" cy="50" r="3.5" fill="#111"/><text class="lbl b" x="250" y="40" text-anchor="middle">s = sup A</text>
   <circle cx="170" cy="50" r="3" fill="#999"/><text class="lbl" x="170" y="40" text-anchor="middle">s−ε</text>
-  <circle cx="215" cy="50" r="3.5" fill="#0f8a7d"/><text class="lbl t" x="215" y="40" text-anchor="middle">a</text>
-  <path d="M170,58 L170,64 M170,64 L250,64 M250,64 L250,58" fill="none" stroke="#0f8a7d"/>
+  <circle cx="215" cy="50" r="3.5" fill="#555"/><text class="lbl t" x="215" y="40" text-anchor="middle">a</text>
+  <path d="M170,58 L170,64 M170,64 L250,64 M250,64 L250,58" fill="none" stroke="#555"/>
   <text class="lbl t" x="210" y="80" text-anchor="middle">(s−ε, s] 안에 항상 A의 원소 a가 있다</text>
 </svg>
 <figcaption>$s=\sup A$ 라는 것은 “$s$ 가 상계이면서, $s$ 에서 조금($\epsilon$)만 왼쪽으로 가면 이미 상계가 아니다(그 사이에 $A$ 의 원소가 있다)”는 뜻.</figcaption>

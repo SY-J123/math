@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>1장 · 1.6–1.7 칸토어 정리</title>
-<link rel="stylesheet" href="../../../assets/note.css">
+<link rel="stylesheet" href="../../../assets/analysis.css">
 <script>
   MathJax = {
     tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
@@ -41,17 +41,17 @@
   </g>
   <!-- digits, diagonal highlighted -->
   <g class="num" text-anchor="middle">
-    <text x="120" y="36" fill="#1d6fb8" font-weight="700">a₁₁</text><text x="160" y="36">a₁₂</text><text x="200" y="36">a₁₃</text><text x="240" y="36">a₁₄</text><text x="280" y="36">⋯</text>
-    <text x="120" y="62">a₂₁</text><text x="160" y="62" fill="#1d6fb8" font-weight="700">a₂₂</text><text x="200" y="62">a₂₃</text><text x="240" y="62">a₂₄</text><text x="280" y="62">⋯</text>
-    <text x="120" y="88">a₃₁</text><text x="160" y="88">a₃₂</text><text x="200" y="88" fill="#1d6fb8" font-weight="700">a₃₃</text><text x="240" y="88">a₃₄</text><text x="280" y="88">⋯</text>
-    <text x="120" y="114">a₄₁</text><text x="160" y="114">a₄₂</text><text x="200" y="114">a₄₃</text><text x="240" y="114" fill="#1d6fb8" font-weight="700">a₄₄</text><text x="280" y="114">⋯</text>
+    <text x="120" y="36" fill="#111" font-weight="700">a₁₁</text><text x="160" y="36">a₁₂</text><text x="200" y="36">a₁₃</text><text x="240" y="36">a₁₄</text><text x="280" y="36">⋯</text>
+    <text x="120" y="62">a₂₁</text><text x="160" y="62" fill="#111" font-weight="700">a₂₂</text><text x="200" y="62">a₂₃</text><text x="240" y="62">a₂₄</text><text x="280" y="62">⋯</text>
+    <text x="120" y="88">a₃₁</text><text x="160" y="88">a₃₂</text><text x="200" y="88" fill="#111" font-weight="700">a₃₃</text><text x="240" y="88">a₃₄</text><text x="280" y="88">⋯</text>
+    <text x="120" y="114">a₄₁</text><text x="160" y="114">a₄₂</text><text x="200" y="114">a₄₃</text><text x="240" y="114" fill="#111" font-weight="700">a₄₄</text><text x="280" y="114">⋯</text>
   </g>
   <line class="aux" x1="104" y1="26" x2="256" y2="124"/>
   <!-- constructed x -->
   <g class="num">
-    <text x="30" y="174" fill="#0f8a7d" font-weight="700">x = 0.</text>
+    <text x="30" y="174" fill="#555" font-weight="700">x = 0.</text>
   </g>
-  <g class="num" text-anchor="middle" fill="#0f8a7d" font-weight="700">
+  <g class="num" text-anchor="middle" fill="#555" font-weight="700">
     <text x="120" y="174">b₁</text><text x="160" y="174">b₂</text><text x="200" y="174">b₃</text><text x="240" y="174">b₄</text><text x="280" y="174">⋯</text>
   </g>
 </svg>
@@ -102,16 +102,16 @@ $$b_n=\begin{cases}2&(a_{nn}\neq2)\\3&(a_{nn}=2)\end{cases}$$
 칸토어 정리는 $\text{card}\,A\lt \text{card}\,P(A)$ 를 항상 보장하므로 ‘가장 큰 집합’ 은 없다 — 무한은 끝없이 더 큰 무한으로 이어진다.</p>
 <figure class="fig">
 <svg viewBox="0 0 360 100" role="img" aria-label="무한 기수의 계층">
-  <defs><marker id="ha" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#7b3fa0"/></marker></defs>
+  <defs><marker id="ha" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#666"/></marker></defs>
   <g text-anchor="middle">
-    <rect x="20" y="40" width="70" height="34" rx="6" fill="#eef5fb" stroke="#1d6fb8"/>
+    <rect x="20" y="40" width="70" height="34" rx="6" fill="#ececec" stroke="#333"/>
     <text class="lbl b" x="55" y="56">ℵ₀</text><text class="lbl" x="55" y="69" font-size="10">ℕ,ℤ,ℚ</text>
-    <rect x="130" y="40" width="80" height="34" rx="6" fill="#e9f6f4" stroke="#0f8a7d"/>
+    <rect x="130" y="40" width="80" height="34" rx="6" fill="#f2f2f2" stroke="#555"/>
     <text class="lbl t" x="170" y="56">c</text><text class="lbl" x="170" y="69" font-size="10">ℝ,(a,b),P(ℕ)</text>
-    <rect x="250" y="40" width="90" height="34" rx="6" fill="#f4eefa" stroke="#7b3fa0"/>
+    <rect x="250" y="40" width="90" height="34" rx="6" fill="#f2f2f2" stroke="#666"/>
     <text class="lbl p" x="295" y="56">card P(ℝ)</text><text class="lbl" x="295" y="69" font-size="10">⋯ 계속</text>
   </g>
-  <g stroke="#7b3fa0" stroke-width="1.6" fill="none">
+  <g stroke="#666" stroke-width="1.6" fill="none">
     <line x1="92" y1="57" x2="126" y2="57" marker-end="url(#ha)"/>
     <line x1="212" y1="57" x2="246" y2="57" marker-end="url(#ha)"/>
   </g>
