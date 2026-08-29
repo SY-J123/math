@@ -266,8 +266,17 @@
 편리하다. 적절한 조건하에서 최대가능도추정량은 일치성을 가질 뿐 아니라 <b>점근적으로 정규분포를 따르기</b>
 때문에, 실제 구간추정과 검정을 쉽게 할 수 있게 된다.</p>
 
+<div class="box thm">
+  <span class="tag">정리 4.12</span><span class="title">최대가능도추정량의 일치성</span>
+  <p>$X_1,X_2,\dots,X_n$ 이 확률밀도함수 $f(x;\theta)$ 를 갖는 랜덤표본일 때, 적절한 조건하에서
+  최대가능도추정량 $\hat\theta_n$ 은 $\theta$ 의 일치추정량이다. 즉</p>
+  $$\hat\theta_n\ \xrightarrow{\ p\ }\ \theta$$
+  <p>이다. (엄밀한 증명은 생략하고, 아래에 직관적인 유도만 싣는다.)</p>
+</div>
+
 <div class="box prf">
-  <span class="tag">유도 <span class="en">일치성의 직관</span></span>
+  <span class="tag">유도</span>
+  <p>표본에서 세운 스코어 방정식의 해가 모집단에서 세운 방정식의 해로 수렴한다는 것이 뼈대다.</p>
   <ol>
     <li><span class="step">① 스코어 방정식과 MLE의 정의.</span> 로그가능도함수
       $l(\theta)=\sum_{i=1}^n\log f(X_i;\theta)$ 의 1차 도함수(스코어 함수)를 $\theta=\hat\theta_n$ 에서
@@ -290,14 +299,6 @@
       $\hat\theta_n\xrightarrow{\ p\ }\theta_0$ 인 <b>일치성</b>이 성립한다.</li>
   </ol>
   <div class="qed">∎</div>
-</div>
-
-<div class="box thm">
-  <span class="tag">정리 4.12</span><span class="title">최대가능도추정량의 일치성</span>
-  <p>$X_1,X_2,\dots,X_n$ 이 확률밀도함수 $f(x;\theta)$ 를 갖는 랜덤표본일 때, 적절한 조건하에서
-  최대가능도추정량 $\hat\theta_n$ 은 $\theta$ 의 일치추정량이다. 즉</p>
-  $$\hat\theta_n\ \xrightarrow{\ p\ }\ \theta$$
-  <p>이다. (엄밀한 증명은 생략한다.)</p>
 </div>
 
 <p>나아가, 최대가능도추정량이 가지는 <b>점근적 정규성</b>을 살펴보자.</p>
