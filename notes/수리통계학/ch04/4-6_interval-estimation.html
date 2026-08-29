@@ -381,9 +381,13 @@ $\sigma_X^2,\sigma_Y^2$ 을 가질 때, 두 모평균의 차 $\mu_X-\mu_Y$ 에 �
       이 된다.</li>
     <li><span class="step">분모를 표본분산으로 교체.</span> $S_X^2,S_Y^2$ 이 각각 $\sigma_X^2,\sigma_Y^2$ 의
       일치추정량이고 $N/n\to1/c_1$, $N/m\to1/c_2$ 이므로
-      $$\frac{\sqrt{\sigma_X^2/c_1+\sigma_Y^2/c_2}}{\sqrt N\sqrt{S_X^2/n+S_Y^2/m}}
-      \ \xrightarrow{\ p\ }\ 1$$
-      이 성립한다. 여기에 슬럿츠키 정리를 쓰면
+      $$N\!\left(\frac{S_X^2}{n}+\frac{S_Y^2}{m}\right)=\frac Nn S_X^2+\frac Nm S_Y^2
+      \ \xrightarrow{\ p\ }\ \frac{\sigma_X^2}{c_1}+\frac{\sigma_Y^2}{c_2}$$
+      이고, 제곱근이 연속함수이므로
+      $$\sqrt N\sqrt{\frac{S_X^2}{n}+\frac{S_Y^2}{m}}
+      \ \xrightarrow{\ p\ }\ \sqrt{\frac{\sigma_X^2}{c_1}+\frac{\sigma_Y^2}{c_2}}$$
+      이다. 즉 (4.22)의 <b>상수 분모를 이 통계량으로 바꿔 써도 된다</b>. 슬럿츠키 정리에 의해
+      (4.22)를 이 통계량과 그 극한상수의 비($\xrightarrow{\ p\ }1$)로 나누면
       $$T_n=\frac{(\overline X_n-\overline Y_m)-(\mu_X-\mu_Y)}{\sqrt{S_X^2/n+S_Y^2/m}}
       \ \xrightarrow{\ d\ }\ N(0,1)$$
       이 된다 — $\sqrt N$ 이 위아래에서 약분되어 사라진 것이다.</li>
