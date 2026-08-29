@@ -352,6 +352,17 @@ $$\overline X_n-\overline Y_m\ \sim\ N\!\left(\mu_X-\mu_Y,\ \frac{\sigma_X^2}{n}
 <h3 class="sub">두 모평균의 차에 대한 근사신뢰구간</h3>
 <p>두 독립인 랜덤표본 $X_1,\dots,X_n$ 과 $Y_1,\dots,Y_m$ 의 분포가 각각 평균 $\mu_X,\mu_Y$ 와 분산
 $\sigma_X^2,\sigma_Y^2$ 을 가질 때, 두 모평균의 차 $\mu_X-\mu_Y$ 에 대한 근사신뢰구간을 구해 보자.</p>
+<div class="box thm">
+  <span class="tag">공식</span><span class="title">두 모평균의 차의 근사신뢰구간</span>
+  <p>신뢰도 $100(1-\alpha)\%$ 근사신뢰구간은 다음과 같다.</p>
+  $$\begin{aligned}\Big[\ &(\overline X_n-\overline Y_m)-z_{\alpha/2}
+    \sqrt{\tfrac{S_X^2}{n}+\tfrac{S_Y^2}{m}},\\
+    &(\overline X_n-\overline Y_m)+z_{\alpha/2}
+    \sqrt{\tfrac{S_X^2}{n}+\tfrac{S_Y^2}{m}}\ \Big]\end{aligned}\tag{4.23}$$
+  <p>식 (4.14)에서 모분산 $\sigma_X^2,\sigma_Y^2$ 이 표본분산 $S_X^2,S_Y^2$ 으로 바뀐 형태이며,
+  정규성 가정 없이 $n,m$ 이 클 때 쓸 수 있다.</p>
+</div>
+
 <div class="box prf">
   <span class="tag">유도</span>
   <p>$N=n+m$ 이라 하고, $n$ 과 $m$ 이 커짐에 따라 $n/N\to c_1$, $m/N\to c_2$ 라고 가정하자.
@@ -378,19 +389,9 @@ $\sigma_X^2,\sigma_Y^2$ 을 가질 때, 두 모평균의 차 $\mu_X-\mu_Y$ 에 �
       이 된다 — $\sqrt N$ 이 위아래에서 약분되어 사라진 것이다.</li>
     <li><span class="step">$\mu_X-\mu_Y$ 에 관해 풀기.</span>
       $P\big[-z_{\alpha/2}\le T_n\le z_{\alpha/2}\big]\fallingdotseq1-\alpha$ 를 $\mu_X-\mu_Y$ 에 대하여
-      정리하면 아래 식 (4.23)을 얻는다.</li>
+      정리하면 위 식 (4.23)을 얻는다.</li>
   </ol>
   <div class="qed">∎</div>
-</div>
-<div class="box thm">
-  <span class="tag">공식</span><span class="title">두 모평균의 차의 근사신뢰구간</span>
-  <p>신뢰도 $100(1-\alpha)\%$ 근사신뢰구간은 다음과 같다.</p>
-  $$\begin{aligned}\Big[\ &(\overline X_n-\overline Y_m)-z_{\alpha/2}
-    \sqrt{\tfrac{S_X^2}{n}+\tfrac{S_Y^2}{m}},\\
-    &(\overline X_n-\overline Y_m)+z_{\alpha/2}
-    \sqrt{\tfrac{S_X^2}{n}+\tfrac{S_Y^2}{m}}\ \Big]\end{aligned}\tag{4.23}$$
-  <p>식 (4.14)에서 모분산 $\sigma_X^2,\sigma_Y^2$ 이 표본분산 $S_X^2,S_Y^2$ 으로 바뀐 형태이며,
-  정규성 가정 없이 $n,m$ 이 클 때 쓸 수 있다.</p>
 </div>
 
 <div class="box ex">
