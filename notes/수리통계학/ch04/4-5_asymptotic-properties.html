@@ -301,9 +301,18 @@
 </div>
 
 <p>나아가, 최대가능도추정량이 가지는 <b>점근적 정규성</b>을 살펴보자.</p>
+<div class="box thm">
+  <span class="tag">정리 4.13</span><span class="title">최대가능도추정량의 점근적 정규성</span>
+  <p>$X_1,X_2,\dots,X_n$ 이 확률밀도함수 $f(x;\theta)$ 를 갖는 랜덤표본이고 모수의 참값이 $\theta_0$ 일 때,
+  적절한 조건하에서 최대가능도추정량 $\hat\theta_n$ 에 대하여</p>
+  $$\sqrt n\,(\hat\theta_n-\theta_0)\ \xrightarrow{\ d\ }\ N\!\left(0,\ \frac{1}{I(\theta_0)}\right)$$
+  <p>이 성립한다.</p>
+</div>
+
 <div class="box prf">
-  <span class="tag">유도 <span class="en">점근적 정규성</span></span>
-  <p>가능도함수를 $L(\theta)=\prod_{i=1}^n f(X_i;\theta)$, 로그가능도함수를
+  <span class="tag">유도</span>
+  <p>테일러 전개로 $\hat\theta_n-\theta_0$ 을 <b>스코어와 그 도함수의 비</b>로 바꿔 쓰는 것이 핵심이다.
+  가능도함수를 $L(\theta)=\prod_{i=1}^n f(X_i;\theta)$, 로그가능도함수를
   $l(\theta)=\log L(\theta)=\sum_{i=1}^n\log f(X_i;\theta)$ 라 하면, $l(\theta)$ 는 서로 독립이고 분포가 같은
   $n$ 개 확률변수의 합이다. 모수의 참값을 $\theta_0$ 이라 하자.</p>
   <ol>
@@ -338,14 +347,6 @@
       $$\sqrt n\,(\hat\theta_n-\theta_0)\ \xrightarrow{\ d\ }\ N\!\left(0,\ \frac{1}{I(\theta_0)}\right)$$</li>
   </ol>
   <div class="qed">∎</div>
-</div>
-
-<div class="box thm">
-  <span class="tag">정리 4.13</span><span class="title">최대가능도추정량의 점근적 정규성</span>
-  <p>$X_1,X_2,\dots,X_n$ 이 확률밀도함수 $f(x;\theta)$ 를 갖는 랜덤표본이고 모수의 참값이 $\theta_0$ 일 때,
-  적절한 조건하에서 최대가능도추정량 $\hat\theta_n$ 에 대하여</p>
-  $$\sqrt n\,(\hat\theta_n-\theta_0)\ \xrightarrow{\ d\ }\ N\!\left(0,\ \frac{1}{I(\theta_0)}\right)$$
-  <p>이 성립한다.</p>
 </div>
 <div class="note">
   점근분산이 <b>크래머–라오 하한값</b> $1/I(\theta_0)$ 과 정확히 같다는 점에 주목할 만하다. 즉 최대가능도추정량은
