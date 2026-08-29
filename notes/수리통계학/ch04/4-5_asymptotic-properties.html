@@ -276,35 +276,41 @@
 
 <div class="box prf">
   <span class="tag">유도</span>
-  <p>로그가능도함수를 $l(\theta)=\sum_{i=1}^n\log f(X_i;\theta)$ 라 하자.
-  <b>표본에서 세운 방정식 $l'(\theta)=0$ 의 해가, 모집단에서 세운 방정식의 해로 수렴한다</b>는 것이 뼈대다.</p>
+  <p>로그가능도함수를 $l(\theta)=\sum_{i=1}^n\log f(X_i;\theta)$ 라 하고, 모수의 참값을 $\theta_0$ 이라 하자.
+  <b>$l'$ 을 $\theta_0$ 에서 테일러 전개한 뒤 $\hat\theta_n-\theta_0$ 을 분수 하나로 푸는 것</b>이 뼈대다.</p>
   <ol>
-    <li><span class="step">① 스코어 방정식.</span> $\hat\theta_n$ 은 $l(\theta)$ 를 최대로 하는 점이므로
-      <b>극대점의 조건</b>에 의해 그 지점에서 1차 도함수(스코어)가 $0$ 이다.
-      $$l'(\hat\theta_n)=0$$</li>
+    <li><span class="step">① 테일러 전개와 최대점 조건.</span> $\hat\theta_n$ 은 $l(\theta)$ 를 최대로 하는
+      점이므로 $l'(\hat\theta_n)=0$ 이다. 좌변을 $\theta_0$ 에서 1차까지 전개하면
+      $$0=l'(\hat\theta_n)\ \approx\ l'(\theta_0)+l''(\theta_0)\,(\hat\theta_n-\theta_0)$$
+      이므로, 이를 $\hat\theta_n-\theta_0$ 에 대해 풀고 분자·분모를 각각 $n$ 으로 나누면
+      $$\hat\theta_n-\theta_0\ \approx\ -\frac{l'(\theta_0)}{l''(\theta_0)}
+      =\frac{\dfrac1n\,l'(\theta_0)}{-\dfrac1n\,l''(\theta_0)}$$
+      를 얻는다. 이제 분자와 분모의 극한만 보면 된다.</li>
 
-    <li><span class="step">② $n$ 으로 나누어 대수의 법칙 적용.</span> $l'(\theta)$ 는 독립이고 분포가 같은
-      $n$ 개 항의 합이므로, $n$ 으로 나누면 <b>표본평균 형태</b>가 되어 모집단의 기댓값으로 확률수렴한다.
-      $$\frac1n\,l'(\theta)=\frac1n\sum_{i=1}^n\frac{d}{d\theta}\log f(X_i;\theta)
-      \ \xrightarrow{\ p\ }\ \lambda(\theta):=E\!\left[\frac{d}{d\theta}\log f(X;\theta)\right]\tag{4.9}$$
-      한편 단계 ①의 양변을 $n$ 으로 나누면 여전히
-      $\dfrac1n l'(\hat\theta_n)=0$ 이다.</li>
+    <li><span class="step">② 분자는 $0$ 으로 간다.</span> $l'(\theta_0)$ 은 독립이고 분포가 같은 $n$ 개 항의
+      합이므로 $n$ 으로 나누면 표본평균 형태가 되고, 대수의 법칙에 의해
+      $$\frac1n\,l'(\theta_0)=\frac1n\sum_{i=1}^n\frac{d}{d\theta}\log f(X_i;\theta)\bigg|_{\theta=\theta_0}
+      \ \xrightarrow{\ p\ }\ E\!\left[\frac{d}{d\theta}\log f(X;\theta)\right]_{\theta=\theta_0}=0\tag{4.9}$$
+      이다. 마지막 등호는 <a href="4-4_mvue.html">바틀릿 항등식</a> — 참값에서 스코어의 기댓값은
+      $0$ 이라는 사실이다.</li>
 
-    <li><span class="step">③ 모집단 방정식의 해가 $\theta_0$.</span>
-      <a href="4-4_mvue.html">바틀릿 항등식</a>에서 참값 $\theta_0$ 에서의 스코어의 기댓값은 $0$ 이므로
-      $$\lambda(\theta_0)=E\!\left[\frac{d}{d\theta}\log f(X;\theta)\right]_{\theta=\theta_0}=0$$
-      이고, 정칙조건하에서 $\lambda(\theta)=0$ 을 만족하는 값은 $\theta_0$ <b>하나뿐</b>이다.</li>
+    <li><span class="step">③ 분모는 $I(\theta_0)$ 으로 간다.</span> 같은 이유로
+      $$-\frac1n\,l''(\theta_0)\ \xrightarrow{\ p\ }\
+      -E\!\left[\frac{d^2}{d\theta^2}\log f(X;\theta)\right]_{\theta=\theta_0}=I(\theta_0)$$
+      이고, 정칙조건하에서 <a href="4-4_mvue.html">피셔 정보량</a>은 $I(\theta_0)\gt0$ 이다.</li>
 
-    <li><span class="step">④ 결론.</span> $\dfrac1n l'(\cdot)$ 이 $\lambda(\cdot)$ 로 수렴하므로,
-      <b>표본 방정식 $\tfrac1n l'(\hat\theta_n)=0$ 의 해</b>도 <b>모집단 방정식 $\lambda(\theta_0)=0$ 의 해</b>로
-      따라간다. 즉
-      $$\hat\theta_n\ \xrightarrow{\ p\ }\ \theta_0$$
-      인 <b>일치성</b>이 성립한다.</li>
+    <li><span class="step">④ 결론.</span> 분자가 $0$, 분모가 $0$ 이 아닌 상수로 수렴하므로
+      <a href="../ch03/3-4_lln-clt.html">슬럿츠키 정리</a>에 의해 그 비도 수렴한다.
+      $$\hat\theta_n-\theta_0\ \xrightarrow{\ p\ }\ \frac{0}{I(\theta_0)}=0
+      \qquad\text{즉}\quad\hat\theta_n\ \xrightarrow{\ p\ }\ \theta_0$$
+      이므로 <b>일치성</b>이 성립한다.</li>
   </ol>
   <div class="qed">∎</div>
 </div>
 
-<p>나아가, 최대가능도추정량이 가지는 <b>점근적 정규성</b>을 살펴보자.</p>
+<p>나아가, 방금의 전개는 <b>수렴 속도</b>까지 알려 준다. 위 분수의 양변에 $\sqrt n$ 을 곱하고 분자에
+대수의 법칙 대신 <b>중심극한정리</b>를 적용하면, 분자가 $0$ 으로 뭉개지는 대신 정규분포로 살아남아
+최대가능도추정량의 <b>점근적 정규성</b>을 얻는다.</p>
 <div class="box thm">
   <span class="tag">정리 4.13</span><span class="title">최대가능도추정량의 점근적 정규성</span>
   <p>$X_1,X_2,\dots,X_n$ 이 확률밀도함수 $f(x;\theta)$ 를 갖는 랜덤표본이고 모수의 참값이 $\theta_0$ 일 때,
@@ -315,8 +321,8 @@
 
 <div class="box prf">
   <span class="tag">유도</span>
-  <p>테일러 전개로 $\hat\theta_n-\theta_0$ 을 <b>스코어와 그 도함수의 비</b>로 바꿔 쓰는 것이 핵심이다.
-  가능도함수를 $L(\theta)=\prod_{i=1}^n f(X_i;\theta)$, 로그가능도함수를
+  <p>단계 ①·②는 정리 4.12의 유도와 같고, 거기에 $\sqrt n$ 을 곱해 분자에 중심극한정리를 적용하는 것만
+  다르다. 가능도함수를 $L(\theta)=\prod_{i=1}^n f(X_i;\theta)$, 로그가능도함수를
   $l(\theta)=\log L(\theta)=\sum_{i=1}^n\log f(X_i;\theta)$ 라 하면, $l(\theta)$ 는 서로 독립이고 분포가 같은
   $n$ 개 확률변수의 합이다. 모수의 참값을 $\theta_0$ 이라 하자.</p>
   <ol>
