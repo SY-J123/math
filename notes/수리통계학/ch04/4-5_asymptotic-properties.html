@@ -276,27 +276,30 @@
 
 <div class="box prf">
   <span class="tag">유도</span>
-  <p>표본에서 세운 스코어 방정식의 해가 모집단에서 세운 방정식의 해로 수렴한다는 것이 뼈대다.</p>
+  <p>로그가능도함수를 $l(\theta)=\sum_{i=1}^n\log f(X_i;\theta)$ 라 하자.
+  <b>표본에서 세운 방정식 $l'(\theta)=0$ 의 해가, 모집단에서 세운 방정식의 해로 수렴한다</b>는 것이 뼈대다.</p>
   <ol>
-    <li><span class="step">① 스코어 방정식과 MLE의 정의.</span> 로그가능도함수
-      $l(\theta)=\sum_{i=1}^n\log f(X_i;\theta)$ 의 1차 도함수(스코어 함수)를 $\theta=\hat\theta_n$ 에서
-      평가한 값은 <b>극대점의 조건</b>에 의해 $0$ 이 된다.
-      $$\sum_{i=1}^n\frac{d}{d\theta}\log f(X_i;\theta)\bigg|_{\theta=\hat\theta_n}=0$$</li>
+    <li><span class="step">① 스코어 방정식.</span> $\hat\theta_n$ 은 $l(\theta)$ 를 최대로 하는 점이므로
+      <b>극대점의 조건</b>에 의해 그 지점에서 1차 도함수(스코어)가 $0$ 이다.
+      $$l'(\hat\theta_n)=0$$</li>
 
-    <li><span class="step">② 대수의 법칙을 통한 극한의 적용.</span> 양변을 표본 크기 $n$ 으로 나누어
-      정규화하면
-      $$\frac1n\sum_{i=1}^n\frac{d}{d\theta}\log f(X_i;\theta)\bigg|_{\theta=\hat\theta_n}=0$$
-      이다. 표본의 크기 $n\to\infty$ 일 때, 대수의 법칙에 의하여 좌변의 <b>표본평균 형태</b>는 대응하는
-      모집단의 기댓값으로 확률수렴한다.
-      $$\frac1n\sum_{i=1}^n\frac{d}{d\theta}\log f(X_i;\theta)
-      \ \xrightarrow{\ p\ }\ E\!\left(\frac{d}{d\theta}\log f(X;\theta)\right)\tag{4.9}$$</li>
+    <li><span class="step">② $n$ 으로 나누어 대수의 법칙 적용.</span> $l'(\theta)$ 는 독립이고 분포가 같은
+      $n$ 개 항의 합이므로, $n$ 으로 나누면 <b>표본평균 형태</b>가 되어 모집단의 기댓값으로 확률수렴한다.
+      $$\frac1n\,l'(\theta)=\frac1n\sum_{i=1}^n\frac{d}{d\theta}\log f(X_i;\theta)
+      \ \xrightarrow{\ p\ }\ \lambda(\theta):=E\!\left[\frac{d}{d\theta}\log f(X;\theta)\right]\tag{4.9}$$
+      한편 단계 ①의 양변을 $n$ 으로 나누면 여전히
+      $\dfrac1n l'(\hat\theta_n)=0$ 이다.</li>
 
-    <li><span class="step">③ 참값 $\theta_0$ 과의 관계 및 결론.</span> 정칙조건하에서 모집단의 기댓값을
-      $0$ 으로 만드는 고유한 값이 바로 모수의 참값 $\theta_0$ 이다. 즉
-      $$E\!\left(\frac{d}{d\theta}\log f(X;\theta)\right)\bigg|_{\theta=\theta_0}=0$$
-      이다. 이를 종합하면 <b>표본에서 세운 방정식의 해</b>인 최대가능도추정량 $\hat\theta_n$ 이
-      <b>모집단에서 방정식을 만족하는 참값</b> $\theta_0$ 으로 수렴하게 되므로,
-      $\hat\theta_n\xrightarrow{\ p\ }\theta_0$ 인 <b>일치성</b>이 성립한다.</li>
+    <li><span class="step">③ 모집단 방정식의 해가 $\theta_0$.</span>
+      <a href="4-4_mvue.html">바틀릿 항등식</a>에서 참값 $\theta_0$ 에서의 스코어의 기댓값은 $0$ 이므로
+      $$\lambda(\theta_0)=E\!\left[\frac{d}{d\theta}\log f(X;\theta)\right]_{\theta=\theta_0}=0$$
+      이고, 정칙조건하에서 $\lambda(\theta)=0$ 을 만족하는 값은 $\theta_0$ <b>하나뿐</b>이다.</li>
+
+    <li><span class="step">④ 결론.</span> $\dfrac1n l'(\cdot)$ 이 $\lambda(\cdot)$ 로 수렴하므로,
+      <b>표본 방정식 $\tfrac1n l'(\hat\theta_n)=0$ 의 해</b>도 <b>모집단 방정식 $\lambda(\theta_0)=0$ 의 해</b>로
+      따라간다. 즉
+      $$\hat\theta_n\ \xrightarrow{\ p\ }\ \theta_0$$
+      인 <b>일치성</b>이 성립한다.</li>
   </ol>
   <div class="qed">∎</div>
 </div>
