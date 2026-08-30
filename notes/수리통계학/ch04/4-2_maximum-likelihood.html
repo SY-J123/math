@@ -277,24 +277,14 @@
 </div>
 <div class="box prf">
   <span class="tag">증명</span>
-  <p>불변성 원리는 일반적인 함수 $g$ 에 대해 성립하나, 여기에서는 증명의 편의를 위하여 $g$ 를
-  <b>일대일 함수</b>라고 가정하자. 아이디어는 <b>모수를 $\eta=g(\theta)$ 로 갈아 끼우는 것</b>뿐이다.</p>
-  <ol>
-    <li><span class="step">모수를 치환하기.</span> $\eta=g(\theta)$ 로 두면 $g$ 가 일대일이므로
-      $\theta=g^{-1}(\eta)$ 이고, $\theta$ 가 모수공간 $\Omega$ 를 훑는 것과 $\eta$ 가 $g(\Omega)$ 를 훑는 것이
-      <b>일대일로 대응</b>된다. 가능도함수를 $\eta$ 의 함수로 다시 쓰면
-      $L(\theta)=L\big(g^{-1}(\eta)\big)$ 이다.</li>
-
-    <li><span class="step">최댓값은 같다.</span> 같은 함수의 정의역에 이름만 바꿔 붙인 것이므로
-      최댓값 자체는 변하지 않는다.
-      $$\max_{\theta\in\Omega}L(\theta)=\max_{\eta\in g(\Omega)}L\big(g^{-1}(\eta)\big)$$</li>
-
-    <li><span class="step">최대점이 서로 대응된다.</span> 좌변을 최대로 하는 값이 $\hat\theta_n$ 이고
-      우변을 최대로 하는 값을 $\hat\eta$ 라 하면, 두 최댓값이 같으므로 $\hat\eta$ 가 지시하는 $\theta$ 값이
-      곧 $\hat\theta_n$ 이어야 한다. 즉
-      $$g^{-1}(\hat\eta)=\hat\theta_n\quad\Longrightarrow\quad\hat\eta=g(\hat\theta_n)$$
-      이므로 $g(\hat\theta_n)$ 이 $\eta=g(\theta)$ 의 최대가능도 추정량이다.</li>
-  </ol>
+  <p>$\eta=g(\theta)$ 이며 $g$ 는 일대일 함수라고 가정하자. 이때 $g^{-1}(\eta)=\theta$ 이므로</p>
+  $$L(\theta)=L\big(g^{-1}(\eta)\big)$$
+  <p>이 성립한다. 양변의 최댓값을 주는 점을 구하면</p>
+  $$\hat\theta=\operatorname*{arg\,max}_{\theta}\,L(\theta),\qquad
+  \hat\eta=\operatorname*{arg\,max}_{\eta}\,L\big(g^{-1}(\eta)\big)$$
+  <p>인데, 두 최대화는 <b>같은 함수를 이름만 다른 변수로 훑는 것</b>이므로 같은 점을 집어낸다. 즉</p>
+  $$\hat\theta=g^{-1}(\hat\eta)\quad\Longrightarrow\quad g(\hat\theta)=\hat\eta$$
+  <p>이므로 불변성이 성립한다.</p>
   <div class="qed">∎</div>
 </div>
 <div class="note">
