@@ -269,16 +269,6 @@
 
 <!-- ================= 불변성 ================= -->
 <h2 class="sub">최대가능도 추정량의 불변성 <span class="en">invariance property</span></h2>
-<div class="note">
-  $\theta$ 를 추정하는 어떤 추정량이 $T(X)$ 일 때 $\theta^2$ 의 추정량이 $T(X)^2$ 이 되고, $\theta+c$($c$ 는 상수)의
-  추정량이 $T(X)+c$ 가 되는 등, $\theta$ 의 함수 $g(\theta)$ 의 추정량이 $g(T(X))$ 가 되는 성질을
-  <b>불변성 원리</b><span class="en">invariance property</span>라고 한다. 최대가능도 추정량은 이 원리가 성립하므로,
-  $\theta$ 의 추정량을 얻고 나면 다른 어떤 함수 $g(\theta)$ 에 대해서도 <b>다시 복잡한 계산을 거치지 않고</b> 쉽게
-  추정량을 구할 수 있다. 최대가능도 추정량을 얻기 위해서는 일반적으로 미분의 과정을 거쳐야 하므로,
-  <b>미분을 쉽게 만드는 모수</b>를 선택하여 추정량을 구한 다음, 다른 형태의 모수에 대한 추정량은 불변성
-  원리를 이용하여 구하면 된다. 예를 들어 정규분포에서 표준편차 $\sigma$ 의 MLE 를 구할 때, $\sigma^2$ 을 모수로
-  두는 것이 미분이 더 쉽다면 $\sigma^2$ 의 MLE 를 먼저 구하고 여기에 제곱근을 취하면 된다.
-</div>
 <div class="box thm">
   <span class="tag">정리 4.1</span><span class="title">최대가능도 추정량의 불변성</span>
   <p>$X_1,\dots,X_n$ 을 확률밀도함수 $f(x;\theta),\ \theta\in\Omega$($\Omega$ 는 모수공간)를 갖는 분포에서 얻은
