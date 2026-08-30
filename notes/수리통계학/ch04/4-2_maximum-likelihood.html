@@ -111,16 +111,8 @@
   $$\log L(\theta\,;x_1,x_2,\dots,x_n)=\log\prod_{i=1}^n f_i(x_i;\theta)=\sum_{i=1}^n\log f_i(x_i;\theta) \tag{4.4}$$
   <p>를 최대화하는 $\theta$ 를 찾는 것과 같다. 많은 경우 이 문제는</p>
   $$\frac{d}{d\theta}\log L(\theta\,;x_1,x_2,\dots,x_n)=0$$
-  <p>의 해를 구하는 문제로 귀착된다.</p>
-</div>
-<div class="note">
-  로그를 쓰면 계산이 편해지는 이유:
-  <ul class="props">
-    <li>로그함수가 <b>단조증가</b>이므로 $L(\theta)$ 를 최대로 만드는 $\theta$ 에서 $\log L(\theta)$ 도 최대가 되고, 그 반대도 성립한다.</li>
-    <li>랜덤표본의 가능도함수는 주변 확률밀도함수의 <b>곱</b>인데, 로그를 취하면 <b>합</b>이 되어 미분을 통한 최댓값 계산이 훨씬 쉬워진다.</li>
-  </ul>
-  주의: $\frac{d}{d\theta}\log L=0$ 을 만족하는 값이 곧 최대화한다는 보장은 없으며, 엄밀한 의미의 최대화 여부를
-  <b>$2$ 차 미분</b> 등을 통해서 가려야 한다. 참고로 여기서 쓰는 $\log$ 는 다른 설명이 없는 한 <b>자연로그</b>다.
+  <p>의 해를 구하는 문제로 귀착된다. 단, <b>이차미분 $\lt0$ 확인 등을 통해 최댓값임을 확인하는 과정이
+  필요하다.</b></p>
 </div>
 <div class="box ex">
   <span class="tag">예 4.5</span><span class="title">지수분포 $\text{EXP}(\theta)$ 의 MLE</span>
