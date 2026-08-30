@@ -56,16 +56,12 @@
     <li>모적률 $\mu_r'=E(X^r)$ — 분포로부터 계산되므로 <b>모수로 된 식</b> $\mu_r'(\theta_1,\dots,\theta_k)$ 이고, 값은 모른다.</li>
     <li>표본적률 $m_r'=\frac1n\sum X_i^{\,r}$ — 자료만으로 계산되므로 표본을 얻는 순간 <b>알고 있는 수</b>이다.</li>
   </ul>
-  <p>이 둘이 같다고 놓는다 — <b>낮은 차수부터 $k$ 개</b>:</p>
+  <p>표본적률은 <a href="../ch03/3-4_lln-clt.html">대수의 법칙</a>에 의해 모적률로
+  확률수렴($m_r'\xrightarrow{\ p\ }\mu_r'$)하므로, 이 둘이 같다고 놓는다 — <b>낮은 차수부터 $k$ 개</b>:</p>
   $$\underbrace{m_j'}_{x_1,\dots,x_n\ \text{로 계산된 수}}=\underbrace{\mu_j'(\theta_1,\theta_2,\dots,\theta_k)}_{\theta\ \text{로 된 식}},
   \qquad j=1,2,\dots,k$$
   <p>미지수가 $\theta_1,\dots,\theta_k$ 뿐인 $k$ 원 연립방정식이므로, 그 해
   $(\hat\theta_1,\hat\theta_2,\dots,\hat\theta_k)$ 를 <b>적률추정량</b>이라 한다.</p>
-</div>
-<div class="note">
-  근거는 <a href="../ch03/3-4_lln-clt.html">대수의 법칙</a>이다 — 표본적률이 모적률로 확률수렴($m_r'\xrightarrow{p}\mu_r'$)하므로,
-  모적률을 표본적률로 바꿔 방정식을 풀면 참값에 가까운 추정을 얻는다. 과정이 <b>비교적 간단</b>한 것이 장점이지만,
-  해가 유일하지 않은 경우도 있다.
 </div>
 <div class="box ex">
   <span class="tag">예 4.2</span><span class="title">정규분포 $N(\mu,\sigma^2)$ 의 적률추정</span>
