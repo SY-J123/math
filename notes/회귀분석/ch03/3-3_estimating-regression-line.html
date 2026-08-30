@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3장 · 3.3 회귀선의 추정</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">회귀분석 · 3장 단순회귀분석</div>
+  <h1><span class="no">3.3</span>회귀선의 추정 <span class="en">estimation of the regression line</span></h1>
+</header>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">추정된 회귀직선 <span class="en">estimated regression line</span></span>
+  <p>표본자료<span class="en">sample data</span>로부터 선형식
+  $E(Y\mid X=x)=\beta_0+\beta_1x$ 를 추정하여 얻은 직선을</p>
+  $$\hat y=\hat\beta_0+\hat\beta_1x\tag{3.8}$$
+  <p>라 표시하고, 이를 <b>추정된 회귀직선</b> 또는 간단히 <b>회귀선</b>이라 부른다. 여기에서
+  $\hat\beta_0,\hat\beta_1,\hat y$ 는 각각 $\beta_0,\beta_1,E(Y\mid X=x)$ 의
+  <b>추정값</b><span class="en">estimate</span>이다.</p>
+  <ol class="props">
+    <li>$\hat\beta_0$ — 회귀선의 <b>절편</b><span class="en">intercept</span>. $x=0$ 에서의 $\hat y$ 값이다.</li>
+    <li>$\hat\beta_1$ — 회귀선의 <b>기울기</b><span class="en">slope</span>.
+      $x$ 가 한 단위 증가할 때 $\hat y$ 의 증가량을 나타낸다.</li>
+  </ol>
+</div>
+
+<p>이제 $\hat\beta_0$ 와 $\hat\beta_1$ 을 구하는 방법을 알아보자. 확률표본추출에 의하여 $n$ 개의 관측값
+$(x_1,y_1),(x_2,y_2),\dots,(x_n,y_n)$ 을 가지고 있다고 하자. 이 점들을 가장 잘 적합할 수 있는 직선 (3.8)을
+구하기 위해서는 <b>적합도</b><span class="en">goodness of fit</span>를 어떻게 비교할 것인가에 대한
+<b>기준</b><span class="en">criterion</span>을 정해야 한다.</p>
+
+<!-- ================= 최소제곱법 ================= -->
+<h2 class="sub"><span class="no">3.3.1</span>최소제곱법 <span class="en">method of least squares</span></h2>
+<div class="box def">
+  <span class="tag">정의</span><span class="title">최소제곱법 <span class="en">method of least squares</span></span>
+  <p>$i$ 번째 관측값 $(x_i,y_i)$ 에 관한 회귀모형을</p>
+  $$y_i=\beta_0+\beta_1x_i+\epsilon_i\tag{3.9}$$
+  <p>라고 표현할 때, <b>오차제곱들의 합</b></p>
+  $$S(\beta_0,\beta_1)=\sum_{i=1}^n\epsilon_i^2=\sum_{i=1}^n\big(y_i-\beta_0-\beta_1x_i\big)^2\tag{3.10}$$
+  <p>을 최소로 하는 $\beta_0$ 와 $\beta_1$ 의 값을 이들의 추정값 $\hat\beta_0,\hat\beta_1$ 으로 구하는
+  방법이다.</p>
+</div>
+
+<div class="box prf">
+  <span class="tag">유도</span>
+  <p>$S(\beta_0,\beta_1)$ 은 $\beta_0,\beta_1$ 에 대한 <b>이차식</b>이므로, 편미분하여 $0$ 이 되는 점을 찾고
+  그 점이 정말 최소점인지 2차 조건으로 확인하면 된다.</p>
+  <ol>
+    <li><span class="step">① 편미분하여 1차 조건 세우기.</span> $S$ 를 $\beta_0$ 와 $\beta_1$ 으로 각각
+      편미분하면
+      $$\begin{aligned}
+        \frac{\partial S(\beta_0,\beta_1)}{\partial\beta_0}&=-2\sum\big(y_i-\beta_0-\beta_1x_i\big)\\
+        \frac{\partial S(\beta_0,\beta_1)}{\partial\beta_1}&=-2\sum x_i\big(y_i-\beta_0-\beta_1x_i\big)
+      \end{aligned}\tag{3.11}$$
+      이다. (이하 $\sum$ 는 $\sum_{i=1}^n$ 을 뜻한다.)</li>
+
+    <li><span class="step">② 정규방정식.</span> 식 (3.11)의 편미분 값을 $0$ 으로 만드는 $\beta_0,\beta_1$ 을
+      각각 $\hat\beta_0,\hat\beta_1$ 으로 대치하여 정리하면
+      $$\hat\beta_0\,n+\hat\beta_1\sum x_i=\sum y_i\tag{3.12}$$
+      $$\hat\beta_0\sum x_i+\hat\beta_1\sum x_i^2=\sum x_iy_i\tag{3.13}$$
+      을 얻는데, 이 식을 <b>정규방정식</b><span class="en">normal equations</span>이라고 부른다.</li>
+
+    <li><span class="step">③ 2차 조건 — 정말 최소인지 확인.</span> 편미분을 $0$ 으로 놓아 얻은 해가
+      $S$ 를 최소화한다는 보장은 없다. 이는 <b>필요조건</b>에 지나지 않으며, 충분조건은 이차편미분 행렬
+      (<a href="../../수리통계학/ch00/0-5_multivariable.html">헤시안</a>)
+      $$J=\begin{pmatrix}
+        \dfrac{\partial^2S}{\partial\beta_0^2}&\dfrac{\partial^2S}{\partial\beta_0\partial\beta_1}\\[6pt]
+        \dfrac{\partial^2S}{\partial\beta_0\partial\beta_1}&\dfrac{\partial^2S}{\partial\beta_1^2}
+      \end{pmatrix}\tag{3.14}$$
+      이 <b>양정치</b><span class="en">positive definite</span>가 되는 것이다. $2\times2$ 에서 양정치이려면
+      $\dfrac{\partial^2S}{\partial\beta_0^2}\gt0$ 이고 $|J|\gt0$ 이어야 하는데,
+      $$\frac{\partial^2S}{\partial\beta_0^2}=2n\gt0,\qquad
+      |J|=\begin{vmatrix}2n&2\sum x_i\\ 2\sum x_i&2\sum x_i^2\end{vmatrix}
+      =4n\sum(x_i-\bar x)^2\gt0\tag{3.15}$$
+      이 성립한다. 따라서 식 (3.11)을 $0$ 으로 하는 값은 (3.10)을 <b>최소화</b>시키는 값이다.</li>
+
+    <li><span class="step">④ 정규방정식 풀기.</span> (3.12)–(3.13)을 $\hat\beta_0,\hat\beta_1$ 에 대하여 풀면
+      $$\hat\beta_1=\frac{\displaystyle\sum x_iy_i-\frac{(\sum x_i)(\sum y_i)}{n}}
+      {\displaystyle\sum x_i^2-\frac{(\sum x_i)^2}{n}}
+      =\frac{\sum(x_i-\bar x)(y_i-\bar y)}{\sum(x_i-\bar x)^2}\tag{3.16}$$
+      $$\hat\beta_0=\frac{\sum y_i}{n}-\hat\beta_1\frac{\sum x_i}{n}=\bar y-\hat\beta_1\bar x$$
+      이고, 이를 $\beta_0$ 와 $\beta_1$ 의 <b>최소제곱추정량</b><span class="en">least squares estimator</span>이라
+      부른다.</li>
+  </ol>
+  <div class="qed">∎</div>
+</div>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">편차제곱합 표기 <span class="en">sums of squares</span></span>
+  <p>앞으로 표현을 간단히 하기 위하여 다음 표기를 사용한다.</p>
+  $$\begin{aligned}
+    S_{(xx)}&=\sum(x_i-\bar x)^2\\
+    S_{(yy)}&=\sum(y_i-\bar y)^2\\
+    S_{(xy)}&=\sum(x_i-\bar x)(y_i-\bar y)
+  \end{aligned}\tag{3.17}$$
+  <p>이 표기를 쓰면 기울기 $\hat\beta_1$ 은 다음과 같이 간단해진다.</p>
+  $$\hat\beta_1=\frac{S_{(xy)}}{S_{(xx)}}$$
+</div>
+
+<div class="box thm">
+  <span class="tag">성질</span><span class="title">대체모형에 의한 회귀선 <span class="en">alternative model</span></span>
+  <p>식 (3.7)의 대체모형 $Y=\beta_0'+\beta_1(x-\bar x)+\epsilon$ 에 대하여 오차제곱합</p>
+  $$S(\beta_0',\beta_1)=\sum\epsilon^2=\sum\big[y_i-\beta_0'-\beta_1(x_i-\bar x)\big]^2$$
+  <p>을 만들어 위와 똑같은 방법으로 추정하면, 적합된 회귀모형은</p>
+  $$\hat y=\hat\beta_0'+\hat\beta_1(x-\bar x),\qquad
+  \hat\beta_0'=\bar y,\quad\hat\beta_1=\frac{S_{(xy)}}{S_{(xx)}}\tag{3.18}$$
+  <p>이며, 간략히 다음과 같이 표현할 수 있다.</p>
+  $$\hat y-\bar y=\hat\beta_1(x-\bar x)\quad\text{또는}\quad\hat y_i-\bar y=\hat\beta_1(x_i-\bar x)\tag{3.19}$$
+</div>
+<div class="note">
+  $\hat\beta_1$ 은 식 (3.16)과 동일하고 $\hat\beta_0'$ 만 차이가 있다. 이 결과는 $\beta_0'=\beta_0+\beta_1\bar x$
+  라는 관계로부터
+  $$\hat\beta_0'=\hat\beta_0+\hat\beta_1\bar x=(\bar y-\hat\beta_1\bar x)+\hat\beta_1\bar x=\bar y$$
+  로 확인된다. 즉 <b>설명변수를 평균만큼 옮겨 놓으면 절편이 곧 $\bar y$</b> 가 되어 식이 깔끔해진다.
+</div>
+
+<div class="box ex">
+  <span class="tag">예 3.1</span><span class="title">광고료와 총판매액의 회귀직선</span>
+  <p>표 3.1에 있는 광고료와 판매액 자료에 대하여 최소제곱법에 의하여 회귀직선을 구하고 산점도 위에 이 직선을
+  그려 보아라.</p>
+  <ol class="fill">
+    <li><span class="step">기초 통계량 계산.</span> 주어진 자료로부터 다음을 얻는다.
+      $$\begin{aligned}
+        &n=10,\qquad \sum y_i=9+20+\cdots+20=186,\qquad \bar y=186/10=18.6\\
+        &\sum x_i=4+8+\cdots+9=80,\qquad \bar x=80/10=8\\
+        &\sum x_iy_i=(4)(9)+(8)(20)+\cdots+(9)(20)=1{,}608\\
+        &\sum x_i^2=(4)^2+(8)^2+\cdots+(9)^2=686
+      \end{aligned}$$</li>
+
+    <li><span class="step">식 (3.16)에 대입.</span>
+      $$\hat\beta_1=\frac{1{,}608-\dfrac{(80)(186)}{10}}{686-\dfrac{(80)^2}{10}}
+      =\frac{1{,}608-1{,}488}{686-640}=\frac{120}{46}=2.609$$
+      $$\hat\beta_0=\frac{186}{10}-(2.609)\Big(\frac{80}{10}\Big)=18.6-20.87=-2.270$$</li>
+
+    <li><span class="step">회귀직선.</span> 따라서 적합된 회귀직선은
+      $$\hat y=-2.270+2.609\,x\tag{3.20}$$
+      이다. 대체모형 (3.18)을 쓰면
+      $$\hat y=\bar y+\hat\beta_1(x-\bar x)=18.6+2.609\,(x-8)\tag{3.21}$$
+      이 된다 — 두 식은 전개하면 같다.</li>
+  </ol>
+</div>
+
+<figure class="fig">
+<svg viewBox="0 0 420 300" role="img" aria-label="광고료와 총판매액의 산점도와 적합된 회귀직선">
+  <!-- 축: 원점 (60,243), x 25px/단위, y 6.7px/단위 -->
+  <line class="axis" x1="50" y1="243" x2="400" y2="243"/>
+  <line class="axis" x1="60" y1="280" x2="60" y2="25"/>
+  <!-- 눈금 -->
+  <line class="aux" x1="60" y1="176" x2="395" y2="176"/>
+  <line class="aux" x1="60" y1="109" x2="395" y2="109"/>
+  <line class="aux" x1="60" y1="42" x2="395" y2="42"/>
+  <text class="num" x="40" y="180">10</text>
+  <text class="num" x="40" y="113">20</text>
+  <text class="num" x="40" y="46">30</text>
+  <text class="num" x="106" y="258">2</text>
+  <text class="num" x="156" y="258">4</text>
+  <text class="num" x="206" y="258">6</text>
+  <text class="num" x="256" y="258">8</text>
+  <text class="num" x="303" y="258">10</text>
+  <text class="num" x="353" y="258">12</text>
+  <!-- 회귀직선 ŷ=-2.270+2.609x -->
+  <line class="vec" x1="60" y1="258" x2="385" y2="31"/>
+  <!-- 관측값 10개 -->
+  <circle cx="160" cy="183" r="3.6" fill="#1d6fb8"/>
+  <circle cx="260" cy="109" r="3.6" fill="#1d6fb8"/>
+  <circle cx="285" cy="96"  r="3.6" fill="#1d6fb8"/>
+  <circle cx="260" cy="142" r="3.6" fill="#1d6fb8"/>
+  <circle cx="260" cy="129" r="3.6" fill="#1d6fb8"/>
+  <circle cx="360" cy="42"  r="3.6" fill="#1d6fb8"/>
+  <circle cx="210" cy="122" r="3.6" fill="#1d6fb8"/>
+  <circle cx="310" cy="76"  r="3.6" fill="#1d6fb8"/>
+  <circle cx="210" cy="176" r="3.6" fill="#1d6fb8"/>
+  <circle cx="285" cy="109" r="3.6" fill="#1d6fb8"/>
+  <!-- (x̄,ȳ)=(8,18.6) -->
+  <circle cx="260" cy="118" r="4.2" fill="#7b3fa0"/>
+  <line class="aux" x1="260" y1="118" x2="320" y2="150"/>
+  <text class="lbl p" x="322" y="155">(x̄, ȳ)=(8, 18.6)</text>
+  <!-- 절편 -->
+  <circle cx="60" cy="258" r="3" fill="#7b3fa0"/>
+  <text class="num" x="12" y="262">−2.270</text>
+  <!-- 직선 라벨 -->
+  <text class="lbl b" x="250" y="55">ŷ = −2.270 + 2.609x</text>
+  <line class="aux" x1="300" y1="60" x2="330" y2="82"/>
+  <!-- 축 이름 -->
+  <text class="num" x="300" y="278">광고료(10만원)</text>
+  <text class="num" x="8" y="20">총판매액(100만원)</text>
+  <text class="lbl" x="46" y="22" fill="#5a5a5a">y</text>
+  <text class="lbl" x="398" y="238" fill="#5a5a5a">x</text>
+</svg>
+<figcaption>그림 3.5 — 적합된 회귀직선. 회귀선은 언제나 점 $(\bar x,\bar y)$ 를 지나며,
+$y$ 절편 $-2.270$ 은 자료 범위 밖의 <b>외삽값</b>이므로 “광고료가 $0$ 일 때 판매액”으로 해석하면 안 된다.</figcaption>
+</figure>
+
+<!-- ================= 최대가능도추정법 ================= -->
+<h2 class="sub"><span class="no">3.3.2</span>최대가능도추정법 <span class="en">method of maximum likelihood estimation</span></h2>
+<p>앞에서 다룬 최소제곱법에 의하여 회귀계수 $\beta_0,\beta_1$ 을 추정하는 방법은 주어진 $x$ 에서 $Y$ 가
+정규분포(따라서 오차항 $\epsilon$ 이 정규분포)를 한다는 <b>가정이 없을 때에도</b> 적용되는 추정방법이다.
+이제 오차항 $\epsilon$ 이 식 (3.6)처럼 $\epsilon\sim N(0,\sigma^2)$ 이라는 성질을 가진다고 하자.</p>
+
+<div class="box prf">
+  <span class="tag">유도</span>
+  <ol>
+    <li><span class="step">① 가능도함수 세우기.</span> $\epsilon_1,\dots,\epsilon_n$ 은 $N(0,\sigma^2)$ 에서
+      얻어지는 확률표본이고 각각의 확률밀도함수는
+      $f(\epsilon_i)=\dfrac{1}{\sqrt{2\pi\sigma^2}}\exp\!\Big(-\dfrac{\epsilon_i^2}{2\sigma^2}\Big)$ 이므로,
+      이들의 곱은
+      $$\begin{aligned}
+        L=\prod_{i=1}^n f(\epsilon_i)
+        &=\frac{1}{(2\pi\sigma^2)^{n/2}}\exp\!\left(-\frac{\sum\epsilon_i^2}{2\sigma^2}\right)\\
+        &=\frac{1}{(2\pi\sigma^2)^{n/2}}
+          \exp\!\left(-\frac{\sum(y_i-\beta_0-\beta_1x_i)^2}{2\sigma^2}\right)
+      \end{aligned}\tag{3.22}$$
+      이다. 이 함수가 <a href="../../수리통계학/ch04/4-2_maximum-likelihood.html">가능도함수</a>이며,
+      이를 최대로 하는 $\beta_0,\beta_1$ 의 값을 <b>최대가능도추정값</b>이라 부른다.</li>
+
+    <li><span class="step">② 대수변환.</span> 편미분의 편의상 (3.22)를
+      <b>대수변환</b><span class="en">logarithmic transformation</span>하면
+      $$\ln L=-\frac n2\ln 2\pi\sigma^2-\frac{1}{2\sigma^2}\sum(y_i-\beta_0-\beta_1x_i)^2\tag{3.23}$$
+      이다. 로그는 증가함수이므로 $L$ 을 최대로 하는 점과 $\ln L$ 을 최대로 하는 점은 같다.</li>
+
+    <li><span class="step">③ 편미분.</span> 식 (3.23)을 각각 $\beta_0$ 와 $\beta_1$ 으로 편미분하면
+      $$\begin{aligned}
+        \frac{\partial\ln L}{\partial\beta_0}&=\frac{1}{\sigma^2}\sum(y_i-\beta_0-\beta_1x_i)\\
+        \frac{\partial\ln L}{\partial\beta_1}&=\frac{1}{\sigma^2}\sum x_i(y_i-\beta_0-\beta_1x_i)
+      \end{aligned}\tag{3.24}$$
+      이 된다.</li>
+
+    <li><span class="step">④ 최소제곱추정량과 같다.</span> 이를 각각 $0$ 으로 놓고 $\beta_0,\beta_1$ 의 해를
+      구하는 것은, 식 (3.11)을 각각 $0$ 으로 놓고 푸는 것과 <b>동일하다</b> — (3.24)는 (3.11)에
+      $-\dfrac{1}{2\sigma^2}$ 를 곱한 것이고 $\sigma^2\gt0$ 이므로 해가 바뀌지 않기 때문이다.
+      따라서 최대가능도추정량으로서의 $\hat\beta_0,\hat\beta_1$ 은 최소제곱추정량과 같다.</li>
+  </ol>
+  <div class="qed">∎</div>
+</div>
+<div class="note">
+  여기서 유의할 사항은, <b>최대가능도추정량은 오차항 $\epsilon_i$ 의 분포를 $N(0,\sigma^2)$ 이라고 가정하고
+  얻은 것</b>이고 <b>최소제곱추정량은 이러한 가정이 전제되어 있지 않다</b>는 점이다. 두 추정값이 수치적으로
+  같더라도 그것을 정당화하는 근거가 다르다.
+</div>
+
+<!-- ================= 적합된 회귀선의 성질 ================= -->
+<h2 class="sub"><span class="no">3.3.3</span>적합된 회귀선의 성질 <span class="en">properties of the fitted regression line</span></h2>
+<p>식 (3.8)에서 $x$ 대신에 $i$ 번째 $x$ 의 관찰치 $x_i$ 를 사용하면 $\hat y_i=\hat\beta_0+\hat\beta_1x_i$ 이 되는데,
+여기서 $\hat y_i$ 는 $x_i$ 에서 추정된 $E(Y\mid X=x_i)$ 의 추정값이다. $x_i$ 에서의 관측값 $y_i$ 와 추정값
+$\hat y_i$ 과의 차이</p>
+$$e_i=y_i-\hat y_i$$
+<p>를 <b>잔차</b><span class="en">residual</span>라고 부르며, $\hat\beta_0$ 와 $\hat\beta_1$ 이 식 (3.16)에 의한
+최소제곱추정값이면 다음은 흥미로운 몇 가지 성질이 성립한다.</p>
+
+<div class="box thm">
+  <span class="tag">성질</span><span class="title">적합된 회귀선의 다섯 가지 성질</span>
+  <ol class="props">
+    <li>잔차들의 합은 $0$ 이다: $\displaystyle\sum e_i=0$. 따라서 $\displaystyle\sum y_i=\sum\hat y_i$ 도 성립한다.</li>
+    <li>잔차제곱의 합 $\displaystyle\sum e_i^2$ 은 최소가 된다.</li>
+    <li>잔차들의 $x_i$ 에 의한 <b>가중합</b><span class="en">weighted sum</span>은 $0$ 이다:
+      $\displaystyle\sum x_ie_i=0$.</li>
+    <li>잔차들의 $\hat y_i$ 에 의한 가중합은 $0$ 이다: $\displaystyle\sum\hat y_ie_i=0$.</li>
+    <li>점 $(\bar x,\bar y)$ 는 적합된 회귀선상에 있다.</li>
+  </ol>
+</div>
+
+<div class="box prf">
+  <span class="tag">증명</span>
+  <ol>
+    <li><span class="step">① 잔차들의 합.</span> 정의를 그대로 풀어 쓰면
+      $$\sum e_i=\sum(y_i-\hat y_i)=\sum(y_i-\hat\beta_0-\hat\beta_1x_i)
+      =\sum y_i-n\hat\beta_0-\hat\beta_1\sum x_i=0$$
+      이다. 마지막 등호는 정규방정식 (3.12) $\hat\beta_0n+\hat\beta_1\sum x_i=\sum y_i$ 때문이다.
+      <p>다른 방법으로도 보일 수 있다. 식 (3.18)의 결과를 이용하면
+      $y_i-\hat y_i=y_i-\big[\hat\beta_0'+\hat\beta_1(x_i-\bar x)\big]=(y_i-\bar y)-\hat\beta_1(x_i-\bar x)$
+      이므로
+      $$\sum e_i=\sum(y_i-\bar y)-\hat\beta_1\sum(x_i-\bar x)=0$$
+      이 명백하다 — 평균에서의 편차의 합은 언제나 $0$ 이기 때문이다.</p>
+      잔차의 합이 $0$ 이므로 $\sum y_i=\sum\hat y_i$ 또한 성립한다.</li>
+
+    <li><span class="step">② 잔차제곱합의 최소성.</span> 이것은 최소제곱법에 의하여 $\hat\beta_0,\hat\beta_1$ 을
+      구할 때 <b>요구한 성질 그 자체</b>이므로 명백하다.</li>
+
+    <li><span class="step">③ $x_i$ 에 의한 가중합.</span>
+      $$\sum x_ie_i=\sum x_i(y_i-\hat y_i)=\sum x_i(y_i-\hat\beta_0-\hat\beta_1x_i)
+      =\sum x_iy_i-\hat\beta_0\sum x_i-\hat\beta_1\sum x_i^2$$
+      이 되는데, 이것은 정규방정식 (3.13)으로부터 $0$ 이 된다.</li>
+
+    <li><span class="step">④ $\hat y_i$ 에 의한 가중합.</span> $\hat y_i=\hat\beta_0+\hat\beta_1x_i$ 를 넣으면
+      $$\sum\hat y_ie_i=\sum(\hat\beta_0+\hat\beta_1x_i)e_i
+      =\hat\beta_0\sum e_i+\hat\beta_1\sum x_ie_i=0$$
+      인데, ①과 ③으로부터 두 항이 모두 $0$ 이기 때문이다.</li>
+
+    <li><span class="step">⑤ $(\bar x,\bar y)$ 가 회귀선상에 있음.</span> 식 (3.19)의 대체모형에서
+      $\hat y-\bar y=\hat\beta_1(x-\bar x)$ 이므로, $x=\bar x$ 를 넣으면 $\hat y=\bar y$ 다.
+      따라서 $(\bar x,\bar y)$ 가 회귀선상에 있음이 명백하다. 그림 3.5가 이러한 성질을 나타내 주고 있다.</li>
+  </ol>
+  <div class="qed">∎</div>
+</div>
+
+<div class="note">
+  성질 ④는 <b>추정값 $\hat y_i$ 와 잔차 $e_i$ 의 표본상관계수가 $0$</b> 이라는 뜻이다(둘의 이론적 상관계수도
+  $0$ 이 된다). 추정값 $\hat y_i$ 는 추정절차를 하나의 값으로 대표하는 값의 특성을 가지고 있고, 이 성질 덕분에
+  분석에 문제가 없는지를 살피는 <b>잔차그림</b><span class="en">residual plot</span>을 그릴 때
+  $(\hat y_i,\,e_i)$ 의 산점도를 이용하게 된다 — 아무 관계가 없어야 정상이므로, 그림에 <b>추세나 나팔 모양</b>이
+  보이면 선형성이나 등분산성 가정이 깨진 신호로 읽는다.
+</div>
+
+<nav class="pager">
+  <a href="3-2_basic-concepts.html">← 이전<small>3.2 회귀분석의 기본개념</small></a>
+  <span class="spacer"></span>
+</nav>
+
+</body>
+</html>
