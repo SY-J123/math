@@ -106,6 +106,41 @@ $(x_1,y_1),(x_2,y_2),\dots,(x_n,y_n)$ 을 가지고 있다고 하자. 이 점들
   <div class="qed">∎</div>
 </div>
 
+<div class="box thm">
+  <span class="tag">성질</span><span class="title">정규방정식의 여러 표현</span>
+  <p>정규방정식 (3.12)–(3.13)은 같은 내용을 여러 꼴로 쓸 수 있고, 쓰임에 따라 편한 형태가 다르다.</p>
+  <ol class="props">
+    <li><b>잔차 형태(직교조건)</b> — 두 식을 이항하지 않고 그대로 두면, 괄호 안이 곧 잔차
+      $e_i=y_i-\hat\beta_0-\hat\beta_1x_i$ 이므로
+      $$\sum e_i=0,\qquad \sum x_ie_i=0$$
+      이다. 즉 정규방정식은 “<b>잔차가 상수항 $1$ 및 설명변수 $x$ 와 직교한다</b>”는 조건이며,
+      이것이 3.3.3의 성질 ①·③ 그 자체다.</li>
+
+    <li><b>평균 형태</b> — 식 (3.12)의 양변을 $n$ 으로 나누면
+      $$\bar y=\hat\beta_0+\hat\beta_1\bar x$$
+      이다. 즉 회귀선이 점 $(\bar x,\bar y)$ 를 지난다는 뜻으로, 3.3.3의 성질 ⑤와 같다.</li>
+
+    <li><b>편차(중심화) 형태</b> — 식 (3.13)에서 (3.12)의 $\bar x$ 배를 빼면 $\hat\beta_0$ 이 사라져
+      $$\hat\beta_1\,S_{(xx)}=S_{(xy)}$$
+      만 남는다. 기울기를 한 줄로 얻는 가장 짧은 경로다.</li>
+
+    <li><b>행렬 형태</b> — $X=\begin{pmatrix}1&x_1\\ \vdots&\vdots\\ 1&x_n\end{pmatrix}$,
+      $\hat{\boldsymbol\beta}=\begin{pmatrix}\hat\beta_0\\ \hat\beta_1\end{pmatrix}$,
+      $\mathbf y=\begin{pmatrix}y_1\\ \vdots\\ y_n\end{pmatrix}$ 로 두면
+      $$X^{T}X\,\hat{\boldsymbol\beta}=X^{T}\mathbf y,\qquad
+      X^{T}X=\begin{pmatrix}n&\sum x_i\\ \sum x_i&\sum x_i^2\end{pmatrix},\quad
+      X^{T}\mathbf y=\begin{pmatrix}\sum y_i\\ \sum x_iy_i\end{pmatrix}$$
+      로 (3.12)–(3.13)이 그대로 한 식이 된다. 이 형태는 설명변수가 여럿인
+      <b>다중회귀</b>에서도 모양이 바뀌지 않는다.</li>
+  </ol>
+</div>
+<div class="note">
+  행렬 형태로 보면 앞의 2차 조건도 한눈에 정리된다 — 헤시안이 $J=2X^{T}X$ 이므로 식 (3.15)의
+  $|J|=4n\sum(x_i-\bar x)^2\gt0$ 은 곧 $|X^{T}X|=n\sum(x_i-\bar x)^2\gt0$, 즉
+  <b>$X$ 의 두 열이 선형독립</b>(설명변수 $x_i$ 가 모두 같지는 않다)이라는 조건이다.
+  이때 $X^{T}X$ 가 가역이므로 $\hat{\boldsymbol\beta}=(X^{T}X)^{-1}X^{T}\mathbf y$ 로 해가 유일하게 정해진다.
+</div>
+
 <div class="box def">
   <span class="tag">정의</span><span class="title">편차제곱합 표기 <span class="en">sums of squares</span></span>
   <p>앞으로 표현을 간단히 하기 위하여 다음 표기를 사용한다.</p>
