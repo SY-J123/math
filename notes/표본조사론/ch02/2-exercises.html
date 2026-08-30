@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>표본조사론 · 2장 연습문제</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<style>
+  .ex{ margin:26px 0; line-height:1.75; }
+  .exn{ font-weight:800; color:var(--def); margin-right:8px; }
+  .ex ol{ margin:4px 0 0; padding-left:26px; }
+  .ex li{ margin:5px 0; }
+  .answersheet{ page-break-before:always; }
+  .ans{ margin:24px 0; line-height:1.75; }
+  .ans .exn{ color:var(--thm); }
+  .ans ol.fill{ margin:6px 0 0; padding-left:24px; }
+  .ans ol.fill li{ margin:9px 0; }
+  .ans ol.props{ padding-left:24px; }
+  @media print{ .pager, .home{ display:none; } a{ color:inherit; text-decoration:none; } }
+</style>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">표본조사론 · 2장 단순임의추출법</div>
+  <h1><span class="no">연습문제</span>2장 <span class="en">exercises</span></h1>
+</header>
+
+<p>2장(단순임의추출법) 교재 연습문제와 정답·해설. 정답 시트는 인쇄 시 다음 페이지부터 나온다.
+계산 문제에서는 $z_{0.025}\fallingdotseq2$ 로 둔다.</p>
+
+<h2 class="sub">교재 연습문제 <span class="en">textbook exercises</span></h2>
+
+<div class="ex"><span class="exn">01</span>크기가 $N$ 인 모집단에서 단순임의추출법으로 크기가 $n$ 인 표본을 추출할 때,
+모평균 $\mu$ 에 대한 추정을 설명한 것이다. 다음 중 <b>잘못된</b> 것은?
+  <ol>
+    <li>$\bar y=\dfrac1n\displaystyle\sum_{i=1}^{n}y_i$ 는 모평균에 대한 비편향추정량이다.</li>
+    <li>$\bar y$ 의 분산은 $\hat V(\bar y)=\dfrac{N-n}{N}\cdot\dfrac{s^2}{n}$ 으로 구할 수 있다.</li>
+    <li>모평균 $\mu$ 에 대한 $95\%$ 신뢰수준에서 신뢰구간은
+      $\bar y\pm2\sqrt{\dfrac{N-n}{N}\cdot\dfrac{s^2}{n}}$ 이다.</li>
+    <li>표본의 크기가 커지면 추정량의 표준오차는 커진다.</li>
+  </ol>
+</div>
+
+<div class="ex"><span class="exn">02</span>단순임의추출법에서 모평균 추정량으로 표본평균 $\bar y$ 를 사용하는 경우에
+모총계에 대한 추정량과 그 분산에 대한 추정량으로 알맞은 것은?
+  <ol>
+    <li>$\hat\tau=N\cdot\bar y$, &nbsp;$\hat V(\hat\tau)=N^2\dfrac{N-n}{N}\dfrac{s^2}{n}$</li>
+    <li>$\hat\tau=N^2\cdot\bar y$, &nbsp;$\hat V(\hat\tau)=N^2\dfrac{N-n}{N}\dfrac{s^2}{n}$</li>
+    <li>$\hat\tau=\bar y/N$, &nbsp;$\hat V(\hat\tau)=\dfrac{N-n}{N}\dfrac{s^2}{n}$</li>
+    <li>$\hat\tau=N\cdot\bar y$, &nbsp;$\hat V(\hat\tau)=N\dfrac{N-n}{N}\dfrac{s^2}{n}$</li>
+  </ol>
+</div>
+
+<div class="ex"><span class="exn">03</span>크기가 $N$ 인 모집단에서 단순임의추출법으로 크기가 $n$ 인 표본을 추출할 때,
+모총계 $\tau=\displaystyle\sum_{i=1}^{N}y_i$ 의 추정에 대한 설명이다. 다음 중 <b>잘못된</b> 것은?
+  <ol>
+    <li>$\hat\tau=N\cdot\bar y$ 는 모총계에 대한 비편향추정량이다.</li>
+    <li>$\hat V(\hat\tau)=N^2\dfrac{N-n}{N}\dfrac{s^2}{n}$ 으로 구할 수 있다.</li>
+    <li>$95\%$ 신뢰수준에서 모총계 $\tau$ 에 대한 신뢰구간은
+      $\hat\tau\pm2\sqrt{N^2\dfrac{N-n}{N}\dfrac{s^2}{n}}$ 이다.</li>
+    <li>표본의 크기가 커짐에 따라 모총계 추정량의 표준오차는 감소한다.</li>
+  </ol>
+</div>
+
+<div class="ex"><span class="exn">04</span>단순임의추출법에 대한 다음의 설명 중 <b>옳은</b> 것을 모두 고른 것은?
+  <ol style="list-style:none;padding-left:8px;">
+    <li>㉮ 표본크기가 커질수록 표본에서 구한 표본표준편차는 줄어든다.</li>
+    <li>㉯ 표본크기가 커질수록 표본평균은 모평균에 가까이 갈 것이다.</li>
+    <li>㉰ 표본크기가 커질수록 표본평균의 표준오차는 줄어든다.</li>
+  </ol>
+  <ol>
+    <li>㉮</li>
+    <li>㉮, ㉯</li>
+    <li>㉮, ㉯, ㉰</li>
+    <li>㉯, ㉰</li>
+  </ol>
+</div>
+
+<div class="ex"><span class="exn">05</span>어느 공장에 동일한 종류의 기계가 $70$ 대 있다.
+그 기계들의 가동능률을 조사하기 위해 $10$ 대를 단순임의추출법에 의해 표본으로 뽑고자 한다.
+기계별로 $1$ 번에서 $70$ 번까지 일련번호를 붙여 놓았다.
+다음에 $25$ 개의 난수가 나와 있다. 이를 이용하여 단순임의표본을 추출하라.
+  $$
+  \begin{array}{ccccccccccccccc}
+  03&38&17&32&69&24&61&30&03&48&88&71&27&80&33\\
+  90&78&55&87&16&34&45&59&16&68& & & & &
+  \end{array}
+  $$
+</div>
+
+<div class="ex"><span class="exn">06</span>어느 도시에 $5{,}000$ 가구가 살고 있다.
+그중에서 $80$ 가구를 단순임의추출하여 가구당 월평균 의료비 지출액을 조사한 결과,
+평균은 $53{,}000$ 원, 표본표준편차는 $4{,}500$ 원으로 계산되었다.
+이 지역의 월평균 의료비 지출액을 추정하고 그 $95\%$ 신뢰구간을 구하라.</div>
+
+<div class="ex"><span class="exn">07</span>한 제조공장에서는 하루에 생산된 제품의 총무게를 조사하고자 한다.
+총 $10{,}000$ 개의 제품 중에서 단순임의추출법으로 $n=100$ 개의 표본을 추출하여 조사한 결과
+제품당 평균 무게 $\bar y=118$ 그램, 표본표준편차 $s=15$ 그램이었다. 다음 물음에 답하라.
+  <ol>
+    <li>제품의 총무게를 추정하고 그 $95\%$ 신뢰구간을 구하라.</li>
+    <li>$95\%$ 신뢰수준에서 전체 무게에 대한 추정오차의 한계가 $50{,}000$ 그램 이내가 되게 하려면
+      표본의 크기를 얼마로 해야 하는가?</li>
+  </ol>
+</div>
+
+<div class="ex"><span class="exn">08</span>완공 시기가 서로 다른 $120$ 구의 주택을 건설 중인 대형 건설회사에서는
+각 현장의 총재고액을 추정하기 위하여 크기 $12$ 인 단순임의표본을 조사하였다.
+각 현장의 재고액은 다음과 같았다.
+  $$
+  \begin{array}{cccccc}
+  35{,}500&30{,}200&28{,}900&36{,}400&29{,}800&34{,}100\\
+  32{,}600&26{,}400&38{,}000&38{,}200&32{,}200&27{,}500
+  \end{array}
+  $$
+  $120$ 구 전체에 대한 총재고액을 추정하고 그 $95\%$ 신뢰구간을 구하라.
+</div>
+
+<div class="ex"><span class="exn">09</span>$1{,}000$ 그루의 사과나무가 있는 어느 농장에서 그 해의 사과 한 그루당 평균 수확량을 추정하려고 한다.
+오차의 한계는 그루당 평균 생산량의 $5\%$ 이내가 되게 하고 싶다.
+$n=30$ 그루의 나무를 예비표본으로 뽑아 조사한 결과 $\bar y=120\,\mathrm{kg}$, $s=12\,\mathrm{kg}$ 이었다.
+이 경우 주어진 오차의 한계를 만족시킬 수 있는 표본의 크기를 결정하라.</div>
+
+<div class="ex"><span class="exn">10</span>총유권자 수가 $N=50{,}000$ 명인 도시에서 시장 선거에 입후보하고자 하는 사람이 있다. 다음 물음에 답하라.
+  <ol>
+    <li>단순임의추출법에 의해 $n=500$ 명의 유권자를 표본으로 택해 조사한 결과
+      $220$ 명이 이 후보를 지지하는 것으로 나타났다. 후보자의 지지율을 계산하고 그 $95\%$ 신뢰구간을 구하라.</li>
+    <li>만일 $95\%$ 신뢰수준에서 지지율에 대한 오차의 한계를 $0.05$ 이내가 되게 하려면
+      표본의 크기를 얼마로 해야 하는가? [단, $(1)$ 의 조사결과를 사전 정보로 활용할 수 있다고 가정함]</li>
+    <li>위의 $(1)$ 의 조사결과가 주어져 있지 않을 경우
+      $95\%$ 신뢰수준에서 지지율의 오차의 한계가 $0.05$ 이내가 되게 하려면 표본의 크기를 얼마로 해야 하는가?</li>
+  </ol>
+</div>
+
+<h2 class="sub">심화문제 <span class="en">advanced problems</span></h2>
+
+<div class="ex"><span class="exn">심화 1</span>이 교재 전체에 수록된 표와 그림의 총수를 추정하고자 한다.
+단, 교재 맨 앞부분의 차례와 마지막 부분의 부록 등을 제외한 본문만을 대상으로 한다.
+각 페이지를 추출단위로 하고, 표본의 크기를 $n=20$ 으로 하는 표본을 추출하여
+표와 그림의 총수를 추정하고 그 $95\%$ 신뢰구간을 구하라.</div>
+
+<div class="ex"><span class="exn">심화 2</span>어느 회사가 보유하고 있는 $500$ 개의 미수금 계정들 중에서 $20$ 개를 랜덤하게 추출하여
+장부상의 미수금액과 일치하는지를 조사한 결과 다음의 자료를 얻었다. 다음 물음에 답하라.
+  <div class="scroll"><table class="data">
+    <tr><th>표본계정</th><th>미수금액</th><th>장부와의 일치</th>
+        <th>표본계정</th><th>미수금액</th><th>장부와의 일치</th></tr>
+    <tr><td>1</td><td>278</td><td>일치</td><td>11</td><td>188</td><td>불일치</td></tr>
+    <tr><td>2</td><td>192</td><td>일치</td><td>12</td><td>212</td><td>불일치</td></tr>
+    <tr><td>3</td><td>310</td><td>일치</td><td>13</td><td>92</td><td>일치</td></tr>
+    <tr><td>4</td><td>94</td><td>불일치</td><td>14</td><td>56</td><td>일치</td></tr>
+    <tr><td>5</td><td>86</td><td>일치</td><td>15</td><td>142</td><td>일치</td></tr>
+    <tr><td>6</td><td>335</td><td>일치</td><td>16</td><td>37</td><td>일치</td></tr>
+    <tr><td>7</td><td>310</td><td>불일치</td><td>17</td><td>186</td><td>불일치</td></tr>
+    <tr><td>8</td><td>290</td><td>일치</td><td>18</td><td>221</td><td>일치</td></tr>
+    <tr><td>9</td><td>221</td><td>일치</td><td>19</td><td>219</td><td>불일치</td></tr>
+    <tr><td>10</td><td>168</td><td>일치</td><td>20</td><td>305</td><td>일치</td></tr>
+  </table></div>
+  <ol>
+    <li>$500$ 개 미수금 계정들에 대한 총미수금액을 추정하고 그 $95\%$ 신뢰구간을 구하라.</li>
+    <li>미수금액이 장부상의 금액과 일치하지 않는 계정의 비율을 추정하고 그 $95\%$ 신뢰구간을 구하라.</li>
+  </ol>
+</div>
+
+<!-- ============================ 정답 시트 ============================ -->
+<div class="answersheet">
+<header class="doc">
+  <div class="ch">표본조사론 · 2장 단순임의추출법</div>
+  <h1><span class="no">정답·해설</span>2장 <span class="en">answers</span></h1>
+</header>
+
+<h2 class="sub">01~04 객관식</h2>
+
+<div class="ans"><span class="exn">01</span><b>④ 표본의 크기가 커지면 추정량의 표준오차는 커진다.</b>
+  <ol class="fill">
+    <li><span class="step">표준오차는 $n$ 이 커지면 <b>작아진다</b>.</span>
+      $\hat V(\bar y)=\dfrac{N-n}{N}\cdot\dfrac{s^2}{n}$ 에서 $n$ 이 커지면
+      분모 $n$ 이 커지고 수정항 $\dfrac{N-n}{N}$ 마저 작아지므로 <b>두 요인이 모두 분산을 줄인다</b>.
+      극단적으로 $n=N$(전수조사)이면 수정항이 $0$ 이 되어 표준오차가 $0$ 이다.</li>
+    <li><span class="step">①②③ 은 모두 $2.3$ 절 그대로다.</span>
+      ①은 〈정리 2.1〉(i), ②는 식 $(2\text{-}4)$, ③은 식 $(2\text{-}5)$ 에
+      $z_{0.025}\fallingdotseq2$ 를 넣은 것이다.</li>
+  </ol>
+</div>
+
+<div class="ans"><span class="exn">02</span><b>① $\hat\tau=N\cdot\bar y$, &nbsp;$\hat V(\hat\tau)=N^2\dfrac{N-n}{N}\dfrac{s^2}{n}$</b>
+  <ol class="fill">
+    <li><span class="step">추정량은 $N$ 배.</span> $\tau=N\mu$ 이므로 $\mu$ 의 추정량 $\bar y$ 에 $N$ 을 곱한
+      $\hat\tau=N\bar y$ 가 모총계의 추정량이다(식 $2\text{-}6$). $N^2$ 이나 $\bar y/N$ 은 차원부터 맞지 않는다.</li>
+    <li><span class="step">분산은 $N^2$ 배.</span> 상수 $a$ 에 대해 $V(a X)=a^2V(X)$ 이므로
+      $\hat V(N\bar y)=N^2\hat V(\bar y)$ 이다(식 $2\text{-}8$).
+      $N$ 배만 곱한 ④ 는 이 성질을 놓친 것이다.</li>
+    <li><span class="step">한 줄 요약.</span> <b>추정량은 $N$ 배, 분산은 $N^2$ 배</b> — 이것만 기억하면 된다.</li>
+  </ol>
+</div>
+
+<div class="ans"><span class="exn">03</span>모총계 추정 공식을 어긋나게 쓴 지문 하나를 고르는 문제다. 각 지문의 판정은 다음과 같다.
+  <ol class="fill">
+    <li><span class="step">① $\hat\tau=N\bar y$ 가 비편향인가 — 옳다.</span>
+      $E(\hat\tau)=N\,E(\bar y)=N\mu=\tau$. 〈정리 2.1〉(i)에서 바로 따라 나온다.
+      만약 지문이 $\hat\tau=N^2\bar y$ 라면 <b>틀린 지문</b>이다.</li>
+    <li><span class="step">② 분산의 추정량 — $N^2$ 이 붙어야 옳다.</span>
+      $\hat V(\hat\tau)=N^2\dfrac{N-n}{N}\dfrac{s^2}{n}$ (식 $2\text{-}8$).
+      $N^2$ 대신 $N$ 이 붙어 있으면 <b>틀린 지문</b>이다.</li>
+    <li><span class="step">③ 신뢰구간 — 근호 안이 $\hat V(\hat\tau)$ 여야 옳다.</span>
+      $\hat\tau\pm2\sqrt{N^2\dfrac{N-n}{N}\dfrac{s^2}{n}}$ (식 $2\text{-}9$).
+      근호 안에서 $N^2$ 이 빠져 있으면 $\hat V(\bar y)$ 를 쓴 셈이므로 <b>틀린 지문</b>이다.</li>
+    <li><span class="step">④ 표준오차의 방향 — 감소가 옳다.</span>
+      $n$ 이 커지면 $\dfrac{N-n}{N}$ 과 $\dfrac1n$ 이 모두 작아지므로 표준오차는 <b>감소</b>한다.
+      “증가한다”로 적혀 있으면 <b>틀린 지문</b>이다(01번 ④ 와 같은 함정).</li>
+    <li><span class="step">주의.</span> 위에 옮겨 적은 네 지문은 그 자체로는 모두 옳은 서술이므로,
+      교재 인쇄본에서 <b>어느 지문이 위 네 가지 변형 중 하나로 바뀌어 있는지</b> 확인하여 답을 고르면 된다.</li>
+  </ol>
+</div>
+
+<div class="ans"><span class="exn">04</span><b>④ ㉯, ㉰</b>
+  <ol class="fill">
+    <li><span class="step">㉮ 틀리다 — 표본표준편차와 표준오차를 혼동한 지문이다.</span>
+      $s$ 는 <b>모표준편차 $S$ 의 추정값</b>이다. $S$ 는 모집단이 가진 고정된 값이므로
+      $n$ 을 키운다고 $s$ 가 작아질 이유가 없다. $n$ 이 커지면 $s$ 는 <b>$S$ 에 가까워질 뿐</b>이다.</li>
+    <li><span class="step">㉯ 옳다.</span> $\bar y$ 는 비편향이고 그 분산 $\dfrac{N-n}{N}\dfrac{S^2}{n}$ 이 $0$ 으로 줄어드므로,
+      $n$ 이 커질수록 $\bar y$ 는 $\mu$ 주위로 몰린다.</li>
+    <li><span class="step">㉰ 옳다.</span> 위와 같은 이유로 표준오차 $\sqrt{V(\bar y)}$ 가 줄어든다.
+      $n=N$ 이면 $0$ 이다.</li>
+    <li><span class="step">헷갈리지 않는 요령.</span>
+      <b>줄어드는 것은 “추정량의 흩어짐”(표준오차)이지 “자료의 흩어짐”(표준편차)이 아니다.</b>
+      ㉮ 와 ㉰ 는 바로 그 차이를 묻고 있다.</li>
+  </ol>
+</div>
+
+<h2 class="sub">05 난수를 이용한 추출</h2>
+
+<div class="ans"><span class="exn">05</span><b>표본: $3,\;38,\;17,\;32,\;69,\;24,\;61,\;30,\;48,\;27$ 번 기계.</b>
+  <ol class="fill">
+    <li><span class="step">두 가지만 버린다.</span>
+      ⓐ $70$ 을 넘는 수(해당 기계가 없음), ⓑ 이미 나온 수(비복원이므로 중복 불가).
+      나머지는 나온 순서대로 채택한다.</li>
+    <li><span class="step">차례대로 읽어 보기.</span>
+      $03\;(1)$, $38\;(2)$, $17\;(3)$, $32\;(4)$, $69\;(5)$, $24\;(6)$, $61\;(7)$, $30\;(8)$,
+      <b>$03$ 은 중복이므로 버림</b>, $48\;(9)$,
+      <b>$88$ 과 $71$ 은 $70$ 초과이므로 버림</b>, $27\;(10)$ — 여기서 $10$ 개가 채워진다.</li>
+    <li><span class="step">뒤의 난수는 쓰지 않는다.</span>
+      $80,\,33,\,90,\,78,\dots$ 이후는 $10$ 개를 이미 채웠으므로 사용하지 않는다.
+      제시된 난수가 $25$ 개인 것은 버려질 수를 감안한 여유분이다.</li>
+  </ol>
+</div>
+
+<h2 class="sub">06 모평균의 추정</h2>
+
+<div class="ans"><span class="exn">06</span><b>월평균 의료비 지출액 $\fallingdotseq53{,}000$ 원, $95\%$ 신뢰구간 $53{,}000\pm998$ 원.</b>
+  <ol class="fill">
+    <li><span class="step">점추정값.</span> $\hat\mu=\bar y=53{,}000$ 원.</li>
+    <li><span class="step">분산의 추정값.</span> $N=5{,}000$, $n=80$, $s=4{,}500$ 이므로
+      $$\hat V(\bar y)=\frac{N-n}{N}\cdot\frac{s^2}{n}
+        =\frac{5{,}000-80}{5{,}000}\cdot\frac{4{,}500^2}{80}=0.984\times253{,}125=249{,}075$$</li>
+    <li><span class="step">신뢰구간.</span> $\sqrt{249{,}075}\fallingdotseq499.1$ 이므로
+      $$53{,}000\pm2(499.1)\;\Leftrightarrow\;53{,}000\pm998\;\Leftrightarrow\;(52{,}002,\;53{,}998)$$</li>
+    <li><span class="step">읽는 법.</span> 오차의 한계가 평균의 약 $1.9\%$ 이므로
+      $RSE\fallingdotseq\dfrac{499}{53{,}000}\times100\fallingdotseq0.94\%$ — <a href="../ch01/1-6_basic-concepts.html">1.6절</a> 기준으로
+      $5\%$ 이하이니 <b>상당히 믿을 만한</b> 추정이다.</li>
+  </ol>
+</div>
+
+<h2 class="sub">07 모총계의 추정과 표본크기</h2>
+
+<div class="ans"><span class="exn">07 (1)</span><b>총무게 $\fallingdotseq1{,}180{,}000$ g, $95\%$ 신뢰구간 $1{,}180{,}000\pm29{,}850$ g.</b>
+  <ol class="fill">
+    <li><span class="step">점추정값.</span> $\hat\tau=N\bar y=10{,}000\times118=1{,}180{,}000$ (g).</li>
+    <li><span class="step">분산의 추정값.</span>
+      $$\hat V(\hat\tau)=N^2\cdot\frac{N-n}{N}\cdot\frac{s^2}{n}
+        =10{,}000^2\times\frac{9{,}900}{10{,}000}\times\frac{225}{100}=222{,}750{,}000$$</li>
+    <li><span class="step">신뢰구간.</span> $\sqrt{222{,}750{,}000}\fallingdotseq14{,}925$ 이므로
+      $$1{,}180{,}000\pm2(14{,}925)\;\Leftrightarrow\;1{,}180{,}000\pm29{,}850$$</li>
+  </ol>
+</div>
+
+<div class="ans"><span class="exn">07 (2)</span><b>$n=36$ 개.</b>
+  <ol class="fill">
+    <li><span class="step">모총계용 공식 $(2\text{-}17)$ 을 쓴다.</span> $B=50{,}000$, $S\fallingdotseq s=15$ 이므로
+      $$n_0=N^2\frac{(z_{\alpha/2}S)^2}{B^2}=10{,}000^2\times\frac{(2\times15)^2}{50{,}000^2}
+       =10^8\times\frac{900}{2.5\times10^9}=36$$</li>
+    <li><span class="step">유한모집단 보정.</span>
+      $$n=\frac{n_0}{1+\dfrac{n_0}{N}}=\frac{36}{1+\dfrac{36}{10{,}000}}=35.87\fallingdotseq36$$</li>
+    <li><span class="step">확인.</span> $(1)$ 에서 $n=100$ 일 때 오차의 한계가 약 $29{,}850$ g 이었다.
+      허용 한계를 $50{,}000$ g 으로 <b>느슨하게</b> 잡았으니 표본이 $100$ 개보다 <b>줄어드는</b> 것이 자연스럽다.</li>
+  </ol>
+</div>
+
+<h2 class="sub">08 총재고액의 추정</h2>
+
+<div class="ans"><span class="exn">08</span><b>총재고액 $\fallingdotseq3{,}898{,}000$, $95\%$ 신뢰구간 $3{,}898{,}000\pm263{,}918$.</b>
+  <ol class="fill">
+    <li><span class="step">표본평균.</span> $\sum y_i=389{,}800$ 이므로
+      $\bar y=\dfrac{389{,}800}{12}=32{,}483.33$</li>
+    <li><span class="step">표본분산.</span> $\sum y_i^2=12{,}839{,}360{,}000$ 이므로
+      $$s^2=\frac{1}{n-1}\left(\sum y_i^2-n\bar y^2\right)
+        =\frac{12{,}839{,}360{,}000-12{,}662{,}003{,}333}{11}\fallingdotseq16{,}123{,}333$$
+      ($s\fallingdotseq4{,}015$)</li>
+    <li><span class="step">모총계 추정값.</span> $\hat\tau=N\bar y=120\times32{,}483.33=3{,}898{,}000$</li>
+    <li><span class="step">분산의 추정값.</span>
+      $$\hat V(\hat\tau)=120^2\times\frac{120-12}{120}\times\frac{16{,}123{,}333}{12}
+        =14{,}400\times0.9\times1{,}343{,}611\fallingdotseq1.7413\times10^{10}$$</li>
+    <li><span class="step">신뢰구간.</span> $\sqrt{1.7413\times10^{10}}\fallingdotseq131{,}959$ 이므로
+      $$3{,}898{,}000\pm2(131{,}959)\;\Leftrightarrow\;3{,}898{,}000\pm263{,}918
+        \;\Leftrightarrow\;(3{,}634{,}082,\;4{,}161{,}918)$$</li>
+    <li><span class="step">한마디.</span> 추출비가 $12/120=10\%$ 로 낮아 수정항이 $0.9$ 밖에 줄여 주지 못했고,
+      $n=12$ 로 작아 오차의 한계가 추정값의 약 $6.8\%$ 나 된다. 정도를 높이려면 표본을 더 늘려야 한다.</li>
+  </ol>
+</div>
+
+<h2 class="sub">09 상대오차의 한계와 표본크기</h2>
+
+<div class="ans"><span class="exn">09</span><b>$n=16$ 그루.</b>
+  <ol class="fill">
+    <li><span class="step">‘평균 생산량의 $5\%$ 이내’ 는 상대오차다.</span>
+      절대오차 $B$ 가 아니라 상대오차 $D=0.05$ 가 주어진 경우이므로 식 $(2\text{-}18)$ 을 쓴다.</li>
+    <li><span class="step">변동계수 추정.</span>
+      $$\hat C=\frac{s}{\bar y}=\frac{12}{120}=0.1$$</li>
+    <li><span class="step">무한모집단 기준 크기.</span>
+      $$n_0=\left(\frac{z_{\alpha/2}\hat C}{D}\right)^2=\left(\frac{2\times0.1}{0.05}\right)^2=4^2=16$$</li>
+    <li><span class="step">유한모집단 보정.</span>
+      $$n=\frac{16}{1+\dfrac{16}{1{,}000}}=15.75\fallingdotseq16$$
+      $N=1{,}000$ 에 비해 $n_0$ 이 작아 보정 효과가 거의 없다.</li>
+    <li><span class="step">절대오차로 바꿔 풀어도 같다.</span>
+      $B=D\bar y=0.05\times120=6$ (kg)이므로
+      $n_0=\dfrac{(2\times12)^2}{6^2}=\dfrac{576}{36}=16$ — 같은 값이 나온다.
+      상대오차 공식은 <b>$S$ 와 $B$ 를 모두 $\mu$ 로 나눈 것</b>일 뿐이기 때문이다.</li>
+  </ol>
+</div>
+
+<h2 class="sub">10 모비율의 추정과 표본크기</h2>
+
+<div class="ans"><span class="exn">10 (1)</span><b>지지율 $\hat p=0.44$, $95\%$ 신뢰구간 $0.44\pm0.0442$.</b>
+  <ol class="fill">
+    <li><span class="step">점추정값.</span> $\hat p=\dfrac{220}{500}=0.44$, $\hat q=0.56$.</li>
+    <li><span class="step">분산의 추정값 — 분모가 $n-1$ 임에 주의.</span>
+      $$\hat V(\hat p)=\frac{N-n}{N}\cdot\frac{\hat p\hat q}{n-1}
+        =\frac{49{,}500}{50{,}000}\cdot\frac{0.44\times0.56}{499}
+        =0.99\times0.00049379=0.000489$$</li>
+    <li><span class="step">신뢰구간.</span> $\sqrt{0.000489}\fallingdotseq0.02211$ 이므로
+      $$0.44\pm2(0.02211)\;\Leftrightarrow\;0.44\pm0.0442\;\Leftrightarrow\;(0.396,\;0.484)$$</li>
+    <li><span class="step">해석.</span> 신뢰구간이 $0.5$ 를 넘지 못하므로
+      이 표본만으로는 <b>과반 지지를 주장할 수 없다</b>.</li>
+  </ol>
+</div>
+
+<div class="ans"><span class="exn">10 (2)</span><b>$n\fallingdotseq391$ 명(넉넉히 $392$ 명).</b>
+  <ol class="fill">
+    <li><span class="step">$(1)$ 의 $\hat p$ 를 사전 정보로 쓴다.</span> 식 $(2\text{-}16)$ 에서
+      $$n_0=\frac{z^2_{\alpha/2}\hat p\hat q}{B^2}=\frac{4\times0.44\times0.56}{0.05^2}
+        =\frac{0.9856}{0.0025}=394.24$$</li>
+    <li><span class="step">유한모집단 보정.</span>
+      $$n=\frac{394.24}{1+\dfrac{394.24}{50{,}000}}=\frac{394.24}{1.00788}\fallingdotseq391.2$$
+      표본의 크기는 정수여야 하고 오차를 <b>넘지 않아야</b> 하므로 올려서 $392$ 명으로 잡으면 안전하다.</li>
+    <li><span class="step">확인.</span> $(1)$ 에서 $n=500$ 일 때 오차의 한계가 $0.0442$ 였다.
+      허용 한계를 $0.05$ 로 늘렸으니 필요한 표본이 $500$ 보다 <b>줄어드는</b> 것이 맞다.</li>
+  </ol>
+</div>
+
+<div class="ans"><span class="exn">10 (3)</span><b>$n\fallingdotseq397$ 명.</b>
+  <ol class="fill">
+    <li><span class="step">사전 정보가 없으면 최악의 경우로 잡는다.</span>
+      $n_0$ 은 $\hat p\hat q$ 에 비례하는데, $pq=p(1-p)$ 는 <b>$p=0.5$ 에서 최댓값 $0.25$</b> 를 갖는다.
+      따라서 $p=0.5$ 로 두면 <b>어떤 실제 지지율에서도 오차의 한계를 지킬 수 있는</b> 표본크기가 나온다.</li>
+    <li><span class="step">계산.</span>
+      $$n_0=\frac{4\times0.25}{0.05^2}=400,\qquad
+        n=\frac{400}{1+\dfrac{400}{50{,}000}}=\frac{400}{1.008}\fallingdotseq396.8\fallingdotseq397$$</li>
+    <li><span class="step">$(2)$ 와의 비교.</span> $391\to397$ 로 여섯 명쯤 늘었을 뿐이다.
+      $pq$ 는 $p=0.5$ 근처에서 매우 평평해서, 사전 정보가 없어도 손해가 크지 않다.
+      여론조사에서 표본크기로 $400$ 이나 $1{,}000$ 같은 수가 자주 등장하는 이유가 여기에 있다.</li>
+  </ol>
+</div>
+
+<h2 class="sub">심화 1 교재의 표·그림 총수 추정</h2>
+
+<div class="ans"><span class="exn">심화 1</span>직접 뽑아 세어 보는 문제다. <b>모총계 추정 $(2.3$ 절 $3)$ 의 절차를 그대로 따르면 된다.</b>
+  <ol class="fill">
+    <li><span class="step">모집단과 추출단위를 확정한다.</span>
+      기본단위 = 본문의 각 페이지, 모집단 = 차례·부록을 제외한 본문 전체 페이지의 집합.
+      본문 페이지 수를 세어 $N$ 을 확정한다(예: $N=250$).
+      <b>이 $N$ 을 정확히 아는 것이 이 문제의 핵심</b>이다 — 모총계 추정은 $N$ 을 알아야 가능하다.</li>
+    <li><span class="step">번호를 붙이고 난수로 $20$ 페이지를 뽑는다.</span>
+      본문 첫 페이지를 $1$ 번으로 하여 $N$ 번까지 일련번호를 부여한 뒤,
+      <a href="2-2_drawing-srs.html">2.2절</a>의 난수표(또는 난수생성기)로 중복 없이 $20$ 개의 번호를 얻는다.
+      “아무 데나 펼쳐서 $20$ 쪽” 은 단순임의표본이 아니다 — 두꺼운 장이 더 잘 펼쳐지는 선택편향이 있다.</li>
+    <li><span class="step">각 표본 페이지의 표·그림 개수 $y_i$ 를 센다.</span>
+      한 페이지에 걸친 표를 어느 쪽으로 셀지 등 <b>세는 규칙을 미리 정해</b> 일관되게 적용한다.</li>
+    <li><span class="step">추정한다.</span>
+      $$\hat\tau=N\bar y,\qquad
+        \hat V(\hat\tau)=N^2\cdot\frac{N-n}{N}\cdot\frac{s^2}{n},\qquad
+        \hat\tau\pm2\sqrt{\hat V(\hat\tau)}$$</li>
+    <li><span class="step">예시(수치는 각자의 표본에 따라 달라진다).</span>
+      $N=250$, $n=20$ 이고 표본에서 $\bar y=0.6$, $s^2=0.65$ 를 얻었다면
+      $\hat\tau=250\times0.6=150$ 개,
+      $\hat V(\hat\tau)=250^2\times\dfrac{230}{250}\times\dfrac{0.65}{20}=1{,}868.75$,
+      $\sqrt{\cdot}\fallingdotseq43.2$ 이므로 신뢰구간은 $150\pm86$ 이 된다.</li>
+    <li><span class="step">관찰.</span> 표·그림이 없는 페이지가 대부분이라 $y_i$ 가 $0$ 에 몰리고
+      가끔 큰 값이 나오는 <b>치우친 분포</b>가 된다. 그래서 $n=20$ 으로는 신뢰구간이 매우 넓다.
+      실제 조사에서 이런 변수는 <b>장(章)별로 층화</b>하면 정도가 크게 좋아진다.</li>
+  </ol>
+</div>
+
+<h2 class="sub">심화 2 미수금 계정 조사</h2>
+
+<div class="ans"><span class="exn">심화 2 (1)</span><b>총미수금액 $\fallingdotseq98{,}550$, $95\%$ 신뢰구간 $98{,}550\pm19{,}906$.</b>
+  <ol class="fill">
+    <li><span class="step">표본평균.</span> $\sum y_i=3{,}942$ 이므로
+      $\bar y=\dfrac{3{,}942}{20}=197.1$</li>
+    <li><span class="step">표본분산.</span> $\sum y_i^2=933{,}814$ 이므로
+      $$s^2=\frac{1}{19}\left(933{,}814-20\times197.1^2\right)=\frac{933{,}814-776{,}968.2}{19}\fallingdotseq8{,}255.0$$
+      ($s\fallingdotseq90.9$)</li>
+    <li><span class="step">모총계 추정값.</span> $\hat\tau=N\bar y=500\times197.1=98{,}550$</li>
+    <li><span class="step">분산의 추정값.</span>
+      $$\hat V(\hat\tau)=500^2\times\frac{500-20}{500}\times\frac{8{,}255.0}{20}
+        =250{,}000\times0.96\times412.75\fallingdotseq99{,}060{,}000$$</li>
+    <li><span class="step">신뢰구간.</span> $\sqrt{99{,}060{,}000}\fallingdotseq9{,}953$ 이므로
+      $$98{,}550\pm2(9{,}953)\;\Leftrightarrow\;98{,}550\pm19{,}906
+        \;\Leftrightarrow\;(78{,}644,\;118{,}456)$$</li>
+  </ol>
+</div>
+
+<div class="ans"><span class="exn">심화 2 (2)</span><b>불일치 비율 $\hat p=0.3$, $95\%$ 신뢰구간 $0.3\pm0.206$.</b>
+  <ol class="fill">
+    <li><span class="step">불일치 계정을 센다.</span>
+      $4,\;7,\;11,\;12,\;17,\;19$ 번 — 모두 <b>$6$ 개</b>이므로
+      $$\hat p=\frac{6}{20}=0.3,\qquad \hat q=0.7$$</li>
+    <li><span class="step">분산의 추정값 — 식 $(2\text{-}13)$.</span>
+      $$\hat V(\hat p)=\frac{N-n}{N}\cdot\frac{\hat p\hat q}{n-1}
+        =\frac{480}{500}\cdot\frac{0.3\times0.7}{19}=0.96\times0.011053=0.010611$$</li>
+    <li><span class="step">신뢰구간.</span> $\sqrt{0.010611}\fallingdotseq0.1030$ 이므로
+      $$0.3\pm2(0.1030)\;\Leftrightarrow\;0.3\pm0.206\;\Leftrightarrow\;(0.094,\;0.506)$$</li>
+    <li><span class="step">해석 — 표본이 너무 작다.</span>
+      불일치 비율이 $9\%$ 일 수도 $51\%$ 일 수도 있다는 뜻이니
+      감사 판단의 근거로 쓰기에는 정도가 크게 부족하다.
+      $B=0.05$ 를 원한다면 식 $(2\text{-}16)$ 으로
+      $n_0=\dfrac{4\times0.3\times0.7}{0.05^2}=336$,
+      $n=\dfrac{336}{1+336/500}\fallingdotseq201$ — 즉 $500$ 개 중 약 $200$ 개는 봐야 한다.</li>
+  </ol>
+</div>
+
+</div>
+
+<nav class="pager">
+  <a href="2-4_sample-size.html">← 이전<small>2.4 표본의 크기 결정</small></a>
+  <a class="next" href="../index.html">목차 →<small>표본조사론</small></a>
+</nav>
+
+</body>
+</html>

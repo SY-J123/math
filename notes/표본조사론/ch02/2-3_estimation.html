@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>표본조사론 · 2.3 모수의 추정</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">표본조사론 · 2장 단순임의추출법</div>
+  <h1><span class="no">2.3</span>모수의 추정 <span class="en">estimation of parameters</span></h1>
+</header>
+
+<h2 class="sub">1. 모집단과 모수 <span class="en">population and parameters</span></h2>
+<p>$N$ 개의 기본단위들로 형성된 모집단을 생각해 보자.
+각 단위들이 갖는 값을 $y_i$ 라고 하면 모집단은 $\{y_1,y_2,y_3,\dots,y_N\}$ 으로 표시된다.
+일반적으로 표본조사에서 추정하고자 하는 모수는 <b>모평균·모총계·모비율</b> 등이 있는데
+이것들은 각각 다음 식과 같이 나타낼 수 있다.</p>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">모집단의 모수 <span class="en">population parameters</span></span>
+  <ol class="props">
+    <li>모평균 &nbsp;$\displaystyle \mu=\frac1N\sum_{i=1}^{N}y_i$</li>
+    <li>모총계 &nbsp;$\displaystyle \tau=\sum_{i=1}^{N}y_i=N\cdot\mu$</li>
+    <li>모분산 &nbsp;$\displaystyle S^2=\frac{1}{N-1}\sum_{i=1}^{N}(y_i-\mu)^2$
+      &nbsp;또는&nbsp; $\displaystyle \sigma^2=\frac{1}{N}\sum_{i=1}^{N}(y_i-\mu)^2$</li>
+  </ol>
+</div>
+
+<div class="note">
+  통계학에서 일반적으로 사용하는 모분산은 $\sigma^2$ 이지만,
+  <b>표본조사론에서는 $S^2$ 을 주로 사용한다</b>.
+  두 값 사이에는 $S^2=\dfrac{N}{N-1}\sigma^2$ 의 관계가 있으므로
+  <b>모집단의 크기 $N$ 이 큰 경우 두 값은 거의 같다</b>고 봐도 무방하다.
+  한편 모비율은 $y_i$ 의 값이 $0$ 또는 $1$ 인 경우의 <b>모평균의 특별한 형태</b>로 간주할 수 있다.
+</div>
+
+<h2 class="sub">2. 모평균의 추정 <span class="en">estimation of the population mean</span></h2>
+<p>표본조사의 목적은 표본에 나타난 정보를 이용하여 모집단의 특성을 추론하는 것이라고 하였다.
+도시근로자들의 월평균 소득, 우리나라 각 가구당 의료비 지출액, 서울 강남 지역 아파트의 평균 매매가격 등이
+바로 <b>모평균 추정</b>이 목적인 문제이다.</p>
+<p>크기 $n$ 인 단순임의표본으로부터 얻은 데이터의 값을 각각 $y_1,y_2,\dots,y_n$ 이라 하면,
+모평균 $\mu$ 의 추정량으로는 다음과 같은 <b>표본평균</b> $\bar y$ 가 사용된다.</p>
+$$\bar y=\frac1n\sum_{i=1}^{n}y_i\tag{2-1}$$
+
+<p>물론 표본평균만을 계산해서는 이 값이 얼마나 정확한 값인지 알 수 없다.
+이때 추정값의 오차를 고려하게 되는데, 이 오차는 <b>추정량의 분산</b>으로 나타낼 수 있다.</p>
+
+<div class="box thm">
+  <span class="tag">정리 2.1</span><span class="title">표본평균의 비편향성과 분산</span>
+  <p>크기가 $N$ 인 모집단에서 <b>반복이 없는 단순임의추출법</b>으로 크기가 $n$ 인 표본을 추출하였다. 이때</p>
+  <ol class="props">
+    <li>$\bar y$ 는 모평균 $\mu$ 의 <b>비편향추정량</b>(unbiased estimator)이며,</li>
+    <li>$\bar y$ 의 표본분산은
+      $$V(\bar y)=\frac{N-n}{N}\cdot\frac{S^2}{n}\tag{2-2}$$
+      이다.</li>
+  </ol>
+</div>
+
+<div class="box prf">
+  <span class="tag">보충 증명</span><span class="title">정리 2.1 — 교재는 생략하지만 지시함수를 쓰면 어렵지 않다</span>
+  <p>교재는 증명이 복잡하다는 이유로 생략하고 예제로 확인만 한다.
+  그러나 <b>표본에 뽑혔는지를 나타내는 지시함수</b>를 도입하면 다음과 같이 유도된다.</p>
+  <ol>
+    <li><span class="step">지시함수 도입.</span>
+      $a_i=1$ (단위 $i$ 가 표본에 포함됨), $a_i=0$ (포함되지 않음)이라 두면
+      $\bar y=\dfrac1n\sum_{i=1}^{N}a_iy_i$ 로 쓸 수 있다.
+      단순임의추출이므로 각 단위가 뽑힐 확률은 모두 같고
+      $$P(a_i=1)=\frac nN,\qquad P(a_i=1,\;a_j=1)=\frac{n(n-1)}{N(N-1)}\quad(i\ne j)$$</li>
+    <li><span class="step">(i) 비편향성.</span>
+      $$E(\bar y)=\frac1n\sum_{i=1}^{N}y_i\,E(a_i)=\frac1n\cdot\frac nN\sum_{i=1}^{N}y_i=\frac1N\sum_{i=1}^{N}y_i=\mu$$</li>
+    <li><span class="step">(ii) 분산 — 추출비를 $f=n/N$ 이라 두자.</span>
+      $$V(a_i)=f(1-f),\qquad
+        \mathrm{Cov}(a_i,a_j)=\frac{n(n-1)}{N(N-1)}-f^2=-\frac{f(1-f)}{N-1}$$
+      비복원이라 서로 다른 두 단위의 <b>공분산이 음수</b>가 되는 것이 핵심이다.</li>
+    <li><span class="step">대입하여 정리.</span>
+      $$V(\bar y)=\frac{f(1-f)}{n^2}\left\{\sum_i y_i^2-\frac{1}{N-1}\sum_{i\ne j}y_iy_j\right\}$$
+      $\sum_{i\ne j}y_iy_j=\left(\sum_i y_i\right)^2-\sum_i y_i^2=N^2\mu^2-\sum_i y_i^2$ 이므로 중괄호 안은
+      $$\frac{N\left(\sum_i y_i^2-N\mu^2\right)}{N-1}=\frac{N\sum_i(y_i-\mu)^2}{N-1}=N\,S^2$$</li>
+    <li><span class="step">마무리.</span>
+      $$V(\bar y)=\frac{f(1-f)}{n^2}\cdot N S^2
+        =\frac{\frac nN\cdot\frac{N-n}{N}}{n^2}\cdot NS^2
+        =\frac{N-n}{N}\cdot\frac{S^2}{n}$$</li>
+  </ol>
+  <p class="qed">∎</p>
+</div>
+
+<div class="box ex">
+  <span class="tag">예제 2-3</span><span class="title">〈정리 2.1〉 성립 예시</span>
+  <p>어떤 도시에 $4$ 명의 사람이 살고 있는데 그들의 한 달 소득이 각각 다음과 같다고 하자(단위: 백만 원).</p>
+  $$\{1,\;2,\;3,\;4\}$$
+  <p>이 중 단순임의추출법에 의해 크기 $2$ 인 표본을 추출하여 그 도시 내 $1$ 인당 월평균 소득을 추정하고자 한다.
+  가능한 모든 표본을 구하고, 그 표본을 통해 위의 정리가 성립됨을 보여라.</p>
+
+  <p><b>풀이</b> &nbsp;먼저 가능한 모든 경우의 표본을 구해 보면 다음 여섯 가지가 있다.</p>
+  $$s_1=\{1,2\},\;s_2=\{1,3\},\;s_3=\{1,4\},\;s_4=\{2,3\},\;s_5=\{2,4\},\;s_6=\{3,4\}$$
+  <p>위의 여섯 가지 표본이 뽑힐 확률은 각각 $\tfrac16$ 으로 동일하다.
+  실제로 표본조사를 할 때는 이 여섯 가지 중 어느 하나가 뽑히고, 그 하나의 표본으로 모평균을 추정하게 된다.
+  각 표본의 표본평균값들은 각각 다음과 같다.</p>
+  $$1.5\quad 2.0\quad 2.5\quad 2.5\quad 3.0\quad 3.5$$
+  <p>$s_1$ 에서 $s_6$ 까지 뽑힐 확률이 모두 동일하므로 $\bar y$ 의 표본분포는 다음과 같이 나타낼 수 있다.</p>
+
+  <div class="scroll"><table class="data">
+    <tr><th>표본</th><td>$s_1=\{1,2\}$</td><td>$s_2=\{1,3\}$</td><td>$s_3=\{1,4\}$</td><td>$s_4=\{2,3\}$</td><td>$s_5=\{2,4\}$</td><td>$s_6=\{3,4\}$</td></tr>
+    <tr><th>$\bar y$</th><td>1.5</td><td>2.0</td><td>2.5</td><td>2.5</td><td>3.0</td><td>3.5</td></tr>
+    <tr><th>$P(\bar y)$</th><td>1/6</td><td>1/6</td><td>1/6</td><td>1/6</td><td>1/6</td><td>1/6</td></tr>
+  </table></div>
+  <p style="text-align:center;font-size:0.82rem;color:#777;">〈표 2-1〉 $\bar y$ 의 확률분포</p>
+
+  <p>따라서 $\bar y$ 의 기댓값과 분산을 각각 구하면 다음과 같다.</p>
+  $$E(\bar y)=\sum \bar y\cdot P(\bar y)=(1.5+2.0+2.5+2.5+3.0+3.5)\cdot\frac16=2.5$$
+  $$V(\bar y)=E(\bar y-\mu)^2=\sum \bar y^2\,P(\bar y)-\mu^2=\frac{5}{12}$$
+
+  <p>한편 모집단의 평균 $\mu$ 와 분산 $S^2$ 은 각각</p>
+  $$\mu=\frac{1+2+3+4}{4}=2.5,\qquad
+    S^2=\frac{1}{4-1}\left\{(1-2.5)^2+(2-2.5)^2+(3-2.5)^2+(4-2.5)^2\right\}=\frac53$$
+  <p>이므로 〈정리 2.1〉에 따르면</p>
+  $$V(\bar y)=\frac{N-n}{N}\cdot\frac{S^2}{n}=\frac{4-2}{4}\cdot\frac12\cdot\frac53=\frac{5}{12}$$
+  <p>가 된다. <b>〈정리 2.1〉로 구한 값이 표본분포로 직접 구한 값과 일치</b>하므로 정리가 성립함을 알 수 있다.</p>
+</div>
+
+<h2 class="sub">모분산 $S^2$ 을 표본으로 바꾸기 <span class="en">estimating the variance</span></h2>
+<p>추정량 $\bar y$ 의 분산 $V(\bar y)$ 에는 모분산 $S^2$ 이 들어 있다.
+$S^2$ 은 실제로는 알지 못하는 <b>미지의 모수</b>로서, 이론적으로 표현할 수는 있어도
+실제 표본조사 자료를 통해서는 계산할 수 없는 값이다.
+그러므로 $S^2$ 에 대해서도 표본조사 자료를 이용하여 적절한 추정량이 구해져야 한다.
+표본분산 $s^2$ 은</p>
+$$s^2=\frac{1}{n-1}\sum_{i=1}^{n}(y_i-\bar y)^2\tag{2-3}$$
+<p>이 식으로 표시되는데, 이것은 <b>모분산 $S^2$ 의 비편향추정량</b>임이 알려져 있다.
+따라서 $\bar y$ 의 분산의 추정량을 다음 식으로 표현할 수 있다.</p>
+$$\hat V(\bar y)=\frac{N-n}{N}\cdot\frac{s^2}{n}\tag{2-4}$$
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">유한모집단 수정항 <span class="en">Finite Population Correction Factor; FPCF</span></span>
+  <p>기초통계학에서 배운 $\bar y$ 의 분산의 추정량은 $\dfrac{s^2}{n}$ 인 형태인 데 반해,
+  식 $(2\text{-}4)$ 에 주어진 것은 $\dfrac{N-n}{N}$ 을 <b>추가로 곱한</b> 형태이다.
+  기초통계학에서는 <b>무한모집단</b>을 가정하는 데 비해 표본조사에서의 모집단은 <b>유한모집단</b>이어서
+  이 값을 곱해 주게 되는데, 이 $\dfrac{N-n}{N}$ 을 유한모집단 수정항이라고 한다.</p>
+</div>
+
+<figure class="fig">
+<svg viewBox="0 0 340 160" role="img" aria-label="유한모집단 수정항은 추출비가 커질수록 1에서 0까지 직선으로 줄어든다">
+  <line class="axis" x1="46" y1="126" x2="316" y2="126"/>
+  <line class="axis" x1="46" y1="126" x2="46" y2="26"/>
+  <line class="axis" x1="42" y1="34" x2="46" y2="34"/>
+  <g class="lbl">
+    <text x="38" y="130" text-anchor="end">0</text>
+    <text x="38" y="38" text-anchor="end">1</text>
+    <text x="46" y="146" text-anchor="middle">0</text>
+    <text x="176" y="146" text-anchor="middle">0.5</text>
+    <text x="306" y="146" text-anchor="middle">1</text>
+  </g>
+  <line class="vec" x1="46" y1="34" x2="306" y2="126"/>
+  <line class="aux" x1="176" y1="126" x2="176" y2="80"/>
+  <line class="aux" x1="46" y1="80" x2="176" y2="80"/>
+  <text class="lbl b" x="252" y="64" text-anchor="middle">(N − n) / N</text>
+  <text class="lbl" x="180" y="20" text-anchor="middle">전수조사(n = N)이면 수정항이 0 — 분산도 0</text>
+  <text class="lbl" x="180" y="158" text-anchor="middle">추출비 n / N</text>
+</svg>
+<figcaption>표본이 모집단을 많이 차지할수록 수정항이 작아지고, 전수조사($n=N$)에서는 $0$ 이 되어 분산이 사라진다.</figcaption>
+</figure>
+
+<h2 class="sub">모평균의 신뢰구간 <span class="en">confidence interval</span></h2>
+<p>추정량 $\bar y$ 의 분산의 추정값이 구해지면 이를 이용하여 모평균 $\mu$ 에 대한 신뢰구간을 구할 수 있다.
+일반적으로 표본조사에서는 표본의 크기가 충분히 크므로,
+<b>중심극한정리에 의해 $\bar y$ 의 분포를 근사적으로 정규분포로 가정</b>할 수 있다.
+모평균 $\mu$ 에 대한 $100(1-\alpha)\%$ 신뢰구간은 아래와 같이 표현된다.</p>
+$$\bar y\pm z_{\alpha/2}\sqrt{\hat V(\bar y)}\tag{2-5}$$
+<p>여기에서 둘째 항인 $z_{\alpha/2}\sqrt{\hat V(\bar y)}$ 를 주어진 신뢰도에서의
+<b>오차의 한계</b>(margin of errors)라고 한다.
+오차의 한계는 <b>추정량의 분산의 크기에 따라 좌우</b>됨을 알 수 있다.</p>
+
+<div class="note">
+  표본조사를 통해 모수를 추정하려 할 때 추정량의 분산이 너무 크다면 조사의 의미가 사라진다.
+  예를 들어 대학생들의 월평균 용돈을 추정하는데 조사 결과 얻은 신뢰구간이 $(0,\,500\text{만})$ 이 된다면
+  이런 결과는 <b>조사를 하지 않았어도 상식적으로 짐작할 수 있는 것</b>이므로 무의미하다.
+  이런 조사가 되지 않도록 하려면 <b>조사를 설계하기 전에 미리 오차의 한계를 결정</b>해 두어야 한다
+  — 그 방법이 <a href="2-4_sample-size.html">2.4절</a>의 표본크기 결정이다.
+</div>
+
+<div class="box ex">
+  <span class="tag">예제 2-4</span><span class="title">모평균 추정 사례 — 학생들의 가족 수</span>
+  <p>전체 학생 수가 $1{,}000$ 명인 고등학교가 있다. 단순임의추출법에 따라 $20$ 명의 학생을 표본으로 뽑은 후
+  각 학생들의 가족 수를 조사한 데이터가 다음과 같다.</p>
+  $$
+  \begin{array}{cccccccccc}
+  3&4&3&3&5&4&3&4&4&3\\
+  5&6&3&4&3&4&3&3&4&3
+  \end{array}
+  $$
+  <p>이 학교 학생들의 평균 가족 수와 그 $95\%$ 신뢰구간을 구하라.</p>
+
+  <p><b>풀이</b> &nbsp;먼저 위의 데이터로 표본평균과 표본분산을 각각 계산하면</p>
+  $$\bar y=\frac{74}{20}=3.7,\qquad s^2=0.7474$$
+  <p>이 된다. 이를 통해 <b>평균 가족 수는 $3.7$ 명</b>임을 알 수 있다.
+  그리고 식 $(2\text{-}4)$ 를 이용하여 $\bar y$ 의 분산의 추정값을 계산하면</p>
+  $$\hat V(\bar y)=\frac{N-n}{N}\cdot\frac{s^2}{n}=\frac{1{,}000-20}{1{,}000}\cdot\frac{0.7474}{20}=0.0366$$
+  <p>그러므로 평균 가족 수에 대한 $95\%$ 신뢰구간은</p>
+  $$\bar y\pm z_{\alpha/2}\sqrt{\hat V(\bar y)}
+    \;\Leftrightarrow\;3.7\pm2\sqrt{0.0366}
+    \;\Leftrightarrow\;3.7\pm0.38$$
+  <p>이 된다.</p>
+</div>
+
+<h2 class="sub">3. 모총계의 추정 <span class="en">estimation of the population total</span></h2>
+<p>전국의 쌀 생산량 조사, 우리나라 가구들의 연간 전체 소비액 조사 등이 <b>모총계</b>를 추정하는 것이 목적인 예들이다.
+모집단 기본단위의 변수값을 $y_1,y_2,\dots,y_N$ 이라 하면 모총계 $\tau$ 는</p>
+$$\tau=\sum_{i=1}^{N}y_i=N\mu$$
+<p>로 나타낼 수 있는데, 이는 바로 <b>모평균의 함수</b>임을 알 수 있다.
+따라서 모총계에 대한 추정량은 다음과 같이 구할 수 있다.</p>
+$$\hat\tau=N\bar y\tag{2-6}$$
+
+<p>〈정리 2.1〉에서 $\bar y$ 가 $\mu$ 의 비편향추정량이라고 했으므로,
+$\hat\tau$ 또한 <b>모총계 $\tau$ 의 비편향추정량</b>이 된다는 사실은 쉽게 알 수 있다.
+아울러 그 분산과 분산의 추정량의 식도 각각 다음과 같이 구할 수 있다.</p>
+$$V(\hat\tau)=V(N\bar y)=N^2V(\bar y)=N^2\cdot\frac{N-n}{N}\cdot\frac{S^2}{n}\tag{2-7}$$
+$$\hat V(\hat\tau)=\hat V(N\bar y)=N^2\hat V(\bar y)=N^2\cdot\frac{N-n}{N}\cdot\frac{s^2}{n}\tag{2-8}$$
+<p>그러므로 모총계 $\tau$ 의 $100(1-\alpha)\%$ 신뢰구간은 다음과 같이 나타낼 수 있다.</p>
+$$\hat\tau\pm z_{\alpha/2}\sqrt{\hat V(\hat\tau)}\tag{2-9}$$
+
+<div class="note">
+  상수 $N$ 을 곱했을 뿐이므로 <b>분산에는 $N^2$ 이 곱해진다</b>는 점만 기억하면 된다.
+  모평균 추정 공식을 알면 모총계 추정 공식은 따로 외울 것이 없다.
+</div>
+
+<div class="box ex">
+  <span class="tag">예제 2-5</span><span class="title">모총계 추정 사례 — 지역의 총인구</span>
+  <p>어느 지역의 지도를 이용하여 지역 전체를 $6{,}000$ 개의 구획으로 나누어 표시하였다.
+  이 지역의 인구를 추정하고자 한다. 구획을 추출단위로 하여
+  단순임의추출법으로 $n=100$ 개의 표본을 추출한 후 구획당 평균 인구를 조사한 결과
+  $\bar y=25.2$ 명이었고, 표본분산은 $s^2=136.00$ 이었다.
+  이 지역의 총인구를 추정하고 그 $95\%$ 신뢰구간을 구하라.</p>
+
+  <p><b>풀이</b> &nbsp;모집단의 크기 $N=6{,}000$ 이므로 인구의 추정값은</p>
+  $$\hat\tau=N\cdot\bar y=6{,}000\times25.2=151{,}200\;(\text{명})$$
+  <p>이 된다. 한편 총계 추정값에 대한 분산의 추정량은</p>
+  $$\hat V(\hat\tau)=N^2\cdot\frac{N-n}{N}\cdot\frac{s^2}{n}
+    =6{,}000^2\cdot\frac{6{,}000-100}{6{,}000}\cdot\frac{136.00}{100}=48{,}144{,}000$$
+  <p>이다. 그러므로 총인구에 대한 $95\%$ 신뢰구간을 계산하면</p>
+  $$151{,}200\pm2\sqrt{48{,}144{,}000}\;\Leftrightarrow\;151{,}200\pm13{,}877$$
+  <p>이 된다.</p>
+</div>
+
+<h2 class="sub">4. 모비율의 추정 <span class="en">estimation of the population proportion</span></h2>
+<p>대통령 선거 여론조사에서 특정 후보의 지지율 조사, 어느 TV 프로그램의 시청률 조사,
+어느 제품의 시장 점유율 조사, 공장에서 생산된 제품의 불량률 조사 등
+<b>모집단 내에서 특정 속성을 지닌 단위들의 비율</b>을 알아보기 위하여 표본조사를 하는 경우가 있는데,
+이 경우 관심의 모수는 <b>모비율</b>이다.</p>
+
+<p>모비율 추정을 위한 표본조사에서는 각각의 단위들이 갖는 $y_i$ 값이 다르다.
+즉 <b>어떤 속성을 지니는 경우에는 $1$, 그렇지 않은 경우에는 $0$ 의 값</b>을 가진다.
+모비율을 $p$ 라 하면 이는 $N$ 개의 전체 모집단 단위들 중 어떤 속성을 지니는 단위들의 비율로
+다음과 같이 나타낼 수 있다.</p>
+$$p=\frac1N\sum_{i=1}^{N}y_i\tag{2-10}$$
+
+<p>모집단 중에서 $n$ 개의 표본을 단순임의추출법에 의해 뽑은 경우,
+모비율의 추정량 $\hat p$ 은 표본 중 어떤 속성을 지니는 단위들의 비율로</p>
+$$\hat p=\frac1n\sum_{i=1}^{n}y_i\tag{2-11}$$
+<p>로 나타낼 수 있는데, 이는 각 단위들의 값이 $0$ 또는 $1$ 인 경우에 대한 <b>모평균의 추정량과 같다</b>.</p>
+
+<div class="box prf">
+  <span class="tag">유도</span><span class="title">모비율 추정량의 분산 — 모평균 공식에서 그대로 나온다</span>
+  <ol>
+    <li><span class="step">출발점.</span> 〈정리 2.1〉에서 주어진 $\bar y$ 의 분산은
+      $$V(\bar y)=\frac{N-n}{N}\cdot\frac{S^2}{n},\qquad
+        S^2=\frac{1}{N-1}\sum_{i=1}^{N}(y_i-\mu)^2$$</li>
+    <li><span class="step">$S^2$ 을 풀어 쓴다.</span>
+      $$S^2=\frac{1}{N-1}\left(\sum_{i=1}^{N}y_i^2-N\mu^2\right)$$</li>
+    <li><span class="step">$y_i$ 가 $0$ 또는 $1$ 임을 쓴다.</span>
+      그러면 $y_i^2=y_i$ 이고 $\mu=p$ 이므로
+      $$S^2=\frac{1}{N-1}\left(\sum_i y_i-Np^2\right)=\frac{Np-Np^2}{N-1}=\frac{Np(1-p)}{N-1}=\frac{Npq}{N-1}$$</li>
+    <li><span class="step">대입.</span> $\dfrac{N-n}{N}\cdot\dfrac{1}{n}\cdot\dfrac{Npq}{N-1}$ 이므로
+      $$V(\hat p)=\frac{N-n}{N-1}\cdot\frac{pq}{n},\qquad q=1-p\tag{2-12}$$
+      <b>분모가 $N$ 이 아니라 $N-1$ 로 바뀌는 것</b>에 주의한다.</li>
+  </ol>
+</div>
+
+<div class="box thm">
+  <span class="tag">주의</span><span class="title">$p,\,q$ 자리에 $\hat p,\,\hat q$ 를 그냥 대입하면 안 된다</span>
+  <p>위 분산 식에 대한 추정값을 구할 때 주의해야 할 사항은
+  $p,\,q$ 대신에 $\hat p,\,\hat q$ 를 <b>그대로 대입하면 $V(\hat p)$ 의 비편향추정량이 되지 않는다</b>는 사실이다.
+  이 분산의 비편향추정량은 <b>모평균의 분산의 추정량을 구할 때와 동일한 방법</b>으로 구해야 한다.</p>
+  <ol class="props">
+    <li>모평균의 분산의 추정량은 $\hat V(\bar y)=\dfrac{N-n}{N}\cdot\dfrac{s^2}{n}$ 이고,</li>
+    <li>여기에서 $s^2=\dfrac{1}{n-1}\left(\sum_i y_i^2-n\bar y^2\right)$ 에
+      $y_i^2=y_i$, $\bar y=\hat p$ 를 넣으면
+      $$s^2=\frac{1}{n-1}\left(n\hat p-n\hat p^{\,2}\right)=\frac{n\hat p(1-\hat p)}{n-1}=\frac{n\hat p\hat q}{n-1}$$</li>
+    <li>따라서 분산의 추정량은 다음과 같다.
+      $$\hat V(\hat p)=\frac{N-n}{N}\cdot\frac{\hat p\hat q}{n-1}\tag{2-13}$$</li>
+  </ol>
+  <p>즉 <b>모분산 식에서는 분모가 $N-1$, 그 추정량에서는 분모가 $n-1$</b> 이 되는 셈이다.</p>
+</div>
+
+<p>표본을 통해 모비율의 추정값과 그것의 분산의 추정값을 구하면
+모비율에 대한 $100(1-\alpha)\%$ 신뢰구간은 아래와 같이 주어진다.</p>
+$$\hat p\pm z_{\alpha/2}\sqrt{\hat V(\hat p)}\tag{2-14}$$
+<p>위의 신뢰구간 식에서 둘째 항인 $z_{\alpha/2}\sqrt{\hat V(\hat p)}$ 는 모비율 추정량 $\hat p$ 의 <b>오차의 한계</b>이다.</p>
+
+<div class="box ex">
+  <span class="tag">예제 2-6</span><span class="title">모비율 추정 사례 — 대통령 지지율</span>
+  <p>전국에서 $1{,}500$ 명의 성인을 단순임의추출하여 현재의 대통령에 대한 지지 여부를 조사하였는데
+  $936$ 명이 찬성하였다. 이 경우 국민들의 대통령에 대한 지지율을 추정하고 그 $95\%$ 신뢰구간을 구하라.</p>
+
+  <p><b>풀이</b> &nbsp;먼저 지지율에 대한 추정값을 구하면</p>
+  $$\hat p=\frac1n\sum_{i=1}^{n}y_i=\frac{936}{1{,}500}=0.624$$
+  <p>이다. 한편 이에 대한 분산의 추정량은 $\hat V(\hat p)=\dfrac{N-n}{N}\cdot\dfrac{\hat p\hat q}{n-1}$ 인데,
+  여기에서 <b>전국의 성인 수 $N$ 의 값이 주어져 있지 않다</b>.
+  전국의 성인 수 $N$ 은 표본의 크기 $1{,}500$ 에 비해 매우 큰 값이므로
+  $\dfrac{N-n}{N}\fallingdotseq1$ 로 생각할 수 있다. 따라서 분산의 추정값은</p>
+  $$\hat V(\hat p)\fallingdotseq\frac{\hat p\hat q}{n-1}=\frac{0.624\times0.376}{1{,}500-1}=0.000157$$
+  <p>이다. 이를 이용하여 지지율 $p$ 의 $95\%$ 신뢰구간을 구하면 다음 값을 얻는다.</p>
+  $$\hat p\pm z_{\alpha/2}\sqrt{\hat V(\hat p)}\;\Leftrightarrow\;0.624\pm0.0250$$
+</div>
+
+<div class="terms">
+  <div class="h">이 절의 공식 정리</div>
+  <dl>
+    <dt>모평균</dt>
+    <dd>$\hat\mu=\bar y$, &nbsp;$\hat V(\bar y)=\dfrac{N-n}{N}\cdot\dfrac{s^2}{n}$</dd>
+    <dt>모총계</dt>
+    <dd>$\hat\tau=N\bar y$, &nbsp;$\hat V(\hat\tau)=N^2\cdot\dfrac{N-n}{N}\cdot\dfrac{s^2}{n}$</dd>
+    <dt>모비율</dt>
+    <dd>$\hat p=\dfrac1n\sum y_i$, &nbsp;$\hat V(\hat p)=\dfrac{N-n}{N}\cdot\dfrac{\hat p\hat q}{n-1}$</dd>
+    <dt>신뢰구간</dt>
+    <dd>세 경우 모두 &nbsp;(추정값) $\pm\,z_{\alpha/2}\sqrt{\text{분산의 추정값}}$, &nbsp;$95\%$ 이면 $z_{0.025}\fallingdotseq2$</dd>
+  </dl>
+</div>
+
+<nav class="pager">
+  <a href="2-2_drawing-srs.html">← 이전<small>2.2 단순임의표본의 추출</small></a>
+  <a class="next" href="2-4_sample-size.html">다음 →<small>2.4 표본의 크기 결정</small></a>
+</nav>
+
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>표본조사론 · 2.1 개요</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\(','\)']], displayMath: [['$$','$$'],['\[','\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">표본조사론 · 2장 단순임의추출법</div>
+  <h1><span class="no">2.1</span>개요 <span class="en">overview</span></h1>
+</header>
+
+<p>모집단을 잘 대표하면서도 효율적인 표본을 추출하는 과정을 <b>표본설계</b>라고 하는데,
+이것은 통계를 정확히 생산하기 위해 매우 중요한 과정이다.
+<b>어떻게 추출하느냐에 따라 모수에 대한 추정의 정도</b>(精度, precision)<b>가 달라지기</b> 때문이다.
+주어진 여건에서 가능한 한 편리하면서도 추정의 정도를 높여 줄 수 있는 표본을 추출할 수 있도록 표본을 설계하여야 한다.</p>
+
+<p>오늘날 표본조사라고 하면 당연히 <b>확률추출법</b>에 의해 표본을 추출하는 것을 의미한다.
+확률추출법을 사용해야만 통계이론에 의한 추정이 가능하기 때문이다.
+여러 가지 확률추출법 중에서 가장 기본이 되는 방법이 <b>단순임의추출법</b>(Simple Random Sampling; SRS)이다.
+다른 여러 확률추출법은 어떤 형태로든 단순임의추출법을 응용하여 이루어지기 때문이다.</p>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">복원과 비복원 <span class="en">with / without replacement</span></span>
+  <p>단순임의추출법의 정의를 내리기 전에 먼저 <b>복원</b>(With Replacement; WR)과
+  <b>비복원</b>(WithOut Replacement; WOR)이라는 용어를 정리한다. 상자 속에서 구슬을 꺼내는 예로 설명하면 다음과 같다.</p>
+  <ol class="props">
+    <li><b>복원추출</b> — 상자 속에서 구슬을 꺼내서 보고 난 다음 <b>그 구슬을 다시 집어넣은 후</b> 다음 번 구슬을 꺼내는 방법.</li>
+    <li><b>비복원추출</b> — 한 번 꺼낸 구슬을 상자 속에 <b>다시 집어넣지 않고</b> 나머지 구슬 중에서 다음 번 구슬을 꺼내는 방법.</li>
+  </ol>
+</div>
+
+<div class="note">
+  상자 속의 구슬이 무한 개라면 복원과 비복원은 같다고 볼 수 있다.
+  그런데 표본조사의 모집단은 대부분 <b>유한모집단</b>이므로 이 교재에서는 <b>비복원추출</b>을 다룬다.
+  복원추출은 일반적으로 비복원추출에서 <b>모집단의 크기 $N$ 이 무한대인 경우</b>로 생각하면 된다.
+</div>
+
+<div class="box def">
+  <span class="tag">정의 2.1</span><span class="title">단순임의추출법 <span class="en">SRSWOR</span></span>
+  <p>크기가 $N$ 인 모집단에서 크기가 $n$ 인 표본을 추출하고자 한다면
+  $\dbinom{N}{n}$ 가지의 추출 가능한 표본들이 존재하게 된다.
+  이들 $\dbinom{N}{n}$ 가지의 표본에 대하여 <b>추출확률을 모두 동일하게</b> 해 주는 표본추출법을
+  단순임의추출법(Simple Random Sampling WithOut Replacement; SRSWOR)이라고 한다.</p>
+</div>
+
+<div class="box ex">
+  <span class="tag">사례 2-1</span><span class="title">단순임의추출법 예시</span>
+  <p>전체 모집단의 크기 $N=4$ 이고 그 값이 $\{1,2,3,4\}$ 인 모집단이 있다.
+  여기에서 크기 $n=2$ 인 표본을 추출하고자 한다. 이때 추출 가능한 모든 경우의 표본들은 다음과 같다.</p>
+  $$\{1,2\}\quad\{1,3\}\quad\{1,4\}\quad\{2,3\}\quad\{2,4\}\quad\{3,4\}$$
+  <p>이들 여섯 가지의 가능한 표본들에 대해 <b>추출될 확률을 $1/6$ 로 모두 같게</b> 해 주는 추출법이
+  바로 단순임의추출법이다.</p>
+</div>
+
+<figure class="fig">
+<svg viewBox="0 0 400 150" role="img" aria-label="크기 4인 모집단에서 크기 2인 표본 여섯 가지와 각각의 추출확률 6분의 1">
+  <g class="lbl"><text x="200" y="16" text-anchor="middle">모집단 {1, 2, 3, 4} — 크기 N = 4</text></g>
+  <g>
+    <rect class="cell" x="40" y="26" width="34" height="26"/><text class="num" x="57" y="43" text-anchor="middle">1</text>
+    <rect class="cell" x="122" y="26" width="34" height="26"/><text class="num" x="139" y="43" text-anchor="middle">2</text>
+    <rect class="cell" x="204" y="26" width="34" height="26"/><text class="num" x="221" y="43" text-anchor="middle">3</text>
+    <rect class="cell" x="286" y="26" width="34" height="26"/><text class="num" x="303" y="43" text-anchor="middle">4</text>
+  </g>
+  <g>
+    <rect class="cellhi" x="26"  y="76" width="52" height="28"/><text class="num" x="52"  y="95" text-anchor="middle">1, 2</text>
+    <rect class="cellhi" x="86"  y="76" width="52" height="28"/><text class="num" x="112" y="95" text-anchor="middle">1, 3</text>
+    <rect class="cellhi" x="146" y="76" width="52" height="28"/><text class="num" x="172" y="95" text-anchor="middle">1, 4</text>
+    <rect class="cellhi" x="206" y="76" width="52" height="28"/><text class="num" x="232" y="95" text-anchor="middle">2, 3</text>
+    <rect class="cellhi" x="266" y="76" width="52" height="28"/><text class="num" x="292" y="95" text-anchor="middle">2, 4</text>
+    <rect class="cellhi" x="326" y="76" width="52" height="28"/><text class="num" x="352" y="95" text-anchor="middle">3, 4</text>
+  </g>
+  <g class="lbl b">
+    <text x="52"  y="120" text-anchor="middle">1/6</text><text x="112" y="120" text-anchor="middle">1/6</text>
+    <text x="172" y="120" text-anchor="middle">1/6</text><text x="232" y="120" text-anchor="middle">1/6</text>
+    <text x="292" y="120" text-anchor="middle">1/6</text><text x="352" y="120" text-anchor="middle">1/6</text>
+  </g>
+  <text class="lbl" x="200" y="142" text-anchor="middle">가능한 표본 ₄C₂ = 6 가지 — 추출확률이 모두 같으면 단순임의추출법</text>
+</svg>
+<figcaption>단순임의추출법은 <b>개별 단위</b>가 아니라 <b>가능한 표본 전체</b>에 같은 확률을 주는 방법으로 정의된다.</figcaption>
+</figure>
+
+<h2 class="sub">‘임의’ 라는 말의 뜻 <span class="en">what “random” means</span></h2>
+<p>단순임의추출법은 <b>무작위추출법</b>(無作爲抽出法) 또는 <b>임의추출법</b>이라고도 한다.
+이름에 나타난 임의(任意)는 영어의 ‘random’ 에 해당된다.
+‘아무렇게나’ 라는 의미로 오해하는 경우가 있는데 이 뜻이 아니다.
+그보다는 <b>추출하는 사람의 주관 또는 작위</b>(作爲)<b>를 일체 배제시킨다</b>는 의미를 나타내는데,
+앞의 정의를 자세히 생각해 보면 이런 의미를 더욱 명확하게 알 수 있을 것이다.</p>
+
+<div class="note">
+  일반적으로 조사원에게 표본 선택을 맡기는 경우 <b>선택편향</b>(selection bias)이 생긴다.
+  조사원의 선택편향을 제거하기 위해서 사용하는 것이 바로 단순임의추출법이다.
+</div>
+
+<h2 class="sub">실제로 쓰이는 예 <span class="en">applications</span></h2>
+<ol class="props">
+  <li><b>여론조사</b> — 정부에서 추진하는 어떤 정책에 대한 국민들의 견해를 알아보고자 할 때
+  각 지역별로 단순임의추출법에 의해 표본을 추출하여 조사한다.</li>
+  <li><b>전화조사</b> — 서울시의 가구 중 $500$ 가구에 대해 전화번호에 의해 선거 여론조사를 하고자 하는 경우
+  단순임의추출법으로 전화번호를 뽑는다.</li>
+  <li><b>시장조사</b>(marketing research) — 자동차 색상에 대한 잠재고객의 선호도,
+  음식의 향에 대한 기호 등 잠재고객의 성향을 알아보고자 할 때 쓴다.</li>
+  <li><b>불량률 조사</b> — 공장에서 납품된 제품 중 일정 분량을 단순임의추출법에 의해 선택하여
+  그 불량 여부를 조사하고, 이로부터 전체 제품의 불량률을 추정한다.</li>
+</ol>
+
+<nav class="pager">
+  <a href="../ch01/1-exercises.html">← 이전<small>1장 연습문제</small></a>
+  <a class="next" href="2-2_drawing-srs.html">다음 →<small>2.2 단순임의표본의 추출</small></a>
+</nav>
+
+</body>
+</html>
