@@ -50,7 +50,16 @@ $(x_1,y_1),(x_2,y_2),\dots,(x_n,y_n)$ 을 가지고 있다고 하자. 이 점들
   <p>라고 표현할 때, <b>오차제곱들의 합</b></p>
   $$S(\beta_0,\beta_1)=\sum_{i=1}^n\epsilon_i^2=\sum_{i=1}^n\big(y_i-\beta_0-\beta_1x_i\big)^2\tag{3.10}$$
   <p>을 최소로 하는 $\beta_0$ 와 $\beta_1$ 의 값을 이들의 추정값 $\hat\beta_0,\hat\beta_1$ 으로 구하는
-  방법이다.</p>
+  방법이다. 이를 $\arg\min$ 표기로 쓰면 다음과 같다.</p>
+  $$\begin{aligned}
+    (\hat\beta_0,\hat\beta_1)
+    &=\operatorname*{arg\,min}_{\beta_0,\beta_1}\ S(\beta_0,\beta_1)\\
+    &=\operatorname*{arg\,min}_{\beta_0,\beta_1}\ \sum_{i=1}^n\epsilon_i^2
+    =\operatorname*{arg\,min}_{\beta_0,\beta_1}\ \sum_{i=1}^n\big(y_i-\beta_0-\beta_1x_i\big)^2
+  \end{aligned}$$
+  <p>$\min$ 이 <b>최솟값 그 자체</b>(값)를 가리키는 데 비해, $\arg\min$ 은 그 최솟값을 만들어 내는
+  <b>인수</b><span class="en">argument</span>, 즉 $(\beta_0,\beta_1)$ 을 가리킨다. 추정하려는 것은 값이 아니라
+  <b>계수</b>이므로 최소제곱법은 $\arg\min$ 으로 쓰는 것이 정확하다.</p>
 </div>
 
 <div class="box prf">
