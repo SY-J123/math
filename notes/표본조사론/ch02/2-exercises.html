@@ -66,7 +66,7 @@
     <li>$\hat\tau=N\cdot\bar y$ 는 모총계에 대한 비편향추정량이다.</li>
     <li>$\hat V(\hat\tau)=N^2\dfrac{N-n}{N}\dfrac{s^2}{n}$ 으로 구할 수 있다.</li>
     <li>$95\%$ 신뢰수준에서 모총계 $\tau$ 에 대한 신뢰구간은
-      $\hat\tau\pm2\sqrt{N^2\dfrac{N-n}{N}\dfrac{s^2}{n}}$ 이다.</li>
+      $\hat\tau\pm2\sqrt{\dfrac{N-n}{N}\dfrac{s^2}{n}}$ 이다.</li>
     <li>표본의 크기가 커짐에 따라 모총계 추정량의 표준오차는 감소한다.</li>
   </ol>
 </div>
@@ -201,22 +201,31 @@ $n=30$ 그루의 나무를 예비표본으로 뽑아 조사한 결과 $\bar y=12
   </ol>
 </div>
 
-<div class="ans"><span class="exn">03</span>모총계 추정 공식을 어긋나게 쓴 지문 하나를 고르는 문제다. 각 지문의 판정은 다음과 같다.
+<div class="ans"><span class="exn">03</span><b>③ 근호 안에 $N^2$ 이 빠져 있다.</b>
   <ol class="fill">
-    <li><span class="step">① $\hat\tau=N\bar y$ 가 비편향인가 — 옳다.</span>
-      $E(\hat\tau)=N\,E(\bar y)=N\mu=\tau$. 〈정리 2.1〉(i)에서 바로 따라 나온다.
-      만약 지문이 $\hat\tau=N^2\bar y$ 라면 <b>틀린 지문</b>이다.</li>
-    <li><span class="step">② 분산의 추정량 — $N^2$ 이 붙어야 옳다.</span>
-      $\hat V(\hat\tau)=N^2\dfrac{N-n}{N}\dfrac{s^2}{n}$ (식 $2\text{-}8$).
-      $N^2$ 대신 $N$ 이 붙어 있으면 <b>틀린 지문</b>이다.</li>
-    <li><span class="step">③ 신뢰구간 — 근호 안이 $\hat V(\hat\tau)$ 여야 옳다.</span>
-      $\hat\tau\pm2\sqrt{N^2\dfrac{N-n}{N}\dfrac{s^2}{n}}$ (식 $2\text{-}9$).
-      근호 안에서 $N^2$ 이 빠져 있으면 $\hat V(\bar y)$ 를 쓴 셈이므로 <b>틀린 지문</b>이다.</li>
-    <li><span class="step">④ 표준오차의 방향 — 감소가 옳다.</span>
-      $n$ 이 커지면 $\dfrac{N-n}{N}$ 과 $\dfrac1n$ 이 모두 작아지므로 표준오차는 <b>감소</b>한다.
-      “증가한다”로 적혀 있으면 <b>틀린 지문</b>이다(01번 ④ 와 같은 함정).</li>
-    <li><span class="step">주의.</span> 위에 옮겨 적은 네 지문은 그 자체로는 모두 옳은 서술이므로,
-      교재 인쇄본에서 <b>어느 지문이 위 네 가지 변형 중 하나로 바뀌어 있는지</b> 확인하여 답을 고르면 된다.</li>
+    <li><span class="step">신뢰구간의 근호 안은 반드시 $\hat V(\hat\tau)$ 여야 한다.</span>
+      식 $(2\text{-}9)$ 는 $\hat\tau\pm z_{\alpha/2}\sqrt{\hat V(\hat\tau)}$ 이고,
+      $\hat V(\hat\tau)=N^2\dfrac{N-n}{N}\dfrac{s^2}{n}$ 이므로 옳은 지문은
+      $$\hat\tau\pm2\sqrt{N^2\cdot\frac{N-n}{N}\cdot\frac{s^2}{n}}
+        \;=\;\hat\tau\pm2N\sqrt{\frac{N-n}{N}\cdot\frac{s^2}{n}}$$
+      이다. 지문 ③ 은 근호 안이 $\hat V(\bar y)$ — 즉 <b>모평균 추정량의 분산</b>이므로,
+      $\hat\tau$ 에 $\bar y$ 의 오차를 붙여 놓은 셈이다.</li>
+    <li><span class="step">단위로도 걸러진다.</span>
+      $\hat\tau$ 는 “총계” 단위인데 $\sqrt{\hat V(\bar y)}$ 는 “평균” 단위이다.
+      더할 수 없는 두 양을 $\pm$ 로 묶었으니 식이 성립할 수 없다.
+      실제로 오차의 한계가 <b>$N$ 배만큼 과소평가</b>되어, 신뢰구간이 터무니없이 좁아진다.</li>
+    <li><span class="step">예제 2-5 로 확인.</span> $N=6{,}000$, $n=100$, $s^2=136$ 일 때
+      올바른 오차의 한계는 $2\sqrt{48{,}144{,}000}\fallingdotseq13{,}877$ 명이다.
+      ③ 대로 $N^2$ 을 빼면 $2\sqrt{48{,}144{,}000/6{,}000^2}\fallingdotseq2.3$ 명 —
+      총인구 $151{,}200$ 명을 $\pm2.3$ 명으로 맞혔다는 말이 되어 명백히 이상하다.</li>
+    <li><span class="step">나머지 셋은 옳다.</span>
+      ① $E(\hat\tau)=N\,E(\bar y)=N\mu=\tau$ 이므로 비편향(〈정리 2.1〉(i)).
+      ② 는 식 $(2\text{-}8)$ 그대로.
+      ④ 는 $n$ 이 커지면 $\dfrac{N-n}{N}$ 과 $\dfrac1n$ 이 <b>둘 다</b> 작아지므로 표준오차가 감소한다.</li>
+    <li><span class="step">이 장의 단골 함정 네 가지.</span>
+      $\hat\tau=N^2\bar y$ 로 쓰기 / $\hat V(\hat\tau)$ 에 $N^2$ 대신 $N$ 붙이기 /
+      <b>신뢰구간 근호 안에서 $N^2$ 빠뜨리기(이 문제)</b> / 표준오차가 “커진다”고 하기(01번 ④).
+      요약하면 언제나 <b>추정량은 $N$ 배, 분산은 $N^2$ 배</b> 다.</li>
   </ol>
 </div>
 
