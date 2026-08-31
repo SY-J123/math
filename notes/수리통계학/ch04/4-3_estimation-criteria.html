@@ -79,28 +79,28 @@
 
 <!-- ================= 손실함수와 MSE ================= -->
 <h2 class="sub">손실함수와 평균제곱오차 <span class="en">loss function &amp; MSE</span></h2>
-<p>모수의 함수인 $g(\theta)$ 의 추정에서(물론 $g(\theta)=\theta$ 인 경우를 포함), 우리가 원하는 바는 추정량
-$T(X)=T(X_1,X_2,\dots,X_n)$ 이 추정하고자 하는 $g(\theta)$ 에 <b>'가까운'</b> 것이다. 추정량은 확률변수로서
-표본에 따라 값이 달라지므로 언제나 $g(\theta)$ 의 값을 가질 수는 없다. 그렇다면 "가깝다"라는 것을 어떻게
-정의할 수 있을까? 이것은 사용하는 기준<span class="en">criterion</span>에 따라 다르게 결정되며, 가능한 기준의 예로</p>
-<ul class="props">
-  <li><b>절대오차</b><span class="en">absolute error</span>: $\big|T(X)-g(\theta)\big|$</li>
-  <li><b>제곱오차</b><span class="en">squared error</span>: $\big(T(X)-g(\theta)\big)^2$</li>
-  <li>$w(\theta)$ 로 가중값을 준 <b>가중제곱오차</b><span class="en">weighted squared error</span>: $\big(T(X)-g(\theta)\big)^2 w(\theta)$</li>
-</ul>
-<p>등을 들 수 있는데, 이들을 흔히 <b>손실함수</b><span class="en">loss function</span>라고 한다. 그러나 위의
-손실함수들은 <b>확률변수</b>이기 때문에 이들을 최소화하는 추정량 $T(X)$ 를 찾아내는 것은 불가능하며,
-따라서 위 손실함수의 <b>기댓값</b><span class="en">long term average</span>을 기준으로 삼는다. 일반적으로,
-제곱오차의 기댓값인 <b>평균제곱오차</b><span class="en">Mean Square Error, MSE</span></p>
-$$\text{MSE}=E\big(T(X)-g(\theta)\big)^2 \tag{4.5}$$
-<p>가 추정의 기준으로 많이 사용되며, 여기에서도 이 MSE — 추정량과 모수의 오차를 최소로 만드는 기준 —
-를 기준으로 삼도록 한다. 이 기준하에서 우리가 원하는 추정량은 평균제곱오차를 최소화하는 $T(X)$ 가 된다.</p>
-<div class="note">
-  그런데 평균제곱오차는 모수 $\theta$ 에 대한 <b>함수</b>이기 때문에 이를 최소화하는 추정량을 찾는 것이 항상
-  가능하지는 않다. $g(\theta)$ 에 대한 두 추정량 $T_1(X),T_2(X)$ 의 MSE 를 그렸을 때(그림 4.3), 첫 번째
-  경우에는 $T_1(X)$ 의 MSE 가 <b>모든 $\theta$ 값에 대하여</b> 작으므로 $T_1(X)$ 를 선호하면 되지만, 두 번째
-  경우에는 $\theta$ 의 값에 따라 MSE 를 작게 만드는 추정량이 달라져 — 서로 다른 $\theta$ 에서 우열이 뒤바뀌어 —
-  어떤 추정량을 사용해야 할지 명확하지 않게 된다.
+<p>추정량 $T(X)=T(X_1,\dots,X_n)$ 은 <b>확률변수</b>이므로 언제나 $g(\theta)$ 와 같을 수는 없다.
+그 차이 $T(X)-g(\theta)$ 가 <b>오차</b>이며, 이 오차를 어떤 잣대로 재느냐에 따라 “$g(\theta)$ 에 가깝다”는 말의
+뜻이 정해진다.</p>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">손실함수 <span class="en">loss function</span> — 오차를 재는 방법</span>
+  <p>오차를 재는 대표적인 세 가지 잣대는 다음과 같으며, 이들을 <b>손실함수</b>라고 한다.</p>
+  <ol class="props">
+    <li><b>절대오차</b><span class="en">absolute error</span>: $\big|T(X)-g(\theta)\big|$ — 오차의 크기만 본다.</li>
+    <li><b>제곱오차</b><span class="en">squared error</span>: $\big(T(X)-g(\theta)\big)^2$ —
+      큰 오차에 더 큰 벌점을 준다.</li>
+    <li><b>가중제곱오차</b><span class="en">weighted squared error</span>:
+      $\big(T(X)-g(\theta)\big)^2w(\theta)$ — 모수값에 따라 벌점의 무게를 달리 준다.</li>
+  </ol>
+</div>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">평균제곱오차 <span class="en">mean square error, MSE</span></span>
+  <p>손실함수는 표본에 따라 값이 달라지는 확률변수여서 그 자체를 최소화할 수는 없다. 그래서 손실함수의
+  <b>기댓값</b>을 기준으로 삼는다. 제곱오차의 기댓값인 <b>평균제곱오차</b></p>
+  $$\text{MSE}=E\big(T(X)-g(\theta)\big)^2 \tag{4.5}$$
+  <p>가 추정의 기준으로 가장 많이 쓰이며, 이 기준하에서 원하는 추정량은 MSE 를 최소화하는 $T(X)$ 다.</p>
 </div>
 <figure class="fig">
   <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="두 추정량의 MSE 비교 — 균일하게 좋은 경우와 우열이 바뀌는 경우">
@@ -125,13 +125,10 @@ $$\text{MSE}=E\big(T(X)-g(\theta)\big)^2 \tag{4.5}$$
   오른쪽은 $\theta$ 에 따라 우열이 바뀌어 판별이 어렵다.</figcaption>
 </figure>
 <div class="note">
-  이와 같이 평균제곱오차를 모든 $\theta\in\Omega$ 에 대하여 <b>균일하게</b> 최소화하는 추정량 $T(X)$ 는
-  일반적으로 존재하지 않는다. 예를 들어, 표본에서 어떤 값을 관측하든 추정값을 $\theta_0$(어떤 정해진 상수)으로
-  하는 추정량 $T(X)\equiv\theta_0$ 을 생각하면, 미지의 모수값이 실제로 $\theta_0$ 이라면 이 추정량의 MSE 는
-  $0$ 이 되어 이보다 작은 MSE 를 갖는 추정량은 없다. 그러나 이런 표본과 무관한 추정방법은 $\theta$ 가
-  $\theta_0$ 로부터 멀리 떨어져 있을수록 MSE 를 크게 만들며 매우 비과학적이고 비상식적인 방법이다.
-  이런 편협된 부적절한 추정량들을 고려대상에서 제외하는 하나의 방법으로, 아래에 정의된
-  <b>비편향추정량</b>들의 집합을 고려하고 그 안에서 MSE 를 최소화하는 추정방법을 찾을 수 있다.
+  MSE 는 모수 $\theta$ 의 <b>함수</b>여서, 모든 $\theta\in\Omega$ 에서 동시에 최소인 추정량은 일반적으로
+  존재하지 않는다(그림 4.3 오른쪽). 극단적인 예로 표본과 무관하게 $T(X)\equiv\theta_0$ (상수)으로 두면
+  $\theta=\theta_0$ 에서 MSE 가 $0$ 이지만 $\theta$ 가 $\theta_0$ 에서 멀어질수록 형편없어진다.
+  이런 부적절한 추정량을 걸러 내기 위해, 아래의 <b>비편향추정량</b>들의 집합 안에서 MSE 를 최소화한다.
 </div>
 
 <!-- ================= 비편향추정량 ================= -->
