@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3장 · 3.4 회귀선의 정도</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">회귀분석 · 3장 단순회귀분석</div>
+  <h1><span class="no">3.4</span>회귀선의 정도 <span class="en">precision of the regression line</span></h1>
+</header>
+
+<p>앞에서 주어진 자료로부터 회귀선을 구하는 방법을 고찰하였는데, <b>회귀선만을 가지고는</b> 관측값들이 회귀선
+주위에 어떻게 분포되어 있으며 회귀선이 이 점들을 어느 정도 잘 대변하여 주고 있는가를 알 수 없다. 물론
+산점도 위에 회귀선을 그려 보아 대략 짐작할 수 있으나, 추정된 회귀선의 <b>정도</b><span class="en">precision</span>를
+측정하는 여러 가지 <b>측도</b><span class="en">measure</span>에 대하여 알아보기로 하자.</p>
+
+<!-- ================= 추정값의 표준오차 ================= -->
+<h2 class="sub"><span class="no">3.4.1</span>추정값의 표준오차 <span class="en">standard error of estimate</span></h2>
+<p>앞에서 선형회귀모형 $Y=\beta_0+\beta_1x+\epsilon$ 을 표본의 자료로부터 적합시킬 때에 오차항 $\epsilon$ 은
+서로 독립이며 평균이 $0$, 표준편차가 $\sigma$ 인 확률분포를 갖고 $x$ 의 값에 관계없이 이와 같은 성질이
+성립한다고 가정하였다. 따라서 모든 $x$ 의 값에 대하여 반응변수 $Y$ 의 기댓값은
+$E(Y\mid X=x)=\beta_0+\beta_1x$ 이고 분산은 $\sigma^2$ 이라고 생각하는 것이다. 이제 위에서 가정한 $\sigma$ 의
+추정방법을 생각하여 보자.</p>
+<p>$Y$ 의 측정값들이 회귀선 주위에 모두 가깝게 있다면 $\sigma$ 의 추정값은 작을 것이고, 이와 반대로 $Y$ 의
+값들이 회귀선으로부터 멀리 떨어져 있는 것이 많으면 $\sigma$ 의 추정값은 커질 것이다.</p>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">추정값의 표준오차 <span class="en">standard error of estimate</span></span>
+  <p><b>회귀선으로부터의 평균제곱편차</b><span class="en">mean square deviation from regression</span>를</p>
+  $$s_{y\cdot x}^2=\frac{\sum e_i^2}{n-2}=\frac{\sum(y_i-\hat y_i)^2}{n-2}\tag{3.30}$$
+  <p>로 정의하자. 이것이 바로 $\sigma^2$ 의 <b>불편추정값</b><span class="en">unbiased estimate</span>이 된다.
+  그 제곱근</p>
+  $$s_{y\cdot x}=\sqrt{\frac{\sum(y_i-\hat y_i)^2}{n-2}}\tag{3.31}$$
+  <p>을 <b>추정값의 표준오차</b>라고 부른다. 이 오차를 $s_{y\cdot x}$ 라고 표기하는 이유는
+  <b>어떤 주어진 $x$ 에서 $y$ 의 표본표준편차</b><span class="en">sample standard deviation</span>라는
+  의미이다.</p>
+</div>
+<div class="note">
+  분모가 $n-2$ 인 이유는 회귀모형의 모수가 $\beta_0,\beta_1$ 두 개이고 이들을 자료로 추정하면서 자유도를
+  <b>두 개</b> 잃기 때문이다. 표본분산 $\sum(y_i-\bar y)^2/(n-1)$ 이 평균 하나를 추정해 $1$ 을 잃은 것과 같은
+  이치이며, 원점을 지나는 회귀(<a href="3-7_regression-through-origin.html">3.7절</a>)에서는 모수가 하나뿐이라
+  분모가 $n-1$ 이 된다.
+</div>
+
+<div class="box ex">
+  <span class="tag">예 3.2</span><span class="title">광고료·판매액 자료의 추정값의 표준오차</span>
+  <p>표 3.1에 있는 표본자료에 대하여 추정값의 표준오차를 구하시오.</p>
+  <p><b>풀이</b> &nbsp;앞의 예 3.1에서 얻은 추정된 회귀식 $\hat y_i=-2.270+2.609x_i$ 로부터 다음 표를 얻는다.</p>
+  <div class="scroll">
+  <table class="data">
+    <caption style="caption-side:top; font-size:0.8rem; color:var(--muted); margin-bottom:4px;">표 3.2 &nbsp;$\hat y_i$ 와 $y_i-\hat y_i$</caption>
+    <tr><th>관측번호</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th></tr>
+    <tr><th>$x_i$</th><td>4</td><td>8</td><td>9</td><td>8</td><td>8</td><td>12</td><td>6</td><td>10</td><td>6</td><td>9</td></tr>
+    <tr><th>$y_i$</th><td>9</td><td>20</td><td>22</td><td>15</td><td>17</td><td>30</td><td>18</td><td>25</td><td>10</td><td>20</td></tr>
+    <tr><th>$\hat y_i$</th><td>8.17</td><td>18.60</td><td>21.21</td><td>18.60</td><td>18.60</td><td>29.04</td><td>13.38</td><td>23.81</td><td>13.38</td><td>21.21</td></tr>
+    <tr><th>$y_i-\hat y_i$</th><td>0.83</td><td>1.40</td><td>0.79</td><td>−3.60</td><td>−1.60</td><td>0.96</td><td>4.62</td><td>1.19</td><td>−3.38</td><td>−1.21</td></tr>
+  </table>
+  </div>
+  <p>잔차제곱합은</p>
+  $$\sum(y_i-\hat y_i)^2=(9-8.17)^2+(20-18.60)^2+\cdots+(20-21.21)^2=55.36$$
+  <p>이므로, 구하려는 추정값의 표준오차는</p>
+  $$s_{y\cdot x}=\sqrt{\frac{55.36}{8}}=2.63\qquad(\text{단위: }100\text{만 원})$$
+  <p>이 된다.</p>
+</div>
+<div class="note">
+  만약 $n$ 개의 관측값들이 추정된 회귀선상에 <b>모두</b> 있다면 모든 $i$ 에 대하여 $y_i-\hat y_i=0$ 이므로
+  $s_{y\cdot x}=0$ 이 된다. 바꾸어 말해서 $s_{y\cdot x}=0$ 이라면 모든 점들이 회귀선상에 위치하고 있다는 것이다.
+  물론 이런 경우는 극히 드물며, $s_{y\cdot x}$ 의 값이 매우 작은 경우에는 $n$ 개의 점들이 모두 회귀선에 매우
+  가깝게 관측된다는 것을 의미한다.
+</div>
+
+<!-- ================= 결정계수 ================= -->
+<h2 class="sub"><span class="no">3.4.2</span>결정계수 <span class="en">coefficient of determination</span></h2>
+<p>추정된 회귀선의 정도를 측정하는 다음 방법으로 다음의 식을 고려하여 보자.</p>
+$$(y_i-\bar y)=(y_i-\hat y_i)+(\hat y_i-\bar y)\tag{3.32}$$
+<p>한 개의 관측값 $y_i$ 와 $y_i$ 들의 평균 $\bar y$ 와의 차이를 <b>총편차</b><span class="en">total deviation</span>라고
+하면, 식 (3.32)에서 보듯이 두 개의 편차 항으로 나타낼 수 있다. 하나는 회귀선에 의하여
+<b>설명되지 않는</b> 편차이고, 또 하나는 <b>설명되는</b> 편차이다.</p>
+
+<figure class="fig">
+<svg viewBox="0 0 340 245" role="img" aria-label="총편차의 구분 — 총편차가 설명되는 편차와 설명 안 되는 편차로 나뉜다">
+  <line class="axis" x1="40" y1="210" x2="325" y2="210"/>
+  <line class="axis" x1="50" y1="200" x2="50" y2="20"/>
+  <!-- ȳ 수평선 -->
+  <line class="aux" x1="50" y1="140" x2="315" y2="140"/>
+  <text class="num" x="34" y="144">ȳ</text>
+  <!-- 회귀선 -->
+  <line class="vec" x1="60" y1="190" x2="300" y2="60"/>
+  <text class="lbl b" x="303" y="56">ŷᵢ</text>
+  <!-- x_i 에서의 수직선 -->
+  <line class="aux" x1="220" y1="60" x2="220" y2="210"/>
+  <circle cx="220" cy="60" r="3.6" fill="#1d6fb8"/>
+  <circle cx="220" cy="103" r="3" fill="#7b3fa0"/>
+  <text class="num" x="182" y="52">(xᵢ, yᵢ)</text>
+  <text class="num" x="214" y="226">xᵢ</text>
+  <!-- 오른쪽 두 조각 브래킷 -->
+  <path d="M228,60 L234,60 L234,103 L228,103" fill="none" stroke="#888" stroke-width="1.2"/>
+  <text class="num" x="240" y="76">설명 안 되는 편차</text>
+  <text class="num" x="240" y="90">yᵢ − ŷᵢ</text>
+  <path d="M228,103 L234,103 L234,140 L228,140" fill="none" stroke="#888" stroke-width="1.2"/>
+  <text class="num" x="240" y="120">설명되는 편차</text>
+  <text class="num" x="240" y="134">ŷᵢ − ȳ</text>
+  <!-- 왼쪽 총편차 브래킷 -->
+  <path d="M212,60 L206,60 L206,140 L212,140" fill="none" stroke="#888" stroke-width="1.2"/>
+  <text class="num" x="140" y="94">총편차</text>
+  <text class="num" x="140" y="108">yᵢ − ȳ</text>
+  <text class="lbl" x="40" y="18" fill="#5a5a5a">y</text>
+  <text class="lbl" x="322" y="226" fill="#5a5a5a">x</text>
+  <text class="lbl" x="38" y="224" fill="#5a5a5a">0</text>
+</svg>
+<figcaption>그림 3.6 — 총편차의 구분. 총편차 $y_i-\bar y$ 가 회귀선에 의해 <b>설명되는 편차</b> $\hat y_i-\bar y$ 와
+<b>설명 안 되는 편차</b> $y_i-\hat y_i$ 로 정확히 갈라진다.</figcaption>
+</figure>
+
+<div class="box prf">
+  <span class="tag">유도</span><span class="en">제곱합의 분해</span>
+  <ol>
+    <li><span class="step">① 제곱하고 모두 더하기.</span> 식 (3.32)를 제곱하고 모든 $i$ 에 대하여 합을 구하면
+      $$\sum(y_i-\bar y)^2=\sum(y_i-\hat y_i)^2+\sum(\hat y_i-\bar y)^2
+      +2\sum(y_i-\hat y_i)(\hat y_i-\bar y)$$
+      가 된다.</li>
+    <li><span class="step">② 교차항이 사라진다.</span> 오른쪽 마지막 항은 $e_i=y_i-\hat y_i$ 이므로
+      $$\sum(y_i-\hat y_i)(\hat y_i-\bar y)=\sum e_i(\hat y_i-\bar y)=\sum\hat y_ie_i-\bar y\sum e_i$$
+      인데, <a href="3-3_estimating-regression-line.html">3.3.3절의 성질</a>에서 $\sum\hat y_ie_i=0$ 이고
+      $\sum e_i=0$ 이므로 <b>$0$ 이 된다</b>. 교차항이 사라지는 것이 이 분해가 성립하는 핵심이다.</li>
+    <li><span class="step">③ 제곱합의 분해.</span> 따라서 총편차의 제곱의 합
+      $S_{(yy)}=\sum(y_i-\bar y)^2$ — 이를 <b>총변동</b><span class="en">total variation</span> 또는
+      <b>총제곱합</b><span class="en">total sum of squares</span>이라 부르고 $SST$ 로 표시한다 — 은 다음과 같이
+      둘로 나누어진다.
+      $$SST=SSE+SSR\tag{3.33}$$
+      $$(\text{총변동})=(\text{회귀선에 의하여 설명 안 되는 변동})+(\text{회귀선에 의하여 설명되는 변동})$$</li>
+  </ol>
+  <div class="qed">∎</div>
+</div>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">$SSE$ 와 $SSR$</span>
+  <p>위 분해의 두 조각을 각각 다음과 같이 정의한다.</p>
+  $$SSE=\sum(y_i-\hat y_i)^2,\qquad SSR=\sum(\hat y_i-\bar y)^2\tag{3.34}$$
+  <ol class="props">
+    <li>$SSE$ — <b>잔차에 의한 제곱합</b><span class="en">sum of squares due to residual errors</span> 또는
+      회귀로부터의 제곱합<span class="en">sum of squares from regression</span></li>
+    <li>$SSR$ — <b>회귀에 의한 제곱합</b><span class="en">sum of squares due to regression</span></li>
+  </ol>
+</div>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">표본결정계수 <span class="en">sample coefficient of determination</span></span>
+  <p>위의 변동들에 대하여 다음 비율</p>
+  $$r^2=\frac{SSR}{SST}=1-\frac{SSE}{SST}\tag{3.35}$$
+  <p>은 <b>총변동 중에서 회귀선에 의하여 설명되는 비율</b>이며, 그 범위는 $0\le r^2\le1$ 이다.
+  이 $r^2$ 을 <b>표본결정계수</b>라고 정의한다.</p>
+</div>
+<div class="note">
+  결정계수를 표현할 때 $r^2$(또는 $R^2$)을 쓰는데, 기호 $r$(또는 $R$)은
+  <a href="3-5_correlation.html">3.5절</a>의 <b>표본상관계수</b>를 그대로 나타낸다(식 (3.36) 참조).
+  둘의 관계는 3.5절에서 식 (3.40)으로 확인한다.
+</div>
+<div class="box thm">
+  <span class="tag">성질</span><span class="title">결정계수의 양 극단</span>
+  <ol class="props">
+    <li>$SSE=0$ 이면 모든 관측값이 회귀선상에 있고 $r^2=1$ 이다.</li>
+    <li>$x$ 와 $y$ 사이에 회귀관계가 전혀 없어서 $\hat y_i=\bar y$ 가 되면 $SSR=0$ 이므로 $r^2=0$ 이다.</li>
+  </ol>
+  <p>따라서 $r^2$ 의 값이 $0$ 에 가까울수록 쓸모가 없는 회귀선이고, $x$ 와 $y$ 사이에 높은 상관관계가 있을수록
+  $r^2$ 의 값이 $1$ 에 가까워진다. 결정계수는 총변동 중 회귀선에 의하여 설명되는 변동이 기여하는 비율을
+  의미하므로, <b>총변동을 설명하는 데 있어서 회귀선의 기여율</b>이라고 부르기도 한다.</p>
+</div>
+
+<div class="box ex">
+  <span class="tag">예 3.3</span><span class="title">광고료·판매액 자료의 결정계수</span>
+  <p>표 3.1의 자료에 대하여 회귀선을 구했을 때 결정계수는 어떤 값을 갖는가?</p>
+  <p><b>풀이</b> &nbsp;앞의 예 3.2에서 계산한 것과 같이 $SSE=\sum(y_i-\hat y_i)^2=55.36$ 이고,</p>
+  $$S_{(yy)}=SST=\sum(y_i-\bar y)^2=(9-18.6)^2+(20-18.6)^2+\cdots+(20-18.6)^2=368.40$$
+  <p>이므로, 식 (3.35)로부터</p>
+  $$r^2=1-\frac{SSE}{SST}=1-\frac{55.36}{368.40}=0.850$$
+  <p>이 된다. 즉 총변동 중에서 회귀직선에 의하여 설명되는 부분이 <b>$85\%$</b> 라는 것으로, 추정 회귀선의
+  정도는 비교적 높은 편이다.</p>
+</div>
+
+<div class="note">
+  회귀선의 정도를 측정하는 측도는 추정값의 표준오차와 결정계수 이외에도 <b>상관계수</b>나
+  <b>분산분석의 $F$ 검정</b>으로부터도 가능하며, 이것들은 다음의 <a href="3-5_correlation.html">상관분석</a>과
+  <a href="3-6_anova.html">분산분석</a>에서 다룬다.
+</div>
+
+<nav class="pager">
+  <a href="3-3_estimating-regression-line.html">← 이전<small>3.3 회귀선의 추정</small></a>
+  <a class="next" href="3-5_correlation.html">다음 →<small>3.5 상관분석</small></a>
+</nav>
+
+</body>
+</html>
