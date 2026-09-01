@@ -235,20 +235,6 @@
   =\frac{p^s(1-p)^{n-s}}{\dbinom ns p^s(1-p)^{n-s}}=\frac{1}{\dbinom ns}$$
   <p>이 되어 모수 $p$ 에 의존하지 않는다 — $S=\sum X_i$ 는 $p$ 의 충분통계량이다.</p>
 </div>
-<div class="note">
-  <b>왜 모수가 사라지는가 — 약분으로 읽는 압축.</b> 조건부 밀도는 정의상
-  $$f(x_1,\dots,x_n\mid s)=\frac{f(x_1,\dots,x_n;\theta)}{f_S(s;\theta)}$$
-  이므로, 분자와 분모를 각각 무엇으로 보는지가 관건이다.
-  <ul class="props">
-    <li><b>분자</b> $f(x_1,\dots,x_n;\theta)$ — 원본 표본 전체. 모수 $\theta$ 관련 정보와 표본의 나머지 정보가 함께 들어 있다.</li>
-    <li><b>분모</b> $f_S(s;\theta)$ — 요약본 $S$. $S$ 가 충분통계량이라면 원본 가운데 $\theta$ 와 연결된 부분을 <b>전부</b> 흡수하고 있다.</li>
-    <li><b>나눗셈</b> — 분모의 $\theta$ 항이 분자의 $\theta$ 항과 정확히 일치하므로 통째로 <b>약분</b>되고, 남은 식에는 $\theta$ 라는 문자가 하나도 없다.</li>
-  </ul>
-  <p>예 4.25 에서 $p^s(1-p)^{n-s}$ 가 분자·분모에서 그대로 지워지고 $1/\binom ns$ 만 남은 것이 바로 이 약분이다.
-  즉 <b>$\theta$ 의 정보가 $S$ 안으로 전부 흡수·압축되었기 때문에, $S$ 의 밀도로 나누어 주면 $\theta$ 가 깔끔하게 소거된다</b>.
-  거꾸로 약분되지 않고 $\theta$ 가 남는다면, $S$ 가 아직 $\theta$ 의 정보를 다 담지 못했다는 뜻 — 충분통계량이 아니다.</p>
-  <p>이 "분자 $=$ ($\theta$ 를 품은 부분) $\times$ ($\theta$ 와 무관한 부분)" 이라는 구조를 확률 계산 없이 곧바로 확인하는 도구가 다음의 <b>인수분해 정리</b>이다.</p>
-</div>
 <div class="box thm">
   <span class="tag">정리 4.4</span><span class="title">인수분해 정리 <span class="en">factorization theorem</span></span>
   <p>$X_1,\dots,X_n$ 의 결합 확률밀도함수가 $f(x_1,\dots,x_n;\theta)$ 일 때 $S(X)=(S_1(X),\dots,S_k(X))$ 가
