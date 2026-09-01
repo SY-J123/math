@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>표본조사론 · 3.1 개요</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">표본조사론 · 3장 보조 정보를 이용한 추정</div>
+  <h1><span class="no">3.1</span>개요 <span class="en">overview</span></h1>
+</header>
+
+<p>표본조사 이론에서 중요한 두 가지 관심사는
+<b>모집단의 특성을 잘 대표하는 표본을 추출할 수 있도록 표본설계를 하는 것</b>과,
+<b>주어진 표본의 자료를 활용하여 보다 효율적인 추정량을 구하는 방법을 찾는 것</b>이다.
+앞서 <a href="../ch02/2-1_overview.html">제2장</a>에서는 표본추출법으로서 단순임의추출법을 소개하였고,
+단순임의표본으로부터 데이터 $y_1,y_2,y_3,\dots,y_n$ 을 얻었을 때
+이것을 이용하여 모평균이나 모총계를 추정하기 위한 단순한 추정법을 소개하였다.</p>
+
+<p>그러나 경우에 따라서는 <b>조사변수 $y$ 와 상관관계가 강하면서도 그 값을 상대적으로 손쉽게 알 수 있는
+보조 정보 $x$ 를 활용하는 것이 가능한 때</b>가 있다.
+이럴 때 관심변수만을 추정에 사용하는 것이 아니라 보조변수의 정보를 함께 사용한다면
+여러 가지 면에서 유용할 수 있다.</p>
+
+<div class="box def">
+  <span class="tag">용어</span><span class="title">주변수와 보조변수 <span class="en">study variable, auxiliary variable</span></span>
+  <ol class="props">
+    <li><b>주변수</b>(study variable) $y$ — 실제로 추정하고자 하는 관심 변수.</li>
+    <li><b>보조변수</b>(auxiliary variable) $x$ — $y$ 와 상관관계가 강하면서
+      그 값을 사전에 알거나 손쉽게 얻을 수 있는 변수.</li>
+  </ol>
+  <p>보조변수가 쓸모 있으려면 두 조건을 <b>동시에</b> 만족해야 한다 —
+  $y$ 와 <b>상관이 강할 것</b>, 그리고 그 값을 <b>싸게 얻을 수 있을 것</b>.
+  둘 중 하나만 만족하면 보조 정보로서의 가치가 없다.</p>
+</div>
+
+<h2 class="sub">보조 정보가 쓰이는 상황 <span class="en">motivating examples</span></h2>
+
+<div class="box ex">
+  <span class="tag">사례</span><span class="title">아파트 가격 조사 — 변동의 ‘비’ 자체가 관심사인 경우</span>
+  <p>어느 도시의 아파트 가격 조사를 생각해 보자. 아파트 가격 조사는 <b>주기적으로 반복</b>되는 것이 일반적이다.
+  이때 해당 도시의 현재의 평균 가격뿐 아니라
+  <b>전년도에 비해 가격이 상대적으로 얼마나 변동했는지</b>도 관심의 대상이다.</p>
+  <ol class="props">
+    <li>현재 시점의 아파트 가격이 <b>조사변수</b>라면, 과거에 조사된 가격은 <b>보조변수</b>이다.</li>
+    <li>두 시점의 가격 변동의 정도는 <b>두 변수의 비</b>(比, ratio)를 계산하여 가늠할 수 있다 —
+      이것이 바로 추정을 위해 보조 정보가 활용되는 예이다.</li>
+    <li>한편 모평균이나 모총계를 추정할 때도 보조 정보를 활용하는 것이 더 효율적일 수 있다.
+      이전의 조사 가격과 현재의 조사 가격은 상관관계가 강할 것으로 예상되므로,
+      이 두 변수의 관계를 활용하면 <b>현재의 조사 가격만을 이용하는 단순추정법보다 효율적으로 추정</b>할 수 있다.</li>
+  </ol>
+</div>
+
+<div class="box ex">
+  <span class="tag">사례</span><span class="title">쌀 생산량 조사 — 조사 자체가 불가능한 것을 가능하게 만드는 경우</span>
+  <p>농림축산식품부에서 우리나라의 쌀 생산량을 추정할 때도 보조 정보를 이용한 추정법을 사용한다.
+  쌀 생산량을 조사하기 위해 추출된 표본 경지들이 있는데,
+  이 논은 모두 개인의 소유이므로 <b>조사원이 함부로 그 논의 벼를 벨 수는 없다</b>.</p>
+  <ol class="props">
+    <li>먼저 표본 경지 중 벼를 재배하는 <b>경지의 면적</b>을 조사한다.</li>
+    <li>그 경지에 있는 <b>일부의 벼이삭만</b> 거두어서 수확량을 조사한다.</li>
+    <li>일부 수확된 이삭을 통해 <b>단위면적당 쌀 생산량</b>을 구한다.</li>
+    <li>이 값에 벼가 재배되는 <b>경지 면적을 곱해 줌</b>으로써 쌀의 총생산량을 추정한다.</li>
+  </ol>
+  <p>이 사례는 보조 정보를 이용하고 추정함으로써 <b>조사의 어려움을 대폭 감소시킨 실제적인 예</b>이다.
+  만일 모든 표본 경지의 벼를 다 수확해야 조사가 가능하다면
+  조사 비용이 많이 드는 것은 말할 것도 없고 그 밖에도 현실적인 어려움이 예상된다.</p>
+</div>
+
+<div class="note">
+  두 사례가 보여 주는 보조 정보의 두 가지 쓸모 —
+  <b>ⓐ 비 자체가 알고 싶은 값</b>인 경우(아파트 가격 변동률)와
+  <b>ⓑ 같은 값을 더 정확히·더 싸게 얻는 수단</b>인 경우(쌀 생산량)다.
+  이 장의 $3.2$ 절은 ⓐ 로 시작해서 ⓑ 로 이어지고, $3.3$ 절은 ⓑ 만을 다룬다.
+</div>
+
+<h2 class="sub">이 장에서 다루는 것 <span class="en">scope</span></h2>
+<p>이 장에서는 표본으로부터 주변수 $y$ 뿐만 아니라 추가적으로 보조변수 $x$ 도 함께 조사하여
+추정에 이용하는 추정법으로 <b>비추정</b>(ratio estimation)과 <b>회귀추정</b>(regression estimation)을 소개한다.</p>
+
+<div class="terms">
+  <div class="h">두 추정법의 차이 — 한 줄 요약</div>
+  <dl>
+    <dt>비추정 <span class="en">ratio estimation</span></dt>
+    <dd>$x$ 와 $y$ 가 <b>원점을 지나는</b> 직선관계일 때. $x$ 가 $0$ 이면 $y$ 도 $0$ 인 관계 — 예: 나무 직경과 수령.</dd>
+    <dt>회귀추정 <span class="en">regression estimation</span></dt>
+    <dd>$x$ 와 $y$ 가 직선관계이지만 <b>원점을 지나지는 않는</b> 경우 — 예: 입학 성적과 학년말 성적.</dd>
+  </dl>
+</div>
+
+<div class="note">
+  비추정과 회귀추정은 모두 여러 가지 표본추출법에 따라 적절히 고려되어야 하는데,
+  이 장에서는 <b>단순임의추출법에 대해서만</b> 다룬다.
+</div>
+
+<nav class="pager">
+  <a href="../ch02/2-exercises.html">← 이전<small>2장 연습문제</small></a>
+  <a class="next" href="3-2_ratio-estimation.html">다음 →<small>3.2 비추정</small></a>
+</nav>
+
+</body>
+</html>

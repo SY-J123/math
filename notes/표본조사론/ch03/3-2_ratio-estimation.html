@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>표본조사론 · 3.2 비추정</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">표본조사론 · 3장 보조 정보를 이용한 추정</div>
+  <h1><span class="no">3.2</span>비추정 <span class="en">ratio estimation</span></h1>
+</header>
+
+<h2 class="sub">1. 비추정의 개요 <span class="en">the ratio and its estimator</span></h2>
+<p>크기가 $N$ 인 모집단에서 $n$ 개의 표본을 단순임의추출법으로 추출하여 조사하였다.
+$n$ 개의 표본에서 얻어진 각 단위들의 주변수 $y$ 와 보조변수 $x$ 를 각각
+$y_1,y_2,\dots,y_n$ 과 $x_1,x_2,\dots,x_n$ 이라고 하자.
+먼저 주변수 $y$ 의 총계 $\tau_y$ 와 보조변수 $x$ 의 총계 $\tau_x$ 와의 <b>비</b>(ratio)인 $R$ 의 추정에 대해 생각해 보자.</p>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">모비 $R$ 과 그 추정량 $r$</span>
+  $$R=\frac{\tau_y}{\tau_x}\tag{3-1}$$
+  $$r=\frac{\displaystyle\sum_{i=1}^{n}y_i}{\displaystyle\sum_{i=1}^{n}x_i}=\frac{\bar y}{\bar x}\tag{3-2}$$
+  <p>분자와 분모를 각각 $n$ 으로 나누면 <b>표본평균의 비</b> 가 된다는 점에 주목하자.</p>
+</div>
+
+<div class="box def">
+  <span class="tag">공식</span><span class="title">$r$ 의 분산의 추정량과 신뢰구간</span>
+  $$\hat V(r)=\frac{N-n}{N}\cdot\frac1n\cdot\frac{1}{\mu_x^2}\cdot
+    \frac{\displaystyle\sum_{i=1}^{n}(y_i-rx_i)^2}{n-1}\tag{3-3}$$
+  $$r\pm z_{\alpha/2}\sqrt{\hat V(r)}\tag{3-4}$$
+  <p>이 식에서 일반적으로 보조변수 $x$ 의 모평균 $\mu_x$ 는 <b>사전 정보로서 알려져 있는 경우가 많다</b>.
+  만약 이 값을 알지 못할 경우에는 그 추정량 $\bar x$ 를 대신 사용하면 된다.</p>
+</div>
+
+<div class="box thm">
+  <span class="tag">직관</span><span class="title">$\sum(y_i-rx_i)^2$ 은 ‘원점을 지나는 직선’ 의 잔차제곱합이다</span>
+  <p>$r$ 은 원점과 점 $(\bar x,\bar y)$ 를 잇는 직선의 <b>기울기</b>이다.
+  그 직선 $y=rx$ 위에서 $i$ 번째 점의 세로 방향 이탈이 바로 $y_i-rx_i$ 이므로,
+  $\sum(y_i-rx_i)^2$ 은 <b>절편 없는 직선을 자료에 맞춘 뒤 남은 잔차제곱합</b>이다.</p>
+  <p>즉 식 $(3\text{-}3)$ 은 <a href="../ch02/2-3_estimation.html">2.3절</a>의
+  $\hat V(\bar y)=\dfrac{N-n}{N}\cdot\dfrac{s^2}{n}$ 에서
+  <b>$s^2$ 자리에 “$y$ 자체의 흩어짐” 대신 “직선에서 벗어난 만큼의 흩어짐” 을 넣은 것</b>이다.
+  $x$ 와 $y$ 가 직선에 가까이 붙어 있을수록 이 값이 작아지고, 그만큼 추정이 정밀해진다.</p>
+</div>
+
+<figure class="fig">
+<svg viewBox="0 0 360 210" role="img" aria-label="원점을 지나는 직선 y=rx 와 자료점들, 그리고 한 점의 잔차 y_i - r x_i">
+  <line class="axis" x1="40" y1="175" x2="340" y2="175"/>
+  <line class="axis" x1="40" y1="175" x2="40" y2="20"/>
+  <text class="lbl" x="346" y="179" text-anchor="end">x</text>
+  <text class="lbl" x="34" y="26" text-anchor="end">y</text>
+
+  <line class="vec" x1="40" y1="175" x2="320" y2="42"/>
+  <text class="lbl b" x="286" y="66" text-anchor="middle">y = r x</text>
+
+  <g fill="#444">
+    <circle cx="88"  cy="152" r="3"/><circle cx="112" cy="146" r="3"/><circle cx="132" cy="128" r="3"/>
+    <circle cx="158" cy="126" r="3"/><circle cx="182" cy="112" r="3"/><circle cx="206" cy="106" r="3"/>
+    <circle cx="232" cy="86"  r="3"/><circle cx="258" cy="84"  r="3"/><circle cx="282" cy="66"  r="3"/>
+    <circle cx="302" cy="62"  r="3"/>
+  </g>
+
+  <line class="aux" x1="182" y1="112" x2="182" y2="88"/>
+  <circle cx="182" cy="112" r="4" fill="#0f8a7d"/>
+  <text class="lbl t" x="196" y="106" text-anchor="start">yᵢ − r xᵢ</text>
+
+  <line class="aux" x1="190" y1="175" x2="190" y2="85"/>
+  <line class="aux" x1="40" y1="85" x2="190" y2="85"/>
+  <circle cx="190" cy="85" r="4" fill="#7b3fa0"/>
+  <text class="lbl p" x="190" y="192" text-anchor="middle">x̄</text>
+  <text class="lbl p" x="32" y="89" text-anchor="end">ȳ</text>
+</svg>
+<figcaption>비추정의 기하 — 직선은 <b>반드시 원점을 지나고</b> 점 $(\bar x,\bar y)$ 를 통과한다.
+그 기울기가 $r=\bar y/\bar x$ 이고, 세로 이탈 $y_i-rx_i$ 의 제곱합이 분산 식에 들어간다.</figcaption>
+</figure>
+
+<div class="box ex">
+  <span class="tag">예제 3-1</span><span class="title">비추정 사례 — 주택 가격의 변화율</span>
+  <p>어느 도시의 주택 가격이 일정 기간에 얼마나 변하였는지 그 변동의 비를 알아보고자 한다.
+  이 도시에 총 $N=1{,}000$ 호의 주택이 있는데 그중 $n=20$ 호의 주택을 단순임의추출법으로 추출하여 조사하였다.
+  표본으로 뽑힌 주택에 대해서 기준 시점의 주택 가격과 현재 조사 시점의 주택 가격을 조사한 결과가 다음과 같다.
+  이 데이터를 이용하여 도시의 주택 가격의 변화율 $R$ 을 추정하고 $95\%$ 신뢰구간을 구하라.</p>
+
+  <div class="scroll"><table class="data">
+    <tr><th>표본 주택</th><th>기준 시점 $x_i$</th><th>조사 시점 $y_i$</th>
+        <th>표본 주택</th><th>기준 시점 $x_i$</th><th>조사 시점 $y_i$</th></tr>
+    <tr><td>1</td><td>6.7</td><td>7.1</td><td>11</td><td>8.2</td><td>9.1</td></tr>
+    <tr><td>2</td><td>8.2</td><td>8.4</td><td>12</td><td>6.8</td><td>7.3</td></tr>
+    <tr><td>3</td><td>7.9</td><td>8.2</td><td>13</td><td>7.4</td><td>7.8</td></tr>
+    <tr><td>4</td><td>6.4</td><td>6.9</td><td>14</td><td>7.5</td><td>8.3</td></tr>
+    <tr><td>5</td><td>8.3</td><td>8.4</td><td>15</td><td>8.3</td><td>8.9</td></tr>
+    <tr><td>6</td><td>7.2</td><td>7.9</td><td>16</td><td>9.1</td><td>9.6</td></tr>
+    <tr><td>7</td><td>6.0</td><td>6.5</td><td>17</td><td>8.6</td><td>8.7</td></tr>
+    <tr><td>8</td><td>7.4</td><td>7.6</td><td>18</td><td>7.9</td><td>8.8</td></tr>
+    <tr><td>9</td><td>8.1</td><td>8.9</td><td>19</td><td>6.3</td><td>7.0</td></tr>
+    <tr><td>10</td><td>9.3</td><td>9.9</td><td>20</td><td>8.9</td><td>9.4</td></tr>
+    <tr><th>합계</th><th>154.5</th><th>164.7</th><th></th><th></th><th></th></tr>
+  </table></div>
+  <p style="text-align:center;font-size:0.82rem;color:#777;">〈표 3-1〉 주택 가격 데이터 (단위: 억 원)</p>
+
+  <p><b>풀이</b> &nbsp;먼저 두 시점의 주택 가격의 관계를 시각적으로 파악하기 위해 산점도를 그려 보면
+  두 시점의 주택 가격은 <b>강한 양의 상관관계</b>를 가진다는 사실을 짐작할 수 있다.
+  두 시점의 비 $R$ 의 추정량 $r$ 은 다음과 같이 계산된다.</p>
+  $$r=\frac{\text{조사 연도 표본 주택들의 가격 합계}}{\text{기준 연도 표본 주택들의 가격 합계}}
+    =\frac{\sum y_i}{\sum x_i}=\frac{164.7}{154.5}\fallingdotseq1.07$$
+  <p>따라서 지난 기간에 <b>$7\%$ 정도 주택 가격이 상승</b>했다고 볼 수 있다.</p>
+
+  <p>한편 $r$ 의 분산의 추정값은 식 $(3\text{-}3)$ 에 따라 구한다.
+  여기에서 $\mu_x$ 대신에 $\bar x=154.5/20=7.725$ 를 대입하면 된다.
+  이 값을 계산하려면 우선 $\sum(y_i-rx_i)^2$ 을 계산해야 하는데, 그 결과는</p>
+  $$\sum_{i=1}^{n}(y_i-rx_i)^2=1.2844$$
+  <p>그러므로 분산의 추정값은</p>
+  $$\hat V(r)=\frac{N-n}{N}\cdot\frac1n\cdot\frac{1}{\bar x^2}\cdot\frac{\sum(y_i-rx_i)^2}{n-1}
+    =\frac{1{,}000-20}{1{,}000}\cdot\frac{1}{20}\cdot\frac{1}{7.725^2}\cdot\frac{1.2844}{20-1}
+    =0.0000555$$
+  <p>가 된다. 위의 계산 결과를 이용하여 $R$ 에 대한 $95\%$ 신뢰구간을 구하면 다음과 같다.</p>
+  $$r\pm z_{\alpha/2}\sqrt{\hat V(r)}
+    \;\Leftrightarrow\;1.07\pm2\sqrt{0.0000555}
+    \;\Leftrightarrow\;1.07\pm0.015$$
+</div>
+
+<figure class="fig">
+<svg viewBox="0 0 340 220" role="img" aria-label="예제 3-1 주택 가격 산점도 — 기준 시점과 조사 시점 가격이 강한 양의 상관을 보인다">
+  <line class="axis" x1="50" y1="180" x2="320" y2="180"/>
+  <line class="axis" x1="50" y1="180" x2="50" y2="30"/>
+  <g class="axis">
+    <line x1="64"  y1="180" x2="64"  y2="184"/><line x1="135" y1="180" x2="135" y2="184"/>
+    <line x1="206" y1="180" x2="206" y2="184"/><line x1="277" y1="180" x2="277" y2="184"/>
+    <line x1="46" y1="149" x2="50" y2="149"/><line x1="46" y1="111" x2="50" y2="111"/>
+    <line x1="46" y1="72"  x2="50" y2="72"/> <line x1="46" y1="34"  x2="50" y2="34"/>
+  </g>
+  <g class="lbl">
+    <text x="64"  y="194" text-anchor="middle">6.0</text><text x="135" y="194" text-anchor="middle">7.0</text>
+    <text x="206" y="194" text-anchor="middle">8.0</text><text x="277" y="194" text-anchor="middle">9.0</text>
+    <text x="42" y="153" text-anchor="end">7</text><text x="42" y="115" text-anchor="end">8</text>
+    <text x="42" y="76"  text-anchor="end">9</text><text x="42" y="38"  text-anchor="end">10</text>
+  </g>
+
+  <line class="vec" x1="50" y1="180" x2="309" y2="30"/>
+  <text class="lbl b" x="286" y="56" text-anchor="middle">y = 1.07x</text>
+
+  <g fill="#444">
+    <circle cx="114" cy="145" r="3"/><circle cx="221" cy="95"  r="3"/><circle cx="199" cy="103" r="3"/>
+    <circle cx="93"  cy="153" r="3"/><circle cx="228" cy="95"  r="3"/><circle cx="150" cy="115" r="3"/>
+    <circle cx="64"  cy="169" r="3"/><circle cx="164" cy="126" r="3"/><circle cx="213" cy="76"  r="3"/>
+    <circle cx="299" cy="38"  r="3"/><circle cx="221" cy="69"  r="3"/><circle cx="121" cy="138" r="3"/>
+    <circle cx="164" cy="119" r="3"/><circle cx="171" cy="99"  r="3"/><circle cx="228" cy="76"  r="3"/>
+    <circle cx="285" cy="49"  r="3"/><circle cx="249" cy="84"  r="3"/><circle cx="199" cy="80"  r="3"/>
+    <circle cx="86"  cy="149" r="3"/><circle cx="270" cy="57"  r="3"/>
+  </g>
+  <text class="lbl" x="185" y="210" text-anchor="middle">기준 시점 가격 (억 원)</text>
+</svg>
+<figcaption>[그림 3-1] 주택 가격의 산점도 — 점들이 원점을 지나는 직선 $y=1.07x$ 주위에 바짝 붙어 있다.
+$\hat\rho=0.966$ 으로, 비추정이 잘 맞는 전형적인 형태다.</figcaption>
+</figure>
+
+<h2 class="sub">분산 식을 익숙한 기호로 <span class="en">rewriting the variance</span></h2>
+<p>식 $(3\text{-}3)$ 의 분산 식을 익숙한 기호로 표현해 보자.
+먼저 보조변수 $x$ 와 주변수 $y$ 의 표본분산들과 공분산을 각각 $s_x^2,\;s_y^2,\;s_{xy}$ 로 표시하고 다음과 같이 정의하자.</p>
+$$s_x^2=\frac{1}{n-1}\sum_{i=1}^{n}(x_i-\bar x)^2,\qquad
+  s_y^2=\frac{1}{n-1}\sum_{i=1}^{n}(y_i-\bar y)^2,\qquad
+  s_{xy}=\frac{1}{n-1}\sum_{i=1}^{n}(x_i-\bar x)(y_i-\bar y)$$
+<p>그러면 식 $(3\text{-}3)$ 의 분산 식은 다음과 같이 나타낼 수 있다.</p>
+
+<div class="box def">
+  <span class="tag">공식</span><span class="title">표본분산·공분산으로 쓴 $\hat V(r)$</span>
+  $$\hat V(r)=\frac{N-n}{N}\cdot\frac1n\cdot\frac{1}{\mu_x^2}
+    \left(s_y^2+r^2s_x^2-2r\hat\rho\,s_xs_y\right)\tag{3-5}$$
+  <p>여기에서 $\hat\rho$ 은 보조변수 $x$ 와 주변수 $y$ 간의 <b>표본상관계수</b>로
+  $\hat\rho=\dfrac{s_{xy}}{s_xs_y}$ 이다.</p>
+</div>
+
+<div class="box prf">
+  <span class="tag">보충 증명</span><span class="title">$(3\text{-}3)\Rightarrow(3\text{-}5)$ — 근사가 아니라 정확한 항등식이다</span>
+  <p>교재는 결과만 제시하지만, 실제로는 <b>$r$ 의 정의 덕분에 한 줄로 정확히</b> 나온다.</p>
+  <ol>
+    <li><span class="step">핵심 관찰 — 잔차에 상수항이 없다.</span>
+      $r=\bar y/\bar x$ 이므로 $\bar y-r\bar x=0$ 이다. 따라서
+      $$y_i-rx_i=(y_i-\bar y)-r(x_i-\bar x)+\underbrace{(\bar y-r\bar x)}_{=\,0}
+        =(y_i-\bar y)-r(x_i-\bar x)$$
+      <b>근사가 아니라 등식</b>이다.</li>
+    <li><span class="step">제곱해서 더한다.</span>
+      $$\sum_i(y_i-rx_i)^2=\sum_i(y_i-\bar y)^2-2r\sum_i(x_i-\bar x)(y_i-\bar y)+r^2\sum_i(x_i-\bar x)^2$$</li>
+    <li><span class="step">$n-1$ 로 나눈다.</span>
+      $$\frac{\sum_i(y_i-rx_i)^2}{n-1}=s_y^2-2r\,s_{xy}+r^2s_x^2
+        =s_y^2+r^2s_x^2-2r\hat\rho\,s_xs_y$$
+      마지막 등호는 $s_{xy}=\hat\rho\,s_xs_y$ 이기 때문이다. 이것을 $(3\text{-}3)$ 에 넣으면 $(3\text{-}5)$ 이다.</li>
+  </ol>
+  <p class="qed">∎</p>
+</div>
+
+<div class="note">
+  <b>어느 식을 쓸 것인가.</b> 손으로 $\sum(y_i-rx_i)^2$ 을 만들 수 있으면 $(3\text{-}3)$ 이 빠르고,
+  통계 소프트웨어가 이미 뱉어 놓은 <b>평균·표준편차·상관계수만 있을 때</b>는 $(3\text{-}5)$ 가 편리하다.
+</div>
+
+<div class="box ex">
+  <span class="tag">예</span><span class="title">〈예제 3-1〉 을 식 $(3\text{-}5)$ 로 다시 계산하기</span>
+  <p>〈예제 3-1〉의 데이터를 통계 소프트웨어로 계산하면 다음과 같은 결과를 얻는다.</p>
+  <div class="scroll"><table class="data">
+    <tr><th>구분</th><th>$n$</th><th>평균</th><th>표준편차</th><th>상관계수</th></tr>
+    <tr><td>$x$</td><td>20</td><td>7.725</td><td>0.947</td><td rowspan="2">$\hat\rho=0.966$</td></tr>
+    <tr><td>$y$</td><td>20</td><td>8.235</td><td>0.957</td></tr>
+  </table></div>
+  <p>위의 출력된 계산 결과와 식 $(3\text{-}5)$ 를 이용하여 구한 분산의 값은</p>
+  $$\hat V(r)=\frac{1{,}000-20}{1{,}000}\cdot\frac{1}{20}\cdot\frac{1}{7.725^2}
+    \left(0.957^2+1.07^2\times0.947^2-2\times1.07\times0.966\times0.947\times0.957\right)=0.0000568$$
+  <p>이 된다. 앞서 식 $(3\text{-}3)$ 으로 구한 $0.0000555$ 와의 차이는
+  $r$ 과 표준편차를 <b>소수 셋째 자리에서 반올림해 넣은 데서 오는 반올림 오차</b>일 뿐,
+  두 식은 위 증명대로 같은 값을 준다.</p>
+</div>
+
+<h2 class="sub">2. 비추정량을 이용한 모총계의 추정 <span class="en">estimating the total</span></h2>
+<p>앞에서 우리나라의 쌀 생산량 추정에 대해 간단하게 언급한 바 있는데,
+그것이 비추정량을 이용하여 모총계를 추정하는 좋은 예이다.
+$R=\dfrac{\tau_y}{\tau_x}$ 의 관계이므로 모총계 $\tau_y$ 는 다음과 같이 표현될 수 있다.</p>
+$$\tau_y=R\cdot\tau_x$$
+<p>$\tau_x$ 는 <b>보조변수의 총계이므로 사전에 미리 알 수 있는 값</b>이다.
+따라서 $R$ 대신 그 추정량인 $r$ 을 대입함으로써 모총계를 추정할 수 있다.</p>
+
+<div class="box def">
+  <span class="tag">공식</span><span class="title">모총계의 비추정량</span>
+  $$\hat\tau_y=r\cdot\tau_x=\frac{\displaystyle\sum_{i=1}^{n}y_i}{\displaystyle\sum_{i=1}^{n}x_i}\cdot\tau_x\tag{3-6}$$
+  $$\hat V(\hat\tau_y)=\hat V(r\cdot\tau_x)=\tau_x^2\cdot\hat V(r)
+    =\tau_x^2\cdot\frac{N-n}{N}\cdot\frac1n\cdot\frac{1}{\mu_x^2}\cdot
+     \frac{\displaystyle\sum_{i=1}^{n}(y_i-rx_i)^2}{n-1}
+    =N^2\cdot\frac{N-n}{N}\cdot\frac1n\cdot
+     \frac{\displaystyle\sum_{i=1}^{n}(y_i-rx_i)^2}{n-1}\tag{3-7}$$
+  $$\hat\tau_y\pm z_{\alpha/2}\sqrt{\hat V(\hat\tau_y)}\tag{3-8}$$
+</div>
+
+<div class="note">
+  마지막 등호에서 $\mu_x$ 가 사라진 이유 — $\tau_x=N\mu_x$ 이므로
+  $\dfrac{\tau_x^2}{\mu_x^2}=\dfrac{N^2\mu_x^2}{\mu_x^2}=N^2$ 이다.
+  즉 <b>모총계의 분산 식에는 $\mu_x$ 를 알 필요조차 없다</b>.
+</div>
+
+<div class="box ex">
+  <span class="tag">예제 3-2</span><span class="title">서울시 인구 추정</span>
+  <p>다음은 서울시 $25$ 개의 구 중에서 단순임의추출한 $7$ 개 표본 구의
+  $2015$ 년과 $2019$ 년의 인구자료를 나타낸 것이다.
+  이 자료를 이용해 $2015$ 년 대비 $2019$ 년의 서울시 인구 비와 $2019$ 년 인구수를 추정하라.
+  참고로 $2015$ 년 인구주택총조사 결과 나타난 서울의 인구는 $9{,}904{,}312$ 명인 것으로 알려져 있다.</p>
+
+  <div class="scroll"><table class="data">
+    <tr><th>표본 구</th><th>인구 $x_i$ (2015년)</th><th>인구 $y_i$ (2019년)</th></tr>
+    <tr><td>송파구</td><td>634,941</td><td>648,600</td></tr>
+    <tr><td>강동구</td><td>444,385</td><td>415,287</td></tr>
+    <tr><td>용산구</td><td>227,282</td><td>227,181</td></tr>
+    <tr><td>중랑구</td><td>403,237</td><td>386,331</td></tr>
+    <tr><td>은평구</td><td>478,374</td><td>461,530</td></tr>
+    <tr><td>마포구</td><td>381,330</td><td>369,327</td></tr>
+    <tr><td>동작구</td><td>407,894</td><td>400,368</td></tr>
+    <tr><th>합계</th><th>2,977,443</th><th>2,908,624</th></tr>
+  </table></div>
+  <p style="text-align:center;font-size:0.82rem;color:#777;">〈표 3-2〉 서울시 구별 인구</p>
+
+  <p><b>풀이</b> &nbsp;먼저 표본 구들의 $2015$ 년과 $2019$ 년 인구의 비를 구하면 다음과 같다.</p>
+  $$r=\frac{\sum_{i=1}^{7}y_i}{\sum_{i=1}^{7}x_i}=\frac{2{,}908{,}624}{2{,}977{,}443}=0.9769$$
+  <p>이를 이용하여 $2019$ 년의 서울 인구를 추정하면</p>
+  $$\hat\tau_y=r\cdot\tau_x=0.9769\times9{,}904{,}312=9{,}675{,}522$$
+  <p>다음으로 위 추정값에 대한 분산을 추정하고 모총계에 대한 $95\%$ 신뢰구간을 계산해 보자.
+  분산 식에 나타난 $\sum_{i=1}^{7}(y_i-rx_i)^2$ 을 계산한 값은 $1{,}288{,}668{,}500$ 이다.
+  이를 식 $(3\text{-}7)$ 에 넣으면</p>
+  $$\hat V(\hat\tau_y)=N^2\cdot\frac{N-n}{N}\cdot\frac1n\cdot\frac{\sum(y_i-rx_i)^2}{n-1}
+    =25^2\cdot\frac{25-7}{25}\cdot\frac17\cdot\frac{1{,}288{,}668{,}500}{6}
+    =1.38072\times10^{10}$$
+  <p>한편 모총계에 대한 $95\%$ 신뢰구간을 계산하면 다음과 같다.</p>
+  $$\hat\tau_y\pm z_{\alpha/2}\sqrt{\hat V(\hat\tau_y)}
+    \;\Leftrightarrow\;9{,}593{,}193\pm2\sqrt{1.38072\times10^{10}}
+    \;\Leftrightarrow\;9{,}593{,}193\pm235{,}008$$
+</div>
+
+<div class="note">
+  <b>교재 안에서 $\tau_x$ 값이 갈린다.</b>
+  본문은 $\tau_x=9{,}904{,}312$(인구주택총조사 서울 인구)를 써서 $\hat\tau_y=9{,}675{,}522$ 를 얻는데,
+  이어지는 엑셀 계산과 위 신뢰구간은 $\tau_x=9{,}820{,}171$ 을 써서 얻은
+  $\hat\tau_y=9{,}593{,}193$ 으로 진행된다($0.9769\times9{,}820{,}171\fallingdotseq9{,}593{,}193$).
+  <b>어느 $\tau_x$ 를 보조변수의 총계로 삼는지</b>만 정하면 되고, 분산과 오차의 한계는 $\tau_x$ 와 무관하게
+  위 값 그대로다. 시험에서는 문제가 준 $\tau_x$ 를 그대로 쓰면 된다.
+</div>
+
+<h2 class="sub">3. 비추정량을 이용한 모평균의 추정 <span class="en">estimating the mean</span></h2>
+<p>모평균의 추정은 모총계의 추정과 유사하게 할 수 있다.
+모평균의 추정 식 및 그 분산의 추정량, 그리고 모평균에 대한 $100(1-\alpha)\%$ 신뢰구간은 각각 다음과 같이 주어진다.</p>
+
+<div class="box def">
+  <span class="tag">공식</span><span class="title">모평균의 비추정량</span>
+  $$\hat\mu_y=r\cdot\mu_x\tag{3-9}$$
+  $$\hat V(\hat\mu_y)=\mu_x^2\,\hat V(r)
+    =\frac{N-n}{N}\cdot\frac1n\cdot\frac{\displaystyle\sum_{i=1}^{n}(y_i-rx_i)^2}{n-1}\tag{3-10}$$
+  $$\hat\mu_y\pm z_{\alpha/2}\sqrt{\hat V(\hat\mu_y)}\tag{3-11}$$
+</div>
+
+<div class="box thm">
+  <span class="tag">구조</span><span class="title">세 개의 분산 식은 사실 하나다</span>
+  <p>$Q=\dfrac{\sum(y_i-rx_i)^2}{n-1}$ 라 두면, $(3\text{-}3)$·$(3\text{-}7)$·$(3\text{-}10)$ 은
+  <b>같은 뼈대에 배율만 다르게 붙인 것</b>이다.</p>
+  <ol class="props">
+    <li>$\hat V(r)=\dfrac{N-n}{N}\cdot\dfrac1n\cdot\dfrac{Q}{\mu_x^2}$</li>
+    <li>$\hat V(\hat\mu_y)=\mu_x^2\cdot\hat V(r)=\dfrac{N-n}{N}\cdot\dfrac1n\cdot Q$
+      &nbsp;— $\hat\mu_y=\mu_x\cdot r$ 이므로 분산은 $\mu_x^2$ 배</li>
+    <li>$\hat V(\hat\tau_y)=\tau_x^2\cdot\hat V(r)=N^2\cdot\dfrac{N-n}{N}\cdot\dfrac1n\cdot Q$
+      &nbsp;— $\hat\tau_y=\tau_x\cdot r$ 이므로 분산은 $\tau_x^2=N^2\mu_x^2$ 배</li>
+  </ol>
+  <p>따라서 $\hat V(\hat\tau_y)=N^2\hat V(\hat\mu_y)$ 로,
+  <a href="../ch02/2-3_estimation.html">2장</a>에서 본 <b>“추정량은 $N$ 배, 분산은 $N^2$ 배”</b> 관계가 그대로 유지된다.</p>
+</div>
+
+<div class="box ex">
+  <span class="tag">예제 3-3</span><span class="title">모평균 추정 사례 — 나무의 평균 수령</span>
+  <p>어떤 수목원에 있는 나무들의 평균 수령(樹齡)을 추정하고자 한다.
+  그런데 나무의 수령을 재는 일은 무척 번거롭고 어려우므로, 모든 나무의 수령을 조사하는 대신
+  <b>일부 표본 나무의 수령만 재고, 대신 전체 나무의 직경을 측정한 값을 보조 정보로 활용</b>하여
+  평균 수령을 추정하기로 하였다.
+  수목원 내에 있는 $1{,}132$ 그루의 나무들의 직경의 모평균은 $\mu_x=10.3$ 이었다.
+  단순임의추출법에 의해 $20$ 그루를 추출하여 측정한 데이터가 다음과 같은데
+  이것을 이용하여 평균 수령을 추정하라.</p>
+
+  <div class="scroll"><table class="data">
+    <tr><th>표본 나무</th><th>직경 $x$</th><th>수령 $y$</th>
+        <th>표본 나무</th><th>직경 $x$</th><th>수령 $y$</th></tr>
+    <tr><td>1</td><td>12.0</td><td>125</td><td>11</td><td>5.7</td><td>61</td></tr>
+    <tr><td>2</td><td>11.4</td><td>119</td><td>12</td><td>8.0</td><td>80</td></tr>
+    <tr><td>3</td><td>7.9</td><td>83</td><td>13</td><td>10.3</td><td>114</td></tr>
+    <tr><td>4</td><td>9.0</td><td>85</td><td>14</td><td>12.0</td><td>147</td></tr>
+    <tr><td>5</td><td>10.5</td><td>99</td><td>15</td><td>9.2</td><td>122</td></tr>
+    <tr><td>6</td><td>7.9</td><td>117</td><td>16</td><td>8.5</td><td>106</td></tr>
+    <tr><td>7</td><td>7.3</td><td>69</td><td>17</td><td>7.0</td><td>82</td></tr>
+    <tr><td>8</td><td>10.2</td><td>133</td><td>18</td><td>10.7</td><td>88</td></tr>
+    <tr><td>9</td><td>11.7</td><td>154</td><td>19</td><td>9.3</td><td>97</td></tr>
+    <tr><td>10</td><td>11.3</td><td>168</td><td>20</td><td>8.2</td><td>99</td></tr>
+  </table></div>
+  <p style="text-align:center;font-size:0.82rem;color:#777;">
+  〈표 3-3〉 나무의 직경과 수령 데이터 — 출처: Lohr, S. L., <i>Sampling: Design and Analysis</i>, Duxbury Press, 1998.</p>
+
+  <p><b>풀이</b> &nbsp;산점도를 보면 나무의 직경과 수령 사이에는 <b>양의 상관관계</b>가 있음을 알 수 있다.
+  다음으로 나무의 수령과 직경 사이의 비를 계산하면</p>
+  $$r=\frac{\sum y_i}{\sum x_i}=\frac{\bar y}{\bar x}=\frac{107.4}{9.405}=11.419$$
+  <p>따라서 $\hat\mu_y$ 는 다음과 같다.</p>
+  $$\hat\mu_y=r\cdot\mu_x=11.419\times10.3=117.615$$
+  <p>다음으로 위 추정값의 분산을 추정해 보자. $\sum(y_i-rx_i)^2=6{,}116.728$ 이므로</p>
+  $$\hat V(\hat\mu_y)=\frac{N-n}{N}\cdot\frac1n\cdot\frac{\sum(y_i-rx_i)^2}{n-1}
+    =\frac{1{,}132-20}{1{,}132}\cdot\frac{1}{20}\cdot\frac{6{,}116.728}{20-1}=15.81$$
+  <p>그러므로 $\hat\mu_y$ 의 $95\%$ 신뢰구간은 다음과 같이 계산된다.</p>
+  $$\hat\mu_y\pm z_{\alpha/2}\sqrt{\hat V(\hat\mu_y)}
+    \;\Leftrightarrow\;117.615\pm2\sqrt{15.81}
+    \;\Leftrightarrow\;117.615\pm7.95$$
+</div>
+
+<div class="note">
+  이 예제가 <b>보조 정보를 쓰는 이유</b>를 가장 잘 보여 준다 —
+  수령은 $20$ 그루만 재고, 직경은 $1{,}132$ 그루 전부를 쟀다.
+  비싼 변수 $y$ 는 표본에서만, 싼 변수 $x$ 는 모집단 전체에서 얻어
+  <b>$\mu_x$ 라는 모수를 그대로 계산에 투입</b>하는 것이 비추정의 요령이다.
+</div>
+
+<h2 class="sub">4. 상대효율의 비교 <span class="en">relative efficiency</span></h2>
+<p>앞에서 우리는 모평균을 추정하기 위한 추정량으로서 <b>단순표본평균 $\bar y$</b> 와
+<b>비추정량 $\hat\mu_y$</b> 에 대해 살펴보았다. 그렇다면 이 두 가지 추정량 중 어느 것이 더 효율적일까?
+이러한 비교를 위해 널리 사용되는 기준으로 <b>상대효율</b>(Relative Efficiency; RE)이 사용된다.</p>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">상대효율 <span class="en">relative efficiency</span></span>
+  <p>상대효율이란 두 가지의 서로 다른 추정량들의 <b>분산의 비</b>를 나타내는 것이다.
+  모평균 $\mu$ 에 대해 $E_1$ 과 $E_2$ 의 두 가지 추정량이 있는 경우,
+  두 추정량이 모두 비편향추정량이거나 편향의 크기가 매우 작아 거의 비편향에 가까운 경우라면
+  <b>분산이 더 작은 추정량이 보다 효율적</b>이라고 볼 수 있다.</p>
+  $$RE\!\left(\frac{E_1}{E_2}\right)=\frac{V(E_2)}{V(E_1)}\tag{3-12}$$
+  <p>만약 이 값이 $1$ 보다 크면 $V(E_2)$ 가 $V(E_1)$ 보다 더 큰 것이므로 $E_1$ 이 $E_2$ 보다 더 효율적이고,
+  $1$ 보다 작으면 $E_1$ 이 $E_2$ 보다 덜 효율적이다.</p>
+  <p>실제로는 분산을 알 수 없으므로 <b>분산 대신 분산의 추정량을 대입</b>하여 상대효율의 추정량을 구한다.</p>
+  $$\widehat{RE}\!\left(\frac{E_1}{E_2}\right)=\frac{\hat V(E_2)}{\hat V(E_1)}\tag{3-13}$$
+</div>
+
+<div class="note">
+  분자와 분모가 <b>뒤집혀 있다</b>는 점에 주의한다.
+  “$E_1$ 의 $E_2$ 에 대한 상대효율” 은 $E_1$ 이 좋을수록(즉 $V(E_1)$ 이 작을수록) 커져야 하므로
+  $V(E_1)$ 이 <b>분모</b>로 간다.
+</div>
+
+<p>단순임의추출법에서 모평균의 추정량으로서 표본평균 $\bar y$ 와 비추정량 $\hat\mu_y$ 의 효율을 비교해 보자.
+표본평균 $\bar y$ 의 분산 추정량(<a href="../ch02/2-3_estimation.html">식 $(2\text{-}4)$</a>)과
+비추정량 $\hat\mu_y$ 의 분산 추정량(식 $(3\text{-}10)$)을 식 $(3\text{-}13)$ 에 대입하면
+다음과 같이 표현된다.</p>
+
+<div class="box def">
+  <span class="tag">공식</span><span class="title">비추정량의 표본평균에 대한 상대효율</span>
+  $$\widehat{RE}\!\left(\frac{\hat\mu_y}{\bar y}\right)=\frac{\hat V(\bar y)}{\hat V(\hat\mu_y)}
+    =\frac{s_y^2}{s_y^2+r^2s_x^2-2r\hat\rho\,s_xs_y}\tag{3-14}$$
+  <p>$\dfrac{N-n}{N}\cdot\dfrac1n$ 이 분자·분모에서 그대로 약분되고,
+  분모에는 위에서 증명한 항등식 $\dfrac{\sum(y_i-rx_i)^2}{n-1}=s_y^2+r^2s_x^2-2r\hat\rho\,s_xs_y$ 가 들어간다.</p>
+</div>
+
+<div class="box prf">
+  <span class="tag">유도</span><span class="title">언제 비추정이 이기는가 — $\hat\rho>\tfrac12$ 조건</span>
+  <ol>
+    <li><span class="step">이기는 조건을 부등식으로.</span>
+      $\widehat{RE}>1$ 이려면 분모가 분자보다 작아야 하므로
+      $$s_y^2+r^2s_x^2-2r\hat\rho\,s_xs_y<s_y^2$$</li>
+    <li><span class="step">$s_y^2$ 을 소거하고 $r$ 로 나눈다.</span>
+      $$r^2s_x^2<2r\hat\rho\,s_xs_y\;\Longrightarrow\;r\,s_x^2<2\hat\rho\,s_xs_y$$</li>
+    <li><span class="step">$\hat\rho$ 에 대해 정리한다.</span>
+      $$\hat\rho>\frac12\cdot\frac{r\,s_x}{s_y}
+        =\frac12\cdot\frac{s_x/\bar x}{s_y/\bar y}\tag{3-15}$$
+      마지막 등호는 $r=\bar y/\bar x$ 를 넣은 것이다.
+      즉 조건의 우변은 <b>두 변수의 변동계수의 비</b>이며, $s_x/\bar x$ 는 모집단 변동계수의 추정값이다.</li>
+    <li><span class="step">실전에서의 단순화.</span>
+      비추정량을 사용하는 많은 경우 $x$ 는 <b>$y$ 의 직전 시기의 조사값</b>인 경우가 많다.
+      이럴 경우 $x$ 의 변동계수와 $y$ 의 변동계수가 거의 비슷하므로 그 비가 $1$ 에 가깝고,
+      조건은 다음과 같이 간단해진다.
+      $$\hat\rho>\frac12$$</li>
+  </ol>
+</div>
+
+<div class="box thm">
+  <span class="tag">결론</span><span class="title">비추정을 쓸지 말지의 판단</span>
+  <p>보조변수 $x$ 와 주변수 $y$ 의 <b>상관계수가 대략 $\tfrac12$ 이상이면</b>
+  비추정량은 표본평균에 비해 더 효율적이라고 볼 수 있다.
+  일반적으로 주변수와 상관관계가 매우 강한 보조변수를 활용할 수 있을 경우에는
+  <b>항상 비추정량을 사용하는 것이 더 바람직하다</b>.</p>
+</div>
+
+<div class="note">
+  뒤집어 말하면 <b>상관이 약한 보조변수를 억지로 끌어오면 오히려 손해</b>다.
+  이 점이 다음 절의 회귀추정과 결정적으로 다른데,
+  회귀추정은 $\widehat{RE}=\dfrac{1}{1-\hat\rho^2}\ge1$ 이라 <b>상관이 아무리 약해도 손해를 보지 않는다</b>.
+</div>
+
+<nav class="pager">
+  <a href="3-1_overview.html">← 이전<small>3.1 개요</small></a>
+  <a class="next" href="3-3_regression-estimation.html">다음 →<small>3.3 회귀추정</small></a>
+</nav>
+
+</body>
+</html>

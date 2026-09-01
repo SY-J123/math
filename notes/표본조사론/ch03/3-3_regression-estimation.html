@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>표본조사론 · 3.3 회귀추정</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">표본조사론 · 3장 보조 정보를 이용한 추정</div>
+  <h1><span class="no">3.3</span>회귀추정 <span class="en">regression estimation</span></h1>
+</header>
+
+<h2 class="sub">1. 회귀추정과 비추정의 차이 <span class="en">ratio vs. regression</span></h2>
+<p>앞 절에서는 보조변수를 사용하는 추정법 중 <b>비추정</b>에 대해서 살펴보았다.
+비추정은 $x$ 와 $y$ 가 서로 <b>원점을 지나는 직선관계</b>를 가질 때 적절하다.
+앞에서 예로 들었던 나무 수령 $y$ 과 나무 직경 $x$ 의 관계인 경우는
+$x$ 가 $0$ 이면 당연히 $y$ 도 $0$ 이 되므로 원점을 지나는 관계가 되어 비추정을 사용하는 것이 적절하였다.</p>
+
+<p>반면, $y$ 는 어느 학생의 학년 말 성적이고 $x$ 는 입학 성적인 경우
+$x$ 가 $0$ 이라고 해서 반드시 $y$ 가 $0$ 인 것은 아니다.
+이 경우 $x$ 와 $y$ 가 서로 선형관계를 가진다고 해도 <b>원점을 지나는 선형관계는 아니다</b>.
+<b>회귀추정은 이와 같이 두 변수가 서로 직선의 선형관계는 갖지만 원점을 지나지는 않는 경우에 사용되는 추정법</b>이다.
+따라서 보조변수를 이용한 회귀추정량을 사용하기 위해서는
+먼저 두 변수 $x$ 와 $y$ 간의 <b>산점도를 그려 보는 것이 좋다</b>.</p>
+
+<figure class="fig">
+<svg viewBox="0 0 360 175" role="img" aria-label="왼쪽은 원점을 지나는 직선관계, 오른쪽은 절편이 있는 직선관계를 보이는 두 산점도">
+  <g>
+    <line class="axis" x1="30" y1="140" x2="165" y2="140"/>
+    <line class="axis" x1="30" y1="140" x2="30" y2="20"/>
+    <text class="lbl" x="170" y="144" text-anchor="end">x</text>
+    <text class="lbl" x="24" y="26" text-anchor="end">y</text>
+    <line class="vec" x1="30" y1="140" x2="152" y2="32"/>
+    <g fill="#444">
+      <circle cx="48" cy="128" r="2.6"/><circle cx="58" cy="115" r="2.6"/><circle cx="66" cy="122" r="2.6"/>
+      <circle cx="76" cy="102" r="2.6"/><circle cx="86" cy="99"  r="2.6"/><circle cx="94" cy="88"  r="2.6"/>
+      <circle cx="104" cy="80" r="2.6"/><circle cx="112" cy="86" r="2.6"/><circle cx="122" cy="66" r="2.6"/>
+      <circle cx="130" cy="59" r="2.6"/><circle cx="140" cy="52" r="2.6"/><circle cx="146" cy="42" r="2.6"/>
+    </g>
+    <text class="lbl b" x="98" y="162" text-anchor="middle">원점을 지난다 → 비추정</text>
+  </g>
+  <g>
+    <line class="axis" x1="205" y1="140" x2="340" y2="140"/>
+    <line class="axis" x1="205" y1="140" x2="205" y2="20"/>
+    <text class="lbl" x="345" y="144" text-anchor="end">x</text>
+    <text class="lbl" x="199" y="26" text-anchor="end">y</text>
+    <line class="vec2" x1="205" y1="98" x2="330" y2="42"/>
+    <circle cx="205" cy="98" r="3" fill="#0f8a7d"/>
+    <text class="lbl t" x="212" y="112" text-anchor="start">절편 ≠ 0</text>
+    <g fill="#444">
+      <circle cx="222" cy="96" r="2.6"/><circle cx="232" cy="84" r="2.6"/><circle cx="242" cy="92" r="2.6"/>
+      <circle cx="252" cy="76" r="2.6"/><circle cx="262" cy="82" r="2.6"/><circle cx="270" cy="68" r="2.6"/>
+      <circle cx="280" cy="72" r="2.6"/><circle cx="290" cy="58" r="2.6"/><circle cx="300" cy="62" r="2.6"/>
+      <circle cx="310" cy="50" r="2.6"/><circle cx="320" cy="54" r="2.6"/><circle cx="328" cy="44" r="2.6"/>
+    </g>
+    <text class="lbl t" x="272" y="162" text-anchor="middle">절편이 있다 → 회귀추정</text>
+  </g>
+</svg>
+<figcaption>[그림 3-6] 주변수와 보조변수의 관계를 나타내는 산점도.
+직선이 <b>원점을 지나느냐</b>가 두 추정법을 가르는 기준이다.</figcaption>
+</figure>
+
+<h2 class="sub">2. 모평균에 대한 회귀추정 <span class="en">the regression estimator</span></h2>
+<p>회귀추정량이란 두 변수 $x$ 와 $y$ 사이의 <b>직선 관계식을 가정하여 구하는 추정량</b>으로서,
+회귀분석에서 두 변수 사이의 회귀식을 구하는 것과 유사하다.</p>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">모평균에 대한 회귀추정량 <span class="en">linear regression estimator</span></span>
+  $$\hat\mu_{yL}=\bar y+b(\mu_x-\bar x)\tag{3-16}$$
+  <p>여기에서 선형회귀(linear regression)라는 뜻을 나타내기 위하여 추정량의 기호에 $L$ 을 붙였다.
+  $b$ 는 일반적인 선형회귀분석에서와 같이 다음의 식으로 주어진다.</p>
+  $$b=\frac{\displaystyle\sum_{i=1}^{n}(x_i-\bar x)(y_i-\bar y)}{\displaystyle\sum_{i=1}^{n}(x_i-\bar x)^2}\tag{3-17}$$
+</div>
+
+<div class="box thm">
+  <span class="tag">직관</span><span class="title">식 $(3\text{-}16)$ 은 ‘표본이 운 나쁘게 치우친 만큼 되돌려 놓는’ 보정이다</span>
+  <p>$\mu_x$ 는 모집단 전체에서 계산한 <b>알려진 값</b>이고 $\bar x$ 는 뽑힌 표본에서 계산한 값이다.
+  두 값의 차이 $\mu_x-\bar x$ 는 <b>이번 표본이 $x$ 쪽에서 얼마나 치우쳐 뽑혔는지</b>를 알려 준다.</p>
+  <ol class="props">
+    <li>$\bar x<\mu_x$ 라면 이번 표본은 $x$ 가 작은 쪽으로 치우쳤다.
+      $x$ 와 $y$ 가 양의 상관이면 $\bar y$ 도 그만큼 <b>과소평가</b>되었을 것이다.</li>
+    <li>얼마나 되돌려야 하는가 — $x$ 가 한 단위 늘 때 $y$ 는 평균적으로 $b$ 만큼 늘므로,
+      $x$ 의 어긋남 $(\mu_x-\bar x)$ 에 <b>$b$ 를 곱한 만큼</b> 더해 준다.</li>
+    <li>$b=0$ 이면(둘이 무관하면) 보정이 사라져 $\hat\mu_{yL}=\bar y$ 가 된다 —
+      <b>보조변수가 쓸모없어도 손해를 보지 않는</b> 구조다.</li>
+  </ol>
+</div>
+
+<div class="box def">
+  <span class="tag">공식</span><span class="title">추정분산과 신뢰구간</span>
+  $$\hat V(\hat\mu_{yL})=\frac{N-n}{N}\cdot\frac1n\cdot\frac{1}{n-2}
+    \left\{\sum_{i=1}^{n}(y_i-\bar y)^2-b^2\sum_{i=1}^{n}(x_i-\bar x)^2\right\}\tag{3-18}$$
+  $$\hat\mu_{yL}\pm z_{\alpha/2}\sqrt{\hat V(\hat\mu_{yL})}\tag{3-19}$$
+  <p>중괄호 안은 <b>$y$ 의 총변동에서 회귀직선이 설명한 몫을 뺀 것</b> — 곧 잔차제곱합이다.
+  자유도가 $n-1$ 이 아니라 $n-2$ 인 것은 절편과 기울기 <b>두 개</b>를 자료에서 추정했기 때문이다.</p>
+</div>
+
+<div class="box thm">
+  <span class="tag">계산</span><span class="title">$MSE$ 를 쓰면 훨씬 간편하다</span>
+  <p>식 $(3\text{-}18)$ 의 추정분산은 일반적인 통계 소프트웨어의 계산 결과를 사용하여 간편하게 계산할 수 있다.
+  표본조사를 통해서 얻은 데이터 $(x_i,y_i)$, $i=1,2,\dots,n$ 에 $E(y)=\beta_0+\beta_1x$ 의 모형을 적합시켜
+  구한 $\beta_1$ 의 최소제곱추정량이 곧 식 $(3\text{-}17)$ 의 $b$ 이다.
+  또한 회귀분석 출력의 <b>평균제곱오차</b>(Mean Squares Error; $MSE$)를 이용하면 다음 식으로 나타낼 수 있다.</p>
+  $$\hat V(\hat\mu_{yL})=\frac{N-n}{N}\cdot\frac{MSE}{n}\tag{3-20}$$
+  <p>$MSE$ 자체가 이미 <b>잔차제곱합을 $n-2$ 로 나눈 값</b>이므로 $(3\text{-}18)$ 과 완전히 같은 식이다.
+  회귀분석 출력표의 <b>잔차 행 ‘제곱 평균’</b> 칸을 그대로 읽어 오면 된다.</p>
+</div>
+
+<div class="box ex">
+  <span class="tag">예제 3-4</span><span class="title">회귀추정 사례 — 예비시험과 기말시험 점수</span>
+  <p>어느 대학에서 입학 예정인 학생들 $486$ 명을 대상으로 수학 시험을 보게 하였다.
+  그 학생들 중 $10$ 명을 랜덤하게 뽑고 그들에 대해 $1$ 년 후 수학 과목 실력이 얼마나 향상되었는지를 관찰해 보았다.
+  입학 전 예비시험에서 전체 학생의 평균 점수는 $\mu_x=52$ 점이었다.
+  다음은 표본으로 뽑힌 $10$ 명 학생들의 성적 데이터이다.
+  이 데이터를 통해 전체 학생의 기말시험 평균 점수 $\mu_y$ 를 추정하고 $95\%$ 신뢰구간을 구하라.</p>
+
+  <div class="scroll"><table class="data">
+    <tr><th>표본 학생</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th></tr>
+    <tr><th>예비시험 $x$</th><td>39</td><td>43</td><td>21</td><td>64</td><td>57</td><td>47</td><td>28</td><td>75</td><td>34</td><td>52</td></tr>
+    <tr><th>기말시험 $y$</th><td>65</td><td>78</td><td>52</td><td>82</td><td>92</td><td>89</td><td>73</td><td>98</td><td>56</td><td>75</td></tr>
+  </table></div>
+  <p style="text-align:center;font-size:0.82rem;color:#777;">〈표 3-4〉 표본으로 뽑힌 학생들의 점수</p>
+
+  <p><b>풀이</b> &nbsp;먼저 위 데이터를 산점도로 나타내 보면
+  예비시험 점수 $x$ 와 기말시험 점수 $y$ 사이에 <b>직선관계가 존재</b>한다는 것을 알 수 있다.
+  따라서 이 경우 회귀추정량을 사용하는 것이 타당하게 여겨진다.
+  식 $(3\text{-}16)$ 의 추정량을 계산하기 위해서는 $\bar x,\;\bar y,\;b$ 의 값을 각각 계산해야 한다.</p>
+  <p>$\mu_x=52$ 이며, 표본평균은 각각 $\bar y=76$, $\bar x=46$ 으로 계산된다.
+  회귀계수 $b$ 는 통계 소프트웨어의 회귀분석 결과에서 읽으면 된다.</p>
+
+  <div class="scroll"><table class="data">
+    <tr><th colspan="7">회귀분석 통계량</th></tr>
+    <tr><td>다중 상관계수</td><td colspan="2">0.8397859</td><td>결정계수</td><td colspan="3">0.7052403</td></tr>
+    <tr><td>표준 오차</td><td colspan="2">8.7036334</td><td>관측수</td><td colspan="3">10</td></tr>
+    <tr><th colspan="7">분산 분석</th></tr>
+    <tr><th></th><th>자유도</th><th>제곱합</th><th>제곱 평균</th><th>F 비</th><th colspan="2">유의한 F</th></tr>
+    <tr><td>회귀</td><td>1</td><td>1449.9741</td><td>1449.9741</td><td>19.140756</td><td colspan="2">0.0023645</td></tr>
+    <tr><td>잔차</td><td>8</td><td>606.02587</td><td><b>75.753234</b></td><td></td><td colspan="2"></td></tr>
+    <tr><td>계</td><td>9</td><td>2056</td><td></td><td></td><td colspan="2"></td></tr>
+    <tr><th></th><th>계수</th><th>표준 오차</th><th>t 통계량</th><th>P-값</th><th>하위 95%</th><th>상위 95%</th></tr>
+    <tr><td>Y 절편</td><td>40.78416</td><td>8.50686</td><td>4.79427</td><td>0.00137</td><td>21.16729</td><td>60.40103</td></tr>
+    <tr><td>예비점수(x)</td><td><b>0.76556</b></td><td>0.17498</td><td>4.37501</td><td>0.00236</td><td>0.36205</td><td>1.16908</td></tr>
+  </table></div>
+  <p style="text-align:center;font-size:0.82rem;color:#777;">[그림 3-9] 회귀분석 출력 결과 — 가장 아래쪽 표의 계수가 $b$ 값이다.</p>
+
+  <p>이 값들을 식 $(3\text{-}16)$ 에 대입하여 계산한 회귀추정량의 값은 다음과 같다.</p>
+  $$\hat\mu_{yL}=\bar y+b(\mu_x-\bar x)=76+0.76556\times(52-46)=80.59$$
+
+  <p>한편 회귀추정량의 분산 추정은 식 $(3\text{-}18)$ 이나 식 $(3\text{-}20)$ 을 이용하여 계산할 수 있는데,
+  <b>식 $(3\text{-}20)$ 을 이용하는 것이 훨씬 편리하다</b>.
+  왜냐하면 위 출력 결과에 잔차의 제곱평균인 $MSE$ 값이 $75.75$ 로 이미 계산되어 있기 때문이다.
+  따라서 분산의 추정값은 다음과 같이 계산된다.</p>
+  $$\hat V(\hat\mu_{yL})=\frac{N-n}{N}\cdot\frac{MSE}{n}=\frac{486-10}{486}\cdot\frac{75.75}{10}=7.42$$
+  <p>따라서 $\hat\mu_{yL}$ 의 $95\%$ 신뢰구간은 다음과 같이 계산된다.</p>
+  $$\hat\mu_{yL}\pm z_{\alpha/2}\sqrt{\hat V(\hat\mu_{yL})}
+    \;\Leftrightarrow\;80.59\pm2\sqrt{7.42}
+    \;\Leftrightarrow\;80.59\pm5.45$$
+</div>
+
+<figure class="fig">
+<svg viewBox="0 0 360 230" role="img" aria-label="예제 3-4의 산점도와 회귀직선 — 표본평균 점에서 모평균 mu_x 로 옮겨가며 y를 보정하는 과정">
+  <line class="axis" x1="55" y1="185" x2="335" y2="185"/>
+  <line class="axis" x1="55" y1="185" x2="55" y2="25"/>
+  <g class="axis">
+    <line x1="76"  y1="185" x2="76"  y2="189"/><line x1="161" y1="185" x2="161" y2="189"/>
+    <line x1="245" y1="185" x2="245" y2="189"/><line x1="330" y1="185" x2="330" y2="189"/>
+    <line x1="51" y1="172" x2="55" y2="172"/><line x1="51" y1="120" x2="55" y2="120"/>
+    <line x1="51" y1="69"  x2="55" y2="69"/>
+  </g>
+  <g class="lbl">
+    <text x="76"  y="199" text-anchor="middle">20</text><text x="161" y="199" text-anchor="middle">40</text>
+    <text x="245" y="199" text-anchor="middle">60</text><text x="330" y="199" text-anchor="middle">80</text>
+    <text x="47" y="176" text-anchor="end">50</text><text x="47" y="124" text-anchor="end">70</text>
+    <text x="47" y="73"  text-anchor="end">90</text>
+  </g>
+
+  <line class="vec" x1="55" y1="166" x2="330" y2="38"/>
+  <text class="lbl b" x="300" y="60" text-anchor="middle">ŷ = 40.78 + 0.766x</text>
+
+  <g fill="#444">
+    <circle cx="157" cy="133" r="3"/><circle cx="174" cy="100" r="3"/><circle cx="80"  cy="167" r="3"/>
+    <circle cx="262" cy="89"  r="3"/><circle cx="233" cy="64"  r="3"/><circle cx="190" cy="71"  r="3"/>
+    <circle cx="110" cy="113" r="3"/><circle cx="309" cy="48"  r="3"/><circle cx="135" cy="157" r="3"/>
+    <circle cx="212" cy="108" r="3"/>
+  </g>
+
+  <line class="aux" x1="186" y1="185" x2="186" y2="105"/>
+  <line class="aux" x1="55" y1="105" x2="186" y2="105"/>
+  <circle cx="186" cy="105" r="4.5" fill="#7b3fa0"/>
+  <text class="lbl p" x="186" y="212" text-anchor="middle">x̄ = 46</text>
+  <text class="lbl p" x="49" y="101" text-anchor="end">ȳ = 76</text>
+
+  <line class="aux" x1="212" y1="185" x2="212" y2="93"/>
+  <line class="aux" x1="55" y1="93" x2="212" y2="93"/>
+  <circle cx="212" cy="93" r="4.5" fill="#0f8a7d"/>
+  <text class="lbl t" x="216" y="212" text-anchor="middle">μₓ = 52</text>
+  <text class="lbl t" x="49" y="80" text-anchor="end">80.59</text>
+
+  <path class="vec2" d="M186,105 L212,105 L212,95"/>
+  <text class="lbl t" x="240" y="120" text-anchor="start">b(μₓ − x̄) 만큼 올려 준다</text>
+</svg>
+<figcaption>회귀추정의 기하 — 회귀직선을 따라 $\bar x$ 에서 $\mu_x$ 까지 옮겨 가며
+$\bar y$ 를 $b(\mu_x-\bar x)$ 만큼 보정한 값이 $\hat\mu_{yL}=80.59$ 이다.
+이번 표본은 $\bar x=46<\mu_x=52$ 로 낮은 쪽에 치우쳐 뽑혀서, 그만큼 위로 되돌려 준 셈이다.</figcaption>
+</figure>
+
+<h2 class="sub">3. 상대효율의 비교 <span class="en">relative efficiency</span></h2>
+<p>모평균에 대한 회귀추정량과 단순추정량의 상대효율을 살펴보자.</p>
+
+<div class="box prf">
+  <span class="tag">유도</span><span class="title">$\hat V(\hat\mu_{yL})$ 을 $s_y^2(1-\hat\rho^2)$ 꼴로 바꾸기</span>
+  <ol>
+    <li><span class="step">출발점 — 식 $(3\text{-}18)$.</span>
+      $$\hat V(\hat\mu_{yL})=\frac{N-n}{N}\cdot\frac1n\cdot\frac{1}{n-2}
+        \left\{\sum(y_i-\bar y)^2-b^2\sum(x_i-\bar x)^2\right\}$$</li>
+    <li><span class="step">간편한 비교를 위해 $n-2$ 를 $n-1$ 로 바꾼다.</span>
+      $n$ 이 충분히 크다고 가정하면 $\dfrac{1}{n-2}\fallingdotseq\dfrac{1}{n-1}$ 이므로
+      중괄호 안의 두 항이 각각 $s_y^2$, $s_x^2$ 이 되어
+      $$\hat V(\hat\mu_{yL})=\frac{N-n}{N}\cdot\frac1n\left(s_y^2-b^2s_x^2\right)$$</li>
+    <li><span class="step">$b=\hat\rho\,s_y/s_x$ 를 대입한다.</span>
+      $$b^2s_x^2=\hat\rho^2\frac{s_y^2}{s_x^2}\,s_x^2=\hat\rho^2s_y^2
+        \;\Longrightarrow\;
+        \hat V(\hat\mu_{yL})=\frac{N-n}{N}\cdot\frac1n\,s_y^2\left(1-\hat\rho^{\,2}\right)$$</li>
+    <li><span class="step">표본평균의 분산과 비교한다.</span>
+      $\hat V(\bar y)=\dfrac{N-n}{N}\cdot\dfrac{s_y^2}{n}$ 이므로 앞의 인수들이 모두 약분되어
+      $$\widehat{RE}\!\left(\frac{\hat\mu_{yL}}{\bar y}\right)
+        =\frac{\hat V(\bar y)}{\hat V(\hat\mu_{yL})}
+        =\frac{s_y^2}{s_y^2\left(1-\hat\rho^{\,2}\right)}
+        =\frac{1}{1-\hat\rho^{\,2}}\tag{3-21}$$</li>
+  </ol>
+</div>
+
+<div class="box thm">
+  <span class="tag">결론</span><span class="title">회귀추정은 <b>언제나</b> 표본평균보다 낫다</span>
+  <ol class="props">
+    <li>$1-\hat\rho^{\,2}$ 은 $0$ 에서 $1$ 사이의 값만을 갖게 되므로
+      $\widehat{RE}\ge1$ — 즉 <b>항상 회귀추정량이 표본평균보다 더 효율적인 추정량</b>이다.</li>
+    <li>또한 $\hat\rho$ 의 <b>절댓값이 $1$ 에 가까울수록</b> 회귀추정량의 효율이
+      표본평균에 비해 상대적으로 더욱 커진다.</li>
+    <li>따라서 적절한 보조변수의 활용이 가능한 경우에는
+      <b>항상 회귀추정량을 쓰는 것이 보다 효율적</b>이다.</li>
+  </ol>
+</div>
+
+<figure class="fig">
+<svg viewBox="0 0 320 180" role="img" aria-label="상대효율 1/(1-rho제곱) 곡선 — 상관계수가 커질수록 급격히 증가한다">
+  <line class="axis" x1="45" y1="145" x2="305" y2="145"/>
+  <line class="axis" x1="45" y1="145" x2="45" y2="20"/>
+  <g class="axis">
+    <line x1="41" y1="145" x2="45" y2="145"/><line x1="41" y1="128" x2="45" y2="128"/>
+    <line x1="41" y1="94"  x2="45" y2="94"/> <line x1="41" y1="59"  x2="45" y2="59"/>
+    <line x1="41" y1="25"  x2="45" y2="25"/>
+    <line x1="172" y1="145" x2="172" y2="149"/><line x1="300" y1="145" x2="300" y2="149"/>
+  </g>
+  <g class="lbl">
+    <text x="37" y="149" text-anchor="end">1</text><text x="37" y="132" text-anchor="end">2</text>
+    <text x="37" y="98"  text-anchor="end">4</text><text x="37" y="63"  text-anchor="end">6</text>
+    <text x="37" y="29"  text-anchor="end">8</text>
+    <text x="45"  y="160" text-anchor="middle">0</text>
+    <text x="172" y="160" text-anchor="middle">0.5</text>
+    <text x="300" y="160" text-anchor="middle">1</text>
+    <text x="175" y="176" text-anchor="middle">표본상관계수 ρ̂</text>
+  </g>
+  <path class="vec" fill="none"
+    d="M45,145 L96,144 L147,142 L172,139 L198,135 L224,129 L249,114 L262,100 L275,72 L282,35"/>
+  <line class="aux" x1="172" y1="145" x2="172" y2="139"/>
+  <circle cx="172" cy="139" r="3.5" fill="#7b3fa0"/>
+  <text class="lbl p" x="180" y="132" text-anchor="start">ρ̂ = 0.5 → RE ≒ 1.33</text>
+  <text class="lbl b" x="150" y="45" text-anchor="middle">RE = 1 / (1 − ρ̂²)</text>
+</svg>
+<figcaption>$\hat\rho$ 가 $0$ 이면 $RE=1$ (손해도 이득도 없음)이고,
+$0.8$ 을 넘어서면서 급격히 커진다. 곡선이 <b>$1$ 아래로 내려가지 않는다</b>는 점이 비추정과 다르다.</figcaption>
+</figure>
+
+<div class="box ex">
+  <span class="tag">예제 3-5</span><span class="title">상대효율의 계산</span>
+  <p>앞의 〈예제 3-4〉 문제의 자료에 대해 표본평균을 사용한 추정량과 회귀추정량을
+  각각 사용하였을 경우의 상대효율을 비교하라.</p>
+
+  <p><b>풀이</b> &nbsp;표본평균을 사용하여 기말시험 성적을 추정할 경우
+  추정값과 추정분산의 값은 각각 다음과 같다.</p>
+  $$\bar y=76,\qquad s^2=\frac{1}{n-1}\sum_{i=1}^{n}(y_i-\bar y)^2=\frac{2{,}056}{9}=228.4$$
+  $$\hat V(\bar y)=\frac{N-n}{N}\cdot\frac{s^2}{n}=\frac{486-10}{486}\cdot\frac{228.4}{10}=22.37$$
+  <p>한편 〈예제 3-4〉의 풀이에서 회귀추정값 $\hat\mu_{yL}$ 과 분산의 추정값은 각각</p>
+  $$\hat\mu_{yL}=80.6,\qquad \hat V(\hat\mu_{yL})=7.42$$
+  <p>였다. 그러므로 두 추정량의 상대효율의 추정값을 계산하면</p>
+  $$\widehat{RE}\!\left(\frac{\hat\mu_{yL}}{\bar y}\right)
+    =\frac{\hat V(\bar y)}{\hat V(\hat\mu_{yL})}=\frac{22.37}{7.42}=3.015$$
+  <p>가 되므로, 이 경우 <b>회귀추정량을 사용하는 것이 표본평균을 사용하는 것보다 $3$ 배 이상 효율적</b>이라고 할 수 있다.</p>
+</div>
+
+<div class="note">
+  <b>식 $(3\text{-}21)$ 로 계산하면 값이 다르다 — 왜인가.</b>
+  결정계수가 $\hat\rho^{\,2}=0.7052$ 이므로 $(3\text{-}21)$ 은
+  $\dfrac{1}{1-0.7052}=3.393$ 을 준다. 예제 3-5의 $3.015$ 와 어긋나는 것처럼 보이지만,
+  이는 $(3\text{-}21)$ 을 유도할 때 <b>$n-2$ 를 $n-1$ 로 바꾼 근사</b> 때문이다.
+  두 값의 비는 정확히 $\dfrac{n-1}{n-2}=\dfrac98=1.125$ 이고, 실제로 $3.015\times1.125=3.393$ 이다.
+  $n$ 이 크면 무시할 만하지만 이 예제처럼 $n=10$ 이면 $12.5\%$ 나 벌어지므로,
+  <b>수치를 낼 때는 근사식 $(3\text{-}21)$ 이 아니라 $(3\text{-}18)$ 또는 $(3\text{-}20)$ 을 쓴다</b>.
+  $(3\text{-}21)$ 은 “$\hat\rho$ 가 크면 유리하다” 는 <b>구조를 보기 위한 식</b>이다.
+</div>
+
+<div class="terms">
+  <div class="h">3장 정리 — 세 추정량 비교</div>
+  <dl>
+    <dt>단순추정 $\bar y$</dt>
+    <dd>보조변수를 안 씀. $\hat V(\bar y)=\dfrac{N-n}{N}\dfrac{s_y^2}{n}$</dd>
+    <dt>비추정 $\hat\mu_y=r\mu_x$</dt>
+    <dd>원점을 지나는 직선. $\hat\rho>\tfrac12$ 정도여야 이득 — <b>못 미치면 손해</b></dd>
+    <dt>회귀추정 $\hat\mu_{yL}=\bar y+b(\mu_x-\bar x)$</dt>
+    <dd>절편이 있는 직선. $RE=\dfrac{1}{1-\hat\rho^{\,2}}\ge1$ — <b>언제나 손해는 없음</b></dd>
+  </dl>
+</div>
+
+<nav class="pager">
+  <a href="3-2_ratio-estimation.html">← 이전<small>3.2 비추정</small></a>
+  <a class="next" href="../index.html">목차 →<small>표본조사론</small></a>
+</nav>
+
+</body>
+</html>
