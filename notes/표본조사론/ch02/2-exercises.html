@@ -269,8 +269,9 @@ $n=30$ 그루의 나무를 예비표본으로 뽑아 조사한 결과 $\bar y=12
     <li><span class="step">분산의 추정값.</span> $N=5{,}000$, $n=80$, $s=4{,}500$ 이므로
       $$\hat V(\bar y)=\frac{N-n}{N}\cdot\frac{s^2}{n}
         =\frac{5{,}000-80}{5{,}000}\cdot\frac{4{,}500^2}{80}=0.984\times253{,}125=249{,}075$$</li>
-    <li><span class="step">신뢰구간.</span> $\sqrt{249{,}075}\fallingdotseq499.1$ 이므로
-      $$53{,}000\pm2(499.1)\;\Leftrightarrow\;53{,}000\pm998\;\Leftrightarrow\;(52{,}002,\;53{,}998)$$</li>
+    <li><span class="step">신뢰구간 — 식 $(2\text{-}5)$ 에 그대로 대입한다.</span>
+      $$53{,}000\pm2\sqrt{\frac{5{,}000-80}{5{,}000}\cdot\frac{4{,}500^2}{80}}
+        \;\Leftrightarrow\;53{,}000\pm998\;\Leftrightarrow\;(52{,}002,\;53{,}998)$$</li>
     <li><span class="step">읽는 법.</span> 오차의 한계가 평균의 약 $1.9\%$ 이므로
       $RSE\fallingdotseq\dfrac{499}{53{,}000}\times100\fallingdotseq0.94\%$ — <a href="../ch01/1-6_basic-concepts.html">1.6절</a> 기준으로
       $5\%$ 이하이니 <b>상당히 믿을 만한</b> 추정이다.</li>
@@ -285,8 +286,9 @@ $n=30$ 그루의 나무를 예비표본으로 뽑아 조사한 결과 $\bar y=12
     <li><span class="step">분산의 추정값.</span>
       $$\hat V(\hat\tau)=N^2\cdot\frac{N-n}{N}\cdot\frac{s^2}{n}
         =10{,}000^2\times\frac{9{,}900}{10{,}000}\times\frac{225}{100}=222{,}750{,}000$$</li>
-    <li><span class="step">신뢰구간.</span> $\sqrt{222{,}750{,}000}\fallingdotseq14{,}925$ 이므로
-      $$1{,}180{,}000\pm2(14{,}925)\;\Leftrightarrow\;1{,}180{,}000\pm29{,}850$$</li>
+    <li><span class="step">신뢰구간 — 식 $(2\text{-}9)$ 에 그대로 대입한다.</span>
+      $$1{,}180{,}000\pm2\sqrt{10{,}000^2\cdot\frac{10{,}000-100}{10{,}000}\cdot\frac{15^2}{100}}
+        \;\Leftrightarrow\;1{,}180{,}000\pm29{,}850$$</li>
   </ol>
 </div>
 
@@ -316,8 +318,9 @@ $n=30$ 그루의 나무를 예비표본으로 뽑아 조사한 결과 $\bar y=12
     <li><span class="step">분산의 추정값.</span>
       $$\hat V(\hat\tau)=120^2\times\frac{120-12}{120}\times\frac{16{,}123{,}333}{12}
         =14{,}400\times0.9\times1{,}343{,}611\fallingdotseq1.7413\times10^{10}$$</li>
-    <li><span class="step">신뢰구간.</span> $\sqrt{1.7413\times10^{10}}\fallingdotseq131{,}959$ 이므로
-      $$3{,}898{,}000\pm2(131{,}959)\;\Leftrightarrow\;3{,}898{,}000\pm263{,}918
+    <li><span class="step">신뢰구간 — 식 $(2\text{-}9)$ 에 그대로 대입한다.</span>
+      $$3{,}898{,}000\pm2\sqrt{120^2\cdot\frac{120-12}{120}\cdot\frac{16{,}123{,}333}{12}}
+        \;\Leftrightarrow\;3{,}898{,}000\pm263{,}918
         \;\Leftrightarrow\;(3{,}634{,}082,\;4{,}161{,}918)$$</li>
     <li><span class="step">한마디.</span> 추출비가 $12/120=10\%$ 로 낮아 수정항이 $0.9$ 밖에 줄여 주지 못했고,
       $n=12$ 로 작아 오차의 한계가 추정값의 약 $6.8\%$ 나 된다. 정도를 높이려면 표본을 더 늘려야 한다.</li>
@@ -353,8 +356,9 @@ $n=30$ 그루의 나무를 예비표본으로 뽑아 조사한 결과 $\bar y=12
       $$\hat V(\hat p)=\frac{N-n}{N}\cdot\frac{\hat p\hat q}{n-1}
         =\frac{49{,}500}{50{,}000}\cdot\frac{0.44\times0.56}{499}
         =0.99\times0.00049379=0.000489$$</li>
-    <li><span class="step">신뢰구간.</span> $\sqrt{0.000489}\fallingdotseq0.02211$ 이므로
-      $$0.44\pm2(0.02211)\;\Leftrightarrow\;0.44\pm0.0442\;\Leftrightarrow\;(0.396,\;0.484)$$</li>
+    <li><span class="step">신뢰구간 — 식 $(2\text{-}14)$ 에 그대로 대입한다.</span>
+      $$0.44\pm2\sqrt{\frac{50{,}000-500}{50{,}000}\cdot\frac{0.44\times0.56}{500-1}}
+        \;\Leftrightarrow\;0.44\pm0.0442\;\Leftrightarrow\;(0.396,\;0.484)$$</li>
     <li><span class="step">해석.</span> 신뢰구간이 $0.5$ 를 넘지 못하므로
       이 표본만으로는 <b>과반 지지를 주장할 수 없다</b>.</li>
   </ol>
@@ -429,8 +433,9 @@ $n=30$ 그루의 나무를 예비표본으로 뽑아 조사한 결과 $\bar y=12
     <li><span class="step">분산의 추정값.</span>
       $$\hat V(\hat\tau)=500^2\times\frac{500-20}{500}\times\frac{8{,}255.0}{20}
         =250{,}000\times0.96\times412.75\fallingdotseq99{,}060{,}000$$</li>
-    <li><span class="step">신뢰구간.</span> $\sqrt{99{,}060{,}000}\fallingdotseq9{,}953$ 이므로
-      $$98{,}550\pm2(9{,}953)\;\Leftrightarrow\;98{,}550\pm19{,}906
+    <li><span class="step">신뢰구간 — 식 $(2\text{-}9)$ 에 그대로 대입한다.</span>
+      $$98{,}550\pm2\sqrt{500^2\cdot\frac{500-20}{500}\cdot\frac{8{,}255.0}{20}}
+        \;\Leftrightarrow\;98{,}550\pm19{,}906
         \;\Leftrightarrow\;(78{,}644,\;118{,}456)$$</li>
   </ol>
 </div>
@@ -443,8 +448,9 @@ $n=30$ 그루의 나무를 예비표본으로 뽑아 조사한 결과 $\bar y=12
     <li><span class="step">분산의 추정값 — 식 $(2\text{-}13)$.</span>
       $$\hat V(\hat p)=\frac{N-n}{N}\cdot\frac{\hat p\hat q}{n-1}
         =\frac{480}{500}\cdot\frac{0.3\times0.7}{19}=0.96\times0.011053=0.010611$$</li>
-    <li><span class="step">신뢰구간.</span> $\sqrt{0.010611}\fallingdotseq0.1030$ 이므로
-      $$0.3\pm2(0.1030)\;\Leftrightarrow\;0.3\pm0.206\;\Leftrightarrow\;(0.094,\;0.506)$$</li>
+    <li><span class="step">신뢰구간 — 식 $(2\text{-}14)$ 에 그대로 대입한다.</span>
+      $$0.3\pm2\sqrt{\frac{500-20}{500}\cdot\frac{0.3\times0.7}{20-1}}
+        \;\Leftrightarrow\;0.3\pm0.206\;\Leftrightarrow\;(0.094,\;0.506)$$</li>
     <li><span class="step">해석 — 표본이 너무 작다.</span>
       불일치 비율이 $9\%$ 일 수도 $51\%$ 일 수도 있다는 뜻이니
       감사 판단의 근거로 쓰기에는 정도가 크게 부족하다.
