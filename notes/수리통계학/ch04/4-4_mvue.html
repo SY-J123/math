@@ -352,8 +352,8 @@
   $X_1-X_2$ 는 완비통계량이 <b>아니다</b>.</p>
 </div>
 <div class="box ex">
-  <span class="tag">예 4.32</span><span class="title">완비성 확인 — 이항·균일</span>
-  <p><b>① 이항.</b> $T=\sum_{i=1}^n X_i\sim B(n,p)$ $(0\lt p\lt1)$ 가 완비통계량임을 보인다.</p>
+  <span class="tag">예 4.32 ①</span><span class="title">완비성 확인 — 이항분포 $B(n,p)$</span>
+  <p>$T=\sum_{i=1}^n X_i\sim B(n,p)$ $(0\lt p\lt1)$ 가 완비통계량임을 보인다.</p>
   <ol class="fill">
     <li><span class="step">완비성의 정의 적용.</span> 임의의 함수 $g$ 에 대하여
       “모든 $0\lt p\lt1$ 에서 $E[g(T)]=0$ 이면 $g(t)\equiv0$” 임을 보이면 된다.</li>
@@ -377,7 +377,10 @@
       위 등식이 성립하는 것은 오직 $g(0)=g(1)=\cdots=g(n)=0$ 일 때뿐이다.
       따라서 $g(\cdot)\equiv0$ 이므로 정의 4.7에 의하여 $T$ 는 완비통계량이다.</li>
   </ol>
-  <p><b>② 균일.</b> $U(0,\theta)$ 로부터의 랜덤표본에서 최댓값 $X_{(n)}$ 이 완비통계량임을 보인다.</p>
+</div>
+<div class="box ex">
+  <span class="tag">예 4.32 ②</span><span class="title">완비성 확인 — 균일분포 $U(0,\theta)$</span>
+  <p>$U(0,\theta)$ 로부터의 랜덤표본에서 최댓값 $X_{(n)}$ 이 완비통계량임을 보인다.</p>
   <ol class="fill">
     <li><span class="step">완비성의 정의 적용.</span> 임의의 함수 $g$ 에 대하여
       “모든 $\theta\gt0$ 에서 $E[g(X_{(n)})]=0$ 이면 $g(\cdot)\equiv0$” 임을 보이면 된다.</li>
