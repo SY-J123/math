@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3장 · 3.8 가중회귀</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">회귀분석 · 3장 단순회귀분석</div>
+  <h1><span class="no">3.8</span>가중회귀 <span class="en">weighted regression</span></h1>
+</header>
+
+<p>단순회귀모형은 식 (3.3)에서 일반적으로 오차항들이 <b>등분산</b>을 가정하였듯이 전제조건으로 되어 있다.
+그러나 이러한 등분산의 가정이 성립되지 않는 경우도 있다. <b>오차항마다 분산이 다른</b> 경우를 생각하여 보자.</p>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">가중회귀모형 <span class="en">weighted regression</span></span>
+  $$y_i=\beta_0+\beta_1x_i+\epsilon_i,\qquad
+  \operatorname{Var}(\epsilon_i)=\sigma_i^2=\frac{\sigma^2}{w_i}\tag{3.52}$$
+  <p>이라 하고, 이런 경우 <b>가중최소제곱법</b><span class="en">method of weighted least squares</span>을
+  사용하여 회귀분석하는 것을 <b>가중회귀</b><span class="en">weighted regression</span>분석이라고 부른다.
+  이때 $w_i$ 를 <b>가중치</b><span class="en">weights</span>라고 부른다.</p>
+</div>
+<div class="note">
+  가중치가 분산의 <b>역수 위치</b>에 붙어 있다는 점($\sigma_i^2=\sigma^2/w_i$)에 주목하자 —
+  분산이 작아 <b>믿을 만한</b> 관측값일수록 $w_i$ 가 크고, 아래 목적함수에서 더 무겁게 다뤄진다.
+  모든 $w_i=1$ 이면 등분산이 되어 보통의 <a href="3-3_estimating-regression-line.html">최소제곱법</a>으로
+  돌아간다.
+</div>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">가중오차제곱합</span>
+  <p>최소제곱법에서는 식 (3.10)의 오차제곱합</p>
+  $$S(\beta_0,\beta_1)=\sum(y_i-\beta_0-\beta_1x_i)^2$$
+  <p>을 최소로 하는 것이나, 가중최소제곱법에서는</p>
+  $$Q(\beta_0,\beta_1)=\sum w_i(y_i-\beta_0-\beta_1x_i)^2\tag{3.53}$$
+  <p>을 최소로 하는 $\beta_0$ 와 $\beta_1$ 의 값을 구하는 것이다.</p>
+</div>
+
+<div class="box prf">
+  <span class="tag">유도</span>
+  <ol>
+    <li><span class="step">① 가중정규방정식.</span> 이 가중오차제곱의 합 $Q$ 를 $\beta_0$ 와 $\beta_1$ 에
+      대하여 편미분하여 식 (3.12), (3.13)과 같은 정규방정식을 만들면
+      $$\begin{aligned}
+        \hat\beta_0\sum w_i+\hat\beta_1\sum w_ix_i&=\sum w_iy_i\\
+        \hat\beta_0\sum w_ix_i+\hat\beta_1\sum w_ix_i^2&=\sum w_ix_iy_i
+      \end{aligned}\tag{3.54}$$
+      이 된다. 보통의 정규방정식에서 모든 합에 $w_i$ 가 하나씩 끼어든 형태다.</li>
+
+    <li><span class="step">② 가중평균으로 바꿔 쓰기.</span> 이 되며, 설명변수 관측값들과 반응변수 관측값들의
+      <b>가중평균</b>을 각각
+      $$\bar x=\frac{\sum w_ix_i}{\sum w_i},\qquad \bar y=\frac{\sum w_iy_i}{\sum w_i}\tag{3.55}$$
+      라 하면, 가중정규방정식의 해는 다음과 같다.
+      $$\hat\beta_1=\frac{\sum w_i(x_i-\bar x)(y_i-\bar y)}{\sum w_i(x_i-\bar x)^2},\qquad
+      \hat\beta_0=\bar y-\hat\beta_1\bar x\tag{3.56}$$
+      식 (3.16)과 <b>모양이 똑같고</b> 모든 합에 $w_i$ 가 붙고 평균이 가중평균으로 바뀐 것뿐이다.</li>
+  </ol>
+  <div class="qed">∎</div>
+</div>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">가중회귀의 변동</span>
+  <p>가중회귀에서는 변동을 다음과 같이 정의한다.</p>
+  $$\begin{aligned}
+    SST&=\sum w_i(y_i-\bar y)^2\\
+    SSR&=\frac{\big[\sum w_i(x_i-\bar x)(y_i-\bar y)\big]^2}{\sum w_i(x_i-\bar x)^2}\\
+    SSE&=SST-SSR
+  \end{aligned}\tag{3.57}$$
+  <p>(단, $\bar x,\bar y$ 는 식 (3.55)의 가중평균이다.)</p>
+</div>
+
+<div class="box thm">
+  <span class="tag">성질</span><span class="title">가중잔차의 성질</span>
+  <p>이때 <b>가중잔차의 합</b><span class="en">weighted sum of residuals</span></p>
+  $$\sum w_i(y_i-\hat y_i)=\sum w_i(y_i-\hat\beta_0-\hat\beta_1x_i)\tag{3.58}$$
+  <p>은 $0$ 이 되고, <b>가중잔차제곱합</b><span class="en">weighted residual sum of squares</span></p>
+  $$\sum w_i(y_i-\hat\beta_0-\hat\beta_1x_i)^2\tag{3.59}$$
+  <p>은 최소가 되는 것을 알 수 있다. 마지막으로 이와 관련된 분산분석표는
+  <a href="3-6_anova.html">표 3.5</a>에 있는 것과 동일한 형태를 갖는다.</p>
+</div>
+<div class="note">
+  성질의 근거는 앞과 같다 — 식 (3.54)의 첫 번째 정규방정식이 곧 $\sum w_ie_i=0$ 이고, 두 번째가
+  $\sum w_ix_ie_i=0$ 이다. 즉 보통의 회귀에서 “잔차가 $1$ 과 $x$ 에 직교”했던 조건이 가중회귀에서는
+  <b>가중치를 실은 직교조건</b>으로 바뀐다. 식 (3.59)가 최소라는 것은 가중최소제곱법의 정의 그 자체다.
+</div>
+
+<nav class="pager">
+  <a href="3-7_regression-through-origin.html">← 이전<small>3.7 원점을 지나는 회귀</small></a>
+  <span class="spacer"></span>
+</nav>
+
+</body>
+</html>

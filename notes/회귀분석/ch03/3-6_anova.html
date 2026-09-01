@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3장 · 3.6 분산분석</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">회귀분석 · 3장 단순회귀분석</div>
+  <h1><span class="no">3.6</span>분산분석 <span class="en">analysis of variance</span></h1>
+</header>
+
+<p>회귀분석에 있어서 식 (3.33)에서 본 바와 같이 총변동 또는 총제곱합을 회귀선에 의하여 설명되는 부분과
+안 되는 부분으로 나누어 고찰하는 것은 매우 의미있는 일이다.</p>
+
+<div class="box thm">
+  <span class="tag">공식</span><span class="title">제곱합의 간편한 계산</span>
+  <p>회귀선에 의하여 설명되는 제곱합을 <b>회귀에 의한 제곱합</b>이라 부르며, 이는 식 (3.16)과 (3.19)를
+  이용하여 표현하면</p>
+  $$SSR=\sum(\hat y_i-\bar y)^2=\hat\beta_1^2S_{(xx)}=\frac{S_{(xy)}^2}{S_{(xx)}}\tag{3.44}$$
+  <p>이 된다. 그리고 회귀선에 의하여 설명되지 않는 제곱합은 <b>잔차</b><span class="en">residual</span>로
+  인한 제곱합이라고 부르며, 이 제곱합의 간편한 계산은</p>
+  $$SSE=\sum(y_i-\hat y_i)^2=\sum(y_i-\bar y)^2-SSR=SST-SSR$$
+  <p>이 된다.</p>
+</div>
+<div class="note">
+  $SSR$ 은 세 형태 모두 같은 값이다 — 정의형 $\sum(\hat y_i-\bar y)^2$ 은 뜻이 분명하고,
+  $\hat\beta_1^2S_{(xx)}$ 는 기울기를 이미 구한 뒤에 편하고, $S_{(xy)}^2/S_{(xx)}$ 는 편차제곱합만으로
+  <b>회귀선을 구하지 않고도</b> 계산할 수 있어 가장 빠르다.
+</div>
+
+<h2 class="sub">단순회귀의 분산분석표 <span class="en">ANOVA table for simple regression</span></h2>
+<p>주어진 자료를 적합시키는 데 있어서 회귀직선이 <b>유의</b><span class="en">significant</span>한가 하는 것은
+$SSR$ 이 상대적으로 $SSE$ 보다 어느 정도 큰가를 다음과 같은 분산분석표를 만들어 알아볼 수 있다.</p>
+
+<div class="scroll">
+<table class="anova">
+  <caption style="caption-side:top; font-size:0.85rem; color:var(--muted); margin-bottom:4px;">표 3.5 &nbsp;단순회귀의 분산분석표</caption>
+  <tr><th>요인</th><th>제곱합</th><th>자유도</th><th>평균제곱</th><th>$F_0$</th><th>$F_\alpha$</th></tr>
+  <tr><td>회귀</td><td>$SSR$</td><td>$1$</td><td>$MSR=SSR$</td><td>$MSR/MSE$</td><td>$F_\alpha(1,n-2)$</td></tr>
+  <tr><td>잔차</td><td>$SSE$</td><td>$n-2$</td><td>$MSE=SSE/(n-2)$</td><td></td><td></td></tr>
+  <tr><td>계</td><td>$SST$</td><td>$n-1$</td><td></td><td></td><td></td></tr>
+</table>
+</div>
+
+<div class="box thm">
+  <span class="tag">성질</span><span class="title">분산분석표 읽는 법</span>
+  <ol class="props">
+    <li><b>평균제곱</b>은 제곱합을 자유도로 나눈 것이며, $MSE$ 는 식 (3.30)에서 정의한 $\sigma^2$ 의
+      추정값 $s_{y\cdot x}^2$ 과 같다.</li>
+    <li>$F_0$ 는 회귀에 의한 평균제곱 $MSR$ 과 잔차의 평균제곱 $MSE$ 와의 <b>비율</b>이다.
+      이 비율이 많이 커서 회귀에 의한 제곱합이 잔차의 그것보다 상대적으로 크면, 회귀선이 $x$ 와 $y$ 간의
+      관계를 설명하는 데 <b>유의</b>하다는 의미가 된다.</li>
+    <li>$F_0$ 의 값이 어느 정도 커야 되는가는 $F$ 분포표를 이용하여 주어진
+      <b>유의수준</b><span class="en">level of significance</span> $\alpha$ 와 자유도 $(1,n-2)$ 의 기각치
+      $F_\alpha(1,n-2)$ 를 구해 비교한다. 분산분석표에서는 이 값을 $F_\alpha$ 단에 적어서 $F_0$ 값과
+      비교할 수 있게 한다.</li>
+    <li>만약 $F_0\gt F_\alpha(1,n-2)$ 이면 유의수준 $\alpha$ 검정결과 <b>회귀선이 유의하다</b>고 말한다.</li>
+  </ol>
+</div>
+<div class="note">
+  자유도를 보면 총자유도 $n-1$ 이 회귀 $1$ 과 잔차 $n-2$ 로 갈라진다 — 제곱합이
+  $SST=SSR+SSE$ 로 갈라지는 것과 나란하다. 회귀의 자유도가 $1$ 인 것은 추정한 기울기가 하나뿐이기
+  때문이며, 설명변수가 $k$ 개인 중회귀에서는 이 자리가 $k$ 가 된다.
+  $F$ 분포는 <a href="../../수리통계학/ch03/3-2_normal-related-distributions.html">$F$ 분포</a>를 참조하라.
+</div>
+
+<div class="box ex">
+  <span class="tag">예 3.5</span><span class="title">광고료·판매액 자료의 분산분석</span>
+  <p>표 3.1의 자료에 대하여 직선회귀의 분산분석표를 작성하고 유의수준 $5\%$ 로 회귀직선의 유의여부를
+  검정하시오.</p>
+  <p><b>풀이</b> &nbsp;앞에서 구한 $S_{(xx)}=46$, $S_{(xy)}=120$, $SST=368.40$ 으로부터</p>
+  $$SSR=\frac{S_{(xy)}^2}{S_{(xx)}}=\frac{120^2}{46}=313.04,\qquad
+  SSE=SST-SSR=368.40-313.04=55.36$$
+  <p>이므로 표 3.5의 형식에 맞춰 분산분석표를 만들면 다음과 같다.</p>
+  <div class="scroll">
+  <table class="anova">
+    <caption style="caption-side:top; font-size:0.85rem; color:var(--muted); margin-bottom:4px;">표 3.6 &nbsp;분산분석표</caption>
+    <tr><th>요인</th><th>제곱합</th><th>자유도</th><th>평균제곱</th><th>$F_0$</th><th>$F_{0.05}$</th><th>$F_{0.01}$</th></tr>
+    <tr><td>회귀</td><td>313.04</td><td>1</td><td>313.04</td><td>45.24$^{**}$</td><td>5.32</td><td>11.26</td></tr>
+    <tr><td>잔차</td><td>55.36</td><td>8</td><td>6.92</td><td></td><td></td><td></td></tr>
+    <tr><td>계</td><td>368.40</td><td>9</td><td></td><td></td><td></td><td></td></tr>
+  </table>
+  </div>
+  <p>유의수준 $\alpha=0.05$ 를 사용하여 $F$ 의 기각치를 구해 보면 $5.32$ 인데 $F_0=45.24$ 이므로,
+  예 3.1에서 구한 회귀직선 $\hat y=-2.270+2.609x$ 는 <b>매우 유의함</b>을 알 수 있다.</p>
+  <p>‘매우 유의’하다는 말은 $F_0\gt F_{0.01}$ 인 경우에 흔히 쓰고, ‘유의’하다 하면 $F_0\gt F_{0.05}$ 인
+  경우에 주로 사용한다.</p>
+</div>
+
+<div class="terms">
+  <div class="h">알아두기 — R 의 유의성 표시</div>
+  <dl>
+    <dt>별표 표기</dt>
+    <dd>R 소프트웨어의 경우 유의성을 4단계로 표시한다 — $F_0$ 의 값이 $F_{0.001}$ 보다 큰 경우
+      <b>***</b>, $F_{0.01}$ 보다 큰 경우 <b>**</b>, $F_{0.05}$ 보다 큰 경우 <b>*</b>,
+      마지막으로 $F_{0.1}$ 보다 큰 경우에는 <b>.</b> 으로 표시된다.</dd>
+  </dl>
+</div>
+
+<div class="note">
+  <b>세 측도는 사실 하나다.</b> 단순회귀에서는 $F_0$ 와 결정계수 $r^2$ 이 서로 결정한다 —
+  $$F_0=\frac{SSR}{SSE/(n-2)}=\frac{r^2}{(1-r^2)/(n-2)}$$
+  이므로 $r^2$ 이 클수록 $F_0$ 도 크다. 즉 <a href="3-4_precision.html">추정값의 표준오차·결정계수</a>,
+  <a href="3-5_correlation.html">상관계수</a>, 그리고 이 절의 $F$ 검정은 <b>같은 정보를 다른 방식으로
+  요약한 것</b>이다.
+</div>
+
+<nav class="pager">
+  <a href="3-5_correlation.html">← 이전<small>3.5 상관분석</small></a>
+  <a class="next" href="3-7_regression-through-origin.html">다음 →<small>3.7 원점을 지나는 회귀</small></a>
+</nav>
+
+</body>
+</html>

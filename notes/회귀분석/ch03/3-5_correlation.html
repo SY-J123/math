@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3장 · 3.5 상관분석</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">회귀분석 · 3장 단순회귀분석</div>
+  <h1><span class="no">3.5</span>상관분석 <span class="en">correlation analysis</span></h1>
+</header>
+
+<!-- ================= 상관계수 ================= -->
+<h2 class="sub"><span class="no">3.5.1</span>상관계수 <span class="en">coefficient of correlation</span></h2>
+<p>두 변수 $X$ 와 $Y$ 사이의 상관관계를 설명하는 데
+<a href="3-4_precision.html">결정계수</a>가 쓰여지기도 하지만, 결정계수는 $X$ 와 $Y$ 의 관계가
+<b>음의 상관관계인지 양의 상관관계인지를 구분하지 못하는</b> 측도라는 단점을 가지고 있다. 이와 같은 단점을
+보완하여 두 변수 간의 상호관계를 측정하는 측도로서 <b>상관계수</b><span class="en">coefficient of correlation</span>가
+있다.</p>
+
+<div class="box def">
+  <span class="tag">정의</span><span class="title">상관계수 — 결정계수와의 관계</span>
+  <p>단순회귀분석에서는 상관계수 $r$ 을 다음과 같이 구할 수 있다.</p>
+  $$r=\pm\sqrt{r^2}\tag{3.36}$$
+  <p>즉 결정계수 $r^2$ 의 제곱근이며, 부호는 <b>추정된 회귀선의 기울기 $\hat\beta_1$ 의 부호</b>를 따른다.</p>
+  <ol class="props">
+    <li>$\hat\beta_1\gt0$ 이면 $r=+\sqrt{r^2}$ 으로 <b>양의 상관계수</b>를 갖는다.</li>
+    <li>$\hat\beta_1\lt0$ 이면 $r=-\sqrt{r^2}$ 으로 <b>음의 상관계수</b>를 갖는다.</li>
+  </ol>
+  <p>결정계수 $r^2$ 의 값이 $0$ 에서 $1$ 까지이므로 상관계수 $r$ 의 값은 <b>$-1$ 에서 $1$ 까지</b>이며,
+  $x$ 와 $y$ 의 상관 정도에 따라 $r$ 의 값이 결정된다.</p>
+</div>
+
+<div class="box thm">
+  <span class="tag">성질</span><span class="title">기울기와 산포에 따른 $r$ 의 값</span>
+  <ol class="props">
+    <li>회귀직선의 기울기가 <b>음</b>이고 모든 관측값이 회귀선상에 있으면 $r=-1$ 로, $r$ 이 가질 수 있는
+      <b>최소</b>의 값이다(그림 3.7(a)).</li>
+    <li>기울기는 음이나 관측값들이 반드시 회귀선상에만 있지 않으면 $-1\lt r\lt0$ 이다(그림 3.7(b)).</li>
+    <li>기울기가 <b>양</b>이고 관측값에 산포가 있으면 $0\lt r\lt1$ 이다(그림 3.7(c)).</li>
+    <li>기울기가 양이고 관측값이 모두 회귀선상에 있으면 $r=1$ 로 <b>최댓값</b>을 가진다(그림 3.7(d)).</li>
+    <li>기울기가 $0$ 이면 $\hat y=\bar y$ 가 되며 식 (3.35)로부터 $r^2=0$, 따라서 $r=0$ 이다(그림 3.7(e)).
+      이때 $X$ 와 $Y$ 사이에 <b>상관관계가 없다</b>고 한다.</li>
+  </ol>
+</div>
+
+<figure class="fig">
+<svg viewBox="0 0 700 145" role="img" aria-label="상관계수의 다섯 가지 경우 산점도">
+  <g>
+    <line class="axis" x1="15" y1="100" x2="122" y2="100"/>
+    <line class="axis" x1="20" y1="95" x2="20" y2="15"/>
+    <line class="vec" x1="25" y1="25" x2="115" y2="90"/>
+    <circle cx="25" cy="25" r="2.8" fill="#1d6fb8"/><circle cx="43" cy="38" r="2.8" fill="#1d6fb8"/>
+    <circle cx="61" cy="51" r="2.8" fill="#1d6fb8"/><circle cx="79" cy="64" r="2.8" fill="#1d6fb8"/>
+    <circle cx="97" cy="77" r="2.8" fill="#1d6fb8"/><circle cx="115" cy="90" r="2.8" fill="#1d6fb8"/>
+    <text class="num" x="34" y="126">(a) r = −1</text>
+    <text class="lbl" x="10" y="14" fill="#5a5a5a">y</text>
+    <text class="lbl" x="120" y="114" fill="#5a5a5a">x</text>
+  </g>
+  <g transform="translate(140,0)">
+    <line class="axis" x1="15" y1="100" x2="122" y2="100"/>
+    <line class="axis" x1="20" y1="95" x2="20" y2="15"/>
+    <line class="vec" x1="25" y1="30" x2="115" y2="88"/>
+    <circle cx="30" cy="25" r="2.8" fill="#1d6fb8"/><circle cx="45" cy="45" r="2.8" fill="#1d6fb8"/>
+    <circle cx="58" cy="38" r="2.8" fill="#1d6fb8"/><circle cx="72" cy="60" r="2.8" fill="#1d6fb8"/>
+    <circle cx="88" cy="55" r="2.8" fill="#1d6fb8"/><circle cx="100" cy="75" r="2.8" fill="#1d6fb8"/>
+    <circle cx="112" cy="70" r="2.8" fill="#1d6fb8"/>
+    <text class="num" x="24" y="126">(b) −1 &lt; r &lt; 0</text>
+    <text class="lbl" x="10" y="14" fill="#5a5a5a">y</text>
+    <text class="lbl" x="120" y="114" fill="#5a5a5a">x</text>
+  </g>
+  <g transform="translate(280,0)">
+    <line class="axis" x1="15" y1="100" x2="122" y2="100"/>
+    <line class="axis" x1="20" y1="95" x2="20" y2="15"/>
+    <line class="vec" x1="25" y1="88" x2="115" y2="30"/>
+    <circle cx="30" cy="80" r="2.8" fill="#1d6fb8"/><circle cx="45" cy="60" r="2.8" fill="#1d6fb8"/>
+    <circle cx="58" cy="70" r="2.8" fill="#1d6fb8"/><circle cx="72" cy="50" r="2.8" fill="#1d6fb8"/>
+    <circle cx="88" cy="55" r="2.8" fill="#1d6fb8"/><circle cx="100" cy="35" r="2.8" fill="#1d6fb8"/>
+    <circle cx="112" cy="40" r="2.8" fill="#1d6fb8"/>
+    <text class="num" x="26" y="126">(c) 0 &lt; r &lt; 1</text>
+    <text class="lbl" x="10" y="14" fill="#5a5a5a">y</text>
+    <text class="lbl" x="120" y="114" fill="#5a5a5a">x</text>
+  </g>
+  <g transform="translate(420,0)">
+    <line class="axis" x1="15" y1="100" x2="122" y2="100"/>
+    <line class="axis" x1="20" y1="95" x2="20" y2="15"/>
+    <line class="vec" x1="25" y1="90" x2="115" y2="25"/>
+    <circle cx="25" cy="90" r="2.8" fill="#1d6fb8"/><circle cx="43" cy="77" r="2.8" fill="#1d6fb8"/>
+    <circle cx="61" cy="64" r="2.8" fill="#1d6fb8"/><circle cx="79" cy="51" r="2.8" fill="#1d6fb8"/>
+    <circle cx="97" cy="38" r="2.8" fill="#1d6fb8"/><circle cx="115" cy="25" r="2.8" fill="#1d6fb8"/>
+    <text class="num" x="38" y="126">(d) r = 1</text>
+    <text class="lbl" x="10" y="14" fill="#5a5a5a">y</text>
+    <text class="lbl" x="120" y="114" fill="#5a5a5a">x</text>
+  </g>
+  <g transform="translate(560,0)">
+    <line class="axis" x1="15" y1="100" x2="122" y2="100"/>
+    <line class="axis" x1="20" y1="95" x2="20" y2="15"/>
+    <line class="vec" x1="25" y1="60" x2="115" y2="60"/>
+    <circle cx="32" cy="45" r="2.8" fill="#1d6fb8"/><circle cx="45" cy="72" r="2.8" fill="#1d6fb8"/>
+    <circle cx="58" cy="50" r="2.8" fill="#1d6fb8"/><circle cx="70" cy="68" r="2.8" fill="#1d6fb8"/>
+    <circle cx="84" cy="44" r="2.8" fill="#1d6fb8"/><circle cx="96" cy="70" r="2.8" fill="#1d6fb8"/>
+    <circle cx="110" cy="55" r="2.8" fill="#1d6fb8"/>
+    <text class="num" x="38" y="126">(e) r = 0</text>
+    <text class="lbl" x="10" y="14" fill="#5a5a5a">y</text>
+    <text class="lbl" x="120" y="114" fill="#5a5a5a">x</text>
+  </g>
+</svg>
+<figcaption>그림 3.7 — 상관계수. 기울기의 <b>부호</b>가 $r$ 의 부호를 정하고, 회귀선 주위의 <b>산포</b>가
+$|r|$ 의 크기를 정한다.</figcaption>
+</figure>
+
+<!-- ================= 모상관계수 ================= -->
+<h2 class="sub">모상관계수와 표본상관계수 <span class="en">population and sample coefficient of correlation</span></h2>
+<p>이제까지 취급해 온 단순회귀분석에서는 “$Y$ 는 확률변수이나 $X$ 는 고정된 변수”로 가정한 후에 회귀분석의
+여러 가지 측면을 연구하여 왔다. 만약 $X$ 도 확률변수이고 $X$ 와 $Y$ 가 어떤
+<b>이변량분포</b><span class="en">bivariate distribution</span>를 하고 있다면 다음과 같이 정의한다.</p>
+<div class="box def">
+  <span class="tag">정의</span><span class="title">모상관계수 <span class="en">population coefficient of correlation</span></span>
+  $$\rho_{XY}=\frac{\operatorname{Cov}(X,Y)}{\sqrt{\operatorname{Var}(X)\operatorname{Var}(Y)}}\tag{3.37}$$
+  <p>변수 $X,Y$ 의 분산 $\operatorname{Var}(X),\operatorname{Var}(Y)$ 를 각각 $\sigma_X^2,\sigma_Y^2$ 으로 표시하고
+  $X$ 와 $Y$ 의 공분산을 $\sigma_{XY}$ 로 표시하면</p>
+  $$\rho_{XY}=\frac{\sigma_{XY}}{\sigma_X\cdot\sigma_Y}\tag{3.38}$$
+  <p>이다. 이는 <a href="../../수리통계학/ch02/2-4_expectation.html">공분산과 상관계수의 정의</a>와 같음을
+  알 수 있다.</p>
+</div>
+<div class="box def">
+  <span class="tag">정의</span><span class="title">표본상관계수 <span class="en">sample coefficient of correlation</span></span>
+  <p>모집단으로부터 크기가 $n$ 인 표본을 뽑았을 때 $n$ 개의 관측값
+  $(x_1,y_1),(x_2,y_2),\dots,(x_n,y_n)$ 이 얻어졌다면, 이 두 변수 사이의 표본상관계수는</p>
+  $$r_{xy}=\frac{S_{(xy)}}{\sqrt{S_{(xx)}S_{(yy)}}}\tag{3.39}$$
+  <p>로 정의된다. 계수 $r_{xy}$ 는 그 범위가 $-1\le r_{xy}\le1$ 임을 쉽게 증명할 수 있다.</p>
+</div>
+
+<div class="note">
+  <b>주의 — 선형관계만 재는 측도.</b> 상관계수는 변수 간의
+  <b>선형관계</b><span class="en">linear relationship</span>가 어느 정도인가를 재는 측도이지
+  <b>함수관계를 재는 측도는 아니다</b>. 다음 표는 정확히 $y=x^2-4x+6$ 이라는 함수관계를 만족시키고 있다.
+  <div class="scroll">
+  <table class="data">
+    <caption style="caption-side:top; font-size:0.8rem; color:var(--muted); margin-bottom:4px;">표 3.3 &nbsp;예 3.4 자료</caption>
+    <tr><th>$x$</th><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td></tr>
+    <tr><th>$y$</th><td>6</td><td>3</td><td>2</td><td>3</td><td>6</td></tr>
+  </table>
+  </div>
+  그러나 $\bar x=2,\ \bar y=4$ 이므로
+  $S_{(xy)}=\sum(x_i-\bar x)(y_i-\bar y)=(-2)(2)+(-1)(-1)+0+(1)(-1)+(2)(2)=0$ 이 되어
+  결국 $r_{xy}=0$ 이 된다. 완벽한 함수관계인데도 상관계수가 $0$ 이라는 것이, 상관계수가 두 변수 간의
+  <b>직선적인</b> 관련성만을 측정하는 도구라는 것을 알기 쉽게 보여 주는 예다.
+</div>
+
+<div class="box ex">
+  <span class="tag">예 3.4</span><span class="title">광고료·판매액 자료의 표본상관계수</span>
+  <p>표 3.1의 자료에 대하여 식 (3.39)를 사용하여 표본상관계수를 구하시오.</p>
+  <p><b>풀이</b> &nbsp;다음과 같이 계산표를 작성하는 것이 편리하다.</p>
+  <div class="scroll">
+  <table class="data">
+    <caption style="caption-side:top; font-size:0.8rem; color:var(--muted); margin-bottom:4px;">표 3.4 &nbsp;$r_{xy}$ 의 계산표</caption>
+    <tr><th>관측번호</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>계</th></tr>
+    <tr><th>$x$</th><td>4</td><td>8</td><td>9</td><td>8</td><td>8</td><td>12</td><td>6</td><td>10</td><td>6</td><td>9</td><th>80</th></tr>
+    <tr><th>$y$</th><td>9</td><td>20</td><td>22</td><td>15</td><td>17</td><td>30</td><td>18</td><td>25</td><td>10</td><td>20</td><th>186</th></tr>
+    <tr><th>$x^2$</th><td>16</td><td>64</td><td>81</td><td>64</td><td>64</td><td>144</td><td>36</td><td>100</td><td>36</td><td>81</td><th>686</th></tr>
+    <tr><th>$xy$</th><td>36</td><td>160</td><td>198</td><td>120</td><td>136</td><td>360</td><td>108</td><td>250</td><td>60</td><td>180</td><th>1,608</th></tr>
+    <tr><th>$y^2$</th><td>81</td><td>400</td><td>484</td><td>225</td><td>289</td><td>900</td><td>324</td><td>625</td><td>100</td><td>400</td><th>3,828</th></tr>
+  </table>
+  </div>
+  <p>세 편차제곱합을 계산하면</p>
+  $$\begin{aligned}
+    S_{(xx)}&=\sum x_i^2-\frac{(\sum x_i)^2}{n}=686-\frac{80^2}{10}=46\\
+    S_{(yy)}&=\sum y_i^2-\frac{(\sum y_i)^2}{n}=3{,}828-\frac{186^2}{10}=368.4\\
+    S_{(xy)}&=\sum x_iy_i-\frac{(\sum x_i)(\sum y_i)}{n}=1{,}608-\frac{(80)(186)}{10}=120
+  \end{aligned}$$
+  <p>이므로</p>
+  $$r_{xy}=\frac{S_{(xy)}}{\sqrt{S_{(xx)}S_{(yy)}}}=\frac{120}{\sqrt{(46)(368.4)}}=0.92$$
+  <p>이다. 이와 같이 양의 높은 상관계수는 광고료 $x$ 와 판매액 $y$ 간에 높은 상관관계가 있으므로
+  광고료의 증가에 따라서 판매액도 증가한다는 의미이다.</p>
+  <p>상관계수는 식 (3.36)에 의하여 얻을 수도 있다. 예 3.3에서 결정계수의 값이 $r^2=0.85$ 이고 회귀선의
+  기울기가 양의 값을 가졌으므로 $r=\sqrt{0.85}=0.92$ 로서 <b>정확히 같은 값</b>을 얻는다.</p>
+</div>
+
+<div class="box thm">
+  <span class="tag">정리</span><span class="title">결정계수와 표본상관계수의 관계</span>
+  <p>단순회귀에서 다음 등식이 성립한다.</p>
+  $$r^2=\frac{SSR}{SST}=\frac{S_{(xy)}^2}{S_{(xx)}S_{(yy)}}=(r_{xy})^2\tag{3.40}$$
+</div>
+<div class="box prf">
+  <span class="tag">증명</span>
+  <p>맨 왼쪽과 맨 오른쪽의 등호는 식 (3.35)와 (3.39)에 있는 <b>정의</b>이므로 명백한 사실이며, 가운데 등호만
+  보이면 된다.</p>
+  <ol>
+    <li><span class="step">① $SSR$ 을 $\hat\beta_1$ 로 쓰기.</span> 식 (3.19)로부터
+      $\hat y_i-\bar y=\hat\beta_1(x_i-\bar x)$ 이므로
+      $$SSR=\sum(\hat y_i-\bar y)^2=\sum\big[\hat\beta_1(x_i-\bar x)\big]^2=\hat\beta_1^2\,S_{(xx)}$$
+      이다.</li>
+    <li><span class="step">② $\hat\beta_1=S_{(xy)}/S_{(xx)}$ 를 대입.</span>
+      $$r^2=\frac{SSR}{SST}=\frac{\hat\beta_1^2S_{(xx)}}{S_{(yy)}}
+      =\left[\frac{S_{(xy)}}{S_{(xx)}}\right]^{2}\frac{S_{(xx)}}{S_{(yy)}}
+      =\frac{S_{(xy)}^2}{S_{(xx)}S_{(yy)}}=(r_{xy})^2$$
+      이므로 식 (3.40)이 성립한다.</li>
+  </ol>
+  <div class="qed">∎</div>
+</div>
+<div class="note">
+  이 결과는 <b>단순회귀에서 얻어진 결정계수에 한해서만</b> 성립한다. 즉 뒤에서 다루게 되는 <b>중회귀</b>에서
+  얻어지는 결정계수로부터는 상관계수 $r$ 을 구할 수 없다. 식 (3.36)으로 $r$ 을 구할 때에는 그 $r^2$ 이
+  반드시 단순회귀분석의 결정계수인지 확인해야 한다.
+</div>
+
+<div class="box thm">
+  <span class="tag">성질</span><span class="title">기울기와 표본상관계수의 관계</span>
+  <p>회귀직선의 기울기 $\hat\beta_1$ 과 표본상관계수 $r_{xy}$ 사이에는 다음 관계가 있다.</p>
+  $$r_{xy}=\frac{S_{(xy)}}{\sqrt{S_{(xx)}S_{(yy)}}}
+  =\frac{S_{(xy)}}{S_{(xx)}}\cdot\frac{\sqrt{S_{(xx)}}}{\sqrt{S_{(yy)}}}
+  =\hat\beta_1\frac{s_x}{s_y}\tag{3.41}$$
+  <p>위에서 $s_x,s_y$ 는 각각 $x$ 와 $y$ 의 <b>표본표준편차</b><span class="en">sample standard deviation</span>로</p>
+  $$s_x=\sqrt{\frac{S_{(xx)}}{n-1}},\qquad s_y=\sqrt{\frac{S_{(yy)}}{n-1}}$$
+  <p>와 같은 것이다. 식 (3.41)에서 $r_{xy}$ 와 $\hat\beta_1$ 은 서로 <b>선형관계</b>에 있고 <b>같은 부호</b>를
+  가지며, $s_x,s_y$ 의 값이 양이므로 크기가 서로 정비례함을 알 수 있다.</p>
+</div>
+
+<div class="box thm">
+  <span class="tag">성질</span><span class="title">$r_{xy}$ 와 오차분산 추정값의 관계</span>
+  <p>표본상관계수 $r_{xy}$ 의 또 다른 재미있는 성질은 오차분산 $\sigma^2$ 의 추정값
+  $s_{y\cdot x}^2$(식 (3.30))과의 관계에서 얻어진다. 즉</p>
+  $$\begin{aligned}
+    \sum(y_i-\hat y_i)^2&=(n-2)s_{y\cdot x}^2=SST-SSR\\
+    &=\sum(y_i-\bar y)^2-\frac{\big[\sum(x_i-\bar x)(y_i-\bar y)\big]^2}{\sum(x_i-\bar x)^2}\\
+    &=\Big[\sum(y_i-\bar y)^2\Big](1-r_{xy}^2)
+  \end{aligned}\tag{3.42}$$
+  <p>이다. 여기서 좌변 $\sum(y_i-\hat y_i)^2$ 은 <b>음수가 될 수 없으므로</b> $r_{xy}^2$ 은 $1$ 보다 클 수 없다 —
+  이로부터 $-1\le r_{xy}\le1$ 이라는 성질이 유도된다. 또 $\sum(y_i-\hat y_i)^2=0$ 이면 $r_{xy}^2=1$ 임을
+  의미한다.</p>
+  <p>이제 $s_{y\cdot x}^2$ 을 $y$ 의 표본분산 $s_y^2$ 으로 나누면</p>
+  $$\frac{s_{y\cdot x}^2}{s_y^2}
+  =\frac{\Big[\sum(y_i-\bar y)^2\Big](1-r_{xy}^2)/(n-2)}{\sum(y_i-\bar y)^2/(n-1)}
+  =\frac{n-1}{n-2}\big(1-r_{xy}^2\big)$$
+  <p>이고, 표본의 크기 $n$ 이 크면 대략 다음이 성립한다.</p>
+  $$\frac{s_{y\cdot x}^2}{s_y^2}\ \fallingdotseq\ 1-r_{xy}^2$$
+</div>
+
+<!-- ================= 표준화된 변수 ================= -->
+<h2 class="sub">표준화된 변수 <span class="en">standardized variables</span></h2>
+<p>두 변수 $x,y$ 의 단위 크기가 크게 차이가 있을 때에는 두 변수의 실제 측정값 대신에</p>
+$$x^*=\frac{x-\bar x}{s_x},\qquad y^*=\frac{y-\bar y}{s_y}$$
+<p>와 같이 $x,y$ 값을 변환하여 이용하는 경우가 있다. 이와 같이 변환된 변수를
+<b>표준화된 변수</b><span class="en">standardized variables</span>라고 부른다.</p>
+<div class="box thm">
+  <span class="tag">성질</span><span class="title">표준화된 변수의 회귀계수 $=$ 상관계수</span>
+  <p>표준화 변수를 식 (3.19)의 $\hat y-\bar y=\hat\beta_1(x-\bar x)$ 에 대입하면</p>
+  $$\hat y^*s_y=\hat\beta_1x^*s_x\quad\text{또는}\quad
+  \hat y^*=\frac{\hat\beta_1s_x}{s_y}\cdot x^*$$
+  <p>을 얻게 되며, 여기에 식 (3.41)을 사용하면</p>
+  $$\hat y^*=r_{xy}\,x^*\tag{3.43}$$
+  <p>을 얻는다. 즉 <b>표준단위로 변환하여 계산한 회귀계수가 곧 두 변수 간의 상관계수</b>가 된다.</p>
+</div>
+
+<nav class="pager">
+  <a href="3-4_precision.html">← 이전<small>3.4 회귀선의 정도</small></a>
+  <a class="next" href="3-6_anova.html">다음 →<small>3.6 분산분석</small></a>
+</nav>
+
+</body>
+</html>
