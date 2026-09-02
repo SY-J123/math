@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>표본조사론 · 3장 연습문제</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<style>
+  .ex{ margin:26px 0; line-height:1.75; }
+  .exn{ font-weight:800; color:var(--def); margin-right:8px; }
+  .ex ol{ margin:4px 0 0; padding-left:26px; }
+  .ex li{ margin:5px 0; }
+  .answersheet{ page-break-before:always; }
+  .ans{ margin:24px 0; line-height:1.75; }
+  .ans .exn{ color:var(--thm); }
+  .ans ol.fill{ margin:6px 0 0; padding-left:24px; }
+  .ans ol.fill li{ margin:9px 0; }
+  .ans ol.props{ padding-left:24px; }
+  @media print{ .pager, .home{ display:none; } a{ color:inherit; text-decoration:none; } }
+</style>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">표본조사론 · 3장 보조 정보를 이용한 추정</div>
+  <h1><span class="no">연습문제</span>3장 <span class="en">exercises</span></h1>
+</header>
+
+<p>3장(보조 정보를 이용한 추정) 교재 연습문제와 정답·해설. 정답 시트는 인쇄 시 다음 페이지부터 나온다.
+계산 문제에서는 $z_{0.025}\fallingdotseq2$ 로 둔다.</p>
+
+<h2 class="sub">교재 연습문제 <span class="en">textbook exercises</span></h2>
+
+<div class="ex"><span class="exn">01</span>주변수 $y$ 에 대한 추정을 하기 위해 보조변수 $x$ 를 이용하고자 한다.
+다음 중 보조변수로서 적절하지 <b>않은</b> 경우는?
+  <ol>
+    <li>$y$: 점포의 $2020$ 년 판매량, &nbsp;$x$: 점포의 $2019$ 년 판매량</li>
+    <li>$y$: 경지의 쌀 생산량, &nbsp;$x$: 경지의 쌀 재배 면적</li>
+    <li>$y$: 가구의 연간 소득액, &nbsp;$x$: 가구의 주당 평균 TV 시청시간</li>
+    <li>$y$: 회사의 한 달간 결근자 수, &nbsp;$x$: 회사의 종업원 수</li>
+  </ol>
+</div>
+
+<div class="ex"><span class="exn">02</span>단순임의표본에 대하여 보조변수 $x$ 와 주변수 $y$ 를 조사해서,
+비추정량을 이용하여 모평균과 모총계를 추정하고자 한다.
+여기에서 $\tau_x$ 와 $\mu_x$ 는 각각 보조변수 $x$ 에 대한 모집단 총계와 평균으로 사전에 알려져 있다.
+다음 중 옳지 <b>않은</b> 것은?
+  <ol>
+    <li>모평균에 대한 비추정량은 $\hat\mu_y=\mu_x\cdot\dfrac{\bar y}{\bar x}$ 이다.</li>
+    <li>모총계에 대한 비추정량은 $\hat\tau_y=\tau_x\cdot\dfrac{\bar y}{\bar x}$ 이다.</li>
+    <li>$x$ 와 $y$ 의 산점도가 원점을 통과하지 않는 직선관계일 때는 회귀추정량을 이용한다.</li>
+    <li>$x$ 와 $y$ 의 상관계수가 $0$ 근처의 값이면 비추정량이 표본평균에 비해서 효과적이다.</li>
+  </ol>
+</div>
+
+<div class="ex"><span class="exn">03</span>어느 도시의 조사 결과에 의하면 가구 소비지출액과 가구의 주거 면적은
+강한 선형관계가 있는 것으로 나타났다.
+어느 도시에서 네 가구를 단순임의추출하여 조사한 결과는 다음과 같다.
+이 도시 전체의 가구당 주거 면적은 $103.7\,\mathrm{m}^2$ 라고 한다.
+이 도시의 평균 가구 소비지출액을 주거 면적을 보조변수로 이용한 비추정량(ratio estimator)으로 추정하면?
+  <div class="scroll"><table class="data">
+    <tr><th>가구 번호</th><th>1</th><th>2</th><th>3</th><th>4</th></tr>
+    <tr><th>주거 면적 ($\mathrm{m}^2$)</th><td>116</td><td>81</td><td>73</td><td>99</td></tr>
+    <tr><th>가구 소비지출액 (만 원)</th><td>190</td><td>150</td><td>120</td><td>140</td></tr>
+  </table></div>
+  <ol>
+    <li>168.6</li>
+    <li>150.0</li>
+    <li>92.3</li>
+    <li>63.8</li>
+  </ol>
+</div>
+
+<div class="ex"><span class="exn">04~05</span><b>[공통 지문]</b>
+한 트럭분의 오렌지 속에 들어 있는 과당 함유량의 총량을 추정하고자 한다.
+트럭에서 $20$ 개의 오렌지를 랜덤하게 추출하여 그 무게와 과당 함유량을 각각 측정하여 다음의 결과를 얻었다.
+트럭 위의 오렌지 전체의 무게는, 오렌지를 실은 채 트럭의 무게를 잰 뒤
+나중에 오렌지를 내려놓은 후 트럭의 무게를 다시 재어 그 차이로부터 구했는데 총 무게는 $1{,}800\,\mathrm{kg}$ 이었다.
+  <div class="box def" style="margin-top:10px;">
+    <span class="tag">자료 요약</span>
+    <p>$x_i$: $i$ 번째 오렌지의 무게(단위: kg), &nbsp;$y_i$: $i$ 번째 오렌지의 과당 함유량(단위: kg)</p>
+    $$\sum_{i=1}^{20}x_i=8.70,\qquad \sum_{i=1}^{20}y_i=0.492,\qquad
+      r=\frac{\sum_{i=1}^{20}y_i}{\sum_{i=1}^{20}x_i}=0.0566$$
+    $$\sum_{i=1}^{20}(y_i-rx_i)^2=0.000104,\qquad \tau_x=1{,}800,\qquad \hat\tau_y=r\cdot\tau_x$$
+    <p>단, $\dfrac{N-n}{N}\fallingdotseq1$</p>
+  </div>
+</div>
+
+<div class="ex"><span class="exn">04</span>$1\,\mathrm{kg}$ 의 오렌지에 들어 있는 평균 과당 함유량과,
+이 트럭의 전체 오렌지에 대한 과당 함유량의 총계의 추정값으로 짝지어진 것은?
+  <ol>
+    <li>0.0566, &nbsp;101.88</li>
+    <li>0.0566, &nbsp;5.66</li>
+    <li>17.68, &nbsp;3182.93</li>
+    <li>17.68, &nbsp;318.29</li>
+  </ol>
+</div>
+
+<div class="ex"><span class="exn">05</span>전체 오렌지에 대한 과당 함유량 총량의 $95\%$ 신뢰수준에서의 오차의 한계는 얼마인가?
+  $$\text{단,}\quad \hat V(\hat\tau_y)=\tau_x^2\cdot\frac1n\cdot\frac{1}{\bar x^2}\cdot
+    \frac{\sum_{i=1}^{n}(y_i-rx_i)^2}{n-1},\qquad
+    \text{오차의 한계}=2\times\sqrt{\hat V(\hat\tau_y)}$$
+  <ol>
+    <li>1.33</li>
+    <li>2.33</li>
+    <li>3.33</li>
+    <li>4.33</li>
+  </ol>
+</div>
+
+<div class="ex"><span class="exn">06</span>단순임의표본에 대해서 보조변수 $x$ 와 주변수 $y$ 를 조사하는 경우를 생각해 보자.
+이 경우에 $r=\dfrac{\bar y}{\bar x}$ 로 나타내면 비추정량을 이용한 모평균 추정은 $\hat\mu_y=\mu_x\cdot r$ 이다.
+이 추정량의 분산은 $\hat V(\hat\mu_y)=\dfrac{N-n}{N}\cdot\dfrac1n\cdot
+\dfrac{\sum_{i=1}^{n}(y_i-rx_i)^2}{n-1}$ 이다.
+비추정량이 표본평균에 비해서 효과적인 경우는 다음 중 어느 것인가?
+  <ol>
+    <li>주변수와 보조변수가 원점을 지나고 직선관계가 뚜렷하고 기울기가 양수일 때</li>
+    <li>주변수와 보조변수가 원점을 지나고 직선관계가 뚜렷하지 않을 때</li>
+    <li>주변수와 보조변수가 원점을 지나지 않고 직선관계가 뚜렷하고 기울기가 음수일 때</li>
+    <li>주변수와 보조변수가 원점을 지나지 않고 직선관계가 뚜렷하고 기울기가 양수일 때</li>
+  </ol>
+</div>
+
+<div class="ex"><span class="exn">07</span>다음의 가상 모집단을 보고 다음 물음에 답하라.
+  <div class="scroll"><table class="data">
+    <tr><th>단위</th><th>보조변수 $x$</th><th>주변수 $y$</th></tr>
+    <tr><td>1</td><td>1</td><td>2</td></tr>
+    <tr><td>2</td><td>2</td><td>2</td></tr>
+    <tr><td>3</td><td>3</td><td>3</td></tr>
+    <tr><td>4</td><td>4</td><td>4</td></tr>
+    <tr><td>5</td><td>5</td><td>4</td></tr>
+  </table></div>
+  <ol>
+    <li>$y$ 의 $x$ 에 대한 비 $R$ 을 계산하라.</li>
+    <li>위 모집단에서 $\{2,\,3,\,5\}$ 가 표본으로 뽑혔다고 한다.
+      이때 $R$ 의 추정값과 그 추정분산을 구하라.</li>
+  </ol>
+</div>
+
+<div class="ex"><span class="exn">08</span>어느 작은 마을에서 가구당 연간 총소득액 중 식료품비로 사용되는 금액의 비를 알기 위해
+표본조사를 실시하였다. 마을의 총가구 수가 $150$ 가구인데 그중 $14$ 가구를 단순임의추출법으로 추출하였다.
+표본의 자료는 다음 표에 나와 있다. 모집단의 비 $R$ 을 추정하고 $95\%$ 신뢰구간을 구하라.
+  <div class="scroll"><table class="data">
+    <tr><th>표본 가구</th><th>총소득액 $x$</th><th>식료품비 $y$</th>
+        <th>표본 가구</th><th>총소득액 $x$</th><th>식료품비 $y$</th></tr>
+    <tr><td>1</td><td>25,100</td><td>3,800</td><td>8</td><td>28,200</td><td>3,600</td></tr>
+    <tr><td>2</td><td>32,200</td><td>5,100</td><td>9</td><td>34,600</td><td>3,800</td></tr>
+    <tr><td>3</td><td>29,600</td><td>4,200</td><td>10</td><td>32,700</td><td>4,100</td></tr>
+    <tr><td>4</td><td>35,000</td><td>6,200</td><td>11</td><td>31,500</td><td>4,500</td></tr>
+    <tr><td>5</td><td>34,400</td><td>5,800</td><td>12</td><td>30,600</td><td>5,100</td></tr>
+    <tr><td>6</td><td>26,500</td><td>4,100</td><td>13</td><td>27,700</td><td>4,200</td></tr>
+    <tr><td>7</td><td>28,700</td><td>3,900</td><td>14</td><td>28,500</td><td>4,000</td></tr>
+  </table></div>
+  <p style="text-align:center;font-size:0.82rem;color:#777;">(단위: 천 원)</p>
+</div>
+
+<div class="ex"><span class="exn">09</span>다음은 표본의 크기가 $25$ 인 표본 조사단위들로부터 조사한 두 변수 $(x,y)$ 값을
+통계 소프트웨어를 사용하여 계산한 출력결과이다.
+이 결과를 이용하여 비추정량 $r=\dfrac{\sum_{i=1}^{n}y_i}{\sum_{i=1}^{n}x_i}$ 와
+그 추정분산의 값을 계산하라.
+  <div class="scroll"><table class="data">
+    <tr><th>변수</th><th>$n$</th><th>평균</th><th>표준편차</th><th>상관계수</th></tr>
+    <tr><td>$x$</td><td>25</td><td>20.35</td><td>2.54</td><td rowspan="2">$\hat\rho=0.89$</td></tr>
+    <tr><td>$y$</td><td>25</td><td>22.75</td><td>2.87</td></tr>
+  </table></div>
+</div>
+
+<div class="ex"><span class="exn">10</span>토끼 $100$ 마리를 대상으로 영양실험을 하였다.
+$100$ 마리 중 $10$ 마리만을 단순임의추출법으로 추출하여 조사하였다.
+실험 이전의 무게와 실험 이후의 무게를 조사한 결과가 다음 표에 나와 있다.
+실험을 실시하기 이전 토끼 $100$ 마리의 평균 무게는 $\mu_x=3.0\,(\mathrm{kg})$ 이었다. 다음 물음에 답하라.
+  <div class="scroll"><table class="data">
+    <tr><th>표본 토끼</th><th>실험 전 무게 $x$</th><th>실험 후 무게 $y$</th>
+        <th>표본 토끼</th><th>실험 전 무게 $x$</th><th>실험 후 무게 $y$</th></tr>
+    <tr><td>1</td><td>3.2</td><td>4.1</td><td>6</td><td>3.1</td><td>4.1</td></tr>
+    <tr><td>2</td><td>3.0</td><td>4.0</td><td>7</td><td>3.0</td><td>4.2</td></tr>
+    <tr><td>3</td><td>2.9</td><td>4.1</td><td>8</td><td>3.2</td><td>4.1</td></tr>
+    <tr><td>4</td><td>2.8</td><td>3.9</td><td>9</td><td>2.9</td><td>3.9</td></tr>
+    <tr><td>5</td><td>2.8</td><td>3.7</td><td>10</td><td>2.8</td><td>3.8</td></tr>
+  </table></div>
+  <p style="text-align:center;font-size:0.82rem;color:#777;">(단위: kg)</p>
+  <ol>
+    <li>실험 이후 토끼의 평균 무게를 비추정법으로 구하라.</li>
+    <li>평균 무게의 $95\%$ 신뢰구간을 구하라.</li>
+  </ol>
+</div>
+
+<div class="ex"><span class="exn">11</span>두 가지 약품의 효능을 비교하기 위해 실험을 하려고 한다.
+표준 약품을 사용했을 때의 반응시간을 보조변수 $x$ 로 나타내고,
+신개발 약품을 사용했을 때의 반응시간을 주변수 $y$ 로 나타내기로 한다.
+표준 약품에 대한 평균 반응시간은 $\mu_x=17.2$ (시간)으로 이미 알고 있다.
+연구개발 시 통상 $S_y^2=9.0$ 으로 하는 것이 관례로 내려오고 있다면,
+$95\%$ 신뢰수준에서 신개발 약품의 반응시간의 추정오차의 한계가 $2$ 시간 이내가 되게 하기 위한
+표본의 크기를 정하라. (힌트: 이 경우 모집단의 크기 $N=\infty$ 로 간주함)</div>
+
+<h2 class="sub">심화문제 <span class="en">advanced problems</span></h2>
+
+<div class="ex"><span class="exn">심화 1~5</span><b>[공통 지문]</b>
+제조업체들을 크기 $19$ 개의 군으로 분류한 후 그중 $6$ 개 군만 표본으로 추출하여
+$2020$ 년 제조업체들의 수익의 총계를 추정하고자 한다.
+$2015$ 년의 제조업체들의 수익의 총계는 $674$ 억 달러였다.
+주어진 자료를 이용하여 $2020$ 년의 총수익을 추정하고자 한다. 다음 물음에 답하라.
+  <div class="scroll"><table class="data">
+    <tr><th>표본 산업 분류</th><th>2015년 $x$ (억 달러)</th><th>2020년 $y$ (억 달러)</th></tr>
+    <tr><td>목재</td><td>21</td><td>26</td></tr>
+    <tr><td>전기·전자 장비</td><td>63</td><td>91</td></tr>
+    <tr><td>자동차</td><td>35</td><td>47</td></tr>
+    <tr><td>식료</td><td>60</td><td>70</td></tr>
+    <tr><td>섬유</td><td>16</td><td>17</td></tr>
+    <tr><td>화학</td><td>50</td><td>76</td></tr>
+  </table></div>
+  <ol>
+    <li>자료들의 산점도를 그려 보고 적절한 설명을 하라.</li>
+    <li>보조변수를 사용하지 않은 표본평균으로 총수익과 추정오차의 한계를 구하라.</li>
+    <li>비추정법을 사용하여 총수익과 추정오차의 한계를 구하라.</li>
+    <li>회귀추정법을 사용하여 총수익과 추정오차의 한계를 구하라.</li>
+    <li>표본평균과 비추정값, 표본평균과 회귀추정값의 상대효율을 각각 추정하고 적절히 비교하라.</li>
+  </ol>
+</div>
+
+<!-- ============================ 정답 시트 ============================ -->
+<div class="answersheet">
+<header class="doc">
+  <div class="ch">표본조사론 · 3장 보조 정보를 이용한 추정</div>
+  <h1><span class="no">정답·해설</span>3장 <span class="en">answers</span></h1>
+</header>
+
+<h2 class="sub">01~06 객관식</h2>
+
+<div class="ans"><span class="exn">01</span><b>③ $y$: 가구의 연간 소득액, $x$: 가구의 주당 평균 TV 시청시간</b>
+  <ol class="fill">
+    <li><span class="step">보조변수의 조건은 ‘상관이 강할 것’ + ‘값을 싸게 알 것’.</span>
+      ③ 은 <b>소득과 TV 시청시간 사이에 뚜렷한 상관을 기대할 수 없다</b>.
+      상관이 없으면 $\hat\rho\fallingdotseq0$ 이라
+      <a href="3-2_ratio-estimation.html">식 $(3\text{-}15)$</a>의 조건 $\hat\rho>\tfrac12$ 을 한참 못 미치므로,
+      비추정을 쓰면 표본평균보다 <b>오히려 나빠진다</b>.</li>
+    <li><span class="step">①②④ 는 모두 강한 상관이 기대된다.</span>
+      ① 작년 판매량과 올해 판매량(전형적인 <b>직전 시기 자료</b>),
+      ② 쌀 재배 면적과 쌀 생산량(면적이 $0$ 이면 생산량도 $0$ — 원점을 지나므로 비추정에 딱 맞다),
+      ④ 종업원 수와 결근자 수(종업원이 $0$ 이면 결근자도 $0$).</li>
+    <li><span class="step">덧붙여.</span> ②④ 는 모두 <b>비추정</b>, ① 은 <b>비추정 또는 회귀추정</b>이 적합한 전형이다.</li>
+  </ol>
+</div>
+
+<div class="ans"><span class="exn">02</span><b>④ 상관계수가 $0$ 근처면 비추정량이 표본평균에 비해서 효과적이다.</b>
+  <ol class="fill">
+    <li><span class="step">정확히 반대다.</span>
+      식 $(3\text{-}15)$ 에서 비추정이 표본평균을 이기려면
+      $$\hat\rho>\frac12\cdot\frac{s_x/\bar x}{s_y/\bar y}$$
+      이어야 하고, 두 변동계수가 비슷한 흔한 상황에서는 $\hat\rho>\tfrac12$ 이다.
+      $\hat\rho\fallingdotseq0$ 이면 이 조건을 만족할 수 없으므로 <b>비추정이 더 나쁘다</b>.</li>
+    <li><span class="step">①② 는 정의 그대로다.</span>
+      $\hat\mu_y=\mu_x\cdot r$ (식 $3\text{-}9$), $\hat\tau_y=\tau_x\cdot r$ (식 $3\text{-}6$),
+      여기서 $r=\bar y/\bar x$.</li>
+    <li><span class="step">③ 도 옳다.</span> 원점을 지나지 않는 직선관계는 <b>회귀추정</b>의 영역이다
+      (<a href="3-3_regression-estimation.html">3.3절</a>).</li>
+  </ol>
+</div>
+
+<div class="ans"><span class="exn">03</span><b>① 168.6</b>
+  <ol class="fill">
+    <li><span class="step">비를 먼저 구한다.</span>
+      $$\sum x_i=116+81+73+99=369,\qquad \sum y_i=190+150+120+140=600$$
+      $$r=\frac{\sum y_i}{\sum x_i}=\frac{600}{369}=1.6260$$
+      $1\,\mathrm{m}^2$ 당 소비지출액이 약 $1.63$ 만 원이라는 뜻이다.</li>
+    <li><span class="step">$\mu_x$ 를 곱한다.</span>
+      $$\hat\mu_y=r\cdot\mu_x=1.6260\times103.7=168.6\;(\text{만 원})$$</li>
+    <li><span class="step">함정 확인.</span> 단순히 $\bar y=600/4=150$ 을 답하면 ② 로 끌려간다.
+      이 도시 전체의 평균 면적 $103.7$ 이 표본평균 $\bar x=369/4=92.25$ 보다 <b>크므로</b>,
+      보정된 추정값이 $150$ 보다 커지는 것이 방향적으로 맞다.</li>
+  </ol>
+</div>
+
+<div class="ans"><span class="exn">04</span><b>① 0.0566, &nbsp;101.88</b>
+  <ol class="fill">
+    <li><span class="step">$r$ 자체가 ‘1 kg당 과당 함유량’ 이다.</span>
+      $r=\dfrac{\sum y_i}{\sum x_i}=\dfrac{0.492}{8.70}=0.0566$ —
+      분모가 오렌지 무게(kg), 분자가 과당(kg)이므로 <b>단위무게당 함유량</b>이 된다.</li>
+    <li><span class="step">총계는 $\tau_x$ 를 곱한다.</span>
+      $$\hat\tau_y=r\cdot\tau_x=0.0566\times1{,}800=101.88\;(\mathrm{kg})$$</li>
+    <li><span class="step">$17.68$ 은 뒤집어 계산한 값.</span>
+      $8.70/0.492=17.68$ 로, $x$ 와 $y$ 를 바꿔 넣은 오답 유도다.</li>
+  </ol>
+</div>
+
+<div class="ans"><span class="exn">05</span><b>④ 4.33</b>
+  <ol class="fill">
+    <li><span class="step">$\bar x$ 를 먼저 구한다.</span>
+      $\bar x=\dfrac{8.70}{20}=0.435$ &nbsp;($\bar x^2=0.189225$)</li>
+    <li><span class="step">분산에 대입한다.</span>
+      $$\hat V(\hat\tau_y)=1{,}800^2\cdot\frac{1}{20}\cdot\frac{1}{0.435^2}\cdot\frac{0.000104}{20-1}
+        =3{,}240{,}000\times0.05\times5.2847\times0.00000547=4.686$$</li>
+    <li><span class="step">오차의 한계.</span>
+      $$2\sqrt{4.686}=2\times2.165=4.33\;(\mathrm{kg})$$</li>
+    <li><span class="step">읽는 법.</span> 총계 추정값 $101.88\,\mathrm{kg}$ 에 대해 오차의 한계가 $4.33\,\mathrm{kg}$ 이므로
+      $RSE\fallingdotseq\dfrac{2.165}{101.88}\times100\fallingdotseq2.1\%$ — <b>상당히 믿을 만한</b> 추정이다.</li>
+  </ol>
+</div>
+
+<div class="ans"><span class="exn">06</span><b>① 원점을 지나고 직선관계가 뚜렷하고 기울기가 양수일 때</b>
+  <ol class="fill">
+    <li><span class="step">분산 식이 답을 말해 준다.</span>
+      $\hat V(\hat\mu_y)$ 의 핵심은 $\sum(y_i-rx_i)^2$ —
+      <b>원점을 지나는 직선 $y=rx$ 에서 벗어난 정도</b>다.
+      점들이 그 직선에 바짝 붙어 있을수록 이 값이 작아져 표본평균을 이긴다.</li>
+    <li><span class="step">따라서 세 조건이 모두 필요하다.</span>
+      ⓐ <b>원점을 지날 것</b>(절편이 있으면 $y=rx$ 가 자료를 못 따라간다),
+      ⓑ <b>직선관계가 뚜렷할 것</b>($\hat\rho$ 가 클 것),
+      ⓒ <b>기울기가 양수일 것</b>($r=\bar y/\bar x>0$ 인데 실제 관계가 음이면 잔차가 오히려 커진다).</li>
+    <li><span class="step">③④ 가 틀린 이유.</span> 원점을 지나지 않으면 <b>회귀추정</b>의 영역이다(02번 ③).</li>
+    <li><span class="step">② 가 틀린 이유.</span> 원점을 지나더라도 직선관계가 뚜렷하지 않으면
+      $\hat\rho$ 가 작아 $\hat\rho>\tfrac12$ 조건을 못 채운다.</li>
+  </ol>
+</div>
+
+<h2 class="sub">07 가상 모집단의 비</h2>
+
+<div class="ans"><span class="exn">07 (1)</span><b>$R=1$.</b>
+  $$R=\frac{\tau_y}{\tau_x}=\frac{2+2+3+4+4}{1+2+3+4+5}=\frac{15}{15}=1$$
+  <p>모집단 전체를 알고 있으므로 이것은 <b>추정값이 아니라 참값</b>이다.</p>
+</div>
+
+<div class="ans"><span class="exn">07 (2)</span><b>$r=0.9$, &nbsp;$\hat V(r)=0.00281$.</b>
+  <ol class="fill">
+    <li><span class="step">표본을 뽑아 비를 계산한다.</span>
+      단위 $2,3,5$ 이므로 $x=(2,3,5)$, $y=(2,3,4)$ 이고
+      $$r=\frac{2+3+4}{2+3+5}=\frac{9}{10}=0.9$$
+      참값 $R=1$ 과 어긋나는 만큼이 이번 표본의 오차다.</li>
+    <li><span class="step">잔차제곱합.</span>
+      $$\begin{aligned}
+      y_1-rx_1&=2-0.9(2)=\phantom{-}0.2\\
+      y_2-rx_2&=3-0.9(3)=\phantom{-}0.3\\
+      y_3-rx_3&=4-0.9(5)=-0.5
+      \end{aligned}
+      \qquad\Longrightarrow\qquad \sum(y_i-rx_i)^2=0.04+0.09+0.25=0.38$$</li>
+    <li><span class="step">$\mu_x$ 는 모집단에서 그대로 안다.</span>
+      $\mu_x=\dfrac{15}{5}=3$</li>
+    <li><span class="step">식 $(3\text{-}3)$ 에 대입.</span>
+      $$\hat V(r)=\frac{N-n}{N}\cdot\frac1n\cdot\frac{1}{\mu_x^2}\cdot\frac{\sum(y_i-rx_i)^2}{n-1}
+        =\frac{5-3}{5}\cdot\frac13\cdot\frac{1}{3^2}\cdot\frac{0.38}{2}=0.00281$$
+      $\sqrt{\hat V(r)}=0.053$ 이므로 오차의 한계는 $2(0.053)=0.106$ —
+      참값 $R=1$ 이 구간 $0.9\pm0.106$ 안에 실제로 들어온다.</li>
+  </ol>
+</div>
+
+<h2 class="sub">08 식료품비의 비 추정</h2>
+
+<div class="ans"><span class="exn">08</span><b>$R\fallingdotseq0.1467$ (약 $14.7\%$), $95\%$ 신뢰구간 $0.1467\pm0.0102$.</b>
+  <ol class="fill">
+    <li><span class="step">합계부터.</span>
+      $$\sum x_i=425{,}300,\qquad \sum y_i=62{,}400,\qquad \bar x=\frac{425{,}300}{14}=30{,}378.6$$</li>
+    <li><span class="step">비의 추정값.</span>
+      $$r=\frac{62{,}400}{425{,}300}=0.14672$$
+      <b>소득의 약 $14.7\%$ 를 식료품비로 쓴다</b>는 뜻이다(엥겔계수).</li>
+    <li><span class="step">잔차제곱합.</span>
+      각 가구에서 $y_i-rx_i$ 를 구해 제곱해 더하면
+      $$\sum_{i=1}^{14}(y_i-rx_i)^2\fallingdotseq4{,}861{,}400$$</li>
+    <li><span class="step">분산의 추정값 — $\mu_x$ 를 모르므로 $\bar x$ 를 쓴다.</span>
+      $$\hat V(r)=\frac{150-14}{150}\cdot\frac{1}{14}\cdot\frac{1}{30{,}378.6^2}\cdot\frac{4{,}861{,}400}{13}
+        =0.0000262$$</li>
+    <li><span class="step">신뢰구간 — 식 $(3\text{-}4)$ 에 그대로 대입한다.</span>
+      $$0.14672\pm2\sqrt{\frac{150-14}{150}\cdot\frac{1}{14}\cdot\frac{1}{30{,}378.6^2}\cdot\frac{4{,}861{,}400}{13}}
+        \;\Leftrightarrow\;0.1467\pm0.0102\;\Leftrightarrow\;(0.1365,\;0.1569)$$</li>
+  </ol>
+</div>
+
+<h2 class="sub">09 요약통계량만으로 계산하기</h2>
+
+<div class="ans"><span class="exn">09</span><b>$r\fallingdotseq1.118$, &nbsp;$\hat V(r)\fallingdotseq0.000173$.</b>
+  <ol class="fill">
+    <li><span class="step">원자료가 없으므로 식 $(3\text{-}5)$ 를 쓴다.</span>
+      $\sum(y_i-rx_i)^2$ 을 만들 수 없고 평균·표준편차·상관계수만 있으므로,
+      표본분산·공분산으로 쓴 형태가 유일한 길이다.</li>
+    <li><span class="step">비의 추정값.</span>
+      $$r=\frac{\sum y_i}{\sum x_i}=\frac{\bar y}{\bar x}=\frac{22.75}{20.35}=1.1179$$</li>
+    <li><span class="step">괄호 안을 계산한다.</span>
+      $$\begin{aligned}
+      s_y^2&=2.87^2=8.2369\\
+      r^2s_x^2&=1.1179^2\times2.54^2=8.0631\\
+      2r\hat\rho\,s_xs_y&=2\times1.1179\times0.89\times2.54\times2.87=14.5062
+      \end{aligned}$$
+      $$s_y^2+r^2s_x^2-2r\hat\rho\,s_xs_y=8.2369+8.0631-14.5062=1.7938$$</li>
+    <li><span class="step">대입 — $N$ 이 주어지지 않았으므로 $\dfrac{N-n}{N}\fallingdotseq1$, $\mu_x$ 대신 $\bar x$.</span>
+      $$\hat V(r)=1\cdot\frac{1}{25}\cdot\frac{1}{20.35^2}\times1.7938=0.000173$$
+      $\sqrt{\hat V(r)}=0.0132$ 이므로 $R$ 의 $95\%$ 신뢰구간은 $1.118\pm0.026$ 이 된다.</li>
+    <li><span class="step">확인.</span> $\hat\rho=0.89$ 로 높아 괄호 안이 $1.79$ 까지 작아졌다.
+      상관이 없었다면($\hat\rho=0$) 괄호 안은 $8.24+8.06=16.3$ 으로 <b>아홉 배</b>가 되었을 것이다.</li>
+  </ol>
+</div>
+
+<h2 class="sub">10 토끼의 실험 후 평균 무게</h2>
+
+<div class="ans"><span class="exn">10 (1)</span><b>$\hat\mu_y\fallingdotseq4.03\,\mathrm{kg}$.</b>
+  <ol class="fill">
+    <li><span class="step">합계와 비.</span>
+      $$\sum x_i=29.7,\quad \sum y_i=39.9\qquad\Longrightarrow\qquad
+        r=\frac{39.9}{29.7}=1.3434$$
+      실험 후 무게가 실험 전의 약 $1.34$ 배가 되었다는 뜻이다.</li>
+    <li><span class="step">$\mu_x$ 를 곱한다.</span>
+      $$\hat\mu_y=r\cdot\mu_x=1.3434\times3.0=4.030\;(\mathrm{kg})$$</li>
+    <li><span class="step">비추정을 쓰는 이유.</span> 실험 전 무게가 $0$ 이면 실험 후 무게도 $0$ 이므로
+      <b>원점을 지나는 관계</b> — 비추정이 적합하다.
+      또 표본평균 $\bar x=2.97$ 이 모평균 $\mu_x=3.0$ 보다 살짝 작으므로,
+      단순추정값 $\bar y=3.99$ 보다 조금 위로 보정된 것이 방향적으로 맞다.</li>
+  </ol>
+</div>
+
+<div class="ans"><span class="exn">10 (2)</span><b>$95\%$ 신뢰구간 $4.03\pm0.085$.</b>
+  <ol class="fill">
+    <li><span class="step">잔차제곱합.</span>
+      각 토끼에서 $y_i-1.3434\,x_i$ 를 구해 제곱해 더하면
+      $$\sum_{i=1}^{10}(y_i-rx_i)^2\fallingdotseq0.1792$$</li>
+    <li><span class="step">분산의 추정값 — 식 $(3\text{-}10)$.</span>
+      $$\hat V(\hat\mu_y)=\frac{N-n}{N}\cdot\frac1n\cdot\frac{\sum(y_i-rx_i)^2}{n-1}
+        =\frac{100-10}{100}\cdot\frac{1}{10}\cdot\frac{0.1792}{9}=0.00179$$</li>
+    <li><span class="step">신뢰구간 — 식 $(3\text{-}11)$ 에 그대로 대입한다.</span>
+      $$4.030\pm2\sqrt{\frac{100-10}{100}\cdot\frac{1}{10}\cdot\frac{0.1792}{9}}
+        \;\Leftrightarrow\;4.030\pm0.085\;\Leftrightarrow\;(3.945,\;4.115)$$</li>
+  </ol>
+</div>
+
+<h2 class="sub">11 표본크기 결정</h2>
+
+<div class="ans"><span class="exn">11</span><b>$n=9$.</b>
+  <ol class="fill">
+    <li><span class="step">이 문제는 2장의 표본크기 공식으로 돌아간다.</span>
+      $B=2$ (시간), $S_y=\sqrt{9.0}=3$, $z_{0.025}\fallingdotseq2$.</li>
+    <li><span class="step">무한모집단 기준 크기.</span>
+      <a href="../ch02/2-4_sample-size.html">식 $(2\text{-}15)$</a>에서
+      $$n_0=\frac{(z_{\alpha/2}S_y)^2}{B^2}=\frac{(2\times3)^2}{2^2}=\frac{36}{4}=9$$</li>
+    <li><span class="step">$N=\infty$ 이므로 보정이 없다.</span>
+      $$n=\frac{n_0}{1+\dfrac{n_0}{N}}\;\xrightarrow[\;N\to\infty\;]{}\;n_0=9$$</li>
+    <li><span class="step">$\mu_x=17.2$ 는 쓰이지 않는다.</span>
+      표본크기 결정에는 <b>$y$ 의 산포 $S_y$ 와 허용 오차 $B$ 만</b> 필요하다.
+      $\mu_x$ 는 이후 실제로 추정할 때 $\hat\mu_y=r\mu_x$ 또는
+      $\hat\mu_{yL}=\bar y+b(\mu_x-\bar x)$ 에 쓰기 위해 주어진 정보다.</li>
+  </ol>
+</div>
+
+<h2 class="sub">심화 1 산점도</h2>
+
+<div class="ans"><span class="exn">심화 1</span><b>강한 양의 선형관계이고, 직선이 거의 원점을 지난다 — 비추정·회귀추정 모두 적합.</b>
+  <ol class="fill">
+    <li><span class="step">기초 통계량.</span>
+      $\sum x=245$, $\sum y=327$, $\bar x=40.83$, $\bar y=54.5$ 이고
+      $$S_{xx}=1986.83,\quad S_{yy}=4309.5,\quad S_{xy}=2843.5$$
+      $$\hat\rho=\frac{S_{xy}}{\sqrt{S_{xx}S_{yy}}}=\frac{2843.5}{\sqrt{1986.83\times4309.5}}=0.972$$</li>
+    <li><span class="step">해석 ① — 매우 강한 양의 상관.</span>
+      $\hat\rho=0.97$ 이므로 $\hat\rho>\tfrac12$ 조건을 넉넉히 만족한다.
+      <b>보조변수를 쓰는 것이 확실히 유리한 자료</b>다.</li>
+    <li><span class="step">해석 ② — 절편이 거의 $0$.</span>
+      회귀직선의 절편은
+      $$\hat\beta_0=\bar y-b\bar x=54.5-1.4312\times40.83=-3.9$$
+      로 $y$ 값들의 크기($17\sim91$)에 비하면 $0$ 에 매우 가깝다.
+      즉 <b>거의 원점을 지나는 직선</b>이므로 비추정도 잘 맞는다.</li>
+    <li><span class="step">해석 ③ — 모든 산업에서 5년간 수익이 늘었다.</span>
+      $6$ 개 군 모두 $y_i>x_i$ 이고 $r=1.33$ 이므로,
+      $2015\to2020$ 년에 <b>수익이 평균 $33\%$ 정도 증가</b>했다고 볼 수 있다.</li>
+  </ol>
+</div>
+
+<figure class="fig">
+<svg viewBox="0 0 340 220" role="img" aria-label="심화문제 산점도 — 2015년과 2020년 수익이 거의 원점을 지나는 강한 양의 선형관계를 보인다">
+  <line class="axis" x1="45" y1="180" x2="320" y2="180"/>
+  <line class="axis" x1="45" y1="180" x2="45" y2="25"/>
+  <g class="axis">
+    <line x1="45"  y1="180" x2="45"  y2="184"/><line x1="133" y1="180" x2="133" y2="184"/>
+    <line x1="220" y1="180" x2="220" y2="184"/><line x1="308" y1="180" x2="308" y2="184"/>
+    <line x1="41" y1="180" x2="45" y2="180"/><line x1="41" y1="144" x2="45" y2="144"/>
+    <line x1="41" y1="108" x2="45" y2="108"/><line x1="41" y1="71"  x2="45" y2="71"/>
+    <line x1="41" y1="35"  x2="45" y2="35"/>
+  </g>
+  <g class="lbl">
+    <text x="45"  y="194" text-anchor="middle">0</text><text x="133" y="194" text-anchor="middle">25</text>
+    <text x="220" y="194" text-anchor="middle">50</text><text x="308" y="194" text-anchor="middle">75</text>
+    <text x="37" y="184" text-anchor="end">0</text><text x="37" y="148" text-anchor="end">25</text>
+    <text x="37" y="112" text-anchor="end">50</text><text x="37" y="75"  text-anchor="end">75</text>
+    <text x="37" y="39"  text-anchor="end">100</text>
+  </g>
+  <line class="vec" x1="45" y1="180" x2="304" y2="37"/>
+  <text class="lbl b" x="288" y="66" text-anchor="middle">y = 1.33x</text>
+  <g fill="#444">
+    <circle cx="119" cy="142" r="3.4"/>
+    <circle cx="266" cy="48"  r="3.4"/>
+    <circle cx="168" cy="112" r="3.4"/>
+    <circle cx="255" cy="79"  r="3.4"/>
+    <circle cx="101" cy="155" r="3.4"/>
+    <circle cx="220" cy="70"  r="3.4"/>
+  </g>
+  <g class="lbl">
+    <text x="119" y="136" text-anchor="middle">목재</text>
+    <text x="262" y="42"  text-anchor="middle">전기·전자</text>
+    <text x="168" y="106" text-anchor="middle">자동차</text>
+    <text x="252" y="94"  text-anchor="middle">식료</text>
+    <text x="101" y="149" text-anchor="middle">섬유</text>
+    <text x="212" y="64"  text-anchor="middle">화학</text>
+  </g>
+  <text class="lbl" x="182" y="212" text-anchor="middle">2015년 수익 (억 달러)</text>
+</svg>
+<figcaption>심화문제의 산점도 — 여섯 점이 모두 $y=1.33x$ 주위에 몰려 있고 직선이 원점 근처를 지난다
+($\hat\rho=0.97$, 절편 $\fallingdotseq-3.9$).</figcaption>
+</figure>
+
+<h2 class="sub">심화 2 표본평균에 의한 추정</h2>
+
+<div class="ans"><span class="exn">심화 2</span><b>$\hat\tau_y=1{,}035.5$ 억 달러, 오차의 한계 $\fallingdotseq376.7$ 억 달러.</b>
+  <ol class="fill">
+    <li><span class="step">보조변수를 아예 안 쓰는 <a href="../ch02/2-3_estimation.html">2장</a>의 방법.</span>
+      $$\bar y=\frac{327}{6}=54.5\qquad\Longrightarrow\qquad
+        \hat\tau_y=N\bar y=19\times54.5=1{,}035.5$$</li>
+    <li><span class="step">표본분산.</span>
+      $$s_y^2=\frac{S_{yy}}{n-1}=\frac{4{,}309.5}{5}=861.9$$</li>
+    <li><span class="step">분산의 추정값 — 식 $(2\text{-}8)$.</span>
+      $$\hat V(\hat\tau_y)=N^2\cdot\frac{N-n}{N}\cdot\frac{s_y^2}{n}
+        =19^2\cdot\frac{19-6}{19}\cdot\frac{861.9}{6}=35{,}480$$</li>
+    <li><span class="step">오차의 한계.</span>
+      $$2\sqrt{35{,}480}=2\times188.4=376.7$$
+      추정값의 약 $36\%$ 나 되는 폭이다 — <b>정보로서 거의 쓸모가 없는 수준</b>이다.</li>
+  </ol>
+</div>
+
+<h2 class="sub">심화 3 비추정법</h2>
+
+<div class="ans"><span class="exn">심화 3</span><b>$\hat\tau_y\fallingdotseq899.6$ 억 달러, 오차의 한계 $\fallingdotseq92.3$ 억 달러.</b>
+  <ol class="fill">
+    <li><span class="step">비의 추정값.</span>
+      $$r=\frac{\sum y_i}{\sum x_i}=\frac{327}{245}=1.3347$$</li>
+    <li><span class="step">$\tau_x=674$ 를 곱한다.</span>
+      $$\hat\tau_y=r\cdot\tau_x=1.3347\times674=899.6$$</li>
+    <li><span class="step">잔차제곱합.</span>
+      각 산업에서 $y_i-1.3347\,x_i$ 를 구해 제곱해 더하면
+      $$\sum_{i=1}^{6}(y_i-rx_i)^2\fallingdotseq258.5$$
+      (가장 크게 벗어난 것은 식료 $-10.1$ 과 화학 $+9.3$ 이다.)</li>
+    <li><span class="step">분산의 추정값 — 식 $(3\text{-}7)$.</span>
+      $$\hat V(\hat\tau_y)=N^2\cdot\frac{N-n}{N}\cdot\frac1n\cdot\frac{\sum(y_i-rx_i)^2}{n-1}
+        =19^2\cdot\frac{13}{19}\cdot\frac16\cdot\frac{258.5}{5}=2{,}128$$</li>
+    <li><span class="step">오차의 한계.</span>
+      $$2\sqrt{2{,}128}=2\times46.1=92.3$$
+      심화 2 의 $376.7$ 에서 <b>$4$ 분의 $1$ 로 줄었다</b>.</li>
+  </ol>
+</div>
+
+<h2 class="sub">심화 4 회귀추정법</h2>
+
+<div class="ans"><span class="exn">심화 4</span><b>$\hat\tau_{yL}\fallingdotseq889.8$ 억 달러, 오차의 한계 $\fallingdotseq99.4$ 억 달러.</b>
+  <ol class="fill">
+    <li><span class="step">회귀계수.</span>
+      $$b=\frac{S_{xy}}{S_{xx}}=\frac{2{,}843.5}{1{,}986.83}=1.4312$$</li>
+    <li><span class="step">보조변수의 모평균을 구한다.</span>
+      $$\mu_x=\frac{\tau_x}{N}=\frac{674}{19}=35.47$$
+      표본평균 $\bar x=40.83$ 보다 <b>작으므로</b>, 이번 표본은 큰 산업 쪽으로 치우쳐 뽑혔다.</li>
+    <li><span class="step">회귀추정량 — 식 $(3\text{-}16)$.</span>
+      $$\hat\mu_{yL}=\bar y+b(\mu_x-\bar x)=54.5+1.4312\times(35.47-40.83)=54.5-7.67=46.83$$
+      $$\hat\tau_{yL}=N\hat\mu_{yL}=19\times46.83=889.8$$
+      치우침을 보정한 결과 $\hat\tau=1{,}035.5$ 에서 크게 <b>내려왔다</b>.</li>
+    <li><span class="step">$MSE$ 로 분산을 구한다 — 식 $(3\text{-}18)$·$(3\text{-}20)$.</span>
+      $$SSE=S_{yy}-b\,S_{xy}=4{,}309.5-1.4312\times2{,}843.5=240.0
+        \qquad\Longrightarrow\qquad MSE=\frac{240.0}{6-2}=60.0$$
+      $$\hat V(\hat\tau_{yL})=N^2\cdot\frac{N-n}{N}\cdot\frac{MSE}{n}
+        =19^2\cdot\frac{13}{19}\cdot\frac{60.0}{6}=2{,}470$$</li>
+    <li><span class="step">오차의 한계.</span>
+      $$2\sqrt{2{,}470}=2\times49.7=99.4$$</li>
+  </ol>
+</div>
+
+<h2 class="sub">심화 5 상대효율의 비교</h2>
+
+<div class="ans"><span class="exn">심화 5</span><b>비추정 $\widehat{RE}\fallingdotseq16.7$, 회귀추정 $\widehat{RE}\fallingdotseq14.4$ — 둘 다 압도적으로 좋고, 이 자료에서는 비추정이 근소하게 낫다.</b>
+  <ol class="fill">
+    <li><span class="step">두 상대효율을 계산한다.</span>
+      $$\widehat{RE}\!\left(\frac{\hat\tau_{y,\text{비}}}{\hat\tau_{y,\bar y}}\right)
+        =\frac{35{,}480}{2{,}128}=16.7,\qquad
+        \widehat{RE}\!\left(\frac{\hat\tau_{yL}}{\hat\tau_{y,\bar y}}\right)
+        =\frac{35{,}480}{2{,}470}=14.4$$</li>
+    <li><span class="step">해석 ① — 보조변수의 위력.</span>
+      $2015$ 년 수익이라는 보조 정보를 쓰는 것만으로 분산이 <b>$14\sim17$ 배 작아졌다</b>.
+      같은 정도를 표본평균으로 얻으려면 표본을 $14$ 배 이상 늘려야 한다는 뜻이다.
+      $\hat\rho=0.97$ 이라는 매우 강한 상관이 그 원천이다.</li>
+    <li><span class="step">해석 ② — 왜 비추정이 회귀추정보다 나은가.</span>
+      절편이 $-3.9$ 로 거의 $0$ 이라 <b>절편을 따로 추정할 필요가 없었기</b> 때문이다.
+      두 방법의 잔차 크기를 자유도로 나눈 값을 비교하면
+      $$\text{비추정: }\frac{258.5}{n-1}=\frac{258.5}{5}=51.7
+        \qquad<\qquad
+        \text{회귀추정: }\frac{240.0}{n-2}=\frac{240.0}{4}=60.0$$
+      잔차제곱합 자체는 회귀추정이 더 작지만($240.0<258.5$),
+      <b>자유도를 하나 더 잃어</b> 결과적으로 손해를 본 것이다.
+      $n=6$ 으로 표본이 작을 때 두드러지는 현상이다.</li>
+    <li><span class="step">해석 ③ — 식 $(3\text{-}21)$ 과의 대조.</span>
+      $\hat\rho^{\,2}=0.944$ 이므로 $\dfrac{1}{1-\hat\rho^{\,2}}=17.9$ 인데,
+      실제 계산값은 $14.4$ 다. 그 비가 정확히 $\dfrac{n-1}{n-2}=\dfrac54=1.25$ 이다
+      ($14.4\times1.25=18.0$) — <a href="3-3_regression-estimation.html">3.3절</a>에서 본
+      <b>$n-2\to n-1$ 근사</b> 때문이다.</li>
+    <li><span class="step">결론.</span> 실무적으로는 <b>산점도의 절편을 먼저 보고</b>
+      원점을 지나면 비추정, 절편이 뚜렷하면 회귀추정을 택한다.
+      이 자료는 전자에 해당한다.</li>
+  </ol>
+</div>
+
+<div class="terms">
+  <div class="h">심화문제 결과 한눈에</div>
+  <dl>
+    <dt>표본평균 (보조변수 없음)</dt>
+    <dd>$\hat\tau_y=1{,}035.5$, &nbsp;오차의 한계 $376.7$, &nbsp;$\widehat{RE}=1$ (기준)</dd>
+    <dt>비추정</dt>
+    <dd>$\hat\tau_y=899.6$, &nbsp;오차의 한계 $92.3$, &nbsp;$\widehat{RE}=16.7$</dd>
+    <dt>회귀추정</dt>
+    <dd>$\hat\tau_{yL}=889.8$, &nbsp;오차의 한계 $99.4$, &nbsp;$\widehat{RE}=14.4$</dd>
+  </dl>
+</div>
+
+</div>
+
+<nav class="pager">
+  <a href="3-3_regression-estimation.html">← 이전<small>3.3 회귀추정</small></a>
+  <a class="next" href="../index.html">목차 →<small>표본조사론</small></a>
+</nav>
+
+</body>
+</html>
