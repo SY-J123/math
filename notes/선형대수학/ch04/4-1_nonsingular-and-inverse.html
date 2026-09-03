@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>선형대수학 · 4.1 정칙행렬과 역행렬</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">선형대수학 · 4장 역행렬</div>
+  <h1><span class="no">4.1</span>정칙행렬과 역행렬 <span class="en">nonsingular matrices and inverse matrices</span></h1>
+</header>
+
+<p><a href="../ch01/1-1_linear-equations.html">제1장</a>에서 일차방정식 $ax=b$ 에서 $a\ne0$ 이면 $a$ 의 곱셈에 관한
+<b>역원</b> $a^{-1}$ 이 존재하여 $a^{-1}$ 을 방정식의 양변에 곱하여 $x=a^{-1}b$ 를 구할 수 있음을 알았다.
+<a href="../ch03/3-4_matrix-product.html">제3장</a>에서는 두 행렬의 곱을 정의했는데, 이 곱셈에 관한 역원이 있다면
+주어진 행렬 $A$ 의 곱셈에 관한 역원은 어떤 형태인지, 그리고 $A$ 의 역원을 구함으로써
+행렬방정식 $AX=B$ 의 해를 구할 수 있는지 등을 생각할 수 있다.</p>
+
+<div class="box def">
+  <span class="tag">정의 4.1</span><span class="title">정칙행렬과 역행렬 <span class="en">nonsingular matrix, inverse matrix</span></span>
+  <p>$n$차 정방행렬 $A$ 에 대해 행렬 $B$ 가 존재하여 다음을 만족한다고 하자.</p>
+  $$AB=BA=I_n$$
+  <p>이때</p>
+  <ol class="props">
+    <li>$A$ 를 <b>정칙행렬</b>(nonsingular matrix) 또는 <b>역연산이 가능한 행렬</b>(invertible matrix)이라고 하며,</li>
+    <li>$B$ 를 $A$ 의 <b>역행렬</b>(inverse matrix)이라고 하고 $B=A^{-1}$ 로 나타낸다.</li>
+  </ol>
+</div>
+
+<div class="note">
+  <b>왜 $AB$ 와 $BA$ 를 둘 다 요구하나.</b> <a href="../ch03/3-4_matrix-product.html">3.4절</a>에서 보았듯이
+  행렬의 곱은 교환법칙이 성립하지 않으므로, 수의 세계와 달리 한쪽만 $I_n$ 이 되는 상황을 배제할 수 없다.
+  그래서 정의에서 <b>양쪽</b>을 모두 요구한다.
+  또 $AB$ 와 $BA$ 가 모두 정의되고 둘 다 $n$차 정방행렬 $I_n$ 이 되려면
+  $A$ 와 $B$ 는 <b>둘 다 $n$차 정방행렬</b>이어야 한다.
+</div>
+
+<div class="box ex">
+  <span class="tag">예제 4.1</span><span class="title">$AB=BA=I_n$ 의 확인</span>
+  <p>2차 정방행렬 $A$, $B$ 가 다음과 같을 때 $AB=BA=I_n$ 이 성립함을 보여라.</p>
+  $$A=\begin{pmatrix}1&2\\1&3\end{pmatrix},\qquad B=\begin{pmatrix}3&-2\\-1&1\end{pmatrix}$$
+  <p><b>풀이</b> &nbsp;다음과 같이</p>
+  $$AB=\begin{pmatrix}1&2\\1&3\end{pmatrix}\begin{pmatrix}3&-2\\-1&1\end{pmatrix}
+      =\begin{pmatrix}1&0\\0&1\end{pmatrix}=I_2$$
+  $$BA=\begin{pmatrix}3&-2\\-1&1\end{pmatrix}\begin{pmatrix}1&2\\1&3\end{pmatrix}
+      =\begin{pmatrix}1&0\\0&1\end{pmatrix}=I_2$$
+  <p>가 되어 $A$ 는 정칙행렬이고 $B$ 는 $A$ 의 역행렬이다.</p>
+</div>
+
+<div class="note">
+  [정의 4.1]에서 $AB=BA=I_n$ 을 <b>$B$ 의 입장</b>에서 언급하면
+  $B$ 역시 정칙행렬이고 $B$ 의 역행렬 $B^{-1}=A$ 가 됨을 알 수 있다.
+  즉 정칙행렬과 역행렬의 관계는 <b>서로 대등한 짝</b>이다.
+</div>
+
+<div class="box thm">
+  <span class="tag">정리 4.1</span><span class="title">역행렬의 유일성</span>
+  <p>$A$ 가 정칙행렬이면 $A^{-1}$ 은 유일하다.</p>
+</div>
+
+<div class="box prf">
+  <span class="tag">증명</span>
+  <p><span class="step">두 개가 있다고 가정.</span> $A$ 의 역행렬을 $B$ 와 $C$, 즉 2개가 있다고 가정해 보자.
+  그러면 다음을 만족해야 한다.</p>
+  $$AB=BA=I,\qquad AC=CA=I$$
+  <p><span class="step">$I$ 를 끼워 넣어 비교.</span> 그런데</p>
+  $$B=BI=B(AC)=(BA)C=IC=C$$
+  <p>이므로 $B$ 와 $C$ 는 같을 수밖에 없다. 따라서 $A$ 의 역행렬은 하나뿐이다.</p>
+  <div class="qed">∎</div>
+</div>
+
+<div class="note">
+  증명에서 실제로 쓴 것은 <b>단위행렬의 항등원 성질</b>($BI=B$, $IC=C$)과
+  <b>행렬 곱의 결합법칙</b>($B(AC)=(BA)C$) 둘뿐이다.
+  결합법칙이 없으면 이 논증은 성립하지 않는다.
+</div>
+
+<h2 class="sub">2차 정방행렬의 역행렬 <span class="en">the inverse of a 2×2 matrix</span></h2>
+
+<p>이제 어떤 행렬 $A$ 가 정칙행렬인지 아닌지를 결정하는 방법과, $A$ 가 정칙행렬일 때 역행렬 $A^{-1}$ 을
+구하는 방법을 알아볼 차례다. 이들에 관한 체계적인 서술은 일단 뒤로 미루고
+(→ <a href="4-2_finding-inverse.html">4.2절</a>) 우선 간단한 2차 정방행렬에 대해서 살펴보자.</p>
+
+<div class="box ex">
+  <span class="tag">예제 4.2</span><span class="title">2차 정방행렬의 역행렬 공식</span>
+  <p>임의의 2차 정방행렬 $A$ 에 대해 $A^{-1}$ 을 구하는 방법을 설명하라.</p>
+  <p><b>풀이</b> &nbsp;2차 정방행렬 $A$ 와 이에 대한 역행렬 $A^{-1}$ 을 다음과 같이 놓으면</p>
+  $$A=\begin{pmatrix}a&b\\c&d\end{pmatrix},\qquad A^{-1}=\begin{pmatrix}x&y\\z&w\end{pmatrix}$$
+  <p>$AA^{-1}$ 은 다음과 같다.</p>
+  $$AA^{-1}=\begin{pmatrix}a&b\\c&d\end{pmatrix}\begin{pmatrix}x&y\\z&w\end{pmatrix}
+    =\begin{pmatrix}ax+bz&ay+bw\\cx+dz&cy+dw\end{pmatrix}=\begin{pmatrix}1&0\\0&1\end{pmatrix}$$
+  <p>여기서 2개의 일차연립방정식</p>
+  $$\begin{cases}ax+bz=1\\ cx+dz=0\end{cases}\qquad\qquad
+    \begin{cases}ay+bw=0\\ cy+dw=1\end{cases}$$
+  <p>을 각각 $x,z$ 와 $y,w$ 에 관해 풀면 $D=ad-bc\ne0$ 이라는 조건 아래 다음이 성립한다.</p>
+  $$x=\frac{d}{D},\qquad y=\frac{-b}{D},\qquad z=\frac{-c}{D},\qquad w=\frac{a}{D}$$
+  <p>따라서 2차 정방행렬 $A$ 가 정칙행렬이려면 <b>$D=ad-bc\ne0$ 인 것이 필요충분조건</b>이며,
+  이때 역행렬 $A^{-1}$ 은 다음과 같다.</p>
+  $$A^{-1}=\frac{1}{D}\begin{pmatrix}d&-b\\-c&a\end{pmatrix}$$
+</div>
+
+<figure class="fig">
+<svg viewBox="0 0 520 170" role="img" aria-label="2차 정방행렬의 역행렬을 만드는 세 단계: 주대각 원소를 맞바꾸고, 비대각 원소의 부호를 바꾸고, D로 나눈다">
+  <defs>
+    <marker id="ar41" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 z" fill="#5a5a5a"/>
+    </marker>
+  </defs>
+
+  <text class="lbl" x="60" y="38" text-anchor="middle">A</text>
+
+  <g class="cell">
+    <rect x="20" y="50" width="40" height="30"/><rect x="60" y="50" width="40" height="30"/>
+    <rect x="20" y="80" width="40" height="30"/><rect x="60" y="80" width="40" height="30"/>
+  </g>
+  <rect class="cellhi" x="20" y="50" width="40" height="30"/>
+  <rect class="cellhi" x="60" y="80" width="40" height="30"/>
+  <g class="lbl">
+    <text x="40" y="70"  text-anchor="middle">a</text><text x="80" y="70"  text-anchor="middle">b</text>
+    <text x="40" y="100" text-anchor="middle">c</text><text x="80" y="100" text-anchor="middle">d</text>
+  </g>
+
+  <line class="axis" x1="108" y1="82" x2="152" y2="82" marker-end="url(#ar41)"/>
+  <text class="lbl" x="130" y="58" text-anchor="middle" font-size="11">주대각</text>
+  <text class="lbl" x="130" y="71" text-anchor="middle" font-size="11">교환</text>
+
+  <g class="cell">
+    <rect x="160" y="50" width="40" height="30"/><rect x="200" y="50" width="40" height="30"/>
+    <rect x="160" y="80" width="40" height="30"/><rect x="200" y="80" width="40" height="30"/>
+  </g>
+  <rect class="cellhi" x="160" y="50" width="40" height="30"/>
+  <rect class="cellhi" x="200" y="80" width="40" height="30"/>
+  <g class="lbl">
+    <text x="180" y="70"  text-anchor="middle" fill="#1d6fb8">d</text><text x="220" y="70"  text-anchor="middle">b</text>
+    <text x="180" y="100" text-anchor="middle">c</text><text x="220" y="100" text-anchor="middle" fill="#1d6fb8">a</text>
+  </g>
+
+  <line class="axis" x1="248" y1="82" x2="292" y2="82" marker-end="url(#ar41)"/>
+  <text class="lbl" x="270" y="58" text-anchor="middle" font-size="11">비대각</text>
+  <text class="lbl" x="270" y="71" text-anchor="middle" font-size="11">부호 반전</text>
+
+  <g class="cell">
+    <rect x="300" y="50" width="40" height="30"/><rect x="340" y="50" width="40" height="30"/>
+    <rect x="300" y="80" width="40" height="30"/><rect x="340" y="80" width="40" height="30"/>
+  </g>
+  <rect class="cellhi2" x="340" y="50" width="40" height="30"/>
+  <rect class="cellhi2" x="300" y="80" width="40" height="30"/>
+  <g class="lbl">
+    <text x="320" y="70"  text-anchor="middle">d</text><text x="360" y="70"  text-anchor="middle" fill="#0f8a7d">−b</text>
+    <text x="320" y="100" text-anchor="middle" fill="#0f8a7d">−c</text><text x="360" y="100" text-anchor="middle">a</text>
+  </g>
+
+  <line class="axis" x1="388" y1="82" x2="432" y2="82" marker-end="url(#ar41)"/>
+  <text class="lbl" x="410" y="66" text-anchor="middle" font-size="11">× 1/D</text>
+
+  <text class="lbl" x="472" y="88" text-anchor="middle" font-size="15">A⁻¹</text>
+
+  <text class="lbl" x="260" y="140" text-anchor="middle">D = ad − bc 가 0 이면 나눌 수 없다 — 그때 A 는 정칙행렬이 아니다</text>
+  <text class="lbl b" x="260" y="158" text-anchor="middle">D ≠ 0 ⟺ A 가 정칙행렬</text>
+</svg>
+<figcaption>2차 정방행렬의 역행렬은 <b>주대각 교환 → 비대각 부호 반전 → $D$ 로 나누기</b> 세 단계로 만들어진다.</figcaption>
+</figure>
+
+<div class="note">
+  다음 2차 정방행렬의 예를 보자. 매번 $D=ad-bc$ 를 먼저 계산해 두면 편하다.
+  $$A=\begin{pmatrix}2&1\\5&3\end{pmatrix}\ (D=1)\ \Longrightarrow\ A^{-1}=\begin{pmatrix}3&-1\\-5&2\end{pmatrix}$$
+  $$B=\begin{pmatrix}5&3\\7&4\end{pmatrix}\ (D=-1)\ \Longrightarrow\ B^{-1}=\begin{pmatrix}-4&3\\7&-5\end{pmatrix}$$
+  $$C=\begin{pmatrix}1&2\\3&4\end{pmatrix}\ (D=-2)\ \Longrightarrow\ C^{-1}=\begin{pmatrix}-2&1\\\tfrac32&-\tfrac12\end{pmatrix}$$
+</div>
+
+<h2 class="sub">역행렬과 음의 거듭제곱 <span class="en">negative powers</span></h2>
+
+<p>한편, 정칙행렬 $A$ 에 관해 임의의 자연수 $n$ 에 대해</p>
+$$A^{-n}=\left(A^{-1}\right)^{n}$$
+<p>으로 정의한다면 <a href="../ch03/3-4_matrix-product.html">제3장</a>에서 정의한 행렬의 거듭제곱을
+정칙행렬에 관해 <b>음의 지수까지 확장</b>할 수 있다. 즉, 임의의 정수 $r,s$ 에 대해 다음이 성립한다.</p>
+$$A^{r}A^{s}=A^{r+s},\qquad \left(A^{r}\right)^{s}=A^{rs}$$
+
+<h2 class="sub">역행렬의 성질 <span class="en">properties of the inverse</span></h2>
+
+<div class="box thm">
+  <span class="tag">정리 4.2</span><span class="title">정칙행렬의 네 가지 성질</span>
+  <p>$A$, $B$ 가 $n$차 정칙행렬이면 다음이 성립한다.</p>
+  <ol class="props">
+    <li>$A^{-1}$ 도 정칙행렬이며 $\left(A^{-1}\right)^{-1}=A$ 이다.</li>
+    <li>$AB$ 도 정칙행렬이며 $(AB)^{-1}=B^{-1}A^{-1}$ 이다. &nbsp;— <b>순서가 뒤바뀐다</b></li>
+    <li>$c$ 가 $0$ 이 아닌 상수일 때 $cA$ 도 정칙행렬이며 $(cA)^{-1}=\dfrac1c A^{-1}$ 이다.</li>
+    <li>$A^{T}$ 도 정칙행렬이며 $\left(A^{T}\right)^{-1}=\left(A^{-1}\right)^{T}$ 이다.</li>
+  </ol>
+</div>
+
+<div class="box prf">
+  <span class="tag">증명</span>
+  <p><span class="step">(1)</span> 정의에 따라 자명하다. 즉, $AA^{-1}=A^{-1}A=I_n$ 이라는 식을
+  $A^{-1}$ 의 입장에서 읽으면 $A^{-1}$ 의 역행렬이 $A$ 임을 그대로 말해 준다.</p>
+  <p><span class="step">(2)</span> 다음과 같이 가운데부터 소거된다.</p>
+  $$(AB)\left(B^{-1}A^{-1}\right)=A\left(BB^{-1}\right)A^{-1}=AI_nA^{-1}=AA^{-1}=I_n$$
+  <p><span class="step">(3)</span> 스칼라는 자유롭게 앞으로 뺄 수 있으므로</p>
+  $$(cA)\left(\frac1c A^{-1}\right)=\left(c\cdot\frac1c\right)\left(AA^{-1}\right)=1\,I_n=I_n$$
+  <p><span class="step">(4)</span> 식 $AA^{-1}=A^{-1}A=I_n$ 의 각 변에 전치연산을 취하면</p>
+  $$\left(AA^{-1}\right)^{T}=\left(A^{-1}A\right)^{T}=\left(I_n\right)^{T}$$
+  <p>이고, <a href="../ch03/3-5_transpose.html">[정리 3.4]</a>의 $(3)$번에 의해</p>
+  $$\left(A^{-1}\right)^{T}A^{T}=A^{T}\left(A^{-1}\right)^{T}=I_n$$
+  <p>이 된다. 따라서 $A^{T}$ 는 역행렬 $\left(A^{-1}\right)^{T}$ 를 갖는다.</p>
+  <div class="qed">∎</div>
+</div>
+
+<div class="note">
+  <b>$(2)$ 는 전치에서 본 그림과 똑같다.</b>
+  <a href="../ch03/3-5_transpose.html">3.5절</a>의 $(AB)^{T}=B^{T}A^{T}$ 처럼
+  역행렬에서도 곱을 통과할 때 <b>순서가 뒤집힌다</b>.
+  이유도 같다 — 가운데 붙은 $B$ 와 $B^{-1}$ 이 먼저 만나야 소거가 시작되기 때문이다.
+  $A^{-1}B^{-1}$ 로 놓으면 $(AB)(A^{-1}B^{-1})$ 의 가운데가 $BA^{-1}$ 이라 아무것도 소거되지 않는다.
+</div>
+
+<div class="box ex">
+  <span class="tag">예제 4.3</span><span class="title">정칙행렬의 거듭제곱 계산</span>
+  <p>$A$ 가 정칙행렬일 때 다음 예를 살펴보고 정칙행렬의 거듭제곱에 관한 성질을 이해하라.</p>
+  <p><span class="step">(1)</span> $A^{3}A^{-2}$</p>
+  $$A^{3}A^{-2}=A^{3}\left(A^{-1}\right)^{2}=AAAA^{-1}A^{-1}=A=A^{3-2}$$
+  <p><span class="step">(2)</span> $\left(A^{3}\right)^{-2}$</p>
+  $$\left(A^{3}\right)^{-2}=\left(\left(A^{3}\right)^{-1}\right)^{2}=\left(\left(A^{-1}\right)^{3}\right)^{2}
+    =\left(A^{-1}\right)^{6}=A^{-6}=A^{3(-2)}$$
+  <p><span class="step">(3)</span> $\left(A^{-3}\right)^{-2}$</p>
+  $$\left(A^{-3}\right)^{-2}=\left(\left(A^{-3}\right)^{-1}\right)^{2}=\left(A^{3}\right)^{2}=A^{6}=A^{(-3)(-2)}$$
+  <p><span class="step">(4)</span> 임의의 자연수 $n$ 에 대해 $A^{n}\left(A^{-1}\right)^{n}=I$ 이므로 다음이 성립한다.</p>
+  $$\left(A^{n}\right)^{-1}=\left(A^{-1}\right)^{n}=A^{-n}$$
+</div>
+
+<div class="box thm">
+  <span class="tag">따름정리</span><span class="title">여러 정칙행렬의 곱의 역행렬</span>
+  <p>$A_1,A_2,\dots,A_m$ 을 $m$개의 $n$차 정칙행렬이라 하면 다음이 성립한다.</p>
+  $$\left(A_1A_2\cdots A_m\right)^{-1}=A_m^{-1}A_{m-1}^{-1}\cdots A_2^{-1}A_1^{-1}$$
+  <p>즉, $m$개의 $n$차 정칙행렬을 차례로 곱해서 만들어진 행렬의 역행렬은
+  <b>각 행렬의 역행렬을 역순으로 곱한 것</b>과 같다.</p>
+</div>
+
+<div class="box prf">
+  <span class="tag">증명</span>
+  <p>수학적 귀납법으로 증명한다.</p>
+  <p><span class="step">(1) $m=2$ 인 경우.</span> [정리 4.2]의 $(2)$번으로부터 성립한다. 즉,</p>
+  $$\left(A_1A_2\right)^{-1}=A_2^{-1}A_1^{-1}$$
+  <p><span class="step">(2) 귀납 가정.</span> $(k-1)$개의 $n$차 정칙행렬에 대해서도 성립한다고 가정하자(단, $k\le m$). 즉,</p>
+  $$\left(A_1A_2\cdots A_{k-1}\right)^{-1}=A_{k-1}^{-1}A_{k-2}^{-1}\cdots A_2^{-1}A_1^{-1}$$
+  <p>을 가정한다. 이제 $B=A_1A_2\cdots A_{k-1}$ 로 두면</p>
+  $$\left(A_1A_2\cdots A_{k-1}A_k\right)^{-1}=\left(BA_k\right)^{-1}=A_k^{-1}B^{-1}
+    =A_k^{-1}A_{k-1}^{-1}\cdots A_2^{-1}A_1^{-1}$$
+  <p>이 되어 $k$개의 $n$차 정칙행렬에 대해서도 위 식이 성립한다.</p>
+  <p><span class="step">(3) 결론.</span> $(1)$, $(2)$ 에 의하여 주어진 식은 모든 자연수 $m$ 에 대하여 성립한다.</p>
+  <div class="qed">∎</div>
+</div>
+
+<div class="note">
+  귀납 단계의 핵심은 앞의 $(k-1)$개를 <b>덩어리 $B$ 하나로 묶어</b>
+  $m=2$ 인 경우 $(BA_k)^{-1}=A_k^{-1}B^{-1}$ 로 되돌리는 것이다.
+  그 다음 $B^{-1}$ 자리에 귀납 가정을 그대로 갈아 끼우면 끝난다.
+</div>
+
+<div class="box ex">
+  <span class="tag">예제 4.4</span><span class="title">[정리 4.2]의 확인</span>
+  <p><span class="step">(1) $\left(A^{-1}\right)^{-1}=A$.</span>
+  &nbsp;$A=\begin{pmatrix}1&0\\1&1\end{pmatrix}$ 이면 $A^{-1}=\begin{pmatrix}1&0\\-1&1\end{pmatrix}$ 이고</p>
+  $$\left(A^{-1}\right)^{-1}=\begin{pmatrix}1&0\\1&1\end{pmatrix}=A$$
+  <p><span class="step">(2) $(AB)^{-1}=B^{-1}A^{-1}$.</span>
+  &nbsp;$A=\begin{pmatrix}1&0\\1&1\end{pmatrix}$, $B=\begin{pmatrix}1&1\\1&0\end{pmatrix}$ 이면</p>
+  $$AB=\begin{pmatrix}1&0\\1&1\end{pmatrix}\begin{pmatrix}1&1\\1&0\end{pmatrix}=\begin{pmatrix}1&1\\2&1\end{pmatrix},
+    \qquad (AB)^{-1}=\begin{pmatrix}-1&1\\2&-1\end{pmatrix}$$
+  <p>이고 $A^{-1}=\begin{pmatrix}1&0\\-1&1\end{pmatrix}$, $B^{-1}=\begin{pmatrix}0&1\\1&-1\end{pmatrix}$ 이며</p>
+  $$B^{-1}A^{-1}=\begin{pmatrix}0&1\\1&-1\end{pmatrix}\begin{pmatrix}1&0\\-1&1\end{pmatrix}
+    =\begin{pmatrix}-1&1\\2&-1\end{pmatrix}=(AB)^{-1}$$
+  <p><span class="step">(3) $(cA)^{-1}=\frac1c A^{-1}$.</span>
+  &nbsp;$A=\begin{pmatrix}30&-10\\-50&20\end{pmatrix}$ 이면
+  $A=10\begin{pmatrix}3&-1\\-5&2\end{pmatrix}$ 이고
+  $\begin{pmatrix}3&-1\\-5&2\end{pmatrix}^{-1}=\begin{pmatrix}2&1\\5&3\end{pmatrix}$ 이므로</p>
+  $$A^{-1}=\frac1{10}\begin{pmatrix}2&1\\5&3\end{pmatrix}
+    =\begin{pmatrix}\tfrac{2}{10}&\tfrac{1}{10}\\[2pt]\tfrac{5}{10}&\tfrac{3}{10}\end{pmatrix}$$
+  <p><span class="step">(4) $\left(A^{T}\right)^{-1}=\left(A^{-1}\right)^{T}$.</span>
+  &nbsp;$A=\begin{pmatrix}-3&4\\7&-9\end{pmatrix}$ 에 대해
+  $A^{T}=\begin{pmatrix}-3&7\\4&-9\end{pmatrix}$, $A^{-1}=\begin{pmatrix}9&4\\7&3\end{pmatrix}$ 이므로</p>
+  $$\left(A^{T}\right)^{-1}=\begin{pmatrix}9&7\\4&3\end{pmatrix}=\left(A^{-1}\right)^{T}$$
+</div>
+
+<div class="note">
+  $(3)$ 은 <b>스칼라를 먼저 뽑아내는</b> 요령이다.
+  $A$ 의 원소가 모두 $10$ 의 배수라 $A=10A'$ 로 쓰면 남은 $A'$ 는 $D=6-5=1$ 이라 계산이 훨씬 간단해진다.
+  이때 $A^{-1}=\frac1{10}A'^{\,-1}$ 이므로 <b>스칼라도 역수로 뒤집혀</b> 나온다.
+</div>
+
+<nav class="pager">
+  <a href="../ch03/3-exercises.html">← 이전<small>3장 연습문제</small></a>
+  <a class="next" href="4-2_finding-inverse.html">다음 →<small>4.2 역행렬을 구하는 방법</small></a>
+</nav>
+
+</body>
+</html>

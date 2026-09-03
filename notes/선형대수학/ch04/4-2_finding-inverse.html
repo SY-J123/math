@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>선형대수학 · 4.2 역행렬을 구하는 방법</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">선형대수학 · 4장 역행렬</div>
+  <h1><span class="no">4.2</span>역행렬을 구하는 방법 <span class="en">computing the inverse</span></h1>
+</header>
+
+<p><a href="4-1_nonsingular-and-inverse.html">[예제 4.2]</a>에서 2차 정방행렬의 역행렬을 구하는 방법을 알아보았다.
+이번에는 $n$차 정방행렬의 역행렬을 구하는 일반적인 방법을 알아본다.
+열쇠는 <a href="../ch02/2-2_elementary-row-operations.html">2.2절</a>의 <b>기본행연산</b>을
+<b>행렬의 곱</b>으로 바꾸어 보는 데 있다.</p>
+
+<h2 class="sub">기본행렬 <span class="en">elementary matrix</span></h2>
+
+<div class="box def">
+  <span class="tag">정의 4.2</span><span class="title">기본행렬 <span class="en">elementary matrix</span></span>
+  <p>$n$차 단위행렬 $I_n$ 에 기본행연산을 <b>한 번만</b> 적용하여 얻는 행렬 $E$ 를
+  <b>기본행렬</b>(elementary matrix)이라고 한다.</p>
+  <p>기본행연산에 세 종류가 있으므로 기본행렬도 세 종류가 있으며, 각각 다음과 같이 나타낸다.</p>
+  <ol class="props">
+    <li>$E_{i,j}$ &nbsp;— $I_n$ 의 $i$번째 행과 $j$번째 행을 교환한 것 ($R_{i,j}$ 에 대응)</li>
+    <li>$E_{i}(c)$ &nbsp;— $I_n$ 의 $i$번째 행에 $0$ 이 아닌 상수 $c$ 를 곱한 것 ($R_{i}(c)$ 에 대응)</li>
+    <li>$E_{i,j}(c)$ &nbsp;— $I_n$ 의 $i$번째 행에 $c$ 를 곱하여 $j$번째 행에 더한 것 ($R_{i,j}(c)$ 에 대응)</li>
+  </ol>
+</div>
+
+<div class="note">
+  기본행<b>연산</b> $R$ 은 “행렬에 하는 조작”이고, 기본행<b>렬</b> $E$ 는 그 조작을
+  $I_n$ 한 번에 적용해서 <b>얼려 둔 행렬</b>이다.
+  조작을 행렬로 바꿔 두면 “행연산을 한다”가 “왼쪽에 곱한다”로 바뀐다 — 그것이 [정리 4.3]이다.
+</div>
+
+<div class="box ex">
+  <span class="tag">예제 4.5</span><span class="title">3차 기본행렬과 그 기능</span>
+  <p>3차 기본행렬 $E_{1,3}$, $E_2(3)$, $E_{1,3}(2)$ 를 구하고 각 기본행렬의 기능을 이해하라.</p>
+  <p><b>풀이</b> &nbsp;[정의 4.2]에 따라서 $I_3$ 에 $R_{1,3}$, $R_2(3)$, $R_{1,3}(2)$ 를 각각 적용하면</p>
+  $$E_{1,3}=\begin{pmatrix}0&0&1\\0&1&0\\1&0&0\end{pmatrix},\qquad
+    E_{2}(3)=\begin{pmatrix}1&0&0\\0&3&0\\0&0&1\end{pmatrix},\qquad
+    E_{1,3}(2)=\begin{pmatrix}1&0&0\\0&1&0\\2&0&1\end{pmatrix}$$
+  <p>를 구한다.</p>
+  <p>$A$ 를 다음과 같은 임의의 $3\times2$ 행렬이라 하자.</p>
+  $$A=\begin{pmatrix}a&b\\c&d\\e&f\end{pmatrix}$$
+  <p>또한 $A$ 의 행벡터를 각각 $A_1=(a\ \ b)$, $A_2=(c\ \ d)$, $A_3=(e\ \ f)$ 라 하면
+  $A$ 를 다음과 같이 나타낼 수 있다.</p>
+  $$A=\begin{pmatrix}A_1\\A_2\\A_3\end{pmatrix}$$
+  <p>그러면 다음이 성립한다.</p>
+  $$E_{1,3}A=\begin{pmatrix}0&0&1\\0&1&0\\1&0&0\end{pmatrix}\begin{pmatrix}a&b\\c&d\\e&f\end{pmatrix}
+    =\begin{pmatrix}e&f\\c&d\\a&b\end{pmatrix}=\begin{pmatrix}A_3\\A_2\\A_1\end{pmatrix}$$
+  $$E_{2}(3)A=\begin{pmatrix}1&0&0\\0&3&0\\0&0&1\end{pmatrix}\begin{pmatrix}a&b\\c&d\\e&f\end{pmatrix}
+    =\begin{pmatrix}a&b\\3c&3d\\e&f\end{pmatrix}=\begin{pmatrix}A_1\\3A_2\\A_3\end{pmatrix}$$
+  $$E_{1,3}(2)A=\begin{pmatrix}1&0&0\\0&1&0\\2&0&1\end{pmatrix}\begin{pmatrix}a&b\\c&d\\e&f\end{pmatrix}
+    =\begin{pmatrix}a&b\\c&d\\2a+e&2b+f\end{pmatrix}=\begin{pmatrix}A_1\\A_2\\2A_1+A_3\end{pmatrix}$$
+  <p>[예제 4.5]에서 $E_{1,3}A$ 는 기본행연산 $R_{1,3}$ 을 $A$ 에 적용한 결과와 같고,
+  $E_2(3)A$ 는 $R_2(3)$ 을 적용한 결과와 같으며, $E_{1,3}(2)A$ 는 $R_{1,3}(2)$ 를 적용한 결과와 같다.
+  이런 사실은 일반적으로 성립한다.</p>
+</div>
+
+<div class="box thm">
+  <span class="tag">정리 4.3</span><span class="title">기본행연산 = 기본행렬을 왼쪽에 곱하기</span>
+  <p>$A$, $B$ 를 $n\times p$ 행렬이라 하면 다음이 성립한다.</p>
+  <ol class="props">
+    <li>$A$ 에 기본행연산 $R$ 을 적용한 결과는 $EA$ 와 같다. 단, 행렬 $E$ 는 $I_n$ 에 $R$ 을 적용하여 얻은 기본행렬이다.</li>
+    <li>$A$ 와 $B$ 가 행상등하면 유한개의 기본행렬 $E_1,E_2,\dots,E_k$ 가 존재하여 다음을 만족한다.
+      $$A=E_1E_2\cdots E_kB$$
+    </li>
+  </ol>
+</div>
+
+<div class="note">
+  $(2)$ 는 $(1)$ 을 여러 번 되풀이한 것뿐이다.
+  $B$ 에 기본행연산을 차례로 $k$ 번 적용해 $A$ 를 얻었다면
+  마지막에 적용한 연산의 기본행렬이 <b>가장 왼쪽</b>에 오도록 쌓인다.
+  <a href="../ch03/3-4_matrix-product.html">행렬 곱은 오른쪽부터</a> $B$ 에 닿기 때문이다.
+</div>
+
+<div class="box thm">
+  <span class="tag">정리 4.4</span><span class="title">기본행렬의 역행렬</span>
+  <p>기본행렬은 정칙행렬이며, 그 역행렬도 <b>동일한 종류의 기본행렬</b>이다.</p>
+</div>
+
+<div class="box prf">
+  <span class="tag">증명</span>
+  <p>세 종류의 기본행렬 각각에 대해 다음이 성립한다.</p>
+  <p><span class="step">(1)</span> $E_{i,j}E_{i,j}=I$, 따라서 $\left(E_{i,j}\right)^{-1}=E_{i,j}$ 이다.</p>
+  <p><span class="step">(2)</span> $E_{i}(c)\,E_{i}\!\left(\dfrac1c\right)=I$, 따라서
+    $\left(E_{i}(c)\right)^{-1}=E_{i}\!\left(\dfrac1c\right)$ 이다.</p>
+  <p><span class="step">(3)</span> $E_{i,j}(c)\,E_{i,j}(-c)=I$, 따라서
+    $\left(E_{i,j}(c)\right)^{-1}=E_{i,j}(-c)$ 이다.</p>
+  <div class="qed">∎</div>
+</div>
+
+<div class="note">
+  <a href="../ch02/2-2_elementary-row-operations.html">2.2절</a>의 &lt;표 2.1&gt;에 있던
+  <b>역기본행연산</b> 표를 그대로 행렬로 옮겨 적은 것이다.
+  행을 바꿨으면 다시 바꾸고, $c$ 를 곱했으면 $\frac1c$ 을 곱하고, $c$ 배를 더했으면 $-c$ 배를 더한다.
+  “한 번 한 조작을 되돌릴 수 있다”는 사실이 곧 “기본행렬은 정칙이다”가 된다.
+</div>
+
+<div class="box ex">
+  <span class="tag">예제 4.6</span><span class="title">[정리 4.4]의 확인</span>
+  <p>3차 기본행렬에 대하여 [정리 4.4]의 내용을 들어 확인하라.</p>
+  <p><b>풀이</b></p>
+  <p><span class="step">(1)</span></p>
+  $$E_{1,3}E_{1,3}=\begin{pmatrix}0&0&1\\0&1&0\\1&0&0\end{pmatrix}\begin{pmatrix}0&0&1\\0&1&0\\1&0&0\end{pmatrix}
+    =\begin{pmatrix}1&0&0\\0&1&0\\0&0&1\end{pmatrix}=I_3$$
+  <p><span class="step">(2)</span></p>
+  $$E_{2}(3)\,E_{2}\!\left(\tfrac13\right)
+    =\begin{pmatrix}1&0&0\\0&3&0\\0&0&1\end{pmatrix}\begin{pmatrix}1&0&0\\0&\tfrac13&0\\0&0&1\end{pmatrix}
+    =\begin{pmatrix}1&0&0\\0&1&0\\0&0&1\end{pmatrix}=I_3$$
+  <p><span class="step">(3)</span></p>
+  $$E_{1,3}(2)\,E_{1,3}(-2)
+    =\begin{pmatrix}1&0&0\\0&1&0\\2&0&1\end{pmatrix}\begin{pmatrix}1&0&0\\0&1&0\\-2&0&1\end{pmatrix}
+    =\begin{pmatrix}1&0&0\\0&1&0\\0&0&1\end{pmatrix}=I_3$$
+</div>
+
+<h2 class="sub">정칙행렬의 동치조건 <span class="en">equivalent conditions</span></h2>
+
+<div class="box thm">
+  <span class="tag">정리 4.5</span><span class="title">정칙행렬의 세 가지 동치조건</span>
+  <p>$A$ 가 $n$차 정방행렬일 때 다음은 서로 동치이다.</p>
+  <ol class="props">
+    <li>$A$ 는 정칙행렬이다.</li>
+    <li>$A$ 와 $I_n$ 은 행상등하다.</li>
+    <li>$A$ 는 유한개의 $n$차 기본행렬의 곱이다.</li>
+  </ol>
+</div>
+
+<div class="box prf">
+  <span class="tag">증명</span>
+  <p><span class="step">1) $(1)\Rightarrow(2)$ 를 증명하자.</span>
+  $A$ 를 정칙행렬이라 하고, $A$ 에 유한 번($k$번)의 기본행연산을 적용하여 소거행제형 행렬 $R$ 로 바꾸었다고 하자.
+  그러면 [정리 4.3]의 $(2)$ 에 의해</p>
+  $$R=E_1E_2\cdots E_kA$$
+  <p>를 만족하는 기본행렬 $E_1,E_2,\dots,E_k$ 가 존재한다.
+  [정리 4.4]에 의해 $E_1,\dots,E_k$ 는 모두 정칙행렬이고 $A$ 도 정칙행렬이므로,
+  <a href="4-1_nonsingular-and-inverse.html">[정리 4.2]</a>의 따름정리에 의해 $R$ 도 정칙행렬이다.
+  $R$ 이 정칙행렬이면 $R$ 의 어떠한 행도 영행이 아니다.
+  $R$ 은 $n$차 정방행렬이고 소거행제형이며 영행이 없기 때문에 $R=I_n$ 이다.</p>
+
+  <p><span class="step">2) $(2)\Rightarrow(3)$ 을 증명하자.</span>
+  $A$ 와 $I_n$ 이 행상등하다고 하자. [정리 4.3]의 $(2)$ 에 의해</p>
+  $$A=E_1E_2\cdots E_kI_n=E_1E_2\cdots E_k$$
+  <p>를 만족하는 기본행렬 $E_1,E_2,\dots,E_k$ 가 존재한다.</p>
+
+  <p><span class="step">3) $(3)\Rightarrow(1)$ 을 증명하자.</span>
+  $A=E_1E_2\cdots E_k$ 와 같이 $A$ 가 $k$개의 기본행렬의 곱으로 표시된다고 하자.
+  [정리 4.4]와 [정리 4.2]의 따름정리에 의해 $A$ 는 정칙행렬이다.</p>
+  <div class="qed">∎</div>
+</div>
+
+<div class="note">
+  <b>“정칙 ⟹ 영행이 없다”가 왜 필요한가.</b>
+  $n$차 정방행렬이면서 소거행제형인 행렬은 <b>영행이 하나라도 있거나, 아니면 $I_n$ 이거나</b> 둘 중 하나다.
+  ($n$개의 행에 선도 $1$ 이 하나씩 다 있으면 그 $n$개는 서로 다른 열에 놓여야 하므로 주대각을 채울 수밖에 없다.)
+  그래서 “$R$ 이 정칙 ⟹ 영행 없음 ⟹ $R=I_n$” 으로 이어진다.
+  한편, $A$ 가 정칙행렬이라면 $A$ 의 어떠한 행도 영행이 아니며
+  $A$ 의 어떠한 열도 영열(성분이 모두 $0$ 인 열)이 아닌 것도 자명하다.
+</div>
+
+<h2 class="sub">$A^{-1}$ 을 읽어 내는 원리 <span class="en">why the augmented trick works</span></h2>
+
+<p>[정리 4.5]를 잘 살펴보면 정방행렬 $A$ 에 대해 $A$ 가 정칙행렬인지 아닌지 확인하는 방법과,
+$A$ 가 정칙행렬일 경우 역행렬 $A^{-1}$ 을 구하는 방법을 찾아낼 수 있다.</p>
+
+<ul class="props">
+  <li><b>첫째</b>, $A$ 에 유한 번의 기본행연산을 적용하여 단위행렬 $I$ 로 바꿀 수 있다면 $A$ 는 정칙행렬이고,
+    그렇지 않다면 $A$ 는 정칙행렬이 아니다.</li>
+  <li><b>둘째</b>, $A$ 가 정칙행렬이면 $A$ 는 $I$ 와 행상등하므로
+    유한개의 기본행렬 $E_1,E_2,\dots,E_k$ 가 존재하여 다음이 성립한다.</li>
+</ul>
+
+$$E_1E_2\cdots E_kA=I\qquad\Longrightarrow\qquad A^{-1}=E_1E_2\cdots E_k$$
+
+<p>이므로 $A$ 를 $I$ 로 변환할 때 사용되었던 기본행연산을 <b>그대로 단위행렬에 차례로 적용</b>함으로써
+$A^{-1}$ 을 구할 수 있다. 즉, $A$ 를 $I$ 로 바꾸는 데 필요한 기본행렬들을 차례로 적용한 후,
+동일한 기본행렬들을 동일한 순서로 $I$ 에 적용하면 $A^{-1}$ 을 얻는다.</p>
+
+<div class="note">
+  <b>가운데 식이 전부다.</b> $E_1E_2\cdots E_kA=I$ 의 양변에 오른쪽으로 $A^{-1}$ 을 곱하면
+  $E_1E_2\cdots E_k=A^{-1}$ 이다. 그런데 좌변은 $E_1E_2\cdots E_kI$ 와 같다.
+  <b>같은 연산열을 $A$ 에 걸면 $I$ 가 나오고, $I$ 에 걸면 $A^{-1}$ 이 나온다</b>는 뜻이다.
+  그러니 $A$ 와 $I$ 를 나란히 붙여 놓고 한꺼번에 굴리면 된다.
+</div>
+
+<p>이제 $n\times p$ 행렬 $A$ 와 $n\times q$ 행렬 $B$ 를 좌우로 붙여 만든 확대행렬을 $(A\,|\,B)$ 로 표기하기로 하고
+위의 내용을 정리로 남긴다.</p>
+
+<div class="box thm">
+  <span class="tag">정리 4.6</span><span class="title">확대행렬 $(A\,|\,I_n)$ 의 소거행제형 읽기</span>
+  <p>$n$차 정방행렬 $A,B,C$ 에 대해 $(A\,|\,I_n)$ 과 $(B\,|\,C)$ 가 행상등하면 다음이 성립한다.</p>
+  <ol class="props">
+    <li>$B$ 가 영행을 포함하면 $A$ 는 정칙행렬이 아니다.</li>
+    <li>$B=I_n$ 이면 $A$ 는 정칙행렬이고 $C=A^{-1}$ 이 된다.</li>
+  </ol>
+</div>
+
+<figure class="fig">
+<svg viewBox="0 0 460 268" role="img" aria-label="확대행렬 (A|I)에 가우스-조르단 소거법을 적용하면 왼쪽이 단위행렬이 되어 오른쪽이 A의 역행렬이 되거나, 왼쪽에 영행이 생겨 역행렬이 없음이 드러난다">
+  <defs>
+    <marker id="ar42" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 z" fill="#5a5a5a"/>
+    </marker>
+  </defs>
+
+  <text class="lbl b" x="230" y="22" text-anchor="middle">( A | Iₙ )</text>
+  <rect class="cell" x="150" y="30" width="160" height="60"/>
+  <line class="aux" x1="230" y1="30" x2="230" y2="90"/>
+  <text class="lbl" x="190" y="66" text-anchor="middle" font-size="15">A</text>
+  <text class="lbl" x="270" y="66" text-anchor="middle" font-size="15">Iₙ</text>
+
+  <line class="axis" x1="230" y1="94" x2="230" y2="127"/>
+  <text class="lbl" x="240" y="114" font-size="11">기본행연산 (가우스–조르단)</text>
+
+  <line class="axis" x1="110" y1="127" x2="350" y2="127"/>
+  <line class="axis" x1="110" y1="127" x2="110" y2="156" marker-end="url(#ar42)"/>
+  <line class="axis" x1="350" y1="127" x2="350" y2="156" marker-end="url(#ar42)"/>
+
+  <rect class="cell" x="30" y="160" width="160" height="60"/>
+  <line class="aux" x1="110" y1="160" x2="110" y2="220"/>
+  <text class="lbl" x="70"  y="196" text-anchor="middle" font-size="15">Iₙ</text>
+  <text class="lbl b" x="150" y="196" text-anchor="middle" font-size="15">C</text>
+
+  <rect class="cell" x="270" y="160" width="160" height="60"/>
+  <rect x="270" y="200" width="80" height="20" fill="#f0e2e2" stroke="#c8867f"/>
+  <line class="aux" x1="350" y1="160" x2="350" y2="220"/>
+  <text class="lbl" x="310" y="182" text-anchor="middle" font-size="15">B</text>
+  <text class="lbl" x="310" y="215" text-anchor="middle" font-size="10">0 0 ⋯ 0</text>
+  <text class="lbl" x="390" y="196" text-anchor="middle" font-size="15">C</text>
+
+  <text class="lbl b" x="110" y="240" text-anchor="middle" font-size="11">B = Iₙ 이면</text>
+  <text class="lbl b" x="110" y="255" text-anchor="middle" font-size="11">A 는 정칙행렬이고 C = A⁻¹</text>
+  <text class="lbl" x="350" y="240" text-anchor="middle" font-size="11">B 에 영행이 생기면</text>
+  <text class="lbl" x="350" y="255" text-anchor="middle" font-size="11">A⁻¹ 은 존재하지 않는다</text>
+</svg>
+<figcaption>$A$ 와 $I_n$ 을 붙여 놓고 <b>한꺼번에</b> 소거한다. 왼쪽이 $I_n$ 이 되는 순간 오른쪽에 $A^{-1}$ 이 남는다.</figcaption>
+</figure>
+
+<div class="box def">
+  <span class="tag">알고리즘 4.1</span><span class="title">$A^{-1}$ 을 구하는 방법</span>
+  <p><b>입력</b>: $n$차 정방행렬 $A$<br>
+     <b>출력</b>: $A^{-1}$ 의 존재 여부와, 존재할 경우 $A^{-1}$</p>
+  <ol class="fill">
+    <li><span class="step">단계 1.</span> $n\times2n$ 인 확대행렬 $(A\,|\,I_n)$ 을 구성한다.</li>
+    <li><span class="step">단계 2.</span> 기본행연산을 $(A\,|\,I_n)$ 에 적용하여 소거행제형 행렬 $(B\,|\,C)$ 를 만든다.</li>
+    <li><span class="step">단계 3.</span> 만일 $B=I_n$ 이면 $C=A^{-1}$ 을 출력한다.
+      만일 $B\ne I_n$ 이면 $B$ 는 영행을 갖게 되므로 $A$ 는 정칙행렬이 아니며,
+      따라서 역행렬 $A^{-1}$ 이 존재하지 않음을 출력한다.</li>
+  </ol>
+</div>
+
+<div class="note">
+  단계 2 에서 목표로 하는 것은 <b>왼쪽 블록 $A$ 의 소거행제형</b>이다.
+  오른쪽 블록은 목표가 아니라 <b>기록장</b>이다 — 왼쪽에 가한 연산을 그대로 받아 적을 뿐이다.
+  <a href="../ch02/2-4_gauss-jordan.html">2.4절</a>의 가우스–조르단 소거법을 그대로 쓰되,
+  선도 $1$ 을 만들고 그 열의 <b>위아래를 모두 $0$ 으로</b> 만드는 것까지 해야 왼쪽이 $I_n$ 이 된다.
+</div>
+
+<div class="box ex">
+  <span class="tag">예제 4.7</span><span class="title">3차 정방행렬의 역행렬 구하기</span>
+  <p>다음 3차 정방행렬 $A,B$ 에 대해서 역행렬이 있으면 구하라.</p>
+  $$A=\begin{pmatrix}1&2&3\\3&5&7\\2&6&9\end{pmatrix},\qquad B=\begin{pmatrix}1&1&1\\2&1&3\\5&3&7\end{pmatrix}$$
+
+  <p><b>풀이</b></p>
+
+  <p><span class="step">(1)</span> 행렬 $A$ 에 대해 확대행렬 $(A\,|\,I_3)$ 을 구성한 후
+  기본행연산을 적용하여 소거행제형 행렬로 변환한다.</p>
+  <div class="scroll">
+  $$\begin{aligned}
+  (A\,|\,I_3)&=\left(\begin{array}{ccc|ccc}1&2&3&1&0&0\\3&5&7&0&1&0\\2&6&9&0&0&1\end{array}\right)
+  \xrightarrow{\ R_{1,2}(-3)\ }\left(\begin{array}{ccc|ccc}1&2&3&1&0&0\\0&-1&-2&-3&1&0\\2&6&9&0&0&1\end{array}\right)\\[6pt]
+  &\xrightarrow{\ R_{1,3}(-2)\ }\left(\begin{array}{ccc|ccc}1&2&3&1&0&0\\0&-1&-2&-3&1&0\\0&2&3&-2&0&1\end{array}\right)
+  \xrightarrow{\ R_{2}(-1)\ }\left(\begin{array}{ccc|ccc}1&2&3&1&0&0\\0&1&2&3&-1&0\\0&2&3&-2&0&1\end{array}\right)\\[6pt]
+  &\xrightarrow{\ R_{2,1}(-2)\ }\left(\begin{array}{ccc|ccc}1&0&-1&-5&2&0\\0&1&2&3&-1&0\\0&2&3&-2&0&1\end{array}\right)
+  \xrightarrow{\ R_{2,3}(-2)\ }\left(\begin{array}{ccc|ccc}1&0&-1&-5&2&0\\0&1&2&3&-1&0\\0&0&-1&-8&2&1\end{array}\right)\\[6pt]
+  &\xrightarrow{\ R_{3}(-1)\ }\left(\begin{array}{ccc|ccc}1&0&-1&-5&2&0\\0&1&2&3&-1&0\\0&0&1&8&-2&-1\end{array}\right)
+  \xrightarrow{\ R_{3,1}(1)\ }\left(\begin{array}{ccc|ccc}1&0&0&3&0&-1\\0&1&2&3&-1&0\\0&0&1&8&-2&-1\end{array}\right)\\[6pt]
+  &\xrightarrow{\ R_{3,2}(-2)\ }\left(\begin{array}{ccc|ccc}1&0&0&3&0&-1\\0&1&0&-13&3&2\\0&0&1&8&-2&-1\end{array}\right)=(B\,|\,C)
+  \end{aligned}$$
+  </div>
+  <p>$B=I_3$ 이므로 $A$ 는 정칙행렬이며 $A^{-1}=C$ 이다. 이것을 확인해 보면 다음과 같다.</p>
+  $$AC=\begin{pmatrix}1&2&3\\3&5&7\\2&6&9\end{pmatrix}\begin{pmatrix}3&0&-1\\-13&3&2\\8&-2&-1\end{pmatrix}
+    =\begin{pmatrix}1&0&0\\0&1&0\\0&0&1\end{pmatrix}=I_3$$
+
+  <p><span class="step">(2)</span> 마찬가지로 행렬 $B$ 에 대해 확대행렬 $(B\,|\,I_3)$ 을 구성한 후
+  기본행연산을 적용하여 소거행제형으로 변환한다.</p>
+  <div class="scroll">
+  $$\begin{aligned}
+  (B\,|\,I_3)&=\left(\begin{array}{ccc|ccc}1&1&1&1&0&0\\2&1&3&0&1&0\\5&3&7&0&0&1\end{array}\right)
+  \xrightarrow{\ R_{1,2}(-2)\ }\left(\begin{array}{ccc|ccc}1&1&1&1&0&0\\0&-1&1&-2&1&0\\5&3&7&0&0&1\end{array}\right)\\[6pt]
+  &\xrightarrow{\ R_{1,3}(-5)\ }\left(\begin{array}{ccc|ccc}1&1&1&1&0&0\\0&-1&1&-2&1&0\\0&-2&2&-5&0&1\end{array}\right)
+  \xrightarrow{\ R_{2}(-1)\ }\left(\begin{array}{ccc|ccc}1&1&1&1&0&0\\0&1&-1&2&-1&0\\0&-2&2&-5&0&1\end{array}\right)\\[6pt]
+  &\xrightarrow{\ R_{2,1}(-1)\ }\left(\begin{array}{ccc|ccc}1&0&2&-1&1&0\\0&1&-1&2&-1&0\\0&-2&2&-5&0&1\end{array}\right)
+  \xrightarrow{\ R_{2,3}(2)\ }\left(\begin{array}{ccc|ccc}1&0&2&-1&1&0\\0&1&-1&2&-1&0\\0&0&0&-1&-2&1\end{array}\right)
+  \end{aligned}$$
+  </div>
+  <p>행렬 $(B\,|\,I_3)$ 은 소거행제형으로 바뀌는 과정에 <b>영행이 나타난다</b>.
+  따라서 [정리 4.6]의 $(1)$번에 의해 $B$ 는 역행렬을 갖지 못한다.</p>
+</div>
+
+<div class="note">
+  왼쪽 블록의 셋째 행이 $(0\ \ 0\ \ 0)$ 이 된 순간 계산을 멈춰도 된다.
+  그 아래로 어떤 기본행연산을 더 해도 <b>영행은 영행으로 남기</b> 때문에
+  왼쪽이 $I_3$ 이 될 가망은 사라진다.
+  이때 오른쪽 블록에 남은 $(-1\ \ -2\ \ 1)$ 은 아무 의미가 없다.
+</div>
+
+<nav class="pager">
+  <a href="4-1_nonsingular-and-inverse.html">← 이전<small>4.1 정칙행렬과 역행렬</small></a>
+  <a class="next" href="../index.html">목차 →<small>선형대수학</small></a>
+</nav>
+
+</body>
+</html>
