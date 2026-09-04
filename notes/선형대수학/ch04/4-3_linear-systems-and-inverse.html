@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>선형대수학 · 4.3 일차연립방정식과 역행렬</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">선형대수학 · 4장 역행렬</div>
+  <h1><span class="no">4.3</span>일차연립방정식과 역행렬 <span class="en">linear systems and the inverse</span></h1>
+</header>
+
+<p><a href="../ch02/2-1_matrix-and-linear-systems.html">제2장</a>에서 일차연립방정식을 행렬방정식 $AX=B$ 형태로 표현하고,
+확대행렬 $C=(A\,|\,B)$ 에 적절한 기본행연산을 적용함으로써 해를 구하는 것을 다루었다.
+특히 <a href="../ch02/2-4_gauss-jordan.html">2.4절</a>에서 다루었던 가우스–조르단 소거법을 다시 검토해 보자.</p>
+
+<div class="box def">
+  <span class="tag">복습</span><span class="title">행렬방정식 $AX=B$</span>
+  <p>일차연립방정식</p>
+  $$\begin{cases}
+    a_{11}x_1+a_{12}x_2+\cdots+a_{1n}x_n=b_1\\
+    a_{21}x_1+a_{22}x_2+\cdots+a_{2n}x_n=b_2\\
+    \qquad\qquad\qquad\vdots\\
+    a_{m1}x_1+a_{m2}x_2+\cdots+a_{mn}x_n=b_m
+  \end{cases}$$
+  <p>에 대한 계수행렬을 $A$, 미지수행렬을 $X$, 상수행렬을 $B$ 라 하면 다음이 성립한다.</p>
+  $$AX=B,\quad\text{즉}\quad
+    \begin{pmatrix}a_{11}&a_{12}&\cdots&a_{1n}\\a_{21}&a_{22}&\cdots&a_{2n}\\\vdots&\vdots&\ddots&\vdots\\a_{m1}&a_{m2}&\cdots&a_{mn}\end{pmatrix}
+    \begin{pmatrix}x_1\\x_2\\\vdots\\x_n\end{pmatrix}=\begin{pmatrix}b_1\\b_2\\\vdots\\b_m\end{pmatrix}$$
+  <p>여기서 $m$ 은 <b>방정식의 개수</b>이고 $n$ 은 <b>미지수의 개수</b>이다.</p>
+</div>
+
+<p>가우스–조르단 소거법은 확대행렬 $(A\,|\,B)$ 를 소거행제형 행렬 $(C\,|\,D)$ 로 변환한다.
+여기에서는 연립방정식 $AX=B$ 가 해를 갖는 경우와 해를 갖지 못하는 경우로 나누어 생각해 보자.</p>
+
+<h3 class="sub">① $AX=B$ 가 해를 갖지 못하는 경우</h3>
+
+<p>$m>n$, $m=n$, $m \lt n$ 중 어느 경우라도 행렬 $(C\,|\,D)$ 의 행 중에 다음과 같은 형태의 행이 있는 경우
+주어진 연립방정식은 해를 갖지 못한다.</p>
+$$(\,0\ \ 0\ \cdots\ 0\ \ |\ \ k\,)\qquad(\text{단, }k\ne0)$$
+<p>이러한 행을 방정식의 형태로 변환하면</p>
+$$0x_1+0x_2+\cdots+0x_n=k$$
+<p>이므로 모순되기 때문이다.</p>
+
+<h3 class="sub">② $AX=B$ 가 해를 갖는 경우</h3>
+
+<p>확대행렬 $(C\,|\,D)$ 에서 영행이 아닌 행의 개수를 $r$ 로 두자.</p>
+<ul class="props">
+  <li><b>i) $m\ge n$ 인 경우.</b> $r\le n$ 이므로
+    <ul class="props">
+      <li>$r=n$ 이면 <b>유일한 해</b>를 갖는다.</li>
+      <li>$r \lt n$ 이면 $n-r$ 개의 자유변수가 존재하므로 <b>무수히 많은 해</b>를 갖는다.
+        (행렬 $C$ 는 최소한 $m-n$ 개의 영행을 갖는 것을 확인해 보라.)</li>
+    </ul>
+  </li>
+  <li><b>ii) $m \lt n$ 인 경우.</b> $r\le m \lt n$ 이므로 언제나 자유변수가 남아 <b>무수히 많은 해</b>를 갖는다.</li>
+</ul>
+
+<figure class="fig">
+<svg viewBox="0 0 520 200" role="img" aria-label="소거행제형 (C|D)의 모양에 따라 해가 없는 경우, 유일한 해를 갖는 경우, 무수히 많은 해를 갖는 경우로 갈린다">
+  <text class="lbl" x="87"  y="18" text-anchor="middle">모순행이 있다</text>
+  <text class="lbl" x="260" y="18" text-anchor="middle">r = n</text>
+  <text class="lbl" x="433" y="18" text-anchor="middle">r &lt; n</text>
+
+  <!-- panel 1 -->
+  <rect class="cell" x="10" y="28" width="155" height="78"/>
+  <rect x="10" y="80" width="110" height="26" fill="#f5e6e6" stroke="#c8867f"/>
+  <line class="aux" x1="120" y1="28" x2="120" y2="106"/>
+  <g class="lbl">
+    <text x="65" y="46" text-anchor="middle" font-size="11">1&#160;&#160;0&#160;&#160;0</text>
+    <text x="65" y="72" text-anchor="middle" font-size="11">0&#160;&#160;1&#160;&#160;0</text>
+    <text x="65" y="98" text-anchor="middle" font-size="11">0&#160;&#160;0&#160;&#160;0</text>
+    <text x="142" y="46" text-anchor="middle" font-size="11">0</text>
+    <text x="142" y="72" text-anchor="middle" font-size="11">0</text>
+    <text x="142" y="98" text-anchor="middle" font-size="11">k</text>
+  </g>
+  <text class="lbl" x="87" y="128" text-anchor="middle" font-size="10">0x + 0y + 0z = k (k ≠ 0)</text>
+  <text class="lbl b" x="87" y="150" text-anchor="middle">해가 없다</text>
+
+  <!-- panel 2 -->
+  <rect class="cell" x="182" y="28" width="155" height="78"/>
+  <line class="aux" x1="292" y1="28" x2="292" y2="106"/>
+  <g class="lbl">
+    <text x="237" y="46" text-anchor="middle" font-size="11">1&#160;&#160;0&#160;&#160;0</text>
+    <text x="237" y="72" text-anchor="middle" font-size="11">0&#160;&#160;1&#160;&#160;0</text>
+    <text x="237" y="98" text-anchor="middle" font-size="11">0&#160;&#160;0&#160;&#160;1</text>
+    <text x="314" y="46" text-anchor="middle" font-size="11">2</text>
+    <text x="314" y="72" text-anchor="middle" font-size="11">5</text>
+    <text x="314" y="98" text-anchor="middle" font-size="11">−3</text>
+  </g>
+  <text class="lbl" x="260" y="128" text-anchor="middle" font-size="10">선도변수 3개, 자유변수 0개</text>
+  <text class="lbl b" x="260" y="150" text-anchor="middle">유일한 해 (2, 5, −3)</text>
+
+  <!-- panel 3 -->
+  <rect class="cell" x="354" y="28" width="155" height="78"/>
+  <line class="aux" x1="464" y1="28" x2="464" y2="106"/>
+  <rect x="425" y="28" width="39" height="52" fill="#e9f6f4" stroke="#0f8a7d" stroke-dasharray="3 3"/>
+  <g class="lbl">
+    <text x="409" y="46" text-anchor="middle" font-size="11">1&#160;&#160;0</text>
+    <text x="409" y="72" text-anchor="middle" font-size="11">0&#160;&#160;1</text>
+    <text x="409" y="98" text-anchor="middle" font-size="11">0&#160;&#160;0</text>
+    <text x="444" y="46" text-anchor="middle" font-size="11">−1</text>
+    <text x="444" y="72" text-anchor="middle" font-size="11">3</text>
+    <text x="444" y="98" text-anchor="middle" font-size="11">0</text>
+    <text x="486" y="46" text-anchor="middle" font-size="11">2</text>
+    <text x="486" y="72" text-anchor="middle" font-size="11">5</text>
+    <text x="486" y="98" text-anchor="middle" font-size="11">0</text>
+  </g>
+  <text class="lbl t" x="433" y="128" text-anchor="middle" font-size="10">자유변수 n − r = 1 개</text>
+  <text class="lbl b" x="433" y="150" text-anchor="middle">무수히 많은 해</text>
+  <text class="lbl" x="433" y="166" text-anchor="middle" font-size="10">(t+2, −3t+5, t)</text>
+
+  <text class="lbl" x="260" y="192" text-anchor="middle">세 경우 모두 m = n = 3 — 갈림길을 정하는 것은 크기가 아니라 소거행제형의 모양이다</text>
+</svg>
+<figcaption>[예제 4.8]의 $m=n=3$ 인 세 경우. <b>모순행 → 선도변수의 개수 $r$</b> 순으로 보면 해의 개수가 정해진다.</figcaption>
+</figure>
+
+<div class="box ex">
+  <span class="tag">예제 4.8</span><span class="title">소거행제형의 모양으로 해 읽기</span>
+  <p>방정식 $AX=B$ 를 풀기 위해 확대행렬 $(A\,|\,B)$ 를 변환한 소거행제형을 $(C\,|\,D)$ 라 하고,
+  연립방정식을 구성하는 방정식의 개수를 $m$, 미지수의 개수를 $n$ 이라고 하자.
+  다음 각각의 경우에 대해 방정식이 해를 갖는지 확인하라.</p>
+
+  <p><span class="step">(1) $m=6$, $n=4$ 인 경우</span> — 방정식의 개수가 미지수의 개수보다 더 많은 경우</p>
+  $$(C\,|\,D)=\left(\begin{array}{cccc|c}
+    1&0&0&0&0\\0&1&0&0&0\\0&0&1&0&0\\0&0&0&1&0\\0&0&0&0&1\\0&0&0&0&0\end{array}\right)$$
+  <p>으로 변환되었다면 다섯째 행이 $0x+0y+0z+0w=1$ 이 되어 $AX=B$ 는 <b>해가 없다</b>. 그러나</p>
+  $$(C\,|\,D)=\left(\begin{array}{cccc|c}
+    1&0&0&0&2\\0&1&0&0&5\\0&0&1&0&-3\\0&0&0&1&6\\0&0&0&0&0\\0&0&0&0&0\end{array}\right)$$
+  <p>으로 변환되었다면 $AX=B$ 는 <b>유일한 해</b>를 갖는다. 미지수가 $x,y,z,w$ 였다면
+  $x=2$, $y=5$, $z=-3$, $w=6$ 이다. 또한</p>
+  $$(C\,|\,D)=\left(\begin{array}{cccc|c}
+    1&0&4&0&2\\0&1&-3&0&5\\0&0&0&1&-3\\0&0&0&0&0\\0&0&0&0&0\\0&0&0&0&0\end{array}\right)$$
+  <p>으로 변환되었다면 $AX=B$ 는 <b>무수히 많은 해</b>를 갖는다.
+  $z$ 는 자유변수가 되어 $z=t$ 로 두면 $x=2-4t$, $y=5+3t$, $z=t$, $w=-3$ 이 된다.</p>
+
+  <p><span class="step">(2) $m=n=3$ 인 경우</span></p>
+  $$(C\,|\,D)=\left(\begin{array}{ccc|c}1&0&0&0\\0&1&0&0\\0&0&0&1\end{array}\right)$$
+  <p>이면 $AX=B$ 는 <b>해가 없으며</b>,</p>
+  $$(C\,|\,D)=\left(\begin{array}{ccc|c}1&0&0&2\\0&1&0&5\\0&0&1&-3\end{array}\right)$$
+  <p>이면 <b>유일한 해</b> $(2,5,-3)$ 을 갖는다. 또한</p>
+  $$(C\,|\,D)=\left(\begin{array}{ccc|c}1&0&-1&2\\0&1&3&5\\0&0&0&0\end{array}\right)$$
+  <p>이면 $t$ 를 임의의 수라 할 때 해는 $(t+2,\ -3t+5,\ t)$ 로 표시되어
+  $AX=B$ 는 <b>무수히 많은 해</b>를 갖는다.</p>
+
+  <p><span class="step">(3) $m=3$, $n=4$ 인 경우</span> — 방정식의 개수가 미지수의 개수보다 더 적은 경우</p>
+  $$(C\,|\,D)=\left(\begin{array}{cccc|c}1&0&1&-4&0\\0&1&2&5&0\\0&0&0&0&1\end{array}\right)$$
+  <p>이면 $AX=B$ 는 <b>해가 없으며</b>,</p>
+  $$(C\,|\,D)=\left(\begin{array}{cccc|c}1&3&0&-4&3\\0&0&1&5&1\\0&0&0&0&0\end{array}\right)
+    \qquad\text{또는}\qquad
+    (C\,|\,D)=\left(\begin{array}{cccc|c}1&0&0&-1&2\\0&1&0&-2&4\\0&0&1&-3&6\end{array}\right)$$
+  <p>이면 어느 경우나 해는 <b>무수히 많다</b>. 이 두 경우에 대해 방정식의 해가 어떤 형태로 나타나는지 확인하라
+  (<a href="4-exercises.html">연습문제 07번</a>과 같은 방식이다).</p>
+</div>
+
+<div class="note">
+  $m \lt n$ 이면 <b>해가 없거나 무수히 많거나</b> 둘 중 하나다 — 유일한 해는 절대 나올 수 없다.
+  선도변수는 많아야 $m$ 개인데 미지수는 $n>m$ 개이므로 자유변수가 최소 $n-m$ 개 남기 때문이다.
+</div>
+
+<h2 class="sub">위수 <span class="en">rank</span></h2>
+
+<div class="box def">
+  <span class="tag">정의 4.3</span><span class="title">행렬의 위수 <span class="en">rank</span></span>
+  <p>행렬 $A$ 에 기본행연산을 적용하여 행제형 행렬 $B$ 로 만들었을 때
+  $B$ 의 <b>영행이 아닌 행의 수</b>를 행렬 $A$ 의 <b>위수</b>(rank)라고 한다.</p>
+</div>
+
+<div class="box thm">
+  <span class="tag">정리 4.7</span><span class="title">위수로 읽는 해의 존재와 유일성</span>
+  <p>방정식의 개수가 $m$개이고 미지수가 $n$개인 일차연립방정식을 행렬방정식 $AX=B$ 와 같이 나타냈을 때 다음이 성립한다.</p>
+  <ol class="props">
+    <li>행렬 $A$ 의 위수와 확대행렬 $(A\,|\,B)$ 의 위수가 같기 위한 필요충분조건은
+      주어진 연립방정식이 <b>해를 갖는</b> 것이다.</li>
+    <li>행렬 $A$ 와 확대행렬 $(A\,|\,B)$ 의 위수가 $n$ 과 같기 위한 필요충분조건은
+      주어진 연립방정식이 <b>유일한 해를 갖는</b> 것이다.</li>
+  </ol>
+</div>
+
+<div class="note">
+  $(1)$ 은 앞의 ①을 위수의 언어로 다시 쓴 것이다.
+  $(0\ \cdots\ 0\ |\ k)$, $k\ne0$ 인 모순행이 하나 생기면
+  그 행은 $A$ 쪽에서는 영행인데 $(A|B)$ 쪽에서는 영행이 아니므로
+  $(A|B)$ 의 위수가 $A$ 의 위수보다 <b>정확히 그만큼 커진다</b>.
+  두 위수가 같다는 것은 그런 행이 하나도 없다는 뜻이다.
+</div>
+
+<h2 class="sub">두 알고리즘의 비교 <span class="en">two algorithms, one row reduction</span></h2>
+
+<p>이제 $A$ 가 $n$차 정칙행렬일 때 $AX=B$ 의 해를 구하는
+<a href="../ch02/2-4_gauss-jordan.html">가우스–조르단 소거법(알고리즘 2.3)</a>과
+$A$ 의 역행렬을 구하는 <a href="4-2_finding-inverse.html">방법(알고리즘 4.1)</a>을 비교해 보자.</p>
+
+<p>$A$ 가 정칙행렬이므로 <a href="4-2_finding-inverse.html">[정리 4.5]</a>에 의해 $A$ 는 $I_n$ 과 행상등하고,
+따라서 $I_n=E_1E_2\cdots E_kA$ 를 만족하는 $k$개의 $n$차 기본행렬 $E_1,E_2,\dots,E_k$ 가 존재한다.
+또한 $E_1E_2\cdots E_k=A^{-1}$ 이다.
+각 기본행렬 $E_i$ 에 대응하는 기본행연산을 $R_i$ 라고 하자($1\le i\le k$).</p>
+
+<figure class="fig">
+<div class="scroll" style="text-align:left;">
+<p><b>(a) 가우스–조르단 소거법</b></p>
+$$(A\,|\,B)\ \xrightarrow{\ R_k\ }\ (E_kA\,|\,E_kB)\ \xrightarrow{\ R_{k-1}\ }\ \cdots\ \xrightarrow{\ R_2\ }\
+  (E_2\cdots E_kA\,|\,E_2\cdots E_kB)\ \xrightarrow{\ R_1\ }\
+  (E_1E_2\cdots E_kA\,|\,E_1E_2\cdots E_kB)=(I_n\,|\,A^{-1}B)$$
+<p><b>(b) 역행렬을 구하는 방법</b></p>
+$$(A\,|\,I_n)\ \xrightarrow{\ R_k\ }\ (E_kA\,|\,E_kI_n)\ \xrightarrow{\ R_{k-1}\ }\ \cdots\ \xrightarrow{\ R_2\ }\
+  (E_2\cdots E_kA\,|\,E_2\cdots E_kI_n)\ \xrightarrow{\ R_1\ }\
+  (E_1E_2\cdots E_kA\,|\,E_1E_2\cdots E_kI_n)=(I_n\,|\,A^{-1})$$
+</div>
+<figcaption>[그림 4.1] 두 알고리즘의 비교. <b>왼쪽 블록에서 벌어지는 일은 완전히 같고</b>, 오른쪽에 무엇을 붙였느냐만 다르다.</figcaption>
+</figure>
+
+<div class="note">
+  오른쪽에 $B$ 를 붙이면 $A^{-1}B$ 가 나오고 $I_n$ 을 붙이면 $A^{-1}$ 이 나온다.
+  같은 연산열 $E_1E_2\cdots E_k=A^{-1}$ 이 오른쪽 블록에 <b>왼쪽에서 곱해지는</b> 것이므로 당연한 결과다.
+  그래서 $AX=B$ 를 여러 개의 $B$ 에 대해 반복해서 풀어야 한다면
+  $(A\,|\,I_n)$ 을 한 번 돌려 $A^{-1}$ 을 얻어 두는 편이 낫다.
+</div>
+
+<h2 class="sub">정칙행렬과 유일한 해 <span class="en">the unique solution $X=A^{-1}B$</span></h2>
+
+<div class="box thm">
+  <span class="tag">정리 4.8</span><span class="title">$AX=B$ 의 유일한 해</span>
+  <p>$A$ 가 $n$차 정칙행렬이면 임의의 $n\times1$ 행렬 $B$ 에 대해
+  행렬방정식 $AX=B$ 는 유일한 해</p>
+  $$X=A^{-1}B$$
+  <p>를 갖는다.</p>
+</div>
+
+<div class="box prf">
+  <span class="tag">증명</span>
+  <p><span class="step">해가 된다.</span> 먼저 $X=A^{-1}B$ 가 $AX=B$ 의 해인 것을 보이자.</p>
+  $$AX=A\left(A^{-1}B\right)=\left(AA^{-1}\right)B=I_nB=B$$
+  <p>이므로 $X=A^{-1}B$ 는 $AX=B$ 의 해이다.</p>
+  <p><span class="step">유일하다.</span> $Y$ 를 $AX=B$ 의 또 다른 해라고 가정하면 $AY=B$ 가 성립한다.
+  따라서 $AX=B=AY$ 이므로 $AX=AY$ 의 양변의 왼쪽에 $A^{-1}$ 을 곱하면</p>
+  $$A^{-1}AX=A^{-1}AY\qquad\Longrightarrow\qquad X=Y$$
+  <p>가 되므로 해는 유일하다.</p>
+  <div class="qed">∎</div>
+</div>
+
+<div class="note">
+  [정리 4.8]은 일차방정식 $ax=b$ 에서 $a\ne0$ 일 때 $x=a^{-1}b$ 가 해인 것과 매우 유사하다.
+  수에서는 $a\ne0$ 이 조건이었다면, 행렬에서는 <b>$A$ 가 역행렬을 갖는다</b>는 것이 그 자리를 차지한다.
+</div>
+
+<h2 class="sub">동차연립방정식 <span class="en">homogeneous linear system</span></h2>
+
+<p>다음으로 제2장의 연구과제에서 다루었던 <b>동차연립방정식</b>(homogeneous linear system)에 대한 성질을 살펴보자.
+동차연립방정식이란 방정식 $AX=B$ 에서 $B=O$ 인 경우를 말한다.
+동차연립방정식 $AX=O$ 는 항상 <b>자명한 해</b> $X=O$ 를 갖는다.</p>
+
+<div class="box thm">
+  <span class="tag">정리 4.9</span><span class="title">자명한 해만 갖기 위한 조건</span>
+  <p>$n$차 정방행렬 $A$ 가 $I_n$ 과 행상등하기 위한 필요충분조건은
+  동차연립방정식 $AX=O$ 가 <b>오직 자명한 해만</b> 갖는 것이다.</p>
+</div>
+
+<div class="box prf">
+  <span class="tag">증명</span>
+  <p><span class="step">($\Rightarrow$)</span> $A$ 가 정방행렬로서 $I_n$ 과 행상등하다고 가정하자.
+  $A$ 와 $I_n$ 이 행상등하면 $(A\,|\,O)$ 와 $(I_n\,|\,O)$ 도 행상등하므로
+  방정식 $AX=O$ 와 $I_nX=O$ 는 동일한 해를 갖는다.
+  그런데 $I_nX=X$ 이므로 $I_nX=O$ 는 $X=O$ 만 해로 갖는다.
+  따라서 $AX=O$ 도 $X=O$ 만 해로 갖는다.</p>
+
+  <p><span class="step">($\Leftarrow$)</span> 반대로 $AX=O$ 가 오직 $X=O$ 를 해로 갖는다고 가정하자.
+  $A$ 를 소거행제형으로 변환한 것이 행렬 $R$ 이라고 하자.
+  그러면 방정식 $AX=O$ 와 $RX=O$ 는 동일한 해를 갖는다.
+  가정에서 $AX=O$ 는 오직 $X=O$ 를 해로 갖는다고 했으므로 $RX=O$ 도 $X=O$ 만 해로 갖는다.
+  만일 $R=O$ 라면 $RX=O$ 는 $X=O$ 이외에도 해를 갖게 되므로 $R\ne O$ 이다.</p>
+
+  <p><span class="step">위수를 따진다.</span> 이제 $R$ 의 영행이 아닌 행의 수를 $r$ 이라 하자.
+  $R$ 에서 모든 영행($n-r$ 개)을 제거한 행렬을 $S$ 라고 하면
+  $SX=O$ 와 $RX=O$ 는 동일한, 즉 $X=O$ 만을 해로 갖는다.
+  그런데 $r \lt n$ 이라 가정하면 $S$ 는 $r\times n$ 행렬로서
+  이 절의 앞부분에서 본 <b>ii) $m \lt n$ 인 경우</b>에 따라 $SX=O$ 는 자명하지 않은 해를 갖는다는 모순이 생긴다.
+  따라서 $r=n$ 이다.
+  그리고 $R$ 은 $n$차 소거행제형이면서 영행이 하나도 없기 때문에 $R=I_n$ 이다.
+  결국 $A$ 는 $I_n$ 과 행상등하다.</p>
+  <div class="qed">∎</div>
+</div>
+
+<div class="box thm">
+  <span class="tag">정리 4.10</span><span class="title">정칙행렬의 다섯 가지 동치조건</span>
+  <p>$n$차 정방행렬 $A$ 에 대한 다음 성질은 서로 동치이다.</p>
+  <ol class="props">
+    <li>$A$ 는 정칙행렬이다.</li>
+    <li>$A$ 는 $I_n$ 과 행상등하다.</li>
+    <li>$A$ 는 유한개의 $n$차 기본행렬의 곱이다.</li>
+    <li>$AX=O$ 는 오직 자명한 해만 갖는다.</li>
+    <li>임의의 $n\times1$ 행렬 $B$ 에 대해 $AX=B$ 는 유일한 해를 갖는다.</li>
+  </ol>
+</div>
+
+<div class="box prf">
+  <span class="tag">증명</span>
+  <p><span class="step">이미 얻은 것.</span>
+  <a href="4-2_finding-inverse.html">[정리 4.5]</a>에 의해 $(1)$, $(2)$, $(3)$ 은 서로 동치이다.
+  [정리 4.9]에 의해 $(2)$ 와 $(4)$ 가 동치이므로 $(1),(2),(3),(4)$ 는 서로 동치이다.
+  또 [정리 4.8]에 의해 $(1)$ 성질이 만족되면 $(5)$ 성질도 만족된다.</p>
+
+  <p><span class="step">$(5)\Rightarrow(2)$ 를 보이자.</span>
+  임의의 $n\times1$ 행렬 $B$ 에 대해 $AX=B$ 가 유일한 해를 갖는다고 가정하자.
+  $A$ 를 소거행제형으로 변환한 것이 $R$ 이라면 $A$ 와 $R$ 은 행상등하므로
+  다음을 만족하는 $n$차 기본행렬 $E_1,E_2,\dots,E_k$ 가 존재한다.</p>
+  $$R=E_1E_2\cdots E_kA$$
+  <p>만일 $P=E_1E_2\cdots E_k$ 로 놓으면 [정리 4.5]에 의해 $P$ 는 정칙행렬이고 다음이 성립한다.</p>
+  $$R=PA$$
+  <p><span class="step">마지막 행을 겨냥한다.</span>
+  이제 $n\times1$ 행렬 $C$ 가 $(n,1)$ 원소만 $1$ 이고 나머지 원소는 모두 $0$ 이라 하자. 즉,</p>
+  $$C=\begin{pmatrix}0\\0\\\vdots\\0\\1\end{pmatrix}$$
+  <p>이라 할 때 $P^{-1}C$ 는 $n\times1$ 행렬이다.
+  가정에 의해 $AX=P^{-1}C$ 는 유일한 해 $Y$ 를 갖는다. 즉, $AY=P^{-1}C$ 를 만족한다. 따라서</p>
+  $$RY=PAY=P\left(P^{-1}C\right)=I_nC=C$$
+  <p>가 성립한다.
+  만일 $R$ 의 $n$번째 행을 영행이라 하면 $RY$ 의 $(n,1)$ 원소는 $0$ 이 되어 $RY\ne C$ 가 되어 모순이다.
+  그러므로 $R$ 은 $n$차 소거행제형 행렬로서 영행이 하나도 없으므로 $R=I_n$ 이다.
+  따라서 $A$ 는 $I_n$ 과 행상등하다.</p>
+  <div class="qed">∎</div>
+</div>
+
+<div class="note">
+  <b>$(4)$ 가 실전에서 가장 쓸모 있다.</b> 정칙성을 확인하려고 역행렬을 다 구할 필요 없이,
+  $AX=O$ 가 자명하지 않은 해를 갖는지만 보면 된다.
+  다음 두 예제가 정확히 그 용법이다.
+</div>
+
+<div class="box ex">
+  <span class="tag">예제 4.9</span><span class="title">자명하지 않은 해를 갖도록 하는 $t$</span>
+  <p>다음 동차연립방정식이 자명하지 않은 해도 갖도록 하는 $t$ 값을 정하라.</p>
+  $$\begin{cases}x+2y+3z=0\\3x+ty-6z=0\\x+3y+2z=0\end{cases}$$
+  <p><b>풀이</b> &nbsp;[정리 4.9]에 의해 위 동차연립방정식이 자명하지 않은 해도 가지려면 계수행렬 $A$ 가
+  $I_3$ 과 <b>행상등하지 않아야</b> 한다. 따라서</p>
+  <div class="scroll">
+  $$\begin{aligned}
+  A&=\begin{pmatrix}1&2&3\\3&t&-6\\1&3&2\end{pmatrix}
+   \xrightarrow{\ R_{1,2}(-3)\ }\begin{pmatrix}1&2&3\\0&t-6&-15\\1&3&2\end{pmatrix}
+   \xrightarrow{\ R_{1,3}(-1)\ }\begin{pmatrix}1&2&3\\0&t-6&-15\\0&1&-1\end{pmatrix}\\[6pt]
+   &\xrightarrow{\ R_{2,3}\ }\begin{pmatrix}1&2&3\\0&1&-1\\0&t-6&-15\end{pmatrix}
+   \xrightarrow{\ R_{2,3}(6-t)\ }\begin{pmatrix}1&2&3\\0&1&-1\\0&0&t-21\end{pmatrix}=B
+  \end{aligned}$$
+  </div>
+  <p>에서 $B$ 가 $I_3$ 과 행상등하지 않으려면 $t-21=0$, 즉 <b>$t=21$</b> 이면 된다.
+  만일 $t\ne21$ 이면 $B$ 는 계속 기본행연산을 적용하여 $I_3$ 으로 변형시킬 수 있다.</p>
+</div>
+
+<div class="note">
+  마지막 단계의 확인. $R_{2,3}(6-t)$ 는 둘째 행에 $6-t$ 를 곱하여 셋째 행에 더하는 연산이므로
+  셋째 행의 $(3,3)$ 원소는 $-15+(6-t)(-1)=-15-6+t=t-21$ 이 되고,
+  $(3,2)$ 원소는 $(t-6)+(6-t)=0$ 이 되어 소거된다.
+</div>
+
+<div class="box ex">
+  <span class="tag">예제 4.10</span><span class="title">자명한 해만 가짐을 보이기</span>
+  <p>다음 동차연립방정식이 자명한 해만 가짐을 보여라.</p>
+  $$\begin{cases}3x+2y+7z=0\\x+3y+4z=0\\6x+4y+5z=0\end{cases}$$
+  <p><b>풀이</b> &nbsp;확대행렬 $(A\,|\,O)$ 가 다음과 같이</p>
+  $$(A\,|\,O)=\left(\begin{array}{ccc|c}3&2&7&0\\1&3&4&0\\6&4&5&0\end{array}\right)
+    \ \longrightarrow\ \left(\begin{array}{ccc|c}1&0&0&0\\0&1&0&0\\0&0&1&0\end{array}\right)=(I\,|\,O)$$
+  <p>로 변환될 수 있어서 결과적으로 $x=0$, $y=0$, $z=0$, 즉 $(0,0,0)$ 을 유일한 해로 갖는다.</p>
+</div>
+
+<div class="note">
+  동차연립방정식에서 상수항 블록은 <b>어떤 기본행연산을 해도 계속 영행렬</b>이다.
+  ($O$ 에 상수배를 하거나 다른 행에 더해도 $O$ 이다.)
+  그래서 동차연립방정식은 <b>확대행렬을 붙일 필요 없이 계수행렬 $A$ 만 소거</b>해도 된다.
+</div>
+
+<h2 class="sub">해의 구조 <span class="en">particular + homogeneous</span></h2>
+
+<div class="box thm">
+  <span class="tag">정리 4.11</span><span class="title">$AX=B$ 의 모든 해 = 한 해 + 동차해</span>
+  <p>일차연립방정식 $AX=B$ 의 한 해를 $Y$ 라 하고
+  동차연립방정식 $AX=O$ 의 임의의 해를 $X_0$ 이라 하면,
+  $AX=B$ 의 모든 해는 $X_0+Y$ 로 표시된다.</p>
+</div>
+
+<div class="box prf">
+  <span class="tag">증명</span>
+  <p><span class="step">$X_0+Y$ 는 해이다.</span> 먼저</p>
+  $$A\left(X_0+Y\right)=AX_0+AY=O+AY=B$$
+  <p>이므로 $X_0+Y$ 는 $AX=B$ 의 해이다.</p>
+  <p><span class="step">모든 해가 이 꼴이다.</span> 만일 $Z$ 를 $AX=B$ 의 해라고 하면 $AZ=B$ 를 만족하고 다음이 성립한다.</p>
+  $$A\left(Z-Y\right)=AZ-AY=B-B=O$$
+  <p>따라서 $Z-Y$ 는 $AX=O$ 의 해이므로 $Z-Y=X_0$ 으로 두면 $Z=X_0+Y$ 로 표시된다.</p>
+  <div class="qed">∎</div>
+</div>
+
+<div class="note">
+  기호에 주의하자 — 이 정리에서 <b>$Y$ 가 $AX=B$ 의 한 해(특수해)</b>이고
+  <b>$X_0$ 이 동차방정식 $AX=O$ 의 해</b>다.
+  해집합의 모양은 “동차방정식의 해집합을 $Y$ 만큼 <b>평행이동</b>한 것”이 된다.
+</div>
+
+<div class="box ex">
+  <span class="tag">예제 4.11</span><span class="title">[정리 4.11]로 해 구하기</span>
+  <p>다음 연립방정식의 해를 [정리 4.11]을 이용하여 구해 보자.</p>
+  $$\begin{cases}x+3y=2\\2x+6y=4\end{cases}$$
+  <p><b>풀이</b> &nbsp;주어진 연립방정식은 $x=-1$, $y=1$ 일 때 성립하므로
+  $Y=(-1,1)$ 은 하나의 해이다.</p>
+  <p>다음으로 동차방정식 $AX=O$ 는</p>
+  $$\begin{cases}x+3y=0\\2x+6y=0\end{cases}$$
+  <p>이고 $y=t$ 로 치환하면 모든 실수 $t$ 에 대하여 $X_0=(-3t,\ t)$ 가 $AX=O$ 의 해가 된다.
+  따라서 [정리 4.11]에 의해 주어진 연립방정식의 모든 해는</p>
+  $$X_0+Y=(-3t,\ t)+(-1,\ 1)=(-1-3t,\ 1+t)$$
+  <p>의 형태가 된다. 예를 들어 $t$ 에 대하여
+  $(-1,1)$, $(-4,2)$, $(-7,3)$ 등이 모두 연립방정식을 만족하는 해이다.</p>
+  <p>실제로 이 연립방정식은 겉으로 보기에는 2개의 방정식으로 구성되어 있으나
+  둘째 식이 첫째 식의 $2$ 배이므로 사실은 <b>하나의 방정식</b>이다.
+  따라서 미지수가 2개이고 방정식은 1개인 부정방정식이고 무수히 많은 해를 갖는다.</p>
+</div>
+
+<nav class="pager">
+  <a href="4-2_finding-inverse.html">← 이전<small>4.2 역행렬을 구하는 방법</small></a>
+  <a class="next" href="4-exercises.html">다음 →<small>연습문제</small></a>
+</nav>
+
+</body>
+</html>
