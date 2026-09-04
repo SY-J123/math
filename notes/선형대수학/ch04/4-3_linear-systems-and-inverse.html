@@ -196,38 +196,6 @@ $$0x_1+0x_2+\cdots+0x_n=k$$
   두 위수가 같다는 것은 그런 행이 하나도 없다는 뜻이다.
 </div>
 
-<h2 class="sub">두 알고리즘의 비교 <span class="en">two algorithms, one row reduction</span></h2>
-
-<p>이제 $A$ 가 $n$차 정칙행렬일 때 $AX=B$ 의 해를 구하는
-<a href="../ch02/2-4_gauss-jordan.html">가우스–조르단 소거법(알고리즘 2.3)</a>과
-$A$ 의 역행렬을 구하는 <a href="4-2_finding-inverse.html">방법(알고리즘 4.1)</a>을 비교해 보자.</p>
-
-<p>$A$ 가 정칙행렬이므로 <a href="4-2_finding-inverse.html">[정리 4.5]</a>에 의해 $A$ 는 $I_n$ 과 행상등하고,
-따라서 $I_n=E_1E_2\cdots E_kA$ 를 만족하는 $k$개의 $n$차 기본행렬 $E_1,E_2,\dots,E_k$ 가 존재한다.
-또한 $E_1E_2\cdots E_k=A^{-1}$ 이다.
-각 기본행렬 $E_i$ 에 대응하는 기본행연산을 $R_i$ 라고 하자($1\le i\le k$).</p>
-
-<figure class="fig">
-<div class="scroll" style="text-align:left;">
-<p><b>(a) 가우스–조르단 소거법</b></p>
-$$(A\,|\,B)\ \xrightarrow{\ R_k\ }\ (E_kA\,|\,E_kB)\ \xrightarrow{\ R_{k-1}\ }\ \cdots\ \xrightarrow{\ R_2\ }\
-  (E_2\cdots E_kA\,|\,E_2\cdots E_kB)\ \xrightarrow{\ R_1\ }\
-  (E_1E_2\cdots E_kA\,|\,E_1E_2\cdots E_kB)=(I_n\,|\,A^{-1}B)$$
-<p><b>(b) 역행렬을 구하는 방법</b></p>
-$$(A\,|\,I_n)\ \xrightarrow{\ R_k\ }\ (E_kA\,|\,E_kI_n)\ \xrightarrow{\ R_{k-1}\ }\ \cdots\ \xrightarrow{\ R_2\ }\
-  (E_2\cdots E_kA\,|\,E_2\cdots E_kI_n)\ \xrightarrow{\ R_1\ }\
-  (E_1E_2\cdots E_kA\,|\,E_1E_2\cdots E_kI_n)=(I_n\,|\,A^{-1})$$
-</div>
-<figcaption>[그림 4.1] 두 알고리즘의 비교. <b>왼쪽 블록에서 벌어지는 일은 완전히 같고</b>, 오른쪽에 무엇을 붙였느냐만 다르다.</figcaption>
-</figure>
-
-<div class="note">
-  오른쪽에 $B$ 를 붙이면 $A^{-1}B$ 가 나오고 $I_n$ 을 붙이면 $A^{-1}$ 이 나온다.
-  같은 연산열 $E_1E_2\cdots E_k=A^{-1}$ 이 오른쪽 블록에 <b>왼쪽에서 곱해지는</b> 것이므로 당연한 결과다.
-  그래서 $AX=B$ 를 여러 개의 $B$ 에 대해 반복해서 풀어야 한다면
-  $(A\,|\,I_n)$ 을 한 번 돌려 $A^{-1}$ 을 얻어 두는 편이 낫다.
-</div>
-
 <h2 class="sub">정칙행렬과 유일한 해 <span class="en">the unique solution $X=A^{-1}B$</span></h2>
 
 <div class="box thm">
