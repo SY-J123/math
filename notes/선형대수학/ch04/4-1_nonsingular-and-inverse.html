@@ -202,18 +202,22 @@ $$A^{r}A^{s}=A^{r+s},\qquad \left(A^{r}\right)^{s}=A^{rs}$$
 
 <div class="box prf">
   <span class="tag">증명</span>
-  <p><span class="step">(1)</span> 정의에 따라 자명하다. 즉, $AA^{-1}=A^{-1}A=I_n$ 이라는 식을
-  $A^{-1}$ 의 입장에서 읽으면 $A^{-1}$ 의 역행렬이 $A$ 임을 그대로 말해 준다.</p>
-  <p><span class="step">(2)</span> 다음과 같이 가운데부터 소거된다.</p>
-  $$(AB)\left(B^{-1}A^{-1}\right)=A\left(BB^{-1}\right)A^{-1}=AI_nA^{-1}=AA^{-1}=I_n$$
-  <p><span class="step">(3)</span> 스칼라는 자유롭게 앞으로 뺄 수 있으므로</p>
-  $$(cA)\left(\frac1c A^{-1}\right)=\left(c\cdot\frac1c\right)\left(AA^{-1}\right)=1\,I_n=I_n$$
-  <p><span class="step">(4)</span> 식 $AA^{-1}=A^{-1}A=I_n$ 의 각 변에 전치연산을 취하면</p>
-  $$\left(AA^{-1}\right)^{T}=\left(A^{-1}A\right)^{T}=\left(I_n\right)^{T}$$
-  <p>이고, <a href="../ch03/3-5_transpose.html">[정리 3.4]</a>의 $(3)$번에 의해</p>
-  $$\left(A^{-1}\right)^{T}A^{T}=A^{T}\left(A^{-1}\right)^{T}=I_n$$
-  <p>이 된다. 따라서 $A^{T}$ 는 역행렬 $\left(A^{-1}\right)^{T}$ 를 갖는다.</p>
-  <div class="qed">∎</div>
+  <ol class="fill">
+    <li><span class="step">(1)</span> $AA^{-1}=A^{-1}A=I_n$ 을 $A^{-1}$ 의 입장에서 읽으면
+      $A^{-1}$ 의 역행렬이 $A$ 임을 그대로 말해 준다.</li>
+
+    <li><span class="step">(2)</span> 가운데부터 소거된다.
+      $$(AB)\left(B^{-1}A^{-1}\right)=A\left(BB^{-1}\right)A^{-1}=AI_nA^{-1}=AA^{-1}=I_n$$</li>
+
+    <li><span class="step">(3)</span> 스칼라는 자유롭게 앞으로 뺄 수 있으므로
+      $$(cA)\left(\frac1c A^{-1}\right)=\left(c\cdot\frac1c\right)\left(AA^{-1}\right)=1\,I_n=I_n$$</li>
+
+    <li><span class="step">(4)</span> $AA^{-1}=A^{-1}A=I_n$ 의 각 변에 전치를 취하고
+      <a href="../ch03/3-5_transpose.html">[정리 3.4]</a>의 $(3)$ 을 쓰면
+      $$\left(A^{-1}\right)^{T}A^{T}=A^{T}\left(A^{-1}\right)^{T}=\left(I_n\right)^{T}=I_n$$
+      이므로 $A^{T}$ 의 역행렬은 $\left(A^{-1}\right)^{T}$ 다.</li>
+  </ol>
+  <div class="qed">&#8718;</div>
 </div>
 
 <div class="note">
@@ -248,17 +252,19 @@ $$A^{r}A^{s}=A^{r+s},\qquad \left(A^{r}\right)^{s}=A^{rs}$$
 
 <div class="box prf">
   <span class="tag">증명</span>
-  <p>수학적 귀납법으로 증명한다.</p>
-  <p><span class="step">(1) $m=2$ 인 경우.</span> [정리 4.2]의 $(2)$번으로부터 성립한다. 즉,</p>
-  $$\left(A_1A_2\right)^{-1}=A_2^{-1}A_1^{-1}$$
-  <p><span class="step">(2) 귀납 가정.</span> $(k-1)$개의 $n$차 정칙행렬에 대해서도 성립한다고 가정하자(단, $k\le m$). 즉,</p>
-  $$\left(A_1A_2\cdots A_{k-1}\right)^{-1}=A_{k-1}^{-1}A_{k-2}^{-1}\cdots A_2^{-1}A_1^{-1}$$
-  <p>을 가정한다. 이제 $B=A_1A_2\cdots A_{k-1}$ 로 두면</p>
-  $$\left(A_1A_2\cdots A_{k-1}A_k\right)^{-1}=\left(BA_k\right)^{-1}=A_k^{-1}B^{-1}
-    =A_k^{-1}A_{k-1}^{-1}\cdots A_2^{-1}A_1^{-1}$$
-  <p>이 되어 $k$개의 $n$차 정칙행렬에 대해서도 위 식이 성립한다.</p>
-  <p><span class="step">(3) 결론.</span> $(1)$, $(2)$ 에 의하여 주어진 식은 모든 자연수 $m$ 에 대하여 성립한다.</p>
-  <div class="qed">∎</div>
+  <p>$m$ 에 대한 수학적 귀납법.</p>
+  <ol class="fill">
+    <li><span class="step">$m=2$.</span> [정리 4.2]의 $(2)$ 그대로다.
+      $$\left(A_1A_2\right)^{-1}=A_2^{-1}A_1^{-1}$$</li>
+
+    <li><span class="step">귀납 단계.</span> $(k-1)$ 개에 대해 성립한다고 가정하고
+      앞의 $(k-1)$ 개를 $B=A_1A_2\cdots A_{k-1}$ 한 덩어리로 묶으면
+      $$\left(A_1\cdots A_{k-1}A_k\right)^{-1}=\left(BA_k\right)^{-1}=A_k^{-1}B^{-1}
+        =A_k^{-1}A_{k-1}^{-1}\cdots A_2^{-1}A_1^{-1}$$
+      가 되어 $k$ 개에 대해서도 성립한다.</li>
+  </ol>
+  <p>따라서 주어진 식은 모든 자연수 $m$ 에 대하여 성립한다.</p>
+  <div class="qed">&#8718;</div>
 </div>
 
 <div class="note">

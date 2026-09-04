@@ -225,46 +225,31 @@ $$c_{ij}=\sum_{k=1}^{p}a_{ik}b_{kj}=a_{i1}b_{1j}+a_{i2}b_{2j}+\cdots+a_{ip}b_{pj
 
 <div class="box prf">
   <span class="tag">증명</span>
-  <p>간략히 증명하기 위해 중요한 이유만 서술한다.</p>
+  <p>네 성질 모두 <b>$(i,j)$ 원소를 직접 계산</b>하면 끝난다.
+  곱이 정의되도록 크기를 맞춰 두고, 각 행렬의 원소를 $a_{ij}$, $b_{ij}$, $c_{ij}$ 로 쓴다.</p>
+  <ol class="fill">
+    <li><span class="step">(1) 왼쪽 분배법칙.</span> $A(B+C)$ 의 $(i,j)$ 원소는
+      $$\sum_{k}a_{ik}\left(b_{kj}+c_{kj}\right)=\sum_{k}a_{ik}b_{kj}+\sum_{k}a_{ik}c_{kj}$$
+      이고 두 항이 각각 $AB$, $AC$ 의 $(i,j)$ 원소다. 쓴 것은 <b>수의 분배법칙</b>뿐이다.</li>
 
-  <p><span class="step">(1) 왼쪽 분배법칙.</span> $A=(a_{ij})$ 는 $m\times p$ 행렬, $B=(b_{ij})$ 와 $C=(c_{ij})$ 를 $p\times n$ 행렬이라 하고,
-  $A(B+C)=(d_{ij})$, $AB=(e_{ij})$, $AC=(f_{ij})$ 로 두면</p>
-  $$e_{ij}=\sum_{k=1}^{p}a_{ik}b_{kj},\qquad f_{ij}=\sum_{k=1}^{p}a_{ik}c_{kj}$$
-  <p>이고 따라서</p>
-  $$d_{ij}=\sum_{k=1}^{p}a_{ik}(b_{kj}+c_{kj})
-    =\sum_{k=1}^{p}a_{ik}b_{kj}+\sum_{k=1}^{p}a_{ik}c_{kj}=e_{ij}+f_{ij}$$
-  <p>이다.</p>
+    <li><span class="step">(2) 오른쪽 분배법칙.</span> 같은 방식으로 $(A+B)C$ 의 $(i,j)$ 원소는
+      $$\sum_{k}\left(a_{ik}+b_{ik}\right)c_{kj}=\sum_{k}a_{ik}c_{kj}+\sum_{k}b_{ik}c_{kj}$$
+      가 되어 $AC$ 와 $BC$ 의 $(i,j)$ 원소의 합이다.</li>
 
-  <p><span class="step">(2) 오른쪽 분배법칙.</span> $A=(a_{ij})$ 와 $B=(b_{ij})$ 를 $m\times p$ 행렬,
-  $C=(c_{ij})$ 를 $p\times n$ 행렬이라 하고, $(A+B)C=(d_{ij})$, $AC=(e_{ij})$, $BC=(f_{ij})$ 로 두면</p>
-  $$e_{ij}=\sum_{k=1}^{p}a_{ik}c_{kj},\qquad f_{ij}=\sum_{k=1}^{p}b_{ik}c_{kj}$$
-  <p>이고, 따라서</p>
-  $$d_{ij}=\sum_{k=1}^{p}(a_{ik}+b_{ik})c_{kj}
-    =\sum_{k=1}^{p}a_{ik}c_{kj}+\sum_{k=1}^{p}b_{ik}c_{kj}=e_{ij}+f_{ij}$$
-  <p>이다.</p>
+    <li><span class="step">(3) 결합법칙.</span> $A$ 가 $m\times p$, $B$ 가 $p\times n$, $C$ 가 $n\times q$ 일 때
+      $$\bigl[(AB)C\bigr]_{ij}=\sum_{k=1}^{n}\left(\sum_{l=1}^{p}a_{il}b_{lk}\right)c_{kj},
+        \qquad
+        \bigl[A(BC)\bigr]_{ij}=\sum_{l=1}^{p}a_{il}\left(\sum_{k=1}^{n}b_{lk}c_{kj}\right)$$
+      둘 다 괄호를 풀면 $\sum_{k}\sum_{l}a_{il}b_{lk}c_{kj}$ 로 같아진다.
+      <b>합의 순서 바꾸기</b>($\sum_l\sum_k=\sum_k\sum_l$)와 <b>수의 결합법칙</b> 두 걸음뿐이다.</li>
 
-  <p><span class="step">(3) 결합법칙.</span> $A=(a_{ij})$ 를 $m\times p$ 행렬, $B=(b_{ij})$ 를 $p\times n$ 행렬,
-  $C=(c_{ij})$ 를 $n\times q$ 행렬이라 하고, $AB=(d_{ij})$, $BC=(e_{ij})$, $(AB)C=(f_{ij})$, $A(BC)=(g_{ij})$ 로 두면</p>
-  $$d_{ik}=\sum_{l=1}^{p}a_{il}b_{lk}\ \ (1\le i\le m,\ 1\le k\le n),\qquad
-    e_{lj}=\sum_{k=1}^{n}b_{lk}c_{kj}\ \ (1\le l\le p,\ 1\le j\le q)$$
-  <p>이고, 따라서</p>
-  $$f_{ij}=\sum_{k=1}^{n}d_{ik}c_{kj}=\sum_{k=1}^{n}\left(\sum_{l=1}^{p}a_{il}b_{lk}\right)c_{kj}$$
-  $$\begin{aligned}
-    g_{ij}&=\sum_{l=1}^{p}a_{il}e_{lj}=\sum_{l=1}^{p}a_{il}\left(\sum_{k=1}^{n}b_{lk}c_{kj}\right)
-     =\sum_{k=1}^{n}\sum_{l=1}^{p}a_{il}(b_{lk}c_{kj})\\[4pt]
-    &=\sum_{k=1}^{n}\sum_{l=1}^{p}(a_{il}b_{lk})c_{kj}
-     =\sum_{k=1}^{n}\left(\sum_{l=1}^{p}a_{il}b_{lk}\right)c_{kj}=f_{ij}
-  \end{aligned}$$
-  <p>이다. 핵심은 <b>합의 순서를 바꾸고</b>($\sum_l\sum_k=\sum_k\sum_l$) <b>수의 결합법칙</b>을 쓰는 두 걸음뿐이다.</p>
-
-  <p><span class="step">(4) 스칼라와의 호환.</span> $A=(a_{ij})$ 를 $m\times p$ 행렬, $B=(b_{ij})$ 를 $p\times n$ 행렬로 하고
-  $A(cB)=(d_{ij})$, $c(AB)=(e_{ij})$, $(cA)B=(f_{ij})$ 로 두면</p>
-  $$d_{ij}=\sum_{k=1}^{p}a_{ik}(cb_{kj})=\sum_{k=1}^{p}ca_{ik}b_{kj}$$
-  <p>이고, 따라서</p>
-  $$d_{ij}=c\sum_{k=1}^{p}a_{ik}b_{kj}=e_{ij},\qquad
-    d_{ij}=\sum_{k=1}^{p}(ca_{ik})b_{kj}=f_{ij}$$
-  <p>이다.</p>
-  <div class="qed">∎</div>
+    <li><span class="step">(4) 스칼라와의 호환.</span> 한 줄로 세 식이 이어진다.
+      $$\underbrace{\sum_{k}a_{ik}\left(cb_{kj}\right)}_{A(cB)}
+        =\underbrace{c\sum_{k}a_{ik}b_{kj}}_{c(AB)}
+        =\underbrace{\sum_{k}\left(ca_{ik}\right)b_{kj}}_{(cA)B}$$
+      세 곱의 $(i,j)$ 원소가 모두 같으므로 세 행렬이 같다.</li>
+  </ol>
+  <div class="qed">&#8718;</div>
 </div>
 
 <div class="box ex">

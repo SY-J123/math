@@ -272,29 +272,33 @@ $$0x_1+0x_2+\cdots+0x_n=k$$
 
 <div class="box prf">
   <span class="tag">증명</span>
-  <p><span class="step">이미 얻은 것.</span>
-  <a href="4-2_finding-inverse.html">[정리 4.5]</a>에 의해 $(1)$, $(2)$, $(3)$ 은 서로 동치이다.
-  [정리 4.9]에 의해 $(2)$ 와 $(4)$ 가 동치이므로 $(1),(2),(3),(4)$ 는 서로 동치이다.
-  또 [정리 4.8]에 의해 $(1)$ 성질이 만족되면 $(5)$ 성질도 만족된다.</p>
+  <p><span class="step">이미 얻은 것.</span> 앞선 정리들이 다음을 준다.</p>
+  $$\underbrace{(1)\Longleftrightarrow(2)\Longleftrightarrow(3)}_{\text{정리 4.5}},\qquad
+    \underbrace{(2)\Longleftrightarrow(4)}_{\text{정리 4.9}},\qquad
+    \underbrace{(1)\Longrightarrow(5)}_{\text{정리 4.8}}$$
+  <p>따라서 고리를 닫으려면 <b>$(5)\Rightarrow(2)$ 하나만</b> 보이면 된다.</p>
 
-  <p><span class="step">$(5)\Rightarrow(2)$ 를 보이자.</span>
-  임의의 $n\times1$ 행렬 $B$ 에 대해 $AX=B$ 가 유일한 해를 갖는다고 가정하자.
-  $A$ 를 소거행제형으로 변환한 것이 $R$ 이라면 $A$ 와 $R$ 은 행상등하므로
-  다음을 만족하는 $n$차 기본행렬 $E_1,E_2,\dots,E_k$ 가 존재한다.</p>
-  $$R=E_1E_2\cdots E_kA$$
-  <p>만일 $P=E_1E_2\cdots E_k$ 로 놓으면 [정리 4.5]에 의해 $P$ 는 정칙행렬이고 다음이 성립한다.</p>
-  $$R=PA$$
-  <p><span class="step">마지막 행을 겨냥한다.</span>
-  이제 $n\times1$ 행렬 $C$ 가 $(n,1)$ 원소만 $1$ 이고 나머지 원소는 모두 $0$ 이라 하자. 즉,</p>
-  $$C=\begin{pmatrix}0\\0\\\vdots\\0\\1\end{pmatrix}$$
-  <p>이라 할 때 $P^{-1}C$ 는 $n\times1$ 행렬이다.
-  가정에 의해 $AX=P^{-1}C$ 는 유일한 해 $Y$ 를 갖는다. 즉, $AY=P^{-1}C$ 를 만족한다. 따라서</p>
-  $$RY=PAY=P\left(P^{-1}C\right)=I_nC=C$$
-  <p>가 성립한다.
-  만일 $R$ 의 $n$번째 행을 영행이라 하면 $RY$ 의 $(n,1)$ 원소는 $0$ 이 되어 $RY\ne C$ 가 되어 모순이다.
-  그러므로 $R$ 은 $n$차 소거행제형 행렬로서 영행이 하나도 없으므로 $R=I_n$ 이다.
-  따라서 $A$ 는 $I_n$ 과 행상등하다.</p>
-  <div class="qed">∎</div>
+  <ol class="fill">
+    <li><span class="step">$R=PA$ 로 놓는다.</span>
+      $A$ 의 소거행제형을 $R$ 이라 하면 $A$ 와 $R$ 이 행상등하므로
+      $R=E_1E_2\cdots E_kA$ 를 만족하는 기본행렬 $E_1,\dots,E_k$ 가 존재한다.
+      $P=E_1E_2\cdots E_k$ 로 두면 <a href="4-2_finding-inverse.html">[정리 4.5]</a>에 의해
+      $P$ 는 정칙행렬이고 $R=PA$ 이다.</li>
+
+    <li><span class="step">유리한 $B$ 를 골라 넣는다.</span>
+      $C$ 를 $(n,1)$ 원소만 $1$ 이고 나머지는 모두 $0$ 인 $n\times1$ 행렬
+      $C=(0,\ \dots,\ 0,\ 1)^{T}$ 라 하고, 가정 $(5)$ 를 $B=P^{-1}C$ 에 대해 쓰자.
+      그 유일한 해를 $Y$ 라 하면 $AY=P^{-1}C$ 이므로
+      $$RY=PAY=P\left(P^{-1}C\right)=I_nC=C$$
+      가 된다. (가정 $(5)$ 는 <b>임의의</b> $B$ 에 대한 것이므로 유리한 $B$ 를 골라 쓸 수 있다 —
+      $RY$ 가 $C$ 가 되도록 역산해서 잡은 것이 $B=P^{-1}C$ 다.)</li>
+
+    <li><span class="step">마지막 행이 영행일 수 없다.</span>
+      $C$ 의 $(n,1)$ 원소는 $1\ne0$ 인데, 만일 $R$ 의 $n$번째 행이 영행이라면
+      $RY$ 의 $(n,1)$ 원소는 $0$ 이 되어 모순이다.
+      영행이 없는 $n$차 소거행제형은 $I_n$ 뿐이므로 $R=I_n$, 즉 $A$ 는 $I_n$ 과 행상등하다.</li>
+  </ol>
+  <div class="qed">&#8718;</div>
 </div>
 
 <div class="note">

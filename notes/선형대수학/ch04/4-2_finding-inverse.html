@@ -96,13 +96,13 @@
 
 <div class="box prf">
   <span class="tag">증명</span>
-  <p>세 종류의 기본행렬 각각에 대해 다음이 성립한다.</p>
-  <p><span class="step">(1)</span> $E_{i,j}E_{i,j}=I$, 따라서 $\left(E_{i,j}\right)^{-1}=E_{i,j}$ 이다.</p>
-  <p><span class="step">(2)</span> $E_{i}(c)\,E_{i}\!\left(\dfrac1c\right)=I$, 따라서
-    $\left(E_{i}(c)\right)^{-1}=E_{i}\!\left(\dfrac1c\right)$ 이다.</p>
-  <p><span class="step">(3)</span> $E_{i,j}(c)\,E_{i,j}(-c)=I$, 따라서
-    $\left(E_{i,j}(c)\right)^{-1}=E_{i,j}(-c)$ 이다.</p>
-  <div class="qed">∎</div>
+  <p>세 종류 모두 자기 짝과 곱하면 $I$ 가 된다.</p>
+  <ol class="props">
+    <li>$E_{i,j}E_{i,j}=I$ &nbsp;⟹&nbsp; $\left(E_{i,j}\right)^{-1}=E_{i,j}$</li>
+    <li>$E_{i}(c)\,E_{i}\!\left(\tfrac1c\right)=I$ &nbsp;⟹&nbsp; $\left(E_{i}(c)\right)^{-1}=E_{i}\!\left(\tfrac1c\right)$</li>
+    <li>$E_{i,j}(c)\,E_{i,j}(-c)=I$ &nbsp;⟹&nbsp; $\left(E_{i,j}(c)\right)^{-1}=E_{i,j}(-c)$</li>
+  </ol>
+  <div class="qed">&#8718;</div>
 </div>
 
 <div class="note">
@@ -143,25 +143,24 @@
 
 <div class="box prf">
   <span class="tag">증명</span>
-  <p><span class="step">1) $(1)\Rightarrow(2)$ 를 증명하자.</span>
-  $A$ 를 정칙행렬이라 하고, $A$ 에 유한 번($k$번)의 기본행연산을 적용하여 소거행제형 행렬 $R$ 로 바꾸었다고 하자.
-  그러면 [정리 4.3]의 $(2)$ 에 의해</p>
-  $$R=E_1E_2\cdots E_kA$$
-  <p>를 만족하는 기본행렬 $E_1,E_2,\dots,E_k$ 가 존재한다.
-  [정리 4.4]에 의해 $E_1,\dots,E_k$ 는 모두 정칙행렬이고 $A$ 도 정칙행렬이므로,
-  <a href="4-1_nonsingular-and-inverse.html">[정리 4.2]</a>의 따름정리에 의해 $R$ 도 정칙행렬이다.
-  $R$ 이 정칙행렬이면 $R$ 의 어떠한 행도 영행이 아니다.
-  $R$ 은 $n$차 정방행렬이고 소거행제형이며 영행이 없기 때문에 $R=I_n$ 이다.</p>
+  <p>$(1)\Rightarrow(2)\Rightarrow(3)\Rightarrow(1)$ 로 고리를 돌린다.</p>
+  <ol class="fill">
+    <li><span class="step">$(1)\Rightarrow(2)$.</span>
+      $A$ 를 유한 번의 기본행연산으로 소거행제형 $R$ 로 바꾸면
+      [정리 4.3]의 $(2)$ 에 의해 $R=E_1E_2\cdots E_kA$ 인 기본행렬들이 존재한다. 그러면
+      $$E_i\ \text{가 모두 정칙}\ \ \text{이고}\ \ A\ \text{도 정칙}
+        \ \Longrightarrow\ R\ \text{도 정칙}\ \Longrightarrow\ R\ \text{에 영행이 없다}
+        \ \Longrightarrow\ R=I_n$$
+      첫 화살표는 [정리 4.4]와 <a href="4-1_nonsingular-and-inverse.html">[정리 4.2]</a>의 따름정리,
+      마지막 화살표는 $R$ 이 <b>영행 없는 $n$차 소거행제형</b>이기 때문이다.</li>
 
-  <p><span class="step">2) $(2)\Rightarrow(3)$ 을 증명하자.</span>
-  $A$ 와 $I_n$ 이 행상등하다고 하자. [정리 4.3]의 $(2)$ 에 의해</p>
-  $$A=E_1E_2\cdots E_kI_n=E_1E_2\cdots E_k$$
-  <p>를 만족하는 기본행렬 $E_1,E_2,\dots,E_k$ 가 존재한다.</p>
+    <li><span class="step">$(2)\Rightarrow(3)$.</span> $A$ 와 $I_n$ 이 행상등하므로 [정리 4.3]의 $(2)$ 를 그대로 쓰면
+      $$A=E_1E_2\cdots E_kI_n=E_1E_2\cdots E_k$$</li>
 
-  <p><span class="step">3) $(3)\Rightarrow(1)$ 을 증명하자.</span>
-  $A=E_1E_2\cdots E_k$ 와 같이 $A$ 가 $k$개의 기본행렬의 곱으로 표시된다고 하자.
-  [정리 4.4]와 [정리 4.2]의 따름정리에 의해 $A$ 는 정칙행렬이다.</p>
-  <div class="qed">∎</div>
+    <li><span class="step">$(3)\Rightarrow(1)$.</span> 기본행렬은 정칙이고([정리 4.4])
+      정칙행렬의 곱도 정칙이므로([정리 4.2]의 따름정리) $A=E_1E_2\cdots E_k$ 는 정칙행렬이다.</li>
+  </ol>
+  <div class="qed">&#8718;</div>
 </div>
 
 <div class="note">
