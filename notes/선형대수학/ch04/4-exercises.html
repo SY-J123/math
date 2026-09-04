@@ -276,12 +276,23 @@ $$A=F_1^{-1}F_2^{-1}\cdots F_k^{-1}$$
 <p>즉 <b>순서를 뒤집고 각각을 역기본행렬로 바꾸면</b> 된다.
 역기본행렬은 <a href="4-2_finding-inverse.html">[정리 4.4]</a> 그대로
 $E_{i,j}^{-1}=E_{i,j}$, $E_i(c)^{-1}=E_i\!\left(\tfrac1c\right)$, $E_{i,j}(c)^{-1}=E_{i,j}(-c)$ 이다.</p>
+<p><b>소거 순서는 하나로 정해져 있지 않다.</b> 순서를 바꾸면 나오는 기본행렬의 구성도 달라지지만,
+각 단계를 정확히 적용하기만 하면 어느 쪽이든 곱해서 $A$ 가 된다.
+아래 $(1)$ 은 분수가 덜 나오는 순서를, $(3)$ 은 하삼각행렬이라 아래로 훑는 순서를 골랐다.</p>
 
-<div class="ans"><span class="exn">04 (1)</span>$A\xrightarrow{R_1(1/2)}\xrightarrow{R_2(1/3)}\xrightarrow{R_{2,1}(-1/2)}I_2$ 이므로
-  $$A=E_1(2)\,E_2(3)\,E_{2,1}\!\left(\tfrac12\right)
-    =\begin{pmatrix}2&0\\0&1\end{pmatrix}\begin{pmatrix}1&0\\0&3\end{pmatrix}\begin{pmatrix}1&\tfrac12\\0&1\end{pmatrix}$$
-  <p>확인: $\begin{pmatrix}2&0\\0&3\end{pmatrix}\begin{pmatrix}1&\tfrac12\\0&1\end{pmatrix}
-    =\begin{pmatrix}2&1\\0&3\end{pmatrix}=A$.</p>
+<div class="ans"><span class="exn">04 (1)</span>분수를 덜 만들려면 <b>2행을 먼저 $1$ 로 만들어 1행을 소거하고, 마지막에 1행을 나누는</b> 순서가 편하다.
+  $$\begin{pmatrix}2&1\\0&3\end{pmatrix}
+    \xrightarrow{\ R_2\left(\frac13\right)\ }\begin{pmatrix}2&1\\0&1\end{pmatrix}
+    \xrightarrow{\ R_{2,1}(-1)\ }\begin{pmatrix}2&0\\0&1\end{pmatrix}
+    \xrightarrow{\ R_1\left(\frac12\right)\ }\begin{pmatrix}1&0\\0&1\end{pmatrix}=I_2$$
+  <p>즉 $E_1\!\left(\tfrac12\right)E_{2,1}(-1)\,E_2\!\left(\tfrac13\right)A=I_2$ 이므로
+  순서를 뒤집고 각각을 역으로 바꾸면</p>
+  $$A=E_2(3)\,E_{2,1}(1)\,E_1(2)
+    =\begin{pmatrix}1&0\\0&3\end{pmatrix}\begin{pmatrix}1&1\\0&1\end{pmatrix}\begin{pmatrix}2&0\\0&1\end{pmatrix}$$
+  <p>확인:</p>
+  $$\begin{pmatrix}1&0\\0&3\end{pmatrix}\begin{pmatrix}1&1\\0&1\end{pmatrix}\begin{pmatrix}2&0\\0&1\end{pmatrix}
+    =\begin{pmatrix}1&1\\0&3\end{pmatrix}\begin{pmatrix}2&0\\0&1\end{pmatrix}
+    =\begin{pmatrix}2&1\\0&3\end{pmatrix}=A$$
 </div>
 
 <div class="ans"><span class="exn">04 (2)</span>$B\xrightarrow{R_{1,2}(-3)}\xrightarrow{R_2(-1/2)}\xrightarrow{R_{2,1}(-2)}I_2$ 이므로
