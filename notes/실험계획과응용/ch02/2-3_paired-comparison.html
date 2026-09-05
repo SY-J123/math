@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2장 · 2.3 짝지어진 비교</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<style>
+  .fig-cap{ font-size:0.85rem; color:var(--muted); margin:14px 0 4px; }
+  pre.rout{ background:#f6f7f9; border:1px solid #dcdfe4; border-left:3px solid #8a94a6;
+            padding:10px 14px; overflow-x:auto; font-size:0.82rem; line-height:1.5; margin:14px 0; }
+</style>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">실험계획과 응용 · 2장 두 모집단의 비교</div>
+  <h1><span class="no">2.3</span>짝지어진 비교 <span class="en">paired comparison</span></h1>
+</header>
+
+<p>짝지어진 표본의 경우에는 $n$ 개의 데이터 쌍
+$(x_{11},x_{21}),\ (x_{12},x_{22}),\ \dots,\ (x_{1n},x_{2n})$ 이 <b>서로 독립</b>이라고 가정한다.
+여기서 주의할 점은, <b>각 쌍 내의 두 데이터 값은 독립이라고 가정하지 않는다</b>는 것이다.
+즉, $n$ 개의 <b>블록</b>이 있는 셈이다.</p>
+
+<p>이때, 두 모평균 간에 차이가 있는지를 통계적으로 검정하려면
+<b>짝지어진 $t$ 검정</b>(paired $t$-test)을 사용한다.
+이 검정법에서는 각 쌍마다 나타나는 2개의 관측값의 <b>차이</b>를 기초로 검정을 수행한다.
+즉, 원래 얻은 데이터는 버리고 오로지 차이값만을 가지고 검정하는 것이다.
+데이터의 형태는 &lt;표 2-1&gt;과 같이 요약된다.</p>
+
+<p class="fig-cap">&lt;표 2-1&gt; 짝지어진 비교의 데이터 구조</p>
+<div class="scroll"><table class="data">
+  <tr><th>쌍</th><th>표본 1</th><th>표본 2</th><th>차이 $d=x_1-x_2$</th></tr>
+  <tr><td>1</td><td>$x_{11}$</td><td>$x_{21}$</td><td>$d_1=x_{11}-x_{21}$</td></tr>
+  <tr><td>2</td><td>$x_{12}$</td><td>$x_{22}$</td><td>$d_2=x_{12}-x_{22}$</td></tr>
+  <tr><td>$\vdots$</td><td>$\vdots$</td><td>$\vdots$</td><td>$\vdots$</td></tr>
+  <tr><td>$n$</td><td>$x_{1n}$</td><td>$x_{2n}$</td><td>$d_n=x_{1n}-x_{2n}$</td></tr>
+</table></div>
+
+<h2 class="sub">2.3.1 가정과 검정통계량 <span class="en">assumption and test statistic</span></h2>
+
+<p>통계적 추론을 위하여 차이값 $d_i$ 를 평균 $\delta$, 분산 $\sigma_\delta^2$ 의 정규분포에서 추출된 랜덤표본이라고 가정하자.
+즉, <b>짝지어진 표본</b>에서 검정을 할 때 우리는 기본적으로 다음과 같은 가정을 한다.</p>
+
+$$d_1,\ d_2,\ \dots,\ d_n\ \sim\ N(\delta,\ \sigma_\delta^2),\qquad \delta=\mu_1-\mu_2\tag{2.5}$$
+
+<p>이 경우 귀무가설은 다음과 같다.</p>
+
+$$H_0:\ \delta=\delta_0$$
+
+<p>여기서, $\delta_0$ 는 두 모평균 간의 차이로 설정된 고정된 상수이다.</p>
+
+<p>차이값 $d_i$ 는 <b>단일표본자료</b>로 간주하므로 검정통계량을 계산할 때는
+차이값들의 평균 $\bar d$ 와 차이값의 분산 $V_d$ ($s_d^2$ 이라고 나타내기도 함)를 계산해야 한다.
+이들의 공식은 다음과 같이 주어진다.</p>
+
+$$\bar d=\frac{\sum_{i=1}^{n}d_i}{n},\qquad
+  V_d=\frac{\sum_{i=1}^{n}(d_i-\bar d)^2}{n-1},\qquad
+  s_d=\sqrt{V_d}\tag{2.6}$$
+
+<p>또한 검정통계량의 공식은 다음과 같으며 자유도 $(n-1)$ 의 $t$ 분포를 따른다.</p>
+
+$$t=\frac{\bar d-\delta_0}{s_d/\sqrt{n}}\tag{2.7}$$
+
+<div class="note">
+  <p>짝지어진 비교는 <b>이표본 문제를 일표본 문제로 바꾸는</b> 장치이다.
+  차이 $d_i$ 를 취하는 순간 쌍 안에 공통으로 들어 있던 개체 고유의 변동(블록 효과)이 소거되므로,
+  독립 이표본 $t$ 검정보다 분모가 작아져 같은 차이를 더 예민하게 잡아낸다.</p>
+</div>
+
+<p>이상의 논의를 바탕으로 짝지어진 비교에서 평균 차이에 대한 통계적 추론 방법을 정리하면 다음과 같다.</p>
+
+<div class="box thm">
+  <span class="tag">정리</span><span class="title">짝지어진 $t$ 검정 <span class="en">paired $t$-test</span></span>
+  <p>데이터: $(x_{11},x_{21}),\ (x_{12},x_{22}),\ \dots,\ (x_{1n},x_{2n})$</p>
+  <p>귀무가설: $H_0:\ \delta=\delta_0$</p>
+  <p>검정통계량의 값:</p>
+  $$t=\frac{\bar d-\delta_0}{s_d/\sqrt{n}},\qquad (d_i=x_{1i}-x_{2i})\tag{2.8}$$
+  <p>유의수준 $\alpha$ 에서 귀무가설의 기각역:</p>
+  <div class="scroll"><table class="data">
+    <tr><th>대립가설</th><th>기각역</th></tr>
+    <tr><td>$H_1:\ \delta>\delta_0$</td><td>$t>t(n-1;\ \alpha)$</td></tr>
+    <tr><td>$H_1:\ \delta<\delta_0$</td><td>$t<-t(n-1;\ \alpha)$</td></tr>
+    <tr><td>$H_1:\ \delta\ne\delta_0$</td><td>$|t|>t(n-1;\ \alpha/2)$</td></tr>
+  </table></div>
+  <p>$\delta$ 에 대한 $100(1-\alpha)\%$ 신뢰구간:</p>
+  $$\bar d\ \pm\ t(n-1,\ \alpha/2)\,\frac{s_d}{\sqrt{n}}\tag{2.9}$$
+</div>
+
+<h2 class="sub">예 <span class="en">example</span></h2>
+
+<div class="box ex">
+  <span class="tag">예 2.2</span><span class="title">짝지어진 $t$ 검정 — 운동화 밑창의 마모도</span>
+  <p>운동화 밑창에 사용되는 B 재질이 A 재질보다 더 많이 마모되어 있는지 알아보고자 한다.
+  이를 위하여 $10$ 명의 아이를 대상으로, 아이마다 임의로 어느 한쪽 발에는 재질 A 의 밑창을 단 운동화를,
+  다른 쪽 발에는 재질 B 의 밑창을 단 운동화를 신겨 일정 기간 사용하게 한 다음
+  밑창이 얼마나 마모되었는지 측정한 결과 &lt;표 2-2&gt;와 같은 데이터를 얻었다.</p>
+
+  <p class="fig-cap">&lt;표 2-2&gt; 운동화 밑창의 마모도 비교 데이터</p>
+  <div class="scroll"><table class="data">
+    <tr><th>아이</th><th>재질 A</th><th>재질 B</th><th>차이 $d=\text{B}-\text{A}$</th></tr>
+    <tr><td>1</td><td>13.2 (L)</td><td>14.0 (R)</td><td>0.8</td></tr>
+    <tr><td>2</td><td>8.2 (L)</td><td>8.8 (R)</td><td>0.6</td></tr>
+    <tr><td>3</td><td>10.9 (R)</td><td>11.2 (L)</td><td>0.3</td></tr>
+    <tr><td>4</td><td>14.3 (L)</td><td>14.2 (R)</td><td>$-0.1$</td></tr>
+    <tr><td>5</td><td>10.7 (R)</td><td>11.8 (L)</td><td>1.1</td></tr>
+    <tr><td>6</td><td>6.6 (L)</td><td>6.4 (R)</td><td>$-0.2$</td></tr>
+    <tr><td>7</td><td>9.5 (L)</td><td>9.8 (R)</td><td>0.3</td></tr>
+    <tr><td>8</td><td>10.8 (L)</td><td>11.3 (R)</td><td>0.5</td></tr>
+    <tr><td>9</td><td>8.8 (R)</td><td>9.3 (L)</td><td>0.5</td></tr>
+    <tr><td>10</td><td>13.3 (L)</td><td>13.6 (R)</td><td>0.3</td></tr>
+    <tr><th colspan="3">평균 차이</th><th>0.41</th></tr>
+  </table></div>
+
+  <p>&lt;표 2-2&gt;에 표기한 L 과 R 은 각각 왼발과 오른발을 의미하며,
+  아이마다 어느 재질의 밑창을 단 운동화를 어느 발에 신길지를 <b>랜덤하게</b> 결정하였음을 의미한다.
+  두 재질 간에 차이가 있는지 가설검정해 보자.</p>
+
+  <p><b>[풀이]</b></p>
+  <ol class="fill">
+    <li><span class="step">가설의 설정.</span>
+    두 재질 간의 차이 $\delta=\mu_B-\mu_A$ 라고 하면,
+    B 가 더 많이 마모되는지가 관심사이므로 가설은 다음과 같다.
+    $$H_0:\ \delta=0,\qquad H_1:\ \delta>0$$</li>
+
+    <li><span class="step">검정통계량의 값.</span>
+    차이값 $d_i$ 만으로 식 (2.6)을 계산하면
+    $$\bar d=0.41,\qquad V_d\,(=s_d^2)=0.149,\qquad s_d=0.387$$
+    표준오차는
+    $$\frac{s_d}{\sqrt{n}}=\frac{0.387}{\sqrt{10}}=0.122$$
+    이므로 식 (2.8)에서 $\delta_0=0$ 을 대입하면
+    $$t=\frac{0.41}{0.122}=3.4$$</li>
+
+    <li><span class="step">의사결정.</span>
+    &lt;부록&gt;의 $t$ 분포에서 읽은 임계값은 $t(9;\,0.05)=1.833$ 이다.
+    단측검정이므로 임계값은 $\alpha=0.05$ 를 그대로 쓴다.
+    검정통계량 $t$ 의 값이 임계값보다 크므로 귀무가설을 기각한다.
+    유의수준 $0.05$ 에서 <b>재질 B 로 만든 밑창이 재질 A 로 만든 밑창보다 더 많이 닳는다</b>고 결론 내릴 수 있다.</li>
+  </ol>
+</div>
+
+<h2 class="sub">R 을 이용한 계산 <span class="en">computation in R</span></h2>
+
+<pre class="rout">a = c(13.2, 8.2, 10.9, 14.3, 10.7, 6.6, 9.5, 10.8, 8.8, 13.3)
+b = c(14.0, 8.8, 11.2, 14.2, 11.8, 6.4, 9.8, 11.3, 9.3, 13.6)
+diff = b - a
+boxplot(diff, ylab = "차이", main = "마모도 비교")
+
+t.test(diff, mu = 0, alternative = "greater")
+
+        One Sample t-test
+
+data:  diff
+t = 3.3489, df = 9, p-value = 0.004269
+alternative hypothesis: true mean is greater than 0
+95 percent confidence interval:
+ 0.1855736       Inf
+sample estimates:
+mean of x
+     0.41</pre>
+
+<div class="note">
+  <p>단측 대립가설이므로 신뢰구간도 한쪽만 유한한 $(0.1856,\ \infty)$ 로 출력된다.
+  이 구간이 $0$ 을 포함하지 않는다는 사실은 $H_0$ 기각과 같은 이야기이다.</p>
+</div>
+
+<h2 class="sub">2.3.2 같은 목적, 세 가지 실험계획 <span class="en">three designs for the same goal</span></h2>
+
+<div class="box thm">
+  <span class="tag">비고 1</span><span class="title">실험계획 1 — 두 그룹으로 나누기</span>
+  <p>앞의 실험의 목적은 재질 B 가 재질 A 보다 더 많이 마모되는지 알고자 하는 것이다.
+  $10$ 명의 아이가 있다면 이를 두 그룹으로 나누어,
+  한쪽 그룹에는 재질 A 의 밑창을 신게 하고 다른 쪽 그룹에는 재질 B 의 밑창을 신게 하여
+  마모도를 비교할 수도 있을 것이다. 하지만 이런 실험계획에는 문제가 없는 것일까?</p>
+</div>
+
+<div class="box thm">
+  <span class="tag">비고 2</span><span class="title">실험계획 2 — 남녀로 블록화</span>
+  <p>실험계획 1 에 대해 누군가가 "남녀 간에 차이가 있지 않을까?" 하고 의문을 제기한다고 하자.
+  그 주장이 일리가 있다면 전체 실험대상자를 남자와 여자의 두 <b>블록</b>으로 나누고,
+  각 블록 내에 속한 사람들을 랜덤하게 두 그룹으로 나누어
+  한쪽에는 재질 A 의 신발을 신게 하고, 다른 쪽에는 재질 B 의 신발을 신게 한다.</p>
+</div>
+
+<div class="box thm">
+  <span class="tag">비고 3</span><span class="title">실험계획 3 — 사람 하나를 블록으로</span>
+  <p>하지만 누군가가 또 남자라고 모두 똑같은 것이 아니라고 주장할 수 있다.
+  즉, 사람마다 걷는 방식이 모두 다르다고 주장할 수 있다.
+  만약 이 주장이 일리가 있다면 [예 2.2]에서와 같이 <b>각 사람을 하나의 블록으로 보고</b>,
+  블록 내에서 오른쪽 및 왼쪽 신발에 재질 A 와 재질 B 를 랜덤하게 할당할 수 있을 것이다.</p>
+</div>
+
+<p>이와 같이 동일한 목적을 수행하기 위한 실험계획은 여러 가지가 있을 수 있으므로
+상황에 맞는 실험계획을 수립해야 한다.</p>
+
+<p>실험을 할 때는 선택된 요인 이외의 다른 조건은 될 수 있는 대로 동일하게 유지시켜야 하는 것이 원칙이지만,
+현실적으로는 관측값에 영향을 줄 수 있는 <b>외부 요인</b>이 있다.
+이때에는 외부 요인에 의한 변동을 제거할 방안을 찾아야 한다.
+예를 들어, [예 2.2]에서 아이들 간의 활동성의 차이를 블록화를 통하여 제거하였다.
+<b>이 외부 요인 중 피할 수 있는 것은 블록화를 통하여 제거하고, 피할 수 없는 요인은 랜덤화를 통하여 상쇄시키는 것이
+실험계획의 기본 원칙이다.</b></p>
+
+<div class="note">
+  <p><a href="../ch01/1-2_basic-principles.html">1.2절</a>의 랜덤화·블록화 원리가 여기서 구체적인 검정 절차로 실현된다.
+  블록화는 검정통계량의 <b>분모</b>(오차)를 줄이고, 랜덤화는 <b>분자</b>(효과 추정)의 편향을 없앤다.</p>
+</div>
+
+<nav class="pager">
+  <a href="2-2_two-means-independent.html">← 이전<small>2.2 독립표본을 이용한 두 모평균 차이에 대한 추론</small></a>
+  <a class="next" href="2-4_variance-ratio.html">다음 →<small>2.4 두 모집단에서 두 모분산비에 대한 추론</small></a>
+</nav>
+
+</body>
+</html>

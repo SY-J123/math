@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>실험계획과 응용 · 2장 연습문제</title>
+<link rel="stylesheet" href="../../../assets/note.css">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<style>
+  .ex{ margin:26px 0; line-height:1.75; }
+  .exn{ font-weight:800; color:var(--def); margin-right:8px; }
+  .ex ol{ margin:4px 0 0; padding-left:26px; }
+  .ex li{ margin:5px 0; }
+  .answersheet{ page-break-before:always; }
+  .ans{ margin:24px 0; line-height:1.75; }
+  .ans .exn{ color:var(--thm); }
+  .ans ol.fill{ margin:6px 0 0; padding-left:24px; }
+  .ans ol.fill li{ margin:9px 0; }
+  .ans ol.props{ padding-left:24px; }
+  @media print{ .pager, .home{ display:none; } a{ color:inherit; text-decoration:none; } }
+</style>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<header class="doc">
+  <a class="home" href="../../../index.html">⌂ 홈</a>
+  <div class="ch">실험계획과 응용 · 2장 두 모집단의 비교</div>
+  <h1><span class="no">연습문제</span>2장 <span class="en">exercises</span></h1>
+</header>
+
+<p>2장(두 모집단의 비교) 교재 연습문제와 정답·해설. 정답 시트는 인쇄 시 다음 페이지부터 나온다.</p>
+
+<h2 class="sub">교재 연습문제 <span class="en">textbook exercises</span></h2>
+
+<div class="ex"><span class="exn">01</span>통계적 가설검정에 대한 다음 진술 중 <b>잘못된</b> 것은?
+  <ol>
+    <li>유의수준을 때로는 신뢰수준이라고 부른다.</li>
+    <li>제1종 오류의 확률은 $H_0$ 가 참일 때 $H_0$ 를 기각하는 확률이다.</li>
+    <li>제2종 오류의 확률은 $H_0$ 가 거짓일 때 $H_0$ 를 채택하는 확률이다.</li>
+    <li>제1종 오류와 제2종 오류를 범할 확률을 동시에 작게 할 수는 없다.</li>
+  </ol>
+</div>
+
+<div class="ex"><span class="exn">02</span>독립표본에서 $n_1=5$, $n_2=7$, $V_1=10$, $V_2=200$ 이라 하면 합동표본분산의 값은 얼마인가?
+  <ol>
+    <li>$16$</li>
+    <li>$4$</li>
+    <li>$2.5$</li>
+    <li>$150$</li>
+  </ol>
+</div>
+
+<div class="ex"><span class="exn">03</span>독립표본에 대한 두 모평균 차이를 검정하기 위하여 $t$ 검정을 하는 경우
+설정되는 가정이 <b>아닌</b> 것은?
+  <ol>
+    <li>두 그룹의 데이터는 모두 정규분포에서 추출된다.</li>
+    <li>두 그룹의 데이터는 서로 독립이다.</li>
+    <li>두 그룹의 데이터에 대하여 등분산을 가정한다.</li>
+    <li>두 그룹의 데이터에 대한 관측수가 서로 같다.</li>
+  </ol>
+</div>
+
+<div class="ex"><span class="exn">04</span>자동차에서 방출되는 산화질소의 양을 감소시키기 위하여 고안된 두 종류의 기구가 있다.
+편의상 기구 1, 기구 2라 부르자. $20$ 대의 자동차를 랜덤하게 추출하였다.
+$20$ 대 중 $10$ 대를 랜덤으로 다시 뽑아 기구 1을 부착하였고, 나머지 $10$ 대에는 기구 2를 부착한 후
+$1$ 시간 동안 여과되지 않고 방출되는 산화질소의 양을 측정하였다.
+  <div class="scroll"><table class="data">
+    <tr><th>기구 1</th><th>기구 2</th></tr>
+    <tr><td>1.35</td><td>1.01</td></tr>
+    <tr><td>1.16</td><td>0.98</td></tr>
+    <tr><td>1.23</td><td>0.95</td></tr>
+    <tr><td>1.20</td><td>1.05</td></tr>
+    <tr><td>1.32</td><td>1.02</td></tr>
+    <tr><td>1.28</td><td>0.96</td></tr>
+    <tr><td>1.21</td><td>0.99</td></tr>
+    <tr><td>1.25</td><td>0.98</td></tr>
+    <tr><td>1.17</td><td>1.01</td></tr>
+    <tr><td>1.19</td><td>1.02</td></tr>
+  </table></div>
+  <p>위의 자료를 이용하여 기구 1을 사용할 때의 평균방출량 $(\mu_1)$ 이
+  기구 2를 사용할 때의 평균방출량 $(\mu_2)$ 보다 크다는 가설을 검정하라. (유의수준 $\alpha=0.01$)</p>
+</div>
+
+<div class="ex"><span class="exn">05</span>사슴의 왼쪽 뒷다리와 왼쪽 앞다리의 길이를 측정하였다.
+두 다리의 길이(cm)가 같은지 다른지 유의수준 $0.050$ 에서 검정하라.
+  <div class="scroll"><table class="data">
+    <tr><th>사슴</th><th>뒷다리</th><th>앞다리</th></tr>
+    <tr><td>1</td><td>142</td><td>138</td></tr>
+    <tr><td>2</td><td>140</td><td>136</td></tr>
+    <tr><td>3</td><td>144</td><td>147</td></tr>
+    <tr><td>4</td><td>144</td><td>139</td></tr>
+    <tr><td>5</td><td>142</td><td>143</td></tr>
+    <tr><td>6</td><td>146</td><td>141</td></tr>
+    <tr><td>7</td><td>149</td><td>143</td></tr>
+    <tr><td>8</td><td>150</td><td>145</td></tr>
+    <tr><td>9</td><td>142</td><td>136</td></tr>
+    <tr><td>10</td><td>148</td><td>146</td></tr>
+  </table></div>
+</div>
+
+<div class="ex"><span class="exn">06</span>두 정규분포 분산에 대한 추정값은 다음과 같다.
+  $$n_1=14,\qquad n_2=5$$
+  $$V_1=1.2,\qquad V_2=4.8$$
+  <p>두 모분산을 같다고 해도 좋을지 유의수준 $10\%$ 에서 가설검정하라.</p>
+</div>
+
+<div class="answersheet">
+
+<header class="doc">
+  <div class="ch">실험계획과 응용 · 2장 두 모집단의 비교</div>
+  <h1><span class="no">정답·해설</span>2장 연습문제 <span class="en">answers</span></h1>
+</header>
+
+<h2 class="sub">객관식 <span class="en">multiple choice</span></h2>
+
+<div class="ans"><span class="exn">01</span><b>정답 ①</b>
+  <ol class="fill">
+    <li><span class="step">유의수준과 신뢰수준은 다른 개념이다.</span>
+    유의수준 $\alpha$ 는 <b>가설검정</b>에서 제1종 오류를 범하는 최대허용확률이고,
+    신뢰수준 $1-\alpha$ 는 <b>구간추정</b>에서 신뢰구간이 모수를 포함할 확률이다.
+    두 값은 서로 여사건 관계($\alpha$ 와 $1-\alpha$)일 뿐 같은 것이 아니므로 ①은 잘못된 진술이다.</li>
+    <li><span class="step">나머지는 모두 옳다.</span>
+    ② 제1종 오류는 "$H_0$ 가 참인데 기각"이므로 그 확률은 $P(\text{기각}\mid H_0\ \text{참})=\alpha$ 이다.
+    ③ 제2종 오류는 "$H_0$ 가 거짓인데 채택"이므로 그 확률은 $P(\text{채택}\mid H_0\ \text{거짓})=\beta$ 이다.
+    ④ 표본크기를 고정한 채 기각역을 좁히면 $\alpha$ 는 줄지만 $\beta$ 가 커지고, 넓히면 그 반대가 된다.
+    그래서 $\alpha$ 를 먼저 작은 값으로 고정한 뒤 $\beta$ 를 최소화하는 방식을 취한다.</li>
+  </ol>
+</div>
+
+<div class="ans"><span class="exn">02</span><b>정답 ①</b> $\ s_p^2=16$
+  <ol class="fill">
+    <li><span class="step">합동표본분산은 자유도로 가중평균한 값이다.</span>
+    $$s_p^2=\frac{(n_1-1)V_1+(n_2-1)V_2}{n_1+n_2-2}$$
+    자유도는 $n_1-1=4$, $n_2-1=6$ 이고 그 합은 $n_1+n_2-2=10$ 이다.</li>
+    <li><span class="step">값을 대입한다.</span>
+    $$s_p^2=\frac{4\times10+6\times20}{10}=\frac{40+120}{10}=16$$
+    두 표본분산 $10$ 과 $20$ 사이의 값이 나왔고, 자유도가 더 큰 쪽($V_2$, 자유도 $6$)에 더 가까이 치우쳤다.
+    가중평균이므로 반드시 두 값 사이에 놓인다는 점으로 검산할 수 있다.</li>
+  </ol>
+  <div class="note">
+    <p>교재 문제에는 $V_2=200$ 으로 인쇄되어 있는데, 그대로 계산하면
+    $s_p^2=(40+1200)/10=124$ 로 보기 ①~④ 어디에도 없다.
+    $V_2=20$ 이어야 정확히 ① $16$ 이 되므로 인쇄상의 오기로 보인다. <b>원문 대조 요망.</b></p>
+  </div>
+</div>
+
+<div class="ans"><span class="exn">03</span><b>정답 ④</b>
+  <ol class="fill">
+    <li><span class="step">교재가 세운 가정은 세 가지뿐이다.</span>
+    ① 모집단 1 은 $N(\mu_1,\sigma^2)$, ② 모집단 2 는 $N(\mu_2,\sigma^2)$,
+    ③ 두 표본은 서로 독립. 즉 <b>정규성·등분산·독립성</b>이 보기 ①②③에 해당한다.</li>
+    <li><span class="step">표본크기가 같을 필요는 없다.</span>
+    검정통계량
+    $$t=\frac{(\bar x_1-\bar x_2)-\delta_0}{s_p\sqrt{\dfrac{1}{n_1}+\dfrac{1}{n_2}}}$$
+    는 $n_1\ne n_2$ 여도 그대로 자유도 $n_1+n_2-2$ 의 $t$ 분포를 따른다.
+    애초에 $s_p^2$ 을 자유도로 가중평균하는 이유가 두 표본의 크기가 다를 수 있기 때문이다.
+    따라서 ④는 가정이 아니다.</li>
+  </ol>
+</div>
+
+<h2 class="sub">계산 문제 <span class="en">computational problems</span></h2>
+
+<div class="ans"><span class="exn">04</span><b>정답</b> $t=10.71>t(18;\,0.01)=2.552$ &nbsp;→&nbsp; $H_0$ 기각.
+유의수준 $1\%$ 에서 기구 1의 평균방출량이 기구 2의 평균방출량보다 크다.
+  <ol class="fill">
+    <li><span class="step">설계를 확인하고 가설을 세운다.</span>
+    $20$ 대 중 $10$ 대를 랜덤하게 골라 기구 1을, 나머지 $10$ 대에 기구 2를 부착했으므로
+    두 표본은 서로 다른 자동차에서 얻은 <b>독립표본</b>이다(짝지어진 자료가 아니다).
+    "기구 1의 평균방출량이 더 크다"가 주장하고 싶은 내용이므로 이를 대립가설에 놓는다.
+    $$H_0:\ \mu_1-\mu_2=0,\qquad H_1:\ \mu_1-\mu_2>0$$</li>
+
+    <li><span class="step">요약통계량을 계산한다.</span>
+    기구 1: $\sum x_{1i}=12.36$ 이므로 $\bar x_1=1.236$, 편차제곱합 $\sum(x_{1i}-\bar x_1)^2=0.03644$.
+    기구 2: $\sum x_{2i}=9.97$ 이므로 $\bar x_2=0.997$, 편차제곱합 $\sum(x_{2i}-\bar x_2)^2=0.00841$.
+    따라서
+    $$V_1=\frac{0.03644}{9}=0.004049,\qquad V_2=\frac{0.00841}{9}=0.000934$$</li>
+
+    <li><span class="step">합동표본분산을 구한다.</span>
+    자유도가 $9$ 로 같으므로 두 편차제곱합을 그대로 더해 자유도 합으로 나누면 된다.
+    $$s_p^2=\frac{9(0.004049)+9(0.000934)}{10+10-2}
+           =\frac{0.03644+0.00841}{18}=0.002492$$
+    $$s_p=\sqrt{0.002492}=0.04992$$</li>
+
+    <li><span class="step">검정통계량의 값을 구한다.</span>
+    $\delta_0=0$ 이므로
+    $$t=\frac{\bar x_1-\bar x_2}{s_p\sqrt{\dfrac{1}{10}+\dfrac{1}{10}}}
+       =\frac{1.236-0.997}{0.04992\sqrt{0.2}}
+       =\frac{0.239}{0.02232}=10.71$$</li>
+
+    <li><span class="step">의사결정.</span>
+    단측검정이므로 임계값은 $t(n_1+n_2-2;\,\alpha)=t(18;\,0.01)=2.552$ 이다.
+    $t=10.71>2.552$ 로 기각역에 들어가므로 귀무가설을 기각한다.
+    즉, 유의수준 $1\%$ 에서 <b>기구 1을 부착했을 때 산화질소 평균방출량이 더 많다</b>고 결론짓는다.
+    (두 표본평균이 $1.236$ 대 $0.997$ 로 크게 벌어져 있고 표본 내 산포는 매우 작으므로,
+    $t$ 값이 이렇게 크게 나오는 것이 자연스럽다.)</li>
+  </ol>
+</div>
+
+<div class="ans"><span class="exn">05</span><b>정답</b> $|t|=3.41>t(9;\,0.025)=2.262$ &nbsp;→&nbsp; $H_0$ 기각.
+유의수준 $5\%$ 에서 뒷다리와 앞다리의 길이는 같다고 할 수 없다.
+  <ol class="fill">
+    <li><span class="step">짝지어진 자료임을 확인한다.</span>
+    같은 사슴 한 마리에서 뒷다리와 앞다리를 <b>둘 다</b> 측정했으므로,
+    사슴 한 마리가 하나의 블록이 되는 <b>짝지어진 비교</b>이다.
+    사슴마다 몸집이 다르다는 개체 변동이 차이 $d_i$ 를 취하는 순간 소거된다.
+    따라서 짝지어진 $t$ 검정을 쓴다.
+    $$H_0:\ \delta=0,\qquad H_1:\ \delta\ne0,\qquad \delta=\mu_{\text{뒷}}-\mu_{\text{앞}}$$</li>
+
+    <li><span class="step">차이값을 계산한다.</span>
+    $d_i=(\text{뒷다리})-(\text{앞다리})$ 로 두면
+    $$4,\ 4,\ -3,\ 5,\ -1,\ 5,\ 6,\ 5,\ 6,\ 2$$
+    합이 $33$ 이므로
+    $$\bar d=\frac{33}{10}=3.3$$</li>
+
+    <li><span class="step">차이값의 분산과 표준오차를 구한다.</span>
+    편차제곱합은 $\sum(d_i-\bar d)^2=84.10$ 이므로
+    $$V_d=\frac{84.10}{9}=9.344,\qquad s_d=\sqrt{9.344}=3.057$$
+    $$\frac{s_d}{\sqrt{n}}=\frac{3.057}{\sqrt{10}}=0.967$$</li>
+
+    <li><span class="step">검정통계량의 값을 구한다.</span>
+    $$t=\frac{\bar d-0}{s_d/\sqrt{n}}=\frac{3.3}{0.967}=3.41$$</li>
+
+    <li><span class="step">의사결정.</span>
+    "같은지 다른지"를 묻고 있으므로 양측검정이고, 임계값은
+    $t(n-1;\,\alpha/2)=t(9;\,0.025)=2.262$ 이다.
+    $|t|=3.41>2.262$ 이므로 귀무가설을 기각한다.
+    유의수준 $5\%$ 에서 <b>뒷다리가 앞다리보다 길다</b>고 볼 수 있다.</li>
+
+    <li><span class="step">덧붙여, 차이에 대한 $95\%$ 신뢰구간.</span>
+    $$\bar d\pm t(9;\,0.025)\frac{s_d}{\sqrt{n}}=3.3\pm2.262(0.967)=3.3\pm2.19$$
+    즉 $(1.11,\ 5.49)$ 로, $0$ 을 포함하지 않는다는 점이 위의 기각 결론과 일치한다.</li>
+  </ol>
+</div>
+
+<div class="ans"><span class="exn">06</span><b>정답</b> $F=0.25\lt F(13,4;\,0.95)\fallingdotseq0.315$ &nbsp;→&nbsp; $H_0$ 기각.
+유의수준 $10\%$ 에서 두 모분산이 같다고 할 수 없다.
+  <ol class="fill">
+    <li><span class="step">가설을 비의 형태로 세운다.</span>
+    분산의 비교는 차가 아니라 비로 다룬다.
+    $$H_0:\ \sigma_1^2=\sigma_2^2\ \Big(\text{즉}\ \tfrac{\sigma_1^2}{\sigma_2^2}=1\Big),
+      \qquad H_1:\ \sigma_1^2\ne\sigma_2^2$$</li>
+
+    <li><span class="step">검정통계량의 값을 구한다.</span>
+    $$F=\frac{V_1}{V_2}=\frac{1.2}{4.8}=0.25$$
+    자유도는 $(n_1-1,\ n_2-1)=(13,\ 4)$ 이다.</li>
+
+    <li><span class="step">양측 기각역의 두 임계값을 읽는다.</span>
+    $\alpha=0.10$ 의 양측검정이므로 양쪽 꼬리에 $\alpha/2=0.05$ 씩 둔다.
+    위쪽 임계값은 $F$ 분포표에서
+    $$F(13,4;\,0.05)\fallingdotseq5.89$$
+    아래쪽 임계값은 $F$ 분포표에 상위 백분위수만 실려 있으므로
+    성질 $F(a,b;\,1-p)=1/F(b,a;\,p)$ 를 이용해 자유도를 맞바꾼 값의 역수로 구한다.
+    $$F(13,4;\,0.95)=\frac{1}{F(4,13;\,0.05)}=\frac{1}{3.18}\fallingdotseq0.315$$</li>
+
+    <li><span class="step">의사결정.</span>
+    기각역은 $F>5.89$ 또는 $F<0.315$ 이다.
+    $F=0.25<0.315$ 이므로 <b>아래쪽 꼬리</b>의 기각역에 들어간다. 따라서 귀무가설을 기각한다.
+    유의수준 $10\%$ 에서 두 모분산이 같다고 할 수 없으며,
+    $V_1\lt V_2$ 이므로 모집단 2의 산포가 더 크다고 볼 수 있다.</li>
+
+    <li><span class="step">참고 — 모분산비의 $90\%$ 신뢰구간.</span>
+    식 (2.12)에 그대로 대입하면
+    $$\left(0.25\times\frac{1}{5.89},\ \ 0.25\times3.18\right)=(0.042,\ 0.795)$$
+    이 구간이 $1$ 을 포함하지 않는다는 사실 역시 $H_0$ 기각과 같은 결론을 말해 준다.</li>
+  </ol>
+  <div class="note">
+    <p>표본크기가 $n_2=5$ 로 매우 작아 분모 자유도가 $4$ 밖에 되지 않는다.
+    이 경우 $F$ 검정은 정규성 가정에서 벗어나면 결과가 크게 흔들리므로 해석에 주의해야 한다.</p>
+  </div>
+</div>
+
+</div>
+
+<nav class="pager">
+  <a href="2-4_variance-ratio.html">← 이전<small>2.4 두 모집단에서 두 모분산비에 대한 추론</small></a>
+</nav>
+
+</body>
+</html>
