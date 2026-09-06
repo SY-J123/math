@@ -211,12 +211,23 @@
       성립하며, 합의 법칙에 의해 $c_nT_n+d_nS_n\xrightarrow{\ p\ }c\theta_1+d\theta_2$ 가 성립한다.)</li>
 
     <li><span class="step">② 곱의 일치성 $T_nS_n\xrightarrow{\ p\ }\theta_1\theta_2$.</span>
-      곱의 오차를 세 개의 항으로 분해한다.
+      곱의 오차에 <b>교차항 $\theta_1S_n$ 을 하나 더하고 빼서</b> 두 조각으로 찢는다.
+      $$T_nS_n-\theta_1\theta_2
+        =\underbrace{T_nS_n-\theta_1S_n}_{S_n\text{ 으로 묶기}}
+         +\underbrace{\theta_1S_n-\theta_1\theta_2}_{\theta_1\text{ 로 묶기}}
+        =S_n(T_n-\theta_1)+\theta_1(S_n-\theta_2)$$
+      뒤의 항은 상수배 형태라 ①로 끝난다. 그런데 <b>앞의 항은 아직 끝나지 않는다</b> —
+      계수 자리에 붙은 $S_n$ 이 ①의 $c_n$ 처럼 <b>수열이 아니라 확률변수</b>라서
+      $|S_n|\le M$ 을 보장할 수 없기 때문이다. 그래서 $S_n$ 을 참값 주위로 한 번 더 풀어 쓴다.
+      $$S_n=\theta_2+(S_n-\theta_2)\ \Longrightarrow\
+        S_n(T_n-\theta_1)=\theta_2(T_n-\theta_1)+(T_n-\theta_1)(S_n-\theta_2)$$
+      이것을 대입하면 <b>세 항</b>이 되고, 이제 계수는 모두 상수이거나 $0$ 으로 가는 오차이다.
       $$T_nS_n-\theta_1\theta_2=(T_n-\theta_1)(S_n-\theta_2)+\theta_2(T_n-\theta_1)+\theta_1(S_n-\theta_2)$$
       <ol class="props">
         <li>뒤의 두 항 $\theta_2(T_n-\theta_1)$, $\theta_1(S_n-\theta_2)$ 은 상수배 형태이므로
           위 ①의 결과에 의해 각각 $0$ 으로 확률수렴한다.</li>
-        <li>첫 번째 항은 다음 포함관계를 만족한다.
+        <li>첫 번째 항은 오차끼리의 곱인데, 둘 다 $\sqrt\varepsilon$ 이하이면 곱이 $\varepsilon$ 을
+          넘을 수 없으므로 다음 포함관계를 만족한다.
           $$\big\{|(T_n-\theta_1)(S_n-\theta_2)|\gt\varepsilon\big\}
           \subset\big\{|T_n-\theta_1|\gt\sqrt\varepsilon\big\}\cup\big\{|S_n-\theta_2|\gt\sqrt\varepsilon\big\}$$
           우변의 확률은 각각 $0$ 으로 수렴하므로 첫 항도 $0$ 으로 확률수렴한다.</li>
