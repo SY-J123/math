@@ -108,14 +108,21 @@
   </ol>
   <div class="qed">∎</div>
 </div>
-<div class="note">
-  <b>실전에서 쓰는 형태.</b> <a href="4-3_estimation-criteria.html">정리 4.2</a>에 의하여
-  $$\mathrm{MSE}(T_n)=\operatorname{Var}(T_n)+\big[E(T_n)-g(\theta)\big]^2$$
-  이므로, $T_n$ 이 $g(\theta)$ 의 <b>비편향</b>추정량인 경우에는 둘째 항(편향$^2$)이 $0$ 이어서
-  $\mathrm{MSE}(T_n)=\operatorname{Var}(T_n)$ 이다. 따라서
-  $\lim_{n\to\infty}\operatorname{Var}(T_n)=0$ 만 보이면 정리 4.9로부터 일치성이 보장된다.
+<div class="box thm">
+  <span class="tag">따름정리</span><span class="title">비편향추정량의 일치성 — 분산만 보면 된다</span>
+  <p>$T_n(X)$ 가 $g(\theta)$ 의 <b>비편향</b>추정량이면,</p>
+  $$\lim_{n\to\infty}\operatorname{Var}(T_n)=0\quad\Longrightarrow\quad T_n \text{ 은 일치성이 있다.}$$
 </div>
-
+<div class="box prf">
+  <span class="tag">증명</span>
+  <p><a href="4-3_estimation-criteria.html">정리 4.2</a>에 의하여</p>
+  $$\mathrm{MSE}(T_n)=\operatorname{Var}(T_n)+\big[E(T_n)-g(\theta)\big]^2$$
+  <p>이다. $T_n$ 이 비편향추정량이면 $E(T_n)=g(\theta)$ 이므로 둘째 항(편향$^2$)이 $0$ 이 되어</p>
+  $$\mathrm{MSE}(T_n)=\operatorname{Var}(T_n)$$
+  <p>이다. 따라서 $\lim_{n\to\infty}\operatorname{Var}(T_n)=0$ 이면 $\lim_{n\to\infty}\mathrm{MSE}(T_n)=0$ 이고,
+  정리 4.9로부터 일치성이 보장된다.</p>
+  <div class="qed">∎</div>
+</div>
 <div class="box ex">
   <span class="tag">예 4.41</span><span class="title">$\mathrm{EXP}(\lambda)$ — 일치추정량과 비일치추정량</span>
   <p>$X_1,X_2,\dots,X_n$ 을 $\mathrm{EXP}(\lambda)$ 로부터 얻은 랜덤표본이라 하자.
@@ -124,7 +131,7 @@
     <li><span class="step">표본평균은 일치추정량이다.</span> $\overline{X}_n$ 은 $\lambda$ 의 비편향추정량이고
       $$\lim_{n\to\infty}\mathrm{MSE}(\overline{X}_n)=\lim_{n\to\infty}\operatorname{Var}(\overline{X}_n)
       =\lim_{n\to\infty}\frac{\lambda^2}{n}=0$$
-      이므로, 위 <b>실전에서 쓰는 형태</b>에 의하여 $\overline{X}_n$ 은 일치성이 있다.</li>
+      이므로, 위 <b>따름정리</b>에 의하여 $\overline{X}_n$ 은 일치성이 있다.</li>
     <li><span class="step">$nX_{(1)}$ 도 비편향추정량이다.</span> 지수분포 표본최솟값의 성질
       (<a href="../ch03/3-5_order-statistics.html">예 3.14</a>)에서 $nX_{(1)}\sim\mathrm{EXP}(\lambda)$ 이므로
       $E(nX_{(1)})=\lambda$ 로 $nX_{(1)}$ 역시 $\lambda$ 의 비편향추정량이다.</li>
