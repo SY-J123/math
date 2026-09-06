@@ -211,21 +211,28 @@
       위 <b>기본 도구</b>(합의 법칙)에 의해 $c_nT_n+d_nS_n\xrightarrow{\ p\ }c\theta_1+d\theta_2$ 이다.</li>
 
     <li><span class="step">② 곱 $T_nS_n\xrightarrow{\ p\ }\theta_1\theta_2$.</span>
-      곱을 직접 다루지 말고, <b>합과 제곱만으로 바꿔 쓴다</b>. 다음 항등식을 쓰면 된다.
-      $$xy=\frac{(x+y)^2-(x-y)^2}{4}$$
-      이제 필요한 재료는 ①(합)과 <b>정리 4.10</b>($g$ 가 연속이면 $g(T_n)$ 도 일치)뿐이다.
+      우리가 쥐고 있는 정보는 <b>$(T_n-\theta_1)\xrightarrow{\ p\ }0$ 과 $(S_n-\theta_2)\xrightarrow{\ p\ }0$ 뿐</b>이다.
+      그러므로 $T_nS_n-\theta_1\theta_2$ 를 <b>이 두 모양만 남도록</b> 고쳐 쓰는 것이 전부다.
       <ol class="props">
-        <li>①에서 $(c_n,d_n)=(1,1)$ 과 $(1,-1)$ 로 놓으면
-          $$T_n+S_n\xrightarrow{\ p\ }\theta_1+\theta_2,\qquad
-            T_n-S_n\xrightarrow{\ p\ }\theta_1-\theta_2$$</li>
-        <li>$g(x)=x^2$ 은 연속이므로 정리 4.10에 의해 각각을 제곱해도 일치성이 보존된다.
-          $$(T_n+S_n)^2\xrightarrow{\ p\ }(\theta_1+\theta_2)^2,\qquad
-            (T_n-S_n)^2\xrightarrow{\ p\ }(\theta_1-\theta_2)^2$$</li>
-        <li>두 결과에 다시 ①을 $(c_n,d_n)=\big(\tfrac14,-\tfrac14\big)$ 로 적용하면
-          $$T_nS_n=\frac{(T_n+S_n)^2-(T_n-S_n)^2}{4}
-            \ \xrightarrow{\ p\ }\ \frac{(\theta_1+\theta_2)^2-(\theta_1-\theta_2)^2}{4}=\theta_1\theta_2$$</li>
-      </ol></li>
-
+        <li><b>$T_n\theta_2$ 를 더하고 뺀 뒤 묶는다.</b>
+          $$T_nS_n-\theta_1\theta_2=\underbrace{T_nS_n-T_n\theta_2}_{T_n\text{ 으로 묶기}}
+            +\underbrace{T_n\theta_2-\theta_1\theta_2}_{\theta_2\text{ 로 묶기}}
+            =T_n(S_n-\theta_2)+\theta_2(T_n-\theta_1)$$</li>
+        <li><b>앞 항의 계수 $T_n$ 을 한 번 더 쪼갠다.</b> 뒤 항은 상수배라 ①로 끝나지만,
+          앞 항의 계수 $T_n$ 은 아직 확률변수여서 그대로 둘 수 없다. $T_n=(T_n-\theta_1)+\theta_1$ 을 대입하면
+          $$T_n(S_n-\theta_2)=(T_n-\theta_1)(S_n-\theta_2)+\theta_1(S_n-\theta_2)$$
+          이고, 이것을 되돌려 넣으면 세 항이 완성된다.
+          $$T_nS_n-\theta_1\theta_2=(T_n-\theta_1)(S_n-\theta_2)+\theta_1(S_n-\theta_2)+\theta_2(T_n-\theta_1)$$
+          이제 세 항 모두 <b>(상수 또는 $0$ 으로 가는 것) $\times$ ($0$ 으로 가는 것)</b> 꼴이다.</li>
+        <li><b>세 항이 각각 $0$ 으로 확률수렴함을 확인한다.</b>
+          뒤의 두 항 $\theta_1(S_n-\theta_2)$, $\theta_2(T_n-\theta_1)$ 은 상수배 형태이므로 ①에 의해 곧바로 $0$ 이다.
+          첫 항은 오차끼리의 곱인데, 둘 다 $\sqrt\varepsilon$ 이하이면 곱이 $\varepsilon$ 을 넘을 수 없으므로
+          $$\big\{|(T_n-\theta_1)(S_n-\theta_2)|\gt\varepsilon\big\}
+            \subset\big\{|T_n-\theta_1|\gt\sqrt\varepsilon\big\}\cup\big\{|S_n-\theta_2|\gt\sqrt\varepsilon\big\}$$
+          이고, 우변의 두 확률이 각각 $0$ 으로 가므로 첫 항도 $0$ 으로 확률수렴한다.</li>
+      </ol>
+      세 항 모두 $0$ 으로 확률수렴하므로, <b>기본 도구</b>(이번에는 $\varepsilon$ 을 셋으로 쪼갠다)에 의해
+      $T_nS_n\xrightarrow{\ p\ }\theta_1\theta_2$ 이다.</li>
     <li><span class="step">③ 몫 $T_n/S_n\xrightarrow{\ p\ }\theta_1/\theta_2$.</span>
       $\theta_2\ne0$ 에서 $g(x)=1/x$ 가 연속이므로 정리 4.10에 의해
       $1/S_n\xrightarrow{\ p\ }1/\theta_2$ 이고, 여기에 ②의 곱을 적용하면
@@ -233,19 +240,6 @@
         =\frac{\theta_1}{\theta_2}$$</li>
   </ol>
   <div class="qed">∎</div>
-</div>
-<div class="note">
-  ②의 요령은 <b>곱을 합과 제곱으로 환원</b>한 것이다. 곱을 정면으로 다루면
-  $T_nS_n-\theta_1\theta_2$ 를 세 항으로 쪼개고 오차끼리의 곱을 $\sqrt\varepsilon$ 으로 따로 눌러야 하는데,
-  위 항등식을 쓰면 그 과정이 통째로 사라지고 <b>이미 증명한 ①과 1변수 정리 4.10</b> 두 개만 남는다.
-  $g(x,y)=xy$ 가 연속이라는 사실로 한 번에 끝낼 수도 있지만, 그러려면 정리 4.10의 <b>2변수판</b>과
-  $(T_n,S_n)$ 이 벡터로 확률수렴한다는 사실을 따로 준비해야 한다.
-</div>
-<div class="note">
-  결국 정리 4.11은 실수 수열의
-  <a href="../../해석학/2-3_limit-theorems.html">대수적 극한정리(해석학 정리 2.3.1)</a>를
-  확률수렴판으로 옮긴 것이다. 복잡한 추정량의 일치성을 정의 4.9로 직접 확인하는 대신,
-  이미 아는 일치추정량을 <b>더하고 곱하고 나누고 연속함수에 넣어서</b> 조립해 보이는 것이 실전의 방법이다.
 </div>
 
 <div class="box ex">
