@@ -579,35 +579,30 @@
 </div>
 <div class="box prf">
   <span class="tag">증명 <span class="en">이산형의 경우</span></span>
-  <p>$f_T(t)$ 를 $T$ 의 확률질량함수, $f_S(s;\theta)$ 를 $S$ 의 확률질량함수, $f(t\mid s)$ 를 $S=s$ 가
-  주어졌을 때 $T$ 의 조건부 확률질량함수라 하자. 임의로 고정한 $t$ 에 대하여 조건부 분포가 주변 분포와
-  일치함, 즉 모든 $s$ 에서 $f(t\mid s)=f_T(t)$ 임을 보이면 된다.</p>
+  <p><b>목표</b>: $S$ 가 완비 충분통계량, $T$ 가 보조통계량일 때 $S\perp T$ 임을 보인다.
+  즉, 임의로 고정한 $t$ 에 대하여 조건부 확률이 주변 확률과 일치함
+  $$f(t\mid s)=f_T(t)\qquad(\text{모든 }s)$$
+  을 증명하면 된다. 여기서 $f_T(t)$ 는 $T$ 의 확률질량함수, $f_S(s;\theta)$ 는 $S$ 의 확률질량함수,
+  $f(t\mid s)$ 는 $S=s$ 가 주어졌을 때 $T$ 의 조건부 확률질량함수이다.</p>
   <ol>
-    <li><span class="step">전확률 공식으로 기댓값 방정식 만들기.</span> 이산형 확률변수에 대한 전확률 공식에 의하여
-      $$f_T(t)=\sum_s f(t\mid s)\,f_S(s;\theta)$$
-      이 성립한다. 우변은 $S$ 의 함수 $f(t\mid S)$ 에 $S$ 의 확률질량함수를 곱해 모든 $s$ 에 대하여 합한 것이므로,
-      이는 곧 $S$ 에 대한 기댓값의 정의와 일치한다.
-      $$f_T(t)=E_\theta\big[f(t\mid S)\big]$$</li>
-    <li><span class="step">기댓값의 선형성으로 하나의 식으로 묶기.</span> 좌변의 $f_T(t)$ 는 기댓값의 대상인 $S$ 를
-      포함하지 않으므로 $S$ 의 분포 입장에서 <b>상수</b>이고, 상수의 기댓값은 자기 자신이다.
-      $$E_\theta\big[f_T(t)\big]=f_T(t)$$
-      이를 단계 1의 좌변에 대입한 뒤 우변을 이항하고 기댓값의 선형성으로 묶으면
-      $$E_\theta\big[f_T(t)-f(t\mid S)\big]=0\qquad(\text{모든 }\theta)$$
-      을 얻는다.</li>
-    <li><span class="step">충분성과 보조성으로 $\theta$ 를 몰아내기.</span> 기댓값 안의 식을
-      $g(S)=f_T(t)-f(t\mid S)$ 로 두면, 가정에 의하여 다음 두 성질이 보장된다.
+    <li><span class="step">전확률 공식.</span>
+      $$f_T(t)=\sum_s f(t\mid s)\,f_S(s;\theta)=E_\theta\big[f(t\mid S)\big]$$
+      우변은 $S$ 의 함수 $f(t\mid S)$ 에 $S$ 의 확률질량함수를 곱해 모든 $s$ 에 대하여 합한 것이므로,
+      곧 $S$ 에 대한 기댓값이다.</li>
+    <li><span class="step">기댓값 방정식.</span> $f_T(t)$ 는 $S$ 의 분포 관점에서 <b>상수</b>이므로
+      $E_\theta[f_T(t)]=f_T(t)$ 가 성립한다. 이를 단계 1 의 좌변에 대입하고 이항하면
+      $$E_\theta\big[f_T(t)-f(t\mid S)\big]=0\qquad(\text{모든 }\theta)$$</li>
+    <li><span class="step">$\theta$ 소거.</span> $g(S)=f_T(t)-f(t\mid S)$ 로 두면
       <ul class="props">
-        <li>$T$ 의 <b>보조성</b> — $T$ 의 분포 $f_T(t)$ 는 $\theta$ 에 의존하지 않는다.</li>
-        <li>$S$ 의 <b>충분성</b> — 충분통계량의 정의에 의하여 조건부 분포 $f(t\mid S)$ 도 $\theta$ 에 의존하지 않는다.</li>
+        <li>$T$ 의 <b>보조성</b> $\implies$ $f_T(t)$ 에 $\theta$ 없음</li>
+        <li>$S$ 의 <b>충분성</b> $\implies$ $f(t\mid S)$ 에 $\theta$ 없음</li>
       </ul>
-      따라서 $g(S)$ 는 $\theta$ 를 전혀 포함하지 않는, 오직 $S$ 만으로 결정되는 함수다.</li>
-    <li><span class="step">완비성으로 결론 도출.</span> 단계 2와 3에서 $\theta$ 와 무관한 $S$ 의 함수 $g(S)$ 가
-      모든 $\theta$ 에서 $E_\theta[g(S)]=0$ 을 만족함을 확인하였다. 그런데 가정에서 $S$ 는
-      <b>완비통계량</b>이므로, 완비성의 정의(정의 4.7)에 의하여 $g(\cdot)$ 은 확률 $1$ 로 항등적으로 $0$ 이다.
-      $$f_T(t)-f(t\mid s)=0,\qquad\text{즉}\quad f(t\mid s)=f_T(t)\quad(\text{모든 }s)$$</li>
+      따라서 $g(S)$ 는 모수 $\theta$ 를 전혀 포함하지 않는 <b>오직 $S$ 만의 함수</b>가 된다.</li>
+    <li><span class="step">완비성 적용.</span> 모든 $\theta$ 에 대해 $E_\theta[g(S)]=0$ 이므로,
+      $S$ 의 <b>완비성</b>(정의 4.7)에 의하여 확률 $1$ 로 $g(S)\equiv0$ 이다.
+      $$f_T(t)-f(t\mid s)=0\quad\implies\quad f(t\mid s)=f_T(t)$$
+      즉 두 통계량은 서로 <b>독립</b>이다.</li>
   </ol>
-  <p>임의의 $s$ 에 대하여 $T$ 의 조건부 분포가 주변 분포와 정확히 일치하므로, 완비 충분통계량 $S$ 와
-  보조통계량 $T$ 는 서로 독립이다.</p>
   <div class="qed">∎</div>
 </div>
 <div class="box ex">
