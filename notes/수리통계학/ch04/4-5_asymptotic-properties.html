@@ -199,7 +199,8 @@
     <li><span class="step">① 상수열과의 곱 $c_nT_n\xrightarrow{\ p\ }c\theta_1$.</span>
       오차를 <b>확률적 부분</b>과 <b>결정적 부분</b>으로 분해한다.
       $$c_nT_n-c\theta_1=c_n(T_n-\theta_1)+(c_n-c)\theta_1$$
-      수렴하는 수열 $c_n\to c$ 는 유계이므로 모든 $n$ 에 대해 $|c_n|\le M$ 인 $M\gt0$ 이 존재한다.
+      수렴하는 수열 $c_n\to c$ 는 유계이므로(<a href="../../해석학/2-2_sequence-limit.html">해석학 정리 2.2.7</a>)
+      모든 $n$ 에 대해 $|c_n|\le M$ 인 $M\gt0$ 이 존재한다.
       $n$ 이 충분히 크면 뒤의 결정적 항은 $|(c_n-c)\theta_1|\le\varepsilon/2$ 를 만족하므로,
       다음 포함관계가 성립한다.
       $$\big\{|c_nT_n-c\theta_1|\gt\varepsilon\big\}
@@ -231,6 +232,13 @@
   정리 4.10과 4.11을 합치면, 일치추정량들을 <b>더하고 곱하고 나누고 연속함수에 넣어도</b> 일치성이
   그대로 유지된다. 복잡한 추정량의 일치성을 정의 4.9로 직접 확인하는 대신, 이미 아는 일치추정량에서
   조립해 보이는 것이 실전의 방법이다.
+</div>
+
+<div class="note">
+  정리 4.11은 실수 수열의 <a href="../../해석학/2-3_limit-theorems.html">대수적 극한정리(해석학 정리 2.3.1)</a>를
+  확률수렴판으로 옮긴 것이다. 두 증명이 쓰는 재료도 같다 — <b>수렴하는 것은 유계</b>(정리 2.2.7)와
+  <b>$\varepsilon$ 을 반으로 쪼개기</b>. 해석학에서는 $|a_n-a|\lt\varepsilon/2$ 를 만족하는 $N$ 을 잡았다면,
+  여기서는 그 사건의 여사건 확률 $P(|T_n-\theta_1|\gt\varepsilon/2)$ 가 $0$ 으로 가는 것을 본다는 점만 다르다.
 </div>
 
 <div class="box ex">
