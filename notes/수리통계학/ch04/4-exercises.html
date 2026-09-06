@@ -347,589 +347,240 @@ $$E\left(\left.\frac{d}{d\theta}\log f(X;\theta)\right|_{\theta=\theta_0}\right)
 
 <div class="sec">적률추정법 · 최대가능도 추정법 (01~10)</div>
 
-<div class="ans"><span class="exn">01</span><b>정답</b> $\hat\mu=\overline X_n$, &nbsp;$\hat\sigma=\sqrt{\dfrac1n\sum(X_i-\overline X_n)^2}$
-  <ol class="fill">
-    <li><span class="step">모적률을 모수로 나타낸다.</span> 구간의 중점이 $\mu$, 폭이 $2\sqrt3\sigma$ 이므로
-      $$E(X)=\mu,\qquad Var(X)=\frac{(2\sqrt3\sigma)^2}{12}=\frac{12\sigma^2}{12}=\sigma^2$$
-      즉 이 균등분포는 평균 $\mu$, 분산 $\sigma^2$ 을 갖도록 모수화되어 있다.</li>
-    <li><span class="step">모적률을 표본적률로 놓는다.</span> 표본적률은 모적률로 확률수렴하므로 이 둘을 같다고 놓으면
-      $$\mu=\overline X_n,\qquad \sigma^2=\frac1n\sum_{i=1}^n(X_i-\overline X_n)^2$$
-      따라서 $\hat\mu=\overline X_n$ 이고 $\hat\sigma$ 는 위 표본분산의 제곱근이다.</li>
-  </ol>
+<div class="ans"><span class="exn">01</span><b>정답</b> $\hat\mu=\overline X_n$, &nbsp;$\hat\sigma=\sqrt{\frac1n\sum(X_i-\overline X_n)^2}$
+  <p>이 모수화에서 $E(X)=\mu$, $Var(X)=\dfrac{(2\sqrt3\sigma)^2}{12}=\sigma^2$.
+  모적률을 표본적률로 놓으면 바로 위 결과.</p>
 </div>
 
 <div class="ans"><span class="exn">02</span><b>정답</b> $\hat\theta=\dfrac{2\overline X_n-1}{1-\overline X_n}$
-  <ol class="fill">
-    <li><span class="step">일차 모적률을 계산한다.</span>
-      $$E(X)=\int_0^1 x\,(\theta+1)x^{\theta}\,dx=(\theta+1)\int_0^1 x^{\theta+1}dx
-        =(\theta+1)\cdot\frac{1}{\theta+2}=\frac{\theta+1}{\theta+2}$$</li>
-    <li><span class="step">$\overline X_n$ 과 같다고 놓고 $\theta$ 에 대해 푼다.</span>
-      $$\frac{\theta+1}{\theta+2}=\overline X_n\ \Longrightarrow\ \theta+1=\overline X_n\theta+2\overline X_n$$
-      $\theta$ 항을 좌변으로 모으면 $\theta(1-\overline X_n)=2\overline X_n-1$ 이므로
-      $$\hat\theta=\frac{2\overline X_n-1}{1-\overline X_n}$$
-      $0\lt X_i\lt1$ 이므로 $1-\overline X_n\gt0$ 이어서 분모는 $0$ 이 되지 않는다.</li>
-  </ol>
+  $$E(X)=\int_0^1(\theta+1)x^{\theta+1}dx=\frac{\theta+1}{\theta+2}=\overline X_n$$
+  <p>$\theta$ 항을 모으면 $\theta(1-\overline X_n)=2\overline X_n-1$. &nbsp;($0\lt X_i\lt1$ 이므로 분모 $\ne0$.)</p>
 </div>
 
-<div class="ans"><span class="exn">03</span><b>정답</b> 일차적률에서 $\hat\lambda_1=\overline X_n$, 이차(중심)적률에서
-$\hat\lambda_2=\frac1n\sum(X_i-\overline X_n)^2$ — 서로 다르므로 유일하지 않다.
-  <ol class="fill">
-    <li><span class="step">포아송분포는 평균과 분산이 같다.</span> $E(X)=\lambda$ 이고 $Var(X)=\lambda$ 이다.
-      즉 <b>하나의 모수를 두 개의 모적률이 각각 결정</b>한다.</li>
-    <li><span class="step">일차적률을 쓰면.</span> $\lambda=E(X)=\overline X_n$ 에서 $\hat\lambda_1=\overline X_n$.</li>
-    <li><span class="step">이차적률을 쓰면.</span> $\lambda=Var(X)$ 에서
-      $\hat\lambda_2=\frac1n\sum(X_i-\overline X_n)^2$.
-      (원적률을 쓰면 $E(X^2)=\lambda+\lambda^2$ 에서 $\hat\lambda_3=\frac{-1+\sqrt{1+4m_2}}{2}$,
-      $m_2=\frac1n\sum X_i^2$ 라는 또 다른 답이 나온다.)</li>
-    <li><span class="step">결론.</span> 세 추정량은 일반적으로 값이 다르다.
-      적률추정법은 <b>어느 적률을 쓰느냐에 따라 답이 달라지므로 유일하지 않다.</b></li>
-  </ol>
+<div class="ans"><span class="exn">03</span><b>정답</b> $\hat\lambda_1=\overline X_n$ 또는 $\hat\lambda_2=\frac1n\sum(X_i-\overline X_n)^2$ — 유일하지 않다.
+  <p>포아송은 $E(X)=Var(X)=\lambda$ 로 <b>한 모수를 두 적률이 각각 결정</b>한다.
+  일차적률을 쓰면 $\hat\lambda_1$, 이차중심적률을 쓰면 $\hat\lambda_2$ 가 나오고 두 값은 일반적으로 다르다.
+  ($E(X^2)=\lambda+\lambda^2$ 을 쓰면 또 다른 답이 나온다.)</p>
 </div>
 
-<div class="ans"><span class="exn">04</span><b>정답</b> $\hat\theta_{MM}=2\overline X_n$, $\hat\theta_{MLE}=X_{(n)}$.
-$\mathrm{MSE}$ 는 각각 $\dfrac{\theta^2}{3n}$ 과 $\dfrac{2\theta^2}{(n+1)(n+2)}$ 로 MLE 가 훨씬 우수하다.
-  <ol class="fill">
-    <li><span class="step">적률추정량.</span> $E(X)=\theta/2$ 이므로 $\theta/2=\overline X_n$ 에서
-      $\hat\theta_{MM}=2\overline X_n$. 비편향이며
-      $$\mathrm{MSE}=Var(2\overline X_n)=4\cdot\frac{\theta^2/12}{n}=\frac{\theta^2}{3n}$$</li>
-    <li><span class="step">최대가능도 추정량.</span> $L(\theta)=\theta^{-n}I(X_{(n)}\le\theta)$ 는
-      $\theta\ge X_{(n)}$ 에서 <b>감소</b>하므로 허용되는 가장 작은 값에서 최대가 된다.
-      즉 $\hat\theta_{MLE}=X_{(n)}$ 이다. 편향은
-      $E(X_{(n)})=\frac{n}{n+1}\theta$ 에서 $-\frac{\theta}{n+1}$ 이고
-      $$\mathrm{MSE}=\frac{n\theta^2}{(n+1)^2(n+2)}+\frac{\theta^2}{(n+1)^2}=\frac{2\theta^2}{(n+1)(n+2)}$$</li>
-    <li><span class="step">비교.</span> 적률추정량의 $\mathrm{MSE}$ 는 $O(n^{-1})$, MLE 는 $O(n^{-2})$ 이므로
-      MLE 가 압도적으로 낫다. 게다가 $2\overline X_n\lt X_{(n)}$ 인 표본에서는
-      적률추정값이 <b>이미 관측된 값보다 작아져</b> $\theta$ 로 불가능한 값을 준다.</li>
-  </ol>
+<div class="ans"><span class="exn">04</span><b>정답</b> $\hat\theta_{MM}=2\overline X_n$, $\hat\theta_{MLE}=X_{(n)}$ — MLE 우세
+  <p>$E(X)=\theta/2$ 에서 $\hat\theta_{MM}=2\overline X_n$ (비편향).
+  $L=\theta^{-n}I(\theta\ge X_{(n)})$ 은 감소함수이므로 $\hat\theta_{MLE}=X_{(n)}$.</p>
+  $$\mathrm{MSE}_{MM}=\frac{4}{n}\cdot\frac{\theta^2}{12}=\frac{\theta^2}{3n},\qquad
+    \mathrm{MSE}_{MLE}=\frac{n\theta^2}{(n+1)^2(n+2)}+\frac{\theta^2}{(n+1)^2}=\frac{2\theta^2}{(n+1)(n+2)}$$
+  <p>$O(n^{-1})$ 대 $O(n^{-2})$. 게다가 $2\overline X_n\lt X_{(n)}$ 이면 적률추정값이 관측값보다 작아져 불합리.</p>
 </div>
 
-<div class="ans"><span class="exn">05</span><b>정답</b> 둘 다 $\widehat{g}=1/\overline X_n$
-  <ol class="fill">
-    <li><span class="step">(1) 적률추정법.</span> $E(X)=\lambda$ 에서 $\hat\lambda=\overline X_n$ 이고,
-      $g(\lambda)=1/\lambda$ 에 그대로 대입하여 $\widehat{g}=1/\overline X_n$.</li>
-    <li><span class="step">(2) 최대가능도방법.</span> $\log L=-n\lambda+(\sum x_i)\log\lambda-\sum\log x_i!$ 를
-      미분하여 $-n+\frac{\sum x_i}{\lambda}=0$, 즉 $\hat\lambda_{MLE}=\overline X_n$.
-      $g(\lambda)=1/\lambda$ 는 일대일 함수이므로 <b>MLE 의 불변성</b>에 의해
-      $\widehat{g}=g(\hat\lambda)=1/\overline X_n$ 이다. 두 방법의 답이 일치한다.</li>
-  </ol>
+<div class="ans"><span class="exn">05</span><b>정답</b> 둘 다 $1/\overline X_n$
+  <p>두 방법 모두 $\hat\lambda=\overline X_n$ 이고, $g(\lambda)=1/\lambda$ 는 일대일이므로
+  적률에서는 그대로 대입, MLE 에서는 <b>불변성</b>으로 $\widehat g=1/\overline X_n$.</p>
 </div>
 
 <div class="ans"><span class="exn">06</span><b>정답</b> $\hat\theta_1=X_{(1)}$, &nbsp;$\hat\theta_2=\overline X_n-X_{(1)}$
-  <ol class="fill">
-    <li><span class="step">가능도함수를 쓴다.</span> 정의역이 $x\gt\theta_1$ 이므로 지시함수를 반드시 남긴다.
-      $$L(\theta_1,\theta_2)=\frac{1}{\theta_2^{\,n}}
-        \exp\!\left(-\frac{\sum(x_i-\theta_1)}{\theta_2}\right)I\big(\theta_1\le x_{(1)}\big)$$</li>
-    <li><span class="step">$\theta_1$ 을 먼저 처리한다.</span> $\theta_2$ 를 고정하면
-      지수부의 $-\sum(x_i-\theta_1)/\theta_2=(n\theta_1-\sum x_i)/\theta_2$ 는 $\theta_1$ 에 대해 <b>증가</b>한다.
-      그런데 지시함수 때문에 $\theta_1\le x_{(1)}$ 이어야 하므로, 허용되는 가장 큰 값에서 최대가 된다.
-      $$\hat\theta_1=X_{(1)}$$</li>
-    <li><span class="step">$\theta_2$ 를 미분으로 처리한다.</span> $\theta_1=\hat\theta_1$ 을 대입한 로그가능도
-      $-n\log\theta_2-\sum(x_i-x_{(1)})/\theta_2$ 를 $\theta_2$ 로 미분하면
-      $$-\frac{n}{\theta_2}+\frac{\sum(x_i-x_{(1)})}{\theta_2^2}=0
-        \ \Longrightarrow\ \hat\theta_2=\frac1n\sum(X_i-X_{(1)})=\overline X_n-X_{(1)}$$</li>
-  </ol>
+  $$L=\theta_2^{-n}\exp\!\Big(\!-\tfrac{\sum(x_i-\theta_1)}{\theta_2}\Big)I\big(\theta_1\le x_{(1)}\big)$$
+  <p>$\theta_1$ 에 대해 <b>증가</b>하므로 허용 최대값 $\hat\theta_1=X_{(1)}$.
+  대입 후 $\theta_2$ 로 미분하면 $-\frac{n}{\theta_2}+\frac{\sum(x_i-x_{(1)})}{\theta_2^2}=0$.</p>
 </div>
 
 <div class="ans"><span class="exn">07</span><b>정답</b> $\hat\theta=1/3$
-  <ol class="fill">
-    <li><span class="step">가능도함수를 세운다.</span> 관측값이 $2,2,3$ 이므로
-      $$L(\theta)=\big[2\theta(1-\theta)\big]^2\cdot(1-\theta)^2=4\,\theta^2(1-\theta)^4$$</li>
-    <li><span class="step">로그를 취해 미분한다.</span>
-      $$\log L=\log4+2\log\theta+4\log(1-\theta),\qquad
-        \frac{d\log L}{d\theta}=\frac{2}{\theta}-\frac{4}{1-\theta}=0$$
-      $2(1-\theta)=4\theta$ 에서 $\hat\theta=\dfrac13$.</li>
-    <li><span class="step">최대임을 확인한다.</span>
-      $\dfrac{d^2\log L}{d\theta^2}=-\dfrac{2}{\theta^2}-\dfrac{4}{(1-\theta)^2}\lt0$ 이므로 극대이며,
-      $(0,1)$ 에서 유일한 임계점이므로 최대이다.</li>
-  </ol>
+  $$L=[2\theta(1-\theta)]^2(1-\theta)^2=4\theta^2(1-\theta)^4,\qquad
+    \frac{2}{\theta}-\frac{4}{1-\theta}=0\ \Rightarrow\ 2(1-\theta)=4\theta$$
+  <p>$\log L''\lt0$ 이므로 최대.</p>
 </div>
 
 <div class="ans"><span class="exn">08</span><b>정답</b> $\hat p_i=X_i/n$
-  <ol class="fill">
-    <li><span class="step">로그가능도와 제약조건.</span>
-      $$\log L=\log\frac{n!}{\prod x_i!}+\sum_{i=1}^k x_i\log p_i,
-        \qquad\text{제약}\ \sum_{i=1}^k p_i=1$$</li>
-    <li><span class="step">라그랑주 승수법.</span> $\Lambda=\sum x_i\log p_i+\eta\big(1-\sum p_i\big)$ 를
-      $p_i$ 로 미분하면
-      $$\frac{x_i}{p_i}-\eta=0\ \Longrightarrow\ p_i=\frac{x_i}{\eta}$$</li>
-    <li><span class="step">제약조건으로 $\eta$ 를 결정한다.</span> $\sum p_i=1$ 에 대입하면
-      $\frac{\sum x_i}{\eta}=1$ 이고 $\sum x_i=n$ 이므로 $\eta=n$. 따라서
-      $$\hat p_i=\frac{X_i}{n}\qquad(i=1,\dots,k)$$
-      즉 각 범주의 <b>표본비율</b>이 그대로 MLE 이다.</li>
-  </ol>
+  <p>$\Lambda=\sum x_i\log p_i+\eta(1-\sum p_i)$ 를 미분하면 $\dfrac{x_i}{p_i}=\eta$, 즉 $p_i=x_i/\eta$.
+  $\sum p_i=1$ 과 $\sum x_i=n$ 에서 $\eta=n$. 각 범주의 표본비율이 MLE 이다.</p>
 </div>
 
 <div class="ans"><span class="exn">09</span><b>정답</b> $\hat p=\dfrac{X+Y}{n+m}$
-  <ol class="fill">
-    <li><span class="step">독립이므로 가능도는 곱이다.</span>
-      $$L(p)=\binom{n}{x}p^x(1-p)^{n-x}\cdot\binom{m}{y}p^y(1-p)^{m-y}
-        \ \propto\ p^{x+y}(1-p)^{(n+m)-(x+y)}$$
-      이것은 시행횟수 $n+m$, 성공횟수 $x+y$ 인 <b>하나의 이항 가능도</b>와 같은 꼴이다.</li>
-    <li><span class="step">미분하여 푼다.</span>
-      $$\frac{d}{dp}\big[(x+y)\log p+(n+m-x-y)\log(1-p)\big]
-        =\frac{x+y}{p}-\frac{n+m-x-y}{1-p}=0$$
-      정리하면 $(x+y)(1-p)=p(n+m-x-y)$ 에서 $\hat p=\dfrac{X+Y}{n+m}$.
-      두 표본을 합친 전체 성공비율이다.</li>
-  </ol>
+  <p>$L\propto p^{x+y}(1-p)^{(n+m)-(x+y)}$ 로 <b>시행 $n+m$, 성공 $x+y$ 인 하나의 이항 가능도</b>와 같은 꼴.
+  미분하면 합친 전체 성공비율이 나온다.</p>
 </div>
 
-<div class="ans"><span class="exn">10</span><b>정답</b> $L(\theta)=I\big(X_{(n)}-\tfrac12\le\theta\le X_{(1)}+\tfrac12\big)$ —
-그 구간의 <b>모든 점</b>이 MLE 이므로 유일하지 않다.
-  <ol class="fill">
-    <li><span class="step">가능도함수를 쓴다.</span> 밀도가 구간 위에서 $1$ 이므로
-      $$L(\theta)=\prod_{i=1}^n I\big(\theta-\tfrac12\le x_i\le\theta+\tfrac12\big)
-        =I\big(\theta-\tfrac12\le x_{(1)}\ \text{그리고}\ x_{(n)}\le\theta+\tfrac12\big)$$</li>
-    <li><span class="step">조건을 $\theta$ 에 대해 정리한다.</span> 두 부등식은 각각
-      $\theta\le x_{(1)}+\frac12$ 와 $\theta\ge x_{(n)}-\frac12$ 이므로
-      $$L(\theta)=\begin{cases}1,& x_{(n)}-\tfrac12\le\theta\le x_{(1)}+\tfrac12\\[2pt]0,&\text{그 외}\end{cases}$$</li>
-    <li><span class="step">결론.</span> 가능도가 그 구간에서 <b>납작한 상수 $1$</b> 이므로 최대값 $1$ 을 주는 점이
-      구간 전체이다. 표본의 폭이 $1$ 보다 작으면 이 구간은 양의 길이를 가지므로
-      MLE 는 무수히 많고 유일하지 않다.
-      (관례적으로 중점 $\frac{X_{(1)}+X_{(n)}}{2}$ 를 택하기도 한다.)</li>
-  </ol>
+<div class="ans"><span class="exn">10</span><b>정답</b> $X_{(n)}-\frac12\le\theta\le X_{(1)}+\frac12$ 인 <b>모든</b> $\theta$ — 유일하지 않다.
+  <p>$L(\theta)=\prod I(\theta-\frac12\le x_i\le\theta+\frac12)=I\big(x_{(n)}-\frac12\le\theta\le x_{(1)}+\frac12\big)$.
+  이 구간에서 가능도가 <b>상수 $1$ 로 납작</b>하므로 최대점이 구간 전체이다.
+  (관례상 중점 $\frac{X_{(1)}+X_{(n)}}{2}$ 를 택한다.)</p>
 </div>
 
 <div class="sec">비편향성 · 평균제곱오차 (11~23)</div>
 
-<div class="ans"><span class="exn">11</span><b>정답</b> $a=E(X)$ 에서 최소, 최솟값은 $Var(X)$
-  <ol class="fill">
-    <li><span class="step">$\mu=E(X)$ 를 끼워 넣고 전개한다.</span>
-      $$E(X-a)^2=E\big[(X-\mu)+(\mu-a)\big]^2
-        =E(X-\mu)^2+2(\mu-a)E(X-\mu)+(\mu-a)^2$$</li>
-    <li><span class="step">교차항이 사라진다.</span> $E(X-\mu)=0$ 이므로 가운데 항은 $0$ 이고
-      $$E(X-a)^2=Var(X)+(\mu-a)^2$$</li>
-    <li><span class="step">결론.</span> 첫 항은 $a$ 와 무관한 상수이고 둘째 항은 제곱이라 $\ge0$ 이며
-      $a=\mu$ 일 때만 $0$ 이다. 따라서 $a=E(X)$ 에서 최소이고 최솟값은 $Var(X)$ 이다.
-      (이 항등식이 곧 $\mathrm{MSE}=\text{분산}+\text{편향}^2$ 의 원형이다.)</li>
-  </ol>
+<div class="ans"><span class="exn">11</span><b>정답</b> $a=E(X)$, 최솟값 $Var(X)$
+  $$E(X-a)^2=E[(X-\mu)+(\mu-a)]^2=Var(X)+(\mu-a)^2$$
+  <p>$E(X-\mu)=0$ 이라 교차항이 소멸. 둘째 항은 $a=\mu$ 에서만 $0$.
+  이 항등식이 곧 $\mathrm{MSE}=$ 분산 $+$ 편향$^2$ 이다.</p>
 </div>
 
-<div class="ans"><span class="exn">12</span><b>정답</b> (1) $\hat\theta_{MM}=\frac23\overline X_n$ &nbsp;(2) $\hat\theta_{MLE}=X_{(1)}$
-&nbsp;(3) $\mathrm{MSE}_{MM}=\dfrac{\theta^2}{3n}$, $\mathrm{MSE}_{MLE}=\dfrac{2\theta^2}{(3n-1)(3n-2)}$ — MLE 우세
-  <ol class="fill">
-    <li><span class="step">(1) 일차적률.</span>
-      $$E(X)=\int_\theta^\infty x\cdot\frac{3\theta^3}{x^4}dx=3\theta^3\int_\theta^\infty x^{-3}dx
-        =3\theta^3\cdot\frac{\theta^{-2}}{2}=\frac{3\theta}{2}$$
-      $\frac{3\theta}{2}=\overline X_n$ 에서 $\hat\theta_{MM}=\frac23\overline X_n$.</li>
-    <li><span class="step">(2) 가능도.</span>
-      $L(\theta)=\dfrac{3^n\theta^{3n}}{\prod x_i^4}I\big(\theta\le x_{(1)}\big)$ 는
-      $\theta$ 에 대해 <b>증가</b>하므로 허용되는 가장 큰 값에서 최대이다. 즉 $\hat\theta_{MLE}=X_{(1)}$.</li>
-    <li><span class="step">(3-a) 적률추정량의 MSE.</span>
-      $E(X^2)=3\theta^3\int_\theta^\infty x^{-2}dx=3\theta^2$ 이므로
-      $Var(X)=3\theta^2-\frac94\theta^2=\frac34\theta^2$. $\hat\theta_{MM}$ 은 비편향이고
-      $$\mathrm{MSE}_{MM}=\frac49\cdot\frac{3\theta^2/4}{n}=\frac{\theta^2}{3n}$$</li>
-    <li><span class="step">(3-b) MLE 의 MSE.</span> $P(X\gt t)=(\theta/t)^3$ 이므로
-      $P(X_{(1)}\gt t)=(\theta/t)^{3n}$, 즉 $X_{(1)}$ 도 같은 꼴(형상모수 $3n$)이다. 따라서
-      $$E(X_{(1)})=\frac{3n}{3n-1}\theta,\qquad E(X_{(1)}^2)=\frac{3n}{3n-2}\theta^2$$
-      $$\mathrm{MSE}_{MLE}=E(X_{(1)}^2)-2\theta E(X_{(1)})+\theta^2
-        =\theta^2\!\left[\frac{3n}{3n-2}-\frac{6n}{3n-1}+1\right]=\frac{2\theta^2}{(3n-1)(3n-2)}$$</li>
-    <li><span class="step">비교.</span> $O(n^{-1})$ 대 $O(n^{-2})$ 이므로 $n$ 이 조금만 커져도
-      MLE 의 오차가 비교할 수 없이 작다. 04번의 $U(0,\theta)$ 와 같은 구조이다.</li>
-  </ol>
+<div class="ans"><span class="exn">12</span><b>정답</b> (1) $\frac23\overline X_n$ &nbsp;(2) $X_{(1)}$
+&nbsp;(3) $\dfrac{\theta^2}{3n}$ 대 $\dfrac{2\theta^2}{(3n-1)(3n-2)}$ — MLE 우세
+  <p>(1) $E(X)=3\theta^3\int_\theta^\infty x^{-3}dx=\frac{3\theta}{2}$.
+  (2) $L\propto\theta^{3n}I(\theta\le x_{(1)})$ 는 증가 → $X_{(1)}$.</p>
+  <p>(3) $E(X^2)=3\theta^2$ 이므로 $Var(X)=\frac34\theta^2$, $\hat\theta_{MM}$ 은 비편향이라
+  $\mathrm{MSE}_{MM}=\frac49\cdot\frac{3\theta^2/4}{n}=\frac{\theta^2}{3n}$.
+  $P(X_{(1)}\gt t)=(\theta/t)^{3n}$ 로 $X_{(1)}$ 도 같은 꼴(형상 $3n$)이므로</p>
+  $$E(X_{(1)})=\tfrac{3n}{3n-1}\theta,\quad E(X_{(1)}^2)=\tfrac{3n}{3n-2}\theta^2
+    \ \Rightarrow\ \mathrm{MSE}_{MLE}=\theta^2\Big[\tfrac{3n}{3n-2}-\tfrac{6n}{3n-1}+1\Big]
+    =\frac{2\theta^2}{(3n-1)(3n-2)}$$
 </div>
 
-<div class="ans"><span class="exn">13</span><b>정답</b> $\Omega$ 가 두 점 이상을 포함하는 한, 상수추정량은 비편향일 수 없다.
-  <ol class="fill">
-    <li><span class="step">비편향의 정의를 확인한다.</span> $T(X)=\theta_0$ 는 상수이므로
-      표본과 무관하게 $E_\theta[T(X)]=\theta_0$ 이다. 비편향이려면
-      $$E_\theta[T(X)]=\theta\qquad\text{가 \textbf{모든} }\theta\in\Omega\text{ 에서 성립}$$
-      해야 한다.</li>
-    <li><span class="step">모순을 끌어낸다.</span> 위 식은 $\theta_0=\theta$ 를 요구하는데,
-      이는 $\theta=\theta_0$ <b>하나의 점에서만</b> 참이다. 모수공간 $\Omega$ 에
-      $\theta_0$ 이외의 점 $\theta_1$ 이 있으면 그 점에서 편향이
-      $\theta_0-\theta_1\ne0$ 이 되어 비편향성이 깨진다.</li>
-    <li><span class="step">결론.</span> 따라서 상수추정량 $T(X)=\theta_0$ 은 $\theta$ 의 비편향추정량이 아니다.
-      (다만 $\theta=\theta_0$ 근처에서는 분산이 $0$ 이라 $\mathrm{MSE}$ 가 매우 작을 수 있다 — 19번 참고.)</li>
-  </ol>
+<div class="ans"><span class="exn">13</span><b>정답</b> 비편향이 아니다.
+  <p>$T$ 가 상수이므로 $E_\theta[T]=\theta_0$. 비편향이려면 <b>모든</b> $\theta$ 에서 $\theta_0=\theta$ 여야 하는데,
+  이는 $\theta=\theta_0$ 한 점에서만 참이다. 다른 점 $\theta_1$ 에서 편향이 $\theta_0-\theta_1\ne0$.</p>
 </div>
 
 <div class="ans"><span class="exn">14</span><b>정답</b> 비편향이다.
-  <ol class="fill">
-    <li><span class="step">기댓값의 선형성으로 항별로 나눈다.</span>
-      $$E\!\left[\frac1n\sum_{i=1}^n(X_i-\mu)^2\right]=\frac1n\sum_{i=1}^n E(X_i-\mu)^2$$</li>
-    <li><span class="step">각 항이 곧 분산이다.</span> $\mu$ 는 <b>알려진 상수</b>이므로
-      $E(X_i-\mu)^2=Var(X_i)=\sigma^2$ 이고
-      $$=\frac1n\cdot n\sigma^2=\sigma^2$$
-      즉 $\frac1n\sum(X_i-\mu)^2$ 은 $\sigma^2$ 의 비편향추정량이다.</li>
-    <li><span class="step">$n-1$ 이 필요 없는 이유.</span> $\mu$ 를 $\overline X_n$ 으로 <b>추정</b>하면
-      자유도를 하나 잃어 $\frac1n\sum(X_i-\overline X_n)^2$ 이 $\sigma^2$ 을 과소추정하지만,
-      여기서는 $\mu$ 가 이미 알려져 있으므로 잃는 자유도가 없다.</li>
-  </ol>
+  $$E\Big[\tfrac1n\sum(X_i-\mu)^2\Big]=\tfrac1n\sum E(X_i-\mu)^2=\tfrac1n\cdot n\sigma^2=\sigma^2$$
+  <p>$\mu$ 가 <b>알려진 상수</b>라 $E(X_i-\mu)^2$ 이 그대로 $Var(X_i)$ 이다.
+  $\mu$ 를 $\overline X_n$ 으로 추정할 때와 달리 잃는 자유도가 없어 분모가 $n$ 이어도 된다.</p>
 </div>
 
-<div class="ans"><span class="exn">15</span><b>정답</b> $3X^2$
-  <ol class="fill">
-    <li><span class="step">이차적률을 계산한다.</span>
-      $$E(X^2)=\int_0^\theta x^2\cdot\frac1\theta\,dx=\frac{1}{\theta}\cdot\frac{\theta^3}{3}=\frac{\theta^2}{3}$$</li>
-    <li><span class="step">상수배로 맞춘다.</span> $E(3X^2)=3\cdot\frac{\theta^2}{3}=\theta^2$ 이므로
-      $3X^2$ 이 $\theta^2$ 의 비편향추정량이다.</li>
-  </ol>
-</div>
+<div class="ans"><span class="exn">15</span><b>정답</b> $3X^2$ &nbsp;— $E(X^2)=\dfrac{1}{\theta}\cdot\dfrac{\theta^3}{3}=\dfrac{\theta^2}{3}$.</div>
 
 <div class="ans"><span class="exn">16</span><b>정답</b> $c=\dfrac{n+1}{2(n-1)}$
-  <ol class="fill">
-    <li><span class="step">범위의 기댓값 공식을 쓴다.</span> 폭이 $w$ 인 균등분포에서 표본범위
-      $R=X_{(n)}-X_{(1)}$ 의 기댓값은 $E(R)=\dfrac{n-1}{n+1}w$ 이다.
-      (표준화하면 $U(0,1)$ 의 $E(U_{(n)})-E(U_{(1)})=\frac{n}{n+1}-\frac{1}{n+1}=\frac{n-1}{n+1}$ 이고,
-      $w$ 배 하면 된다.)</li>
-    <li><span class="step">$w=2\theta$ 를 대입한다.</span>
-      $$E\big[c(X_{(n)}-X_{(1)})\big]=c\cdot\frac{n-1}{n+1}\cdot2\theta$$</li>
-    <li><span class="step">$\theta$ 와 같게 놓는다.</span>
-      $\dfrac{2c(n-1)}{n+1}=1$ 에서 $c=\dfrac{n+1}{2(n-1)}$.
-      $n\ge2$ 에서 정의되며 $n\to\infty$ 일 때 $c\to\frac12$ 로 간다.</li>
-  </ol>
+  <p>폭 $w$ 인 균등분포에서 표본범위의 기댓값은 $E(R)=\frac{n-1}{n+1}w$.
+  여기서 $w=2\theta$ 이므로 $c\cdot\frac{2(n-1)}{n+1}\theta=\theta$.</p>
 </div>
 
-<div class="ans"><span class="exn">17</span><b>정답</b> $c=2$
-  <ol class="fill">
-    <li><span class="step">평균을 구한다.</span> $X\sim U(0,\theta)$ 이므로 $E(X)=\theta/2$.</li>
-    <li><span class="step">비편향 조건을 푼다.</span> $E(cX)=c\theta/2=\theta$ 에서 $c=2$.
-      즉 $\hat\theta=2X$ 이다.</li>
-  </ol>
-</div>
+<div class="ans"><span class="exn">17</span><b>정답</b> $c=2$ &nbsp;— $E(cX)=c\theta/2=\theta$.</div>
 
 <div class="ans"><span class="exn">18</span><b>정답</b> $c=\dfrac{\sqrt{n-1}\;\Gamma\!\big(\frac{n-1}{2}\big)}{\sqrt2\;\Gamma\!\big(\frac{n}{2}\big)}$
-  <ol class="fill">
-    <li><span class="step">카이제곱으로 바꾼다.</span> $Y=\dfrac{(n-1)S^2}{\sigma^2}\sim\chi^2_{n-1}$ 이므로
-      $$S=\sigma\sqrt{\frac{Y}{n-1}}\ \Longrightarrow\ E(S)=\frac{\sigma}{\sqrt{n-1}}\,E(\sqrt Y)$$</li>
-    <li><span class="step">$E(\sqrt Y)$ 를 감마함수로 구한다.</span> $\chi^2_k$ 의 밀도
-      $\frac{1}{2^{k/2}\Gamma(k/2)}y^{k/2-1}e^{-y/2}$ 에 $y^{1/2}$ 을 곱해 적분하면
-      $$E(Y^{1/2})=\frac{2^{1/2}\,\Gamma\!\big(\frac{k+1}{2}\big)}{\Gamma\!\big(\frac{k}{2}\big)}
-        \ \overset{k=n-1}{=}\ \frac{\sqrt2\;\Gamma\!\big(\frac{n}{2}\big)}{\Gamma\!\big(\frac{n-1}{2}\big)}$$</li>
-    <li><span class="step">비편향 조건을 푼다.</span>
-      $$E(cS)=c\cdot\frac{\sigma}{\sqrt{n-1}}\cdot\frac{\sqrt2\,\Gamma(n/2)}{\Gamma(\frac{n-1}{2})}=\sigma
-        \ \Longrightarrow\ c=\frac{\sqrt{n-1}\;\Gamma\!\big(\frac{n-1}{2}\big)}{\sqrt2\;\Gamma\!\big(\frac{n}{2}\big)}$$
-      $c\gt1$ 이다 — $S$ 는 $\sigma$ 를 <b>과소</b>추정한다.
-      ($n=5$ 에서 $c\fallingdotseq1.0638$, $n\to\infty$ 이면 $c\to1$.)</li>
-  </ol>
+  <p>$Y=\frac{(n-1)S^2}{\sigma^2}\sim\chi^2_{n-1}$ 이므로 $S=\sigma\sqrt{Y/(n-1)}$. $\chi^2_k$ 의 반정수 적률에서</p>
+  $$E(\sqrt Y)=\frac{\sqrt2\,\Gamma\!\big(\frac{k+1}{2}\big)}{\Gamma\!\big(\frac{k}{2}\big)}
+    \overset{k=n-1}{=}\frac{\sqrt2\,\Gamma(n/2)}{\Gamma\!\big(\frac{n-1}{2}\big)}
+    \ \Rightarrow\ E(S)=\frac{\sigma}{c}$$
+  <p>$c\gt1$ — $S$ 는 $\sigma$ 를 과소추정한다. ($n=5$ 에서 $c\fallingdotseq1.064$, $n\to\infty$ 이면 $c\to1$.)</p>
 </div>
 
-<div class="ans"><span class="exn">19</span><b>정답</b> (1) $T_1$ 은 비편향, $T_2$ 는 $p\ne\frac12$ 에서 편향.
-&nbsp;(2) $\frac{2-\sqrt2}{4}\fallingdotseq0.146\lt p\lt\frac{2+\sqrt2}{4}\fallingdotseq0.854$ 에서는 $T_2$ 가, 그 밖에서는 $T_1$ 이 우수.
-  <ol class="fill">
-    <li><span class="step">(1) 비편향성.</span> $E(T_1)=E(X)=p$ 이므로 $T_1$ 은 비편향.
-      $E(T_2)=\frac12$ 이므로 편향은 $\frac12-p$ 이고, $p=\frac12$ 일 때만 $0$ 이다.</li>
-    <li><span class="step">(2-a) 각각의 MSE.</span>
-      $$\mathrm{MSE}(T_1)=Var(X)=p(1-p),\qquad
-        \mathrm{MSE}(T_2)=0+\Big(\frac12-p\Big)^2$$
-      $T_2$ 는 분산이 $0$ 이라 MSE 가 편향의 제곱뿐이다.</li>
-    <li><span class="step">(2-b) 부등식을 푼다.</span> $\mathrm{MSE}(T_2)\lt\mathrm{MSE}(T_1)$ 은
-      $$\Big(p-\frac12\Big)^2\lt p-p^2\ \Longleftrightarrow\ 2p^2-2p+\frac14\lt0
-        \ \Longleftrightarrow\ 8p^2-8p+1\lt0$$
-      근은 $p=\frac{8\pm\sqrt{32}}{16}=\frac{2\pm\sqrt2}{4}$ 이므로
-      $$0.146\fallingdotseq\frac{2-\sqrt2}{4}\lt p\lt\frac{2+\sqrt2}{4}\fallingdotseq0.854$$</li>
-    <li><span class="step">해석.</span> $p$ 가 $\frac12$ 근처면 <b>아무것도 보지 않고 $\frac12$ 이라 답하는</b>
-      쓸모없어 보이는 추정량이 오히려 MSE 가 작다. 비편향성이 곧 좋은 추정량을 뜻하지 않음을 보여주는 예이다.</li>
-  </ol>
+<div class="ans"><span class="exn">19</span><b>정답</b> (1) $T_1$ 비편향, $T_2$ 편향
+&nbsp;(2) $\frac{2-\sqrt2}{4}\fallingdotseq0.146\lt p\lt\frac{2+\sqrt2}{4}\fallingdotseq0.854$ 에서 $T_2$ 우세
+  $$\mathrm{MSE}(T_1)=p(1-p),\qquad \mathrm{MSE}(T_2)=\Big(p-\tfrac12\Big)^2\ (\text{분산}=0)$$
+  <p>$\big(p-\frac12\big)^2\lt p-p^2\iff8p^2-8p+1\lt0$, 근은 $\frac{2\pm\sqrt2}{4}$.
+  $p$ 가 $\frac12$ 근처면 <b>자료를 보지 않는</b> $T_2$ 가 오히려 낫다.</p>
 </div>
 
-<div class="ans"><span class="exn">20</span><b>정답</b> (1) $Var(\hat\lambda_1)=\dfrac{\lambda^2}{n}$, $Var(\hat\lambda_2)=\dfrac{n\lambda^2}{(n+1)^2}$
-&nbsp;(2) $\mathrm{MSE}(\hat\lambda_1)=\dfrac{\lambda^2}{n}$, $\mathrm{MSE}(\hat\lambda_2)=\dfrac{\lambda^2}{n+1}$ — $\hat\lambda_2$ 가 우수
-  <ol class="fill">
-    <li><span class="step">기본 사실.</span> $\mathrm{EXP}(\lambda)$ 에서 $E(X)=\lambda$, $Var(X)=\lambda^2$ 이므로
-      $E(\overline X_n)=\lambda$, $Var(\overline X_n)=\lambda^2/n$.</li>
-    <li><span class="step">(1) 분산.</span>
-      $$Var(\hat\lambda_1)=\frac{\lambda^2}{n},\qquad
-        Var(\hat\lambda_2)=\Big(\frac{n}{n+1}\Big)^2\frac{\lambda^2}{n}=\frac{n\lambda^2}{(n+1)^2}$$</li>
-    <li><span class="step">(2) MSE.</span> $\hat\lambda_1$ 은 비편향이므로 $\mathrm{MSE}=Var=\lambda^2/n$.
-      $\hat\lambda_2$ 는 $E(\hat\lambda_2)=\frac{n}{n+1}\lambda$ 로 편향이 $-\frac{\lambda}{n+1}$ 이고
-      $$\mathrm{MSE}(\hat\lambda_2)=\frac{n\lambda^2}{(n+1)^2}+\frac{\lambda^2}{(n+1)^2}
-        =\frac{(n+1)\lambda^2}{(n+1)^2}=\frac{\lambda^2}{n+1}$$</li>
-    <li><span class="step">비교.</span> $\dfrac{\lambda^2}{n+1}\lt\dfrac{\lambda^2}{n}$ 이므로
-      <b>모든 $\lambda$ 에서</b> 편향추정량 $\hat\lambda_2$ 의 MSE 가 더 작다.
-      약간 축소시켜 분산을 줄인 것이 편향으로 잃은 것보다 이득이다.</li>
-  </ol>
+<div class="ans"><span class="exn">20</span><b>정답</b> (1) $\dfrac{\lambda^2}{n}$, $\dfrac{n\lambda^2}{(n+1)^2}$
+&nbsp;(2) $\dfrac{\lambda^2}{n}$, $\dfrac{\lambda^2}{n+1}$ — $\hat\lambda_2$ 우세
+  <p>$Var(X)=\lambda^2$ 이므로 $Var(\overline X_n)=\lambda^2/n$, $Var(\hat\lambda_2)=\frac{n^2}{(n+1)^2}\cdot\frac{\lambda^2}{n}$.
+  $\hat\lambda_2$ 의 편향은 $-\frac{\lambda}{n+1}$ 이므로</p>
+  $$\mathrm{MSE}(\hat\lambda_2)=\frac{n\lambda^2}{(n+1)^2}+\frac{\lambda^2}{(n+1)^2}=\frac{\lambda^2}{n+1}
+    \ \lt\ \frac{\lambda^2}{n}$$
+  <p>모든 $\lambda$ 에서 편향추정량이 더 낫다.</p>
 </div>
 
-<div class="ans"><span class="exn">21</span><b>정답</b> (1) $E\big[\sum a_i\hat\theta_i\big]=\theta$ &nbsp;(2) $a_1=\dfrac{1/\sigma_1^2}{1/\sigma_1^2+1/\sigma_2^2}$
-  <ol class="fill">
-    <li><span class="step">(1) 비편향성.</span> 각 $\hat\theta_i$ 가 비편향이므로
-      $$E\Big[\sum_{i=1}^n a_i\hat\theta_i\Big]=\sum_{i=1}^n a_iE(\hat\theta_i)
-        =\sum_{i=1}^n a_i\theta=\theta\sum_{i=1}^n a_i=\theta$$
-      마지막 등호에 제약 $\sum a_i=1$ 이 쓰였다. 이 제약이 곧 비편향성의 조건이다.</li>
-    <li><span class="step">(2) $n=2$ 에서 분산을 하나의 변수로 쓴다.</span> 독립이므로
-      $a_2=1-a_1$ 을 넣어
-      $$V(a_1)=a_1^2\sigma_1^2+(1-a_1)^2\sigma_2^2$$</li>
-    <li><span class="step">미분하여 최소화한다.</span>
-      $$V'(a_1)=2a_1\sigma_1^2-2(1-a_1)\sigma_2^2=0
-        \ \Longrightarrow\ a_1(\sigma_1^2+\sigma_2^2)=\sigma_2^2
-        \ \Longrightarrow\ a_1=\frac{\sigma_2^2}{\sigma_1^2+\sigma_2^2}$$
-      $V''(a_1)=2(\sigma_1^2+\sigma_2^2)\gt0$ 이므로 최소이다.</li>
-    <li><span class="step">주어진 형태로 고쳐 쓴다.</span> 분자·분모를 $\sigma_1^2\sigma_2^2$ 로 나누면
-      $$a_1=\frac{1/\sigma_1^2}{1/\sigma_2^2+1/\sigma_1^2},\qquad
-        a_2=\frac{1/\sigma_2^2}{1/\sigma_1^2+1/\sigma_2^2}$$
-      즉 <b>정확한(분산이 작은) 추정량일수록 큰 가중치</b>를 준다. 가중치가 분산의 역수에 비례한다.</li>
-  </ol>
+<div class="ans"><span class="exn">21</span><b>정답</b> (2) $a_1=\dfrac{1/\sigma_1^2}{1/\sigma_1^2+1/\sigma_2^2}$
+  <p>(1) $E[\sum a_i\hat\theta_i]=\theta\sum a_i=\theta$ — 제약 $\sum a_i=1$ 이 곧 비편향 조건.</p>
+  <p>(2) $a_2=1-a_1$ 을 넣으면 $V(a_1)=a_1^2\sigma_1^2+(1-a_1)^2\sigma_2^2$,
+  $V'=2a_1\sigma_1^2-2(1-a_1)\sigma_2^2=0$ 에서 $a_1=\frac{\sigma_2^2}{\sigma_1^2+\sigma_2^2}$.
+  분자·분모를 $\sigma_1^2\sigma_2^2$ 로 나누면 주어진 꼴. $V''\gt0$ 이라 최소.
+  <b>가중치는 분산의 역수에 비례</b>한다.</p>
 </div>
 
-<div class="ans"><span class="exn">22</span><b>정답</b> $a_1=\dfrac15$, &nbsp;$a_2=\dfrac45$
-  <ol class="fill">
-    <li><span class="step">21번의 결과를 쓴다.</span> 가중치는 분산의 역수에 비례한다.
-      $Var(\hat\theta_2)=v$ 라 두면 $Var(\hat\theta_1)=4v$ 이므로
-      $$a_1=\frac{1/(4v)}{1/(4v)+1/v}=\frac{1/4}{1/4+1}=\frac15,\qquad a_2=1-a_1=\frac45$$</li>
-    <li><span class="step">직접 확인.</span> $V(a_1)=a_1^2(4v)+(1-a_1)^2v$ 를 미분하면
-      $8a_1v-2(1-a_1)v=0$ 에서 $10a_1=2$, 즉 $a_1=\frac15$. 같은 답이다.</li>
-    <li><span class="step">이득.</span> 이때 $Var(\hat\theta)=\frac{1}{25}(4v)+\frac{16}{25}v=\frac{20v}{25}=0.8v$ 로,
-      더 나은 추정량 $\hat\theta_2$ 하나만 쓸 때($v$)보다도 작다.
-      정확도가 떨어지는 $\hat\theta_1$ 도 <b>버리지 않고 적게 섞으면</b> 도움이 된다.</li>
-  </ol>
+<div class="ans"><span class="exn">22</span><b>정답</b> $a_1=\dfrac15$, $a_2=\dfrac45$
+  <p>21 의 결과에 $Var(\hat\theta_1)=4v$, $Var(\hat\theta_2)=v$ 를 넣으면
+  $a_1=\frac{1/4v}{1/4v+1/v}=\frac15$.
+  이때 $Var(\hat\theta)=\frac{4v}{25}+\frac{16v}{25}=0.8v$ 로, 나은 쪽 하나만 쓰는 것($v$)보다도 작다.</p>
 </div>
 
-<div class="ans"><span class="exn">23</span><b>정답</b> 효율 $=\dfrac{8}{9}$ — $\overline X_3$ 가 더 우수하다.
-  <ol class="fill">
-    <li><span class="step">두 추정량 모두 비편향임을 확인한다.</span> $E(X_i)=\theta$ 이므로
-      $$E\!\left[\frac{X_1+2X_2+X_3}{4}\right]=\frac{1+2+1}{4}\theta=\theta,\qquad E(\overline X_3)=\theta$$
-      계수의 합이 $1$ 이라 비편향이다.</li>
-    <li><span class="step">분산을 각각 구한다.</span> $Var(X_i)=\theta^2$ 이고 독립이므로
-      $$Var\!\left[\frac{X_1+2X_2+X_3}{4}\right]=\frac{1^2+2^2+1^2}{16}\theta^2=\frac{6}{16}\theta^2=\frac38\theta^2,
-        \qquad Var(\overline X_3)=\frac{\theta^2}{3}$$</li>
-    <li><span class="step">효율을 계산한다.</span> 비편향추정량끼리의 효율은 분산의 비이다.
-      $$\text{eff}=\frac{Var(\overline X_3)}{Var\big[(X_1+2X_2+X_3)/4\big]}
-        =\frac{\theta^2/3}{3\theta^2/8}=\frac{8}{9}\fallingdotseq0.889$$
-      $1$ 보다 작으므로 가중치를 고르게 준 $\overline X_3$ 가 더 낫다.
-      실제로 21번에 의해 <b>분산이 같은 관측값들은 균등가중이 최적</b>이다.</li>
-  </ol>
+<div class="ans"><span class="exn">23</span><b>정답</b> 효율 $=\dfrac89$ — $\overline X_3$ 가 우수
+  <p>계수의 합이 $1$ 이라 둘 다 비편향. $Var(X_i)=\theta^2$ 이므로</p>
+  $$Var\Big(\tfrac{X_1+2X_2+X_3}{4}\Big)=\tfrac{1+4+1}{16}\theta^2=\tfrac38\theta^2,\qquad
+    Var(\overline X_3)=\tfrac{\theta^2}{3}
+    \ \Rightarrow\ \text{eff}=\frac{\theta^2/3}{3\theta^2/8}=\frac89$$
+  <p>21 에 의해 분산이 같은 관측값은 <b>균등가중</b>이 최적이다.</p>
 </div>
 
 <div class="sec">크래머–라오 하한 · 충분성 · 완비성 (24~37)</div>
 
 <div class="ans"><span class="exn">24</span><b>정답</b> (1) $\hat\theta=V/\overline X_n$, $\hat k=\overline X_n^{\,2}/V$
-$\big(V=\frac1n\sum(X_i-\overline X_n)^2\big)$ &nbsp;(2) 디감마함수가 들어가 닫힌 해가 없다
-&nbsp;(3) $\dfrac{\theta^2}{nk}$
-  <ol class="fill">
-    <li><span class="step">(1) 두 적률을 연립한다.</span> $E(X)=k\theta$, $Var(X)=k\theta^2$ 이므로
-      $$k\theta=\overline X_n,\qquad k\theta^2=V$$
-      두 식을 나누면 $\theta=V/\overline X_n$ 이고, 이를 첫 식에 되넣으면
-      $\hat k=\overline X_n/\hat\theta=\overline X_n^{\,2}/V$.</li>
-    <li><span class="step">(2) 로그가능도를 세운다.</span> 밀도가
-      $f(x)=\frac{1}{\Gamma(k)\theta^k}x^{k-1}e^{-x/\theta}$ 이므로
-      $$\log L=-n\log\Gamma(k)-nk\log\theta+(k-1)\sum\log x_i-\frac{\sum x_i}{\theta}$$</li>
-    <li><span class="step">두 편미분 방정식을 얻는다.</span>
-      $$\frac{\partial}{\partial\theta}:\ -\frac{nk}{\theta}+\frac{\sum x_i}{\theta^2}=0
-        \ \Longrightarrow\ \hat\theta=\frac{\overline X_n}{k}$$
-      $$\frac{\partial}{\partial k}:\ -n\psi(k)-n\log\theta+\sum\log x_i=0
-        \ \Longrightarrow\ \psi(\hat k)+\log\hat\theta=\frac1n\sum\log X_i$$
-      여기서 $\psi=\Gamma'/\Gamma$ 는 <b>디감마함수</b>이다.</li>
-    <li><span class="step">어려움.</span> $\hat\theta$ 를 대입하면
-      $\log\hat k-\psi(\hat k)=\log\overline X_n-\frac1n\sum\log X_i$ 라는 방정식이 남는데,
-      좌변이 초월함수라 <b>닫힌 형태의 해가 없고 뉴턴법 등 수치해법이 필요하다.</b>
-      적률추정량을 초기값으로 삼는 것이 표준적인 처방이다.</li>
-    <li><span class="step">(3) $k$ 를 알 때의 크래머–라오 하한.</span>
-      $\log f=-\log\Gamma(k)-k\log\theta+(k-1)\log x-\frac{x}{\theta}$ 를 두 번 미분하면
-      $$\frac{\partial\log f}{\partial\theta}=-\frac{k}{\theta}+\frac{x}{\theta^2},\qquad
-        \frac{\partial^2\log f}{\partial\theta^2}=\frac{k}{\theta^2}-\frac{2x}{\theta^3}$$
-      $E(X)=k\theta$ 를 대입해 부호를 바꾸면
-      $$I(\theta)=-E\!\left[\frac{\partial^2\log f}{\partial\theta^2}\right]
-        =-\frac{k}{\theta^2}+\frac{2k\theta}{\theta^3}=\frac{k}{\theta^2}$$
-      따라서 하한은 $\dfrac{1}{nI(\theta)}=\dfrac{\theta^2}{nk}$ 이다.
-      ($\overline X_n/k$ 가 이 하한을 정확히 달성한다.)</li>
-  </ol>
+&nbsp;(2) 닫힌 해 없음 &nbsp;(3) $\dfrac{\theta^2}{nk}$ &nbsp;$\big(V=\frac1n\sum(X_i-\overline X_n)^2\big)$
+  <p>(1) $k\theta=\overline X_n$, $k\theta^2=V$ 를 나누면 $\theta=V/\overline X_n$, 되넣으면 $k=\overline X_n^{\,2}/V$.</p>
+  <p>(2) $\log L=-n\log\Gamma(k)-nk\log\theta+(k-1)\sum\log x_i-\frac{\sum x_i}{\theta}$ 에서</p>
+  $$\hat\theta=\frac{\overline X_n}{k},\qquad \psi(\hat k)+\log\hat\theta=\tfrac1n\sum\log X_i$$
+  <p>디감마 $\psi=\Gamma'/\Gamma$ 가 들어가 <b>닫힌 형태의 해가 없고 수치해법</b>이 필요하다
+  (적률추정량을 초기값으로).</p>
+  <p>(3) $\frac{\partial^2\log f}{\partial\theta^2}=\frac{k}{\theta^2}-\frac{2x}{\theta^3}$ 에 $E(X)=k\theta$ 를 넣으면
+  $I(\theta)=k/\theta^2$ → 하한 $\frac{\theta^2}{nk}$. ($\overline X_n/k$ 가 이 하한을 달성한다.)</p>
 </div>
 
 <div class="ans"><span class="exn">25</span><b>정답</b> (1) $\dfrac{(1-2p)^2p(1-p)}{n}$ &nbsp;(2) $\dfrac{T(n-T)}{n(n-1)}$
-&nbsp;(3) $\dfrac{T(T-1)}{n(n-1)}$ &nbsp;(단, $T=\sum X_i$)
-  <ol class="fill">
-    <li><span class="step">(1) 하한 공식에 대입한다.</span> 베르누이의 피셔정보는
-      $I(p)=\dfrac{1}{p(1-p)}$ 이고 $g(p)=p-p^2$ 에서 $g'(p)=1-2p$ 이므로
-      $$\mathrm{CRLB}=\frac{[g'(p)]^2}{nI(p)}=\frac{(1-2p)^2\,p(1-p)}{n}$$
-      $p=\frac12$ 에서 하한이 $0$ 이 되는 것이 특이하다.</li>
-    <li><span class="step">(2) 완비 충분통계량을 찾는다.</span> $T=\sum X_i\sim B(n,p)$ 는
-      지수족의 자연통계량이므로 완비 충분통계량이다.
-      레만–쉐페에 의해 <b>$T$ 의 함수이면서 비편향</b>인 것을 찾으면 그것이 MVUE 다.</li>
-    <li><span class="step">$T(n-T)$ 의 기댓값을 계산한다.</span> $E(T)=np$, $E(T^2)=np(1-p)+n^2p^2$ 이므로
-      $$E[T(n-T)]=n\cdot np-\big[np(1-p)+n^2p^2\big]
-        =n^2p(1-p)-np(1-p)=n(n-1)p(1-p)$$
-      따라서 $\dfrac{T(n-T)}{n(n-1)}$ 이 비편향이고, 이것이 MVUE 이다.
-      $\hat p=T/n$ 으로 쓰면 $\dfrac{n}{n-1}\hat p(1-\hat p)$ 이다.</li>
-    <li><span class="step">(3) $p^2$ 도 같은 요령.</span> $E[T(T-1)]=E(T^2)-E(T)=n(n-1)p^2$ 이므로
-      $$\widehat{p^2}=\frac{T(T-1)}{n(n-1)}$$
-      이 $T$ 의 함수이며 비편향이므로 MVUE 이다.
-      (조합적으로는 서로 다른 두 시행이 모두 성공할 비율 $\binom{T}{2}\big/\binom{n}{2}$ 와 같은 식이다.)</li>
-  </ol>
+&nbsp;(3) $\dfrac{T(T-1)}{n(n-1)}$ &nbsp;$(T=\sum X_i)$
+  <p>(1) $I(p)=\frac{1}{p(1-p)}$, $g'(p)=1-2p$ → $\mathrm{CRLB}=\frac{[g']^2}{nI(p)}$.</p>
+  <p>(2)(3) $T\sim B(n,p)$ 가 완비 충분통계량이므로 $T$ 의 함수이면서 비편향인 것을 찾으면 레만–쉐페로 MVUE.</p>
+  $$E[T(n-T)]=n\cdot np-\big[np(1-p)+n^2p^2\big]=n(n-1)p(1-p),\qquad
+    E[T(T-1)]=n(n-1)p^2$$
 </div>
 
-<div class="ans"><span class="exn">26</span><b>정답</b> (1) $\dfrac{\theta^2}{n}$ &nbsp;(2) $Var=\dfrac{\theta^2}{n(n+2)}\lt\dfrac{\theta^2}{n}$ —
-정규조건이 깨져 정리 4.3(크래머–라오)이 적용되지 않는다.
-  <ol class="fill">
-    <li><span class="step">(1) 형식적으로 피셔정보를 계산한다.</span> $f(x;\theta)=1/\theta$ 이므로
-      $\log f=-\log\theta$ 이고
-      $$\frac{d}{d\theta}\log f=-\frac1\theta,\qquad
-        I(\theta)=E\!\left[\Big(-\frac1\theta\Big)^{\!2}\right]=\frac{1}{\theta^2}$$
-      따라서 $\dfrac{1}{nI(\theta)}=\dfrac{\theta^2}{n}$.</li>
-    <li><span class="step">(2) 추정량의 분산을 구한다.</span> $Var(X_{(n)})=\dfrac{n\theta^2}{(n+1)^2(n+2)}$ 이므로
-      $$Var\!\left[\frac{n+1}{n}X_{(n)}\right]=\frac{(n+1)^2}{n^2}\cdot\frac{n\theta^2}{(n+1)^2(n+2)}
-        =\frac{\theta^2}{n(n+2)}$$</li>
-    <li><span class="step">하한을 뚫는다.</span>
-      $$\frac{\theta^2}{n(n+2)}\ \lt\ \frac{\theta^2}{n}$$
-      비편향추정량의 분산이 '하한'보다 작으니 모순처럼 보인다.</li>
-    <li><span class="step">설명 — 정규조건이 성립하지 않는다.</span> 정리 4.3 은
-      <b>정규조건</b>, 특히 "확률밀도함수의 <b>받침(support)이 모수에 의존하지 않을 것</b>"과
-      "미분과 적분의 순서를 바꿀 수 있을 것"을 전제로 한다.
-      그런데 $U(0,\theta)$ 의 받침 $(0,\theta)$ 는 $\theta$ 에 직접 의존하므로
-      $\frac{d}{d\theta}\int_0^\theta f\,dx$ 에서 적분 구간 자체가 움직여
-      $\int\frac{\partial f}{\partial\theta}dx$ 와 같지 않다.
-      따라서 (1)에서 계산한 $\theta^2/n$ 은 <b>애초에 하한으로서의 자격이 없는 숫자</b>이며,
-      이를 밑도는 분산이 나와도 아무 모순이 아니다.</li>
-  </ol>
+<div class="ans"><span class="exn">26</span><b>정답</b> (1) $\dfrac{\theta^2}{n}$
+&nbsp;(2) $Var=\dfrac{\theta^2}{n(n+2)}\lt\dfrac{\theta^2}{n}$ — 정규조건 위배로 정리 4.3 이 적용되지 않는다.
+  <p>(1) $\log f=-\log\theta$ 이므로 형식적으로 $I(\theta)=E[(-1/\theta)^2]=1/\theta^2$.</p>
+  <p>(2) $Var(X_{(n)})=\frac{n\theta^2}{(n+1)^2(n+2)}$ 이므로
+  $Var\big[\frac{n+1}{n}X_{(n)}\big]=\frac{\theta^2}{n(n+2)}$ 로 (1)보다 작다.</p>
+  <p><b>모순이 아닌 이유:</b> 정리 4.3 은 받침이 모수에 의존하지 않을 것을 요구하는데
+  $U(0,\theta)$ 의 받침 $(0,\theta)$ 는 $\theta$ 에 의존한다. 미분과 적분의 교환이 깨지므로
+  (1)의 $\theta^2/n$ 은 <b>애초에 하한이 아니다.</b></p>
 </div>
 
 <div class="ans"><span class="exn">27</span><b>정답</b> (2) $f(y_1,y_2)=\theta^{-2}e^{-y_1/\theta}$, $0\lt y_2\lt y_1$
-&nbsp;(4) $Y_2\mid Y_1=y_1\ \sim\ U(0,y_1)$ — $\theta$ 를 포함하지 않는다.
-  <ol class="fill">
-    <li><span class="step">(1) 인수분해 정리.</span> 결합밀도가
-      $$f(x_1,x_2;\theta)=\frac{1}{\theta^2}e^{-(x_1+x_2)/\theta}
-        =\underbrace{\frac{1}{\theta^2}e^{-y_1/\theta}}_{g(y_1;\theta)}\cdot\underbrace{1}_{h(x)}$$
-      로 쓰이고 $\theta$ 가 들어간 부분이 $y_1=x_1+x_2$ 를 통해서만 자료에 의존하므로,
-      $Y_1=X_1+X_2$ 는 충분통계량이다.</li>
-    <li><span class="step">(2) 변수변환.</span> $y_1=x_1+x_2$, $y_2=x_2$ 로 두면
-      역변환은 $x_1=y_1-y_2$, $x_2=y_2$ 이고 야코비안은 $|J|=1$ 이다.
-      정의역 $x_1\gt0,\ x_2\gt0$ 은 $0\lt y_2\lt y_1$ 으로 옮겨가므로
-      $$f_{Y_1,Y_2}(y_1,y_2)=\frac{1}{\theta^2}e^{-y_1/\theta},\qquad 0\lt y_2\lt y_1\lt\infty$$
-      $y_2$ 가 밀도식에 나타나지 않고 <b>정의역에만</b> 나타나는 것이 핵심이다.</li>
-    <li><span class="step">(3) $Y_2$ 의 성질.</span> $Y_2=X_2$ 는 그냥 하나의 관측값이므로
-      $\mathrm{EXP}(\theta)$ 를 따르고
-      $$E(Y_2)=\theta\ (\text{비편향}),\qquad Var(Y_2)=\theta^2$$</li>
-    <li><span class="step">(4) 조건부 밀도.</span> 먼저 주변밀도를 구하면
-      $$f_{Y_1}(y_1)=\int_0^{y_1}\frac{1}{\theta^2}e^{-y_1/\theta}dy_2=\frac{y_1}{\theta^2}e^{-y_1/\theta}
-        \qquad(\text{즉 }Y_1\sim\mathrm{Gamma}(2,\theta))$$
-      이므로
-      $$f(y_2\mid y_1)=\frac{\theta^{-2}e^{-y_1/\theta}}{y_1\theta^{-2}e^{-y_1/\theta}}=\frac{1}{y_1},
-        \qquad 0\lt y_2\lt y_1$$
-      즉 $U(0,y_1)$ 이고 $\theta$ 가 완전히 사라졌다. 이것이 바로 충분성의 정의이며,
-      (1)의 결과를 직접 확인한 셈이다.
-      (덧붙여 라오–블랙웰을 적용하면 $E(Y_2\mid Y_1)=Y_1/2=\overline X_2$ 로,
-      분산이 $\theta^2$ 에서 $\theta^2/2$ 로 줄어든다.)</li>
-  </ol>
+&nbsp;(4) $Y_2\mid Y_1=y_1\sim U(0,y_1)$
+  <p>(1) $f(x_1,x_2)=\theta^{-2}e^{-(x_1+x_2)/\theta}$ 이 $y_1$ 만으로 $\theta$ 에 의존 → 인수분해 정리.</p>
+  <p>(2) $x_1=y_1-y_2$, $x_2=y_2$, $|J|=1$. 정의역 $x_1,x_2\gt0$ 이 $0\lt y_2\lt y_1$ 로 옮겨간다.
+  $y_2$ 가 <b>밀도식에는 없고 정의역에만</b> 나타나는 것이 핵심.</p>
+  <p>(3) $Y_2=X_2\sim\mathrm{EXP}(\theta)$ 이므로 $E=\theta$, $Var=\theta^2$.</p>
+  <p>(4) $f_{Y_1}(y_1)=\int_0^{y_1}\theta^{-2}e^{-y_1/\theta}dy_2=\frac{y_1}{\theta^2}e^{-y_1/\theta}$ 로 나누면
+  $f(y_2\mid y_1)=1/y_1$ — $\theta$ 소멸. (1)을 직접 확인한 셈이다.</p>
 </div>
 
-<div class="ans"><span class="exn">28</span><b>정답</b> (1) 아니다 — $E[e^{-X}]=e^{-\lambda(1-e^{-1})}$
-&nbsp;(2) $E[u(X)]=P(X=0)=e^{-\lambda}$ &nbsp;(3) 편향추정량 $e^{-X}$ 의 MSE 가 오히려 더 작다.
-  <ol class="fill">
-    <li><span class="step">(1) 적률생성함수처럼 계산한다.</span>
-      $$E[e^{-X}]=\sum_{x=0}^{\infty}e^{-x}\frac{e^{-\lambda}\lambda^x}{x!}
-        =e^{-\lambda}\sum_{x=0}^{\infty}\frac{(\lambda e^{-1})^x}{x!}
-        =e^{-\lambda}e^{\lambda e^{-1}}=e^{-\lambda(1-e^{-1})}$$
-      $1-e^{-1}\fallingdotseq0.632\ne1$ 이므로 $e^{-\lambda}$ 와 같지 않다. <b>비편향이 아니다.</b></li>
-    <li><span class="step">(2) 지시함수의 기댓값은 확률이다.</span> $u(X)$ 는 $\{X=0\}$ 의 지시함수이므로
-      $$E[u(X)]=1\cdot P(X=0)+0\cdot P(X\ge1)=e^{-\lambda}=g(\lambda)$$
-      즉 비편향이다. 나아가 $u(X)$ 는 완비 충분통계량 $X$ 의 함수이므로 레만–쉐페에 의해 MVUE 이기도 하다.</li>
-    <li><span class="step">(3-a) $u(X)$ 의 MSE.</span> 비편향이고 $u(X)$ 는 성공확률 $e^{-\lambda}$ 인
-      베르누이 확률변수이므로
-      $$\mathrm{MSE}[u(X)]=Var[u(X)]=e^{-\lambda}\big(1-e^{-\lambda}\big)$$</li>
-    <li><span class="step">(3-b) $e^{-X}$ 의 MSE.</span> (1)과 같은 계산으로
-      $E[e^{-2X}]=e^{-\lambda(1-e^{-2})}$ 이므로
-      $$\mathrm{MSE}[e^{-X}]=E[e^{-2X}]-2e^{-\lambda}E[e^{-X}]+e^{-2\lambda}
-        =e^{-\lambda(1-e^{-2})}-2e^{-\lambda(2-e^{-1})}+e^{-2\lambda}$$</li>
-    <li><span class="step">수치 비교.</span> $\lambda=1$ 에서
-      $\mathrm{MSE}[u(X)]=e^{-1}(1-e^{-1})\fallingdotseq0.233$ 인 반면
-      $\mathrm{MSE}[e^{-X}]\fallingdotseq0.421-0.391+0.135=0.165$ 이다.
-      $\lambda=0.5$ 에서도 각각 $0.239$ 와 $0.133$ 이다.
-      즉 <b>비편향인 MVUE 보다 편향추정량 $e^{-X}$ 의 오차가 더 작다.</b>
-      $u(X)$ 는 $0$ 또는 $1$ 밖에 못 내놓아 분산이 크기 때문이다 — 19번과 같은 교훈이다.</li>
-  </ol>
+<div class="ans"><span class="exn">28</span><b>정답</b> (1) 아니다 &nbsp;(2) $E[u(X)]=P(X=0)=e^{-\lambda}$
+&nbsp;(3) 편향추정량 $e^{-X}$ 의 MSE 가 더 작다.
+  $$E[e^{-X}]=e^{-\lambda}\sum_x\frac{(\lambda e^{-1})^x}{x!}=e^{-\lambda(1-e^{-1})}\ \ne\ e^{-\lambda}$$
+  <p>(2) $u(X)$ 는 $\{X=0\}$ 의 지시함수. 완비 충분통계량 $X$ 의 함수이므로 MVUE 이기도 하다.</p>
+  <p>(3) $u(X)$ 는 성공확률 $e^{-\lambda}$ 인 베르누이이므로 $\mathrm{MSE}=e^{-\lambda}(1-e^{-\lambda})$.
+  같은 계산으로 $E[e^{-2X}]=e^{-\lambda(1-e^{-2})}$ 이므로</p>
+  $$\mathrm{MSE}[e^{-X}]=e^{-\lambda(1-e^{-2})}-2e^{-\lambda(2-e^{-1})}+e^{-2\lambda}$$
+  <p>$\lambda=1$ 에서 $0.233$ 대 $0.165$. $u(X)$ 는 $0/1$ 밖에 못 내놓아 분산이 크다 — 19 와 같은 교훈.</p>
 </div>
 
-<div class="ans"><span class="exn">29</span><b>정답</b> (1) $X^2$ &nbsp;(2) $X^2$ &nbsp;(3) $\sqrt{\pi/2}\,|X|$
-  <ol class="fill">
-    <li><span class="step">(1) 인수분해 정리.</span>
-      $$f(x;\sigma^2)=\frac{1}{\sqrt{2\pi}\,\sigma}\exp\!\Big(-\frac{x^2}{2\sigma^2}\Big)$$
-      에서 $\sigma^2$ 이 들어간 부분이 자료에 $x^2$ 을 통해서만 의존하므로 $X^2$ 이 충분통계량이다.</li>
-    <li><span class="step">(2) 이차적률.</span> $E(X)=0$ 이므로 $E(X^2)=Var(X)=\sigma^2$.
-      따라서 $X^2$ 자체가 $\sigma^2$ 의 비편향추정량이다.</li>
-    <li><span class="step">(3) 절댓값의 기댓값.</span> 반정규분포의 평균 공식에서
-      $$E|X|=2\int_0^\infty x\frac{1}{\sqrt{2\pi}\sigma}e^{-x^2/(2\sigma^2)}dx
-        =\frac{2\sigma}{\sqrt{2\pi}}=\sigma\sqrt{\frac{2}{\pi}}$$
-      따라서 $\sqrt{\pi/2}\,|X|$ 의 기댓값이 $\sigma$ 이다.
-      ($\sqrt{X^2}=|X|$ 는 $\sigma$ 를 과소추정하므로 $\sqrt{\pi/2}\fallingdotseq1.2533$ 배로 보정한 것이다.
-      18번과 같은 구조이다.)</li>
-  </ol>
+<div class="ans"><span class="exn">29</span><b>정답</b> (1)(2) $X^2$ &nbsp;(3) $\sqrt{\pi/2}\,|X|$
+  <p>(1) $f\propto\sigma^{-1}e^{-x^2/2\sigma^2}$ 에서 $\sigma^2$ 이 $x^2$ 을 통해서만 의존 → 인수분해 정리.
+  (2) $E(X)=0$ 이므로 $E(X^2)=\sigma^2$.
+  (3) $E|X|=\sigma\sqrt{2/\pi}$ 이므로 $\sqrt{\pi/2}\fallingdotseq1.2533$ 배로 보정 (18 과 같은 구조).</p>
 </div>
 
-<div class="ans"><span class="exn">30</span><b>정답</b> $X_{(1)}$ 이 충분통계량이다.
-  <ol class="fill">
-    <li><span class="step">가능도를 지시함수까지 써서 정리한다.</span>
-      $$L(\theta)=\prod_{i=1}^n e^{-(x_i-\theta)}I(x_i\gt\theta)
-        =e^{n\theta}e^{-\sum x_i}\,I\big(x_{(1)}\gt\theta\big)$$
-      모든 $x_i$ 가 $\theta$ 보다 크다는 조건은 <b>가장 작은 것</b>이 $\theta$ 보다 크다는 한 개의 조건과 같다.</li>
-    <li><span class="step">인수분해 정리를 적용한다.</span>
-      $$g\big(x_{(1)};\theta\big)=e^{n\theta}I\big(x_{(1)}\gt\theta\big),\qquad h(x)=e^{-\sum x_i}$$
-      로 두면 $L=g\cdot h$ 이고, $\theta$ 가 들어간 $g$ 는 자료에 오직 $x_{(1)}$ 을 통해서만 의존한다.
-      따라서 $X_{(1)}$ 은 $\theta$ 의 충분통계량이다.</li>
-  </ol>
+<div class="ans"><span class="exn">30</span><b>정답</b> $X_{(1)}$ 이 충분통계량.
+  $$L=\prod e^{-(x_i-\theta)}I(x_i\gt\theta)=\underbrace{e^{n\theta}I\big(x_{(1)}\gt\theta\big)}_{g(x_{(1)};\theta)}
+    \cdot\underbrace{e^{-\sum x_i}}_{h(x)}$$
+  <p>"모든 $x_i$ 가 $\theta$ 보다 크다"는 조건이 $x_{(1)}\gt\theta$ 한 개로 압축된다.</p>
 </div>
 
-<div class="ans"><span class="exn">31</span><b>정답</b> (2) $E(X_{(n)})=\frac{n}{n+1}\theta\ne\theta$ &nbsp;(3) MVUE $=\dfrac{n+1}{n}X_{(n)}$
-  <ol class="fill">
-    <li><span class="step">(1-a) 충분성.</span>
-      $L(\theta)=\theta^{-n}I\big(x_{(n)}\le\theta\big)$ 이므로 인수분해 정리에 의해 $Y=X_{(n)}$ 은 충분하다.</li>
-    <li><span class="step">(1-b) 완비성.</span> $Y$ 의 밀도는 $f_Y(y)=\dfrac{ny^{n-1}}{\theta^n}$, $0\lt y\lt\theta$ 이다.
-      모든 $\theta$ 에서 $E[g(Y)]=0$ 이라고 가정하면
-      $$\int_0^\theta g(y)\,\frac{ny^{n-1}}{\theta^n}dy=0
-        \ \Longrightarrow\ \int_0^\theta g(y)y^{n-1}dy=0\quad(\text{모든 }\theta\gt0)$$
-      양변을 $\theta$ 로 미분하면(미적분학의 기본정리) $g(\theta)\theta^{n-1}=0$ 이고
-      $\theta\gt0$ 이므로 $g(\theta)=0$ 이다. 모든 $\theta$ 에서 그러하므로 $g\equiv0$, 즉 완비이다.</li>
-    <li><span class="step">(2) 편향 확인.</span>
-      $$E(X_{(n)})=\int_0^\theta y\frac{ny^{n-1}}{\theta^n}dy=\frac{n}{\theta^n}\cdot\frac{\theta^{n+1}}{n+1}
-        =\frac{n}{n+1}\theta\ \ne\ \theta$$
-      항상 $\theta$ 보다 작다 — 표본최댓값은 결코 $\theta$ 를 넘을 수 없으니 당연하다.</li>
-    <li><span class="step">(3) 레만–쉐페.</span> $\dfrac{n+1}{n}X_{(n)}$ 은 비편향이고
-      완비 충분통계량 $X_{(n)}$ 만의 함수이므로 <b>유일한 MVUE</b> 이다.
-      그 분산은 26번에서 계산한 $\dfrac{\theta^2}{n(n+2)}$ 이다.</li>
-  </ol>
+<div class="ans"><span class="exn">31</span><b>정답</b> (2) $E(X_{(n)})=\frac{n}{n+1}\theta$ &nbsp;(3) MVUE $=\dfrac{n+1}{n}X_{(n)}$
+  <p>(1) $L=\theta^{-n}I(x_{(n)}\le\theta)$ → 충분. 완비성은 $f_Y(y)=ny^{n-1}/\theta^n$ 에서</p>
+  $$\int_0^\theta g(y)y^{n-1}dy=0\ (\forall\theta)\ \xrightarrow{\ \theta\text{ 로 미분}\ }\ g(\theta)\theta^{n-1}=0
+    \ \Rightarrow\ g\equiv0$$
+  <p>(2) $E(X_{(n)})=\frac{n}{\theta^n}\cdot\frac{\theta^{n+1}}{n+1}$ — 최댓값은 $\theta$ 를 넘을 수 없으니 당연.
+  (3) 비편향 + 완비충분의 함수 → 레만–쉐페. 분산은 $\frac{\theta^2}{n(n+2)}$ (26 참고).</p>
 </div>
 
-<div class="ans"><span class="exn">32</span><b>정답</b> MVUE $=\dfrac{X_{(1)}+X_{(n)}}{2}$
-  <ol class="fill">
-    <li><span class="step">(1) 충분성.</span>
-      $$L(\theta_1,\theta_2)=\frac{1}{(\theta_2-\theta_1)^n}
-        I\big(\theta_1\le x_{(1)}\big)I\big(x_{(n)}\le\theta_2\big)$$
-      우변이 자료에 $\big(x_{(1)},x_{(n)}\big)$ 을 통해서만 의존하므로
-      인수분해 정리에 의해 $(X_{(1)},X_{(n)})$ 은 결합 충분통계량이다.
-      (완비성도 31번과 같은 방식으로 두 변수에 대해 차례로 미분하여 보일 수 있다.)</li>
-    <li><span class="step">(2-a) 두 극단값의 기댓값.</span> 폭 $w=\theta_2-\theta_1$ 이므로
-      $$E(X_{(1)})=\theta_1+\frac{w}{n+1},\qquad E(X_{(n)})=\theta_1+\frac{nw}{n+1}$$</li>
-    <li><span class="step">(2-b) 더하면 편향이 상쇄된다.</span>
-      $$E\big(X_{(1)}+X_{(n)}\big)=2\theta_1+\frac{(1+n)w}{n+1}=2\theta_1+w=\theta_1+\theta_2$$
-      아래쪽으로 치우친 $X_{(1)}$ 과 위쪽으로 치우친 $X_{(n)}$ 의 편향이 정확히 맞물려 사라진다.
-      따라서 $\dfrac{X_{(1)}+X_{(n)}}{2}$ 은 $\dfrac{\theta_1+\theta_2}{2}$ 의 비편향추정량이다.</li>
-    <li><span class="step">결론.</span> 이 추정량은 완비 충분통계량 $(X_{(1)},X_{(n)})$ 만의 함수이므로
-      레만–쉐페에 의해 MVUE 이다. 즉 <b>중점(midrange)</b> 이 답이다.</li>
-  </ol>
+<div class="ans"><span class="exn">32</span><b>정답</b> MVUE $=\dfrac{X_{(1)}+X_{(n)}}{2}$ (중점)
+  <p>(1) $L=(\theta_2-\theta_1)^{-n}I(\theta_1\le x_{(1)})I(x_{(n)}\le\theta_2)$ → 결합 충분 (완비성도 31 과 같은 방식).</p>
+  <p>(2) 폭 $w=\theta_2-\theta_1$ 에 대해 $E(X_{(1)})=\theta_1+\frac{w}{n+1}$, $E(X_{(n)})=\theta_1+\frac{nw}{n+1}$ 이므로</p>
+  $$E\big(X_{(1)}+X_{(n)}\big)=2\theta_1+w=\theta_1+\theta_2$$
+  <p>아래·위로 치우친 두 편향이 정확히 상쇄된다.</p>
 </div>
 
-<div class="ans"><span class="exn">33</span><b>정답</b> $g(\overline X_n,S^2)=\dfrac{n}{n+1}\overline X_n^{\,2}-S^2$ 이 반례이다.
-  <ol class="fill">
-    <li><span class="step">$\mu^2$ 을 두 가지로 추정할 수 있음을 관찰한다.</span>
-      $N(\mu,\mu^2)$ 에서는 분산도 $\mu^2$ 이므로
-      $$E(S^2)=\mu^2$$
-      한편 $\overline X_n\sim N(\mu,\mu^2/n)$ 이므로
-      $$E(\overline X_n^{\,2})=Var(\overline X_n)+\big[E(\overline X_n)\big]^2
-        =\frac{\mu^2}{n}+\mu^2=\frac{n+1}{n}\mu^2
-        \ \Longrightarrow\ E\!\left[\frac{n}{n+1}\overline X_n^{\,2}\right]=\mu^2$$
-      즉 <b>$\mu^2$ 의 비편향추정량이 두 개</b> 생겼다.</li>
-    <li><span class="step">차를 취해 기댓값 $0$ 인 함수를 만든다.</span>
-      $$g(\overline X_n,S^2)=\frac{n}{n+1}\overline X_n^{\,2}-S^2
-        \ \Longrightarrow\ E[g]=\mu^2-\mu^2=0\quad(\text{모든 }\mu)$$</li>
-    <li><span class="step">완비성의 정의와 대조한다.</span> 그런데 $g$ 는 항등적으로 $0$ 인 함수가 아니다
-      (예컨대 $\overline X_n=0,\ S^2=1$ 이면 $g=-1$).
-      모든 $\mu$ 에서 기댓값이 $0$ 인데 함수 자체가 $0$ 이 아니므로,
-      정의 4.7 에 의해 $(\overline X_n,S^2)$ 은 <b>완비성이 없다.</b></li>
-    <li><span class="step">왜 이런 일이 생기는가.</span> 모수는 $\mu$ 하나뿐인데 통계량은 두 개라
-      $(\overline X_n,S^2)$ 이 필요 이상으로 크다. 자유도가 남으니 그 남는 방향에서
-      기댓값을 $0$ 으로 만드는 함수를 만들 수 있는 것이다.</li>
-  </ol>
+<div class="ans"><span class="exn">33</span><b>정답</b> $g=\dfrac{n}{n+1}\overline X_n^{\,2}-S^2$ 가 반례.
+  <p>$N(\mu,\mu^2)$ 에서는 $\mu^2$ 의 비편향추정량이 <b>두 개</b> 생긴다.</p>
+  $$E(S^2)=\mu^2,\qquad E(\overline X_n^{\,2})=\frac{\mu^2}{n}+\mu^2
+    \ \Rightarrow\ E\Big[\frac{n}{n+1}\overline X_n^{\,2}\Big]=\mu^2$$
+  <p>차를 취하면 모든 $\mu$ 에서 $E[g]=0$ 이지만 $g\not\equiv0$ (예: $\overline X_n=0,S^2=1$ 이면 $g=-1$).
+  모수는 하나인데 통계량이 둘이라 남는 자유도에서 이런 함수가 만들어진다.</p>
 </div>
 
-<div class="ans"><span class="exn">34</span><b>정답</b> (2) $\hat\theta_{MM}=\dfrac{\overline X_n}{1-\overline X_n}$ &nbsp;(3) $\hat\theta_{MLE}=\dfrac{n}{T}$
-&nbsp;(4) $\dfrac{T}{n}$ &nbsp;(5) $\dfrac{n-1}{T}$ &nbsp;(단, $T=-\sum\log X_i$)
-  <ol class="fill">
-    <li><span class="step">(1) 밀도의 모양.</span> $f(x;\theta)=\theta x^{\theta-1}$ 은
-      $\theta=\frac12$ 이면 $x^{-1/2}/2$ 로 $0$ 근처에서 발산하는 <b>감소</b>함수,
-      $\theta=1$ 이면 $f\equiv1$ 인 $U(0,1)$,
-      $\theta=2$ 이면 $2x$ 인 <b>증가</b>하는 직선이다.</li>
-  </ol>
+<div class="ans"><span class="exn">34</span><b>정답</b> (2) $\dfrac{\overline X_n}{1-\overline X_n}$ &nbsp;(3) $\dfrac{n}{T}$
+&nbsp;(4) $\dfrac{T}{n}$ &nbsp;(5) $\dfrac{n-1}{T}$ &nbsp;$\big(T=-\sum\log X_i\big)$
+  <p>(1) $\theta=\frac12$ 은 감소, $\theta=1$ 은 $U(0,1)$, $\theta=2$ 는 증가하는 직선 $2x$.</p>
   <figure class="fig">
-    <svg viewBox="0 0 400 330" width="100%" style="max-width:430px">
+    <svg viewBox="0 0 400 330" width="100%" style="max-width:400px">
       <g stroke="#888" stroke-width="1" fill="none">
         <line x1="60" y1="300" x2="375" y2="300"/>
         <line x1="60" y1="300" x2="60" y2="55"/>
@@ -956,406 +607,166 @@ $\big(V=\frac1n\sum(X_i-\overline X_n)^2\big)$ &nbsp;(2) 디감마함수가 들�
         <text x="300" y="132" fill="#2c6fbb">θ = 2</text>
       </g>
     </svg>
-    <figcaption>[문제 34-(1)] $f(x;\theta)=\theta x^{\theta-1}$ 의 모양. $\theta=1$ 이 균등분포이고,
-    $\theta$ 가 커질수록 확률이 $1$ 쪽으로 몰린다.</figcaption>
+    <figcaption>[34-(1)] $f(x;\theta)=\theta x^{\theta-1}$. $\theta$ 가 커질수록 확률이 $1$ 쪽으로 몰린다.</figcaption>
   </figure>
-  <ol class="fill" start="2">
-    <li><span class="step">(2) 적률추정량과 완비충분통계량.</span>
-      $$E(X)=\int_0^1x\cdot\theta x^{\theta-1}dx=\frac{\theta}{\theta+1}
-        \ \Longrightarrow\ \hat\theta_{MM}=\frac{\overline X_n}{1-\overline X_n}$$
-      한편 $L(\theta)=\theta^n\big(\prod x_i\big)^{\theta-1}$ 이므로 지수족이고
-      $T=-\sum\log X_i$ 가 완비 충분통계량이다.
-      $\hat\theta_{MM}$ 은 $\overline X_n$ 만의 함수인데 $\overline X_n$ 은 $T$ 로 복원되지 않으므로,
-      적률추정량은 <b>완비충분통계량의 함수가 아니다.</b>
-      (라오–블랙웰을 적용할 여지가 남아 있다는 뜻이다.)</li>
-    <li><span class="step">(3) MLE.</span>
-      $$\log L=n\log\theta+(\theta-1)\sum\log x_i,\qquad
-        \frac{n}{\theta}+\sum\log x_i=0\ \Longrightarrow\ \hat\theta_{MLE}=\frac{n}{-\sum\log X_i}=\frac{n}{T}$$</li>
-    <li><span class="step">(4) $1/\theta$ 의 MVUE.</span> 힌트의 $E[-\log X]=1/\theta$ 에서
-      $E(T)=n/\theta$ 이므로 $T/n$ 이 비편향이다. 완비충분통계량 $T$ 만의 함수이므로
-      레만–쉐페에 의해 MVUE 이다.
-      $$\widehat{1/\theta}=\frac{T}{n}=-\frac1n\sum_{i=1}^n\log X_i$$</li>
-    <li><span class="step">(5) $\theta$ 의 MVUE.</span> $-\log X_i$ 는 비율모수 $\theta$ 인 지수분포를 따르므로
-      $T\sim\mathrm{Gamma}(n,\,1/\theta)$ 이고
-      $$E\!\left[\frac1T\right]=\frac{\theta}{n-1}\quad(n\ge2)$$
-      따라서 $\dfrac{n-1}{T}$ 이 비편향이며, 역시 $T$ 만의 함수이므로 MVUE 이다.
-      MLE $n/T$ 와 비교하면 분자만 $n\to n-1$ 로 줄인 꼴로, MLE 는 위로 편향되어 있다.</li>
-  </ol>
+  <p>(2) $E(X)=\frac{\theta}{\theta+1}=\overline X_n$ 에서 적률추정량을 얻는다.
+  그런데 $L=\theta^n(\prod x_i)^{\theta-1}$ 이라 완비충분통계량은 $T=-\sum\log X_i$ 인데,
+  $\overline X_n$ 은 $T$ 로 복원되지 않으므로 <b>$T$ 의 함수가 아니다</b>(라오–블랙웰의 여지가 남는다).</p>
+  <p>(3) $\frac{n}{\theta}+\sum\log x_i=0$ → $\hat\theta_{MLE}=n/T$.</p>
+  <p>(4) 힌트에서 $E(T)=n/\theta$ 이므로 $T/n$ 이 비편향 + $T$ 의 함수 → 레만–쉐페.</p>
+  <p>(5) $-\log X_i$ 가 비율 $\theta$ 인 지수분포이므로 $T\sim\mathrm{Gamma}(n,1/\theta)$,
+  $E[1/T]=\frac{\theta}{n-1}$ → $\frac{n-1}{T}$. MLE $n/T$ 는 위로 편향되어 있다.</p>
 </div>
 
 <div class="ans"><span class="exn">35</span><b>정답</b> (1)(2) $\hat p=1/\overline X_n$ &nbsp;(3) $\overline X_n$
 &nbsp;(4) $\dfrac{p^2(1-p)}{n}$
-  <ol class="fill">
-    <li><span class="step">(1) 적률추정.</span> 기하분포의 평균은 $E(X)=1/p$ 이므로
-      $1/p=\overline X_n$ 에서 $\hat p_{MM}=1/\overline X_n$.</li>
-    <li><span class="step">(2) MLE.</span>
-      $$\log L=n\log p+\Big(\sum x_i-n\Big)\log(1-p),\qquad
-        \frac{n}{p}-\frac{\sum x_i-n}{1-p}=0$$
-      정리하면 $n(1-p)=p\big(\sum x_i-n\big)$, 즉 $n=p\sum x_i$ 이므로
-      $\hat p_{MLE}=\dfrac{n}{\sum X_i}=\dfrac{1}{\overline X_n}$ 로 적률추정량과 같다.</li>
-    <li><span class="step">(3) 불변성.</span> $E(X_1)=1/p$ 이고 $p\mapsto1/p$ 는 일대일이므로
-      $$\widehat{E(X_1)}=\frac{1}{\hat p_{MLE}}=\overline X_n$$</li>
-    <li><span class="step">(4) 피셔정보.</span> $\log f=\log p+(x-1)\log(1-p)$ 를 두 번 미분하면
-      $$\frac{\partial^2\log f}{\partial p^2}=-\frac{1}{p^2}-\frac{x-1}{(1-p)^2}$$
-      $E(X)=1/p$ 를 대입해 부호를 바꾸면
-      $$I(p)=\frac{1}{p^2}+\frac{1/p-1}{(1-p)^2}=\frac{1}{p^2}+\frac{1}{p(1-p)}
-        =\frac{(1-p)+p}{p^2(1-p)}=\frac{1}{p^2(1-p)}$$
-      따라서 크래머–라오 하한은 $\dfrac{1}{nI(p)}=\dfrac{p^2(1-p)}{n}$.</li>
-  </ol>
+  <p>(1) $E(X)=1/p$. (2) $\frac np-\frac{\sum x_i-n}{1-p}=0$ → $n=p\sum x_i$ 로 적률과 일치.
+  (3) 불변성으로 $\widehat{1/p}=\overline X_n$.</p>
+  <p>(4) $\frac{\partial^2\log f}{\partial p^2}=-\frac{1}{p^2}-\frac{x-1}{(1-p)^2}$ 에 $E(X)=1/p$ 를 넣으면</p>
+  $$I(p)=\frac{1}{p^2}+\frac{1}{p(1-p)}=\frac{1}{p^2(1-p)}\ \Rightarrow\ \mathrm{CRLB}=\frac{p^2(1-p)}{n}$$
 </div>
 
-<div class="ans"><span class="exn">36</span><b>정답</b> $\widehat{P(X\gt0)}=\Phi\!\left(\dfrac{\overline X_n}{\hat\sigma}\right)$,
-&nbsp;$\hat\sigma=\sqrt{\frac1n\sum(X_i-\overline X_n)^2}$
-  <ol class="fill">
-    <li><span class="step">모수의 함수로 표현한다.</span> $X\sim N(\mu,\sigma^2)$ 이므로 표준화하면
-      $$P(X\gt0)=P\!\left(Z\gt-\frac{\mu}{\sigma}\right)=\Phi\!\left(\frac{\mu}{\sigma}\right)$$
-      즉 $g(\mu,\sigma)=\Phi(\mu/\sigma)$ 라는 모수의 함수이다.</li>
-    <li><span class="step">MLE 를 대입한다.</span> 정규분포의 MLE 는
-      $\hat\mu=\overline X_n$, $\hat\sigma^2=\frac1n\sum(X_i-\overline X_n)^2$ 이고
-      (분모가 $n-1$ 이 아니라 $n$ 임에 주의),
-      MLE 의 <b>불변성</b>에 의해
-      $$\widehat{P(X\gt0)}=\Phi\!\left(\frac{\overline X_n}{\hat\sigma}\right)$$</li>
-  </ol>
+<div class="ans"><span class="exn">36</span><b>정답</b> $\Phi\!\left(\dfrac{\overline X_n}{\hat\sigma}\right)$,
+&nbsp;$\hat\sigma^2=\frac1n\sum(X_i-\overline X_n)^2$
+  <p>$P(X\gt0)=\Phi(\mu/\sigma)$ 이고 정규분포의 MLE 는 $\overline X_n$ 과 $\hat\sigma^2$ (분모가 $n-1$ 이 아님).
+  불변성으로 대입.</p>
 </div>
 
-<div class="ans"><span class="exn">37</span><b>정답</b> 인수분해 정리에서 곧바로 따라나온다.
-  <ol class="fill">
-    <li><span class="step">인수분해 정리를 쓴다.</span> $(S_1,\dots,S_k)$ 가 결합 충분통계량이므로
-      가능도함수를 다음과 같이 쪼갤 수 있다.
-      $$L(\theta_1,\dots,\theta_k)=g\big(s_1,\dots,s_k;\theta_1,\dots,\theta_k\big)\cdot h(x_1,\dots,x_n)$$</li>
-    <li><span class="step">최대화에서 $h$ 는 무관하다.</span> $h$ 는 모수를 포함하지 않으므로
-      $\theta$ 에 대해 <b>상수</b>이다. 따라서 $L$ 을 최대로 하는 $\theta$ 와
-      $g$ 를 최대로 하는 $\theta$ 는 정확히 같다.
-      $$(\hat\theta_1,\dots,\hat\theta_k)=\operatorname*{arg\,max}_{\theta}L
-        =\operatorname*{arg\,max}_{\theta}\,g\big(s_1,\dots,s_k;\theta\big)$$</li>
-    <li><span class="step">결론.</span> 우변의 $g$ 는 자료에 오직 $(s_1,\dots,s_k)$ 를 통해서만 의존하므로,
-      그 최대점 역시 $(s_1,\dots,s_k)$ 만으로 결정된다.
-      즉 MLE 는 결합 충분통계량의 함수이다.
-      (그래서 MLE 가 완비 충분통계량의 함수이면서 비편향이면 곧바로 MVUE 가 된다.)</li>
-  </ol>
+<div class="ans"><span class="exn">37</span><b>정답</b> 인수분해 정리에서 곧바로 나온다.
+  <p>$L=g(s_1,\dots,s_k;\theta)\,h(x)$ 에서 $h$ 는 $\theta$ 에 대해 상수이므로</p>
+  $$\operatorname*{arg\,max}_{\theta}L=\operatorname*{arg\,max}_{\theta}\,g(s_1,\dots,s_k;\theta)$$
+  <p>우변은 자료에 $(s_1,\dots,s_k)$ 로만 의존하므로 그 최대점도 그러하다.
+  (그래서 MLE 가 완비충분의 함수이면서 비편향이면 곧 MVUE.)</p>
 </div>
 
 <div class="sec">일치성 · 구간추정 (38~52)</div>
 
-<div class="ans"><span class="exn">38</span><b>정답</b> 체비셰프 부등식으로 곧바로 따라나온다. (본문 4.5 의 따름정리)
-  <ol class="fill">
-    <li><span class="step">체비셰프를 적용한다.</span> $T_n$ 이 비편향이므로 $E(T_n)=\theta$ 이고,
-      임의의 $\varepsilon\gt0$ 에 대하여
-      $$P\big(|T_n(X)-\theta|\ge\varepsilon\big)\ \le\ \frac{Var(T_n(X))}{\varepsilon^2}$$</li>
-    <li><span class="step">극한을 취한다.</span> 가정에서 분자가 $0$ 으로 수렴하고 $\varepsilon$ 은 고정된 상수이므로
-      우변이 $0$ 으로 간다. 확률은 음이 아니므로 좌변도 $0$ 으로 수렴하고,
-      이는 곧 $T_n\xrightarrow{\ p\ }\theta$ 즉 일치성이다.</li>
-    <li><span class="step">보충.</span> 비편향이 아니어도 $\mathrm{MSE}(T_n)\to0$ 이면 같은 결론이 성립한다
-      (정리 4.9). 비편향일 때는 $\mathrm{MSE}=Var$ 이므로 이 문제는 그 특수한 경우이다.</li>
-  </ol>
+<div class="ans"><span class="exn">38</span><b>정답</b> 체비셰프로 즉시. (4.5 의 따름정리)
+  $$P\big(|T_n-\theta|\ge\varepsilon\big)\le\frac{Var(T_n)}{\varepsilon^2}\ \longrightarrow\ 0$$
+  <p>비편향이라 $E(T_n)=\theta$ 이므로 체비셰프를 그대로 쓸 수 있다.
+  일반적으로는 $\mathrm{MSE}\to0$ 이면 충분하다(정리 4.9).</p>
 </div>
 
-<div class="ans"><span class="exn">39</span><b>정답</b> (1) $\hat\theta=X_{(1)}$ &nbsp;(2) $\hat\xi_{0.95}=X_{(1)}+\log20$
-  <ol class="fill">
-    <li><span class="step">(1) 가능도가 증가함수임을 본다.</span>
-      $$L(\theta)=e^{n\theta}e^{-\sum x_i}I\big(\theta\lt x_{(1)}\big)$$
-      는 $\theta$ 에 대해 증가하므로 허용되는 가장 큰 값에서 최대가 된다. 즉 $\hat\theta_{MLE}=X_{(1)}$.</li>
-    <li><span class="step">(2) 백분위수를 모수로 표현한다.</span> 분포함수는
-      $F(x)=1-e^{-(x-\theta)}$, $x\gt\theta$ 이므로 $95$ 백분위수 $\xi_{0.95}$ 는
-      $$0.95=1-e^{-(\xi-\theta)}\ \Longrightarrow\ e^{-(\xi-\theta)}=0.05
-        \ \Longrightarrow\ \xi_{0.95}=\theta-\log(0.05)=\theta+\log20$$</li>
-    <li><span class="step">불변성으로 마무리한다.</span> $\theta\mapsto\theta+\log20$ 은 일대일이므로
-      $$\hat\xi_{0.95}=\hat\theta+\log20=X_{(1)}+\log20\fallingdotseq X_{(1)}+2.996$$</li>
-  </ol>
+<div class="ans"><span class="exn">39</span><b>정답</b> (1) $X_{(1)}$ &nbsp;(2) $X_{(1)}+\log20\fallingdotseq X_{(1)}+2.996$
+  <p>(1) $L=e^{n\theta}e^{-\sum x_i}I(\theta\lt x_{(1)})$ 는 증가함수.</p>
+  <p>(2) $F(x)=1-e^{-(x-\theta)}$ 에서 $0.95=1-e^{-(\xi-\theta)}$ → $\xi=\theta+\log20$. 불변성으로 대입.</p>
 </div>
 
-<div class="ans"><span class="exn">40</span><b>정답</b> 추축변량 $\sqrt n\Big(\dfrac{\overline X_n}{\mu}-1\Big)\sim N(0,1)$,
-&nbsp;$90\%$ 신뢰구간 $\left(\dfrac{\overline X_{16}}{1.411},\ \dfrac{\overline X_{16}}{0.589}\right)$ (단 $\mu\gt0$)
-  <ol class="fill">
-    <li><span class="step">추축변량을 만든다.</span> $\sigma=|\mu|$ 이므로
-      $\overline X_n\sim N\big(\mu,\ \mu^2/n\big)$ 이고, 표준화하면
-      $$Z=\frac{\overline X_n-\mu}{|\mu|/\sqrt n}\ \overset{\mu\gt0}{=}\ \sqrt n\Big(\frac{\overline X_n}{\mu}-1\Big)\ \sim\ N(0,1)$$
-      분포가 $\mu$ 에 전혀 의존하지 않으므로 <b>추축변량</b>이다.
-      $\mu$ 가 분모로 들어간 것이 핵심 — 이것이 $\sigma$ 를 몰라도 되게 해 준다.</li>
-    <li><span class="step">확률진술을 세운다.</span> $n=16$, $z_{0.05}=1.645$ 이므로
-      $$P\!\left(-1.645\lt4\Big(\frac{\overline X_{16}}{\mu}-1\Big)\lt1.645\right)=0.90$$</li>
-    <li><span class="step">$\mu$ 에 대해 푼다.</span> 각 변을 $4$ 로 나누고 $1$ 을 더하면
-      $$0.58875\lt\frac{\overline X_{16}}{\mu}\lt1.41125$$
-      $\mu\gt0$ 이라 가정하면 역수를 취할 때 부등호가 뒤집히므로
-      $$\frac{\overline X_{16}}{1.41125}\ \lt\ \mu\ \lt\ \frac{\overline X_{16}}{0.58875}$$
-      즉 $\big(0.709\,\overline X_{16},\ 1.699\,\overline X_{16}\big)$ 이다.
-      구간이 $\overline X_{16}$ 에 <b>비례</b>하는 것이 특징이다.</li>
-  </ol>
+<div class="ans"><span class="exn">40</span><b>정답</b> 추축변량 $\sqrt n\big(\frac{\overline X_n}{\mu}-1\big)\sim N(0,1)$,
+&nbsp;$\left(\dfrac{\overline X_{16}}{1.411},\ \dfrac{\overline X_{16}}{0.589}\right)$ $(\mu\gt0)$
+  <p>$\sigma=|\mu|$ 이므로 $\overline X_n\sim N(\mu,\mu^2/n)$ 이고, <b>$\mu$ 가 분모로 들어가</b> 모수가 소거된다.
+  $n=16$, $z_{0.05}=1.645$ 를 넣으면</p>
+  $$-1.645\lt4\Big(\frac{\overline X_{16}}{\mu}-1\Big)\lt1.645
+    \ \Rightarrow\ 0.589\lt\frac{\overline X_{16}}{\mu}\lt1.411$$
+  <p>역수를 취하면 부등호가 뒤집힌다. 구간이 $\overline X_{16}$ 에 비례하는 것이 특징.</p>
 </div>
 
 <div class="ans"><span class="exn">41</span><b>정답</b> $n\ge2276$ 회
-  <ol class="fill">
-    <li><span class="step">최대오차를 식으로 쓴다.</span> $\hat p$ 의 근사분포는 $N\big(p,\,p(1-p)/n\big)$ 이므로
-      신뢰도 $99\%$ 에서 오차한계는
-      $$E=z_{0.005}\sqrt{\frac{p(1-p)}{n}},\qquad z_{0.005}=2.576$$</li>
-    <li><span class="step">$p$ 를 모르므로 최악의 경우로 잡는다.</span> $p(1-p)$ 는 $p=\frac12$ 에서
-      최댓값 $\frac14$ 을 가지므로
-      $$E\ \le\ 2.576\cdot\frac{1/2}{\sqrt n}=\frac{1.288}{\sqrt n}$$</li>
-    <li><span class="step">부등식을 푼다.</span>
-      $$\frac{1.288}{\sqrt n}\le0.027\ \Longrightarrow\ \sqrt n\ge\frac{1.288}{0.027}=47.70
-        \ \Longrightarrow\ n\ge2275.6$$
-      따라서 $n=2276$ 회 이상 던져야 한다.</li>
-    <li><span class="step">참고.</span> 조작 전의 값 $p\fallingdotseq1/6$ 을 사전정보로 쓰면
-      $\sqrt{p(1-p)}=\sqrt{5}/6\fallingdotseq0.373$ 이라 $n\ge1265$ 로 크게 줄어든다.
-      다만 조작된 주사위라 $p$ 를 모른다고 보는 것이 안전하므로 위의 보수적인 답을 택한다.</li>
-  </ol>
+  $$2.576\sqrt{\frac{p(1-p)}{n}}\le2.576\cdot\frac{1/2}{\sqrt n}\le0.027
+    \ \Rightarrow\ \sqrt n\ge47.70\ \Rightarrow\ n\ge2275.6$$
+  <p>$p$ 를 모르므로 $p(1-p)\le\frac14$ 로 최악을 잡았다.
+  (사전정보 $p\fallingdotseq\frac16$ 을 쓰면 $n\ge1265$ 로 줄지만, 조작된 주사위라 보수적으로 잡는 것이 안전.)</p>
 </div>
 
 <div class="ans"><span class="exn">42</span><b>정답</b> $(0.268,\ 0.348)$
-  <ol class="fill">
-    <li><span class="step">표본비율을 계산한다.</span>
-      $$\hat p=\frac{154}{500}=0.308$$</li>
-    <li><span class="step">표준오차를 구한다.</span>
-      $$\sqrt{\frac{\hat p(1-\hat p)}{n}}=\sqrt{\frac{0.308\times0.692}{500}}
-        =\sqrt{0.0004263}=0.02065$$</li>
-    <li><span class="step">구간을 만든다.</span> $z_{0.025}=1.96$ 이므로 오차한계는
-      $1.96\times0.02065=0.0405$ 이고
-      $$0.308\pm0.0405\ \Longrightarrow\ (0.2675,\ 0.3485)$$
-      즉 $K$ 씨의 지지율은 $95\%$ 신뢰도로 대략 $26.8\%$ 에서 $34.9\%$ 사이이다.</li>
-  </ol>
+  $$\hat p=\frac{154}{500}=0.308,\qquad \sqrt{\frac{0.308\times0.692}{500}}=0.02065,\qquad
+    0.308\pm1.96(0.02065)$$
 </div>
 
 <div class="ans"><span class="exn">43</span><b>정답</b> (1) $(17.27,\ 19.73)$ &nbsp;(2) $\mu\gt17.54$
-  <ol class="fill">
-    <li><span class="step">기본량.</span> $n=16$, $\sigma=3$ 이므로 표준오차는
-      $\sigma/\sqrt n=3/4=0.75$ 이고 $\overline X_{16}=18.5$.</li>
-    <li><span class="step">(1) 양측 $90\%$.</span> $z_{0.05}=1.645$ 이므로
-      $$18.5\pm1.645\times0.75=18.5\pm1.234\ \Longrightarrow\ (17.27,\ 19.73)$$</li>
-    <li><span class="step">(2) 단측 $90\%$.</span> 꼬리 전체를 한쪽에 몰아 $z_{0.10}=1.282$ 를 쓴다.
-      $$\mu\ \gt\ 18.5-1.282\times0.75=18.5-0.96=17.54$$
-      즉 하한 신뢰구간은 $(17.54,\ \infty)$ 이다.
-      (상한 쪽을 원하면 $(-\infty,\ 19.46)$.)</li>
-    <li><span class="step">비교.</span> 같은 신뢰도라도 단측이면 한쪽 경계가 더 조여진다
-      ($17.27$ 대 $17.54$). 관심 방향이 하나뿐일 때 단측을 쓰는 이유이다.</li>
-  </ol>
+  <p>$\sigma/\sqrt n=3/4=0.75$.
+  (1) $18.5\pm1.645(0.75)=18.5\pm1.234$.
+  (2) 꼬리를 한쪽에 몰아 $z_{0.10}=1.282$: $18.5-1.282(0.75)=17.54$, 즉 $(17.54,\infty)$.
+  같은 신뢰도라도 단측이면 경계가 더 조여진다($17.27$ vs $17.54$).</p>
 </div>
 
-<div class="ans"><span class="exn">44</span><b>정답</b> $\left(\dfrac{\chi^2_{2n;0.95}}{2\sum X_i},\ \dfrac{\chi^2_{2n;0.05}}{2\sum X_i}\right)$ 를
-$(L,U)$ 라 하면 &nbsp;(2) $(L^2,U^2)$ &nbsp;(3) $(e^{-U},\ e^{-L})$
-  <ol class="fill">
-    <li><span class="step">(1-a) 추축변량을 만든다.</span> 여기서 $\theta$ 는 <b>비율모수</b>이므로
-      $E(X)=1/\theta$ 이고 $\sum X_i\sim\mathrm{Gamma}(n,1/\theta)$ 이다. 따라서
-      $$W=2\theta\sum_{i=1}^n X_i\ \sim\ \chi^2_{2n}$$
-      분포가 $\theta$ 를 포함하지 않으므로 추축변량이다.</li>
-    <li><span class="step">(1-b) 확률진술을 $\theta$ 로 푼다.</span>
-      $$P\big(\chi^2_{2n;0.95}\lt W\lt\chi^2_{2n;0.05}\big)=0.90$$
-      각 변을 $2\sum X_i$ 로 나누면
-      $$L=\frac{\chi^2_{2n;0.95}}{2\sum X_i}\ \lt\ \theta\ \lt\ \frac{\chi^2_{2n;0.05}}{2\sum X_i}=U$$</li>
-    <li><span class="step">(2) 단조증가 변환.</span> $\theta\gt0$ 에서 $\theta\mapsto\theta^2$ 은 증가하므로
-      부등식의 방향이 그대로 유지된다.
-      $$L\lt\theta\lt U\ \Longleftrightarrow\ L^2\lt\theta^2\lt U^2$$
-      따라서 $\theta^2$ 의 $90\%$ 신뢰구간은 $(L^2,\ U^2)$.</li>
-    <li><span class="step">(3) 단조감소 변환.</span> $\theta\mapsto e^{-\theta}$ 는 <b>감소</b>하므로
-      부등호가 뒤집힌다.
-      $$L\lt\theta\lt U\ \Longleftrightarrow\ e^{-U}\lt e^{-\theta}\lt e^{-L}$$
-      따라서 $P(X\gt1)=e^{-\theta}$ 의 $90\%$ 신뢰구간은 $\big(e^{-U},\ e^{-L}\big)$ 이다.
-      <b>단조함수는 신뢰도를 그대로 옮겨 준다</b>는 것이 요점이다.</li>
-  </ol>
+<div class="ans"><span class="exn">44</span><b>정답</b> $L=\dfrac{\chi^2_{2n;0.95}}{2\sum X_i}$, $U=\dfrac{\chi^2_{2n;0.05}}{2\sum X_i}$ 라 하면
+&nbsp;(1) $(L,U)$ &nbsp;(2) $(L^2,U^2)$ &nbsp;(3) $(e^{-U},\,e^{-L})$
+  <p>$\theta$ 가 비율모수이므로 $\sum X_i\sim\mathrm{Gamma}(n,1/\theta)$ 이고
+  $2\theta\sum X_i\sim\chi^2_{2n}$ 이 추축변량이다. 이를 $\theta$ 에 대해 풀면 (1).</p>
+  <p><b>단조함수는 신뢰도를 그대로 옮긴다.</b>
+  $\theta\mapsto\theta^2$ 은 증가라 방향 유지, $\theta\mapsto e^{-\theta}$ 는 감소라 순서가 뒤집힌다.</p>
 </div>
 
 <div class="ans"><span class="exn">45</span><b>정답</b> (1) $1-2^{-(n-1)}$ &nbsp;(2) $\overline X_n\pm\dfrac{1.96}{\sqrt{12n}}$
-  <ol class="fill">
-    <li><span class="step">(1) 여사건으로 센다.</span> 구간 $[X_{(1)},X_{(n)}]$ 이 $\theta$ 를 놓치는 경우는
-      <b>모든 관측값이 $\theta$ 보다 크거나</b>, <b>모두 $\theta$ 보다 작은</b> 두 경우뿐이다.
-      분포가 $\theta$ 를 중심으로 대칭이므로 $P(X_i\gt\theta)=P(X_i\lt\theta)=\frac12$ 이고, 독립이므로
-      $$P\big(X_{(1)}\le\theta\le X_{(n)}\big)=1-\Big(\frac12\Big)^n-\Big(\frac12\Big)^n
-        =1-\frac{1}{2^{n-1}}$$
-      $n=6$ 이면 이미 $0.969$ 로 매우 높다.</li>
-    <li><span class="step">(2) 중심극한정리를 쓴다.</span> $E(X)=\theta$, $Var(X)=\frac{1}{12}$ 이므로
-      $n$ 이 크면
-      $$\overline X_n\ \overset{\text{근사}}{\sim}\ N\!\left(\theta,\ \frac{1}{12n}\right)$$
-      따라서 $95\%$ 근사신뢰구간은
-      $$\overline X_n\pm1.96\sqrt{\frac{1}{12n}}=\overline X_n\pm\frac{0.566}{\sqrt n}$$
-      분산 $\frac1{12}$ 이 모수와 무관해 <b>추정할 것이 없다</b>는 점이 이 문제를 쉽게 만든다.</li>
-  </ol>
+  <p>(1) 놓치는 경우는 <b>모두 $\theta$ 보다 크거나 모두 작은</b> 두 경우뿐이고, 대칭이라 각각 $(1/2)^n$.</p>
+  <p>(2) $E(X)=\theta$, $Var(X)=\frac1{12}$ 이므로 CLT 로 $\overline X_n\approx N(\theta,\frac{1}{12n})$.
+  분산이 모수와 무관해 추정할 것이 없다.</p>
 </div>
 
-<div class="ans"><span class="exn">46</span><b>정답</b> (1) $\alpha=\dfrac12$ &nbsp;(2) $X_2\pm0.6745$, 길이 $1.349$ —
+<div class="ans"><span class="exn">46</span><b>정답</b> (1) $\alpha=\frac12$ &nbsp;(2) $X_2\pm0.6745$, 길이 $1.349$ —
 $[X_{(1)},X_{(2)}]$ 의 평균길이 $2/\sqrt\pi\fallingdotseq1.128$ 이 더 짧다.
-  <ol class="fill">
-    <li><span class="step">(1) 45번과 같은 셈.</span> $n=2$ 이므로
-      $$P\big(X_{(1)}\lt\mu\lt X_{(2)}\big)=1-2\Big(\frac12\Big)^2=1-\frac12=\frac12$$
-      즉 $1-\alpha=\frac12$ 이고 $\alpha=\dfrac12$ 이다.
-      두 점이 $\mu$ 를 사이에 두려면 하나는 위, 하나는 아래여야 하는데 그 확률이 정확히 $\frac12$ 이다.</li>
-    <li><span class="step">(2-a) 추축변량으로 같은 신뢰도의 구간을 만든다.</span>
-      $X_2-\mu\sim N(0,1)$ 은 $\mu$ 에 의존하지 않으므로 추축변량이다.
-      신뢰도 $0.5$ 를 맞추려면 $z_{0.25}=0.6745$ 를 쓴다.
-      $$P\big(-0.6745\lt X_2-\mu\lt0.6745\big)=0.5
-        \ \Longrightarrow\ \big(X_2-0.6745,\ X_2+0.6745\big)$$
-      길이는 $2\times0.6745=1.349$ 로 <b>항상 일정</b>하다.</li>
-    <li><span class="step">(2-b) 순서통계량 구간의 길이.</span> 길이는 $|X_1-X_2|$ 라는 확률변수이고,
-      $X_1-X_2\sim N(0,2)$ 이므로
-      $$E\big|X_1-X_2\big|=\sqrt2\cdot\sqrt{\frac{2}{\pi}}=\frac{2}{\sqrt\pi}\fallingdotseq1.128$$</li>
-    <li><span class="step">비교.</span> 같은 신뢰도 $50\%$ 인데 평균길이는 $1.128\lt1.349$ 로
-      $[X_{(1)},X_{(2)}]$ 쪽이 짧다. 두 관측값을 모두 쓴 구간이 하나만 쓴 구간보다 효율적인 것이다.
-      다만 그 길이는 표본마다 달라진다.</li>
-  </ol>
+  <p>(1) 45-(1) 에 $n=2$: $1-2(1/2)^2=\frac12$.</p>
+  <p>(2) $X_2-\mu\sim N(0,1)$ 이고 신뢰도 $0.5$ 이므로 $z_{0.25}=0.6745$.
+  한편 $X_1-X_2\sim N(0,2)$ 이므로 $E|X_1-X_2|=\sqrt2\cdot\sqrt{2/\pi}=2/\sqrt\pi$.
+  두 관측값을 다 쓴 구간이 더 효율적이나, 그 길이는 표본마다 달라진다.</p>
 </div>
 
 <div class="ans"><span class="exn">47</span><b>정답</b> (2) $\left(F_{2n,2m;0.95}\dfrac{\overline Y_m}{\overline X_n},\
 \ F_{2n,2m;0.05}\dfrac{\overline Y_m}{\overline X_n}\right)$
-  <ol class="fill">
-    <li><span class="step">(1-a) 각 표본합을 카이제곱으로 바꾼다.</span> 평균이 $\theta_1$ 인 지수분포에서
-      $\sum X_i\sim\mathrm{Gamma}(n,\theta_1)$ 이므로
-      $$\frac{2\sum X_i}{\theta_1}=\frac{2n\overline X_n}{\theta_1}\sim\chi^2_{2n},\qquad
-        \frac{2m\overline Y_m}{\theta_2}\sim\chi^2_{2m}$$
-      두 표본이 독립이므로 두 카이제곱도 독립이다.</li>
-    <li><span class="step">(1-b) $F$ 의 정의에 대입한다.</span> $F$ 는 자유도로 나눈 두 독립 카이제곱의 비이므로
-      $$F=\frac{\big(2n\overline X_n/\theta_1\big)\big/2n}{\big(2m\overline Y_m/\theta_2\big)\big/2m}
-        =\frac{\overline X_n/\theta_1}{\overline Y_m/\theta_2}
-        =\frac{\theta_2}{\theta_1}\cdot\frac{\overline X_n}{\overline Y_m}\ \sim\ F(2n,2m)$$
-      분포가 모수를 포함하지 않으므로 추축변량이기도 하다.</li>
-    <li><span class="step">(2) 구간을 푼다.</span>
-      $$P\!\left(F_{2n,2m;0.95}\lt\frac{\theta_2}{\theta_1}\cdot\frac{\overline X_n}{\overline Y_m}
-        \lt F_{2n,2m;0.05}\right)=0.90$$
-      각 변에 $\overline Y_m/\overline X_n$ 을 곱하면
-      $$F_{2n,2m;0.95}\,\frac{\overline Y_m}{\overline X_n}\ \lt\ \frac{\theta_2}{\theta_1}
-        \ \lt\ F_{2n,2m;0.05}\,\frac{\overline Y_m}{\overline X_n}$$</li>
-  </ol>
+  $$\frac{2n\overline X_n}{\theta_1}\sim\chi^2_{2n},\quad \frac{2m\overline Y_m}{\theta_2}\sim\chi^2_{2m}\ (\text{독립})
+    \ \Rightarrow\ \frac{(2n\overline X_n/\theta_1)/2n}{(2m\overline Y_m/\theta_2)/2m}
+    =\frac{\theta_2}{\theta_1}\frac{\overline X_n}{\overline Y_m}\sim F(2n,2m)$$
+  <p>모수를 포함하지 않으므로 추축변량. 양변에 $\overline Y_m/\overline X_n$ 을 곱하면 (2).</p>
 </div>
 
 <div class="ans"><span class="exn">48</span><b>정답</b>
-$(\overline X_n-\overline Y_m)\pm t_{n+m-2;\,\alpha/2}\;S_p\sqrt{\dfrac1n+\dfrac1m}$
-  <ol class="fill">
-    <li><span class="step">분자 — 정규분포 부분.</span> 두 표본이 독립이므로
-      $\overline X_n-\overline Y_m\sim N\big(\mu_X-\mu_Y,\ \sigma^2(\frac1n+\frac1m)\big)$ 이고
-      $$Z=\frac{(\overline X_n-\overline Y_m)-(\mu_X-\mu_Y)}{\sigma\sqrt{\frac1n+\frac1m}}\sim N(0,1)$$
-      그런데 $\sigma$ 를 모르므로 이대로는 추축변량이 아니다.</li>
-    <li><span class="step">분모 — 합동표본분산.</span> $\frac{(n-1)S_X^2}{\sigma^2}\sim\chi^2_{n-1}$,
-      $\frac{(m-1)S_Y^2}{\sigma^2}\sim\chi^2_{m-1}$ 이고 독립이므로 합은 $\chi^2_{n+m-2}$ 이다.
-      $$S_p^2=\frac{(n-1)S_X^2+(m-1)S_Y^2}{n+m-2}
-        \ \Longrightarrow\ \frac{(n+m-2)S_p^2}{\sigma^2}\sim\chi^2_{n+m-2}$$
-      자유도로 가중평균한 것이 합동표본분산이다.</li>
-    <li><span class="step">$t$ 를 만든다.</span> $\overline X,\overline Y$ 는 $S_X^2,S_Y^2$ 과 독립이므로
-      $$T=\frac{Z}{\sqrt{\dfrac{(n+m-2)S_p^2/\sigma^2}{n+m-2}}}
-        =\frac{(\overline X_n-\overline Y_m)-(\mu_X-\mu_Y)}{S_p\sqrt{\frac1n+\frac1m}}\ \sim\ t(n+m-2)$$
-      $\sigma$ 가 약분되어 사라진 것이 결정적이다 — 이제 추축변량이다.</li>
-    <li><span class="step">구간으로 옮긴다.</span> $P(|T|\lt t_{n+m-2;\alpha/2})=1-\alpha$ 를
-      $\mu_X-\mu_Y$ 에 대해 풀면
-      $$(\overline X_n-\overline Y_m)\ \pm\ t_{n+m-2;\,\alpha/2}\;S_p\sqrt{\frac1n+\frac1m}$$</li>
-  </ol>
+$(\overline X_n-\overline Y_m)\pm t_{n+m-2;\,\alpha/2}\;S_p\sqrt{\frac1n+\frac1m}$,
+&nbsp;$S_p^2=\dfrac{(n-1)S_X^2+(m-1)S_Y^2}{n+m-2}$
+  $$Z=\frac{(\overline X_n-\overline Y_m)-(\mu_X-\mu_Y)}{\sigma\sqrt{\frac1n+\frac1m}}\sim N(0,1),\qquad
+    \frac{(n+m-2)S_p^2}{\sigma^2}\sim\chi^2_{n+m-2}$$
+  <p>두 카이제곱의 합이 자유도의 합을 갖고, $\overline X,\overline Y$ 는 $S_X^2,S_Y^2$ 과 독립이므로
+  $Z$ 를 $\sqrt{\chi^2/\text{자유도}}$ 로 나누면 $t(n+m-2)$. <b>이때 $\sigma$ 가 약분되어</b> 추축변량이 된다.</p>
 </div>
 
 <div class="ans"><span class="exn">49</span><b>정답</b>
 $\left(\dfrac{X_{(n)}}{(1-\alpha/2)^{1/n}},\ \dfrac{X_{(n)}}{(\alpha/2)^{1/n}}\right)$
-  <ol class="fill">
-    <li><span class="step">추축변량을 찾는다.</span> $U=X_{(n)}/\theta$ 로 두면
-      $$P(U\le u)=P\big(X_{(n)}\le u\theta\big)=\Big(\frac{u\theta}{\theta}\Big)^{\!n}=u^n,
-        \qquad 0\lt u\lt1$$
-      분포가 $\theta$ 에 전혀 의존하지 않으므로 추축변량이다.
-      (척도모수를 척도로 나누면 모수가 사라지는 전형적인 구조이다.)</li>
-    <li><span class="step">양쪽 꼬리를 $\alpha/2$ 씩 잘라낸다.</span> $P(a\lt U\lt b)=b^n-a^n=1-\alpha$ 에서
-      $$a^n=\frac{\alpha}{2},\quad b^n=1-\frac{\alpha}{2}
-        \ \Longrightarrow\ a=\Big(\frac{\alpha}{2}\Big)^{1/n},\quad b=\Big(1-\frac{\alpha}{2}\Big)^{1/n}$$</li>
-    <li><span class="step">$\theta$ 에 대해 푼다.</span> $a\lt X_{(n)}/\theta\lt b$ 의 역수를 취하면
-      부등호가 뒤집히므로
-      $$\frac{X_{(n)}}{b}\ \lt\ \theta\ \lt\ \frac{X_{(n)}}{a}
-        \ \Longrightarrow\ \left(\frac{X_{(n)}}{(1-\alpha/2)^{1/n}},\ \frac{X_{(n)}}{(\alpha/2)^{1/n}}\right)$$</li>
-    <li><span class="step">더 짧은 구간.</span> $U$ 의 밀도 $nu^{n-1}$ 은 증가함수라 오른쪽 끝이 가장 조밀하다.
-      그래서 위쪽 꼬리를 자르지 않고 $b=1$ 로 두는 편이 구간이 짧아진다.
-      $$\big(X_{(n)},\ X_{(n)}\alpha^{-1/n}\big)$$
-      $\theta\ge X_{(n)}$ 는 어차피 항상 참이므로 정보를 잃지도 않는다.</li>
-  </ol>
+  <p>$U=X_{(n)}/\theta$ 는 $P(U\le u)=u^n$ $(0\lt u\lt1)$ 로 모수를 포함하지 않는 추축변량이다.
+  양쪽 꼬리를 $\alpha/2$ 씩 자르면 $a=(\alpha/2)^{1/n}$, $b=(1-\alpha/2)^{1/n}$ 이고,
+  $a\lt X_{(n)}/\theta\lt b$ 의 역수를 취한다.</p>
+  <p>$U$ 의 밀도 $nu^{n-1}$ 이 증가함수이므로 <b>$b=1$ 로 두면 더 짧아진다</b>:
+  $\big(X_{(n)},\ X_{(n)}\alpha^{-1/n}\big)$. $\theta\ge X_{(n)}$ 은 어차피 항상 참이라 정보 손실도 없다.</p>
 </div>
 
-<div class="ans"><span class="exn">50</span><b>정답</b> $\overline X_n$ 과 $S^2$ 의 독립성을 이용해
-$(1-\alpha_1)(1-\alpha_2)=1-\alpha$ 가 되도록 두 구간을 곱한다.
-  <ol class="fill">
-    <li><span class="step">두 개의 추축변량을 준비한다.</span> 정규모집단에서
-      $$Z=\frac{\sqrt n(\overline X_n-\mu)}{\sigma}\sim N(0,1),\qquad
-        W=\frac{(n-1)S^2}{\sigma^2}\sim\chi^2_{n-1}$$
-      이고, <b>정리 3.9 에 의해 $\overline X_n$ 과 $S^2$ 은 서로 독립</b>이다.
-      따라서 $Z$ 와 $W$ 도 독립이다.</li>
-    <li><span class="step">각각의 신뢰도를 곱한다.</span> 독립이므로 두 사건이 동시에 일어날 확률은 곱이다.
-      $$P\big(|Z|\lt z_{\alpha_1/2}\big)\cdot
-        P\big(\chi^2_{n-1;1-\alpha_2/2}\lt W\lt\chi^2_{n-1;\alpha_2/2}\big)
-        =(1-\alpha_1)(1-\alpha_2)$$
-      이것이 $1-\alpha$ 가 되도록 $\alpha_1,\alpha_2$ 를 잡는다.
-      대칭적으로 $1-\alpha_1=1-\alpha_2=\sqrt{1-\alpha}$ 로 두는 것이 표준이다.</li>
-    <li><span class="step">$(\mu,\sigma^2)$ 평면 위의 영역으로 옮긴다.</span>
-      $$R=\left\{(\mu,\sigma^2):\
-        |\overline X_n-\mu|\lt z_{\alpha_1/2}\frac{\sigma}{\sqrt n},\quad
-        \frac{(n-1)S^2}{\chi^2_{n-1;\alpha_2/2}}\lt\sigma^2\lt\frac{(n-1)S^2}{\chi^2_{n-1;1-\alpha_2/2}}\right\}$$
-      $P\big((\mu,\sigma^2)\in R\big)=1-\alpha$ 이다.</li>
-    <li><span class="step">모양.</span> 첫 조건은 $\sigma$ 가 커질수록 $\mu$ 의 허용폭이 넓어지는
-      <b>$\overline X_n$ 을 축으로 벌어지는 부채꼴</b>이고, 둘째 조건이 그것을 위아래로 잘라
-      전체는 사다리꼴 모양의 영역이 된다.
-      $\mu$ 와 $\sigma^2$ 의 신뢰구간을 따로 구해 나열하는 것과 달리,
-      <b>두 모수가 동시에</b> 그 영역에 들어갈 확률이 $1-\alpha$ 라는 점이 다르다.</li>
-  </ol>
+<div class="ans"><span class="exn">50</span><b>정답</b> $\overline X_n\perp S^2$ 을 이용해 두 구간을 곱한다
+$\big((1-\alpha_1)(1-\alpha_2)=1-\alpha\big)$.
+  $$R=\left\{(\mu,\sigma^2):\ |\overline X_n-\mu|\lt z_{\alpha_1/2}\frac{\sigma}{\sqrt n},\quad
+    \frac{(n-1)S^2}{\chi^2_{n-1;\alpha_2/2}}\lt\sigma^2\lt\frac{(n-1)S^2}{\chi^2_{n-1;1-\alpha_2/2}}\right\}$$
+  <p>정리 3.9 로 $Z=\frac{\sqrt n(\overline X_n-\mu)}{\sigma}$ 와 $W=\frac{(n-1)S^2}{\sigma^2}$ 이 독립이므로
+  두 확률이 곱해진다. 보통 $1-\alpha_1=1-\alpha_2=\sqrt{1-\alpha}$ 로 잡는다.
+  모양은 $\overline X_n$ 을 축으로 벌어지는 부채꼴을 위아래로 자른 사다리꼴이다.</p>
 </div>
 
-<div class="ans"><span class="exn">51</span><b>정답</b> 전체확률이 항상 $1$ 이라는 사실을 $\theta$ 로 미분하면 나온다. (바틀릿 항등식 ①)
-  <ol class="fill">
-    <li><span class="step">출발점 — 밀도의 적분은 항상 $1$.</span> 모든 $\theta$ 에 대하여
-      $$\int f(x;\theta)\,dx=1$$
-      우변이 $\theta$ 와 무관한 상수라는 것이 모든 것의 씨앗이다.</li>
-    <li><span class="step">양변을 $\theta$ 로 미분한다.</span> 정규조건 아래 미분과 적분의 순서를 바꾸면
-      $$\int\frac{\partial f(x;\theta)}{\partial\theta}\,dx=0$$</li>
-    <li><span class="step">스코어함수 꼴로 바꾼다.</span> 로그미분법
-      $\dfrac{\partial\log f}{\partial\theta}=\dfrac{1}{f}\dfrac{\partial f}{\partial\theta}$ 에서
-      $\dfrac{\partial f}{\partial\theta}=f\cdot\dfrac{\partial\log f}{\partial\theta}$ 이므로
-      $$\int\frac{\partial\log f(x;\theta)}{\partial\theta}\,f(x;\theta)\,dx
-        =E\!\left[\frac{\partial}{\partial\theta}\log f(X;\theta)\right]=0$$</li>
-    <li><span class="step">참값에서 읽는다.</span> 이 등식은 모든 $\theta$ 에서 성립하므로
-      특히 참값 $\theta=\theta_0$ 에서도 성립한다.
-      $$E\!\left(\left.\frac{d}{d\theta}\log f(X;\theta)\right|_{\theta=\theta_0}\right)=0$$
-      즉 <b>스코어함수의 평균은 $0$</b> 이다. 이것이 MLE 가 왜 참값 근처를 겨냥하는지를 설명한다.</li>
-  </ol>
+<div class="ans"><span class="exn">51</span><b>정답</b> 전체확률 $1$ 을 $\theta$ 로 미분하면 나온다. (바틀릿 항등식 ①)
+  $$\int f(x;\theta)dx=1\ \xrightarrow{\ \frac{d}{d\theta}\ }\ \int\frac{\partial f}{\partial\theta}dx=0$$
+  <p>$\frac{\partial f}{\partial\theta}=f\cdot\frac{\partial\log f}{\partial\theta}$ 를 대입하면
+  $E\big[\frac{\partial}{\partial\theta}\log f(X;\theta)\big]=0$. 특히 $\theta=\theta_0$ 에서 성립한다.
+  <b>스코어함수의 평균이 $0$</b> 이라는 것이 MLE 가 참값을 겨냥하는 이유이다.</p>
 </div>
 
-<div class="ans"><span class="exn">52</span><b>정답</b> 51 의 식을 한 번 더 미분하면 두 표현이 같아지고,
-그다음 대수의 법칙으로 $-\frac1n l''(\theta_0)\xrightarrow{\ p\ }I(\theta_0)$.
-  <ol class="fill">
-    <li><span class="step">51 의 결과를 다시 미분한다.</span>
-      $\displaystyle\int\frac{\partial\log f}{\partial\theta}\,f\,dx=0$ 의 양변을 $\theta$ 로 미분하면
-      곱의 미분법에 의해
-      $$\int\left[\frac{\partial^2\log f}{\partial\theta^2}f
-        +\frac{\partial\log f}{\partial\theta}\cdot\frac{\partial f}{\partial\theta}\right]dx=0$$</li>
-    <li><span class="step">두 번째 항을 스코어의 제곱으로 바꾼다.</span> 다시
-      $\dfrac{\partial f}{\partial\theta}=f\dfrac{\partial\log f}{\partial\theta}$ 를 쓰면
-      두 번째 항이 $\Big(\dfrac{\partial\log f}{\partial\theta}\Big)^{\!2}f$ 가 되므로
-      $$E\!\left[\frac{\partial^2\log f}{\partial\theta^2}\right]
-        +E\!\left[\Big(\frac{\partial\log f}{\partial\theta}\Big)^{\!2}\right]=0$$
-      $\theta=\theta_0$ 에서 읽고 이항하면 구하는 등식을 얻는다.
-      $$E\!\left(\left.\frac{d}{d\theta}\log f(X;\theta)\right|_{\theta_0}\right)^{\!2}
-        =-E\!\left(\left.\frac{d^2}{d\theta^2}\log f(X;\theta)\right|_{\theta_0}\right)=I(\theta_0)$$
-      즉 피셔정보를 <b>스코어의 분산</b>으로도, <b>곡률의 기댓값</b>으로도 쓸 수 있다.</li>
-    <li><span class="step">대수의 법칙을 적용한다.</span> $l(\theta)=\sum_{i=1}^n\log f(X_i;\theta)$ 이므로
-      $$-\frac1n l''(\theta_0)
-        =\frac1n\sum_{i=1}^n\left(-\frac{d^2}{d\theta^2}\log f(X_i;\theta)\Big|_{\theta_0}\right)$$
-      우변은 독립이고 같은 분포를 따르는 확률변수들의 표본평균이다.</li>
-    <li><span class="step">결론.</span> 대수의 법칙에 의해 이 표본평균은 그 공통 기댓값으로 확률수렴하고,
-      단계 2 에서 그 기댓값이 정확히 $I(\theta_0)$ 임을 보였다.
-      $$-\frac1n l''(\theta_0)\ \xrightarrow{\ p\ }\
-        -E\!\left[\frac{d^2}{d\theta^2}\log f(X;\theta)\Big|_{\theta_0}\right]=I(\theta_0)$$
-      이것이 MLE 의 점근적 정규성 증명에서 분모를 $I(\theta_0)$ 로 바꿔치기할 수 있게 해 주는 근거이다.</li>
-  </ol>
+<div class="ans"><span class="exn">52</span><b>정답</b> 51 을 한 번 더 미분한 뒤 대수의 법칙.
+  $$\int\frac{\partial\log f}{\partial\theta}f\,dx=0
+    \ \xrightarrow{\ \frac{d}{d\theta}\ }\
+    E\!\left[\frac{\partial^2\log f}{\partial\theta^2}\right]+E\!\left[\Big(\frac{\partial\log f}{\partial\theta}\Big)^{\!2}\right]=0$$
+  <p>다시 $\frac{\partial f}{\partial\theta}=f\frac{\partial\log f}{\partial\theta}$ 를 쓴 것이다.
+  이항하면 구하는 등식이고, 피셔정보를 <b>스코어의 분산</b>으로도 <b>곡률의 기댓값</b>으로도 쓸 수 있다는 뜻이다.</p>
+  <p>$-\frac1n l''(\theta_0)=\frac1n\sum\big(-\frac{d^2}{d\theta^2}\log f(X_i;\theta)\big|_{\theta_0}\big)$ 은
+  i.i.d. 확률변수의 표본평균이므로 대수의 법칙에 의해 그 기댓값, 즉 $I(\theta_0)$ 로 확률수렴한다.</p>
 </div>
 
 <div class="sec">보충 문제</div>
 
 <div class="ans"><span class="exn">보충</span><b>정답</b> (1) $nX_{(1)}\sim\mathrm{EXP}(\lambda)$ 로 비편향
 &nbsp;(2) 분포가 $n$ 과 무관하므로 일치성이 없다.
-  <ol class="fill">
-    <li><span class="step">(1-a) 표본최솟값의 분포.</span> $P(X_i\gt t)=e^{-t/\lambda}$ 이고 독립이므로
-      $$P\big(X_{(1)}\gt t\big)=\big(e^{-t/\lambda}\big)^n=e^{-t/(\lambda/n)}$$
-      즉 $X_{(1)}\sim\mathrm{EXP}(\lambda/n)$ 이다. $n$ 배 하면
-      $$P\big(nX_{(1)}\gt t\big)=P\Big(X_{(1)}\gt\frac{t}{n}\Big)=e^{-t/\lambda}
-        \ \Longrightarrow\ nX_{(1)}\sim\mathrm{EXP}(\lambda)$$</li>
-    <li><span class="step">(1-b) 비편향성.</span> 따라서 $E\big(nX_{(1)}\big)=\lambda$ 로 비편향추정량이다.</li>
-    <li><span class="step">(2) 일치성이 없다.</span> 단계 1 에서 $nX_{(1)}$ 의 분포가
-      <b>$n$ 에 전혀 의존하지 않음</b>을 확인했다. 그러므로 어떤 확률도 $n$ 과 무관하다.
-      $0\lt\varepsilon\lt\lambda$ 인 $\varepsilon$ 에 대하여
-      $$P\big(|nX_{(1)}-\lambda|\le\varepsilon\big)
-        =e^{-(\lambda-\varepsilon)/\lambda}-e^{-(\lambda+\varepsilon)/\lambda}
-        =e^{-1}\big(e^{\varepsilon/\lambda}-e^{-\varepsilon/\lambda}\big)$$
-      이 값은 $n$ 과 무관한 상수이고 $1$ 보다 작다. 따라서 $n\to\infty$ 라 해도 $1$ 로 수렴하지 않으므로
-      일치성이 없다.</li>
-    <li><span class="step">교훈.</span> 표본을 아무리 늘려도 $X_{(1)}$ 은 <b>맨 앞의 한 관측값</b>만 반영하므로
-      정보가 쌓이지 않는다. <b>비편향이라고 해서 일치성이 따라오지는 않는다</b>는 것을 보여주는 표준적인 예이다.
-      (반면 $\overline X_n$ 은 $Var=\lambda^2/n\to0$ 이라 38 번에 의해 일치추정량이다.)</li>
-  </ol>
+  $$P\big(X_{(1)}\gt t\big)=\big(e^{-t/\lambda}\big)^n=e^{-t/(\lambda/n)}
+    \ \Rightarrow\ X_{(1)}\sim\mathrm{EXP}(\lambda/n)
+    \ \Rightarrow\ nX_{(1)}\sim\mathrm{EXP}(\lambda)$$
+  <p>따라서 $E(nX_{(1)})=\lambda$ 로 비편향이다. 그런데 이 분포가 $n$ 에 <b>전혀 의존하지 않으므로</b>
+  $0\lt\varepsilon\lt\lambda$ 에 대하여</p>
+  $$P\big(|nX_{(1)}-\lambda|\le\varepsilon\big)=e^{-1}\big(e^{\varepsilon/\lambda}-e^{-\varepsilon/\lambda}\big)$$
+  <p>이 $n$ 과 무관한 $1$ 미만의 상수라 $1$ 로 수렴하지 않는다.
+  표본을 늘려도 $X_{(1)}$ 은 맨 앞 하나만 반영해 정보가 쌓이지 않는 것이다.
+  <b>비편향이라고 일치성이 따라오지는 않는다.</b> (반면 $\overline X_n$ 은 $Var=\lambda^2/n\to0$ 이라 38 에 의해 일치.)</p>
 </div>
 
 </div>
